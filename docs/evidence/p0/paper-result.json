@@ -1,0 +1,23 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true
+  },
+  "passed": true,
+  "seconds": 55.78,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "5821c9d44ba52efeb765f39bce8f80f8410ac66aaa93e32952e8fd87f84590cb",
+  "log_sha256": "8188dce6101893ade04c3f7ba2b0226da54043f8d71e5dd51a908763d68dc5be",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "scope": "actual-server console lifecycle only; no human clients or integration plugins"
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "PROGRAM",
+  "metadata": {
+    "id": {
+      "value": "genesis:program"
+    },
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [],
+    "hash": "0d1b734c433613a527a8dd9c30c1075342fac7e39dfc393d1adc95e58ac37189",
+    "permissions": {
+      "publicRead": true,
+      "allowClone": true,
+      "editors": []
+    }
+  },
+  "nodes": [
+    {
+      "id": "wait",
+      "operation": "WAIT",
+      "inputType": "NONE",
+      "outputType": "NONE",
+      "parameters": {}
+    }
+  ],
+  "edges": [],
+  "maxInstructionsPerStep": 128
+}

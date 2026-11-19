@@ -1,0 +1,11 @@
+* text=auto
+*.java text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.py text eol=lf
+mvnw text eol=lf
+*.cmd text eol=crlf
+# Raw evidence must preserve bytes and hashes across Windows/Linux checkout.
+docs/evidence/**/*.log -text -diff

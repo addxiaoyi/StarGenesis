@@ -1,0 +1,9 @@
+.ccgui/
+.work/
+.audit-sources/
+**/target/
+.idea/
+*.iml
+*.log
+!docs/evidence/**/*.log
+server/

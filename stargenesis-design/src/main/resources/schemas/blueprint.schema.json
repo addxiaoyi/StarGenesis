@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:stargenesis:design:blueprint:1",
+  "title": "StarGenesis BLUEPRINT schema 1",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "BLUEPRINT"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 128,
+              "pattern": "^[a-z][a-z0-9_-]{0,31}:[a-z0-9][a-z0-9_./-]{0,94}$",
+              "not": {
+                "pattern": "\\.\\.|/$"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        "schemaVersion": {
+          "const": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$"
+        },
+        "author": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "pattern": "^[a-z][a-z0-9_-]{0,31}:[a-z0-9][a-z0-9_./-]{0,94}$",
+                    "not": {
+                      "pattern": "\\.\\.|/$"
+                    }
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$"
+              },
+              "hash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "version",
+              "hash"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 64
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "permissions": {
+          "type": "object",
+          "properties": {
+            "publicRead": {
+              "type": "boolean"
+            },
+            "allowClone": {
+              "type": "boolean"
+            },
+            "editors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "minItems": 0,
+              "maxItems": 64,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "publicRead",
+            "allowClone",
+            "editors"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "schemaVersion",
+        "version",
+        "author",
+        "source",
+        "dependencies",
+        "hash",
+        "permissions"
+      ],
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_:-]{0,63}$"
+          },
+          "type": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_:-]{0,63}$"
+          },
+          "x": {
+            "type": "integer",
+            "minimum": -16,
+            "maximum": 16
+          },
+          "y": {
+            "type": "integer",
+            "minimum": -16,
+            "maximum": 16
+          },
+          "z": {
+            "type": "integer",
+            "minimum": -16,
+            "maximum": 16
+          },
+          "rotation": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "x",
+          "y",
+          "z",
+          "rotation"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_:-]{0,63}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_:-]{0,63}$"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 256
+    }
+  },
+  "required": [
+    "kind",
+    "metadata",
+    "components",
+    "connections"
+  ],
+  "additionalProperties": false
+}

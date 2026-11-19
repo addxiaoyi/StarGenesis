@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:stargenesis:design:arena_ruleset:1",
+  "title": "StarGenesis ARENA_RULESET schema 1",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "ARENA_RULESET"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 128,
+              "pattern": "^[a-z][a-z0-9_-]{0,31}:[a-z0-9][a-z0-9_./-]{0,94}$",
+              "not": {
+                "pattern": "\\.\\.|/$"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        "schemaVersion": {
+          "const": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$"
+        },
+        "author": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "\\S"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 128,
+                    "pattern": "^[a-z][a-z0-9_-]{0,31}:[a-z0-9][a-z0-9_./-]{0,94}$",
+                    "not": {
+                      "pattern": "\\.\\.|/$"
+                    }
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$"
+              },
+              "hash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "version",
+              "hash"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 64
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "permissions": {
+          "type": "object",
+          "properties": {
+            "publicRead": {
+              "type": "boolean"
+            },
+            "allowClone": {
+              "type": "boolean"
+            },
+            "editors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "minItems": 0,
+              "maxItems": 64,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "publicRead",
+            "allowClone",
+            "editors"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "schemaVersion",
+        "version",
+        "author",
+        "source",
+        "dependencies",
+        "hash",
+        "permissions"
+      ],
+      "additionalProperties": false
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 128
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 128
+    },
+    "durationSteps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 72000
+    },
+    "unitBudget": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    }
+  },
+  "required": [
+    "kind",
+    "metadata",
+    "width",
+    "height",
+    "durationSteps",
+    "unitBudget"
+  ],
+  "additionalProperties": false
+}

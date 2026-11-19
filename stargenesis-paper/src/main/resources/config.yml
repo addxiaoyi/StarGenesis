@@ -1,0 +1,13 @@
+config-version: 1
+# Logical step duration. This is not a guarantee of server tick time.
+simulation:
+  step-duration-millis: 100
+  nodes-per-agent-step: 128
+  max-agents: 16
+  path-requests-per-step: 8
+  max-steps: 3000
+  sensor-radius: 16
+  messages-per-step: 64
+# P0 never moves real items or money, even if third-party plugins are installed.
+integrations:
+  allow-real-settlement: false

@@ -1,0 +1,23 @@
+{
+  "kind": "ARENA_RULESET",
+  "metadata": {
+    "id": {
+      "value": "genesis:arena_ruleset"
+    },
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [],
+    "hash": "f6c427b6933bc200208842d84a649a5532d6fa51e4c40de3588774517bfde7c1",
+    "permissions": {
+      "publicRead": true,
+      "allowClone": true,
+      "editors": []
+    }
+  },
+  "width": 16,
+  "height": 16,
+  "durationSteps": 1200,
+  "unitBudget": 4
+}

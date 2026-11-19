@@ -1,0 +1,22 @@
+name: StarGenesis
+version: '${project.version}'
+main: dev.stargenesis.paper.StarGenesisPlugin
+api-version: '1.21.11'
+description: Players invent rules; the world tests inventions. P0 foundation.
+folia-supported: true
+softdepend: [StarCore, helsteraMobs, CraftEngine, KaleidoscopeCookeryPlugin, KaleidoscopeDollPlugin, KaleidoscopeTavernPlugin, KaleidoscopeDecoPlugin, KaleidoscopeMusicPlugin]
+commands:
+  genesis:
+    description: StarGenesis status, help and operator diagnostics
+    usage: /genesis help
+    aliases: [sg]
+permissions:
+  stargenesis.help:
+    description: Read help
+    default: true
+  stargenesis.status:
+    description: View foundation status
+    default: true
+  stargenesis.debug:
+    description: Inspect integration capabilities and budgets
+    default: op

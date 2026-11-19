@@ -1,0 +1,23 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true
+  },
+  "passed": true,
+  "seconds": 131.34,
+  "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_sha256": "5821c9d44ba52efeb765f39bce8f80f8410ac66aaa93e32952e8fd87f84590cb",
+  "log_sha256": "e984be896714d84061af92e099eefa136f6371737d14f18427b1e6bb4c82dfab",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "scope": "actual-server console lifecycle only; no human clients or integration plugins"
+}

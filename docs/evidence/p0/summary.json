@@ -1,0 +1,73 @@
+{
+  "phase": "P0",
+  "artifact": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "sha256": "5821c9d44ba52efeb765f39bce8f80f8410ac66aaa93e32952e8fd87f84590cb",
+  "tests": {
+    "tests": 88,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_suites": [
+    {
+      "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+      "version": "3.0.2",
+      "name": "dev.stargenesis.api.ContractTest",
+      "time": "0.334",
+      "tests": "4",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+      "version": "3.0.2",
+      "name": "dev.stargenesis.design.DesignCodecTest",
+      "time": "3.428",
+      "tests": "43",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+      "version": "3.0.2",
+      "name": "dev.stargenesis.integrations.CapabilityRegistryTest",
+      "time": "0.315",
+      "tests": "15",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+      "version": "3.0.2",
+      "name": "dev.stargenesis.paper.PluginDescriptorTest",
+      "time": "0.1",
+      "tests": "2",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+      "version": "3.0.2",
+      "name": "dev.stargenesis.sim.SimulationContractsTest",
+      "time": "1.766",
+      "tests": "24",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    }
+  ],
+  "paper_passed": true,
+  "folia_passed": true,
+  "same_artifact": true,
+  "clean_repository_build": true,
+  "unverified": [
+    "human clients",
+    "third-party integrations",
+    "Folia region operations",
+    "P1-P11 gameplay"
+  ]
+}

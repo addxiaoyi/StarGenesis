@@ -1,0 +1,27 @@
+{
+  "kind": "PROTOCOL",
+  "metadata": {
+    "id": {
+      "value": "genesis:protocol"
+    },
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [],
+    "hash": "e6a54bb509ff2e5ba080c81060d06cbb9cded5d7b96f3a2a5607bd139c43e5dd",
+    "permissions": {
+      "publicRead": true,
+      "allowClone": true,
+      "editors": []
+    }
+  },
+  "fields": [
+    {
+      "name": "sequence",
+      "type": "INTEGER",
+      "required": true
+    }
+  ],
+  "maxPayloadBytes": 256
+}

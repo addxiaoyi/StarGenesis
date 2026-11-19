@@ -1,0 +1,32 @@
+{
+  "kind": "CONTRACT",
+  "metadata": {
+    "id": {
+      "value": "genesis:contract"
+    },
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [
+      {
+        "id": {
+          "value": "genesis:protocol"
+        },
+        "version": "1.0.0",
+        "hash": "e6a54bb509ff2e5ba080c81060d06cbb9cded5d7b96f3a2a5607bd139c43e5dd"
+      }
+    ],
+    "hash": "83f7d03203253113f1b050fc4cfb506a74c16848032d2d8dcf3a023690bec13c",
+    "permissions": {
+      "publicRead": true,
+      "allowClone": true,
+      "editors": []
+    }
+  },
+  "protocol": {
+    "value": "genesis:protocol"
+  },
+  "timeoutSteps": 200,
+  "maxUnits": 64
+}

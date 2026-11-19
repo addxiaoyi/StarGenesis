@@ -1,0 +1,28 @@
+name: verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  java:
+    strategy:
+      matrix:
+        java: ['21', '25']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '${{ matrix.java }}'
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_boundaries.py
+      - run: sh mvnw -B -ntp verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stargenesis-java-${{ matrix.java }}
+          path: |
+            stargenesis-paper/target/stargenesis-paper-*.jar
+            **/target/surefire-reports/*

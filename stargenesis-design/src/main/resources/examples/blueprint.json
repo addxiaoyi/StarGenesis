@@ -1,0 +1,30 @@
+{
+  "kind": "BLUEPRINT",
+  "metadata": {
+    "id": {
+      "value": "genesis:blueprint"
+    },
+    "schemaVersion": 1,
+    "version": "1.0.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [],
+    "hash": "3a109a5354f02660b66016454b12197644933ed6a07ef4f0d62633aeed8a0b0e",
+    "permissions": {
+      "publicRead": true,
+      "allowClone": true,
+      "editors": []
+    }
+  },
+  "components": [
+    {
+      "id": "core",
+      "type": "genesis:core",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "rotation": 0
+    }
+  ],
+  "connections": []
+}
