@@ -1,0 +1,24 @@
+delayed-reproduction world=0 seed=52008 tick=1066 end=EXTINCTION species={}
+delayed-reproduction world=0 seed=52009 tick=1066 end=EXTINCTION species={}
+delayed-reproduction world=0 seed=52010 tick=1066 end=EXTINCTION species={}
+delayed-reproduction world=0 seed=52011 tick=1066 end=EXTINCTION species={}
+delayed-reproduction world=1 seed=52008 tick=1065 end=EXTINCTION species={}
+delayed-reproduction world=1 seed=52009 tick=1065 end=EXTINCTION species={}
+delayed-reproduction world=1 seed=52010 tick=1065 end=EXTINCTION species={}
+delayed-reproduction world=1 seed=52011 tick=1065 end=EXTINCTION species={}
+previous-500-tick-candidate world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=6, producer=25}
+previous-500-tick-candidate world=0 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=6, producer=25}
+previous-500-tick-candidate world=0 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=6, producer=25}
+previous-500-tick-candidate world=0 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=6, producer=25}
+previous-500-tick-candidate world=1 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=4, producer=28}
+previous-500-tick-candidate world=1 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=4, producer=28}
+previous-500-tick-candidate world=1 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=4, producer=28}
+previous-500-tick-candidate world=1 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=16, producer=16}
+staggered-lifespans world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=9}
+staggered-lifespans world=0 seed=52009 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=0 seed=52010 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=0 seed=52011 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=1 seed=52008 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=1 seed=52009 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=1 seed=52010 tick=1288 end=EXTINCTION species={}
+staggered-lifespans world=1 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=9}

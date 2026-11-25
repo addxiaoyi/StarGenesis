@@ -15,7 +15,7 @@
 | P2 | 实现已落地，阶段门未通过 | Paper/Folia 客户端创建、编辑、预览、保存并重开个人蓝图。仍缺真人编辑体验和长期重启/隔离验收 |
 | P3 | 实现已落地，阶段门未通过 | typed program 编辑、沙盒执行和 replay 已覆盖。仍缺真人程序工作流和多人性能验收 |
 | P4 | 实现已落地，阶段门未通过 | Paper/Folia 实服流程验证 at-least-once poll、ack、收件人断线重投和跨 tick 去重。仍缺真人通信体验与长期网络负载验收 |
-| P5 | 实现已落地，阶段门未通过 | 四组实服对照 profile 均会灭绝。固定候选 profile 在 Paper/Folia SNAPSHOT 与 RC 共四次实服运行中到达500 tick并保留三物种。两个归档实服 Alice worldId 上的200次纯模拟 seed 扫描均保留三物种。另以八个 worldId、十个 seed、五组参数进行400次纯模拟筛选，均到达500 tick；最佳组最少物种人口均值5.2125、最小值4。纯模拟结果不代表实服鲁棒性或平衡验收。Paper/Folia 已各完成八 seed 客户端实服扫描，16/16 到500 tick保留三物种并通过守恒/replay；仍缺更广实服 seed 覆盖、长期和真人生态验收 |
+| P5 | 实现已落地，阶段门未通过 | 四组实服对照 profile 均会灭绝。固定候选 profile 曾在 Paper/Folia SNAPSHOT/RC 和16次实服 seed 扩展中到达500 tick并保留三物种，另有200次固定候选和400次多参数纯模拟500步筛选。新增1–1536步有界实验与24个纯模拟长期对照：原候选8/8在512步失去食草者，三组参数均未保持三物种至1536步；长期平衡、实服长局和真人验收仍未完成 |
 | P6 | 实现已落地，阶段门未通过 | Paper/Folia 客户端流程触发部分生产故障，验证 compensation、credits/ore 退款、parts escrow 释放和 replay。仍缺四名真人玩家故障比赛验收 |
 | P7 | 代码和自动审核流程已落地，阶段门未通过 | 待审不可见、作者不能自审、独立 OP 批准/拒绝、拒绝理由和版本隔离已有实服覆盖。仍缺真人创作体验、运营治理和反作弊比赛验收 |
 | P8 | 实现已落地，阶段门未通过 | Paper/Folia 验证四人回合、只读 observer、replay 以及 TCP 硬断线后 pending action/match ID/UUID 恢复。仍缺真人双队比赛、公平性和竞技性能验收 |
@@ -42,6 +42,10 @@ P4 协议以固定 ID/hash 验证消息字段、recipient、tick/sequence 和 pa
 P5 以 `ConservingResourceLedger` 在 soil、detritus 和 organism biomass 间转移 matter。每步记录 state/event commitment 并支持 replay。自动实服四组 seed 52001–52004 对照 profile 在 Paper/Folia SNAPSHOT/RC 共八次运行中均灭绝。候选参数固定为 producer `(6,2,512,0)`、grazer `(1,12,512,0)`、decomposer `(1,12,512,0)`。seed 52008 在 SNAPSHOT 与 RC 的 Paper/Folia 共四次实服运行均达到500 tick，最终 population 为26/2/4、matter=1000，replay通过。
 
 另基于两份从 Paper/Folia 实服回放读取的 Alice worldId，纯 Java 模拟扫描 seed 52008–52107。两个 worldId 各100/100次运行均保持三物种至500 tick，population 达到32，未发生 extinction。它是 simulation-only 结果，不是服务器实测，也不证明广泛参数空间或生态平衡。2026-11-25 在 Paper 1.21.11-132 与 Folia 1.21.11-14 各执行 seed 52008–52015 的客户端顺序扫描，16/16 运行达到500 tick，population 均为26/2/4、matter=1000，回放全部通过。Folia 五客户端分布于不同区域。结果见 `paper-seed-sweep-workflow-result.json` 和 `folia-seed-sweep-workflow-result.json`。这些固定规则的寿命上限为512，500 tick结果仍不足以证明长期生态平衡。原始实服样本见 `paper-ecology-study-retest-workflow-result.json` 和 `folia-ecology-study-retest-workflow-result.json`。
+
+P5 续开发保留默认500步，新增 `ecology start <seed> <ticks>` 的1–1536步可选窗口。1536 × 32 × 2 = 98,304次转移证据，仍在原100,000次账本上限内；未增加人口、代数或出生预算。Dashboard显示已存配置；外层 owner 与内层 worldId 同时验证。12项新回归覆盖寿命终点物质回收、768步后恢复至1536步的一致性、旧存档固定哈希、500步后的篡改与写盘失败重试，以及最大输入回放在4 MiB以内的格式容量。Java 21/25 各通过290项测试（41个类），失败/错误/跳过为0，两个JVM的发行/设计包签名自检均通过。
+
+`scripts/EcologyLongRunStudy.java` 对2个合成 worldId、seed 52008–52011和3组固定参数运行24个样本；每步物质守恒且24/24最终回放验证通过。所有样本在500步仍有三物种，但原候选8/8在512步失去grazer并以两物种到1536步；延迟繁殖组8/8在1065–1066步完全灭绝；错开寿命组6/8在1288步完全灭绝，另2/8到1536步时只剩分解者。没有样本证明三物种长期共存。原始报告、程序参数、首次物种灭绝时点、构建与签名结果见 `docs/evidence/p5/long-run/summary.json`。本批次没有新增实服或真人证据，长期平衡仍待开发。
 
 ## P6–P8
 

@@ -118,6 +118,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
                         ? List.of("producer", "grazer", "decomposer")
                         : args.length == 3 && args[0].equalsIgnoreCase("ecology") && args[1].equalsIgnoreCase("step")
                         ? List.of("1", "5", "10", "20")
+                        : args.length == 4 && args[0].equalsIgnoreCase("ecology") && args[1].equalsIgnoreCase("start")
+                        ? List.of("500", "1024", "1536")
                         : args.length == 2 && args[0].equalsIgnoreCase("factory")
                         ? List.of("invite", "accept", "start", "bid", "order", "step", "dashboard", "replay", "reset")
                         : args.length == 4 && args[0].equalsIgnoreCase("factory") && args[1].equalsIgnoreCase("order")

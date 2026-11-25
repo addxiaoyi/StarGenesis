@@ -132,9 +132,17 @@ P5 封闭生态舱使用有限 matter 账本。生产者、食草者和分解者
 /genesis ecology replay
 ```
 
-`program` 会在当前逻辑步应用新规则。`step` 每次最多推进20步。繁殖会转移已有 biomass，突变只修改有界物种参数，并受32个个体、8代、512次出生和500步总长限制。`dashboard` 显示物质余额、种群、代数、出生/死亡和物种规则。个人 replay 保存在 `plugins/StarGenesis/ecology/<player UUID>.ecology.json`，重载会从 seed 重演输入并核对初始状态、每步状态哈希和事件哈希。`reset` 删除该玩家的生态舱。整个流程只改模拟账本，不访问 Minecraft 世界、背包或经济服务。
+`program` 会在当前逻辑步应用新规则。`step` 每次最多推进20步。繁殖会转移已有 biomass，突变只修改有界物种参数，并受32个个体、8代和512次出生限制。默认实验仍为500步；使用 `/genesis ecology start <seed> <ticks>` 可在开始时指定1–1536步，例如 `start 52008 1536`。时长是上限，种群可能提前灭绝，不能延长已有实验或修改历史。账本为指定时长预留最多98,304次转移证据，保持原有100,000硬上限。`dashboard` 显示当前实验的真实时长预算、物质余额、种群、代数和出生/死亡。个人 replay 保存在 `plugins/StarGenesis/ecology/<player UUID>.ecology.json`，重载会从 seed 重演输入并核对初始状态、每步状态哈希和事件哈希。`reset` 删除该玩家的生态舱。整个流程只改模拟账本，不访问 Minecraft 世界、背包或经济服务。
 
 Paper/Folia 自动客户端另运行四个 extinction 对照 profile 和固定 seed 52008 candidate，均核对 total matter 与 replay。四个对照 profile 在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500步前灭绝；candidate 在四次服务器/版本复现中均达到500步，终态 population 为 producer/grazer/decomposer 26/2/4。纯 Java 引擎另在两个归档 Paper/Folia Alice worldId 上扫描 seed 52008–52107，200/200 均到500 ticks并保留三物种；这是模拟扫描，不是200次服务器运行。2026-11-25 完成 Paper/Folia 各八 seed（52008–52015）自动客户端实服扩展，16/16 均到500 tick、保留三物种、matter=1000，replay 全部通过。Folia 流程同时覆盖跨区域客户端。上述数据不代表长期生态平衡或真人验收。
+
+新增 `scripts/EcologyLongRunStudy.java` 可在1,536步预算下比较三组固定参数，记录500/512/1024/1536步种群、出生/死亡、首次物种灭绝时点，并逐步检查守恒、最终验证 replay。运行时按生产者、食草者、分解者顺序在第0/1/2步应用参数，其后不干预：
+
+```sh
+java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-study.json 4 2
+```
+
+末尾两个参数分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2。长期结果及完整测试证据见 `docs/evidence/p5/long-run/summary.json`。旧候选参数在长期样本中出现第512步食草者灭绝；到达500步不能作为三物种长期共存的依据。可选时长命令目前仅通过单元测试，尚未重新执行实服客户端流程。
 
 P6 四人工厂由两组双人组织组成。玩家邀请在线伙伴并接受邀请后，双人 roster 原子保存到 `plugins/StarGenesis/factory/organizations.json`。两组各有成员在线后，由四人中的任意一位创建比赛：
 

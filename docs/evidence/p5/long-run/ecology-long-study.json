@@ -1,0 +1,2797 @@
+{
+  "engineVersion" : "genesis-ecology/1",
+  "cases" : [ {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1066,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 26
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 19
+      },
+      "births" : 47,
+      "deaths" : 35,
+      "maxGeneration" : 3
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52008,
+      "tick" : 1066,
+      "totalMatter" : 1000,
+      "soilMatter" : 95,
+      "detritusMatter" : 905,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 47,
+      "deaths" : 54,
+      "processedMatter" : 1900,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "ad8a0a9f912a5cf1de55f133370096d108d8918868d78cc5bbb8e6ae6d8ebb82",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1066,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 26
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 19
+      },
+      "births" : 47,
+      "deaths" : 35,
+      "maxGeneration" : 3
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52009,
+      "tick" : 1066,
+      "totalMatter" : 1000,
+      "soilMatter" : 95,
+      "detritusMatter" : 905,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 47,
+      "deaths" : 54,
+      "processedMatter" : 1900,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "75adec2b7ba8a64058c8ef20dec4bb60d04d63b296885eed83e76e320206279a",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1066,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 26
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 19
+      },
+      "births" : 47,
+      "deaths" : 35,
+      "maxGeneration" : 3
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52010,
+      "tick" : 1066,
+      "totalMatter" : 1000,
+      "soilMatter" : 95,
+      "detritusMatter" : 905,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 47,
+      "deaths" : 54,
+      "processedMatter" : 1900,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "bd95a3701b5bde2264a252216d5a96c04939b8a82a2c992e4613c87a2b8a77ed",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1066,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 26
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 19
+      },
+      "births" : 47,
+      "deaths" : 35,
+      "maxGeneration" : 3
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52011,
+      "tick" : 1066,
+      "totalMatter" : 1000,
+      "soilMatter" : 95,
+      "detritusMatter" : 905,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 47,
+      "deaths" : 54,
+      "processedMatter" : 1900,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "95b394848fa17d8bdd88c18ebbc92bc719c90e52d32150413b10632859ac2b7f",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1065,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 1
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 25
+      },
+      "births" : 27,
+      "deaths" : 7,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 21
+      },
+      "births" : 48,
+      "deaths" : 34,
+      "maxGeneration" : 2
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52008,
+      "tick" : 1065,
+      "totalMatter" : 1000,
+      "soilMatter" : 92,
+      "detritusMatter" : 908,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 48,
+      "deaths" : 55,
+      "processedMatter" : 1897,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "d6adefffdad3747e69a3dd38463d1cd24564d6c20137d496e50ff755d0efe49f",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1065,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 1
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 25
+      },
+      "births" : 27,
+      "deaths" : 7,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 21
+      },
+      "births" : 48,
+      "deaths" : 34,
+      "maxGeneration" : 2
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52009,
+      "tick" : 1065,
+      "totalMatter" : 1000,
+      "soilMatter" : 92,
+      "detritusMatter" : 908,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 48,
+      "deaths" : 55,
+      "processedMatter" : 1897,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "1dcf3cb048a01183dd868a458450f70da0dadba2fa6ad0f5a9d82a8f38b7c3d1",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1065,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 1
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 25
+      },
+      "births" : 27,
+      "deaths" : 7,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 21
+      },
+      "births" : 48,
+      "deaths" : 34,
+      "maxGeneration" : 2
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52010,
+      "tick" : 1065,
+      "totalMatter" : 1000,
+      "soilMatter" : 92,
+      "detritusMatter" : 908,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 48,
+      "deaths" : 55,
+      "processedMatter" : 1897,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "f7d6206eb3f7409566bd31f00d322e87f09fb5fe424505ad700cf131b518ddfd",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "delayed-reproduction",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 32,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 514,
+      "grazer" : 1065,
+      "producer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 25,
+        "producer" : 3
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 1
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 2,
+        "grazer" : 25
+      },
+      "births" : 27,
+      "deaths" : 7,
+      "maxGeneration" : 2
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "grazer" : 21
+      },
+      "births" : 48,
+      "deaths" : 34,
+      "maxGeneration" : 2
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52011,
+      "tick" : 1065,
+      "totalMatter" : 1000,
+      "soilMatter" : 92,
+      "detritusMatter" : 908,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 48,
+      "deaths" : 55,
+      "processedMatter" : 1897,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 1,
+          "reproductionMass" : 32,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "994f03a0a82a0293d783027d38746086edcbee9eaa2e42db5992cd5a5178b2dc",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 28
+      },
+      "births" : 31,
+      "deaths" : 7,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 8,
+        "producer" : 24
+      },
+      "births" : 63,
+      "deaths" : 38,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "births" : 94,
+      "deaths" : 70,
+      "maxGeneration" : 7
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52008,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 19,
+      "detritusMatter" : 85,
+      "organismMatter" : 896,
+      "population" : 31,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "matterBySpecies" : {
+        "decomposer" : 80,
+        "producer" : 816
+      },
+      "maxGeneration" : 7,
+      "births" : 94,
+      "deaths" : 70,
+      "processedMatter" : 4216,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "ce4d4739a6305e6c8eb09ece2ed3caf0057bce439464a8f223b670397a81ae24",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 28
+      },
+      "births" : 31,
+      "deaths" : 7,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 8,
+        "producer" : 24
+      },
+      "births" : 63,
+      "deaths" : 38,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "births" : 94,
+      "deaths" : 70,
+      "maxGeneration" : 7
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52009,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 19,
+      "detritusMatter" : 85,
+      "organismMatter" : 896,
+      "population" : 31,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "matterBySpecies" : {
+        "decomposer" : 80,
+        "producer" : 816
+      },
+      "maxGeneration" : 7,
+      "births" : 94,
+      "deaths" : 70,
+      "processedMatter" : 4216,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "211d62090aef1a2f3bb04b1157b7c403cff4ad23f520e2985956581432d16319",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 28
+      },
+      "births" : 31,
+      "deaths" : 7,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 8,
+        "producer" : 24
+      },
+      "births" : 63,
+      "deaths" : 38,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "births" : 94,
+      "deaths" : 70,
+      "maxGeneration" : 7
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52010,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 19,
+      "detritusMatter" : 85,
+      "organismMatter" : 896,
+      "population" : 31,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "matterBySpecies" : {
+        "decomposer" : 80,
+        "producer" : 816
+      },
+      "maxGeneration" : 7,
+      "births" : 94,
+      "deaths" : 70,
+      "processedMatter" : 4216,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "e3ecac21f8b47857a5272a0d4e843859282887d9279b1e8ef4d9a44405ac3ac1",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 28
+      },
+      "births" : 31,
+      "deaths" : 7,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 8,
+        "producer" : 24
+      },
+      "births" : 63,
+      "deaths" : 38,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "births" : 94,
+      "deaths" : 70,
+      "maxGeneration" : 7
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52011,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 19,
+      "detritusMatter" : 85,
+      "organismMatter" : 896,
+      "population" : 31,
+      "populationBySpecies" : {
+        "decomposer" : 6,
+        "producer" : 25
+      },
+      "matterBySpecies" : {
+        "decomposer" : 80,
+        "producer" : 816
+      },
+      "maxGeneration" : 7,
+      "births" : 94,
+      "deaths" : 70,
+      "processedMatter" : 4216,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "b6969fd308595072ad394673a8e71c3ddcbe7e03284a9c86bcb44af4a94cb4df",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 25
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 11,
+        "producer" : 21
+      },
+      "births" : 60,
+      "deaths" : 35,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "births" : 92,
+      "deaths" : 67,
+      "maxGeneration" : 8
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52008,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 0,
+      "detritusMatter" : 41,
+      "organismMatter" : 959,
+      "population" : 32,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "matterBySpecies" : {
+        "decomposer" : 131,
+        "producer" : 828
+      },
+      "maxGeneration" : 8,
+      "births" : 92,
+      "deaths" : 67,
+      "processedMatter" : 4351,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "8bff2a52267934279a6b80793560f57fc1479c48c7da9379fe169d135e9b163a",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 25
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 11,
+        "producer" : 21
+      },
+      "births" : 60,
+      "deaths" : 35,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "births" : 92,
+      "deaths" : 67,
+      "maxGeneration" : 8
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52009,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 0,
+      "detritusMatter" : 41,
+      "organismMatter" : 959,
+      "population" : 32,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "matterBySpecies" : {
+        "decomposer" : 131,
+        "producer" : 828
+      },
+      "maxGeneration" : 8,
+      "births" : 92,
+      "deaths" : 67,
+      "processedMatter" : 4351,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "7e37ead8b9c0e9e644e6b407a6bbc4031ca7d37d8e61e89fae5d0b9ea41671fe",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 25
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 11,
+        "producer" : 21
+      },
+      "births" : 60,
+      "deaths" : 35,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "births" : 92,
+      "deaths" : 67,
+      "maxGeneration" : 8
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52010,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 0,
+      "detritusMatter" : 41,
+      "organismMatter" : 959,
+      "population" : 32,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "producer" : 28
+      },
+      "matterBySpecies" : {
+        "decomposer" : 131,
+        "producer" : 828
+      },
+      "maxGeneration" : 8,
+      "births" : 92,
+      "deaths" : 67,
+      "processedMatter" : 4351,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "9f32a9952591bc48398da00a5b516f3cfcdf97f280abeb6ddf8d4476fc44b638",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "previous-500-tick-candidate",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 2,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 1,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 512
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 4,
+        "grazer" : 2,
+        "producer" : 26
+      },
+      "births" : 25,
+      "deaths" : 0,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 3,
+        "producer" : 25
+      },
+      "births" : 28,
+      "deaths" : 7,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 18,
+        "producer" : 14
+      },
+      "births" : 60,
+      "deaths" : 35,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 16,
+        "producer" : 16
+      },
+      "births" : 92,
+      "deaths" : 67,
+      "maxGeneration" : 7
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52011,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 3,
+      "detritusMatter" : 0,
+      "organismMatter" : 997,
+      "population" : 32,
+      "populationBySpecies" : {
+        "decomposer" : 16,
+        "producer" : 16
+      },
+      "matterBySpecies" : {
+        "decomposer" : 77,
+        "producer" : 920
+      },
+      "maxGeneration" : 7,
+      "births" : 92,
+      "deaths" : 67,
+      "processedMatter" : 4242,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 6,
+          "reproductionMass" : 2,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "3265a662d9e776591de6729d9b6ee9731759fdf1d6a3ff514374beca2d6a55ac",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 647,
+      "producer" : 771
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 19,
+        "grazer" : 4,
+        "producer" : 9
+      },
+      "births" : 50,
+      "deaths" : 25,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 22,
+        "grazer" : 4,
+        "producer" : 6
+      },
+      "births" : 55,
+      "deaths" : 30,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 32
+      },
+      "births" : 88,
+      "deaths" : 63,
+      "maxGeneration" : 5
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 9
+      },
+      "births" : 97,
+      "deaths" : 95,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52008,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 991,
+      "detritusMatter" : 0,
+      "organismMatter" : 9,
+      "population" : 9,
+      "populationBySpecies" : {
+        "decomposer" : 9
+      },
+      "matterBySpecies" : {
+        "decomposer" : 9
+      },
+      "maxGeneration" : 4,
+      "births" : 97,
+      "deaths" : 95,
+      "processedMatter" : 3819,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "456569ba34d2bcd735e5163846244a46501f8682ddc75eab9b1bceb1d376d058",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 646,
+      "producer" : 517
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 22,
+        "grazer" : 2,
+        "producer" : 8
+      },
+      "births" : 50,
+      "deaths" : 25,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 24,
+        "grazer" : 2,
+        "producer" : 6
+      },
+      "births" : 54,
+      "deaths" : 29,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 80,
+      "deaths" : 61,
+      "maxGeneration" : 5
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52009,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 80,
+      "deaths" : 87,
+      "processedMatter" : 2622,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "3dec13601a900b6eea1760b67e83d64f66ff1192001c13a24bb956a30e650513",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 647,
+      "producer" : 517
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 23,
+        "grazer" : 4,
+        "producer" : 5
+      },
+      "births" : 51,
+      "deaths" : 26,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 25,
+        "grazer" : 4,
+        "producer" : 3
+      },
+      "births" : 55,
+      "deaths" : 30,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 81,
+      "deaths" : 62,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52010,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 81,
+      "deaths" : 88,
+      "processedMatter" : 2536,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "021d492f774fc6197ba3811ef93a770ddcca61d20ff5ea5ef2781bd7ad5febad",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-0",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 647,
+      "producer" : 517
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 23,
+        "grazer" : 4,
+        "producer" : 5
+      },
+      "births" : 51,
+      "deaths" : 26,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 25,
+        "grazer" : 4,
+        "producer" : 3
+      },
+      "births" : 55,
+      "deaths" : 30,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 81,
+      "deaths" : 62,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-0",
+      "seed" : 52011,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 81,
+      "deaths" : 88,
+      "processedMatter" : 2536,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "44fd0e5393b9b3fe221d0cc7e6e2e2c9cfc1eb0f3fe81a2b4006d617de1bfdbd",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52008,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 647,
+      "producer" : 518
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 19,
+        "grazer" : 5,
+        "producer" : 8
+      },
+      "births" : 50,
+      "deaths" : 25,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 21,
+        "grazer" : 5,
+        "producer" : 6
+      },
+      "births" : 54,
+      "deaths" : 29,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 80,
+      "deaths" : 61,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52008,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 80,
+      "deaths" : 87,
+      "processedMatter" : 2644,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "46e06e8cfa25c93e6cd788129b302234dd62a20b6e1e8c61aa497d2797b44888",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52009,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 647,
+      "producer" : 518
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 19,
+        "grazer" : 5,
+        "producer" : 8
+      },
+      "births" : 50,
+      "deaths" : 25,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 21,
+        "grazer" : 5,
+        "producer" : 6
+      },
+      "births" : 54,
+      "deaths" : 29,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 80,
+      "deaths" : 61,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52009,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 80,
+      "deaths" : 87,
+      "processedMatter" : 2644,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "403fcb2287611f6429c52bfe8294eaf9ec6bf2c274b6f210f49082774d0b56eb",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52010,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "decomposer" : 1288,
+      "grazer" : 647,
+      "producer" : 518
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 19,
+        "grazer" : 5,
+        "producer" : 8
+      },
+      "births" : 50,
+      "deaths" : 25,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 21,
+        "grazer" : 5,
+        "producer" : 6
+      },
+      "births" : 54,
+      "deaths" : 29,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 26
+      },
+      "births" : 80,
+      "deaths" : 61,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52010,
+      "tick" : 1288,
+      "totalMatter" : 1000,
+      "soilMatter" : 1000,
+      "detritusMatter" : 0,
+      "organismMatter" : 0,
+      "population" : 0,
+      "populationBySpecies" : { },
+      "matterBySpecies" : { },
+      "maxGeneration" : 0,
+      "births" : 80,
+      "deaths" : 87,
+      "processedMatter" : 2644,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "d204dc6ed03ef51faaa9b6c27161b0d641580a2464953b0b892ce3516672fe94",
+      "terminal" : true,
+      "reason" : "EXTINCTION"
+    },
+    "replayVerified" : true
+  }, {
+    "profile" : "staggered-lifespans",
+    "worldId" : "ecology-long-study-1",
+    "seed" : 52011,
+    "programs" : {
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 1,
+        "reproductionMass" : 16,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 0
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 3,
+        "reproductionMass" : 8,
+        "lifespanSteps" : 256,
+        "mutationPermille" : 0
+      },
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 12,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 0
+      }
+    },
+    "firstSpeciesExtinction" : {
+      "grazer" : 646,
+      "producer" : 770
+    },
+    "milestones" : [ {
+      "tick" : 500,
+      "populationBySpecies" : {
+        "decomposer" : 22,
+        "grazer" : 2,
+        "producer" : 8
+      },
+      "births" : 49,
+      "deaths" : 24,
+      "maxGeneration" : 3
+    }, {
+      "tick" : 512,
+      "populationBySpecies" : {
+        "decomposer" : 24,
+        "grazer" : 2,
+        "producer" : 6
+      },
+      "births" : 53,
+      "deaths" : 28,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1024,
+      "populationBySpecies" : {
+        "decomposer" : 30
+      },
+      "births" : 84,
+      "deaths" : 61,
+      "maxGeneration" : 4
+    }, {
+      "tick" : 1536,
+      "populationBySpecies" : {
+        "decomposer" : 9
+      },
+      "births" : 93,
+      "deaths" : 91,
+      "maxGeneration" : 4
+    } ],
+    "finalState" : {
+      "worldId" : "ecology-long-study-1",
+      "seed" : 52011,
+      "tick" : 1536,
+      "totalMatter" : 1000,
+      "soilMatter" : 991,
+      "detritusMatter" : 0,
+      "organismMatter" : 9,
+      "population" : 9,
+      "populationBySpecies" : {
+        "decomposer" : 9
+      },
+      "matterBySpecies" : {
+        "decomposer" : 9
+      },
+      "maxGeneration" : 4,
+      "births" : 93,
+      "deaths" : 91,
+      "processedMatter" : 3670,
+      "evolvedOrganisms" : 0,
+      "programs" : {
+        "decomposer" : {
+          "species" : "decomposer",
+          "role" : "DECOMPOSER",
+          "intake" : 2,
+          "reproductionMass" : 12,
+          "lifespanSteps" : 512,
+          "mutationPermille" : 0
+        },
+        "grazer" : {
+          "species" : "grazer",
+          "role" : "GRAZER",
+          "intake" : 1,
+          "reproductionMass" : 16,
+          "lifespanSteps" : 384,
+          "mutationPermille" : 0
+        },
+        "producer" : {
+          "species" : "producer",
+          "role" : "PRODUCER",
+          "intake" : 3,
+          "reproductionMass" : 8,
+          "lifespanSteps" : 256,
+          "mutationPermille" : 0
+        }
+      },
+      "stateHash" : "8e8ea6dc82fb400214dec2b086b729b5882d8f4cb5648303d134634c852348a7",
+      "terminal" : true,
+      "reason" : "DURATION_BUDGET"
+    },
+    "replayVerified" : true
+  } ],
+  "scope" : "Pure simulation; every step conserves matter and every final replay is verified. No live-server, human, performance or indefinite-balance claim.",
+  "programTiming" : "producer at tick 0, grazer at tick 1, decomposer at tick 2; no later intervention.",
+  "config" : {
+    "initialMatter" : 1000,
+    "initialDetritus" : 86,
+    "maxOrganisms" : 32,
+    "maxGenerations" : 8,
+    "maxTicks" : 1536,
+    "maxBirths" : 512,
+    "maxLedgerAttempts" : 98304
+  }
+}

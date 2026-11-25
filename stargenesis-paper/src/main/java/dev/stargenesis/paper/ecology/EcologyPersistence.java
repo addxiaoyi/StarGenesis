@@ -28,6 +28,7 @@ public final class EcologyPersistence {
     public EcologyPersistence(Path directory) throws IOException {
         this.directory = directory.toAbsolutePath().normalize();
         Files.createDirectories(this.directory);
+        if (Files.isSymbolicLink(this.directory)) throw new IOException("Ecology directory symlink rejected");
         mapper = new ObjectMapper(JsonFactory.builder().enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
                 .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(32)
                         .maxStringLength(4096).maxNumberLength(20).build()).build());
@@ -40,7 +41,7 @@ public final class EcologyPersistence {
         mapper.disable(MapperFeature.ALLOW_COERCION_OF_SCALARS);
     }
 
-    public Optional<EcologyReplay> load(UUID owner) throws IOException {
+    public synchronized Optional<EcologyReplay> load(UUID owner) throws IOException {
         Path file = path(owner);
         if (!Files.exists(file)) return Optional.empty();
         if (Files.isSymbolicLink(file) || !Files.isRegularFile(file) || Files.size(file) > MAX_FILE_BYTES)
@@ -51,12 +52,14 @@ public final class EcologyPersistence {
         }
         if (data.length > MAX_FILE_BYTES) throw new IOException("Ecology replay exceeds 4 MiB");
         PlayerReplay saved = mapper.readValue(data, PlayerReplay.class);
-        if (saved.schemaVersion() != SCHEMA_VERSION || !owner.equals(saved.owner()) || saved.replay() == null)
+        if (saved == null || saved.schemaVersion() != SCHEMA_VERSION || !owner.equals(saved.owner()) || saved.replay() == null)
             throw new IOException("Ecology replay owner or schema mismatch");
+        requireOwner(owner, saved.replay());
         return Optional.of(saved.replay());
     }
 
-    public void save(UUID owner, EcologyReplay replay) throws IOException {
+    public synchronized void save(UUID owner, EcologyReplay replay) throws IOException {
+        requireOwner(owner, replay);
         Path file = path(owner);
         Path temporary = file.resolveSibling(file.getFileName() + ".tmp");
         byte[] data = mapper.writeValueAsBytes(new PlayerReplay(SCHEMA_VERSION, owner, replay));
@@ -77,7 +80,7 @@ public final class EcologyPersistence {
         }
     }
 
-    public boolean delete(UUID owner) throws IOException {
+    public synchronized boolean delete(UUID owner) throws IOException {
         Path file = path(owner);
         if (Files.isSymbolicLink(file)) throw new IOException("Ecology replay symlink path rejected");
         return Files.deleteIfExists(file);
@@ -86,6 +89,11 @@ public final class EcologyPersistence {
     private Path path(UUID owner) {
         if (owner == null) throw new IllegalArgumentException("Missing ecology owner");
         return directory.resolve(owner + ".ecology.json");
+    }
+
+    private void requireOwner(UUID owner, EcologyReplay replay) throws IOException {
+        if (owner == null || replay == null || !("ecology-" + owner.toString().replace("-", "")).equals(replay.worldId()))
+            throw new IOException("Ecology replay world does not belong to its owner");
     }
 
     public record PlayerReplay(int schemaVersion, UUID owner, EcologyReplay replay) { }

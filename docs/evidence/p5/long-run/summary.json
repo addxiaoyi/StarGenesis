@@ -1,0 +1,246 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "9be9cb5",
+  "scope": "P5 optional bounded 1-1536 tick experiments, post-lifespan recovery, owner binding and reproducible long-run study.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 41,
+      "tests": 290,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-duration-verify-java21.log",
+      "logSha256": "51003c0e5534ccee0da2180319e098255171ab20d1e14342390447514c78e2c5",
+      "pluginSha256": "c75533387f4d35861bfd5cb9e9b9354a1d92dc1b601e5ed1e15f66b2793dd149",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 41,
+      "tests": 290,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-duration-verify-java25.log",
+      "logSha256": "e1bd25f0b43158223c40ab977ed5ccbbdf475a96aed703703d10269deca23070",
+      "pluginSha256": "1bfdc1bccf64f39c0243029c23b969fae9a54774b1ea5fd35303262a76dcd9e0",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "1bfdc1bccf64f39c0243029c23b969fae9a54774b1ea5fd35303262a76dcd9e0",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "1bfdc1bccf64f39c0243029c23b969fae9a54774b1ea5fd35303262a76dcd9e0",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "longRunSimulation": 5,
+    "commandRecoveryAndPersistence": 7
+  },
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/ecology-v1-default.json",
+    "origin": "Exported from the shaded JAR at 9be9cb5 before expanding duration admission.",
+    "sha256": "cf8c28547d942b0612c861aa0f2b2a5b6cd04da29a2ec35229be2d62b6a3eb2c",
+    "initialStateHash": "45cd70b40510e6b389f942384df8b4b13c6910ffd762294a0da749b814684020",
+    "after25TicksStateHash": "e3eb39f8abc153755d22ed95a47c8e44800fe57b0ee454ebd1b3324aeffc01e8"
+  },
+  "study": {
+    "command": "java -Xms16m -Xmx64m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:ActiveProcessorCount=2 -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-study.json 4 2",
+    "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+    "pluginSha256": "1bfdc1bccf64f39c0243029c23b969fae9a54774b1ea5fd35303262a76dcd9e0",
+    "sourceSha256": "b5cfee747d3239eb37cd33aa1a9f0b00930fb675420d92eafe475e08ed005fa1",
+    "report": "ecology-long-study.json",
+    "reportSha256": "e4563bf4099468d3ad8eb71421b81bdbf4293b1b134d4025ba0a6a6d25901643",
+    "config": {
+      "initialMatter": 1000,
+      "initialDetritus": 86,
+      "maxOrganisms": 32,
+      "maxGenerations": 8,
+      "maxTicks": 1536,
+      "maxBirths": 512,
+      "maxLedgerAttempts": 98304
+    },
+    "programTiming": "producer at tick 0, grazer at tick 1, decomposer at tick 2; no later intervention.",
+    "seeds": [
+      52008,
+      52009,
+      52010,
+      52011
+    ],
+    "worldIds": [
+      "ecology-long-study-0",
+      "ecology-long-study-1"
+    ],
+    "cases": 24,
+    "matterConservedEveryStep": true,
+    "allReplaysVerified": true,
+    "profiles": {
+      "delayed-reproduction": {
+        "cases": 8,
+        "reached1536Ticks": 0,
+        "fullyExtinct": 8,
+        "threeSpeciesAt500Ticks": 8,
+        "threeSpeciesAt1536Ticks": 0,
+        "firstExtinctions": {
+          "producer": {
+            "cases": 8,
+            "minTick": 512,
+            "maxTick": 512
+          },
+          "grazer": {
+            "cases": 8,
+            "minTick": 1065,
+            "maxTick": 1066
+          },
+          "decomposer": {
+            "cases": 8,
+            "minTick": 514,
+            "maxTick": 514
+          }
+        },
+        "finalTickRange": [
+          1065,
+          1066
+        ]
+      },
+      "previous-500-tick-candidate": {
+        "cases": 8,
+        "reached1536Ticks": 8,
+        "fullyExtinct": 0,
+        "threeSpeciesAt500Ticks": 8,
+        "threeSpeciesAt1536Ticks": 0,
+        "firstExtinctions": {
+          "grazer": {
+            "cases": 8,
+            "minTick": 512,
+            "maxTick": 512
+          }
+        },
+        "finalTickRange": [
+          1536,
+          1536
+        ]
+      },
+      "staggered-lifespans": {
+        "cases": 8,
+        "reached1536Ticks": 2,
+        "fullyExtinct": 6,
+        "threeSpeciesAt500Ticks": 8,
+        "threeSpeciesAt1536Ticks": 0,
+        "firstExtinctions": {
+          "producer": {
+            "cases": 8,
+            "minTick": 517,
+            "maxTick": 771
+          },
+          "grazer": {
+            "cases": 8,
+            "minTick": 646,
+            "maxTick": 647
+          },
+          "decomposer": {
+            "cases": 6,
+            "minTick": 1288,
+            "maxTick": 1288
+          }
+        },
+        "finalTickRange": [
+          1288,
+          1536
+        ]
+      }
+    }
+  },
+  "checks": [
+    "Default 500-tick configuration is unchanged; explicit durations reserve 2 transfers per organism per tick.",
+    "1536 * 32 * 2 = 98304 evidence attempts fits the unchanged 100000-attempt ledger cap.",
+    "A non-reproducing population dies at its full 512-tick lifespan and returns all biomass.",
+    "A run restored at tick 768 follows the same inputs and commitments to tick 1536.",
+    "Changed commitments after tick 500 are rejected at the changed frame.",
+    "Births, deaths, generation, population and matter remain within their finite budgets.",
+    "Legacy default replay preserves initial/final commitments and continues with the original configuration.",
+    "Dashboard displays persisted limits; invalid durations cannot create a partial tank.",
+    "Rewriting an outer owner field cannot transfer a foreign world between players.",
+    "A failed save after tick 511 preserves exact prior bytes and allows an exact 20-tick retry.",
+    "An envelope with three maximal program updates in each of 1536 frames fits the unchanged 4 MiB budget.",
+    "Boundary scan and git diff whitespace checks passed."
+  ],
+  "logs": {
+    "ecology-duration-existing.log": "5d92dc0d2b6932daf4d8685fb7d028f14bf2a296a34e99a25418bfa01cfab460",
+    "ecology-duration-focused.log": "75dabb8f9712367e176d4609d896efbb8a15e3f83832a2ee41f06019db057f68",
+    "ecology-duration-verify-java21.log": "51003c0e5534ccee0da2180319e098255171ab20d1e14342390447514c78e2c5",
+    "ecology-duration-verify-java25.log": "e1bd25f0b43158223c40ab977ed5ccbbdf475a96aed703703d10269deca23070",
+    "ecology-long-study.log": "f7cba6975cd3bc3da6ab5e1beb1deaf1a0939dfde7738c19fd707560bef73697"
+  },
+  "limits": [
+    "The 24 study cases are pure simulations on two synthetic world IDs, not live Paper/Folia or human trials.",
+    "The previous 500-tick candidate loses a species after the observation horizon; long-term balance remains unproven.",
+    "New optional-duration commands have no new live-server acceptance in this batch.",
+    "The maximal serialized envelope test uses deliberately invalid commitments for size measurement and confirms playback rejects them.",
+    "The replay schema and per-step algorithm are unchanged; older plugin versions reject new durations above 500.",
+    "Maven tests ran without forks and under strict memory limits; no production capacity claim.",
+    "Signer checks use ephemeral keys; official signing, real integrations and other P0-P11 acceptance remain open."
+  ]
+}

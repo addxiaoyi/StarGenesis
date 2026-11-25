@@ -24,6 +24,8 @@ P4 radio wire message 引用已封存 Protocol ID 与 SHA-256，不引入 wire m
 
 P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版本，包含玩家所有权、world ID、seed、配置、初态哈希、每步输入、状态哈希和事件哈希。Paper 按 UUID 存储，文件上限4 MiB并原子替换。读取时拒绝未知字段、所有权变化、超预算文件、未知引擎和任何重演哈希差异。变更生态算法需提升引擎版本，不能静默重算旧 replay。
 
+P5 可选时长将已存在的 config.maxTicks 允许范围扩到1–1536，默认500与默认50,000次账本证据保持不变。新长局按 `max(50,000, ticks * 32 * 2)` 预留证据，最大98,304，不改变账本100,000、个体32、代数8和默认出生512的硬预算。格式与每步算法均未改变，因此仍为 schemaVersion=1 / `genesis-ecology/1`；旧文件按原配置原哈希恢复，不升级时长。固定样本 `stargenesis-paper/src/test/resources/ecology-v1-default.json` 从 `9be9cb5` 的构建产物导出并校验原初态/末态哈希。旧插件会拒绝大于500步的新文件，回退前须保留新数据，不能篡改 maxTicks 强行读取。Paper 同时验证外层 owner 与内层 worldId，替换 owner 字段不能转移生态舱归属。
+
 P7 沿用 `ArenaRuleset` schemaVersion=1，不增添可执行字段。玩家草稿位于 `arenas/drafts/<author UUID>/<sha256(id)>.json`，公开不可变版本位于 `arenas/published/<sha256(id@version)>.json`。同一 ID/version 一经发布不覆盖，变更必须提升语义版本。依赖以精确 DesignId/version/hash 固定，加载/发布时解析并校验公开与复用许可。发布文件未知字段、hash错配或依赖授权失效时拒绝加载和引用。
 
 P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限制8个玩家、每队至多4人。历史 ArenaMatch replay schemaVersion=1 固定引擎 `genesis-arena-match/1`；读入和继续运行保持原格式、match ID 派生方式及 state/event commitments，不补写 runId。固定回归样本 `stargenesis-paper/src/test/resources/arena-match-v1.json` 从 `31ecf9c` 编译产物导出，包含已完成一轮、一个 pending action 和 observer。
