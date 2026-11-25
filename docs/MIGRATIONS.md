@@ -38,7 +38,9 @@ P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版
 
 P5 可选时长将已存在的 config.maxTicks 允许范围扩到1–1536，默认500与默认50,000次账本证据保持不变。新长局按 `max(50,000, ticks * 32 * 2)` 预留证据，最大98,304，不改变账本100,000、个体32、代数8和默认出生512的硬预算。格式与每步算法均未改变，因此仍为 schemaVersion=1 / `genesis-ecology/1`；旧文件按原配置原哈希恢复，不升级时长。固定样本 `stargenesis-paper/src/test/resources/ecology-v1-default.json` 从 `9be9cb5` 的构建产物导出并校验原初态/末态哈希。旧插件会拒绝大于500步的新文件，回退前须保留新数据，不能篡改 maxTicks 强行读取。Paper 同时验证外层 owner 与内层 worldId，替换 owner 字段不能转移生态舱归属。
 
-P5 长周期候选研究只新增搜索脚本、可选研究profile与固定恢复/灭绝回归，不修改 `genesis-ecology/1`、默认程序、配置、历史输入或commitments。`EcologyLongRunStudy.java` 默认包含四组profile，也可通过末尾profile名称筛选；旧研究报告保留原三组结果。任何后续繁殖/寿命语义修改仍须单独提升引擎版本并明确处理旧回放。
+P5 长周期候选研究只新增搜索脚本、可选研究profile与固定恢复/灭绝回归，不修改 `genesis-ecology/1`、默认程序、配置、历史输入或commitments。旧研究报告保留原三组/四组结果，当前脚本包含六组且默认显式使用v1。
+
+P5后续生命周期升级使用`genesis-ecology/2`，文件外层和replay仍为schemaVersion=1。新建舱改用有成熟期、繁殖间隔和摄入储量上限的新规则及长寿命默认程序；world ID继续绑定证据和所有权，但不再参与处理优先级、猎物选择或突变选择。v2状态hash新增个体ordinal和lastBirthAge，故不能修改engineVersion强行转换旧档。恢复与验证支持两个版本，v1继续原排序、默认程序、算法和哈希；读取或继续旧舱不升级。旧插件明确拒绝v2，回退前须备份并使用对应引擎读取，不截断历史、不重算commitments。新旧文件仍按4 MiB原子保存，失败保留上一份成功证据。详细语义与默认参数见`ECOLOGY_ENGINE_V2.md`。
 
 P6 工厂旧 replay schemaVersion=1 / `genesis-factory/1` 继续按原有序四人 roster 派生 match ID，恢复和推进保留原 commitments，不补写 runId。固定样本 `stargenesis-paper/src/test/resources/factory-v1-pending-order.json` 从 `b7f9e4d` 编译产物导出，保存到订单已预留但尚未补偿的第5 tick；测试核对原初态、第5 tick和第6 tick补偿后哈希。
 

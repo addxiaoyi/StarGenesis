@@ -43,7 +43,7 @@ class EcologyBalanceSearch {
                 System.out.println("completed=" + (candidate + 1) + " survivors=" + results.stream().filter(Result::survived).count()
                         + " latest=" + result.endTick() + " " + result.population());
                 mapper.writerWithDefaultPrettyPrinter().writeValue(output.toFile(), Map.of(
-                        "engineVersion", EcologyWorld.ENGINE_VERSION, "searchSeed", SEARCH_SEED,
+                        "engineVersion", EcologyWorld.LEGACY_ENGINE_VERSION, "searchSeed", SEARCH_SEED,
                         "config", EcologyConfig.forDuration(EcologyConfig.MAX_TICKS),
                         "sampling", "Candidates 0/1 are previous/delayed controls; others use java.util.Random with intake in 1,2,3,4,6,8; mass in 4,8,12,16,24,32; lifespan in 256,320,384,448,512; mutation zero.",
                         "programTiming", "producer/grazer/decomposer applied at ticks 0/1/2; no later intervention",
@@ -56,7 +56,7 @@ class EcologyBalanceSearch {
     private static Result run(int candidate, String worldId, long seed, Map<String, MatterProgram> profile) {
         var population = new TreeMap<>(Map.of("producer", 3, "grazer", 2, "decomposer", 2));
         var milestones = new TreeMap<Long, Map<String, Integer>>();
-        try (var world = new EcologyWorld(worldId, seed, EcologyConfig.forDuration(EcologyConfig.MAX_TICKS))) {
+        try (var world = new EcologyWorld(worldId, seed, EcologyConfig.forDuration(EcologyConfig.MAX_TICKS), EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (world.tick() < EcologyConfig.MAX_TICKS) {
                 long tick = world.tick();
                 String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;

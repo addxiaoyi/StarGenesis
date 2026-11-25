@@ -68,7 +68,7 @@ class EcologySensitivityStudy {
             System.out.println("completed=" + results.size() + " candidate=" + candidate.change() + " passed=" + passed
                     + " checked=" + runs.size() + " end=" + last.endTick() + " population=" + last.populationBySpecies());
             mapper.writerWithDefaultPrettyPrinter().writeValue(output.toFile(), Map.of(
-                    "engineVersion", EcologyWorld.ENGINE_VERSION, "config", EcologyConfig.forDuration(1536),
+                    "engineVersion", EcologyWorld.LEGACY_ENGINE_VERSION, "config", EcologyConfig.forDuration(1536),
                     "orderedScenarios", SCENARIOS, "cases", results,
                     "programTiming", "producer/grazer/decomposer applied at ticks 0/1/2; no later intervention",
                     "scope", "One parameter differs from the prior long-cycle candidate. Profiles stop at the first failing scenario; individual runs stop at first species extinction. All executed final replays verified. Four selected cases, not random sampling or balance acceptance."));
@@ -81,7 +81,7 @@ class EcologySensitivityStudy {
         population.forEach((species, value) -> generations.put(species, new TreeMap<>(Map.of(0, value))));
         var lastBirth = new TreeMap<String, Long>();
         List<Milestone> milestones = new ArrayList<>();
-        try (var world = new EcologyWorld(scenario.worldId(), scenario.seed(), EcologyConfig.forDuration(1536))) {
+        try (var world = new EcologyWorld(scenario.worldId(), scenario.seed(), EcologyConfig.forDuration(1536), EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (world.tick() < 1536) {
                 long tick = world.tick();
                 String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;

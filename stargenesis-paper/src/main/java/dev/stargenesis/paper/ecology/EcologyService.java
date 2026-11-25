@@ -43,7 +43,7 @@ final class EcologyService {
         EcologyConfig config = args.length == 3 ? EcologyConfig.forDuration(Integer.parseInt(args[2])) : EcologyConfig.defaults();
         try (EcologyWorld world = new EcologyWorld(worldId(owner), seed, config)) {
             persistence.save(owner, world.replay());
-            return dashboardLines(world.view(), world.config());
+            return dashboardLines(world.view(), world.config(), world.engineVersion());
         }
     }
 
@@ -59,7 +59,7 @@ final class EcologyService {
             persistence.save(owner, world.replay());
             List<String> response = new ArrayList<>();
             response.add("Matter program applied at logical tick " + world.tick() + ".");
-            response.addAll(dashboardLines(world.view(), world.config()));
+            response.addAll(dashboardLines(world.view(), world.config(), world.engineVersion()));
             return List.copyOf(response);
         }
     }
@@ -72,14 +72,14 @@ final class EcologyService {
             for (int i = 0; i < steps && !world.view().terminal(); i++)
                 world.step(EcologyInput.idle(world.tick()));
             persistence.save(owner, world.replay());
-            return dashboardLines(world.view(), world.config());
+            return dashboardLines(world.view(), world.config(), world.engineVersion());
         }
     }
 
     private List<String> dashboard(UUID owner, String[] args) throws IOException {
         requireLength(args, 1);
         try (EcologyWorld world = load(owner)) {
-            return dashboardLines(world.view(), world.config());
+            return dashboardLines(world.view(), world.config(), world.engineVersion());
         }
     }
 
@@ -114,7 +114,7 @@ final class EcologyService {
         return "ecology-" + owner.toString().replace("-", "");
     }
 
-    private List<String> dashboardLines(EcologyView view, EcologyConfig config) {
+    private List<String> dashboardLines(EcologyView view, EcologyConfig config, String engineVersion) {
         List<String> lines = new ArrayList<>();
         lines.add("生态舱 " + view.tick() + "/" + config.maxTicks()
                 + " · population=" + view.population() + "/" + config.maxOrganisms()
@@ -127,7 +127,11 @@ final class EcologyService {
                 + view.populationBySpecies().getOrDefault(species, 0) + " · matter="
                 + view.matterBySpecies().getOrDefault(species, 0L) + " · intake=" + program.intake()
                 + " · reproduce=" + program.reproductionMass() + " · life=" + program.lifespanSteps()
-                + " · mutationPermille=" + program.mutationPermille()));
+                + " · mutationPermille=" + program.mutationPermille()
+                + (EcologyWorld.ENGINE_VERSION.equals(engineVersion) ? " · 摄入储量上限=" + program.reproductionMass()
+                + " · 繁殖成熟年龄=" + (program.lifespanSteps() + 1) / 2
+                + " · 繁殖间隔=" + (program.lifespanSteps() + 3) / 4 : "")));
+        if (EcologyWorld.LEGACY_ENGINE_VERSION.equals(engineVersion)) lines.add("当前生态舱沿用旧版繁殖规则，原进度保持不变。");
         lines.add("state=" + view.stateHash().substring(0, 12) + " · " + view.reason());
         return List.copyOf(lines);
     }

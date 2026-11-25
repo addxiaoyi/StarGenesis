@@ -1,0 +1,512 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "87a03c088ba4e1295898b8cc57bfb7854070de95",
+  "scope": "Versioned ecology lifecycle v2 with maturity, successful-birth recovery interval, biomass-limited uptake and identity-independent physical random choices; v1 restore remains exact.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 59,
+      "tests": 453,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-v2-verify-java21.log",
+      "logSha256": "4e09521a6a2ae80af1a0e6e1544a4fa68b0f518ad46408e72af7cad9620b5dc2",
+      "pluginSha256": "b1a46d56f7622650118e3be08215bc97d668a8c1165b1ec35ce61a6ecc7a0811",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 59,
+      "tests": 453,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-v2-verify-java25.log",
+      "logSha256": "b0f133cdeae5683132240bfd73a44c0514b3fdc8056d7b0717726ea075a84853",
+      "pluginSha256": "ceac170cbce7d74533bd2360a8a8c7492b32984b6a519c208f77228974b497b2",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "newTests": {
+    "lifecycleV2": 13,
+    "servicePersistenceAndVersionRejection": 2
+  },
+  "rules": {
+    "maturity": "ceil(current lifespan/2)",
+    "successfulBirthInterval": "ceil(current lifespan/4)",
+    "uptake": "min(intake, max(0, reproductionMass - current body matter)); lowering capacity never deletes existing matter.",
+    "birth": "Transfer one matter from a mature parent to a child. All current-tick deaths release population slots before any parent reproduces.",
+    "physicalRandomInputs": "seed, tick and stable organism/birth ordinals; worldId remains in evidence and state/event commitments.",
+    "defaultPrograms": {
+      "decomposer": {
+        "species": "decomposer",
+        "role": "DECOMPOSER",
+        "intake": 3,
+        "reproductionMass": 4,
+        "lifespanSteps": 320,
+        "mutationPermille": 80
+      },
+      "grazer": {
+        "species": "grazer",
+        "role": "GRAZER",
+        "intake": 4,
+        "reproductionMass": 24,
+        "lifespanSteps": 512,
+        "mutationPermille": 100
+      },
+      "producer": {
+        "species": "producer",
+        "role": "PRODUCER",
+        "intake": 6,
+        "reproductionMass": 4,
+        "lifespanSteps": 320,
+        "mutationPermille": 150
+      }
+    },
+    "unchangedBudgets": {
+      "maxOrganisms": 32,
+      "maxGenerations": 8,
+      "defaultBirths": 512,
+      "maxTicks": 1536,
+      "maxLedgerAttempts": 100000
+    }
+  },
+  "compatibility": {
+    "replaySchema": 1,
+    "ownerEnvelopeSchema": 1,
+    "newEngine": "genesis-ecology/2",
+    "legacyEngine": "genesis-ecology/1",
+    "legacyFixture": "stargenesis-paper/src/test/resources/ecology-v1-default.json",
+    "legacyFixtureSha256": "cf8c28547d942b0612c861aa0f2b2a5b6cd04da29a2ec35229be2d62b6a3eb2c",
+    "legacyInitialHash": "45cd70b40510e6b389f942384df8b4b13c6910ffd762294a0da749b814684020",
+    "legacyRestoredHash": "e3eb39f8abc153755d22ed95a47c8e44800fe57b0ee454ebd1b3324aeffc01e8",
+    "result": "Loading/dashboard preserve legacy bytes, continuing preserves engine v1 and commitments. Existing v1 long-run restore/extinction regressions remain unchanged.",
+    "rejections": "Unknown engines and v1/v2 relabelling reject without advancing or rewriting files."
+  },
+  "study": {
+    "artifactSha256": "cd6fa32f639804a17b7a2b3f2e1602471f0a30e3645fa36920a0ad8a50a862e0",
+    "sampleSeed": 20261126,
+    "sampling": "0, 42, Long.MIN_VALUE, Long.MAX_VALUE, then java.util.Random(sampleSeed).nextLong(). Each seed uses a distinct world ID.",
+    "profiles": {
+      "default": {
+        "cases": 32,
+        "threeSpeciesAt1536": 32,
+        "birthsRange": [
+          122,
+          133
+        ],
+        "deathsRange": [
+          97,
+          108
+        ],
+        "generationRange": [
+          7,
+          8
+        ],
+        "maxEvolvedRange": [
+          9,
+          24
+        ],
+        "extinctionCases": []
+      },
+      "mutation-max": {
+        "cases": 32,
+        "threeSpeciesAt1536": 31,
+        "birthsRange": [
+          123,
+          132
+        ],
+        "deathsRange": [
+          98,
+          107
+        ],
+        "generationRange": [
+          7,
+          8
+        ],
+        "maxEvolvedRange": [
+          25,
+          32
+        ],
+        "extinctionCases": [
+          {
+            "seed": -6448665863545292081,
+            "worldId": "ecology-v2-validation-10",
+            "firstSpeciesExtinction": {
+              "decomposer": 1200
+            }
+          }
+        ]
+      },
+      "lifespan-1": {
+        "cases": 4,
+        "threeSpeciesAt1536": 0,
+        "birthsRange": [
+          0,
+          0
+        ],
+        "deathsRange": [
+          7,
+          7
+        ],
+        "generationRange": [
+          0,
+          0
+        ],
+        "maxEvolvedRange": [
+          0,
+          0
+        ],
+        "extinctionCases": [
+          {
+            "seed": 0,
+            "worldId": "ecology-v2-validation-0",
+            "firstSpeciesExtinction": {
+              "decomposer": 1,
+              "grazer": 1,
+              "producer": 1
+            }
+          },
+          {
+            "seed": 42,
+            "worldId": "ecology-v2-validation-1",
+            "firstSpeciesExtinction": {
+              "decomposer": 1,
+              "grazer": 1,
+              "producer": 1
+            }
+          },
+          {
+            "seed": -9223372036854775808,
+            "worldId": "ecology-v2-validation-2",
+            "firstSpeciesExtinction": {
+              "decomposer": 1,
+              "grazer": 1,
+              "producer": 1
+            }
+          },
+          {
+            "seed": 9223372036854775807,
+            "worldId": "ecology-v2-validation-3",
+            "firstSpeciesExtinction": {
+              "decomposer": 1,
+              "grazer": 1,
+              "producer": 1
+            }
+          }
+        ]
+      },
+      "old-short-lifespans": {
+        "cases": 4,
+        "threeSpeciesAt1536": 0,
+        "birthsRange": [
+          218,
+          219
+        ],
+        "deathsRange": [
+          225,
+          226
+        ],
+        "generationRange": [
+          0,
+          0
+        ],
+        "maxEvolvedRange": [
+          22,
+          28
+        ],
+        "extinctionCases": [
+          {
+            "seed": 0,
+            "worldId": "ecology-v2-validation-0",
+            "firstSpeciesExtinction": {
+              "decomposer": 223,
+              "grazer": 158,
+              "producer": 297
+            }
+          },
+          {
+            "seed": 42,
+            "worldId": "ecology-v2-validation-1",
+            "firstSpeciesExtinction": {
+              "decomposer": 219,
+              "grazer": 138,
+              "producer": 291
+            }
+          },
+          {
+            "seed": -9223372036854775808,
+            "worldId": "ecology-v2-validation-2",
+            "firstSpeciesExtinction": {
+              "decomposer": 221,
+              "grazer": 160,
+              "producer": 297
+            }
+          },
+          {
+            "seed": 9223372036854775807,
+            "worldId": "ecology-v2-validation-3",
+            "firstSpeciesExtinction": {
+              "decomposer": 231,
+              "grazer": 152,
+              "producer": 288
+            }
+          }
+        ]
+      }
+    },
+    "commands": [
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp .work/ecology-v2-validation.jar scripts/EcologyLifecycleStudy.java .work/ecology-v2-validation.json 32 default,mutation-max 20261126",
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp .work/ecology-v2-validation.jar scripts/EcologyLifecycleStudy.java .work/ecology-v2-controls.json 4 old-short-lifespans,lifespan-1 20261126"
+    ],
+    "scripts": {
+      "scripts/EcologyLifecycleStudy.java": "d99ddb6d7d2d2d476af3b93b4a57cb9def5587be4e3933d3db5b129f8084a765",
+      "scripts/EcologyLongRunStudy.java": "235c6a4fe7e5711da4761eb2029b2dd1c3b550a782bc8582c061eb0fd80222f6",
+      "scripts/EcologyBalanceSearch.java": "380cfc60605c6c4a68dbe8a9f3fb2aa2fe1ea12bba9b543bbcc5fc2a3f3ea282",
+      "scripts/EcologySensitivityStudy.java": "415625425959fb164592a48f2c344d9aae8d36b4e3df77a1b9938ae16ac3f0f7"
+    },
+    "artifactDifference": "The study JAR predates additional invariant assertions on internal ordinal/lastBirthAge bounds. No physical transition or commitment encoding changed; full-build regression restores seed 42 at 768 and matches the study final hash 7c3dc98ebc3625d6d749b311d7e211c6125a2c4388f9a871fb2292c02d0620ff."
+  },
+  "developmentPilots": [
+    {
+      "file": "ecology-v2-pilot.json",
+      "artifactSha256": "39ec5ca6d1bbad769f9891b1e2a3eaefeb0f40e94bf621f25a0191f63d916fa8",
+      "sourceFile": "ecology-v2-unbounded-source.java.txt",
+      "description": "Unpublished preliminary v2: maturity/cooldown and seed/ordinal scheduling, with unbounded uptake and old short default programs.",
+      "cases": 12,
+      "threeSpeciesAt1536": 1,
+      "scope": "Development diagnosis on two previously used seeds. These earlier v2 prototypes are not the final engine or release candidates; their output commitments must not be used as final-v2 compatibility fixtures."
+    },
+    {
+      "file": "ecology-v2-reserves-pilot.json",
+      "artifactSha256": "dbbde1bd3844ed78d89f8a6028b49e6d536bc378efb4e992ff44b1e30e7cb18b",
+      "sourceFile": "ecology-v2-reserves-source.java.txt",
+      "description": "Unpublished preliminary v2: added biomass-limited uptake; old short default programs remained until command updates at ticks 0/1/2.",
+      "cases": 12,
+      "threeSpeciesAt1536": 8,
+      "scope": "Development diagnosis on two previously used seeds. These earlier v2 prototypes are not the final engine or release candidates; their output commitments must not be used as final-v2 compatibility fixtures."
+    }
+  ],
+  "pilotSourceVerification": {
+    "passed": true,
+    "results": [
+      {
+        "label": "unbounded",
+        "source": "ecology-v2-unbounded-source.java.txt",
+        "sourceSha256": "2184a0881d9711eed3ce0f9cb66ee0c0cc1a56b57d27ca1eefdb8526e8b48fdc",
+        "jarSha256": "39ec5ca6d1bbad769f9891b1e2a3eaefeb0f40e94bf621f25a0191f63d916fa8",
+        "classes": {
+          "dev/stargenesis/sim/EcologyWorld$1.class": {
+            "sameBytes": true,
+            "archivedSha256": "320715317ed266897542b2e68bdd84be7f43bc108342e1667275da2f50d1c531",
+            "recompiledSha256": "320715317ed266897542b2e68bdd84be7f43bc108342e1667275da2f50d1c531"
+          },
+          "dev/stargenesis/sim/EcologyWorld$Organism.class": {
+            "sameBytes": true,
+            "archivedSha256": "982333d23dad08ab9308cb05c838696d4f76470843627704b3422960f59895e3",
+            "recompiledSha256": "982333d23dad08ab9308cb05c838696d4f76470843627704b3422960f59895e3"
+          },
+          "dev/stargenesis/sim/EcologyWorld.class": {
+            "sameBytes": true,
+            "archivedSha256": "5b0131e1cf8fef54c66f57ded7d5f369129d5abff6fce078735e1e55fb865b6a",
+            "recompiledSha256": "5b0131e1cf8fef54c66f57ded7d5f369129d5abff6fce078735e1e55fb865b6a"
+          }
+        }
+      },
+      {
+        "label": "reserves",
+        "source": "ecology-v2-reserves-source.java.txt",
+        "sourceSha256": "19f9c5b5291c5d2609bf2836617c19414e55f5888a531cc6eb3f16b7e51120c9",
+        "jarSha256": "dbbde1bd3844ed78d89f8a6028b49e6d536bc378efb4e992ff44b1e30e7cb18b",
+        "classes": {
+          "dev/stargenesis/sim/EcologyWorld$1.class": {
+            "sameBytes": true,
+            "archivedSha256": "3c797c929550c8aa21eca11f3d52509327a6b55c85b8763c0ca5da1be98ea1e1",
+            "recompiledSha256": "3c797c929550c8aa21eca11f3d52509327a6b55c85b8763c0ca5da1be98ea1e1"
+          },
+          "dev/stargenesis/sim/EcologyWorld$Organism.class": {
+            "sameBytes": true,
+            "archivedSha256": "6aaab6de2f56a21ab510f8495870fdda9150de13cbc707ef3a07e3a5880c221a",
+            "recompiledSha256": "6aaab6de2f56a21ab510f8495870fdda9150de13cbc707ef3a07e3a5880c221a"
+          },
+          "dev/stargenesis/sim/EcologyWorld.class": {
+            "sameBytes": true,
+            "archivedSha256": "8297c5db54ffa782a7d289bff92224116033590cdef65b50421a9aa3eb90f348",
+            "recompiledSha256": "8297c5db54ffa782a7d289bff92224116033590cdef65b50421a9aa3eb90f348"
+          }
+        }
+      }
+    ],
+    "scope": "Reconstructed unpublished pilot sources are checked byte-for-byte against their original compiled classes, including debug metadata."
+  },
+  "regressions": [
+    "Parent and descendant maturity, successful-birth interval, odd rounding and lifetime-one extinction.",
+    "Immature organisms retain bounded body matter instead of locking initial soil; lower capacity preserves existing reserves.",
+    "Editing programs and restore preserve cooldown; all deaths release slots before reproduction.",
+    "Four seeds including signed long boundaries have identical physical trajectories under two world IDs, with distinct commitments; mutations are exercised.",
+    "Different seeds still affect physical outcomes; no species quotas or automatic reseeding were added.",
+    "Default long run keeps three species and resumes with exact mutation/cooldown at 768 through 1536; fixed final hash.",
+    "Birth/generation/event/ledger limits and a short-life extinction control remain enforced.",
+    "Known maximum-mutation counterexample loses decomposers at tick 1200 but remains conserved and replayable.",
+    "Real service save failure at first maturity leaves prior bytes; retry and restart match uninterrupted progress."
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "ceac170cbce7d74533bd2360a8a8c7492b32984b6a519c208f77228974b497b2",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "ceac170cbce7d74533bd2360a8a8c7492b32984b6a519c208f77228974b497b2",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "processLockProbe": {
+    "java21": {
+      "passed": true,
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "b1a46d56f7622650118e3be08215bc97d668a8c1165b1ec35ce61a6ecc7a0811",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    },
+    "java25": {
+      "passed": true,
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "ceac170cbce7d74533bd2360a8a8c7492b32984b6a519c208f77228974b497b2",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    }
+  },
+  "signerArtifact": "Both JDKs check the final Java 25 shaded JAR with ephemeral test keys.",
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "Finite samples and the 1536-tick horizon do not prove all-seed, all-parameter or indefinite coexistence.",
+    "Generation and birth limits remain finite. Low resources, hostile programs and competition may still cause extinction.",
+    "32-seed default and maximum-mutation samples share seeds; they are paired treatments, not 64 independent seeds.",
+    "Preliminary pilots are diagnosis only; all failed samples are retained and identified by artifact hash.",
+    "No new live Paper/Folia, human, performance or official release-signing acceptance. v2 is a post-RC3 SNAPSHOT change.",
+    "P5 stage gate and full P0-P11 goal remain open pending the applicable external acceptance evidence."
+  ],
+  "files": {
+    "ecology-v2-focused.log": "d9cd7d52658b1cd71bf501abf2b64d04a2ef411373e4ea96fa6648116db75a39",
+    "ecology-v2-reserves-focused.log": "1cc0e514409da5bb4cf620317d6febbd6ac69bea5e5e5efd0150b9cd6e2779d4",
+    "ecology-v2-default-focused.log": "dfe5141365b4a4288bbed0a8f01b0302e45e3ca558cc51cdafb344715e0686e0",
+    "ecology-v2-final-focused.log": "686e1a42e3b688242fff5c567174b9de968b3ce0209890998ff0c528718ec038",
+    "ecology-v2-boundary.log": "1d0a7abad03e46ffa81335eb61048d1a02a0afa0f7906a72a6613e1ac8a1ea6c",
+    "ecology-v2-pilot.json": "85b66fea2cb374b363a100543f787aed3f1d36b66c87b420c71aa6fc7d2967ce",
+    "ecology-v2-pilot.log": "57d82b57e998ea7c51c84af6dab0bc1514ff56c06036761cb5c5c7be52c73955",
+    "ecology-v2-reserves-pilot.json": "c64769accd1c97198f8a1ca39429d9c3c0c5db5777da53785a082eb854193a68",
+    "ecology-v2-reserves-pilot.log": "ed198ad36fc49f146f45630f4ca15d5f5dfdd02e181d6f3af9ae368ef6c00051",
+    "ecology-v2-validation.json": "d960113ace7eb66d60c8dfc5c62e5f70f382a89c81ee028405a0aa50c7e7155c",
+    "ecology-v2-validation.log": "b502a3da22aaf93b1d8c6ce86c1c5ef18ea3b27e09bc169cd4e6a1d1677e1d11",
+    "ecology-v2-controls.json": "385d4c80c4e967bf4f2bf3d10d78dd2dbb646ea4d555d5efe6031220bf59d8fd",
+    "ecology-v2-controls.log": "6dd21ec7f0884b67c863ff0ed69e57dac46cc5ec8a82bc97d8a6a6e32fd96269",
+    "ecology-v2-reserves-source.java.txt": "19f9c5b5291c5d2609bf2836617c19414e55f5888a531cc6eb3f16b7e51120c9",
+    "ecology-v2-unbounded-source.java.txt": "2184a0881d9711eed3ce0f9cb66ee0c0cc1a56b57d27ca1eefdb8526e8b48fdc",
+    "ecology-v2-pilot-source-verification.json": "4483490b7e3fd3a317d62a33e163fca238172b531e3b4b17e875083a14fbe6af",
+    "ecology-v2-verify-java21.log": "4e09521a6a2ae80af1a0e6e1544a4fa68b0f518ad46408e72af7cad9620b5dc2",
+    "ecology-v2-build-java21.json": "9d67cec36379733952ed7900b78928a58cbdb2e0a925be21494acf0f16a8d028",
+    "ecology-v2-release-signer-java21.json": "ff2a71d08186e6ccde94bcea4f178b8003344a5d3148d217c09e66883172bf65",
+    "ecology-v2-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "ecology-v2-process-lock-java21.json": "4235d54b2e1cdcbbf7584cce30ff451a49e6e3c382f6ca0ec41e17b3247a9e0e",
+    "ecology-v2-process-lock-java21.log": "6f9344565728c21c86cd72349d27903aca07739b89f5b41b66b8e46f60fd1f5f",
+    "ecology-v2-verify-java25.log": "b0f133cdeae5683132240bfd73a44c0514b3fdc8056d7b0717726ea075a84853",
+    "ecology-v2-build-java25.json": "12c922b642cc419ce07fd9c7a79cddefd0bef69305bfe4e334f66555d97524bb",
+    "ecology-v2-release-signer-java25.json": "ff2a71d08186e6ccde94bcea4f178b8003344a5d3148d217c09e66883172bf65",
+    "ecology-v2-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "ecology-v2-process-lock-java25.json": "3d36b57a390380990f3f177c3d78592b598d901b8c9704dc6420c0a85df36611",
+    "ecology-v2-process-lock-java25.log": "f6d6511ba0c32d5cfc6873a0bb1ed298b575e4ba56e37b15512b20a3526f06fb"
+  }
+}

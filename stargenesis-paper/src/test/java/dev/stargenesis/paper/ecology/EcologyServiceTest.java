@@ -27,6 +27,8 @@ class EcologyServiceTest {
         assertTrue(service.execute(OWNER, new String[]{"start", "42"}).getFirst().contains("0/500"));
         var saved = persistence.load(OWNER).orElseThrow();
         assertEquals(EcologyConfig.defaults(), saved.config());
+        assertEquals(EcologyWorld.ENGINE_VERSION, saved.engineVersion());
+        assertTrue(service.execute(OWNER, new String[]{"dashboard"}).stream().anyMatch(line -> line.contains("繁殖成熟年龄=")));
         assertThrows(IllegalStateException.class, () -> service.execute(OWNER, new String[]{"start", "42", "1536"}));
         assertEquals(saved, persistence.load(OWNER).orElseThrow());
     }
@@ -59,14 +61,63 @@ class EcologyServiceTest {
         }
         var persistence = new EcologyPersistence(directory);
         var replay = persistence.load(OWNER).orElseThrow();
+        byte[] legacyBytes = Files.readAllBytes(file);
+        assertEquals(EcologyWorld.LEGACY_ENGINE_VERSION, replay.engineVersion());
         assertEquals(EcologyConfig.defaults(), replay.config());
         assertEquals("45cd70b40510e6b389f942384df8b4b13c6910ffd762294a0da749b814684020", replay.initialStateHash());
         assertTrue(EcologyReplayVerifier.verify(replay).passed());
+        assertTrue(new EcologyService(persistence).execute(OWNER, new String[]{"dashboard"}).stream()
+                .anyMatch(line -> line.contains("沿用旧版繁殖规则")));
+        assertArrayEquals(legacyBytes, Files.readAllBytes(file));
         try (var world = EcologyWorld.restore(replay)) {
             assertEquals("e3eb39f8abc153755d22ed95a47c8e44800fe57b0ee454ebd1b3324aeffc01e8", world.stateHash());
             world.step(EcologyInput.idle(world.tick()));
             new EcologyService(persistence).execute(OWNER, new String[]{"step", "1"});
             assertEquals(world.replay(), persistence.load(OWNER).orElseThrow());
+            assertEquals(EcologyWorld.LEGACY_ENGINE_VERSION, persistence.load(OWNER).orElseThrow().engineVersion());
+        }
+    }
+
+    @Test void maturityBoundaryAndFailedProgramUpdateResumeIdenticallyAfterRestart(@TempDir Path directory) throws Exception {
+        var persistence = new EcologyPersistence(directory);
+        try (var world = new EcologyWorld(worldId(), 42, EcologyConfig.forDuration(128))) {
+            var programs = Map.of(
+                    "producer", new MatterProgram("producer", MatterProgram.Role.PRODUCER, 8, 2, 64, 0),
+                    "grazer", new MatterProgram("grazer", MatterProgram.Role.GRAZER, 8, 2, 64, 0),
+                    "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 8, 2, 64, 0));
+            world.step(new EcologyInput(0, programs));
+            while (world.tick() < 31) world.step(EcologyInput.idle(world.tick()));
+            assertEquals(0, world.view().births());
+            persistence.save(OWNER, world.replay());
+            byte[] before = Files.readAllBytes(directory.resolve(OWNER + ".ecology.json"));
+            Path temporary = directory.resolve(OWNER + ".ecology.json.tmp");
+            Files.createDirectory(temporary);
+            var command = new String[]{"program", "producer", "8", "2", "64", "0"};
+            assertThrows(IOException.class, () -> new EcologyService(persistence).execute(OWNER, command));
+            assertArrayEquals(before, Files.readAllBytes(directory.resolve(OWNER + ".ecology.json")));
+            Files.delete(temporary);
+            new EcologyService(new EcologyPersistence(directory)).execute(OWNER, command);
+            world.step(new EcologyInput(world.tick(), Map.of("producer", programs.get("producer"))));
+            assertTrue(world.view().births() > 0);
+            assertEquals(world.replay(), persistence.load(OWNER).orElseThrow());
+            new EcologyService(new EcologyPersistence(directory)).execute(OWNER, new String[]{"step", "20"});
+            for (int i = 0; i < 20; i++) world.step(EcologyInput.idle(world.tick()));
+            assertEquals(world.replay(), persistence.load(OWNER).orElseThrow());
+            assertTrue(EcologyReplayVerifier.verify(persistence.load(OWNER).orElseThrow()).passed());
+        }
+    }
+
+    @Test void unknownOrRelabelledEngineCannotAdvanceOrRewriteAnExistingTank(@TempDir Path directory) throws Exception {
+        var service = new EcologyService(new EcologyPersistence(directory));
+        service.execute(OWNER, new String[]{"start", "42"});
+        var file = directory.resolve(OWNER + ".ecology.json");
+        String original = Files.readString(file);
+        for (String version : new String[]{EcologyWorld.LEGACY_ENGINE_VERSION, "genesis-ecology/99"}) {
+            String changed = original.replace(EcologyWorld.ENGINE_VERSION, version);
+            Files.writeString(file, changed);
+            assertThrows(IllegalArgumentException.class, () -> service.execute(OWNER, new String[]{"step", "1"}));
+            assertThrows(IllegalStateException.class, () -> service.execute(OWNER, new String[]{"replay"}));
+            assertEquals(changed, Files.readString(file));
         }
     }
 

@@ -142,15 +142,21 @@ P5 封闭生态舱使用有限 matter 账本。生产者、食草者和分解者
 
 `program` 会在当前逻辑步应用新规则。`step` 每次最多推进20步。繁殖会转移已有 biomass，突变只修改有界物种参数，并受32个个体、8代和512次出生限制。默认实验仍为500步；使用 `/genesis ecology start <seed> <ticks>` 可在开始时指定1–1536步，例如 `start 52008 1536`。时长是上限，种群可能提前灭绝，不能延长已有实验或修改历史。账本为指定时长预留最多98,304次转移证据，保持原有100,000硬上限。`dashboard` 显示当前实验的真实时长预算、物质余额、种群、代数和出生/死亡。个人 replay 保存在 `plugins/StarGenesis/ecology/<player UUID>.ecology.json`，重载会从 seed 重演输入并核对初始状态、每步状态哈希和事件哈希。`reset` 删除该玩家的生态舱。整个流程只改模拟账本，不访问 Minecraft 世界、背包或经济服务。
 
-Paper/Folia 自动客户端另运行四个 extinction 对照 profile 和固定 seed 52008 candidate，均核对 total matter 与 replay。四个对照 profile 在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500步前灭绝；candidate 在四次服务器/版本复现中均达到500步，终态 population 为 producer/grazer/decomposer 26/2/4。纯 Java 引擎另在两个归档 Paper/Folia Alice worldId 上扫描 seed 52008–52107，200/200 均到500 ticks并保留三物种；这是模拟扫描，不是200次服务器运行。2026-11-25 完成 Paper/Folia 各八 seed（52008–52015）自动客户端实服扩展，16/16 均到500 tick、保留三物种、matter=1000，replay 全部通过。Folia 流程同时覆盖跨区域客户端。上述数据不代表长期生态平衡或真人验收。
+新建生态舱使用v2生命周期：体内物质达到繁殖阈值后停止摄入，寿命一半时成熟，成功繁殖后至少间隔寿命四分之一（均向上取整）。降低储量阈值不会删除已有物质，编辑程序和重启也不会清除繁殖间隔。所有死亡先释放空位，再处理本步繁殖；seed决定竞争次序、进食目标和突变，玩家UUID不再改变相同实验的种群轨迹。面板显示这些参数。新默认程序为producer`(6,4,320,150)`、grazer`(4,24,512,100)`、decomposer`(3,4,320,80)`；老生态舱保留v1原规则与回放哈希。具体合同见[生态引擎v2](docs/ECOLOGY_ENGINE_V2.md)。
 
-`scripts/EcologyLongRunStudy.java` 可在1,536步预算下比较四组固定参数，记录500/512/1024/1536步种群、出生/死亡、首次物种灭绝时点，并逐步检查守恒、最终验证 replay。运行时按生产者、食草者、分解者顺序在第0/1/2步应用参数，其后不干预：
+此前v1版本的Paper/Folia 自动客户端另运行四个 extinction 对照 profile 和固定 seed 52008 candidate，均核对 total matter 与 replay。四个对照 profile 在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500步前灭绝；candidate 在四次服务器/版本复现中均达到500步，终态 population 为 producer/grazer/decomposer 26/2/4。纯 Java 引擎另在两个归档 Paper/Folia Alice worldId 上扫描 seed 52008–52107，200/200 均到500 ticks并保留三物种；这是模拟扫描，不是200次服务器运行。2026-11-25 完成 Paper/Folia 各八 seed（52008–52015）自动客户端实服扩展，16/16 均到500 tick、保留三物种、matter=1000，replay 全部通过。Folia 流程同时覆盖跨区域客户端。上述数据不代表v2实服验证、长期生态平衡或真人验收。
+
+`scripts/EcologyLongRunStudy.java` 默认在v1引擎的1,536步预算下比较六组固定参数，记录500/512/1024/1536步种群、出生/死亡、首次物种灭绝时点，并逐步检查守恒、最终验证 replay。运行时按生产者、食草者、分解者顺序在第0/1/2步应用参数，其后不干预：
 
 ```sh
 java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-study.json 4 2
 ```
 
-末尾两个数字分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2；可追加 profile 名称或 `all`（默认）筛选。原三组长期对照见 `docs/evidence/p5/long-run/summary.json`，旧候选在第512步失去食草者。
+末尾两个数字分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2；可追加逗号分隔的profile名称或`all`（默认），然后依次指定首seed、首world编号和`v1|v2`。原三组长期对照见 `docs/evidence/p5/long-run/summary.json`，旧候选在第512步失去食草者。新默认配置和最高突变率研究使用：
+
+```sh
+java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLifecycleStudy.java .work/ecology-v2-validation.json 32 default,mutation-max 20261126
+```
 
 可复现的参数搜索先固定 world/seed 筛选，再验证其他世界与种子：
 

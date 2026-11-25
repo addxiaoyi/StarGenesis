@@ -16,7 +16,8 @@ import java.util.UUID;
 
 /** Deterministic closed-tank ecology with conserved matter and bounded evolving programs. */
 public final class EcologyWorld implements AutoCloseable {
-    public static final String ENGINE_VERSION = "genesis-ecology/1";
+    public static final String ENGINE_VERSION = "genesis-ecology/2";
+    public static final String LEGACY_ENGINE_VERSION = "genesis-ecology/1";
     public static final String MATTER = "matter";
     public static final int MAX_EVENTS_PER_STEP = 128;
     private static final String ZERO_HASH = "0".repeat(64);
@@ -27,6 +28,8 @@ public final class EcologyWorld implements AutoCloseable {
     private final String worldId;
     private final long seed;
     private final EcologyConfig config;
+    private final String engineVersion;
+    private final boolean legacy;
     private final Map<String, MatterProgram> programs = new TreeMap<>();
     private final TreeMap<UUID, Organism> organisms = new TreeMap<>(UUID_ORDER);
     private final List<EcologyReplay.Frame> history = new ArrayList<>();
@@ -46,10 +49,18 @@ public final class EcologyWorld implements AutoCloseable {
     private List<EventRecord> stepEvents = new ArrayList<>();
 
     public EcologyWorld(String worldId, long seed, EcologyConfig config) {
+        this(worldId, seed, config, ENGINE_VERSION);
+    }
+
+    /** Explicit versions let historical studies and stored replays retain their original rules. */
+    public EcologyWorld(String worldId, long seed, EcologyConfig config, String engineVersion) {
+        if (!supportsEngine(engineVersion)) throw new IllegalArgumentException("Unsupported ecology engine");
         new EvidenceId(worldId, 0, 0);
         this.worldId = worldId;
         this.seed = seed;
         this.config = Objects.requireNonNull(config, "config");
+        this.engineVersion = engineVersion;
+        legacy = LEGACY_ENGINE_VERSION.equals(engineVersion);
         defaultPrograms().forEach(program -> programs.put(program.species(), program));
 
         List<Organism> initial = new ArrayList<>(EcologyConfig.INITIAL_POPULATION);
@@ -75,14 +86,13 @@ public final class EcologyWorld implements AutoCloseable {
         MatterProgram program = programs.get(species);
         for (int i = 0; i < count; i++) {
             UUID id = organismId("initial:" + species + ":" + i);
-            initial.add(new Organism(id, species, program, 0, 0));
+            initial.add(new Organism(id, species, program, 0, 0, initial.size()));
         }
     }
 
     public static EcologyWorld restore(EcologyReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!ENGINE_VERSION.equals(replay.engineVersion())) throw new IllegalArgumentException("Unsupported ecology engine");
-        EcologyWorld world = new EcologyWorld(replay.worldId(), replay.seed(), replay.config());
+        EcologyWorld world = new EcologyWorld(replay.worldId(), replay.seed(), replay.config(), replay.engineVersion());
         try {
             if (!world.initialStateHash.equals(replay.initialStateHash()))
                 throw new IllegalArgumentException("Ecology initial-state commitment mismatch");
@@ -110,7 +120,11 @@ public final class EcologyWorld implements AutoCloseable {
         stepEvents = new ArrayList<>();
         applyProgramUpdates(input);
 
-        List<UUID> currentOrganisms = List.copyOf(organisms.keySet());
+        List<UUID> currentOrganisms = legacy ? List.copyOf(organisms.keySet()) : organisms.values().stream()
+                .sorted((left, right) -> {
+                    int compared = Long.compareUnsigned(turnPriority(left), turnPriority(right));
+                    return compared != 0 ? compared : Long.compare(left.ordinal, right.ordinal);
+                }).map(organism -> organism.id).toList();
         List<Organism> newborns = new ArrayList<>();
         for (UUID id : currentOrganisms) {
             Organism organism = organisms.get(id);
@@ -121,7 +135,12 @@ public final class EcologyWorld implements AutoCloseable {
                 die(organism);
                 continue;
             }
-            reproduce(organism, newborns);
+            if (legacy) reproduce(organism, newborns);
+        }
+        // Every death frees its slot before any surviving parent competes for a birth this tick.
+        if (!legacy) for (UUID id : currentOrganisms) {
+            Organism organism = organisms.get(id);
+            if (organism != null) reproduce(organism, newborns);
         }
         for (Organism newborn : newborns) organisms.put(newborn.id, newborn);
 
@@ -157,6 +176,10 @@ public final class EcologyWorld implements AutoCloseable {
     }
 
     private void feed(Organism organism) {
+        long intake = organism.program.intake();
+        if (!legacy) intake = Math.min(intake, Math.max(0,
+                organism.program.reproductionMass() - ledger.balance(account(organism.id), MATTER)));
+        if (intake < 1) return;
         String source = switch (organism.program.role()) {
             case PRODUCER -> "soil";
             case GRAZER -> selectProducer(organism);
@@ -165,7 +188,7 @@ public final class EcologyWorld implements AutoCloseable {
         if (source == null) return;
         long available = ledger.balance(source, MATTER);
         if (organism.program.role() == MatterProgram.Role.GRAZER) available--;
-        long amount = Math.min(available, organism.program.intake());
+        long amount = Math.min(available, intake);
         if (amount < 1) return;
         String type = switch (organism.program.role()) {
             case PRODUCER -> "ecology.growth";
@@ -179,16 +202,19 @@ public final class EcologyWorld implements AutoCloseable {
     }
 
     private String selectProducer(Organism grazer) {
-        List<Organism> prey = organisms.values().stream()
+        var candidates = organisms.values().stream()
                 .filter(candidate -> candidate.program.role() == MatterProgram.Role.PRODUCER)
-                .filter(candidate -> ledger.balance(account(candidate.id), MATTER) > 1)
-                .toList();
+                .filter(candidate -> ledger.balance(account(candidate.id), MATTER) > 1);
+        List<Organism> prey = (legacy ? candidates : candidates.sorted(Comparator.comparingLong(value -> value.ordinal))).toList();
         if (prey.isEmpty()) return null;
-        long selector = mix64(seed ^ tick ^ grazer.id.getMostSignificantBits() ^ grazer.id.getLeastSignificantBits());
+        long selector = legacy ? mix64(seed ^ tick ^ grazer.id.getMostSignificantBits() ^ grazer.id.getLeastSignificantBits())
+                : mix64(seed ^ mix64(tick) ^ mix64(grazer.ordinal) ^ 0x6a09e667f3bcc909L);
         return account(prey.get((int) Long.remainderUnsigned(selector, prey.size())).id);
     }
 
     private void reproduce(Organism parent, List<Organism> newborns) {
+        if (!legacy && (parent.age < (parent.program.lifespanSteps() + 1) / 2
+                || parent.lastBirthAge >= 0 && parent.age - parent.lastBirthAge < (parent.program.lifespanSteps() + 3) / 4)) return;
         if (parent.generation >= config.maxGenerations()
                 || births >= config.maxBirths()
                 || organisms.size() + newborns.size() >= config.maxOrganisms()
@@ -196,19 +222,23 @@ public final class EcologyWorld implements AutoCloseable {
 
         long nextSerial = Math.addExact(birthSerial, 1);
         UUID childId = organismId("birth:" + nextSerial);
-        MatterProgram childProgram = mutate(parent.program, parent.id, nextSerial);
+        MatterProgram childProgram = mutate(parent, nextSerial);
         if (transfer(account(parent.id), account(childId), 1, "ecology.organism_born",
                 Map.of("parent", parent.id.toString(), "organism", childId.toString(),
                         "species", parent.species, "generation", Integer.toString(parent.generation + 1),
                         "mutated", Boolean.toString(!childProgram.equals(parent.program))))) {
             birthSerial = nextSerial;
             births = Math.addExact(births, 1);
-            newborns.add(new Organism(childId, parent.species, childProgram, 0, parent.generation + 1));
+            parent.lastBirthAge = parent.age;
+            newborns.add(new Organism(childId, parent.species, childProgram, 0, parent.generation + 1,
+                    Math.addExact(EcologyConfig.INITIAL_POPULATION - 1L, nextSerial)));
         }
     }
 
-    private MatterProgram mutate(MatterProgram source, UUID parent, long serial) {
-        long choice = mix64(seed ^ tick ^ parent.getMostSignificantBits() ^ parent.getLeastSignificantBits() ^ serial);
+    private MatterProgram mutate(Organism parent, long serial) {
+        MatterProgram source = parent.program;
+        long choice = legacy ? mix64(seed ^ tick ^ parent.id.getMostSignificantBits() ^ parent.id.getLeastSignificantBits() ^ serial)
+                : mix64(seed ^ mix64(tick) ^ mix64(parent.ordinal) ^ mix64(serial) ^ 0xbb67ae8584caa73bL);
         if (Long.remainderUnsigned(choice, 1_000) >= source.mutationPermille()) return source;
         int direction = (mix64(choice) & 1L) == 0 ? -1 : 1;
         int trait = (int) Long.remainderUnsigned(mix64(choice + 1), 3);
@@ -284,7 +314,9 @@ public final class EcologyWorld implements AutoCloseable {
             if (!programs.containsKey(organism.species) || !organism.program.species().equals(organism.species)
                     || organism.program.role() != programs.get(organism.species).role()
                     || organism.generation < 0 || organism.generation > config.maxGenerations()
-                    || organism.age < 0 || ledger.balance(account(organism.id), MATTER) < 1)
+                    || organism.age < 0 || ledger.balance(account(organism.id), MATTER) < 1
+                    || !legacy && (organism.ordinal < 0 || organism.ordinal > EcologyConfig.INITIAL_POPULATION - 1L + births
+                        || organism.lastBirthAge < -1 || organism.lastBirthAge > organism.age))
                 throw new IllegalStateException("Invalid ecology organism state");
         }
     }
@@ -314,17 +346,19 @@ public final class EcologyWorld implements AutoCloseable {
 
     public EcologyReplay replay() {
         owner.check();
-        return new EcologyReplay(1, ENGINE_VERSION, worldId, seed, config, initialStateHash, history);
+        return new EcologyReplay(1, engineVersion, worldId, seed, config, initialStateHash, history);
     }
 
     public String worldId() { owner.check(); return worldId; }
     public long seed() { owner.check(); return seed; }
     public long tick() { owner.check(); return tick; }
     public EcologyConfig config() { owner.check(); return config; }
+    public String engineVersion() { owner.check(); return engineVersion; }
+    public static boolean supportsEngine(String version) { return ENGINE_VERSION.equals(version) || LEGACY_ENGINE_VERSION.equals(version); }
     public String stateHash() {
         owner.check();
         StringBuilder state = new StringBuilder();
-        token(state, ENGINE_VERSION);
+        token(state, engineVersion);
         token(state, worldId);
         token(state, Long.toString(seed));
         token(state, Long.toString(config.initialMatter()));
@@ -349,6 +383,10 @@ public final class EcologyWorld implements AutoCloseable {
             token(state, organism.species);
             token(state, Integer.toString(organism.age));
             token(state, Integer.toString(organism.generation));
+            if (!legacy) {
+                token(state, Long.toString(organism.ordinal));
+                token(state, Integer.toString(organism.lastBirthAge));
+            }
             appendProgram(state, organism.species, organism.program);
         });
         ledger.snapshot().forEach((account, resources) -> {
@@ -381,6 +419,10 @@ public final class EcologyWorld implements AutoCloseable {
         return value ^ (value >>> 31);
     }
 
+    private long turnPriority(Organism organism) {
+        return mix64(seed ^ mix64(tick) ^ mix64(organism.ordinal) ^ 0x3c6ef372fe94f82bL);
+    }
+
     private String chain(String previous, String... fields) {
         StringBuilder encoded = new StringBuilder();
         token(encoded, previous);
@@ -410,7 +452,11 @@ public final class EcologyWorld implements AutoCloseable {
         closed = true;
     }
 
-    private static List<MatterProgram> defaultPrograms() {
+    private List<MatterProgram> defaultPrograms() {
+        if (!legacy) return List.of(
+                new MatterProgram("producer", MatterProgram.Role.PRODUCER, 6, 4, 320, 150),
+                new MatterProgram("grazer", MatterProgram.Role.GRAZER, 4, 24, 512, 100),
+                new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 3, 4, 320, 80));
         return List.of(
                 new MatterProgram("producer", MatterProgram.Role.PRODUCER, 3, 5, 40, 150),
                 new MatterProgram("grazer", MatterProgram.Role.GRAZER, 2, 6, 24, 100),
@@ -423,13 +469,16 @@ public final class EcologyWorld implements AutoCloseable {
         private MatterProgram program;
         private int age;
         private final int generation;
+        private final long ordinal;
+        private int lastBirthAge = -1;
 
-        private Organism(UUID id, String species, MatterProgram program, int age, int generation) {
+        private Organism(UUID id, String species, MatterProgram program, int age, int generation, long ordinal) {
             this.id = id;
             this.species = species;
             this.program = program;
             this.age = age;
             this.generation = generation;
+            this.ordinal = ordinal;
         }
     }
 }

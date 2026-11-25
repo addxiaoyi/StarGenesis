@@ -1,0 +1,8 @@
+completed=1/8 profile=old-short-lifespans seed=0 tick=297 population={} firstExtinction={decomposer=223, grazer=158, producer=297}
+completed=2/8 profile=old-short-lifespans seed=42 tick=291 population={} firstExtinction={decomposer=219, grazer=138, producer=291}
+completed=3/8 profile=old-short-lifespans seed=-9223372036854775808 tick=297 population={} firstExtinction={decomposer=221, grazer=160, producer=297}
+completed=4/8 profile=old-short-lifespans seed=9223372036854775807 tick=288 population={} firstExtinction={decomposer=231, grazer=152, producer=288}
+completed=5/8 profile=lifespan-1 seed=0 tick=1 population={} firstExtinction={decomposer=1, grazer=1, producer=1}
+completed=6/8 profile=lifespan-1 seed=42 tick=1 population={} firstExtinction={decomposer=1, grazer=1, producer=1}
+completed=7/8 profile=lifespan-1 seed=-9223372036854775808 tick=1 population={} firstExtinction={decomposer=1, grazer=1, producer=1}
+completed=8/8 profile=lifespan-1 seed=9223372036854775807 tick=1 population={} firstExtinction={decomposer=1, grazer=1, producer=1}

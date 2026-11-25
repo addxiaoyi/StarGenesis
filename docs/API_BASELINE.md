@@ -12,3 +12,5 @@
 变更流程：列出受影响消费者→提出最小接口差异→增加合同/迁移测试→串行整仓verify→最小回放→适当实机验收。不得并发写他人模块或同一target。
 
 P9复核增量接口：integrations增加SettlementReviewRequest/Authorizer/Review/Coordinator；SettlementSagaRepository新增默认拒绝的reviews/commitReview能力，旧实现不会自动获得终局重开权限。消费者为FileSettlementSagaRepository与后续经审计的运营适配层，不改`dev.stargenesis.api`签名。自动coordinator和复核共用SettlementOperation.forPhase，固定旧幂等key；普通状态转移保持原契约。外层持久v2只用于已有复核证据的文件，v1保持读写兼容。协议、预算和生产接入边界见`SETTLEMENT_PROVIDER_CONTRACT.md`。
+
+P5生命周期语义升级至`genesis-ecology/2`：EcologyWorld三参数构造用于新版本，新增显式engineVersion构造、engineVersion()/supportsEngine()与LEGACY_ENGINE_VERSION常量；restore/verifier按已存版本选择规则。公共api模块、EcologyReplay/EcologyConfig字段和文件schema不变。消费者为生态service、verifier与研究脚本；旧研究显式选v1。v1固定样本和长期灭绝反例保持原哈希/事件，新版本追加成熟期、繁殖间隔、摄入储量上限和与world ID无关的物理随机输入。算法、排序、预算与迁移合同见`ECOLOGY_ENGINE_V2.md`。

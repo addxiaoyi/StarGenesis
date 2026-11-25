@@ -1,0 +1,14 @@
+{
+  "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+  "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+  "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "suites": 59,
+  "tests": 453,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "ecology-v2-verify-java25.log",
+  "logSha256": "b0f133cdeae5683132240bfd73a44c0514b3fdc8056d7b0717726ea075a84853",
+  "pluginSha256": "ceac170cbce7d74533bd2360a8a8c7492b32984b6a519c208f77228974b497b2",
+  "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+}

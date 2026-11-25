@@ -19,7 +19,7 @@ class EcologyWorldTest {
             assertEquals(config.initialMatter(), world.view().totalMatter());
             assertEquals(EcologyConfig.INITIAL_POPULATION, world.view().population());
 
-            for (int i = 0; i < 100 && !world.view().terminal(); i++)
+            for (int i = 0; i < 200 && !world.view().terminal(); i++)
                 world.step(EcologyInput.idle(world.tick()));
 
             EcologyView view = world.view();
@@ -51,7 +51,7 @@ class EcologyWorldTest {
                 "producer", new MatterProgram("producer", MatterProgram.Role.PRODUCER, 8, 2, 200, 500),
                 "grazer", new MatterProgram("grazer", MatterProgram.Role.GRAZER, 8, 2, 200, 500),
                 "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 8, 2, 200, 500));
-        try (EcologyWorld world = new EcologyWorld("finite-evolution", 991, config)) {
+        try (EcologyWorld world = new EcologyWorld("finite-evolution", 991, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
             world.step(new EcologyInput(0, updates));
             for (int i = 0; i < 40 && !world.view().terminal(); i++)
                 world.step(EcologyInput.idle(world.tick()));

@@ -11,3 +11,4 @@ mvnw text eol=lf
 # Raw evidence must preserve bytes and hashes across Windows/Linux checkout.
 docs/evidence/**/*.log -text -diff
 docs/evidence/**/sbom.json -text -diff
+docs/evidence/**/*.java.txt text eol=lf

@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "label": "unbounded",
+      "source": "ecology-v2-unbounded-source.java.txt",
+      "sourceSha256": "2184a0881d9711eed3ce0f9cb66ee0c0cc1a56b57d27ca1eefdb8526e8b48fdc",
+      "jarSha256": "39ec5ca6d1bbad769f9891b1e2a3eaefeb0f40e94bf621f25a0191f63d916fa8",
+      "classes": {
+        "dev/stargenesis/sim/EcologyWorld$1.class": {
+          "sameBytes": true,
+          "archivedSha256": "320715317ed266897542b2e68bdd84be7f43bc108342e1667275da2f50d1c531",
+          "recompiledSha256": "320715317ed266897542b2e68bdd84be7f43bc108342e1667275da2f50d1c531"
+        },
+        "dev/stargenesis/sim/EcologyWorld$Organism.class": {
+          "sameBytes": true,
+          "archivedSha256": "982333d23dad08ab9308cb05c838696d4f76470843627704b3422960f59895e3",
+          "recompiledSha256": "982333d23dad08ab9308cb05c838696d4f76470843627704b3422960f59895e3"
+        },
+        "dev/stargenesis/sim/EcologyWorld.class": {
+          "sameBytes": true,
+          "archivedSha256": "5b0131e1cf8fef54c66f57ded7d5f369129d5abff6fce078735e1e55fb865b6a",
+          "recompiledSha256": "5b0131e1cf8fef54c66f57ded7d5f369129d5abff6fce078735e1e55fb865b6a"
+        }
+      }
+    },
+    {
+      "label": "reserves",
+      "source": "ecology-v2-reserves-source.java.txt",
+      "sourceSha256": "19f9c5b5291c5d2609bf2836617c19414e55f5888a531cc6eb3f16b7e51120c9",
+      "jarSha256": "dbbde1bd3844ed78d89f8a6028b49e6d536bc378efb4e992ff44b1e30e7cb18b",
+      "classes": {
+        "dev/stargenesis/sim/EcologyWorld$1.class": {
+          "sameBytes": true,
+          "archivedSha256": "3c797c929550c8aa21eca11f3d52509327a6b55c85b8763c0ca5da1be98ea1e1",
+          "recompiledSha256": "3c797c929550c8aa21eca11f3d52509327a6b55c85b8763c0ca5da1be98ea1e1"
+        },
+        "dev/stargenesis/sim/EcologyWorld$Organism.class": {
+          "sameBytes": true,
+          "archivedSha256": "6aaab6de2f56a21ab510f8495870fdda9150de13cbc707ef3a07e3a5880c221a",
+          "recompiledSha256": "6aaab6de2f56a21ab510f8495870fdda9150de13cbc707ef3a07e3a5880c221a"
+        },
+        "dev/stargenesis/sim/EcologyWorld.class": {
+          "sameBytes": true,
+          "archivedSha256": "8297c5db54ffa782a7d289bff92224116033590cdef65b50421a9aa3eb90f348",
+          "recompiledSha256": "8297c5db54ffa782a7d289bff92224116033590cdef65b50421a9aa3eb90f348"
+        }
+      }
+    }
+  ],
+  "scope": "Reconstructed unpublished pilot sources are checked byte-for-byte against their original compiled classes, including debug metadata."
+}

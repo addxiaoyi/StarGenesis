@@ -8,10 +8,10 @@ public final class EcologyReplayVerifier {
 
     public static Verification verify(EcologyReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!EcologyWorld.ENGINE_VERSION.equals(replay.engineVersion()))
+        if (!EcologyWorld.supportsEngine(replay.engineVersion()))
             return new Verification(false, -1, "UNSUPPORTED_ENGINE");
         long currentTick = 0;
-        try (EcologyWorld world = new EcologyWorld(replay.worldId(), replay.seed(), replay.config())) {
+        try (EcologyWorld world = new EcologyWorld(replay.worldId(), replay.seed(), replay.config(), replay.engineVersion())) {
             if (!world.stateHash().equals(replay.initialStateHash()))
                 return new Verification(false, -1, "INITIAL_STATE_MISMATCH");
             for (EcologyReplay.Frame frame : replay.frames()) {

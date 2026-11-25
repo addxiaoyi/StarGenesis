@@ -25,7 +25,7 @@ class EcologyLongRunTest {
 
     @Test void nonReproducingOrganismsCompleteTheirFullLifespanAndReturnAllMatter() {
         var config = new EcologyConfig(1_000, 86, 32, 0, 1_536, 0, 98_304);
-        try (var world = new EcologyWorld("ecology-lifespan", 42, config)) {
+        try (var world = new EcologyWorld("ecology-lifespan", 42, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
             world.step(new EcologyInput(0, CANDIDATE));
             while (world.tick() < 511) {
                 world.step(EcologyInput.idle(world.tick()));
@@ -46,7 +46,7 @@ class EcologyLongRunTest {
 
     @Test void threeLifespanRunConservesMatterAndResumesIdenticallyAfterTheOldHorizon() {
         var config = EcologyConfig.forDuration(1_536);
-        try (var world = new EcologyWorld("ecology-long-study-0", 52_008, config)) {
+        try (var world = new EcologyWorld("ecology-long-study-0", 52_008, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (world.tick() < 768) {
                 world.step(candidateInput(world.tick()));
                 assertConserved(world.view(), config);
@@ -72,7 +72,7 @@ class EcologyLongRunTest {
     }
 
     @Test void tamperingBeyondFiveHundredTicksIsDetectedAtTheChangedFrame() {
-        try (var world = new EcologyWorld("ecology-long-study-0", 52_008, EcologyConfig.forDuration(520))) {
+        try (var world = new EcologyWorld("ecology-long-study-0", 52_008, EcologyConfig.forDuration(520), EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (!world.view().terminal()) world.step(candidateInput(world.tick()));
             var replay = world.replay();
             assertEquals(520, replay.frames().size());
@@ -89,7 +89,7 @@ class EcologyLongRunTest {
 
     @Test void longRunsRespectBirthAndGenerationCapsWithoutExhaustingLedgerAccounts() {
         var config = new EcologyConfig(1_000, 86, 32, 2, 1_536, 15, 98_304);
-        try (var world = new EcologyWorld("ecology-finite-long", 42, config)) {
+        try (var world = new EcologyWorld("ecology-finite-long", 42, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (!world.view().terminal()) {
                 world.step(candidateInput(world.tick()));
                 assertConserved(world.view(), config);
@@ -108,7 +108,7 @@ class EcologyLongRunTest {
                 "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 3, 4, 320, 0));
         var config = EcologyConfig.forDuration(1536);
         for (int index = 0; index < 2; index++) {
-            try (var world = new EcologyWorld("ecology-long-study-" + index, 52008, config)) {
+            try (var world = new EcologyWorld("ecology-long-study-" + index, 52008, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
                 while (world.tick() < 768) {
                     long tick = world.tick();
                     String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;
@@ -142,7 +142,7 @@ class EcologyLongRunTest {
         long firstProducerExtinction = -1;
         long lastProducerBirthTick = -1;
         var producerGenerations = new java.util.TreeMap<Integer, Integer>(Map.of(0, 3));
-        try (var world = new EcologyWorld("ecology-long-study-2", 52008, config)) {
+        try (var world = new EcologyWorld("ecology-long-study-2", 52008, config, EcologyWorld.LEGACY_ENGINE_VERSION)) {
             while (!world.view().terminal()) {
                 long tick = world.tick();
                 String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;

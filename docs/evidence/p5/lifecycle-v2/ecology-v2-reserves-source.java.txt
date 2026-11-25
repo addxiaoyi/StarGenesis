@@ -1,0 +1,478 @@
+package dev.stargenesis.sim;
+
+import dev.stargenesis.api.sim.EvidenceId;
+import dev.stargenesis.api.sim.EventRecord;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
+import java.util.UUID;
+
+/** Deterministic closed-tank ecology with conserved matter and bounded evolving programs. */
+public final class EcologyWorld implements AutoCloseable {
+    public static final String ENGINE_VERSION = "genesis-ecology/2";
+    public static final String LEGACY_ENGINE_VERSION = "genesis-ecology/1";
+    public static final String MATTER = "matter";
+    public static final int MAX_EVENTS_PER_STEP = 128;
+    private static final String ZERO_HASH = "0".repeat(64);
+    private static final Comparator<UUID> UUID_ORDER = Comparator.comparing(UUID::toString);
+    private static final int INITIAL_BODY_MATTER = 2;
+    private static final int[] INITIAL_COUNTS = {3, 2, 2};
+    private final OwnerThread owner = new OwnerThread();
+    private final String worldId;
+    private final long seed;
+    private final EcologyConfig config;
+    private final String engineVersion;
+    private final boolean legacy;
+    private final Map<String, MatterProgram> programs = new TreeMap<>();
+    private final TreeMap<UUID, Organism> organisms = new TreeMap<>(UUID_ORDER);
+    private final List<EcologyReplay.Frame> history = new ArrayList<>();
+    private final ConservingResourceLedger ledger;
+    private final String initialStateHash;
+    private long tick;
+    private long births;
+    private long deaths;
+    private long processedMatter;
+    private long birthSerial;
+    private boolean terminal;
+    private boolean closed;
+    private String reason = "RUNNING";
+    private String ledgerHistoryHash = ZERO_HASH;
+    private String eventHistoryHash = ZERO_HASH;
+    private int sequence;
+    private List<EventRecord> stepEvents = new ArrayList<>();
+
+    public EcologyWorld(String worldId, long seed, EcologyConfig config) {
+        this(worldId, seed, config, ENGINE_VERSION);
+    }
+
+    /** Explicit versions let historical studies and stored replays retain their original rules. */
+    public EcologyWorld(String worldId, long seed, EcologyConfig config, String engineVersion) {
+        if (!supportsEngine(engineVersion)) throw new IllegalArgumentException("Unsupported ecology engine");
+        new EvidenceId(worldId, 0, 0);
+        this.worldId = worldId;
+        this.seed = seed;
+        this.config = Objects.requireNonNull(config, "config");
+        this.engineVersion = engineVersion;
+        legacy = LEGACY_ENGINE_VERSION.equals(engineVersion);
+        defaultPrograms().forEach(program -> programs.put(program.species(), program));
+
+        List<Organism> initial = new ArrayList<>(EcologyConfig.INITIAL_POPULATION);
+        addInitial(initial, "producer", INITIAL_COUNTS[0]);
+        addInitial(initial, "grazer", INITIAL_COUNTS[1]);
+        addInitial(initial, "decomposer", INITIAL_COUNTS[2]);
+
+        Map<String, Map<String, Long>> balances = new TreeMap<>();
+        long organismMatter = Math.multiplyExact((long) initial.size(), INITIAL_BODY_MATTER);
+        long soilMatter = Math.subtractExact(Math.subtractExact(config.initialMatter(), config.initialDetritus()), organismMatter);
+        balances.put("soil", Map.of(MATTER, soilMatter));
+        balances.put("detritus", Map.of(MATTER, config.initialDetritus()));
+        for (Organism organism : initial) {
+            balances.put(account(organism.id), Map.of(MATTER, (long) INITIAL_BODY_MATTER));
+            organisms.put(organism.id, organism);
+        }
+        ledger = new ConservingResourceLedger(balances, config.maxLedgerAttempts());
+        validateConservation();
+        initialStateHash = stateHash();
+    }
+
+    private void addInitial(List<Organism> initial, String species, int count) {
+        MatterProgram program = programs.get(species);
+        for (int i = 0; i < count; i++) {
+            UUID id = organismId("initial:" + species + ":" + i);
+            initial.add(new Organism(id, species, program, 0, 0, initial.size()));
+        }
+    }
+
+    public static EcologyWorld restore(EcologyReplay replay) {
+        Objects.requireNonNull(replay, "replay");
+        EcologyWorld world = new EcologyWorld(replay.worldId(), replay.seed(), replay.config(), replay.engineVersion());
+        try {
+            if (!world.initialStateHash.equals(replay.initialStateHash()))
+                throw new IllegalArgumentException("Ecology initial-state commitment mismatch");
+            for (EcologyReplay.Frame frame : replay.frames()) {
+                EcologyStepResult result = world.step(frame.input());
+                if (!result.stateHash().equals(frame.stateHash()) || !result.eventHash().equals(frame.eventHash()))
+                    throw new IllegalArgumentException("Ecology replay commitment mismatch at tick " + frame.input().tick());
+            }
+            return world;
+        } catch (RuntimeException failure) {
+            world.close();
+            throw failure;
+        }
+    }
+
+    public EcologyStepResult step(EcologyInput input) {
+        owner.check();
+        requireOpen();
+        Objects.requireNonNull(input, "input");
+        if (terminal) throw new IllegalStateException("Ecology ended: " + reason);
+        if (input.tick() != tick) throw new IllegalArgumentException("Expected ecology tick " + tick);
+        validateProgramUpdates(input);
+
+        sequence = 0;
+        stepEvents = new ArrayList<>();
+        applyProgramUpdates(input);
+
+        List<UUID> currentOrganisms = legacy ? List.copyOf(organisms.keySet()) : organisms.values().stream()
+                .sorted((left, right) -> {
+                    int compared = Long.compareUnsigned(turnPriority(left), turnPriority(right));
+                    return compared != 0 ? compared : Long.compare(left.ordinal, right.ordinal);
+                }).map(organism -> organism.id).toList();
+        List<Organism> newborns = new ArrayList<>();
+        for (UUID id : currentOrganisms) {
+            Organism organism = organisms.get(id);
+            if (organism == null) continue;
+            organism.age = Math.addExact(organism.age, 1);
+            feed(organism);
+            if (organism.age >= organism.program.lifespanSteps()) {
+                die(organism);
+                continue;
+            }
+            if (legacy) reproduce(organism, newborns);
+        }
+        // Every death frees its slot before any surviving parent competes for a birth this tick.
+        if (!legacy) for (UUID id : currentOrganisms) {
+            Organism organism = organisms.get(id);
+            if (organism != null) reproduce(organism, newborns);
+        }
+        for (Organism newborn : newborns) organisms.put(newborn.id, newborn);
+
+        tick = Math.addExact(tick, 1);
+        if (tick >= config.maxTicks()) finish("DURATION_BUDGET");
+        else if (organisms.isEmpty()) finish("EXTINCTION");
+        validateConservation();
+
+        String stateHash = stateHash();
+        history.add(new EcologyReplay.Frame(input, stateHash, eventHistoryHash));
+        return new EcologyStepResult(tick, stepEvents, stateHash, eventHistoryHash, terminal, reason);
+    }
+
+    private void validateProgramUpdates(EcologyInput input) {
+        for (Map.Entry<String, MatterProgram> entry : input.programUpdates().entrySet()) {
+            MatterProgram current = programs.get(entry.getKey());
+            if (current == null || current.role() != entry.getValue().role())
+                throw new IllegalArgumentException("Cannot add or change the role of a matter species");
+        }
+    }
+
+    private void applyProgramUpdates(EcologyInput input) {
+        input.programUpdates().forEach((species, program) -> {
+            programs.put(species, program);
+            for (Organism organism : organisms.values()) {
+                if (organism.species.equals(species)) organism.program = program;
+            }
+            emit("ecology.program_updated", Map.of("species", species, "intake", Integer.toString(program.intake()),
+                    "reproduction_mass", Integer.toString(program.reproductionMass()),
+                    "lifespan", Integer.toString(program.lifespanSteps()),
+                    "mutation_permille", Integer.toString(program.mutationPermille())));
+        });
+    }
+
+    private void feed(Organism organism) {
+        long intake = organism.program.intake();
+        if (!legacy) intake = Math.min(intake, Math.max(0,
+                organism.program.reproductionMass() - ledger.balance(account(organism.id), MATTER)));
+        if (intake < 1) return;
+        String source = switch (organism.program.role()) {
+            case PRODUCER -> "soil";
+            case GRAZER -> selectProducer(organism);
+            case DECOMPOSER -> "detritus";
+        };
+        if (source == null) return;
+        long available = ledger.balance(source, MATTER);
+        if (organism.program.role() == MatterProgram.Role.GRAZER) available--;
+        long amount = Math.min(available, intake);
+        if (amount < 1) return;
+        String type = switch (organism.program.role()) {
+            case PRODUCER -> "ecology.growth";
+            case GRAZER -> "ecology.graze";
+            case DECOMPOSER -> "ecology.decompose";
+        };
+        if (transfer(source, account(organism.id), amount, type,
+                Map.of("organism", organism.id.toString(), "species", organism.species))) {
+            processedMatter = Math.addExact(processedMatter, amount);
+        }
+    }
+
+    private String selectProducer(Organism grazer) {
+        var candidates = organisms.values().stream()
+                .filter(candidate -> candidate.program.role() == MatterProgram.Role.PRODUCER)
+                .filter(candidate -> ledger.balance(account(candidate.id), MATTER) > 1);
+        List<Organism> prey = (legacy ? candidates : candidates.sorted(Comparator.comparingLong(value -> value.ordinal))).toList();
+        if (prey.isEmpty()) return null;
+        long selector = legacy ? mix64(seed ^ tick ^ grazer.id.getMostSignificantBits() ^ grazer.id.getLeastSignificantBits())
+                : mix64(seed ^ mix64(tick) ^ mix64(grazer.ordinal) ^ 0x6a09e667f3bcc909L);
+        return account(prey.get((int) Long.remainderUnsigned(selector, prey.size())).id);
+    }
+
+    private void reproduce(Organism parent, List<Organism> newborns) {
+        if (!legacy && (parent.age < (parent.program.lifespanSteps() + 1) / 2
+                || parent.lastBirthAge >= 0 && parent.age - parent.lastBirthAge < (parent.program.lifespanSteps() + 3) / 4)) return;
+        if (parent.generation >= config.maxGenerations()
+                || births >= config.maxBirths()
+                || organisms.size() + newborns.size() >= config.maxOrganisms()
+                || ledger.balance(account(parent.id), MATTER) < parent.program.reproductionMass()) return;
+
+        long nextSerial = Math.addExact(birthSerial, 1);
+        UUID childId = organismId("birth:" + nextSerial);
+        MatterProgram childProgram = mutate(parent, nextSerial);
+        if (transfer(account(parent.id), account(childId), 1, "ecology.organism_born",
+                Map.of("parent", parent.id.toString(), "organism", childId.toString(),
+                        "species", parent.species, "generation", Integer.toString(parent.generation + 1),
+                        "mutated", Boolean.toString(!childProgram.equals(parent.program))))) {
+            birthSerial = nextSerial;
+            births = Math.addExact(births, 1);
+            parent.lastBirthAge = parent.age;
+            newborns.add(new Organism(childId, parent.species, childProgram, 0, parent.generation + 1,
+                    Math.addExact(EcologyConfig.INITIAL_POPULATION - 1L, nextSerial)));
+        }
+    }
+
+    private MatterProgram mutate(Organism parent, long serial) {
+        MatterProgram source = parent.program;
+        long choice = legacy ? mix64(seed ^ tick ^ parent.id.getMostSignificantBits() ^ parent.id.getLeastSignificantBits() ^ serial)
+                : mix64(seed ^ mix64(tick) ^ mix64(parent.ordinal) ^ mix64(serial) ^ 0xbb67ae8584caa73bL);
+        if (Long.remainderUnsigned(choice, 1_000) >= source.mutationPermille()) return source;
+        int direction = (mix64(choice) & 1L) == 0 ? -1 : 1;
+        int trait = (int) Long.remainderUnsigned(mix64(choice + 1), 3);
+        return switch (trait) {
+            case 0 -> source.withParameters(bound(source.intake() + direction, 1, 8),
+                    source.reproductionMass(), source.lifespanSteps(), source.mutationPermille());
+            case 1 -> source.withParameters(source.intake(), bound(source.reproductionMass() + direction, 2, 32),
+                    source.lifespanSteps(), source.mutationPermille());
+            default -> source.withParameters(source.intake(), source.reproductionMass(),
+                    bound(source.lifespanSteps() + direction, 1, 512), source.mutationPermille());
+        };
+    }
+
+    private int bound(int value, int minimum, int maximum) {
+        return Math.max(minimum, Math.min(maximum, value));
+    }
+
+    private void die(Organism organism) {
+        String destination = organism.program.role() == MatterProgram.Role.DECOMPOSER ? "soil" : "detritus";
+        long body = ledger.balance(account(organism.id), MATTER);
+        if (body > 0 && transfer(account(organism.id), destination, body, "ecology.organism_died",
+                Map.of("organism", organism.id.toString(), "species", organism.species,
+                        "generation", Integer.toString(organism.generation)))) {
+            organisms.remove(organism.id);
+            deaths = Math.addExact(deaths, 1);
+        }
+    }
+
+    private boolean transfer(String source, String target, long amount, String eventType, Map<String, String> data) {
+        if (amount < 1 || ledger.balance(source, MATTER) < amount) return false;
+        EvidenceId evidence = new EvidenceId(worldId, tick, sequence++);
+        ConservingResourceLedger.TransferResult result = ledger.transfer(evidence, source, target, MATTER, amount);
+        if (result != ConservingResourceLedger.TransferResult.APPLIED)
+            throw new IllegalStateException("Ecology matter transfer was not applied");
+        ledgerHistoryHash = chain(ledgerHistoryHash, evidence.toString(), source, target, MATTER,
+                Long.toString(amount), result.name());
+        emit(evidence, eventType, data);
+        return true;
+    }
+
+    private void emit(String type, Map<String, String> data) {
+        emit(new EvidenceId(worldId, tick, sequence++), type, data);
+    }
+
+    private void emit(EvidenceId evidence, String type, Map<String, String> data) {
+        if (stepEvents.size() >= MAX_EVENTS_PER_STEP) throw new IllegalStateException("Ecology event budget exhausted");
+        EventRecord event = new EventRecord(evidence, type, data);
+        stepEvents.add(event);
+        StringBuilder encoded = new StringBuilder();
+        token(encoded, event.evidenceId().toString());
+        token(encoded, event.type());
+        new TreeMap<>(event.data()).forEach((key, value) -> { token(encoded, key); token(encoded, value); });
+        eventHistoryHash = sha256(eventHistoryHash + encoded);
+    }
+
+    private void finish(String endReason) {
+        terminal = true;
+        reason = endReason;
+    }
+
+    private void validateConservation() {
+        Map<String, Map<String, Long>> balances = ledger.snapshot();
+        if (!balances.containsKey("soil") || !balances.containsKey("detritus")
+                || organisms.size() > config.maxOrganisms()) throw new IllegalStateException("Ecology state exceeds its account budget");
+        long total = 0;
+        for (Map.Entry<String, Map<String, Long>> account : balances.entrySet()) {
+            if (account.getValue().size() != 1 || !account.getValue().containsKey(MATTER))
+                throw new IllegalStateException("Ecology ledger contains an unknown matter type");
+            total = Math.addExact(total, account.getValue().get(MATTER));
+        }
+        if (total != config.initialMatter()) throw new IllegalStateException("Ecology matter was created or lost");
+        for (Organism organism : organisms.values()) {
+            if (!programs.containsKey(organism.species) || !organism.program.species().equals(organism.species)
+                    || organism.program.role() != programs.get(organism.species).role()
+                    || organism.generation < 0 || organism.generation > config.maxGenerations()
+                    || organism.age < 0 || ledger.balance(account(organism.id), MATTER) < 1)
+                throw new IllegalStateException("Invalid ecology organism state");
+        }
+    }
+
+    public EcologyView view() {
+        owner.check();
+        Map<String, Integer> population = new TreeMap<>();
+        Map<String, Long> matter = new TreeMap<>();
+        int maxGeneration = 0;
+        int evolved = 0;
+        long organismMatter = 0;
+        for (Organism organism : organisms.values()) {
+            population.merge(organism.species, 1, Integer::sum);
+            long balance = ledger.balance(account(organism.id), MATTER);
+            matter.merge(organism.species, balance, Math::addExact);
+            organismMatter = Math.addExact(organismMatter, balance);
+            maxGeneration = Math.max(maxGeneration, organism.generation);
+            if (!organism.program.equals(programs.get(organism.species))) evolved++;
+        }
+        long soil = ledger.balance("soil", MATTER);
+        long detritus = ledger.balance("detritus", MATTER);
+        long total = Math.addExact(Math.addExact(soil, detritus), organismMatter);
+        return new EcologyView(worldId, seed, tick, total, soil, detritus, organismMatter, organisms.size(),
+                population, matter, maxGeneration, births, deaths, processedMatter, evolved,
+                programs, stateHash(), terminal, reason);
+    }
+
+    public EcologyReplay replay() {
+        owner.check();
+        return new EcologyReplay(1, engineVersion, worldId, seed, config, initialStateHash, history);
+    }
+
+    public String worldId() { owner.check(); return worldId; }
+    public long seed() { owner.check(); return seed; }
+    public long tick() { owner.check(); return tick; }
+    public EcologyConfig config() { owner.check(); return config; }
+    public String engineVersion() { owner.check(); return engineVersion; }
+    public static boolean supportsEngine(String version) { return ENGINE_VERSION.equals(version) || LEGACY_ENGINE_VERSION.equals(version); }
+    public String stateHash() {
+        owner.check();
+        StringBuilder state = new StringBuilder();
+        token(state, engineVersion);
+        token(state, worldId);
+        token(state, Long.toString(seed));
+        token(state, Long.toString(config.initialMatter()));
+        token(state, Long.toString(config.initialDetritus()));
+        token(state, Integer.toString(config.maxOrganisms()));
+        token(state, Integer.toString(config.maxGenerations()));
+        token(state, Integer.toString(config.maxTicks()));
+        token(state, Integer.toString(config.maxBirths()));
+        token(state, Integer.toString(config.maxLedgerAttempts()));
+        token(state, Long.toString(tick));
+        token(state, Boolean.toString(terminal));
+        token(state, reason);
+        token(state, Long.toString(births));
+        token(state, Long.toString(deaths));
+        token(state, Long.toString(processedMatter));
+        token(state, Long.toString(birthSerial));
+        token(state, ledgerHistoryHash);
+        token(state, eventHistoryHash);
+        programs.forEach((species, program) -> appendProgram(state, species, program));
+        organisms.forEach((id, organism) -> {
+            token(state, id.toString());
+            token(state, organism.species);
+            token(state, Integer.toString(organism.age));
+            token(state, Integer.toString(organism.generation));
+            if (!legacy) {
+                token(state, Long.toString(organism.ordinal));
+                token(state, Integer.toString(organism.lastBirthAge));
+            }
+            appendProgram(state, organism.species, organism.program);
+        });
+        ledger.snapshot().forEach((account, resources) -> {
+            token(state, account);
+            resources.forEach((resource, balance) -> { token(state, resource); token(state, Long.toString(balance)); });
+        });
+        return sha256(state.toString());
+    }
+
+    private void appendProgram(StringBuilder target, String species, MatterProgram program) {
+        token(target, species);
+        token(target, program.role().name());
+        token(target, Integer.toString(program.intake()));
+        token(target, Integer.toString(program.reproductionMass()));
+        token(target, Integer.toString(program.lifespanSteps()));
+        token(target, Integer.toString(program.mutationPermille()));
+    }
+
+    private UUID organismId(String value) {
+        return UUID.nameUUIDFromBytes((worldId + ":" + value).getBytes(StandardCharsets.UTF_8));
+    }
+
+    private static String account(UUID id) {
+        return "organism-" + id.toString().replace("-", "");
+    }
+
+    private long mix64(long value) {
+        value = (value ^ (value >>> 30)) * 0xbf58476d1ce4e5b9L;
+        value = (value ^ (value >>> 27)) * 0x94d049bb133111ebL;
+        return value ^ (value >>> 31);
+    }
+
+    private long turnPriority(Organism organism) {
+        return mix64(seed ^ mix64(tick) ^ mix64(organism.ordinal) ^ 0x3c6ef372fe94f82bL);
+    }
+
+    private String chain(String previous, String... fields) {
+        StringBuilder encoded = new StringBuilder();
+        token(encoded, previous);
+        for (String field : fields) token(encoded, field);
+        return sha256(encoded.toString());
+    }
+
+    private static void token(StringBuilder target, String value) {
+        target.append(value.length()).append(':').append(value);
+    }
+
+    private static String sha256(String value) {
+        try {
+            return java.util.HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
+                    .digest(value.getBytes(StandardCharsets.UTF_8)));
+        } catch (NoSuchAlgorithmException impossible) {
+            throw new IllegalStateException("SHA-256 unavailable", impossible);
+        }
+    }
+
+    private void requireOpen() {
+        if (closed) throw new IllegalStateException("Ecology world is closed");
+    }
+
+    @Override public void close() {
+        owner.check();
+        closed = true;
+    }
+
+    private static List<MatterProgram> defaultPrograms() {
+        return List.of(
+                new MatterProgram("producer", MatterProgram.Role.PRODUCER, 3, 5, 40, 150),
+                new MatterProgram("grazer", MatterProgram.Role.GRAZER, 2, 6, 24, 100),
+                new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 2, 5, 32, 80));
+    }
+
+    private static final class Organism {
+        private final UUID id;
+        private final String species;
+        private MatterProgram program;
+        private int age;
+        private final int generation;
+        private final long ordinal;
+        private int lastBirthAge = -1;
+
+        private Organism(UUID id, String species, MatterProgram program, int age, int generation, long ordinal) {
+            this.id = id;
+            this.species = species;
+            this.program = program;
+            this.age = age;
+            this.generation = generation;
+            this.ordinal = ordinal;
+        }
+    }
+}

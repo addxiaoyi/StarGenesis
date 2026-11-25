@@ -16,12 +16,17 @@ import java.util.TreeMap;
 /** Bounded simulation-only study. Run with the shaded plugin JAR on the classpath. */
 class EcologyLongRunStudy {
     public static void main(String[] args) throws Exception {
-        if (args.length < 1 || args.length > 6)
-            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8] [profiles:comma-separated|all] [firstSeed] [firstWorld:0-1023]");
+        if (args.length < 1 || args.length > 7)
+            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8] [profiles:comma-separated|all] [firstSeed] [firstWorld:0-1023] [engine:v1|v2]");
         int seeds = args.length > 1 ? Integer.parseInt(args[1]) : 4;
         int worlds = args.length > 2 ? Integer.parseInt(args[2]) : 2;
         long firstSeed = args.length > 4 ? Long.parseLong(args[4]) : 52_008L;
         int firstWorld = args.length > 5 ? Integer.parseInt(args[5]) : 0;
+        String engine = switch (args.length > 6 ? args[6] : "v1") {
+            case "v1" -> EcologyWorld.LEGACY_ENGINE_VERSION;
+            case "v2" -> EcologyWorld.ENGINE_VERSION;
+            default -> throw new IllegalArgumentException("Unknown ecology study engine");
+        };
         if (seeds < 1 || seeds > 32 || worlds < 1 || worlds > 8) throw new IllegalArgumentException("Study budget exceeded");
         if (firstWorld < 0 || firstWorld > 1023) throw new IllegalArgumentException("World offset outside 0..1023");
         Math.addExact(firstSeed, seeds - 1);
@@ -44,12 +49,12 @@ class EcologyLongRunStudy {
             if (!selectedProfiles.contains(profile.getKey())) continue;
             for (int world = 0; world < worlds; world++) {
                 for (int seed = 0; seed < seeds; seed++) {
-                    Result result = run("ecology-long-study-" + (firstWorld + world), firstSeed + seed, profile.getKey(), profile.getValue());
+                    Result result = run("ecology-long-study-" + (firstWorld + world), firstSeed + seed, profile.getKey(), profile.getValue(), engine);
                     results.add(result);
                     System.out.println("completed=" + results.size() + "/" + expectedCases + " " + result.profile() + " world=" + (firstWorld + world) + " seed=" + result.seed()
                             + " tick=" + result.finalState().tick() + " end=" + result.finalState().reason()
                             + " species=" + result.finalState().populationBySpecies());
-                    var report = Map.of("engineVersion", EcologyWorld.ENGINE_VERSION,
+                    var report = Map.of("engineVersion", engine,
                             "config", EcologyConfig.forDuration(EcologyConfig.MAX_TICKS), "cases", results,
                             "expectedCases", expectedCases, "complete", results.size() == expectedCases,
                             "scope", "Pure simulation; every step conserves matter and every completed case's final replay is verified. No live-server, human, performance or indefinite-balance claim.",
@@ -60,11 +65,11 @@ class EcologyLongRunStudy {
         }
     }
 
-    private static Result run(String worldId, long seed, String profile, Map<String, MatterProgram> programs) {
+    private static Result run(String worldId, long seed, String profile, Map<String, MatterProgram> programs, String engine) {
         Map<String, Long> firstExtinction = new TreeMap<>();
         List<Milestone> milestones = new ArrayList<>();
         EcologyConfig config = EcologyConfig.forDuration(EcologyConfig.MAX_TICKS);
-        try (var world = new EcologyWorld(worldId, seed, config)) {
+        try (var world = new EcologyWorld(worldId, seed, config, engine)) {
             while (!world.view().terminal()) {
                 long tick = world.tick();
                 String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;

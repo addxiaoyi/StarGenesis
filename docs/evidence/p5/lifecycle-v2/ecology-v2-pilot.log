@@ -1,0 +1,12 @@
+completed=1/12 decomposer-intake-1 world=0 seed=52008 tick=1122 end=EXTINCTION species={}
+completed=2/12 decomposer-intake-1 world=0 seed=52009 tick=1122 end=EXTINCTION species={}
+completed=3/12 decomposer-mass-8 world=0 seed=52008 tick=1073 end=EXTINCTION species={}
+completed=4/12 decomposer-mass-8 world=0 seed=52009 tick=1073 end=EXTINCTION species={}
+completed=5/12 delayed-reproduction world=0 seed=52008 tick=1438 end=EXTINCTION species={}
+completed=6/12 delayed-reproduction world=0 seed=52009 tick=1439 end=EXTINCTION species={}
+completed=7/12 long-cycle-candidate world=0 seed=52008 tick=1073 end=EXTINCTION species={}
+completed=8/12 long-cycle-candidate world=0 seed=52009 tick=1073 end=EXTINCTION species={}
+completed=9/12 previous-500-tick-candidate world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=17, producer=1}
+completed=10/12 previous-500-tick-candidate world=0 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=18}
+completed=11/12 staggered-lifespans world=0 seed=52008 tick=1408 end=EXTINCTION species={}
+completed=12/12 staggered-lifespans world=0 seed=52009 tick=1408 end=EXTINCTION species={}
