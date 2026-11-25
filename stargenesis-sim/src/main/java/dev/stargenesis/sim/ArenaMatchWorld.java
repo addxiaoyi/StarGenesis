@@ -139,11 +139,23 @@ public final class ArenaMatchWorld implements AutoCloseable {
 
     private List<ArenaAction> validateInput(ArenaInput input) {
         if (input.actions().size() != teams.size()) throw new IllegalArgumentException("Every rostered player submits exactly one action");
-        if (input.actions().stream().map(ArenaAction::actor).distinct().count() != teams.size()
-                || !input.actions().stream().map(ArenaAction::actor).collect(java.util.stream.Collectors.toSet())
-                .equals(teams.keySet())) throw new SecurityException("Arena actions do not match the authenticated roster");
+        validatePendingActions(input.actions());
+        return input.actions();
+    }
+
+    /** Checks a partial or complete round against its current state without spending units or advancing time. */
+    public void validatePendingActions(List<ArenaAction> actions) {
+        owner.check();
+        requireOpen();
+        Objects.requireNonNull(actions, "actions");
+        if (terminal) throw new IllegalStateException("Arena match ended: " + reason);
+        if (actions.size() > teams.size()
+                || actions.stream().map(ArenaAction::actor).distinct().count() != actions.size())
+            throw new IllegalArgumentException("Arena pending actions exceed the roster or contain duplicate players");
+        if (actions.stream().anyMatch(action -> !teams.containsKey(action.actor())))
+            throw new SecurityException("Arena actions do not match the authenticated roster");
         Map<String, Integer> costs = new HashMap<>();
-        for (ArenaAction action : input.actions()) {
+        for (ArenaAction action : actions) {
             String team = teams.get(action.actor());
             if (action.type() == ArenaAction.Type.PASS) continue;
             if (action.x() >= config.width() || action.y() >= config.height() || action.force() > config.unitBudget())
@@ -155,7 +167,6 @@ public final class ArenaMatchWorld implements AutoCloseable {
         for (Map.Entry<String, Integer> cost : costs.entrySet())
             if (cost.getValue() > teamStates.get(cost.getKey()).units)
                 throw new IllegalArgumentException("Team does not have enough simulation units");
-        return input.actions();
     }
 
     private void resolve(Map<String, Map<Integer, Integer>> attacks) {

@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "b86995d89f81998d0f7b30f10b846bf0a4c981bc",
+  "change": "Validate each partial Arena round before sealing its actions, using the same engine rules as a complete round.",
+  "reproduction": {
+    "log": "arena-before.log",
+    "scope": "Existing controller submission logic extracted into ArenaMatchRound before adding partial-round validation.",
+    "tests": 9,
+    "failures": 7,
+    "errors": 0,
+    "skipped": 0
+  },
+  "regressions": [
+    "Reject x/y bounds, unit-budget and nonadjacent claims before saving; allow a valid retry.",
+    "Reload a partial round from disk, reject an invalid action without changing bytes, complete the round and verify replay.",
+    "Include already sealed teammates in aggregate unit spending validation.",
+    "Preserve other players' commitments when the final action is invalid and permit a retry.",
+    "Reject new pending actions after match completion.",
+    "Reject observer, impersonation and duplicate submissions without changing the saved session.",
+    "Validation neither advances the clock, spends units nor changes state or replay commitments.",
+    "Reject duplicate or unrostered actors in the engine partial-round API."
+  ],
+  "focusedLog": "arena-after.log",
+  "logSha256": {
+    "arena-before.log": "8829baf1b97f4df6b9b4691a02f91e2df757e6880bdfbb981525e0fb7df1faac",
+    "arena-after.log": "fbef650db1ff023dd407176923e18cd285c591ff106325d72a1f27be46a2bf31",
+    "arena-verify-java21.log": "ba65da1fe41588444aff5c30350f47fbbebfb6ea7c8fa4590470791ff71dd3ca",
+    "arena-verify-java25.log": "444ebe3bdb684e8a5203e436c5dff455f1eb3adfa6c4cdd1cef271b24492c17e"
+  },
+  "newWorkflowTests": 9,
+  "newEngineTests": 2,
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms32m -Xmx256m -XX:+UseSerialGC -XX:ReservedCodeCacheSize=48m -XX:ActiveProcessorCount=2",
+      "log": "arena-verify-java21.log",
+      "suites": 33,
+      "tests": 243,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "pluginSha256": "7d1ea0ef79ed64b41d2d285c21e6e17412ecc8ec2125084b69a52108570bacf5",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+      "releaseSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "7d1ea0ef79ed64b41d2d285c21e6e17412ecc8ec2125084b69a52108570bacf5",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "designSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms32m -Xmx128m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=32m -XX:ActiveProcessorCount=2",
+      "log": "arena-verify-java25.log",
+      "suites": 33,
+      "tests": 243,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "pluginSha256": "de1818dbaa1951405cfd958eb3352d782021b9d44255912613b0c29bb4d5bfea",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+      "releaseSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "de1818dbaa1951405cfd958eb3352d782021b9d44255912613b0c29bb4d5bfea",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "designSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  ],
+  "boundaryScan": "PASS: scripts/check_boundaries.py",
+  "formatCompatibility": "Existing schema v1 and genesis-arena-match/1; valid complete-round behavior and replay commitments are unchanged.",
+  "environment": {
+    "os": "Windows Server 2022",
+    "normalForkedBaseline": "Interrupted by host native-memory allocation failure before changes.",
+    "java25Retries": "Native-memory failures required smaller heap/metaspace/code cache settings and TieredStopAtLevel=1.",
+    "testExecution": "All 243 tests ran in the Maven JVM with forkCount=0. Exact JVM flags are recorded per build."
+  },
+  "limits": [
+    "No Paper/Folia server or automated-client workflow rerun for this change.",
+    "No human player acceptance or performance-capacity claim.",
+    "Previously saved invalid pending actions are not automatically rewritten.",
+    "Signing checks use temporary keys, not an operational publisher or official release key."
+  ]
+}

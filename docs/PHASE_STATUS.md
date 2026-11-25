@@ -47,6 +47,8 @@ P7 的 `ArenaRulesetStore` 将作者提交与公开 catalog 分开，提交绑�
 
 P8 的公开规则固定 ID/version/hash，match 只接收 roster UUID，每轮收齐全部参赛者动作后才原子推进。Pending actions 和 observers 会持久保存。Paper/Folia 实服客户端在 observer 确认 `pending=1` 后强制断开 Bob TCP socket，Bob 以相同 UUID 重连并恢复原 match/pending action，再完成回合和 replay。真人双队、公平性和性能仍未验收。
 
+2026-11-25 从恢复分支 `b86995d` 继续修复 P8 提交边界：原流程会先封存前三位玩家的非法 claim，直到最后一位提交才拒绝整个回合，使已封存玩家无法重试。现在使用同一套引擎校验检查部分回合与完整回合，写盘前拒绝越界、超单位预算、非相邻领地、团队可用单位不足以及终局后的动作；无效提交保留原存档，合法重试可继续。新增9个提交/持久化场景和2个纯模拟校验用例，其中7个场景先复现失败，再验证修复。覆盖重启恢复已封存动作、只读 observer、身份冒用、重复提交、末位重试、团队预算和回放一致性。Java 21/25 各通过243项测试，零失败/错误/跳过；本机受内存限制使用 `-DforkCount=0` 与显式 JVM 上限完成 `clean verify`。本轮未重新运行 Paper/Folia 客户端实服流程，已有阶段门保持未通过。证据见 `docs/evidence/p8/arena-input-regression.json`。
+
 ## P9–P10
 
 P9 coordinator 要求 adapter 声明 durable idempotency 和按 key lookup，包含付款、交付、补偿与不确定状态转人工复核。StarCore `main` 当前固定 SHA 为 `f769e62799e769a18fe51305b545869a17f80cd1`。现有 `TransactionFabric` 持久协调 transaction record，但公开 EconomyService 转账没有外部幂等键，且账本不原子执行钱包和背包副作用。因此真实 settlement adapter 和入口未注册，真实资产交易继续禁用。文件仓库的 create/replace 当前使用按 saga ID 的 JVM 与文件锁，并有跨仓库实例 revision 竞争回归用例；跨仓库 revision 竞争测试已在 Java 21 与 Java 25 通过。恢复时先查询外部幂等结果，再决定是否允许新的副作用，覆盖扣款或交付成功但持久化失败后授权过期、查询结果不确定等分支。

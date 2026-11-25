@@ -177,7 +177,7 @@ P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两
 /genesis arena match watch <matchId>
 ```
 
-合法 claim 必须贴邻本队领地，不能越过 ArenaRuleset 的地图尺寸或单位预算。争夺按 seed 和 round 轮换先手确定胜负，时限结束后按 territory score 结算。比赛文件保存 ruleset 精确 hash、完整 roster、事件和每轮 commitments；本轮提交中的动作先原子保存，四人动作齐全后才更新 match replay。断线玩家重连后恢复 match 和待提交动作，observer 只读 dashboard/replay，不能提交动作。Paper/Folia 五客户端实服流程已注入 socket 断线，验证 observer 所见 pending action、同一 UUID 重连、原 match 恢复和最终回合 replay；这是自动化客户端覆盖，不替代真人双队验收和公平性研究。P8 不生成真实物品或货币。
+合法 claim 必须贴邻本队领地，不能越过 ArenaRuleset 的地图尺寸或单位预算。争夺按 seed 和 round 轮换先手确定胜负，时限结束后按 territory score 结算。比赛文件保存 ruleset 精确 hash、完整 roster、事件和每轮 commitments；每次提交先验证坐标、邻接、比赛状态和本队所有已提交动作的合计消耗，合法动作才原子保存，四人动作齐全后才更新 match replay。非法提交保留原存档，玩家可重新提交合法动作。断线玩家重连后恢复 match 和待提交动作，observer 只读 dashboard/replay，不能提交动作。Paper/Folia 五客户端实服流程已注入 socket 断线，验证 observer 所见 pending action、同一 UUID 重连、原 match 恢复和最终回合 replay；这是自动化客户端覆盖，不替代真人双队验收和公平性研究。P8 不生成真实物品或货币。
 
 P9 settlement saga 已定义显式授权 permit、credits/item 双腿、稳定幂等 operation key 查询、补偿退款和不确定结果的人工复核状态。Paper 按 saga UUID 原子保存状态并以 revision 防覆盖冲突。当前 StarCore 公开转账没有外部幂等键，TransactionFabric 不执行钱包/物品副作用，所以没有注册真实结算 adapter，生产扣款与物品交付继续关闭。
 

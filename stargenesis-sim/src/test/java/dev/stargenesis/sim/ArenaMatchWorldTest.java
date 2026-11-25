@@ -19,6 +19,37 @@ class ArenaMatchWorldTest {
     private static final String RULESET_VERSION = "1.2.0";
     private static final String RULESET_HASH = "a".repeat(64);
 
+    @Test void pendingValidationDoesNotSpendUnitsAdvanceTimeOrChangeReplayCommitments() {
+        ArenaConfig config = new ArenaConfig(8, 8, 3, 4);
+        try (ArenaMatchWorld checked = world(42, config); ArenaMatchWorld control = world(42, config)) {
+            ArenaMatchView before = checked.view();
+            ArenaMatchReplay replayBefore = checked.replay();
+            List<ArenaAction> pending = List.of(ArenaAction.claim(PLAYERS.getFirst(), 1, 0, 2));
+
+            checked.validatePendingActions(pending);
+            checked.validatePendingActions(pending);
+
+            assertEquals(before, checked.view());
+            assertEquals(replayBefore, checked.replay());
+            ArenaInput round = input(0, pending.getFirst(), ArenaAction.pass(PLAYERS.get(1)),
+                    ArenaAction.pass(PLAYERS.get(2)), ArenaAction.pass(PLAYERS.get(3)));
+            assertEquals(control.step(round), checked.step(round));
+            assertEquals(control.replay(), checked.replay());
+        }
+    }
+
+    @Test void pendingValidationRejectsDuplicateOrForeignActorsWithoutChangingTheWorld() {
+        try (ArenaMatchWorld world = world(42, new ArenaConfig(8, 8, 3, 4))) {
+            ArenaMatchReplay before = world.replay();
+            ArenaAction action = ArenaAction.pass(PLAYERS.getFirst());
+            assertThrows(IllegalArgumentException.class,
+                    () -> world.validatePendingActions(List.of(action, action)));
+            assertThrows(SecurityException.class,
+                    () -> world.validatePendingActions(List.of(ArenaAction.pass(new UUID(0, 999)))));
+            assertEquals(before, world.replay());
+        }
+    }
+
     @Test void simultaneousClaimsUseDeterministicInitiativeAndAwardTerritoryOnce() {
         ArenaConfig config = new ArenaConfig(4, 4, 6, 4);
         try (ArenaMatchWorld world = world(42, config)) {

@@ -6,7 +6,6 @@ import dev.stargenesis.design.ArenaRuleset;
 import dev.stargenesis.design.ArenaRulesetWorkspace;
 import dev.stargenesis.sim.ArenaAction;
 import dev.stargenesis.sim.ArenaConfig;
-import dev.stargenesis.sim.ArenaInput;
 import dev.stargenesis.sim.ArenaMatchReplay;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchView;
@@ -25,7 +24,6 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -346,24 +344,15 @@ public final class ArenaController implements Listener, AutoCloseable {
     private List<String> submit(UUID owner, ArenaAction action) throws IOException {
         String matchId = matchIdFor(owner);
         ArenaMatchPersistence.MatchSession session = matches.load(matchId).orElseThrow();
-        if (!session.replay().teams().containsKey(owner)) throw new SecurityException("Only rostered players may submit Arena actions");
-        if (session.pending().containsKey(owner)) throw new IllegalStateException("本轮动作已提交，请等待其他玩家。");
-        Map<UUID, ArenaAction> pending = new HashMap<>(session.pending());
-        pending.put(owner, action);
-        if (pending.size() < session.replay().teams().size()) {
-            matches.save(new ArenaMatchPersistence.MatchSession(ArenaMatchPersistence.SCHEMA_VERSION,
-                    session.replay(), pending, session.spectators()));
+        requirePinnedRuleset(session.replay());
+        ArenaMatchRound.Submission submission = ArenaMatchRound.submit(session, owner, action);
+        matches.save(submission.session());
+        if (!submission.session().pending().isEmpty()) {
             return List.of("动作已封存 · round=" + session.replay().frames().size()
-                    + " · waiting=" + (session.replay().teams().size() - pending.size()));
+                    + " · waiting=" + (session.replay().teams().size() - submission.session().pending().size()));
         }
-        try (ArenaMatchWorld world = restoreWorld(session.replay())) {
-            world.step(new ArenaInput(world.view().tick(), List.copyOf(pending.values())));
-            ArenaMatchPersistence.MatchSession updated = new ArenaMatchPersistence.MatchSession(
-                    ArenaMatchPersistence.SCHEMA_VERSION, world.replay(), Map.of(), session.spectators());
-            matches.save(updated);
-            if (world.view().terminal()) session.replay().teams().keySet().forEach(activeMatches::remove);
-            return viewLines(world.view());
-        }
+        if (submission.view().terminal()) session.replay().teams().keySet().forEach(activeMatches::remove);
+        return viewLines(submission.view());
     }
 
     private List<String> dashboardMatch(UUID owner) throws IOException {
