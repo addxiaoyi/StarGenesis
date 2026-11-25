@@ -25,28 +25,33 @@ public final class SettlementSagaCoordinator {
 
     public SettlementSaga begin(SettlementRequest request, long logicalTick) {
         Objects.requireNonNull(request, "request");
-        if (logicalTick < 0 || logicalTick >= request.expiresAtTick())
-            throw new IllegalArgumentException("Settlement authorization deadline has passed");
-        var existing = repository.load(request.sagaId());
-        if (existing.isPresent()) {
-            if (!existing.get().request().equals(request)) throw new IllegalArgumentException("Saga ID reused with a different request");
-            return existing.get();
-        }
-        SettlementPermit permit = Objects.requireNonNull(authorizer.authorize(request, logicalTick), "permit");
-        if (!authorizer.verify(request, permit, logicalTick))
-            throw new SecurityException("Settlement permit did not authorize the request");
-        return repository.create(new SettlementSaga(1, request, permit, SettlementSaga.State.PREPARED, 0, ""));
+        if (logicalTick < 0) throw new IllegalArgumentException("Negative settlement logical tick");
+        return repository.withExclusiveSaga(request.sagaId(), () -> {
+            var existing = repository.load(request.sagaId());
+            if (existing.isPresent()) {
+                if (!existing.get().request().equals(request)) throw new IllegalArgumentException("Saga ID reused with a different request");
+                return existing.get();
+            }
+            if (logicalTick >= request.expiresAtTick())
+                throw new IllegalArgumentException("Settlement authorization deadline has passed");
+            SettlementPermit permit = Objects.requireNonNull(authorizer.authorize(request, logicalTick), "permit");
+            if (!authorizer.verify(request, permit, logicalTick))
+                throw new SecurityException("Settlement permit did not authorize the request");
+            return repository.create(new SettlementSaga(1, request, permit, SettlementSaga.State.PREPARED, 0, ""));
+        });
     }
 
     public SettlementSaga advance(UUID sagaId, long logicalTick) {
         if (logicalTick < 0) throw new IllegalArgumentException("Negative settlement logical tick");
-        SettlementSaga saga = repository.load(Objects.requireNonNull(sagaId, "sagaId"))
-                .orElseThrow(() -> new IllegalArgumentException("Settlement saga does not exist"));
-        if (saga.terminal()) return saga;
-        if (saga.state() == SettlementSaga.State.PREPARED) return applyPayment(saga, logicalTick);
-        if (saga.state() == SettlementSaga.State.PAYMENT_APPLIED) return applyDelivery(saga, logicalTick);
-        if (saga.state() == SettlementSaga.State.COMPENSATION_REQUIRED) return compensate(saga);
-        throw new IllegalStateException("Unsupported settlement saga state " + saga.state());
+        return repository.withExclusiveSaga(Objects.requireNonNull(sagaId, "sagaId"), () -> {
+            SettlementSaga saga = repository.load(sagaId)
+                    .orElseThrow(() -> new IllegalArgumentException("Settlement saga does not exist"));
+            if (saga.terminal()) return saga;
+            if (saga.state() == SettlementSaga.State.PREPARED) return applyPayment(saga, logicalTick);
+            if (saga.state() == SettlementSaga.State.PAYMENT_APPLIED) return applyDelivery(saga, logicalTick);
+            if (saga.state() == SettlementSaga.State.COMPENSATION_REQUIRED) return compensate(saga);
+            throw new IllegalStateException("Unsupported settlement saga state " + saga.state());
+        });
     }
 
     private SettlementSaga applyPayment(SettlementSaga saga, long logicalTick) {

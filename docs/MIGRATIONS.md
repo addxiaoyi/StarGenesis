@@ -62,6 +62,10 @@ P8 长局准入不改变文件 schema 或模拟 commitments。Paper 新建入口
 
 P9 saga file schemaVersion=1 按 saga UUID 保存请求、授权 permit、状态和 revision，文件上限64 KiB并原子替换。付款/物品操作 key 根据 saga UUID 与 phase 稳定派生。恢复时先 lookup 外部 key；UNKNOWN 或副作用调用不确定时不会自动重试，并进入人工复核或保持可查状态。真实结算 adapter 尚未注册，StarCore/Vault 交易保持禁用。
 
+P9 并发恢复修复不改变文件格式、operation key 或合法旧状态。新增 `SettlementSagaRepository.withExclusiveSaga(UUID, Supplier<T>)` 合同要求跨仓库实例、跨共享存储进程互斥，作用域覆盖整个同步推进；同一saga的嵌套读写可重入，嵌套不同saga明确拒绝。旧repository实现继承的默认方法会在授权/外部调用前抛出UnsupportedOperationException，必须实现新的排他范围后才能用于coordinator。Paper复用按UUID分片的JVM锁与OS文件锁，移除会阻塞其他saga的实例级锁，并在异常时释放作用域。持锁期间外部adapter须自行提供有限超时，不能把异步副作用逃逸到回调结束之后。
+
+新建只能写PREPARED/revision=0/空reason，替换必须保留原request/permit、递增一版并遵循现有状态转移；不允许普通replace重开MANUAL_REVIEW或其他终局。重复begin的同请求会先返回已存记录，过期只阻止新建；负tick与ID复用为不同请求仍拒绝。旧v1已付款fixture从`a0cf186`的已验证JAR导出，读取不改原字节，并可在过期后继续补偿。人工复核仍无生产管理入口，不能通过直接改JSON绕过授权或外部结果核对。
+
 P10 signed design envelope 固定 envelopeVersion=1、Ed25519、publisher keyId、规范 design JSON 和 signature。Paper 导入包按玩家 UUID 与 DesignId hash 保存，读取时重新验证 trust root、签名、hash 和 schema。未受信 key、未知 envelope/schema 或签名不匹配均拒绝，不自动执行或迁移。OP 可通过 `/genesis design publishers add` 从 `publisher-inbox` 显式加入 X.509 PEM 公钥，并用 `list` 检查 SHA-256 指纹。`revoke` 会先原子写入带原因和时间的不可覆盖撤销记录，再清理活动公钥文件；加载时撤销记录优先，keyId 不能复用。轮换先加入新 key，再验证新 key 签名包，最后撤销旧 key。撤销后，之后的读取会重新验证并拒绝仅由旧 key 签名的已导入包。历史 `.pub` 信任文件继续兼容，控制台/OP 操作不读取或保存 publisher 私钥。
 
 P11 `mvnw.cmd -B verify` 运行 CycloneDX Maven Plugin 2.9.1 aggregate goal，输出 CycloneDX 1.6 JSON 到 `target/sbom.json`。该 SBOM 是本构建的组件清单，不等价于第三方源码审计、签名发行或运行时兼容验收。

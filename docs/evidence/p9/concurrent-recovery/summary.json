@@ -1,0 +1,220 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "a0cf186f5e8de239b72ba5a7775e5107bd6d6360",
+  "scope": "P9 exclusive saga execution, expiry concurrency, immutable request/permit and legal transition enforcement, real filesystem write-failure recovery and legacy compatibility.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 54,
+      "tests": 405,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "settlement-recovery-verify-java21.log",
+      "logSha256": "fe4fa7982e7fc5fe76bd5d207697b0d12b7ac801f07d905930453fed6715558b",
+      "pluginSha256": "6b4ed37edd1999d9e1f25d053f95eb0c9a55a51ac2a9cfb932260e52ca6d7147",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 54,
+      "tests": 405,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "settlement-recovery-verify-java25.log",
+      "logSha256": "18c94fb6d982122b0412857424916b56e6e049b6dc3657afc748db14897e5842",
+      "pluginSha256": "66fe467f00fafc663de73ba3f45567214432f010dfb04b98e03427711ba2ec38",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "newTests": {
+    "coordinatorContract": 2,
+    "concurrencyAndWriteFailures": 7,
+    "repositoryIntegrityAndLegacy": 5
+  },
+  "redRegressions": [
+    {
+      "log": "settlement-concurrency-before.log",
+      "failingTests": 2,
+      "before": "Expired concurrent recovery committed FAILED or COMPENSATION_REQUIRED while an earlier payment or delivery was still in flight.",
+      "after": "Repository exclusion covers the entire begin/advance call, including inspection, authorization, provider invocation and persisted replacement."
+    },
+    {
+      "log": "settlement-integrity-before.log",
+      "failingTests": 3,
+      "before": "Repository create accepted non-initial states; replacement accepted changed request/permit and skipped or reopened transaction legs.",
+      "after": "New records require PREPARED/revision zero/empty reason; replacements preserve identity and authorization and enforce the current state graph."
+    }
+  ],
+  "failureMatrix": [
+    "Payment in flight + expired concurrent recovery: wait, recover payment, then compensate exactly once.",
+    "Delivery in flight + expired concurrent recovery: wait, observe completed delivery, never refund delivered items.",
+    "Concurrent begin with an expired retry returns the original persisted saga and authorizes only once.",
+    "Different lock stripes can advance through one repository while another provider call is blocked.",
+    "Payment applied but file write fails: original bytes remain; restart after expiry recovers and refunds once.",
+    "Delivery applied but file write fails: restart after expiry completes without refund.",
+    "Refund applied but file write fails: restart queries the key and does not refund twice.",
+    "Callback failure releases the OS lock and thread-local scope; same-saga nesting works and cross-saga nesting rejects.",
+    "Repositories without the stronger exclusive-execution contract reject before authorization or side effects."
+  ],
+  "processLockProbe": {
+    "java21": {
+      "passed": true,
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "6b4ed37edd1999d9e1f25d053f95eb0c9a55a51ac2a9cfb932260e52ca6d7147",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    },
+    "java25": {
+      "passed": true,
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "66fe467f00fafc663de73ba3f45567214432f010dfb04b98e03427711ba2ec38",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    }
+  },
+  "processProbeArtifact": "Each JVM checked its corresponding full-build JAR. Two independent local JVMs verified exclusion, normal release and release after terminating the holder.",
+  "probeSources": {
+    "scripts/SettlementLockProbe.java": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+    "scripts/test_settlement_process_lock.py": "4085381cf5558ccb403560de11d4aa75db3bf07bdab452b58a3f6fb9e36515b8"
+  },
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "66fe467f00fafc663de73ba3f45567214432f010dfb04b98e03427711ba2ec38",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "66fe467f00fafc663de73ba3f45567214432f010dfb04b98e03427711ba2ec38",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final Java 25 shaded artifact targeting release 21, using ephemeral test keys.",
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/settlement-v1-paid.json",
+    "origin": "Exported from the verified a0cf186 JAR before P9 changes.",
+    "sourceJarSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+    "sha256": "98d09f245dbf71f198d86fe18291ecb872711a7c23122bbe4ac45a9d1426c7e5",
+    "requestHash": "0b2d831519f133a19b05bf99fb05fff6366e3e2062ecdfae95a94d5d8cdfba99",
+    "outcome": "Schema-v1 PAYMENT_APPLIED/revision 1 loads without byte changes and continues to compensation after expiry, retaining the original request and permit."
+  },
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": true,
+    "java25": false
+  },
+  "limitations": [
+    "No real economic or inventory provider is registered or enabled; all operation outcomes in unit tests come from fixtures.",
+    "Local file locking does not make provider side effects and local files one atomic transaction; durable authoritative idempotency lookup remains required.",
+    "Provider NOT_APPLIED and NO_EFFECT must rule out pending work that can apply later; eventual absence is UNKNOWN.",
+    "The external adapter must bound synchronous calls. Lock exclusion has been tested only on this Windows local filesystem, not network storage or multiple hosts.",
+    "MANUAL_REVIEW remains terminal with no production resolution entry point. Operator evidence and authorization are still required for a future recovery workflow.",
+    "No new Paper/Folia live flow, human acceptance, production throughput or official signing evidence.",
+    "P0-P11 goal remains active; P9, P10 and P11 external acceptance gates remain incomplete."
+  ],
+  "files": {
+    "settlement-concurrency-before.log": "83d3ce4044af97abb2197be7362671fb1bedcee30132fec64532716f62b75d2c",
+    "settlement-integrity-before.log": "833e4bc80fc9a262a906e54a6b8f498647ea96b922869b1e6c9320c74dbcce32",
+    "settlement-recovery-focused.log": "2a17daaec50ebfc8064c0360f2fd31e105ee475d3be10d11a454158fec66eaf2",
+    "settlement-recovery-verify-java21.log": "fe4fa7982e7fc5fe76bd5d207697b0d12b7ac801f07d905930453fed6715558b",
+    "settlement-recovery-build-java21.json": "d1e7eadd8ca36cf6142aa2891cf66eed7ff9e5ee820cafea40644663f8b98f23",
+    "settlement-recovery-release-signer-java21.json": "d8525075e87149aac4f038ee5792dd3e31a92da978e5397e3c010125edb7e976",
+    "settlement-recovery-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "settlement-process-lock-java21.json": "3ff977e03e88a4306d56460c9062291450e30cf02ad0577497f9cd15395848f9",
+    "settlement-process-lock-java21.log": "27b88f05d28a1c50d66d7b291d17eeba11e4d0e7cd0ce732b234b236efd0ed41",
+    "settlement-recovery-verify-java25.log": "18c94fb6d982122b0412857424916b56e6e049b6dc3657afc748db14897e5842",
+    "settlement-recovery-build-java25.json": "6b70312fc91b648fad67b270aa14fc4326bd1e4ae7479b3f086d544b8b8edc0a",
+    "settlement-recovery-release-signer-java25.json": "d8525075e87149aac4f038ee5792dd3e31a92da978e5397e3c010125edb7e976",
+    "settlement-recovery-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "settlement-process-lock-java25.json": "f690eb3f979aeecc1f1544ac18182508bec2f7642a829c91a3dc2ea02bcb6e5e",
+    "settlement-process-lock-java25.log": "41a902470bc207a490e37d96e7350206cf2ab77557e9a22755ad91ccc2c00d74"
+  }
+}

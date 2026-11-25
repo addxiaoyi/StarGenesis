@@ -98,6 +98,32 @@ class SettlementSagaCoordinatorTest {
         assertThrows(IllegalArgumentException.class, () -> fixture.coordinator.begin(changed, 0));
     }
 
+    @Test void repositoriesWithoutExclusiveExecutionFailBeforeAuthorizationOrSideEffects() {
+        Fixture fixture = new Fixture();
+        var unsupported = new SettlementSagaRepository() {
+            @Override public Optional<SettlementSaga> load(UUID id) { throw new AssertionError("No unlocked read"); }
+            @Override public SettlementSaga create(SettlementSaga saga) { throw new AssertionError("No unlocked create"); }
+            @Override public SettlementSaga replace(SettlementSaga saga, long revision) { throw new AssertionError("No unlocked replace"); }
+        };
+        var authorizer = new SettlementAuthorizer() {
+            @Override public SettlementPermit authorize(SettlementRequest request, long tick) { throw new AssertionError("No authorization"); }
+            @Override public boolean verify(SettlementRequest request, SettlementPermit permit, long tick) { throw new AssertionError("No verification"); }
+        };
+        var coordinator = new SettlementSagaCoordinator(authorizer, fixture.gateway, unsupported);
+        assertThrows(UnsupportedOperationException.class, () -> coordinator.begin(request(109), 0));
+        assertThrows(UnsupportedOperationException.class, () -> coordinator.advance(request(109).sagaId(), 1));
+        assertTrue(fixture.gateway.appliedKeys().isEmpty());
+    }
+
+    @Test void expiryOnlyPreventsNewBeginsAndExistingRequestsRemainIdempotent() {
+        Fixture fixture = new Fixture();
+        var existing = fixture.coordinator.begin(request(110), 0);
+        assertEquals(existing, fixture.coordinator.begin(request(110), 100));
+        assertThrows(IllegalArgumentException.class, () -> fixture.coordinator.begin(request(111), 100));
+        assertThrows(IllegalArgumentException.class, () -> fixture.coordinator.begin(request(110), -1));
+        assertTrue(fixture.gateway.appliedKeys().isEmpty());
+    }
+
     @Test void paymentPersistFailureAfterExpiryStillRecoversAndRefundsTheDebit() {
         Fixture fixture = new Fixture();
         SettlementRequest request = request(106);
@@ -191,8 +217,12 @@ class SettlementSagaCoordinatorTest {
     private static final class MemoryRepository implements SettlementSagaRepository {
         private final Map<UUID, SettlementSaga> sagas = new HashMap<>();
         private boolean failNextReplace;
+        @Override public synchronized <T> T withExclusiveSaga(UUID sagaId, java.util.function.Supplier<T> action) {
+            return action.get();
+        }
         @Override public synchronized Optional<SettlementSaga> load(UUID id) { return Optional.ofNullable(sagas.get(id)); }
         @Override public synchronized SettlementSaga create(SettlementSaga saga) {
+            saga.requireInitial();
             if (sagas.putIfAbsent(saga.request().sagaId(), saga) != null)
                 throw new IllegalStateException("Saga already exists");
             return saga;
@@ -205,6 +235,7 @@ class SettlementSagaCoordinatorTest {
             SettlementSaga current = sagas.get(updated.request().sagaId());
             if (current == null || current.revision() != expectedRevision)
                 throw new IllegalStateException("Saga revision conflict");
+            updated.requireSuccessorOf(current);
             sagas.put(updated.request().sagaId(), updated);
             return updated;
         }

@@ -231,7 +231,7 @@ P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两
 
 比赛目录最多128场、合计64 MiB，单场8 MiB、每场128位 observer。新比赛会先检查整个时长内的回放容量上界，并为其他活跃比赛保留完成所需空间；默认1200轮可用，过长规则在开赛前拒绝并提示此 roster 可用的轮数。可缩短规则时长、等待其他比赛结束，或由管理员清理已完成历史后重试。写入仍检查实际大小，超限保留原记录。管理员可用 `/genesis arena match prune <matchId>` 永久删除已结束且无待处理动作的历史比赛以释放空间；该命令需要 `stargenesis.arena.manage`（默认 OP），不能删除进行中的比赛。v1 回放保留原引擎和 commitments；新场次使用 v2，详见 `docs/MIGRATIONS.md`。旧版本已经开始的超长比赛仍兼容读取，但不获得新的容量保证。上述生命周期新增命令目前通过纯 Java 回归验证，尚未重复实服客户端验收。
 
-P9 settlement saga 已定义显式授权 permit、credits/item 双腿、稳定幂等 operation key 查询、补偿退款和不确定结果的人工复核状态。Paper 按 saga UUID 原子保存状态并以 revision 防覆盖冲突。当前 StarCore 公开转账没有外部幂等键，TransactionFabric 不执行钱包/物品副作用，所以没有注册真实结算 adapter，生产扣款与物品交付继续关闭。
+P9 settlement saga 已定义显式授权 permit、credits/item 双腿、稳定幂等 operation key 查询、补偿退款和不确定结果的人工复核状态。Paper 在同一 saga 的排他锁内完成查询、授权、外部调用及状态保存，防止并发过期恢复与尚未返回的付款/交付冲突；revision 继续防覆盖。新写入固定原请求和 permit，拒绝跳过交易步骤或重开终局；同请求的重复 begin 在过期后仍可返回已存状态，但不能创建新交易。真实文件写盘失败后仍先查询外部幂等结果，再恢复或退款。接入要求和本地跨进程锁验证命令见 `docs/SETTLEMENT_PROVIDER_CONTRACT.md`。当前 StarCore 公开转账没有外部幂等键，TransactionFabric 不执行钱包/物品副作用，所以没有注册真实结算 adapter，生产扣款与物品交付继续关闭。
 
 P10 signed design import 使用 Ed25519 envelope。管理员先把 publisher 的 X.509 PEM 公钥暂存到 `publisher-inbox`，再用 OP 命令显式加入信任列表；签名包放入固定 inbox，玩家导入到自己的私有目录：
 

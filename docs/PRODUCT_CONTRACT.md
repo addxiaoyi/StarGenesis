@@ -45,6 +45,7 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 - ResourceLedger 只在初始场景中注入有限资产；随后只能账户间转移，禁止 mint。相同 evidence + 同请求不重复支付；同 evidence + 不同请求拒绝。
 - 余额不足也消耗该 evidence；补充余额后须以新 evidence 重试。账本 checkpoint 包含余额与成功/失败历史，恢复后继续去重。容量达到上限时停止，不能删除历史后重用旧键。
 - MemoryEventOutbox 是内存参考实现，不具备崩溃持久性。P9 已有持久 saga protocol 和本地 repository；真实世界订单仍须额外通过真实 adapter 的外部幂等、权限、compensation 和第三方故障恢复验收后才启用。
+- P9 每个同步推进必须在repository提供的排他范围内完成查询、授权、外部调用和持久状态替换。外部副作用与本地文件不是一个原子事务，写盘失败后仍需权威幂等查询。provider的NOT_APPLIED/NO_EFFECT必须排除仍可能晚到生效的请求，pending或不确定结果返回UNKNOWN/INDETERMINATE；具体要求见 `SETTLEMENT_PROVIDER_CONTRACT.md`。
 
 ## 权限、预算与公平
 

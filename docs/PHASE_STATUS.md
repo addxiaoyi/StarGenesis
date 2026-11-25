@@ -19,7 +19,7 @@
 | P6 | 实现已落地，阶段门未通过 | Paper/Folia 既有客户端流程验证 compensation、退款、escrow 释放和 replay；新增独立场次、退出重组、活跃优先恢复、管理员终局清理及写盘失败回归。新增生命周期命令尚无实服验证，仍缺四名真人玩家故障比赛验收 |
 | P7 | 代码和自动审核流程已落地，阶段门未通过 | 待审不可见、作者不能自审、独立 OP 批准/拒绝、拒绝理由和版本隔离已有实服覆盖。仍缺真人创作体验、运营治理和反作弊比赛验收 |
 | P8 | 实现已落地，阶段门未通过 | Paper/Folia 验证四人回合、只读 observer、replay 以及 TCP 硬断线后 pending action/match ID/UUID 恢复。仍缺真人双队比赛、公平性和竞技性能验收 |
-| P9 | 部分实现，阶段门未通过 | 有持久 saga、revision、permit、补偿和 manual review。没有通过外部幂等/权限/故障审计的真实经济/库存 adapter，生产结算保持关闭 |
+| P9 | 部分实现，阶段门未通过 | 已有整笔推进排他锁、持久 saga、不可变request/permit、补偿和manual review；并发过期与真实写盘失败恢复有回归。没有通过外部幂等/权限/故障审计的真实经济/库存adapter，生产结算保持关闭 |
 | P10 | 签署/导入和 trust-root 生命周期已落地，阶段门未通过 | 有 Ed25519 包签署/验证、OP 公钥添加/轮换/撤销和私有导入。仍缺运营方真实 trust root、真实第三方 bridge 和第三方验收 |
 | P11 | 部分实现，阶段门未通过 | 有 CycloneDX 1.6 SBOM、scale probe、双平台自动流程、15分钟受控 Folia 沙盒负载、可重复 RC 构建。仍缺生产规模容量研究、真人验收/留存研究、最终正式发行签名 |
 
@@ -94,6 +94,10 @@ P8 的公开规则固定 ID/version/hash，match 只接收 roster UUID，每轮�
 ## P9–P10
 
 P9 coordinator 要求 adapter 声明 durable idempotency 和按 key lookup，包含付款、交付、补偿与不确定状态转人工复核。StarCore `main` 当前固定 SHA 为 `f769e62799e769a18fe51305b545869a17f80cd1`。现有 `TransactionFabric` 持久协调 transaction record，但公开 EconomyService 转账没有外部幂等键，且账本不原子执行钱包和背包副作用。因此真实 settlement adapter 和入口未注册，真实资产交易继续禁用。文件仓库的 create/replace 当前使用按 saga ID 的 JVM 与文件锁，并有跨仓库实例 revision 竞争回归用例；跨仓库 revision 竞争测试已在 Java 21 与 Java 25 通过。恢复时先查询外部幂等结果，再决定是否允许新的副作用，覆盖扣款或交付成功但持久化失败后授权过期、查询结果不确定等分支。
+
+P9 并发稳定性批次先复现两条过期恢复竞态：另一请求可能在付款/交付仍未返回时提交失败/待退款状态。现通过repository排他范围将查询、授权、外部调用与保存串行化，Paper同时使用JVM分片锁和OS文件锁；同saga嵌套可重入，不同saga嵌套拒绝，异常释放锁。三条额外失败回归确认新建状态、原请求/permit和合法状态转移也需要保护，现拒绝跳过步骤或重开终局。重复begin返回原记录，过期仅阻止新建。
+
+新增14项测试，Java 21/25各通过405项（54个类），失败/错误/跳过为0，模块边界和双JVM签名工具自检通过。三条真实文件写盘失败路径分别验证付款、交付、补偿在外部已应用后重启查询，避免重复扣款/退款或误退已交付交易。旧schema-v1已付款固定文件保持原字节，过期后继续补偿。两个独立本地JVM的探针分别验证正常释放和终止持锁进程后等待者继续，双JDK均通过；它不代表网络文件系统、多主机或真实provider验收。日志与哈希见 `docs/evidence/p9/concurrent-recovery/summary.json`，接入合同见 `SETTLEMENT_PROVIDER_CONTRACT.md`。外部副作用与本地文件仍非单次原子提交，UNKNOWN/INDETERMINATE规则保留，MANUAL_REVIEW没有生产处置入口；真实结算仍关闭。
 
 P10 signed design envelope 使用 domain-separated Ed25519。OP 可从 `publisher-inbox` 加入 X.509 PEM key，列出指纹、添加新 key 和记录撤销原因；撤销状态跨重启保持且旧 key ID 不可复用。玩家导入仅写入个人目录并在读取时按当前 trust root 再验签。重复导入同样复验已保存内容，load/list 核对 schema v1 与设计 ID 派生路径，拒绝未知版本、错路径和损坏签名。自动流程使用临时测试 key，不构成运营信任根。当前没有第三方 extension bridge 和真实第三方运行证据。
 

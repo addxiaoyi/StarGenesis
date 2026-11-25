@@ -19,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -27,6 +28,7 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
     public static final int SCHEMA_VERSION = 1;
     public static final long MAX_FILE_BYTES = 64 * 1024;
     private static final Object[] JVM_LOCKS = new Object[64];
+    private static final ThreadLocal<Path> ACTIVE_LOCK = new ThreadLocal<>();
 
     static {
         for (int index = 0; index < JVM_LOCKS.length; index++) JVM_LOCKS[index] = new Object();
@@ -51,7 +53,7 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         mapper.disable(MapperFeature.ALLOW_COERCION_OF_SCALARS);
     }
 
-    @Override public synchronized Optional<SettlementSaga> load(UUID sagaId) {
+    @Override public Optional<SettlementSaga> load(UUID sagaId) {
         Path file = path(sagaId);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) return Optional.empty();
         try {
@@ -69,37 +71,48 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         }
     }
 
-    @Override public synchronized SettlementSaga create(SettlementSaga saga) {
+    @Override public SettlementSaga create(SettlementSaga saga) {
+        saga.requireInitial();
         UUID sagaId = saga.request().sagaId();
-        return withSagaLock(sagaId, () -> {
+        return withExclusiveSaga(sagaId, () -> {
             if (load(sagaId).isPresent()) throw new SagaStorageException("Settlement saga already exists");
             write(saga);
             return saga;
         });
     }
 
-    @Override public synchronized SettlementSaga replace(SettlementSaga updated, long expectedRevision) {
+    @Override public SettlementSaga replace(SettlementSaga updated, long expectedRevision) {
         UUID sagaId = updated.request().sagaId();
-        return withSagaLock(sagaId, () -> {
+        return withExclusiveSaga(sagaId, () -> {
             SettlementSaga previous = load(sagaId)
                     .orElseThrow(() -> new SagaStorageException("Settlement saga does not exist"));
             if (previous.revision() != expectedRevision || updated.revision() != Math.addExact(expectedRevision, 1))
                 throw new SagaStorageException("Settlement saga revision conflict");
+            updated.requireSuccessorOf(previous);
             write(updated);
             return updated;
         });
     }
 
-    private <T> T withSagaLock(UUID sagaId, Supplier<T> action) {
+    @Override public <T> T withExclusiveSaga(UUID sagaId, Supplier<T> action) {
+        Objects.requireNonNull(sagaId, "sagaId");
+        Objects.requireNonNull(action, "action");
+        Path lockFile = directory.resolve(sagaId + ".lock");
+        Path active = ACTIVE_LOCK.get();
+        if (active != null) {
+            if (!active.equals(lockFile)) throw new IllegalStateException("Cannot nest a different settlement saga lock");
+            return action.get();
+        }
         Object jvmLock = JVM_LOCKS[Math.floorMod(sagaId.hashCode(), JVM_LOCKS.length)];
         synchronized (jvmLock) {
-            Path lockFile = directory.resolve(sagaId + ".lock");
             try {
                 if (Files.isSymbolicLink(lockFile)) throw new IOException("Settlement saga lock symlink rejected");
                 try (FileChannel channel = FileChannel.open(lockFile, StandardOpenOption.CREATE,
                         StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
                      FileLock ignored = channel.lock()) {
-                    return action.get();
+                    ACTIVE_LOCK.set(lockFile);
+                    try { return action.get(); }
+                    finally { ACTIVE_LOCK.remove(); }
                 }
             } catch (IOException failure) {
                 throw new SagaStorageException("Could not lock settlement saga", failure);
