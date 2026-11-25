@@ -87,7 +87,7 @@ final class ArenaMatchService {
                 version, ruleset.metadata().hash(), startingRoster)) {
             if (matches.load(world.matchId()).isPresent()) throw new IOException("Arena run identity collision; retry start");
             var session = ArenaMatchPersistence.MatchSession.initial(world.replay());
-            matches.save(session);
+            matches.create(session);
             startingRoster.keySet().forEach(player -> selections.put(player, world.matchId()));
             return session;
         }

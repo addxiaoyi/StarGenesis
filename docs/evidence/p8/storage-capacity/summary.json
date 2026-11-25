@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "fe86bf3b88b482707156ec662c07722cd7254421",
+  "scope": "P8 new-match admission based on conservative full JSON replay bounds and catalog capacity reserved for active games.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 45,
+      "tests": 319,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-capacity-verify-java21.log",
+      "logSha256": "8b3a87f92130f99365b9d8c37caf7ab1b5616366106dedf3a93804a62545c7e5",
+      "pluginSha256": "bca92920710e281dafa4188f110d0618f6c9a4851a8843757783f77038d1dfb8",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 45,
+      "tests": 319,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-capacity-verify-java25.log",
+      "logSha256": "ac03fb28d76a4cc1a9d35c8b62ac2ef9fb69177aadde9cba0df3580a3f1e452c",
+      "pluginSha256": "339d9e4a4ff35e70f273b88230653ed404cf62380f52d60e6883461ad581c4ae",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "339d9e4a4ff35e70f273b88230653ed404cf62380f52d60e6883461ad581c4ae",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "339d9e4a4ff35e70f273b88230653ed404cf62380f52d60e6883461ad581c4ae",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": 6,
+  "redRegression": {
+    "test": "ArenaMatchStorageBudgetTest.unsafeLongRulesAreRejectedBeforeCreatingMatchOrSelection",
+    "before": "6000-round eight-player rules were admitted and persisted. The new test expected rejection and failed before the service used create admission.",
+    "after": "Rejected before publishing match or selection; original roster is unchanged.",
+    "log": "arena-capacity-before.log"
+  },
+  "measurements": {
+    "java21": {
+      "eightPlayer6000RoundPassReplayBytes": 16148334,
+      "admissionCases": [
+        {
+          "players": 4,
+          "duration": 1200,
+          "reservedBytes": 4094757,
+          "maxAdmittedRounds": 2460
+        },
+        {
+          "players": 8,
+          "duration": 1200,
+          "reservedBytes": 6745173,
+          "maxAdmittedRounds": 1492
+        }
+      ]
+    },
+    "java25": {
+      "eightPlayer6000RoundPassReplayBytes": 16148334,
+      "admissionCases": [
+        {
+          "players": 4,
+          "duration": 1200,
+          "reservedBytes": 4094757,
+          "maxAdmittedRounds": 2460
+        },
+        {
+          "players": 8,
+          "duration": 1200,
+          "reservedBytes": 6745173,
+          "maxAdmittedRounds": 1492
+        }
+      ]
+    }
+  },
+  "boundDerivation": [
+    "Each roster player has one action; a claim targets at most one tile, with at most one contest and one resolution event per target. Their combined maximum encoding also exceeds a pass event.",
+    "Two teams each emit at most one spending and one regeneration event. A settlement event is conservatively counted every round.",
+    "Use largest field encodings admitted by the fixed v1/v2 engines: 32 ASCII team characters, 127 coordinates, int maximum counters, final-round tick and maximum evidence sequence.",
+    "Reserve the envelope, every possible pending action and all 128 observer UUIDs. Multiply the serialized frame bound, plus separator, by the unchanged published duration.",
+    "At new-game admission, sum active final bounds and completed history sizes plus 8192 bytes for viewer/input headroom. Existing oversized legacy games reserve the full 8 MiB cap."
+  ],
+  "coverage": [
+    "Maximum engine duration generates a 16 MiB JSON replay even with only pass actions; streaming counter avoids retaining a duplicate JSON tree.",
+    "Legal contested rounds, regeneration, settlement, pending actions and all observers remain within the derived bound.",
+    "Default 1200-round four/eight-player matches are admitted, over-bound duration and duplicate creation are rejected.",
+    "Catalog reserves future active-game growth after restart; completed game restores identical final state and frees room for a new match.",
+    "Legacy v1 oversized-duration replay remains readable and savable without commitment or schema changes."
+  ],
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "limitations": [
+    "The conservative bound may reject durations whose particular action sequence would fit; it admits enough room for all legal sequences in the fixed engine.",
+    "Legacy games already admitted without this check can still reach the unchanged actual file cap; they are not silently truncated or migrated.",
+    "Preflight does not reserve physical disk space or protect against outside file modifications. Atomic saves still report I/O failure and preserve prior data.",
+    "No new live-server, human, fairness or production performance evidence. Timings under constrained JVM memory are not capacity measurements.",
+    "Ephemeral signer self-tests do not constitute a formal release signature. Full P0-P11 objective remains active."
+  ],
+  "files": {
+    "arena-capacity-before.log": "e9f3a2da811a1f0a846022189b5cd784df99230ee1ef518005a1d46c1396a063",
+    "arena-capacity-focused.log": "6660e582dcb43651b192f19bee930e24062b3ed5dc7c74f70ab77345cedcd45e",
+    "arena-capacity-verify-java21.log": "8b3a87f92130f99365b9d8c37caf7ab1b5616366106dedf3a93804a62545c7e5",
+    "arena-capacity-build-java21.json": "6a8c9b58d6287e2477d655cfdf3c76f5a8fb90565a1a1b5040fb5a49649fada5",
+    "arena-capacity-release-signer-java21.json": "11f78c16873966832dd32feaac33d3263ec0b9037a0c237a38bd82fa243a14c5",
+    "arena-capacity-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "arena-capacity-verify-java25.log": "ac03fb28d76a4cc1a9d35c8b62ac2ef9fb69177aadde9cba0df3580a3f1e452c",
+    "arena-capacity-build-java25.json": "250321a1b2295a055a13344841b866adb3527ee549ea48cb8762bad85afc4568",
+    "arena-capacity-release-signer-java25.json": "11f78c16873966832dd32feaac33d3263ec0b9037a0c237a38bd82fa243a14c5",
+    "arena-capacity-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

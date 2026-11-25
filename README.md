@@ -212,7 +212,7 @@ P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两
 
 同一队伍、规则和 seed 可在比赛结束后再次开赛，每场保留独立记录。重连/重启默认优先恢复未结束的参赛比赛，其次是正在观战的比赛，最后才是已结束的历史；相同优先级按 match ID 稳定选择，其他记录可通过 `matches` 和 `select` 查看。`watch` 会选中目标比赛，`unwatch` 释放观战席位；动作只作用于当前选择的参赛比赛。手动选择仅保留到断线，观战名单会持久保存。`withdraw` 只撤回本人尚未结算的动作，可用于修复旧存档中错误封存的输入；已结算回合不可撤回。`leave` 仅在本人没有活跃比赛时退出赛前 roster，历史比赛不会把已退出成员重新加回。
 
-比赛目录最多128场、合计64 MiB，单场8 MiB、每场128位 observer。写入前检查上限，超限时保留原记录。管理员可用 `/genesis arena match prune <matchId>` 永久删除已结束且无待处理动作的历史比赛以释放空间；该命令需要 `stargenesis.arena.manage`（默认 OP），不能删除进行中的比赛。v1 回放保留原引擎和 commitments；新场次使用 v2，详见 `docs/MIGRATIONS.md`。上述生命周期新增命令目前通过纯 Java 回归验证，尚未重复实服客户端验收。
+比赛目录最多128场、合计64 MiB，单场8 MiB、每场128位 observer。新比赛会先检查整个时长内的回放容量上界，并为其他活跃比赛保留完成所需空间；默认1200轮可用，过长规则在开赛前拒绝并提示此 roster 可用的轮数。可缩短规则时长、等待其他比赛结束，或由管理员清理已完成历史后重试。写入仍检查实际大小，超限保留原记录。管理员可用 `/genesis arena match prune <matchId>` 永久删除已结束且无待处理动作的历史比赛以释放空间；该命令需要 `stargenesis.arena.manage`（默认 OP），不能删除进行中的比赛。v1 回放保留原引擎和 commitments；新场次使用 v2，详见 `docs/MIGRATIONS.md`。旧版本已经开始的超长比赛仍兼容读取，但不获得新的容量保证。上述生命周期新增命令目前通过纯 Java 回归验证，尚未重复实服客户端验收。
 
 P9 settlement saga 已定义显式授权 permit、credits/item 双腿、稳定幂等 operation key 查询、补偿退款和不确定结果的人工复核状态。Paper 按 saga UUID 原子保存状态并以 revision 防覆盖冲突。当前 StarCore 公开转账没有外部幂等键，TransactionFabric 不执行钱包/物品副作用，所以没有注册真实结算 adapter，生产扣款与物品交付继续关闭。
 

@@ -105,6 +105,31 @@ public final class ArenaMatchPersistence {
         atomicWrite(target, data);
     }
 
+    /** Admission reserves enough catalog capacity for every active match to finish, including observers. */
+    public synchronized void create(MatchSession session) throws IOException {
+        validateSession(session);
+        if (!session.replay().frames().isEmpty() || !session.pending().isEmpty() || !session.spectators().isEmpty())
+            throw new IOException("Only a new empty Arena match may request storage admission");
+        Path target = path(session.replay().matchId());
+        if (Files.exists(target)) throw new IOException("Arena match already exists");
+        var estimate = ArenaMatchStorageBudget.estimate(session.replay(), mapper);
+        if (estimate.maxBytes() > MAX_FILE_BYTES)
+            throw new IOException("Arena 时长超过8 MiB回放预算；本 roster 最多可准入 "
+                    + estimate.maxAdmissibleRounds() + " 轮，请缩短已发布规则的时长。");
+        List<Path> files = matchFiles();
+        if (files.size() >= MAX_RETAINED_MATCHES)
+            throw new IOException("Arena match catalog is full; an operator must prune completed history");
+        long reserved = estimate.maxBytes();
+        for (Path file : files) {
+            String name = file.getFileName().toString();
+            MatchSession existing = load(name.substring(0, name.length() - ".match.json".length())).orElseThrow();
+            reserved = Math.addExact(reserved, ArenaMatchStorageBudget.reservedBytes(existing, Files.size(file), mapper));
+            if (reserved > MAX_CATALOG_BYTES)
+                throw new IOException("Arena 目录64 MiB容量已为活跃比赛预留；等待比赛结束或请管理员清理已结束历史。");
+        }
+        save(session);
+    }
+
     public synchronized List<MatchSession> findForPlayer(UUID player) throws IOException {
         if (player == null) throw new IllegalArgumentException("Missing arena player");
         List<MatchSession> result = new ArrayList<>();

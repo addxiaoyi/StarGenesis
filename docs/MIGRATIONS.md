@@ -40,6 +40,8 @@ P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限�
 
 Paper 外层 match session 仍为 schemaVersion=1，同时保存 replay、尚未凑齐的一轮动作和 observer roster。单文件上限8 MiB、目录128场且合计64 MiB，写盘与扫描均检查预算，强制落盘后原子替换。历史不会自动删除；OP 使用 `match prune <matchId>` 只清理已结束且无 pending 的记录。恢复时再次解析 ruleset 发布版及许可闭包，并校验尺寸、时长、unitBudget 与 pinned document 一致。未知字段、规则被撤销、roster 不匹配或 replay commitment 变化均拒绝恢复。赛前 roster 与比赛历史分开恢复；历史不重新加入已退出的玩家。显式查看选择仅保留在当前连接，重连/重启优先选择活跃参赛，其次活跃观战，最后已结束记录；同级按 match ID 排序。旧错误 pending 可由提交者使用 `withdraw` 撤回，不能重写已结算回合。
 
+P8 长局准入不改变文件 schema 或模拟 commitments。Paper 新建入口按固定v1/v2 JSON格式计算保守上界：每位玩家至多一个目标、每目标至多contest与resolution两条事件，两队各一条spend/regen，另预留settlement，以及全部pending输入和128名observer。按最长团队名、整数长度和最后一轮tick序号计算序列化大小；超过8 MiB在写文件前拒绝，并提示可准入轮数。默认1200轮4–8人仍可开始；设计允许的6000轮不代表当前存储可以承载。目录为每个活跃比赛预留其最终上界，完成历史按当前大小加8 KiB观战/输入余量计入，重启从存档重算，不增加新元数据。旧超长局保留读写兼容并计入完整8 MiB预留，其本身依然可能触及旧文件上限；不自动截短或迁移旧比赛。更新引擎事件格式时必须同时更新容量上界与回归。
+
 P9 saga file schemaVersion=1 按 saga UUID 保存请求、授权 permit、状态和 revision，文件上限64 KiB并原子替换。付款/物品操作 key 根据 saga UUID 与 phase 稳定派生。恢复时先 lookup 外部 key；UNKNOWN 或副作用调用不确定时不会自动重试，并进入人工复核或保持可查状态。真实结算 adapter 尚未注册，StarCore/Vault 交易保持禁用。
 
 P10 signed design envelope 固定 envelopeVersion=1、Ed25519、publisher keyId、规范 design JSON 和 signature。Paper 导入包按玩家 UUID 与 DesignId hash 保存，读取时重新验证 trust root、签名、hash 和 schema。未受信 key、未知 envelope/schema 或签名不匹配均拒绝，不自动执行或迁移。OP 可通过 `/genesis design publishers add` 从 `publisher-inbox` 显式加入 X.509 PEM 公钥，并用 `list` 检查 SHA-256 指纹。`revoke` 会先原子写入带原因和时间的不可覆盖撤销记录，再清理活动公钥文件；加载时撤销记录优先，keyId 不能复用。轮换先加入新 key，再验证新 key 签名包，最后撤销旧 key。撤销后，之后的读取会重新验证并拒绝仅由旧 key 签名的已导入包。历史 `.pub` 信任文件继续兼容，控制台/OP 操作不读取或保存 publisher 私钥。
