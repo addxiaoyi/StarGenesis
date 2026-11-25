@@ -99,7 +99,7 @@ public final class RadioPersistence {
     }
 
     private void validate(Snapshot snapshot) throws IOException {
-        if (snapshot.schemaVersion() != SNAPSHOT_VERSION
+        if (snapshot == null || snapshot.schemaVersion() != SNAPSHOT_VERSION
                 || !radioProtocolId.equals(snapshot.radioProtocolId())
                 || !radioProtocolHash.equals(snapshot.radioProtocolHash())
                 || !serviceProtocolId.equals(snapshot.serviceProtocolId())

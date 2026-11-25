@@ -17,7 +17,6 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
@@ -25,35 +24,21 @@ import java.util.logging.Level;
 /** Paper command adapter for a virtual, protocol-bound tick radio. */
 public final class RadioController implements Listener, AutoCloseable {
     private final JavaPlugin plugin;
-    private final VirtualMessageBus bus;
-    private ContractRuntime contracts;
-    private final RadioPersistence persistence;
+    private final RadioService service;
     private final NamespacedKey chipProtocolKey;
     private final NamespacedKey chipHashKey;
     private final Object stateLock = new Object();
     private final AtomicBoolean closed = new AtomicBoolean();
     private final ScheduledTask ticker;
-    private boolean dirty;
+    private boolean checkpointFailureReported;
 
     public RadioController(JavaPlugin plugin, int messagesPerTick) throws java.io.IOException {
         this.plugin = plugin;
-        persistence = new RadioPersistence(plugin.getDataFolder().toPath().resolve("radio-state.json"),
+        var persistence = new RadioPersistence(plugin.getDataFolder().toPath().resolve("radio-state.json"),
                 RadioProtocol.protocol(), ServiceContractDefinition.protocol(), ServiceContractDefinition.contract());
-        Optional<RadioPersistence.Snapshot> saved = persistence.load();
-        long initialTick = saved.map(snapshot -> snapshot.radio().tick()).orElse(0L);
-        bus = new VirtualMessageBus(initialTick, messagesPerTick);
-        if (saved.isPresent()) {
-            RadioPersistence.Snapshot snapshot = saved.get();
-            bus.restore(snapshot.radio(), pinnedProtocols());
-            contracts = ContractRuntime.restore(ServiceContractDefinition.contract(), ServiceContractDefinition.protocol(),
-                    ContractRuntime.MAX_RETAINED_CONTRACTS, snapshot.contracts());
-            if (bus.tick() != contracts.tick()) throw new java.io.IOException("Radio and contract ticks are inconsistent");
-            plugin.getLogger().info("Restored P4 radio state | tick=" + bus.tick() + " | pending="
-                    + snapshot.radio().pending().size() + " | contracts=" + snapshot.contracts().states().size());
-        } else {
-            contracts = new ContractRuntime(ServiceContractDefinition.contract(), ServiceContractDefinition.protocol(), 0,
-                    ContractRuntime.MAX_RETAINED_CONTRACTS);
-        }
+        service = new RadioService(persistence, messagesPerTick);
+        plugin.getLogger().info("P4 radio state ready | tick=" + service.tick()
+                + " | retained=" + service.retainedEvidenceCount() + " | active contracts=" + service.activeContracts());
         chipProtocolKey = new NamespacedKey(plugin, "knowledge_chip_protocol");
         chipHashKey = new NamespacedKey(plugin, "knowledge_chip_hash");
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -61,11 +46,15 @@ public final class RadioController implements Listener, AutoCloseable {
             synchronized (stateLock) {
                 if (closed.get()) { task.cancel(); return; }
                 try {
-                    long nextTick = Math.addExact(bus.tick(), 1);
-                    bus.advance(nextTick);
-                    contracts.advance(nextTick);
-                    dirty = true;
-                    if (nextTick % 20 == 0) persist();
+                    service.advance();
+                    if (checkpointFailureReported) {
+                        plugin.getLogger().info("P4 radio checkpoint persistence recovered");
+                        checkpointFailureReported = false;
+                    }
+                } catch (java.io.IOException failure) {
+                    if (!checkpointFailureReported)
+                        plugin.getLogger().log(Level.SEVERE, "P4 checkpoint was not saved; previous state retained for retry", failure);
+                    checkpointFailureReported = true;
                 } catch (RuntimeException failure) {
                     closed.set(true);
                     plugin.getLogger().log(Level.SEVERE, "Virtual radio tick failed; radio stopped", failure);
@@ -95,6 +84,9 @@ public final class RadioController implements Listener, AutoCloseable {
                     case "contract" -> contractStatus(player, args);
                     default -> help(player);
                 }
+            } catch (java.io.IOException failure) {
+                plugin.getLogger().log(Level.WARNING, "P4 operation was not saved; previous state retained", failure);
+                player.sendMessage("无线操作未保存，原状态已保留；可稍后重试。");
             } catch (IllegalArgumentException | SecurityException | IllegalStateException failure) {
                 player.sendMessage("无线操作未完成：" + failure.getMessage());
             }
@@ -106,10 +98,9 @@ public final class RadioController implements Listener, AutoCloseable {
         synchronized (stateLock) {
             closed.set(true);
             ticker.cancel();
-            if (!dirty) return;
             try {
-                persist();
-            } catch (RuntimeException failure) {
+                service.close();
+            } catch (java.io.IOException | RuntimeException failure) {
                 plugin.getLogger().log(Level.SEVERE, "Could not persist P4 radio state during shutdown", failure);
             }
         }
@@ -117,7 +108,7 @@ public final class RadioController implements Listener, AutoCloseable {
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         synchronized (stateLock) {
-            bus.unregisterIfRegistered(event.getPlayer().getUniqueId());
+            service.disconnected(event.getPlayer().getUniqueId());
         }
     }
 
@@ -126,7 +117,7 @@ public final class RadioController implements Listener, AutoCloseable {
         var installedProtocols = installedProtocols(player);
         VirtualMessageBus.Endpoint endpoint = new VirtualMessageBus.Endpoint(args[1], integer(args[2]),
                 integer(args[3]), integer(args[4]), integer(args[5]));
-        bus.register(player.getUniqueId(), endpoint, installedProtocols);
+        service.join(player.getUniqueId(), endpoint, installedProtocols);
         player.sendMessage("已加入虚拟无线网络 " + endpoint.network() + " · position=" + endpoint.x() + ","
                 + endpoint.y() + "," + endpoint.z() + " · range=" + endpoint.radioRange()
                 + " · protocols=" + installedProtocols.stream().map(key -> key.id().value()).sorted().toList());
@@ -167,11 +158,11 @@ public final class RadioController implements Listener, AutoCloseable {
 
     private void leave(Player player, String[] args) {
         requireLength(args, 1);
-        bus.unregister(player.getUniqueId());
+        service.leave(player.getUniqueId());
         player.sendMessage("已离开虚拟无线网络；未确认消息保留在收件箱。");
     }
 
-    private void send(Player player, String[] args) {
+    private void send(Player player, String[] args) throws java.io.IOException {
         boolean radioMessage = args.length == 5;
         if (!radioMessage && args.length != 7)
             throw new IllegalArgumentException("用法：/genesis radio send <recipient> <sequence> <channel> <value> | send contract <recipient> <sequence> <contract> <action> <units>");
@@ -187,85 +178,44 @@ public final class RadioController implements Listener, AutoCloseable {
                 throw new IllegalArgumentException("该发送格式用于 genesis:service 协议");
             payload = Map.of("contract", args[4], "action", args[5], "units", args[6]);
         }
-        var submission = bus.sendNow(player.getUniqueId(), selection.protocol(), recipient, sequence, payload);
-        if (submission.queued()) {
-            dirty = true;
-            persist();
-        }
-        player.sendMessage(submission.queued() ? "消息已排入 tick=" + (bus.tick() + 1) + " 可领取的虚拟信箱。"
+        var submission = service.send(player.getUniqueId(), selection.protocol(), recipient, sequence, payload);
+        player.sendMessage(submission.queued() ? "消息已排入 tick=" + (service.tick() + 1) + " 可领取的虚拟信箱。"
                 : "重复消息已识别，未重复投递。");
     }
 
-    private void inbox(Player player, String[] args) {
+    private void inbox(Player player, String[] args) throws java.io.IOException {
         if (args.length > 2) throw new IllegalArgumentException("用法：/genesis radio inbox [limit]");
         int limit = args.length == 2 ? integer(args[1]) : 16;
-        List<ProtocolMessageCodec.Message> messages = bus.poll(player.getUniqueId(), limit);
-        List<String> output = new java.util.ArrayList<>();
-        for (ProtocolMessageCodec.Message message : messages) {
-            boolean serviceMessage = message.protocol().equals(ServiceContractDefinition.PROTOCOL_ID)
-                    && message.protocolHash().equals(ServiceContractDefinition.protocol().metadata().hash());
-            if (serviceMessage) {
-                ContractRuntime.Snapshot before = contracts.snapshot();
-                boolean received = false;
-                try {
-                    boolean changed = contracts.receive(message);
-                    received = true;
-                    boolean acked = bus.acknowledge(player.getUniqueId(), message);
-                    dirty |= changed || acked;
-                    ContractRuntime.ContractState state = contracts.state(message.payload().get("contract"));
-                    output.add("Contract " + message.payload().get("contract") + " · "
-                            + (state == null ? "unknown" : state.state()) + " · units="
-                            + (state == null ? 0 : state.fulfilledUnits()) + "/" + (state == null ? 0 : state.requestedUnits())
-                            + " · " + (changed ? "applied" : "duplicate") + " · " + (acked ? "acknowledged" : "already acknowledged"));
-                } catch (RuntimeException invalid) {
-                    if (received) contracts = ContractRuntime.restore(ServiceContractDefinition.contract(),
-                            ServiceContractDefinition.protocol(), ContractRuntime.MAX_RETAINED_CONTRACTS, before);
-                    output.add("Contract message retained for review · " + invalid.getMessage());
-                }
-            } else output.add("from=" + message.sender() + " · protocol=" + message.protocol().value()
-                    + " · tick=" + message.tick() + " · seq=" + message.sequence() + " · " + message.payload());
-        }
-        if (dirty) persist();
-        player.sendMessage("虚拟信箱 " + messages.size() + " 条 · tick=" + bus.tick()
-                + " · 未确认=" + bus.pendingCount(player.getUniqueId()));
-        output.forEach(player::sendMessage);
+        service.inbox(player.getUniqueId(), limit).forEach(player::sendMessage);
     }
 
-    private void acknowledge(Player player, String[] args) {
+    private void acknowledge(Player player, String[] args) throws java.io.IOException {
         requireLength(args, 4);
         UUID sender = uuid(args[1]);
         long tick = Long.parseLong(args[2]);
         int sequence = integer(args[3]);
-        ProtocolMessageCodec.Message message = bus.poll(player.getUniqueId(), VirtualMessageBus.MAX_UNACKNOWLEDGED_PER_RECIPIENT)
+        ProtocolMessageCodec.Message message = service.poll(player.getUniqueId(), VirtualMessageBus.MAX_UNACKNOWLEDGED_PER_RECIPIENT)
                 .stream().filter(candidate -> candidate.sender().equals(sender) && candidate.tick() == tick
                         && candidate.sequence() == sequence).findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("找不到已投递的消息，请先 inbox"));
-        boolean acknowledged = bus.acknowledge(player.getUniqueId(), message);
-        if (acknowledged) {
-            dirty = true;
-            persist();
-        }
+        boolean acknowledged = service.acknowledge(player.getUniqueId(), message);
         player.sendMessage(acknowledged ? "消息已确认。" : "消息此前已确认。");
     }
 
     private void status(Player player, String[] args) {
         requireLength(args, 1);
-        player.sendMessage("虚拟无线 tick=" + bus.tick() + " · participants=" + bus.participantCount()
-                + "/" + VirtualMessageBus.MAX_PARTICIPANTS + " · retained=" + bus.retainedEvidenceCount()
+        player.sendMessage("虚拟无线 tick=" + service.tick() + " · participants=" + service.participantCount()
+                + "/" + VirtualMessageBus.MAX_PARTICIPANTS + " · retained=" + service.retainedEvidenceCount()
                 + "/" + VirtualMessageBus.MAX_RETAINED_EVIDENCE
                 + " · messageBudget=" + plugin.getConfig().getInt("simulation.messages-per-step"));
         player.sendMessage("协议 " + RadioProtocol.ID.value() + " · hash=" + RadioProtocol.protocol().metadata().hash().substring(0, 12));
         player.sendMessage("Service protocol " + ServiceContractDefinition.PROTOCOL_ID.value() + " · hash="
-                + ServiceContractDefinition.protocol().metadata().hash().substring(0, 12) + " · active contracts=" + contracts.activeCount());
+                + ServiceContractDefinition.protocol().metadata().hash().substring(0, 12) + " · active contracts=" + service.activeContracts());
     }
 
     private void contractStatus(Player player, String[] args) {
         requireLength(args, 2);
-        ContractRuntime.ContractState state = contracts.state(args[1]);
-        if (state == null) throw new IllegalArgumentException("未知合同 " + args[1]);
-        UUID viewer = player.getUniqueId();
-        if (!viewer.equals(state.requester()) && !viewer.equals(state.provider()))
-            throw new SecurityException("只有合同参与者可以查看状态");
+        ContractRuntime.ContractState state = service.contract(player.getUniqueId(), args[1]);
         player.sendMessage("合同 " + state.id() + " · " + state.state() + " · units=" + state.fulfilledUnits()
                 + "/" + state.requestedUnits() + " · opened=" + state.createdAt() + " · expires=" + state.expiresAt());
     }
@@ -291,23 +241,6 @@ public final class RadioController implements Listener, AutoCloseable {
                 RadioProtocol.ID.value(), new ProtocolSelection(RadioProtocol.ID, RadioProtocol.protocol()),
                 ServiceContractDefinition.PROTOCOL_ID.value(), new ProtocolSelection(
                         ServiceContractDefinition.PROTOCOL_ID, ServiceContractDefinition.protocol()));
-    }
-
-    private Map<VirtualMessageBus.ProtocolKey, Protocol> pinnedProtocols() {
-        return Map.of(RadioProtocol.key(), RadioProtocol.protocol(), ServiceContractDefinition.key(),
-                ServiceContractDefinition.protocol());
-    }
-
-    private void persist() {
-        try {
-            persistence.save(bus, contracts);
-            dirty = false;
-        } catch (java.io.IOException failure) {
-            closed.set(true);
-            ticker.cancel();
-            plugin.getLogger().log(Level.SEVERE, "Radio state persistence failed; radio stopped", failure);
-            throw new IllegalStateException("Radio stopped because durable state could not be saved", failure);
-        }
     }
 
     private record ProtocolSelection(dev.stargenesis.api.design.DesignId id, Protocol protocol) { }

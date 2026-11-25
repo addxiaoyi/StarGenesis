@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "44116757d4e0ee692076d96864d076e3616c54fc",
+  "scope": "P4 candidate-state commits, send/ack/contract/expiration persistence retries, shutdown recovery, current-tick message budgets and replay-verified contract restoration.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 47,
+      "tests": 335,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "radio-transaction-verify-java21.log",
+      "logSha256": "129ab84ad7a6adf8742055edf6677bc4aebb51cb72c589738518dab58c935879",
+      "pluginSha256": "1d26f54331da82278824a42e07287153f28dc7ddaf44496235b847aeae5b5fb3",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 47,
+      "tests": 335,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "radio-transaction-verify-java25.log",
+      "logSha256": "dc93f4c7f7fbb63b049fec9b6f69b267a0b264e1beba5cd5a9bf2ddaf603a7ba",
+      "pluginSha256": "f5d08dcfa2890fefb7a0ac9b85a4ffc6895379fc5fc05fb795fc8bc05b96ce46",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "f5d08dcfa2890fefb7a0ac9b85a4ffc6895379fc5fc05fb795fc8bc05b96ce46",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "f5d08dcfa2890fefb7a0ac9b85a4ffc6895379fc5fc05fb795fc8bc05b96ce46",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "transactionalServiceAndLegacyRecovery": 12,
+    "contractHistoryIntegrity": 4
+  },
+  "redRegressions": [
+    {
+      "log": "radio-budget-before.log",
+      "before": "Restart reset messagesThisTick to zero and admitted a second message with a configured per-tick budget of one.",
+      "after": "Restore derives usage from committed current-tick send evidence; duplicate retries do not spend extra budget."
+    },
+    {
+      "log": "contract-recovery-before.log",
+      "before": "Restore accepted a COMPLETED contract with only an offer message/event.",
+      "after": "Messages and expiration deadlines must reproduce the exact event sequence, final states and deduplication evidence."
+    }
+  ],
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/radio-v1-pending-fulfillment.json",
+    "origin": "Exported from verified 4411675 shaded JAR before radio transaction changes.",
+    "sourceJarSha256": "339d9e4a4ff35e70f273b88230653ed404cf62380f52d60e6883461ad581c4ae",
+    "sha256": "54a661712884314714804d7fba82661aa9256a10bc5d56c053a48fdc59b0a304",
+    "tick": 2,
+    "contract": "legacy_order",
+    "state": "ACCEPTED",
+    "pendingFulfillmentUnits": 1,
+    "resumedOutcome": "Original offer/accept are not repeated; pending 1-unit fulfillment then a new 2-unit fulfillment complete the 3-unit contract. Four contract events and eight radio events persist."
+  },
+  "failureMatrix": [
+    "Send save failure preserves exact memory/disk state, endpoints and message budget; close cannot commit the failed send.",
+    "Ack save failure preserves the original envelope across disconnect, restart and retry.",
+    "Inbox batch failure preserves every receipt, contract transition and ack; retry commits valid messages once while retaining invalid ones.",
+    "Fulfillment/ack save failure preserves ACCEPTED state and pending delivery; restart retry completes once.",
+    "Expiration save failure preserves both clocks and OFFERED state; retry publishes one EXPIRED event.",
+    "20-tick checkpoint save failure retains the preceding tick and can retry without stopping radio.",
+    "Close flush failure is retryable; successful repeated close is idempotent.",
+    "Restored current-tick budget and mailbox capacity reject extra sends; ack releases mailbox capacity.",
+    "Unknown/null/duplicate snapshots, forged history, missing/reordered events and orphaned contract receipts are rejected."
+  ],
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": true,
+    "java25": false
+  },
+  "limitations": [
+    "No new Paper/Folia client or human communication acceptance run; scheduling and long-duration server capacity remain to validate.",
+    "No wire/schema version changes. Valid v1 state is compatible; contradictory snapshots previously accepted are now rejected without repair.",
+    "Ordinary logical time still checkpoints every 20 ticks; process termination can rewind idle time to the last durable checkpoint. Contract expirations save immediately.",
+    "All contracts remain simulation-only and never settle real assets.",
+    "Memory-constrained non-forked unit runs and ephemeral signer keys do not establish production performance or official release signing.",
+    "The P0-P11 objective remains active and phase gates retain their documented incomplete status."
+  ],
+  "files": {
+    "radio-budget-before.log": "47d2affe61a57ed59e83f78c54e95fefddb518a036cf963242114410c2891c93",
+    "contract-recovery-before.log": "ea627b2b918ec15a21c4f1f24c5ed2d25b0ebaf878df22121eab080bcf7be94c",
+    "radio-transaction-focused.log": "94a464bb4f95b7e85bb3b0472f3ade951257d2dc16cf74a9d68a5dc177e0b219",
+    "radio-transaction-verify-java21.log": "129ab84ad7a6adf8742055edf6677bc4aebb51cb72c589738518dab58c935879",
+    "radio-transaction-build-java21.json": "817199ac8b8d342c14d653eb53f0ad13b8533602b35b356c7db13ed141cc13c5",
+    "radio-transaction-release-signer-java21.json": "dfc3d7f37ae585bee8ca0add1059481af938e37d3f0b1a4e25dccc1bddd3474f",
+    "radio-transaction-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "radio-transaction-verify-java25.log": "dc93f4c7f7fbb63b049fec9b6f69b267a0b264e1beba5cd5a9bf2ddaf603a7ba",
+    "radio-transaction-build-java25.json": "ad00884a1f09719589f29605ae067a15b33d4e29cf14b63ef8d16f7bfa2042a4",
+    "radio-transaction-release-signer-java25.json": "dfc3d7f37ae585bee8ca0add1059481af938e37d3f0b1a4e25dccc1bddd3474f",
+    "radio-transaction-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

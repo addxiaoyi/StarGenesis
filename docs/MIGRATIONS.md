@@ -22,6 +22,10 @@ P3 typed IR 使用独立 `TYPED_PROGRAM` schemaVersion=1，不改变原 schema-v
 
 P4 radio wire message 引用已封存 Protocol ID 与 SHA-256，不引入 wire message 格式变化。PDC chip 记录 protocol ID/hash，不构成数字签名或身份授权。Paper 将 mailbox、发送/确认事件、sequence 去重、ContractRuntime 状态以及当前 Protocol/Contract ID 与 hash 写入 `radio-state.json` schemaVersion=1，文件上限16 MiB并通过原子替换更新。入队、确认、成功处理的 Contract 消息和关服时立即保存，逻辑 tick 每20步检查点保存。未知 schema、pinned hash 变化、tick 不一致或超预算时拒绝恢复，不自动丢弃或迁移数据。在线端点不落盘，重启后玩家须重新 join。当前固定 service Contract 定义变化需要后续显式迁移，不能直接替换后复用旧快照。
 
+P4 稳定性续开发仍使用同一schema-v1和固定协议/契约定义。发送、ack和契约收件在隔离候选状态中执行，原子保存成功才替换当前状态；失败保留原内存、消息额度、在线端点和文件，可按原幂等键重试。收件批次的成功契约处理与ack一起提交，非法消息继续保留；失败批次不会在关服时写入。契约超时必须先成功保存，失败时两边时钟均不前移；普通时钟仍每20步检查点，失败检查点可自动重试。恢复从当前tick的发送证据重建已用预算，降低配置额度后也不会清零历史用量。
+
+ContractRuntime恢复按实际消息、处理tick和deadline重演全部事件，核对最终状态和去重证据；处理巨大空闲tick时跳过无事件区间，不逐tick循环。Paper另核对每条已应用契约消息确有相同的radio消息与ack。旧版本曾接受的矛盾状态现在明确拒绝，不静默修补。固定 `stargenesis-paper/src/test/resources/radio-v1-pending-fulfillment.json` 从 `4411675` 的已验证JAR导出，含OFFERED/ACCEPTED历史和一个待投递fulfill；新实现可按原消息继续部分及最终履约，文件格式和固定设计hash不变。
+
 P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版本，包含玩家所有权、world ID、seed、配置、初态哈希、每步输入、状态哈希和事件哈希。Paper 按 UUID 存储，文件上限4 MiB并原子替换。读取时拒绝未知字段、所有权变化、超预算文件、未知引擎和任何重演哈希差异。变更生态算法需提升引擎版本，不能静默重算旧 replay。
 
 P5 可选时长将已存在的 config.maxTicks 允许范围扩到1–1536，默认500与默认50,000次账本证据保持不变。新长局按 `max(50,000, ticks * 32 * 2)` 预留证据，最大98,304，不改变账本100,000、个体32、代数8和默认出生512的硬预算。格式与每步算法均未改变，因此仍为 schemaVersion=1 / `genesis-ecology/1`；旧文件按原配置原哈希恢复，不升级时长。固定样本 `stargenesis-paper/src/test/resources/ecology-v1-default.json` 从 `9be9cb5` 的构建产物导出并校验原初态/末态哈希。旧插件会拒绝大于500步的新文件，回退前须保留新数据，不能篡改 maxTicks 强行读取。Paper 同时验证外层 owner 与内层 worldId，替换 owner 字段不能转移生态舱归属。

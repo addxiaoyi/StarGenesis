@@ -120,7 +120,9 @@ Contract 玩家流程使用双方各自的 `genesis:service` 芯片：
 
 有效 service 消息在 `inbox` 中推进模拟 Contract 并确认投递。不符合状态或参与者方向的消息保留在信箱中。合同状态查询只允许请求方或提供方。默认 `genesis:service_contract` 模板为 schema v1、版本 `1.0.0`，超时 200 个逻辑 tick，单位上限 64。
 
-`chip` 主动生成 PDC 绑定当前协议 ID/hash 的纸质知识芯片，`join` 检查玩家背包持有对应芯片。消息下一逻辑 tick 送达。`plugins/StarGenesis/radio-state.json` 以 schema v1 保存消息幂等证据、未确认投递、发送/确认事件、Contract 状态与协议/定义哈希，文件上限 16 MiB。排队、确认、Contract 收件和关服时立即原子保存，逻辑 tick 每 20 步保存一次。启动时校验版本与哈希，文件不兼容会拒绝加载。玩家退出会注销在线端点，重新 join 后可领取仍未确认的消息，服务端重启后也需重新 join，离线期间逻辑 tick 暂停。无线只使用虚拟坐标和玩家 UUID，消息投递不读写 Minecraft 世界、聊天或真实库存。Paper/Folia 五客户端实服流程验证重复 poll、ack 清空、收件人掉线后原 envelope 重投及相同幂等键重发不重复投递；这仍不替代真人长时通信验收。
+`chip` 主动生成 PDC 绑定当前协议 ID/hash 的纸质知识芯片，`join` 检查玩家背包持有对应芯片。消息下一逻辑 tick 送达。`plugins/StarGenesis/radio-state.json` 以 schema v1 保存消息幂等证据、未确认投递、发送/确认事件、Contract 状态与协议/定义哈希，文件上限16 MiB。排队、确认和Contract收件先在候选状态中执行，原子保存成功后才生效；保存失败保留原内存与文件，可用相同sequence或原消息重试，失败动作不会在关服时被补写。Contract超时立即保存；普通逻辑时钟每20步检查点保存，失败时停在前一逻辑tick并重试，关服保存可重试。
+
+启动时校验版本、协议哈希、消息/确认证据和契约事件重演结果；不一致的状态拒绝加载。当前tick已使用的消息预算也会恢复，重启不能额外获得发送额度。玩家退出会注销在线端点，重新join后可领取仍未确认的消息，服务端重启后也需重新join，离线期间逻辑tick暂停。无线只使用虚拟坐标和玩家UUID，消息投递不读写Minecraft世界、聊天或真实库存。Paper/Folia既有五客户端流程验证重复poll、ack清空、掉线后原envelope重投及幂等重发；新增保存失败恢复逻辑已通过单元回归，尚未重复实服流程，不替代真人长时通信验收。
 
 P5 封闭生态舱使用有限 matter 账本。生产者、食草者和分解者的每个生长、进食、繁殖与死亡都在 soil、detritus 和个体 biomass 账户间转移同一种物质。玩家可调整物种的 intake、繁殖门槛、寿命和突变率，参数在服务器硬上限内生效：
 

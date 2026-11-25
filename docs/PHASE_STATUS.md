@@ -39,6 +39,10 @@ P3 有35个封闭 typed primitive、IR schema/hash、解释器、断点/步进/�
 
 P4 协议以固定 ID/hash 验证消息字段、recipient、tick/sequence 和 payload budget。消息至少一次投递，ack 前重复 poll 返回相同 envelope。Paper/Folia 实服客户端已验证重复 poll、ack 清空、recipient socket 断线重连后原消息重投，以及跨 tick 相同幂等键不重复投递。结果在 `docs/evidence/p11/paper-reliability-retest-workflow-result.json` 与 `folia-reliability-retest-workflow-result.json`。
 
+P4 稳定性续开发将发送、ack和契约收件集中到可单测的RadioService。持久动作在隔离候选状态中执行，保存成功才发布；失败保留原消息、状态、端点和额度，关服不会补写已失败操作。成功处理的契约收件与ack在同一保存中提交，非法消息保留；契约超时立即保存，失败时两边时钟均保持前一tick，检查点/关服可以重试。恢复按当前tick消息证据重建额度，避免重启绕过每步上限。
+
+契约恢复先逐事件重演消息和超时，再比对状态、事件顺序和去重记录；Paper还检查每条已应用消息都有相同radio证据和ack。修复前已分别用测试复现“重启清零消息额度”和“仅有offer历史却恢复为COMPLETED”。新增16项回归覆盖发送/确认/收件批次/履约/超时/关闭保存失败、断线重投、预算与邮箱恢复、历史篡改，以及从`4411675`导出的v1待履约样本继续完成。Java 21/25各通过335项测试（47个类），失败/错误/跳过均为0，模块边界和双JVM签名工具自检通过。证据见 `docs/evidence/p4/transaction-recovery/summary.json`。Java 21构建出现受限code-cache告警，不能作为性能结论；没有新增实服、真人或长期通信容量证据。
+
 P5 以 `ConservingResourceLedger` 在 soil、detritus 和 organism biomass 间转移 matter。每步记录 state/event commitment 并支持 replay。自动实服四组 seed 52001–52004 对照 profile 在 Paper/Folia SNAPSHOT/RC 共八次运行中均灭绝。候选参数固定为 producer `(6,2,512,0)`、grazer `(1,12,512,0)`、decomposer `(1,12,512,0)`。seed 52008 在 SNAPSHOT 与 RC 的 Paper/Folia 共四次实服运行均达到500 tick，最终 population 为26/2/4、matter=1000，replay通过。
 
 另基于两份从 Paper/Folia 实服回放读取的 Alice worldId，纯 Java 模拟扫描 seed 52008–52107。两个 worldId 各100/100次运行均保持三物种至500 tick，population 达到32，未发生 extinction。它是 simulation-only 结果，不是服务器实测，也不证明广泛参数空间或生态平衡。2026-11-25 在 Paper 1.21.11-132 与 Folia 1.21.11-14 各执行 seed 52008–52015 的客户端顺序扫描，16/16 运行达到500 tick，population 均为26/2/4、matter=1000，回放全部通过。Folia 五客户端分布于不同区域。结果见 `paper-seed-sweep-workflow-result.json` 和 `folia-seed-sweep-workflow-result.json`。这些固定规则的寿命上限为512，500 tick结果仍不足以证明长期生态平衡。原始实服样本见 `paper-ecology-study-retest-workflow-result.json` 和 `folia-ecology-study-retest-workflow-result.json`。

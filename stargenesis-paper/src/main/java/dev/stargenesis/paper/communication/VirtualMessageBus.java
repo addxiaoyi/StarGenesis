@@ -164,6 +164,19 @@ public final class VirtualMessageBus {
     public synchronized List<RadioEvent> events() { return List.copyOf(events); }
     public synchronized int pendingCount(UUID recipient) { return unacknowledged.getOrDefault(recipient, 0); }
 
+    /** Transaction candidate; messages and endpoint values are immutable, mailbox lists are not shared. */
+    synchronized VirtualMessageBus copy() {
+        var copy = new VirtualMessageBus(tick, maxMessagesPerTick);
+        copy.endpoints.putAll(endpoints);
+        copy.evidence.putAll(evidence);
+        copy.acknowledged.addAll(acknowledged);
+        copy.events.addAll(events);
+        mailboxes.forEach((recipient, deliveries) -> copy.mailboxes.put(recipient, new ArrayList<>(deliveries)));
+        copy.unacknowledged.putAll(unacknowledged);
+        copy.messagesThisTick = messagesThisTick;
+        return copy;
+    }
+
     public synchronized Snapshot snapshot() {
         List<ProtocolMessageCodec.Message> savedEvidence = evidence.values().stream()
                 .sorted(messageOrder()).toList();
@@ -266,6 +279,7 @@ public final class VirtualMessageBus {
         });
         unacknowledged.putAll(restoredPendingCounts);
         events.addAll(snapshot.events());
+        messagesThisTick = (int) restoredEvidence.values().stream().filter(message -> message.tick() == tick).count();
     }
 
     private void validateSavedMessage(ProtocolMessageCodec.Message message, long snapshotTick,

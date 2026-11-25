@@ -72,6 +72,10 @@ public final class ContractRuntime {
         if (nextTick != Math.addExact(tick, 1)) throw new IllegalArgumentException("Contract ticks must be sequential");
         List<String> expiring = states.values().stream().filter(state -> !state.state().terminal())
                 .filter(state -> nextTick > state.expiresAt()).map(ContractState::id).sorted().toList();
+        return expireAt(nextTick, expiring);
+    }
+
+    private List<ContractEvent> expireAt(long nextTick, List<String> expiring) {
         if (events.size() + expiring.size() > MAX_EVENTS)
             throw new IllegalStateException("Contract event budget exhausted");
         tick = nextTick;
@@ -94,6 +98,19 @@ public final class ContractRuntime {
     public synchronized List<ContractEvent> events() { return List.copyOf(events); }
     public synchronized int activeCount() { return (int) states.values().stream().filter(state -> !state.state().terminal()).count(); }
     public Contract contract() { return contract; }
+
+    synchronized boolean expiresBy(long nextTick) {
+        return states.values().stream().anyMatch(state -> !state.state().terminal() && nextTick > state.expiresAt());
+    }
+
+    /** Transaction candidate; all state/message/event values are immutable. */
+    synchronized ContractRuntime copy() {
+        var copy = new ContractRuntime(contract, protocol, tick, maxContracts);
+        copy.states.putAll(states);
+        copy.received.putAll(received);
+        copy.events.addAll(events);
+        return copy;
+    }
 
     public synchronized Snapshot snapshot() {
         List<ProtocolMessageCodec.Message> savedMessages = received.values().stream()
@@ -139,9 +156,51 @@ public final class ContractRuntime {
                 throw new IllegalArgumentException("Contract snapshot contains an invalid event");
         }
 
+        try {
+            verifyHistory(snapshot, restoredStates, restoredMessages);
+        } catch (RuntimeException invalid) {
+            throw new IllegalArgumentException("Contract snapshot history does not reproduce its state", invalid);
+        }
         states.putAll(restoredStates);
         received.putAll(restoredMessages);
         events.addAll(snapshot.events());
+    }
+
+    private void verifyHistory(Snapshot snapshot, Map<String, ContractState> expectedStates,
+                               Map<SequenceKey, ProtocolMessageCodec.Message> expectedMessages) {
+        var replayed = new ContractRuntime(contract, protocol, 0, maxContracts);
+        while (replayed.events.size() < snapshot.events().size()) {
+            int index = replayed.events.size();
+            ContractEvent event = snapshot.events().get(index);
+            replayed.advanceRestoredTime(event.tick());
+            if (replayed.events.size() == index) {
+                if (event.type().equals("contract.expire"))
+                    throw new IllegalArgumentException("Contract expiration was not due");
+                var message = expectedMessages.get(new SequenceKey(event.actor(), event.sequence()));
+                if (message == null || !replayed.receive(message))
+                    throw new IllegalArgumentException("Contract event lacks unique message evidence");
+            }
+            for (int actual = index; actual < replayed.events.size(); actual++) {
+                if (actual >= snapshot.events().size() || !replayed.events.get(actual).equals(snapshot.events().get(actual)))
+                    throw new IllegalArgumentException("Contract event commitment mismatch");
+            }
+        }
+        replayed.advanceRestoredTime(snapshot.tick());
+        if (!replayed.events.equals(snapshot.events()) || !replayed.states.equals(expectedStates)
+                || !replayed.received.equals(expectedMessages))
+            throw new IllegalArgumentException("Contract state or evidence differs from its event history");
+    }
+
+    /** Replay jumps between finite event/deadline times instead of iterating an untrusted logical tick count. */
+    private void advanceRestoredTime(long targetTick) {
+        if (targetTick < tick) throw new IllegalArgumentException("Contract events are not chronological");
+        Map<Long, List<String>> deadlines = new TreeMap<>();
+        for (var state : states.values()) {
+            if (!state.state().terminal() && targetTick > state.expiresAt())
+                deadlines.computeIfAbsent(Math.addExact(state.expiresAt(), 1), ignored -> new ArrayList<>()).add(state.id());
+        }
+        deadlines.forEach(this::expireAt);
+        tick = targetTick;
     }
 
     private void validateState(ContractState state, long snapshotTick) {
