@@ -1,0 +1,24 @@
+{
+  "phase": "P7 approval write and publication recovery",
+  "verified_at": "2026-11-25T11:18:49+08:00",
+  "runtime": {
+    "distribution": "Eclipse Temurin",
+    "version": "21.0.13.1+2-LTS"
+  },
+  "command": "mvnw.cmd -T1 -pl stargenesis-paper -am -Dtest=ArenaReviewQueueTest,PublishedDesignStoreTest -Dsurefire.failIfNoSpecifiedTests=false -DargLine=-Xmx256m test",
+  "maven_memory_limits": {
+    "heap": "640 MiB",
+    "metaspace": "256 MiB"
+  },
+  "tests": {
+    "classes": [
+      "dev.stargenesis.paper.ArenaReviewQueueTest",
+      "dev.stargenesis.paper.PublishedDesignStoreTest"
+    ],
+    "run": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "limitations": "Focused unit tests only; Paper/Folia runtime behavior and machine power-loss durability were not exercised."
+}

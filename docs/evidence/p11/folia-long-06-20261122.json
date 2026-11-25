@@ -1,0 +1,46 @@
+{
+  "phase": "P11 Folia runtime load and memory benchmark",
+  "verified_at": "2026-11-22T21:10:01+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-06-result.json",
+  "raw_evidence_sha256": "a1b3d9295ca515ab546eac979961fcf41ac21c8430692c42dd56496141969f28",
+  "launcher": "Windows WMI process creation",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 163,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201",
+    "pid_and_spawn_time_recorded_in_raw_evidence": true
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 328,
+    "advance_commands": 82,
+    "simulated_ticks": 8200,
+    "total_client_commands": 419
+  },
+  "samples": [
+    { "elapsed_seconds": 16, "median_region_tps": 20, "highest_utilization_region_mspt": 2.79, "available_memory_mib": 1875, "rss_mib": 856, "private_mib": 881, "heap_used_mib": 269 },
+    { "elapsed_seconds": 31, "median_region_tps": 20, "highest_utilization_region_mspt": 1.29, "available_memory_mib": 1870, "rss_mib": 871, "private_mib": 895, "heap_used_mib": null },
+    { "elapsed_seconds": 46, "median_region_tps": 20, "highest_utilization_region_mspt": 1.13, "available_memory_mib": 1670, "rss_mib": 884, "private_mib": 908, "heap_used_mib": null },
+    { "elapsed_seconds": 61, "median_region_tps": 20, "highest_utilization_region_mspt": 1.08, "available_memory_mib": 1871, "rss_mib": 856, "private_mib": 880, "heap_used_mib": null },
+    { "elapsed_seconds": 75, "median_region_tps": 20, "highest_utilization_region_mspt": 1.03, "available_memory_mib": 1851, "rss_mib": 876, "private_mib": 900, "heap_used_mib": 367 },
+    { "elapsed_seconds": 91, "median_region_tps": 20, "highest_utilization_region_mspt": 0.92, "available_memory_mib": 1806, "rss_mib": 881, "private_mib": 906, "heap_used_mib": null },
+    { "elapsed_seconds": 105, "median_region_tps": 20, "highest_utilization_region_mspt": 0.87, "available_memory_mib": 1884, "rss_mib": 884, "private_mib": 908, "heap_used_mib": null },
+    { "elapsed_seconds": 121, "median_region_tps": 20, "highest_utilization_region_mspt": 0.88, "available_memory_mib": 1884, "rss_mib": 869, "private_mib": 895, "heap_used_mib": null },
+    { "elapsed_seconds": 136, "median_region_tps": 20, "highest_utilization_region_mspt": 0.83, "available_memory_mib": 1839, "rss_mib": 871, "private_mib": 896, "heap_used_mib": 417 },
+    { "elapsed_seconds": 151, "median_region_tps": 20, "highest_utilization_region_mspt": 0.8, "available_memory_mib": 1884, "rss_mib": 872, "private_mib": 898, "heap_used_mib": null }
+  ],
+  "process_isolation": {
+    "java_processes_at_start": 0,
+    "new_folia_process_detected_elapsed_seconds": 163,
+    "probe_errors": 0,
+    "environment_conflict": true,
+    "benchmark_aborted": true
+  },
+  "server_exit_code_after_harness_shutdown": 0,
+  "passed": false,
+  "scope": "The WMI-launched benchmark collected ten valid samples, then detected a second Folia JVM and stopped cleanly. This confirms the isolation guard and does not satisfy the 30-minute P11 gate."
+}

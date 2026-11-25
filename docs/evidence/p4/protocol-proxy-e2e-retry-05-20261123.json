@@ -1,0 +1,41 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "2a69c143fc2603a4cee53673ef5f6da8f680c323223eb4a9078abd1472a98828",
+  "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [
+      {
+        "pid": 6592,
+        "description": "org.codehaus.plexus.classworlds.launcher.Launcher -o -B -ntp -Dspotless.ratchetFrom=HEAD spotless:check"
+      }
+    ],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "java_processes_at_end": [
+      {
+        "pid": 6592,
+        "description": "org.codehaus.plexus.classworlds.launcher.Launcher -o -B -ntp -Dspotless.ratchetFrom=HEAD spotless:check"
+      }
+    ]
+  },
+  "servers": {},
+  "clients": {},
+  "checks": {},
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "environment_conflict": {
+    "elapsed_seconds": 0,
+    "java_processes": [
+      {
+        "pid": 6592,
+        "description": "org.codehaus.plexus.classworlds.launcher.Launcher -o -B -ntp -Dspotless.ratchetFrom=HEAD spotless:check"
+      }
+    ]
+  },
+  "error": "Error: Other Java processes are active at proxy test startup: [{\"pid\":6592,\"description\":\"org.codehaus.plexus.classworlds.launcher.Launcher -o -B -ntp -Dspotless.ratchetFrom=HEAD spotless:check\"}]\n    at main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:416:11)\n    at file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:483:9\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "duration_seconds": 0.6
+}

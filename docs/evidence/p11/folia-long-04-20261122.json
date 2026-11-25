@@ -1,0 +1,48 @@
+{
+  "phase": "P11 Folia runtime load and memory benchmark",
+  "verified_at": "2026-11-22T20:37:35+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-04-result.json",
+  "raw_evidence_sha256": "7fa8ccb6d89dc2e317aa7d6ddbac10ca31628e702232f992aef773df5abd6baf",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 96,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201",
+    "pid_and_spawn_time_recorded_in_raw_evidence": true,
+    "wall_process_lifetime_seconds": 119
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 156,
+    "advance_commands": 38,
+    "simulated_ticks": 3800,
+    "total_client_commands": 203
+  },
+  "samples": [
+    { "elapsed_seconds": 16, "median_region_tps": 19.96, "highest_utilization_region_mspt": 3.31, "available_memory_mib": 1871, "heap_used_mib": 265 },
+    { "elapsed_seconds": 31, "median_region_tps": 20, "highest_utilization_region_mspt": 1.39, "available_memory_mib": 1859, "heap_used_mib": null },
+    { "elapsed_seconds": 45, "median_region_tps": 20, "highest_utilization_region_mspt": 1.32, "available_memory_mib": 1834, "heap_used_mib": null },
+    { "elapsed_seconds": 61, "median_region_tps": 20, "highest_utilization_region_mspt": 1.22, "available_memory_mib": 1764, "heap_used_mib": null },
+    { "elapsed_seconds": 75, "median_region_tps": 20, "highest_utilization_region_mspt": 1.16, "available_memory_mib": 1749, "heap_used_mib": 429 }
+  ],
+  "process_isolation": {
+    "java_processes_at_start": 0,
+    "new_processes_detected_before_exit": 0,
+    "probe_errors": 0,
+    "environment_conflict": false
+  },
+  "server_exit": {
+    "signed_code": -1,
+    "reported_unsigned_code": 4294967295,
+    "elapsed_seconds": 76,
+    "crash_report_found": false,
+    "matching_windows_application_system_or_security_events_found": false,
+    "windows_process_termination_audit_enabled": false
+  },
+  "client_request_timed_out_after_server_exit": true,
+  "passed": false,
+  "scope": "The isolated background launcher remained available long enough to collect five real Folia samples, so the prior foreground command lifetime did not account for the server exit. The cause of the server exit remains unknown. This run does not satisfy the 30-minute P11 gate."
+}

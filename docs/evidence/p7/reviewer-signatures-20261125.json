@@ -1,0 +1,38 @@
+{
+  "phase": "P7 arena reviewer Ed25519 decision identity",
+  "verified_at": "2026-11-25T13:20:15+08:00",
+  "runtime": {
+    "distribution": "Eclipse Temurin",
+    "version": "21.0.13.1+2-LTS"
+  },
+  "java_command": "mvnw.cmd -T1 -pl stargenesis-paper -am -Dtest=ArenaReviewSignatureTest,ArenaReviewTrustFileStoreTest,ArenaReviewQueueTest,PublishedDesignStoreTest -Dsurefire.failIfNoSpecifiedTests=false -DargLine=-Xmx256m test",
+  "java_tests": {
+    "dev.stargenesis.design.ArenaReviewSignatureTest": 3,
+    "dev.stargenesis.paper.ArenaReviewQueueTest": 12,
+    "dev.stargenesis.paper.ArenaReviewTrustFileStoreTest": 2,
+    "dev.stargenesis.paper.PublishedDesignStoreTest": 5,
+    "run": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "node_command": "node --test --test-concurrency=1 scripts/arena_review_sign.test.mjs",
+  "node_tests": {
+    "run": 4,
+    "failures": 0,
+    "skipped": 0
+  },
+  "additional_checks": {
+    "node_syntax": "passed",
+    "module_boundaries": "passed",
+    "git_diff_check": "passed"
+  },
+  "coverage": [
+    "signature binds candidate hash, reviewer UUID, outcome, and exact rejection reason",
+    "invalid approval signature creates no decision and publishes no release",
+    "decision write failure does not publish an unapproved release",
+    "v2 unsigned decision remains recoverable without being rewritten",
+    "reviewer trust storage persists, rotates, revokes, and rejects damaged records"
+  ],
+  "limitations": "Focused Java and Node tests only. No live Paper/Folia player workflow, real-world identity proof, cross-server coordination, or machine power-loss test was exercised."
+}

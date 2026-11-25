@@ -1,0 +1,36 @@
+{
+  "phase": "P9 nation-resource bridge contract (simulated provider only)",
+  "verified_at": "2026-11-25T09:55:37+08:00",
+  "test_class": "dev.stargenesis.integrations.NationResourceSettlementGatewayTest",
+  "gateway_tests": 14,
+  "integration_module_tests": 40,
+  "full_verify_evidence": "docs/evidence/p11/p9-p11-verification-20261125.json",
+  "contract": [
+    "Observation receives the persisted transfer and APPLY/COMPENSATE direction.",
+    "Exact durable receipts bind key, source, target, resource, amount, APPLIED status, category, description and authority domain.",
+    "Transport APPLIED/ALREADY_APPLIED responses require a fresh matching durable receipt.",
+    "Unknown, missing or conflicting evidence never authorizes a write.",
+    "Explicit NOT_APPLIED proof guarantees no previous attempt can complete later.",
+    "Provider ID includes all 256 authority-domain digest bits; changing ledgers rejects old saga plans.",
+    "Malformed UTF-16 identifiers are rejected before hashing or provider access.",
+    "Apply and compensation recover after the external effect succeeds but journal cursor persistence fails, without duplicate balance changes.",
+    "Spent resources leave compensation in review until an authoritative query and later retry can recover them."
+  ],
+  "source_sha256": {
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/NationResourceSettlementGateway.java": "c9fe05c5eff6bbc8439f48ee165d1c3ff2fd0a6e71a1ad9756d9d85795961a85",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementGateway.java": "ac42c8f479d1043c56b17c4b6b3ef2af419b74f1604f75585cc6c76fc4c894a9",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSagaCoordinator.java": "2e67da0a91b43cd42fbf2fad41a03f86fa2ab0639a6211b3056d1c8ad6d39bbe",
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/NationResourceSettlementGatewayTest.java": "7105f84103c098c7e4c18fa03ed32b75f65b59c932390297e2dfa3d1c1d72360",
+    "scripts/server_benchmark.mjs": "39de1f96cbdc05b67d29962c38fcf6bbb240d2b9ef640d87ff56dd408f9b2c40",
+    "scripts/server_benchmark.test.mjs": "6b060192880e7130e5d0e9bc80e9e04d66d0f06e447c7075f7ef1a368436f764"
+  },
+  "production_adapter_registered": false,
+  "real_settlement_enabled": false,
+  "remaining_requirements": [
+    "Pinned released upstream API and a real bridge implementation",
+    "Initiator/nation authorization and authenticated business entry points",
+    "Owner-thread and atomic authority-domain enforcement in the upstream ledger",
+    "Production receipt durability, provider reconciliation and operator recovery",
+    "Cross-server coordination and real-server failure acceptance"
+  ]
+}

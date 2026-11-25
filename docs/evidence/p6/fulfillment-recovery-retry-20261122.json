@@ -1,0 +1,43 @@
+{
+  "phase": "P6 fulfillment idempotency after checkpoint recovery",
+  "verified_at": "2026-11-23T00:01:17+08:00",
+  "test": {
+    "class": "dev.stargenesis.paper.FactorySessionTest",
+    "method": "fulfillmentRetryAfterCheckpointRecoveryDoesNotChangeTheLedgerAgain",
+    "assertions": [
+      "the recovered session accepts the same fulfillment command",
+      "the repeated fulfillment reports no checkpoint change",
+      "the response matches the committed fulfillment response",
+      "the checkpoint remains byte-for-byte equivalent as a value"
+    ]
+  },
+  "full_verify": {
+    "java_21": {
+      "version": "21.0.13.1+2-LTS",
+      "completed_at": "2026-11-22T23:51:24+08:00",
+      "paper_test_sources_compiled_at": "2026-11-22T23:51:24+08:00",
+      "paper_test_sources_compiled": 30,
+      "tests": {
+        "run": 323,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "java_25": {
+      "version": "25.0.5.1+2-LTS",
+      "completed_at": "2026-11-23T00:01:17+08:00",
+      "paper_sources_recompiled_in_this_run": true,
+      "tests": {
+        "run": 323,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "408C32367801B01B88BDBB4E66917EEE7435D8274366D455BBFC0E69CF9BD6D4",
+  "server_runtime_started": false,
+  "limitations": "Java 21 and Java 25 both compiled the current Paper sources and ran the test. This is a checkpoint-recovery idempotency test, not a process-kill test at the exact factory-checkpoint versus relay-receipt boundary. Proxy runtime behavior remains unverified."
+}

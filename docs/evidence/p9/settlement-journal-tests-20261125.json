@@ -1,0 +1,24 @@
+{
+  "phase": "P9 settlement saga and journal verification",
+  "verified_at": "2026-11-25T11:21:10+08:00",
+  "runtime": {
+    "distribution": "Eclipse Temurin",
+    "version": "21.0.13.1+2-LTS"
+  },
+  "command": "mvnw.cmd -T1 -pl stargenesis-paper -am -Dtest=SettlementJournalCommandsTest,SettlementSagaFileStoreTest,NationResourceSettlementGatewayTest,SettlementSagaCoordinatorTest -Dsurefire.failIfNoSpecifiedTests=false -DargLine=-Xmx256m test",
+  "maven_memory_limits": {
+    "heap": "640 MiB",
+    "metaspace": "256 MiB"
+  },
+  "tests": {
+    "dev.stargenesis.integrations.NationResourceSettlementGatewayTest": 14,
+    "dev.stargenesis.integrations.SettlementSagaCoordinatorTest": 7,
+    "dev.stargenesis.paper.SettlementJournalCommandsTest": 7,
+    "dev.stargenesis.paper.SettlementSagaFileStoreTest": 9,
+    "run": 37,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "limitations": "Tests use simulated providers. No production economy adapter, live settlement, Paper/Folia runtime, or machine power-loss test was exercised."
+}

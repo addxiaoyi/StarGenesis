@@ -1,0 +1,52 @@
+{
+  "phase": "P5 shared ecology multiplayer flow",
+  "kind": "paper",
+  "server_versions": [
+    "1.21.11-132-ver/1.21.11@c5eb079",
+    "1.21.11-132-ver/1.21.11@c5eb079",
+    "1.21.11-132-ver/1.21.11@c5eb079"
+  ],
+  "group_id": "22033369-dc75-4cb4-a014-e18927f83c47",
+  "players": {
+    "owner": "SgOwnPaper",
+    "member": "SgMemPaper",
+    "member_uuid": "880e83a1-9ad1-3564-a545-dec0f6b8e95a",
+    "guest": "SgGstPaper"
+  },
+  "checks": {
+    "owner_private_ecology_starts_at_tick_zero": true,
+    "owner_private_ecology_advances_to_tick_one": true,
+    "owner_created_group": true,
+    "group_listing_shows_owner": true,
+    "nonmember_cannot_read_group": true,
+    "member_listing_shows_joined_group": true,
+    "new_member_reads_tick_zero": true,
+    "member_advances_shared_tick": true,
+    "owner_observes_member_step": true,
+    "member_cannot_disband_group": true,
+    "left_member_cannot_find_group": true,
+    "group_checkpoint_exists_before_restart": true,
+    "owner_private_v4_checkpoint_restores_tick_one": true,
+    "owner_private_v4_checkpoint_advances_after_restore": true,
+    "owner_restores_shared_tick": true,
+    "member_restores_shared_tick": true,
+    "owner_opens_shared_group_inventory": true,
+    "owner_opens_shared_group_details": true,
+    "owner_advances_group_from_inventory": true,
+    "owner_removes_member_from_inventory": true,
+    "owner_invites_member_from_inventory": true,
+    "member_opens_shared_group_details": true,
+    "member_advances_group_from_inventory": true,
+    "owner_must_confirm_inventory_disband": true,
+    "owner_listing_empty_after_disband": true,
+    "disband_removes_checkpoint": true,
+    "owner_private_v4_checkpoint_survives_second_restart": true,
+    "owner_private_v4_checkpoint_advances_after_second_restart": true
+  },
+  "passed": true,
+  "error": null,
+  "plugin_sha256": "c6b215b59e5d496d06e973a07f6d7fdb680813983fb16befaf3e63f67109c727",
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "server_log_sha256": "54dd0d819e40bf2c1ebd7bace4cb0d295f8cc6ece200772c3d55ac7575efc7e3",
+  "scope": "Three offline Mineflayer players exercise shared ecology membership, authorization, Inventory management, stepping, and normal server restart recovery on an isolated server. The owner also verifies a personal ecology v4 PDC checkpoint across two normal server restarts."
+}

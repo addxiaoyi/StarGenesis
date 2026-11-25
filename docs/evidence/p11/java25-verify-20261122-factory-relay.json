@@ -1,0 +1,31 @@
+{
+  "phase": "P11 Java 25 verification after factory relay changes",
+  "verified_at": "2026-11-22T23:12:05+08:00",
+  "distribution": "Microsoft Build of OpenJDK",
+  "java_version": "25.0.5.1+2-LTS",
+  "runtime_path": ".work/jdk25/jdk-25.0.5.1+2",
+  "runtime_package": {
+    "name": "microsoft-jdk-25.0.5.1-windows-x64.zip",
+    "size_bytes": 220889971,
+    "sha256": "82CE06E0D21A65F9EA3E76F3A5ADB07078505BDB364E38E184C15E0E3100609B"
+  },
+  "command": "mvnw.cmd -o -B -ntp -T 1 clean verify -DargLine=-Xmx768m",
+  "maven_opts": "-Xmx512m",
+  "modules": {
+    "api": 4,
+    "design": 102,
+    "sim": 95,
+    "integrations": 25,
+    "paper": 95
+  },
+  "tests": {
+    "run": 321,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "C04D6E10B228927ADFE90206CF2C4E8EC91851406785799B50C8FE776BC98DD6",
+  "server_runtime_started": false,
+  "limitations": "Build and unit-test verification only. Paper, Folia and proxy runtime behavior were not tested in this run."
+}

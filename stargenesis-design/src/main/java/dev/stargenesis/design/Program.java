@@ -3,7 +3,7 @@ package dev.stargenesis.design;
 import dev.stargenesis.api.design.*;
 import java.util.*;
 
-/** Declarative P0 graph. This is not the P3 compiler or executable IR. */
+/** Declarative, versioned P3 behavior graph compiled into a bounded typed IR. */
 public record Program(DesignMetadata metadata, List<Node> nodes, List<Edge> edges,
                       int maxInstructionsPerStep) implements DesignDocument {
     public Program {
@@ -32,31 +32,28 @@ public record Program(DesignMetadata metadata, List<Node> nodes, List<Edge> edge
             }
         }
         if (visited != nodes.size()) Checks.fail("Unbounded graph cycle rejected; explicit bounded iteration is future IR");
+        Map<String, Integer> inputCounts = new HashMap<>();
+        edges.forEach(edge -> inputCounts.merge(edge.to(), 1, Integer::sum));
+        nodes.forEach(node -> ProgramSemantics.validateEdgeCounts(node, inputCounts.getOrDefault(node.id(), 0)));
     }
     @Override public DesignKind kind() { return DesignKind.PROGRAM; }
     public enum ValueType { NONE, BOOLEAN, INTEGER, VECTOR, RESOURCE }
-    public enum Operation { SENSE, CONSTANT, COMPARE, AND, NOT, MOVE, HARVEST, DEPOSIT, WAIT }
+    public enum Operation {
+        SENSE, CONSTANT, COMPARE, AND, NOT, MOVE, HARVEST, DEPOSIT, WAIT,
+        OR, XOR, EQUAL, VECTOR, ADD, SUBTRACT, MULTIPLY, DIVIDE, REMAINDER,
+        MIN, MAX, ABS, NEGATE, CLAMP, SELECT, VECTOR_SELECT
+    }
     public record Node(String id, Operation operation, ValueType inputType, ValueType outputType,
                        Map<String, String> parameters) {
         public Node {
             Checks.token(id); Objects.requireNonNull(operation); Objects.requireNonNull(inputType);
             Objects.requireNonNull(outputType); parameters = Map.copyOf(parameters);
-            boolean signatureValid = switch (operation) {
-                case SENSE -> inputType == ValueType.NONE && outputType != ValueType.NONE;
-                case CONSTANT -> inputType == ValueType.NONE
-                        && (outputType == ValueType.INTEGER || outputType == ValueType.BOOLEAN);
-                case COMPARE -> inputType == ValueType.INTEGER && outputType == ValueType.BOOLEAN;
-                case AND, NOT -> inputType == ValueType.BOOLEAN && outputType == ValueType.BOOLEAN;
-                case MOVE -> inputType == ValueType.VECTOR && outputType == ValueType.NONE;
-                case HARVEST, DEPOSIT -> inputType == ValueType.RESOURCE && outputType == ValueType.NONE;
-                case WAIT -> inputType == ValueType.NONE && outputType == ValueType.NONE;
-            };
-            if (!signatureValid) Checks.fail("Invalid operation type signature");
             Checks.range(parameters.size(), 0, 16, "parameters");
             parameters.forEach((key, value) -> {
                 Checks.token(key);
                 if (value.length() > 128 || value.chars().anyMatch(c -> c < 32)) Checks.fail("Invalid parameter value");
             });
+            ProgramSemantics.validateNode(operation, inputType, outputType, parameters);
         }
     }
     public record Edge(String from, String to) {

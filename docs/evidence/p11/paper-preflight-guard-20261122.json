@@ -1,0 +1,18 @@
+{
+  "phase": "P11 Paper benchmark process-isolation preflight",
+  "verified_at": "2026-11-22T18:40:38+08:00",
+  "check": "reject-startup-when-an-existing-minecraft-server-is-detected",
+  "source_evidence": ".work/p11-guard-check-20261122.json",
+  "source_evidence_sha256": "a7592dfdd2a65f8497897d966a847993d5b0d7b34424e15c518c04a180eb1f8b",
+  "observations": {
+    "existing_server_process_detected": true,
+    "benchmark_server_started": false,
+    "elapsed_seconds": 0,
+    "connected_clients": 0,
+    "commands_sent": 0,
+    "performance_samples": 0,
+    "server_log_bytes": 0
+  },
+  "result": "passed",
+  "scope": "Process-isolation guard integration check only. No server load or performance gate was measured."
+}

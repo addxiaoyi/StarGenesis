@@ -1,0 +1,27 @@
+{
+  "phase": "P11 detached benchmark launcher",
+  "verified_at": "2026-11-23T02:24:18+08:00",
+  "benchmark_script": "scripts/server_benchmark.mjs",
+  "benchmark_script_sha256": "13F61F2B14FB05FBCB726797484D26C079D1D511E4D6F71BC250425EA2709FCE",
+  "test_command": "node --test scripts/server_benchmark.test.mjs",
+  "tests": {
+    "run": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "detached_mode": {
+    "flag": "--detach",
+    "worker_process_group": "detached",
+    "stdio": "ignored by launcher; worker writes server log and result file",
+    "launcher_reports": [
+      "worker PID",
+      "result path"
+    ],
+    "short_lived_worker_smoke_test": "passed",
+    "worker_completion_marker": "done"
+  },
+  "plugin_jar_sha256": "8756082B7FF686EE8372AF77357C77870B5E029BF6D61B89F9BA85623D4C8E6E",
+  "benchmark_runtime_started": false,
+  "limitations": "The script was restored from task history, with the client connection block reconstructed from adjacent source. Node tests and short live Folia runs exercised startup, client work, metric parsing, and controlled shutdown. Other Java processes interrupted the live runs, so full-duration Paper/Folia behavior and performance thresholds remain unverified."
+}

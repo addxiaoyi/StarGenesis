@@ -1,0 +1,47 @@
+{
+  "phase": "P9 compensation idempotency after checkpoint recovery",
+  "verified_at": "2026-11-23T00:20:12+08:00",
+  "test": {
+    "class": "dev.stargenesis.integrations.SettlementSagaCoordinatorTest",
+    "method": "restartObservesAnAppliedCompensationBeforeAdvancingItsCursor",
+    "assertions": [
+      "the second apply step is rejected and earlier work enters reverse compensation",
+      "the compensation effect is applied before the injected checkpoint failure",
+      "the durable checkpoint remains at the compensation cursor after the failure",
+      "recovery observes the same compensation idempotency key",
+      "the saga reaches ABORTED without repeating the compensation effect"
+    ]
+  },
+  "full_verify": {
+    "java_21": {
+      "distribution": "Eclipse Adoptium Temurin",
+      "version": "21.0.13.1+2-LTS",
+      "completed_at": "2026-11-23T00:17:16+08:00",
+      "integration_test_sources_compiled": 3,
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "java_25": {
+      "distribution": "Microsoft Build of OpenJDK",
+      "version": "25.0.5.1+2-LTS",
+      "completed_at": "2026-11-23T00:20:12+08:00",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -pl stargenesis-paper -am -DargLine=-Xmx512m verify",
+      "cleaned_module": "stargenesis-integrations",
+      "integration_main_sources_compiled": 15,
+      "integration_test_sources_compiled": 3,
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "408C32367801B01B88BDBB4E66917EEE7435D8274366D455BBFC0E69CF9BD6D4",
+  "limitations": "The recovery behavior is tested against an idempotent fake provider. No production settlement adapter or real currency/inventory operation is enabled."
+}

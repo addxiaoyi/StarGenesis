@@ -1,0 +1,52 @@
+{
+  "phase": "P11 Folia runtime load and memory benchmark",
+  "verified_at": "2026-11-22T20:50:35+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-05-result.json",
+  "raw_evidence_sha256": "f59750ccca9459821b269c3a9efb1c091fd1fdfb08e2be0c863686e24784eadc",
+  "launcher": "detached hidden process",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 144,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201",
+    "pid_and_spawn_time_recorded_in_raw_evidence": true,
+    "wall_process_lifetime_seconds": 185
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 288,
+    "advance_commands": 72,
+    "simulated_ticks": 7200,
+    "total_client_commands": 369
+  },
+  "samples": [
+    { "elapsed_seconds": 16, "median_region_tps": 19.94, "highest_utilization_region_mspt": 2.89, "available_memory_mib": 1791, "rss_mib": 856, "private_mib": 880, "heap_used_mib": 289 },
+    { "elapsed_seconds": 31, "median_region_tps": 19.98, "highest_utilization_region_mspt": 1.36, "available_memory_mib": 1801, "rss_mib": 855, "private_mib": 879, "heap_used_mib": null },
+    { "elapsed_seconds": 45, "median_region_tps": 20, "highest_utilization_region_mspt": 1.2, "available_memory_mib": 1795, "rss_mib": 868, "private_mib": 892, "heap_used_mib": null },
+    { "elapsed_seconds": 61, "median_region_tps": 19.99, "highest_utilization_region_mspt": 1.18, "available_memory_mib": 1795, "rss_mib": 890, "private_mib": 915, "heap_used_mib": null },
+    { "elapsed_seconds": 75, "median_region_tps": 20, "highest_utilization_region_mspt": 1.11, "available_memory_mib": 1786, "rss_mib": 866, "private_mib": 891, "heap_used_mib": 441 },
+    { "elapsed_seconds": 91, "median_region_tps": 19.99, "highest_utilization_region_mspt": 0.98, "available_memory_mib": 1810, "rss_mib": 880, "private_mib": 905, "heap_used_mib": null },
+    { "elapsed_seconds": 105, "median_region_tps": 20, "highest_utilization_region_mspt": 0.98, "available_memory_mib": 1795, "rss_mib": 880, "private_mib": 905, "heap_used_mib": null },
+    { "elapsed_seconds": 121, "median_region_tps": 19.99, "highest_utilization_region_mspt": 0.94, "available_memory_mib": 1773, "rss_mib": 882, "private_mib": 907, "heap_used_mib": null },
+    { "elapsed_seconds": 135, "median_region_tps": 20, "highest_utilization_region_mspt": 0.91, "available_memory_mib": 1779, "rss_mib": 891, "private_mib": 916, "heap_used_mib": 320 }
+  ],
+  "process_isolation": {
+    "java_processes_at_start": 0,
+    "new_processes_detected_before_exit": 0,
+    "probe_errors": 0,
+    "environment_conflict": false
+  },
+  "server_exit": {
+    "signed_code": -1,
+    "reported_unsigned_code": 4294967295,
+    "elapsed_seconds": 144,
+    "crash_report_found": false,
+    "matching_windows_application_system_or_security_events_found": false,
+    "windows_process_termination_audit_enabled": false
+  },
+  "passed": false,
+  "scope": "The detached launcher removed the foreground session limit, but Folia still exited before 30 minutes. No process conflict, crash report, or matching Windows event was found. The cause remains unknown."
+}

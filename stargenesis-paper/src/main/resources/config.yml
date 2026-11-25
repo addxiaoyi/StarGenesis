@@ -11,3 +11,12 @@ simulation:
 # P0 never moves real items or money, even if third-party plugins are installed.
 integrations:
   allow-real-settlement: false
+  extensions:
+    enabled: false
+    providers: []
+protocol-relay:
+  enabled: false
+  server-id: ''
+  peers: {}
+factory-relay:
+  enabled: false

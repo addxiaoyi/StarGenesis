@@ -1,0 +1,40 @@
+{
+  "phase": "P7 development increment",
+  "artifact": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "sha256": "cfd0e375a1b10c0cc3d0a42693d64232773e7d258a25045c559f52a859c8c536",
+  "tests": {
+    "tests": 212,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "boundary_check": true,
+  "diff_check": true,
+  "paper": {
+    "version": "1.21.11-132",
+    "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "modes": {
+      "empty": "2700152f5ce93d4cbc79476bce39147f7a2937e2b2d4fa9d8aaf7af1ea5d4aeb",
+      "create": "11d989b9545f3cee3bd70ec59910eceb70132df12eaa62347583c0afff6d3325",
+      "recover": "d5010fd1c5d987946bd7db6f37f073bd15629de66048b5c1e9bee12743fe20ae"
+    },
+    "passed": true
+  },
+  "folia": {
+    "version": "1.21.11-14",
+    "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "modes": {
+      "empty": "076b33a6ac9df1db67034f762db72b85c8c286dba5b58ac7870656ab695f7092",
+      "create": "a7a7ea2491763c742472142e70990da505059c9e89b5bf55b4884a3a66406c9b",
+      "recover": "28324d3a1872b6fbd658508381ac6a3de6b5eb9f631f80788ef6511023b8df6b"
+    },
+    "passed": true
+  },
+  "scope": "Actual server console lifecycle, plugin startup, P7 release seeding and console guard, plus virtual factory create and restart recovery.",
+  "unverified": [
+    "Human-player GUI editing and editor permission commands",
+    "Power-loss durability and cross-server publication",
+    "Arena obstacles, routes, victory rules and match execution",
+    "Third-party integrations"
+  ]
+}

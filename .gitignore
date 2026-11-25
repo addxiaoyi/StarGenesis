@@ -7,3 +7,6 @@
 *.log
 !docs/evidence/**/*.log
 server/
+__pycache__/
+*.py[cod]
+hs_err_pid*.mdmp

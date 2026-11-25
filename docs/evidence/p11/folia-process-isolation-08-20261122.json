@@ -1,0 +1,21 @@
+{
+  "phase": "P11 Folia benchmark process-isolation check",
+  "verified_at": "2026-11-22T21:26:46+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-08-result.json",
+  "raw_evidence_sha256": "b1c215861cb921f1a0b8f81232907a35ee4eb412dcb71832e6fe6ebc6936cc02",
+  "requested_duration_seconds": 1800,
+  "result": "aborted-after-new-java-process-detected",
+  "observations": {
+    "existing_maven_test_jvms_at_start": 2,
+    "new_maven_process_detected_elapsed_seconds": 11,
+    "benchmark_server_started": true,
+    "connected_clients": 4,
+    "status_commands": 24,
+    "advance_commands": 6,
+    "simulated_ticks": 600,
+    "performance_samples": 0,
+    "benchmark_server_stopped_cleanly": true
+  },
+  "scope": "Process-isolation guard validation only. No Folia performance sample or P11 duration gate was completed."
+}

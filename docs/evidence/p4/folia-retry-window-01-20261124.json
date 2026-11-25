@@ -1,0 +1,105 @@
+{
+  "phase": "P4 folia and Velocity cross-server protocol relay",
+  "kind": "folia",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "8553f5144c9ccda7d181d0d719cf656899184be523c465656e2722f1530e3d46",
+  "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "backend_jar_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "ed735c484790e400359bc2837d85021faaf9f8d37da03391c220628b710a94da",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 335859712,
+    "minimum_free_bytes": 268435456,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 32048,
+      "version": "1.21.11-14-ver/1.21.11@529aabc",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "d95811ddd6613e18604ba37f36c37338270055ff4cb0dffcca8cb5003b660611",
+      "log_file": "hub_a.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 18732,
+      "version": "1.21.11-14-ver/1.21.11@529aabc",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "6fd8284e4451f83cd0dd072edce5f902f25fbb92825e124fd390bb930a6a03d7",
+      "log_file": "hub_b.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 19120,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "4963822585a1a7e83dcd645d374ff0c667a1fe6097794a4d8926593226226f91",
+      "log_file": "velocity.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game",
+        "已解锁公开入门协议芯片：genesis:protocol",
+        "已装备协议芯片：genesis:protocol",
+        "跨服协议消息已进入持久发件箱，等待目标服务器确认。",
+        "跨服协议消息已写入目标收件箱。",
+        "跨服协议消息已进入持久发件箱，等待目标服务器确认。",
+        "跨服协议消息已写入目标收件箱。",
+        "跨服协议消息已写入目标收件箱。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game",
+        "协议收件箱已清空。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true,
+    "both_clients_equipped_starter_protocol": true,
+    "source_received_authenticated_target_acknowledgement": true,
+    "target_inbox_contains_relayed_message": true,
+    "cross_server_payload_and_ack_via_proxy": true,
+    "outbox_retained_after_40_seconds": true,
+    "delayed_delivery_after_reconnect": true,
+    "acknowledged_outbox_removed": true,
+    "cleared_inbox_suppresses_same_signed_packet": true,
+    "replayed_outbox_removed": true
+  },
+  "passed": true,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "duration_seconds": 125.4
+}

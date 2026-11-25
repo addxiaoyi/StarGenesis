@@ -1,0 +1,31 @@
+{
+  "phase": "P11 Java 25 build and test verification",
+  "verified_at": "2026-11-22T18:13:20+08:00",
+  "distribution": "Microsoft Build of OpenJDK",
+  "java_version": "25.0.5.1+2-LTS",
+  "runtime_package": {
+    "name": "microsoft-jdk-25.0.5.1-windows-x64.zip",
+    "size_bytes": 220889971,
+    "sha256": "82ce06e0d21a65f9ea3e76f3a5adb07078505bdb364e38e184c15e0e3100609b",
+    "size_matched_release_metadata": true
+  },
+  "command": "mvnw.cmd -B -DargLine=-Xmx768m verify",
+  "maven_opts": "-Xmx512m",
+  "modules": {
+    "api": 4,
+    "design": 102,
+    "sim": 95,
+    "integrations": 25,
+    "paper": 83
+  },
+  "tests": {
+    "run": 309,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201",
+  "server_runtime_started": false,
+  "limitations": "Build and unit-test verification only. Paper and Folia runtime compatibility was not tested in this run."
+}

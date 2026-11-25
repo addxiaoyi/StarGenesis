@@ -6,7 +6,9 @@
 - `dev.stargenesis.api.sim`：AgentId、SimulationClock、SimulationWorld、SimulationBudget、StepInput、StepResult、EvidenceId、EventRecord、ResourceLedger、EventOutbox。
 - ID、排序、幂等和owner线程语义以 PRODUCT_CONTRACT.md 和合同测试为准。
 - `dev.stargenesis.design.DesignCodec`：load、seal、write、migrateV0；schemaVersion=1的五种文档和内置例子持续作为兼容fixture。
+- `dev.stargenesis.design.DesignExchange`：生成 Ed25519 密钥、对经过 DesignCodec 验证的规范 JSON 签名，使用 server-owned `DesignSigningTrust` 验证 author UUID 与签名公钥绑定；`SignedDesignArtifact` 是有界 v1 二进制包。
 - P1在sim模块新增实现和不可变视图/快照/回放值，不改上述签名。Paper通过受控执行器驱动世界，区域/实体调度只消费不可变视图。
 - P2/P3/P4可提案扩展模型，不能绕过codec/预算/权限；语义变化提高schema或engine版本并保留旧fixture与拒绝测试。
+- P9 尚未发布的 `SettlementGateway.observe` 合同现要求 `(key, transfer, operation)`，消费者为 saga coordinator 和合同测试；恢复查询必须核对持久计划的完整副作用。国家资源 bridge 的 provider ID 包含完整 authority-domain 摘要，既有 journal 格式不变，不自动重绑旧计划；这不是已激活的第三方 API。
 
 变更流程：列出受影响消费者→提出最小接口差异→增加合同/迁移测试→串行整仓verify→最小回放→适当实机验收。不得并发写他人模块或同一target。

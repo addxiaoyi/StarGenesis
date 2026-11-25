@@ -1,0 +1,67 @@
+{
+  "phase": "P11 Folia runtime load and memory benchmark",
+  "verified_at": "2026-11-22T20:18:51+08:00",
+  "benchmark_script_sha256": "a14b2e847ee98ccb86156638f973e2008e0d3e29844db532f660ab63080342f5",
+  "raw_evidence": ".work/p11-folia-long-03-result.json",
+  "raw_evidence_sha256": "7d1083c7332a41cd4de2db6368140d4218bb77f8e92addd31d4a8e58222af385",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 277,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201",
+    "pid_and_spawn_time_recorded_in_raw_evidence": true
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_mib": 8192,
+    "available_memory_mib_at_start": 2701
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 512,
+    "advance_commands": 128,
+    "simulated_ticks": 12800,
+    "total_client_commands": 649
+  },
+  "samples": [
+    { "elapsed_seconds": 16, "median_region_tps": 20.02, "highest_utilization_region_mspt": 3.01, "available_memory_mib": 2060, "rss_mib": 864, "private_mib": 890, "heap_used_mib": 425 },
+    { "elapsed_seconds": 31, "median_region_tps": 19.27, "highest_utilization_region_mspt": 1.43, "available_memory_mib": 2056, "rss_mib": 868, "private_mib": 893, "heap_used_mib": null },
+    { "elapsed_seconds": 45, "median_region_tps": 18.54, "highest_utilization_region_mspt": 1.27, "available_memory_mib": 2070, "rss_mib": 868, "private_mib": 894, "heap_used_mib": null },
+    { "elapsed_seconds": 61, "median_region_tps": 20, "highest_utilization_region_mspt": 1.27, "available_memory_mib": 2052, "rss_mib": 881, "private_mib": 907, "heap_used_mib": null },
+    { "elapsed_seconds": 75, "median_region_tps": 20, "highest_utilization_region_mspt": 1.18, "available_memory_mib": 2097, "rss_mib": 883, "private_mib": 908, "heap_used_mib": 345 },
+    { "elapsed_seconds": 91, "median_region_tps": 20, "highest_utilization_region_mspt": 1.02, "available_memory_mib": 2117, "rss_mib": 869, "private_mib": 895, "heap_used_mib": null },
+    { "elapsed_seconds": 106, "median_region_tps": 20, "highest_utilization_region_mspt": 1.02, "available_memory_mib": 2112, "rss_mib": 878, "private_mib": 904, "heap_used_mib": null },
+    { "elapsed_seconds": 121, "median_region_tps": 20, "highest_utilization_region_mspt": 0.97, "available_memory_mib": 2083, "rss_mib": 878, "private_mib": 904, "heap_used_mib": null },
+    { "elapsed_seconds": 135, "median_region_tps": 20, "highest_utilization_region_mspt": 0.94, "available_memory_mib": 2110, "rss_mib": 879, "private_mib": 905, "heap_used_mib": 465 },
+    { "elapsed_seconds": 151, "median_region_tps": 20, "highest_utilization_region_mspt": 0.93, "available_memory_mib": 2128, "rss_mib": 882, "private_mib": 907, "heap_used_mib": null },
+    { "elapsed_seconds": 165, "median_region_tps": 20, "highest_utilization_region_mspt": 0.94, "available_memory_mib": 2118, "rss_mib": 884, "private_mib": 909, "heap_used_mib": null },
+    { "elapsed_seconds": 181, "median_region_tps": 20, "highest_utilization_region_mspt": 0.92, "available_memory_mib": 2107, "rss_mib": 862, "private_mib": 890, "heap_used_mib": null },
+    { "elapsed_seconds": 195, "median_region_tps": 20, "highest_utilization_region_mspt": 0.88, "available_memory_mib": 2096, "rss_mib": 865, "private_mib": 893, "heap_used_mib": 358 },
+    { "elapsed_seconds": 211, "median_region_tps": 20, "highest_utilization_region_mspt": 0.87, "available_memory_mib": 2068, "rss_mib": 870, "private_mib": 896, "heap_used_mib": null },
+    { "elapsed_seconds": 225, "median_region_tps": 20, "highest_utilization_region_mspt": 0.88, "available_memory_mib": 2089, "rss_mib": 870, "private_mib": 898, "heap_used_mib": null },
+    { "elapsed_seconds": 241, "median_region_tps": 20, "highest_utilization_region_mspt": 0.85, "available_memory_mib": 2098, "rss_mib": 870, "private_mib": 898, "heap_used_mib": null },
+    { "elapsed_seconds": 257, "median_region_tps": 20, "highest_utilization_region_mspt": 0.85, "available_memory_mib": 2064, "rss_mib": 874, "private_mib": 901, "heap_used_mib": null, "heap_sample_failed": true }
+  ],
+  "process_isolation": {
+    "java_processes_at_start": 0,
+    "new_processes_detected_before_exit": 0,
+    "probe_errors": 0,
+    "environment_conflict": false
+  },
+  "server_exit": {
+    "signed_code": -1,
+    "reported_unsigned_code": 4294967295,
+    "elapsed_seconds": 257,
+    "wall_process_lifetime_seconds": 302,
+    "crash_report_found": false,
+    "matching_windows_application_system_or_security_events_found": false,
+    "windows_process_termination_audit_enabled": false
+  },
+  "client_status_timeout_after_server_exit": true,
+  "passed": false,
+  "scope": "Seventeen valid performance samples confirm Folia telemetry and show stable memory during this partial run. The server exited unexpectedly before the 30-minute P11 gate. The late heap-attach denial and server exit are both recorded, with no causal relationship established."
+}

@@ -1,0 +1,88 @@
+{
+  "phase": "P6 factory paper and Velocity relay",
+  "kind": "paper",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "dc1e07be62b52353a40298875d1c84e103166681994d7266f01bd929d329014f",
+  "server_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "backend_jar_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "5e9d3d3ba5908e66ae8ebf8b5beab0e21c1e9dace6c6f49be7d04c99fa6f708a",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 265990144,
+    "minimum_free_bytes": 67108864,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 27556,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "454fd4a28a65750546c0bacc7a0e7429fb3e8ce51de4e4e335aec2a479a05e91",
+      "log_file": "hub_a-1795451101791.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 28572,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "7fe013fb3816f9da6f2429bd9e49bd4c70c9751e5b4835eb74169c1d1ddf141e",
+      "log_file": "hub_b-1795451101791.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 10144,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "7fb16c4370a1472175e8a6effaea1e35a0fee4f4f523e452cd26c66767ee38db",
+      "log_file": "velocity-1795451101791.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [],
+      "events": [
+        {
+          "event": "kicked",
+          "reason": "{\"text\":\"您的登录过于频繁，请稍后重试。\"}"
+        },
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "velocity_started": true
+  },
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: SgRelayTarget was kicked: {\"text\":\"您的登录过于频繁，请稍后重试。\"}\n    at EventEmitter.<anonymous> (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:361:14)\n    at Object.onceWrapper (node:events:634:26)\n    at EventEmitter.emit (node:events:531:35)\n    at Client.<anonymous> (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\mineflayer\\lib\\plugins\\kick.js:8:9)\n    at Client.emit (node:events:531:35)\n    at emitPacket (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\minecraft-protocol\\src\\client.js:85:12)\n    at FullPacketParser.<anonymous> (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\minecraft-protocol\\src\\client.js:114:9)\n    at FullPacketParser.emit (node:events:519:28)\n    at addChunk (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\readable-stream\\lib\\internal\\streams\\readable.js:323:12)\n    at readableAddChunk (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\readable-stream\\lib\\internal\\streams\\readable.js:300:9)",
+  "duration_seconds": 43.7
+}

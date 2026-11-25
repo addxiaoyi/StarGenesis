@@ -1,0 +1,20 @@
+{
+  "phase": "P6 organization roster and factory freeze",
+  "kind": "paper",
+  "versions": [
+    "1.21.11-132-ver/1.21.11@c5eb079",
+    "1.21.11-132-ver/1.21.11@c5eb079"
+  ],
+  "owner": "SgOrgPaper",
+  "owner_uuid": "634922b0-21f7-3d0e-9d76-686d6b613666",
+  "checks": {
+    "player_created_organization": true,
+    "non_owner_membership_change_rejected": true,
+    "four_member_roster_prepared": true,
+    "roster_restored_after_restart": true,
+    "owner_started_factory_from_roster": true,
+    "roster_frozen_after_factory_start": true
+  },
+  "passed": true,
+  "scope": "Offline Mineflayer players create and manage an organization roster, restart the isolated Paper/Folia server, restore the roster, start the virtual factory and verify the roster is frozen."
+}

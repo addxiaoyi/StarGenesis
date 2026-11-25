@@ -1,0 +1,140 @@
+{
+  "phase": "P7 arena review audit queries and multilingual decision durability",
+  "verified_at": "2026-11-25T13:56:44.872395+08:00",
+  "scope": "Code-level unit/contract tests, offline CLI tests and plugin packaging. No Paper/Folia server or human workflow was run.",
+  "changes": [
+    "Permission-gated player/console arena decisions [page] and decision <sha256> queries",
+    "20 decision bodies per page in deterministic hash order; fresh checksum and Ed25519 verification",
+    "Separate PUBLISHED, APPROVED_AWAITING_PUBLICATION and NOT_PUBLISHED states; queries do not recover publication",
+    "2 KiB symmetric decision write/read budget and bounded input stream; full-length Chinese rejection survives restart",
+    "Malformed Unicode rejected before signing; shared Java/Node multilingual payload and signature vectors",
+    "Offline verify CLI requires an independently expected reviewer key fingerprint"
+  ],
+  "regressions_reproduced_before_fix": [
+    {
+      "log": ".work/p7-review-multilingual-red.log",
+      "test": "ArenaReviewQueueTest.maximumLengthChineseRejectionRemainsReadableAfterRestart",
+      "observed": "Valid 240-character Chinese rejection was written but failed on retry after restart due to 1 KiB read limit"
+    },
+    {
+      "log": ".work/p7-review-audit-red.log",
+      "test": "ArenaReviewSignatureTest.rejectionReasonMustBeLosslessUnicode",
+      "observed": "Unpaired UTF-16 surrogate was accepted and silently replaced during UTF-8 encoding"
+    }
+  ],
+  "java_runs": [
+    {
+      "runtime": "Java 21",
+      "command": ".\\mvnw.cmd -T1 \"-DargLine=-Xmx192m -XX:ActiveProcessorCount=2\" verify",
+      "log": ".work/p7-review-audit-java21-verify.log",
+      "log_sha256": "cfea1ab4bdd86e5be3647d81a72ed3cf3645d509416468b399029f53efe166b5",
+      "tests": 381,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "stargenesis-api",
+          "tests": 4
+        },
+        {
+          "module": "stargenesis-design",
+          "tests": 107
+        },
+        {
+          "module": "stargenesis-sim",
+          "tests": 95
+        },
+        {
+          "module": "stargenesis-integrations",
+          "tests": 40
+        },
+        {
+          "module": "stargenesis-paper",
+          "tests": 135
+        }
+      ],
+      "plugin_sha256": "c014de8d4ac6e3a36551e0582d43171233df12963d43e7595d9f5e62b786f8fd"
+    },
+    {
+      "runtime": "Java 25",
+      "command": ".\\mvnw.cmd -T1 \"-DargLine=-Xmx192m -XX:ActiveProcessorCount=2\" clean verify",
+      "log": ".work/p7-review-audit-java25-clean-verify.log",
+      "log_sha256": "ae4fc61874d5f333188584519bcc95d634f30ec2c6b479858b76f3a06d7fb90d",
+      "tests": 381,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "stargenesis-api",
+          "tests": 4
+        },
+        {
+          "module": "stargenesis-design",
+          "tests": 107
+        },
+        {
+          "module": "stargenesis-sim",
+          "tests": 95
+        },
+        {
+          "module": "stargenesis-integrations",
+          "tests": 40
+        },
+        {
+          "module": "stargenesis-paper",
+          "tests": 135
+        }
+      ],
+      "plugin_sha256": "3a942832964fd4bdd4cb33c2f0addf5265daf9cfb3527e05234b4126e2953a96"
+    }
+  ],
+  "final_java21_command_regression": {
+    "log": ".work/p7-review-audit-java21-command-tests.log",
+    "tests": 10,
+    "passed": true,
+    "note": "Recompiled and reran after adding the off-page corruption assertion; final Java 25 clean verify includes the same assertion."
+  },
+  "node_tests": {
+    "runtime": "v22.23.5",
+    "command": "node --test scripts/server_benchmark.test.mjs scripts/protocol_proxy_smoke_helpers.test.mjs scripts/arena_review_sign.test.mjs",
+    "tests": 36,
+    "arena_review_tests": 8,
+    "failures": 0,
+    "skipped": 0,
+    "log": ".work/p7-review-audit-node-tests.log",
+    "log_sha256": "84a2f6b07afd907640cded93cf6946e0869e4df72fae439c03f73f48dd7f0841"
+  },
+  "checks": {
+    "module_boundaries": "passed",
+    "tracked_diff_whitespace": "passed",
+    "changed_code_whitespace": "passed",
+    "node_syntax": "passed",
+    "shared_vectors_json": "passed",
+    "plugin_class_target": "Java 21, class major 65",
+    "plugin_contains_review_commands": true,
+    "plugin_zip_duplicate_entries": 0
+  },
+  "artifact": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sha256": "3a942832964fd4bdd4cb33c2f0addf5265daf9cfb3527e05234b4126e2953a96"
+  },
+  "source_sha256": {
+    "scripts/arena_review_sign.mjs": "1a700380c41e044059d7cd64d51ad0b0a2ba9bf5dbd945009f70d4d5ea5d5d46",
+    "scripts/arena_review_sign.test.mjs": "38b6ebb072f764ea2a912aa1023a8128412ee86061964baa1f414c07b670452f",
+    "stargenesis-design/src/main/java/dev/stargenesis/design/ArenaReviewSignature.java": "7154af5c4c237c0210fef6dcd032678e4d2ac5748b972abb827e894ede6b5472",
+    "stargenesis-design/src/test/java/dev/stargenesis/design/ArenaReviewSignatureTest.java": "49dedad49263663653453152ad0091133ae2271347182af2aa0fbcd12cc6ab76",
+    "stargenesis-design/src/test/resources/arena-review-signatures.json": "2f1dd0c74f2c8cecf03befcf5952ad4e3f86372b4104b0aa2bbf2a543eed2299",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ArenaReviewQueue.java": "2deb1c81e2f1e08b89fb6fd04f0edf82b42f039da16b29862ba7fb1fd0afa823",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ArenaReviewCommands.java": "1bd746db3686b0e5dfbf5b5733874211d31cddc0a46063173cdfd89d92d7167e",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/StarGenesisPlugin.java": "ddbea47a0d467080267d1ec4ca49c7d653ab35f7347deb53c4532ffeb759c04e",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/ArenaReviewQueueTest.java": "f7784e226eda1ac533a6f812b75fd8e28baac28f679708eedcb937a25b0f6cdc",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/ArenaReviewCommandsTest.java": "f3b3e0747f969c9655bdc58845fdf12ff0d8fe02a89cf1cac74702cbdd80be6e"
+  },
+  "not_validated": [
+    "Paper/Folia console or player integration for the new commands",
+    "Human usability, production key provisioning and crash/power-loss durability",
+    "P11 real-server performance gate"
+  ]
+}

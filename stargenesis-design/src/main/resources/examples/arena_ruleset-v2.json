@@ -1,0 +1,32 @@
+{
+  "kind": "ARENA_RULESET",
+  "metadata": {
+    "id": { "value": "genesis:arena_ruleset" },
+    "schemaVersion": 2,
+    "version": "1.1.0",
+    "author": "00000000-0000-0000-0000-000000000001",
+    "source": "genesis:public-starter",
+    "dependencies": [],
+    "hash": "1d8da37a1ee1155b5dbabb14f5b281cbf1f09de2f74cf136141ea4c3bd9e4ada",
+    "permissions": { "publicRead": true, "allowClone": true, "editors": [] }
+  },
+  "width": 16,
+  "height": 16,
+  "durationSteps": 1200,
+  "unitBudget": 4,
+  "layout": {
+    "obstacles": [{ "x": 6, "y": 6 }, { "x": 9, "y": 9 }],
+    "teams": [
+      { "id": "red", "spawns": [{ "x": 0, "y": 0 }, { "x": 0, "y": 1 }] },
+      { "id": "blue", "spawns": [{ "x": 15, "y": 15 }, { "x": 15, "y": 14 }] }
+    ],
+    "objectives": [{ "x": 8, "y": 7 }, { "x": 7, "y": 8 }]
+  },
+  "victory": {
+    "combination": "ALL",
+    "conditions": [
+      { "metric": "CONTROLLED_OBJECTIVES", "threshold": 1 },
+      { "metric": "OBJECTIVE_POINTS", "threshold": 3 }
+    ]
+  }
+}

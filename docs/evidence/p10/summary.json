@@ -1,0 +1,79 @@
+{
+  "captured_at": "2026-11-22",
+  "scope": "P8 player-flow automation, P9 settlement-core tests, P10 signed-design import checks, and P11 build/SBOM evidence",
+  "build": {
+    "command": ".\\mvnw.cmd -B -ntp clean verify",
+    "result": "passed",
+    "java": "21.0.13.1",
+    "tests": {
+      "total": 264,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "plugin_artifact": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "plugin_sha256": "e6af15d97f85d1518eb5c370dc3f8694ce73b64bb3fe489a68628f503cb7d476",
+    "log": "p10-p11-clean-verify.log",
+    "log_sha256": "f95cb54ddd2924305b3dfbd3d9cf19aa9af633a8124c5903244da6be5149e1a8"
+  },
+  "servers": {
+    "paper": {
+      "build": "1.21.11-132-ver/1.21.11@c5eb079",
+      "jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+      "plugin_sha256": "e6af15d97f85d1518eb5c370dc3f8694ce73b64bb3fe489a68628f503cb7d476",
+      "passed": true,
+      "checks": "paper-server-result.json",
+      "result_sha256": "c86a159618990dacfc602241818b88ed91cc4cb1c64793ed2e652875470cf484",
+      "console_log": "paper-server-console.log",
+      "console_log_sha256": "11378a2a4c0cd93e443e7181197db44ef05241edf243934ada40772ffbf33449"
+    },
+    "folia": {
+      "build": "1.21.11-14-ver/1.21.11@529aabc",
+      "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+      "plugin_sha256": "e6af15d97f85d1518eb5c370dc3f8694ce73b64bb3fe489a68628f503cb7d476",
+      "passed": true,
+      "checks": "folia-server-result.json",
+      "result_sha256": "f8a0f1537cfc8eaeb2aad6f84eaafba180ea57d83c5d2117b0fd1abbfb692c5f",
+      "console_log": "folia-server-console.log",
+      "console_log_sha256": "4dd4b1eafe1cbbf12e7d2498f344a119dadb0a380b4835ab399b7fdc24b5dfc6"
+    }
+  },
+  "p8_client_flows": {
+    "scope": "Five offline automated clients exercise four UUID seats, lockstep turns, spectator map, restart recovery, and room cleanup.",
+    "paper": {
+      "passed": true,
+      "result": "paper-arena-clients.json",
+      "result_sha256": "63462196cc39d5952689223c737e8152d58008033b1363e77a6cb96d7da414ed",
+      "log": "paper-arena-clients.log",
+      "log_sha256": "8de6a77032b7896e004f6d2bc2f38f5719b0e0980f036ccdf6c15fa1853f5a6e"
+    },
+    "folia": {
+      "passed": true,
+      "result": "folia-arena-clients.json",
+      "result_sha256": "5adcd51c9b82519f7d3037e3e8276a20d7a81c359729f261bf4f03e402636f7a",
+      "log": "folia-arena-clients.log",
+      "log_sha256": "d9c261c146e4c8501108a891d610c9961abb5b6f2a7e8563f73e2461f758ff18"
+    }
+  },
+  "p11_sbom": {
+    "format": "CycloneDX",
+    "spec_version": "1.6",
+    "components": 61,
+    "json": "bom.json",
+    "json_sha256": "f089e1b0784273d809edae7fc2e97aff98f896a7d11a5b2197721996df979e38",
+    "xml": "bom.xml",
+    "xml_sha256": "f7834822eedb949a302ea26cc206ec9c209567ac8fb22e2bf81f78633d769c0e",
+    "generation_log": "p11-sbom.log",
+    "generation_log_sha256": "94e2c923f108c149a0932aac9cb384866c2a45f966fc9bf9a9876835c9a1ca6c",
+    "validation_warnings": [
+      "JSON Schema validator reported unknown meta:enum keyword",
+      "JSON Schema validator reported unknown deprecated keyword"
+    ]
+  },
+  "limits": [
+    "P8 automation uses offline clients and does not represent human GUI or usability evaluation.",
+    "P9 tests use a simulated idempotent gateway and do not execute real economy or inventory transfers.",
+    "P10 does not verify third-party plugin interoperability or runtime extension loading.",
+    "P11 Java 25 CI execution, long-duration Paper/Folia performance, release signing, and production release operations remain unverified."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "phase": "P7 idempotent arena approval retry",
+  "verified_at": "2026-11-23T00:34:26+08:00",
+  "test": {
+    "class": "dev.stargenesis.paper.ArenaReviewQueueTest",
+    "method": "submissionIsValidatedVisibleAndOnlyPublishedAfterOperatorApproval",
+    "retry_assertion": "The same reviewer can repeat a completed approval after the pending submission file has been removed, and receives the already-published immutable ruleset.",
+    "reported_class_tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "full_verify": {
+    "java_21": {
+      "distribution": "Eclipse Adoptium Temurin",
+      "version": "21.0.13.1+2-LTS",
+      "completed_at": "2026-11-23T00:34:26+08:00",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -DargLine=-Xmx512m verify",
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "java_25": {
+      "version": "25.0.5.1+2-LTS",
+      "completed_at": "2026-11-23T00:46:45+08:00",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -pl stargenesis-paper -am -DargLine=-Xmx384m verify",
+      "paper_target_cleaned_before_run": true,
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "8756082B7FF686EE8372AF77357C77870B5E029BF6D61B89F9BA85623D4C8E6E",
+  "limitations": "This is a unit and build verification. Paper/Folia runtime behavior was not exercised."
+}

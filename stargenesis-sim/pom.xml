@@ -5,6 +5,7 @@
   <artifactId>stargenesis-sim</artifactId>
   <dependencies>
     <dependency><groupId>dev.stargenesis</groupId><artifactId>stargenesis-api</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>dev.stargenesis</groupId><artifactId>stargenesis-design</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><scope>test</scope></dependency>
   </dependencies>
 </project>

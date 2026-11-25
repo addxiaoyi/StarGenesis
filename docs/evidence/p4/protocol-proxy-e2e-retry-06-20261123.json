@@ -1,0 +1,45 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "2a69c143fc2603a4cee53673ef5f6da8f680c323223eb4a9078abd1472a98828",
+  "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [
+      {
+        "pid": 32432,
+        "jvm": "folia.jar nogui",
+        "first_observed_at": "2026-11-22T20:26:46.203Z"
+      }
+    ],
+    "java_process_probe_errors": [],
+    "java_processes_at_end": [
+      {
+        "pid": 32432,
+        "description": "folia.jar nogui"
+      }
+    ]
+  },
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 26616,
+      "exit_code": null,
+      "signal": "SIGTERM",
+      "log_sha256": "073f9065e87ced41d86309e1a4c9ae7d452144e4afc3f528fe0f5cabbc53f12d",
+      "log_file": "hub_a.log"
+    }
+  },
+  "clients": {},
+  "checks": {},
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: Another Java process started during the proxy test: [{\"pid\":32432,\"jvm\":\"folia.jar nogui\",\"first_observed_at\":\"2026-11-22T20:26:46.203Z\"}]\n    at assertProcessIsolation (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:128:20)\n    at Timeout.poll [as _onTimeout] (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:96:9)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)",
+  "environment_conflict": {
+    "error": "Another Java process started during the proxy test: [{\"pid\":32432,\"jvm\":\"folia.jar nogui\",\"first_observed_at\":\"2026-11-22T20:26:46.203Z\"}]"
+  },
+  "duration_seconds": 27.2
+}

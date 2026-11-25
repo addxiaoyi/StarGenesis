@@ -1,0 +1,381 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-parent ---
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-api >-------------------
+[INFO] Building stargenesis-api 4.0.0-SNAPSHOT                            [2/6]
+[INFO]   from stargenesis-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-api ---
+[INFO] Deleting C:\Users\Administrator\Documents\stargenesis\stargenesis-api\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-api ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-api ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.stargenesis.api.ContractTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.166 s -- in dev.stargenesis.api.ContractTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-api ---
+[INFO] Building jar: C:\Users\Administrator\Documents\stargenesis\stargenesis-api\target\stargenesis-api-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-design >-----------------
+[INFO] Building stargenesis-design 4.0.0-SNAPSHOT                         [3/6]
+[INFO]   from stargenesis-design\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-design ---
+[INFO] Deleting C:\Users\Administrator\Documents\stargenesis\stargenesis-design\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-design ---
+[INFO] Copying 13 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-design ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 34 source files with javac [debug release 21] to target\classes
+[INFO] /C:/Users/Administrator/Documents/stargenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: C:\Users\Administrator\Documents\stargenesis\stargenesis-design\src\main\java\dev\stargenesis\design\DesignCodec.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /C:/Users/Administrator/Documents/stargenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-design ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-design ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-design ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.stargenesis.design.ArenaReviewSignatureTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.509 s -- in dev.stargenesis.design.ArenaReviewSignatureTest
+[INFO] Running dev.stargenesis.design.ArenaRulesetEditorSessionTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.489 s -- in dev.stargenesis.design.ArenaRulesetEditorSessionTest
+[INFO] Running dev.stargenesis.design.ArenaRulesetV2Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.271 s -- in dev.stargenesis.design.ArenaRulesetV2Test
+[INFO] Running dev.stargenesis.design.ArenaRulesetValidatorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.stargenesis.design.ArenaRulesetValidatorTest
+[INFO] Running dev.stargenesis.design.BlueprintAssemblySessionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s -- in dev.stargenesis.design.BlueprintAssemblySessionTest
+[INFO] Running dev.stargenesis.design.BlueprintEditorTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in dev.stargenesis.design.BlueprintEditorTest
+[INFO] Running dev.stargenesis.design.DesignCodecTest
+[INFO] Tests run: 43, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.463 s -- in dev.stargenesis.design.DesignCodecTest
+[INFO] Running dev.stargenesis.design.DesignExchangeTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.194 s -- in dev.stargenesis.design.DesignExchangeTest
+[INFO] Running dev.stargenesis.design.ProgramEditorSessionTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.114 s -- in dev.stargenesis.design.ProgramEditorSessionTest
+[INFO] Running dev.stargenesis.design.ProgramExecutionTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.093 s -- in dev.stargenesis.design.ProgramExecutionTest
+[INFO] Running dev.stargenesis.design.ProtocolPayloadCodecTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in dev.stargenesis.design.ProtocolPayloadCodecTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 107, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-design ---
+[INFO] Building jar: C:\Users\Administrator\Documents\stargenesis\stargenesis-design\target\stargenesis-design-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-sim >-------------------
+[INFO] Building stargenesis-sim 4.0.0-SNAPSHOT                            [4/6]
+[INFO]   from stargenesis-sim\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-sim ---
+[INFO] Deleting C:\Users\Administrator\Documents\stargenesis\stargenesis-sim\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-sim\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-sim ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 43 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-sim\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-sim ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-sim ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.stargenesis.sim.ArenaMatchWorldTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.623 s -- in dev.stargenesis.sim.ArenaMatchWorldTest
+[INFO] Running dev.stargenesis.sim.EcologyCheckpointCodecTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.176 s -- in dev.stargenesis.sim.EcologyCheckpointCodecTest
+[INFO] Running dev.stargenesis.sim.EcologyWorldTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.76 s -- in dev.stargenesis.sim.EcologyWorldTest
+[INFO] Running dev.stargenesis.sim.FactoryCheckpointCodecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in dev.stargenesis.sim.FactoryCheckpointCodecTest
+[INFO] Running dev.stargenesis.sim.FactoryWorldTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.212 s -- in dev.stargenesis.sim.FactoryWorldTest
+[INFO] Running dev.stargenesis.sim.GridSimulationWorldTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.706 s -- in dev.stargenesis.sim.GridSimulationWorldTest
+[INFO] Running dev.stargenesis.sim.GridWorldCheckpointCodecTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in dev.stargenesis.sim.GridWorldCheckpointCodecTest
+[INFO] Running dev.stargenesis.sim.MatterReactionNetworkTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in dev.stargenesis.sim.MatterReactionNetworkTest
+[INFO] Running dev.stargenesis.sim.ProtocolMailboxCheckpointCodecTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in dev.stargenesis.sim.ProtocolMailboxCheckpointCodecTest
+[INFO] Running dev.stargenesis.sim.ProtocolMailboxHubTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in dev.stargenesis.sim.ProtocolMailboxHubTest
+[INFO] Running dev.stargenesis.sim.SimulationContractsTest
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.461 s -- in dev.stargenesis.sim.SimulationContractsTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 95, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-sim ---
+[INFO] Building jar: C:\Users\Administrator\Documents\stargenesis\stargenesis-sim\target\stargenesis-sim-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< dev.stargenesis:stargenesis-integrations >--------------
+[INFO] Building StarGenesis Integration Contracts 4.0.0-SNAPSHOT          [5/6]
+[INFO]   from stargenesis-integrations\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-integrations ---
+[INFO] Deleting C:\Users\Administrator\Documents\stargenesis\stargenesis-integrations\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-integrations\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-integrations\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-integrations ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.173 s -- in dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Running dev.stargenesis.integrations.ExtensionGrantTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in dev.stargenesis.integrations.ExtensionGrantTest
+[INFO] Running dev.stargenesis.integrations.NationResourceSettlementGatewayTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.112 s -- in dev.stargenesis.integrations.NationResourceSettlementGatewayTest
+[INFO] Running dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-integrations ---
+[INFO] Building jar: C:\Users\Administrator\Documents\stargenesis\stargenesis-integrations\target\stargenesis-integrations-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-paper >------------------
+[INFO] Building stargenesis-paper 4.0.0-SNAPSHOT                          [6/6]
+[INFO]   from stargenesis-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-paper ---
+[INFO] Deleting C:\Users\Administrator\Documents\stargenesis\stargenesis-paper\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-paper ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 61 source files with javac [debug release 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\stargenesis\stargenesis-paper\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 34 source files with javac [debug release 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-paper ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.stargenesis.paper.ArenaMatchServiceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 s -- in dev.stargenesis.paper.ArenaMatchServiceTest
+[INFO] Running dev.stargenesis.paper.ArenaReviewCommandsTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.394 s -- in dev.stargenesis.paper.ArenaReviewCommandsTest
+[INFO] Running dev.stargenesis.paper.ArenaReviewQueueTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.855 s -- in dev.stargenesis.paper.ArenaReviewQueueTest
+[INFO] Running dev.stargenesis.paper.ArenaReviewTrustFileStoreTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.080 s -- in dev.stargenesis.paper.ArenaReviewTrustFileStoreTest
+[INFO] Running dev.stargenesis.paper.ArenaRoomStoreTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in dev.stargenesis.paper.ArenaRoomStoreTest
+[INFO] Running dev.stargenesis.paper.ArenaRoomTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in dev.stargenesis.paper.ArenaRoomTest
+[INFO] Running dev.stargenesis.paper.DesignSigningTrustFileStoreTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in dev.stargenesis.paper.DesignSigningTrustFileStoreTest
+[INFO] Running dev.stargenesis.paper.EcologyGroupCodecTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in dev.stargenesis.paper.EcologyGroupCodecTest
+[INFO] Running dev.stargenesis.paper.EcologyGroupRecordTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.paper.EcologyGroupRecordTest
+[INFO] Running dev.stargenesis.paper.EcologyGroupStoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in dev.stargenesis.paper.EcologyGroupStoreTest
+[INFO] Running dev.stargenesis.paper.EcologyRecipeDraftTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.paper.EcologyRecipeDraftTest
+[INFO] Running dev.stargenesis.paper.EcologySessionTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in dev.stargenesis.paper.EcologySessionTest
+[INFO] Running dev.stargenesis.paper.FactoryCheckpointStoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.120 s -- in dev.stargenesis.paper.FactoryCheckpointStoreTest
+[INFO] Running dev.stargenesis.paper.FactoryOrganizationSessionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in dev.stargenesis.paper.FactoryOrganizationSessionTest
+[INFO] Running dev.stargenesis.paper.FactoryOrganizationStoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in dev.stargenesis.paper.FactoryOrganizationStoreTest
+[INFO] Running dev.stargenesis.paper.FactoryRelayCommandRulesTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.paper.FactoryRelayCommandRulesTest
+[INFO] Running dev.stargenesis.paper.FactoryRelayOutboxStoreTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in dev.stargenesis.paper.FactoryRelayOutboxStoreTest
+[INFO] Running dev.stargenesis.paper.FactoryRelayPacketCodecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.stargenesis.paper.FactoryRelayPacketCodecTest
+[INFO] Running dev.stargenesis.paper.FactoryRelayReceiptStoreTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in dev.stargenesis.paper.FactoryRelayReceiptStoreTest
+[INFO] Running dev.stargenesis.paper.FactoryRelayTransactionStoreTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.296 s -- in dev.stargenesis.paper.FactoryRelayTransactionStoreTest
+[INFO] Running dev.stargenesis.paper.FactorySessionTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.149 s -- in dev.stargenesis.paper.FactorySessionTest
+[INFO] Running dev.stargenesis.paper.LaboratorySessionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.120 s -- in dev.stargenesis.paper.LaboratorySessionTest
+[INFO] Running dev.stargenesis.paper.PluginDescriptorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in dev.stargenesis.paper.PluginDescriptorTest
+[INFO] Running dev.stargenesis.paper.ProtocolChipStateCodecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.stargenesis.paper.ProtocolChipStateCodecTest
+[INFO] Running dev.stargenesis.paper.ProtocolInboxCheckpointCodecTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in dev.stargenesis.paper.ProtocolInboxCheckpointCodecTest
+[INFO] Running dev.stargenesis.paper.ProtocolRelayOutboxStoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in dev.stargenesis.paper.ProtocolRelayOutboxStoreTest
+[INFO] Running dev.stargenesis.paper.ProtocolRelayPacketCodecTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in dev.stargenesis.paper.ProtocolRelayPacketCodecTest
+[INFO] Running dev.stargenesis.paper.ProtocolRelayProxyFrameTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.paper.ProtocolRelayProxyFrameTest
+[INFO] Running dev.stargenesis.paper.ProtocolRelaySettingsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.stargenesis.paper.ProtocolRelaySettingsTest
+[INFO] Running dev.stargenesis.paper.PublishedDesignStoreTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.224 s -- in dev.stargenesis.paper.PublishedDesignStoreTest
+[INFO] Running dev.stargenesis.paper.SettlementJournalCommandsTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.121 s -- in dev.stargenesis.paper.SettlementJournalCommandsTest
+[INFO] Running dev.stargenesis.paper.SettlementSagaFileStoreTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.649 s -- in dev.stargenesis.paper.SettlementSagaFileStoreTest
+[INFO] Running dev.stargenesis.paper.SharedEcologyCommandsTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 s -- in dev.stargenesis.paper.SharedEcologyCommandsTest
+[INFO] Running dev.stargenesis.paper.SignedDesignArchiveStoreTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 s -- in dev.stargenesis.paper.SignedDesignArchiveStoreTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 146, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-paper ---
+[INFO] Building jar: C:\Users\Administrator\Documents\stargenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- shade:3.6.0:shade (default) @ stargenesis-paper ---
+[INFO] Including dev.stargenesis:stargenesis-api:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-design:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.18.3 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:2.18.3 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:2.18.3 in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-sim:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-integrations:jar:4.0.0-SNAPSHOT in the shaded jar.
+[WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar define 2 overlapping resources: 
+[WARNING]   - META-INF/LICENSE
+[WARNING]   - META-INF/NOTICE
+[WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar, stargenesis-api-4.0.0-SNAPSHOT.jar, stargenesis-design-4.0.0-SNAPSHOT.jar, stargenesis-integrations-4.0.0-SNAPSHOT.jar, stargenesis-paper-4.0.0-SNAPSHOT.jar, stargenesis-sim-4.0.0-SNAPSHOT.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\Administrator\Documents\stargenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT.jar with C:\Users\Administrator\Documents\stargenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT-shaded.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [  0.396 s]
+[INFO] stargenesis-api .................................... SUCCESS [  5.059 s]
+[INFO] stargenesis-design ................................. SUCCESS [  7.339 s]
+[INFO] stargenesis-sim .................................... SUCCESS [ 33.583 s]
+[INFO] StarGenesis Integration Contracts .................. SUCCESS [  2.498 s]
+[INFO] stargenesis-paper .................................. SUCCESS [ 16.617 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:05 min
+[INFO] Finished at: 2026-11-25T14:08:10+08:00
+[INFO] ------------------------------------------------------------------------

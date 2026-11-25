@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-25",
+  "validation": "Windows Java process inventory and shared-host policy",
+  "benchmark_script_sha256": "F456DC0F0F0DE44813CBE5872240B160B627B37C43C12DF2DAB52E128902C7EC",
+  "test_script_sha256": "85DB5537B1F6BF92EC5675388B88C06C5BF11307635319C515FC23C7929418A3",
+  "node_test_log": ".work/p11-monitoring-tests-20261125.log",
+  "node_test_log_sha256": "666FB1C72302251DCF9DAF74FAD7D97646C55AEE90F3F6258CB15DFA38BB8D0A",
+  "node_tests": {
+    "count": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "windows_inventory_live_check": {
+    "passed": true,
+    "java_server_detected": true,
+    "pid_recorded_in_json": false
+  },
+  "shared_host_mode": {
+    "tested": true,
+    "numeric_gates_retained": true,
+    "process_probe_errors_still_fail": true
+  },
+  "scripts_syntax": "passed",
+  "module_boundary": "passed",
+  "diff_check": "passed"
+}

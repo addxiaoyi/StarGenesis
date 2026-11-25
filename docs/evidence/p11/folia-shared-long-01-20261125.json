@@ -1,0 +1,548 @@
+{
+  "phase": "P11 Paper/Folia runtime load and memory benchmark",
+  "kind": "folia",
+  "benchmark_script_sha256": "994838b97104cdf4f09ea6b425959d389460937cc98c7805716fd56b03b400e3",
+  "requested_duration_seconds": 1800,
+  "sample_interval_seconds": 15,
+  "work_interval_seconds": 2,
+  "advance_steps_per_write": 100,
+  "memory_sample_interval_seconds": 60,
+  "jvm_arguments": [
+    "-Xms128M",
+    "-Xmx512M",
+    "-XX:ActiveProcessorCount=4",
+    "-XX:+UseG1GC",
+    "-cp",
+    "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\versions\\1.21.11\\folia-1.21.11.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\at\\yawk\\lz4\\lz4-java\\1.8.1\\lz4-java-1.8.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\ca\\spottedleaf\\concurrentutil\\0.0.8\\concurrentutil-0.0.8.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\azure\\azure-json\\1.4.0\\azure-json-1.4.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\github\\oshi\\oshi-core\\6.9.0\\oshi-core-6.9.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\code\\gson\\gson\\2.13.2\\gson-2.13.2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\errorprone\\error_prone_annotations\\2.41.0\\error_prone_annotations-2.41.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\guava\\failureaccess\\1.0.3\\failureaccess-1.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\guava\\guava\\33.5.0-jre\\guava-33.5.0-jre.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\guava\\listenablefuture\\9999.0-empty-to-avoid-conflict-with-guava\\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\j2objc\\j2objc-annotations\\3.1\\j2objc-annotations-3.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\google\\protobuf\\protobuf-java\\4.29.0\\protobuf-java-4.29.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\googlecode\\json-simple\\json-simple\\1.1.1\\json-simple-1.1.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\lmax\\disruptor\\3.4.4\\disruptor-3.4.4.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\microsoft\\azure\\msal4j\\1.23.1\\msal4j-1.23.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mojang\\authlib\\7.0.61\\authlib-7.0.61.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mojang\\brigadier\\1.3.10\\brigadier-1.3.10.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mojang\\datafixerupper\\9.0.19\\datafixerupper-9.0.19.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mojang\\jtracy\\1.0.37\\jtracy-1.0.37.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mojang\\logging\\1.6.11\\logging-1.6.11.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\mysql\\mysql-connector-j\\9.2.0\\mysql-connector-j-9.2.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\com\\velocitypowered\\velocity-native\\3.4.0-SNAPSHOT\\velocity-native-3.4.0-SNAPSHOT.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\commons-codec\\commons-codec\\1.16.0\\commons-codec-1.16.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\commons-io\\commons-io\\2.20.0\\commons-io-2.20.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\commons-lang\\commons-lang\\2.6\\commons-lang-2.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\dev\\folia\\folia-api\\1.21.11-R0.1-SNAPSHOT\\folia-api-1.21.11-R0.1-SNAPSHOT.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\leangen\\geantyref\\geantyref\\1.3.16\\geantyref-1.3.16.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-buffer\\4.2.7.Final\\netty-buffer-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-codec-base\\4.2.7.Final\\netty-codec-base-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-codec-compression\\4.2.7.Final\\netty-codec-compression-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-codec-haproxy\\4.2.7.Final\\netty-codec-haproxy-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-codec-http\\4.2.7.Final\\netty-codec-http-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-common\\4.2.7.Final\\netty-common-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-handler\\4.2.7.Final\\netty-handler-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-resolver\\4.2.7.Final\\netty-resolver-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-classes-epoll\\4.2.7.Final\\netty-transport-classes-epoll-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-classes-kqueue\\4.2.7.Final\\netty-transport-classes-kqueue-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-native-epoll\\4.2.7.Final\\netty-transport-native-epoll-4.2.7.Final-linux-aarch_64.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-native-epoll\\4.2.7.Final\\netty-transport-native-epoll-4.2.7.Final-linux-x86_64.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-native-kqueue\\4.2.7.Final\\netty-transport-native-kqueue-4.2.7.Final-osx-aarch_64.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-native-kqueue\\4.2.7.Final\\netty-transport-native-kqueue-4.2.7.Final-osx-x86_64.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport-native-unix-common\\4.2.7.Final\\netty-transport-native-unix-common-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\netty\\netty-transport\\4.2.7.Final\\netty-transport-4.2.7.Final.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\asm-utils\\0.0.3\\asm-utils-0.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\paper\\paper-api\\1.21.11-R0.1-SNAPSHOT\\paper-api-1.21.11-R0.1-SNAPSHOT.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\parchment\\data\\parchment\\1.21.11-pre3+build.2\\parchment-1.21.11-pre3+build.2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\reflection-rewriter-proxy-generator\\0.0.3\\reflection-rewriter-proxy-generator-0.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\reflection-rewriter-runtime\\0.0.3\\reflection-rewriter-runtime-0.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\io\\papermc\\reflection-rewriter\\0.0.3\\reflection-rewriter-0.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\it\\unimi\\dsi\\fastutil\\8.5.18\\fastutil-8.5.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\javax\\inject\\javax.inject\\1\\javax.inject-1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\me\\lucko\\spark-api\\0.1-20240720.200737-2\\spark-api-0.1-20240720.200737-2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\me\\lucko\\spark-paper\\1.10.152\\spark-paper-1.10.152.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\java\\dev\\jna\\jna-platform\\5.17.0\\jna-platform-5.17.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\java\\dev\\jna\\jna\\5.17.0\\jna-5.17.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-api\\4.26.1\\adventure-api-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-key\\4.26.1\\adventure-key-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-logger-slf4j\\4.26.1\\adventure-text-logger-slf4j-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-minimessage\\4.26.1\\adventure-text-minimessage-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-ansi\\4.26.1\\adventure-text-serializer-ansi-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-commons\\4.26.1\\adventure-text-serializer-commons-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-gson\\4.26.1\\adventure-text-serializer-gson-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-json\\4.26.1\\adventure-text-serializer-json-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-legacy\\4.26.1\\adventure-text-serializer-legacy-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\adventure-text-serializer-plain\\4.26.1\\adventure-text-serializer-plain-4.26.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\ansi\\1.1.1\\ansi-1.1.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\examination-api\\1.3.0\\examination-api-1.3.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\examination-string\\1.3.0\\examination-string-1.3.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\kyori\\option\\1.1.0\\option-1.1.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\md-5\\bungeecord-chat\\1.21-R0.2-deprecated+build.21\\bungeecord-chat-1.21-R0.2-deprecated+build.21.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\minecrell\\terminalconsoleappender\\1.3.0\\terminalconsoleappender-1.3.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\neoforged\\AutoRenamingTool\\2.0.3\\AutoRenamingTool-2.0.3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\neoforged\\installertools\\cli-utils\\2.1.4\\cli-utils-2.1.4.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\neoforged\\javadoctor\\gson-io\\2.0.17\\gson-io-2.0.17.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\neoforged\\javadoctor\\spec\\2.0.17\\spec-2.0.17.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\neoforged\\srgutils\\1.0.9\\srgutils-1.0.9.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\net\\sf\\jopt-simple\\jopt-simple\\6.0-alpha-3\\jopt-simple-6.0-alpha-3.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\commons\\commons-lang3\\3.19.0\\commons-lang3-3.19.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\httpcomponents\\httpclient\\4.5.14\\httpclient-4.5.14.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\httpcomponents\\httpcore\\4.4.16\\httpcore-4.4.16.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\logging\\log4j\\log4j-api\\2.25.2\\log4j-api-2.25.2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\logging\\log4j\\log4j-core\\2.25.2\\log4j-core-2.25.2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\logging\\log4j\\log4j-iostreams\\2.24.1\\log4j-iostreams-2.24.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\logging\\log4j\\log4j-slf4j2-impl\\2.25.2\\log4j-slf4j2-impl-2.25.2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-artifact\\3.9.6\\maven-artifact-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-builder-support\\3.9.6\\maven-builder-support-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-model-builder\\3.9.6\\maven-model-builder-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-model\\3.9.6\\maven-model-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-repository-metadata\\3.9.6\\maven-repository-metadata-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\maven-resolver-provider\\3.9.6\\maven-resolver-provider-3.9.6.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-api\\1.9.18\\maven-resolver-api-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-connector-basic\\1.9.18\\maven-resolver-connector-basic-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-impl\\1.9.18\\maven-resolver-impl-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-named-locks\\1.9.18\\maven-resolver-named-locks-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-spi\\1.9.18\\maven-resolver-spi-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-transport-http\\1.9.18\\maven-resolver-transport-http-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\apache\\maven\\resolver\\maven-resolver-util\\1.9.18\\maven-resolver-util-1.9.18.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\codehaus\\plexus\\plexus-interpolation\\1.26\\plexus-interpolation-1.26.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\codehaus\\plexus\\plexus-utils\\3.5.1\\plexus-utils-3.5.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\eclipse\\sisu\\org.eclipse.sisu.inject\\0.9.0.M2\\org.eclipse.sisu.inject-0.9.0.M2.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jline\\jline-native\\3.27.1\\jline-native-3.27.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jline\\jline-reader\\3.20.0\\jline-reader-3.20.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jline\\jline-terminal-ffm\\3.27.1\\jline-terminal-ffm-3.27.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jline\\jline-terminal-jni\\3.27.1\\jline-terminal-jni-3.27.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jline\\jline-terminal\\3.27.1\\jline-terminal-3.27.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\joml\\joml\\1.10.8\\joml-1.10.8.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\jspecify\\jspecify\\1.0.0\\jspecify-1.0.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm-commons\\9.8\\asm-commons-9.8.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm-commons\\9.9.1\\asm-commons-9.9.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm-tree\\9.8\\asm-tree-9.8.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm-tree\\9.9.1\\asm-tree-9.9.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm\\9.8\\asm-9.8.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\ow2\\asm\\asm\\9.9.1\\asm-9.9.1.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\slf4j\\jcl-over-slf4j\\1.7.36\\jcl-over-slf4j-1.7.36.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\slf4j\\slf4j-api\\2.0.17\\slf4j-api-2.0.17.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\spongepowered\\configurate-core\\4.2.0\\configurate-core-4.2.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\spongepowered\\configurate-yaml\\4.2.0\\configurate-yaml-4.2.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\xerial\\sqlite-jdbc\\3.49.1.0\\sqlite-jdbc-3.49.1.0.jar;C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\factory-folia-cached\\libraries\\org\\yaml\\snakeyaml\\2.2\\snakeyaml-2.2.jar",
+    "org.bukkit.craftbukkit.Main",
+    "--nogui"
+  ],
+  "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "backend_jar_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "plugin_jar_sha256": "5e9d3d3ba5908e66ae8ebf8b5beab0e21c1e9dace6c6f49be7d04c99fa6f708a",
+  "server_log": "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\p11-folia-shared-long-01-20261125\\benchmark-server.log",
+  "server_process": {
+    "pid": 24768,
+    "spawned_at": "2026-11-24T17:53:27.358Z"
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 17,
+      "tps": 19.93,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 2.95,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[01:54:22 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[01:54:22 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 8.2% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 4.27",
+        "- Lowest Region TPS: 19.93",
+        "- Median Region TPS: 19.93",
+        "- Highest Region TPS: 19.93",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-9,80,-9]:",
+        "5.9% util at 2.95 MSPT at 19.93 TPS",
+        "Chunks: 121 Players: 4 Entities: 4",
+        "[01:54:22 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[01:54:22 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": null,
+      "available_memory_bytes": 289005568,
+      "rss_bytes": 755343360,
+      "private_bytes": 929628160,
+      "heap_used_bytes": 395956224
+    },
+    {
+      "elapsed_seconds": 31,
+      "tps": 19.86,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.28,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[01:54:37 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[01:54:37 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 4.0% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 19.86",
+        "- Median Region TPS: 19.86",
+        "- Highest Region TPS: 19.86",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-9,80,-9]:",
+        "2.5% util at 1.28 MSPT at 19.86 TPS",
+        "Chunks: 121 Players: 4 Entities: 4",
+        "[01:54:37 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[01:54:37 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 9.16908229638009,
+      "available_memory_bytes": 329838592,
+      "rss_bytes": 767623168,
+      "private_bytes": 940564480,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 45,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.04,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[01:54:52 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[01:54:52 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.5% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-9,80,-9]:",
+        "2.1% util at 1.04 MSPT at 20.00 TPS",
+        "Chunks: 121 Players: 4 Entities: 4",
+        "[01:54:52 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[01:54:52 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 6.7833401166734495,
+      "available_memory_bytes": 311537664,
+      "rss_bytes": 783872000,
+      "private_bytes": 953298944,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 61,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.98,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[01:55:07 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[01:55:07 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.2% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-9,80,-9]:",
+        "2.0% util at 0.98 MSPT at 20.00 TPS",
+        "Chunks: 121 Players: 4 Entities: 4",
+        "[01:55:07 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[01:55:07 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 10.200969401213401,
+      "available_memory_bytes": 323620864,
+      "rss_bytes": 786186240,
+      "private_bytes": 953024512,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 75,
+      "tps": 19.93,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.95,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[01:55:22 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[01:55:22 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.2% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 19.93",
+        "- Median Region TPS: 19.93",
+        "- Highest Region TPS: 19.93",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-9,80,-9]:",
+        "1.9% util at 0.95 MSPT at 19.93 TPS",
+        "Chunks: 121 Players: 4 Entities: 4",
+        "[01:55:22 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[01:55:22 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 7.140456989247311,
+      "available_memory_bytes": 323354624,
+      "rss_bytes": 787091456,
+      "private_bytes": 950452224,
+      "heap_used_bytes": null,
+      "heap_sample_error": "Command failed: C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\jdk21\\jdk-21.0.13.1+2\\bin\\jcmd.exe 24768 GC.heap_info"
+    }
+  ],
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 156,
+    "advance_commands": 39,
+    "simulated_ticks": 3900,
+    "total_client_commands": 204
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_bytes": 8589004800,
+    "available_memory_bytes_at_start": 1258389504,
+    "other_server_workload": "Shared developer host; concurrent Java processes are measured and recorded",
+    "library_mode": "shared classpath",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [
+      {
+        "elapsed_seconds": 77,
+        "reason": "Command failed: C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\jdk21\\jdk-21.0.13.1+2\\bin\\jcmd.exe -l"
+      },
+      {
+        "elapsed_seconds": 78,
+        "reason": "Command failed: C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\jdk21\\jdk-21.0.13.1+2\\bin\\jcmd.exe -l\nOpenJDK 64-Bit Server VM warning: INFO: os::commit_memory(0x0000000080000000, 8388608, 0) failed; error='ҳ���ļ�̫С���޷���ɲ�����' (DOS error/errno=1455)\n"
+      }
+    ],
+    "java_process_observations": [
+      {
+        "elapsed_seconds": 5,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 11,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 17,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 22,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 28,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 33,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 39,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 44,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 50,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 55,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 61,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 66,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      },
+      {
+        "elapsed_seconds": 72,
+        "newly_observed_count": 0,
+        "java_processes_started_during_run_count": 0
+      }
+    ],
+    "measurement_mode": "shared-host"
+  },
+  "scope": "Four offline Mineflayer clients exercise the persisted P6 factory on a shared host. Concurrent Java processes are observed and recorded; measurements are not an isolated-host comparison.",
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: Could not verify Java process isolation during the benchmark\n    at observeBenchmarkJavaProcesses (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:327:11)\n    at main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:686:9)",
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc"
+  },
+  "failed_after_seconds": 78,
+  "passed": false,
+  "client_diagnostics": {
+    "SgBenchF1": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "工厂已推进 100 步，当前 tick 3300。",
+        "虚拟工厂 factory-main | tick 3300/72000 | 订单 0/64\n状态哈希 39cdc4a00f474290\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3400/72000 | 订单 0/64\n状态哈希 a45bd20bb581dc0a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3500/72000 | 订单 0/64\n状态哈希 f84e17046836c22a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3600/72000 | 订单 0/64\n状态哈希 d07b434a80f6e36a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3700。",
+        "虚拟工厂 factory-main | tick 3700/72000 | 订单 0/64\n状态哈希 e825b2f94df18719\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3800/72000 | 订单 0/64\n状态哈希 0b27a403ceff5ebe\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    },
+    "SgBenchF2": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 3300/72000 | 订单 0/64\n状态哈希 39cdc4a00f474290\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3400。",
+        "虚拟工厂 factory-main | tick 3400/72000 | 订单 0/64\n状态哈希 a45bd20bb581dc0a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3500/72000 | 订单 0/64\n状态哈希 f84e17046836c22a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3600/72000 | 订单 0/64\n状态哈希 d07b434a80f6e36a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3700/72000 | 订单 0/64\n状态哈希 e825b2f94df18719\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3800。",
+        "虚拟工厂 factory-main | tick 3800/72000 | 订单 0/64\n状态哈希 0b27a403ceff5ebe\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    },
+    "SgBenchF3": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 3300/72000 | 订单 0/64\n状态哈希 39cdc4a00f474290\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3400/72000 | 订单 0/64\n状态哈希 a45bd20bb581dc0a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3500。",
+        "虚拟工厂 factory-main | tick 3500/72000 | 订单 0/64\n状态哈希 f84e17046836c22a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3600/72000 | 订单 0/64\n状态哈希 d07b434a80f6e36a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3700/72000 | 订单 0/64\n状态哈希 e825b2f94df18719\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3800/72000 | 订单 0/64\n状态哈希 0b27a403ceff5ebe\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3900。"
+      ]
+    },
+    "SgBenchF4": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 3200/72000 | 订单 0/64\n状态哈希 ec4460db936da3f0\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3300/72000 | 订单 0/64\n状态哈希 39cdc4a00f474290\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3400/72000 | 订单 0/64\n状态哈希 a45bd20bb581dc0a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3500/72000 | 订单 0/64\n状态哈希 f84e17046836c22a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 3600。",
+        "虚拟工厂 factory-main | tick 3600/72000 | 订单 0/64\n状态哈希 d07b434a80f6e36a\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3700/72000 | 订单 0/64\n状态哈希 e825b2f94df18719\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 3800/72000 | 订单 0/64\n状态哈希 0b27a403ceff5ebe\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    }
+  },
+  "commands": {
+    "status_latency_ms": {
+      "count": 165,
+      "min": 25.955300000001444,
+      "mean": 81.72075939393955,
+      "p50": 82.75930000000517,
+      "p95": 98.87930000000051,
+      "max": 114.77100000000064
+    },
+    "advance_latency_ms": {
+      "count": 39,
+      "min": 96.53170000000682,
+      "mean": 102.63337692307687,
+      "p50": 99.63519999998971,
+      "p95": 137.2323000000033,
+      "max": 142.31090000000404
+    }
+  },
+  "performance": {
+    "tps": {
+      "count": 5,
+      "min": 19.86,
+      "mean": 19.944,
+      "p50": 19.93,
+      "p95": 20,
+      "max": 20
+    },
+    "tick_duration_mean_ms": {
+      "count": 5,
+      "min": 0.95,
+      "mean": 1.44,
+      "p50": 1.04,
+      "p95": 2.95,
+      "max": 2.95
+    },
+    "tick_duration_median_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_p95_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_max_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "cpu_percent_of_one_core": {
+      "count": 4,
+      "min": 6.7833401166734495,
+      "mean": 8.323462200878563,
+      "p50": 7.140456989247311,
+      "p95": 10.200969401213401,
+      "max": 10.200969401213401
+    },
+    "available_memory_mib": {
+      "count": 5,
+      "min": 275.6171875,
+      "mean": 300.85703125,
+      "p50": 308.375,
+      "p95": 314.55859375,
+      "max": 314.55859375
+    },
+    "rss_mib": {
+      "count": 5,
+      "min": 720.3515625,
+      "mean": 740.0734375,
+      "p50": 747.55859375,
+      "p95": 750.62890625,
+      "max": 750.62890625
+    },
+    "private_mib": {
+      "count": 5,
+      "min": 886.5625,
+      "mean": 901.59765625,
+      "p50": 906.421875,
+      "p95": 909.13671875,
+      "max": 909.13671875
+    },
+    "heap_used_mib": {
+      "count": 1,
+      "min": 377.61328125,
+      "mean": 377.61328125,
+      "p50": 377.61328125,
+      "p95": 377.61328125,
+      "max": 377.61328125
+    }
+  },
+  "telemetry_complete": true,
+  "performance_gate": {
+    "passed": false,
+    "limits": {
+      "minimumTpsP50": 19,
+      "maximumTickDurationP95Milliseconds": 50,
+      "minimumAvailableMemoryMebibytes": 1024,
+      "maximumRssMebibytes": 1536,
+      "maximumHeapUsedMebibytes": 480,
+      "minimumMetricSampleCoverage": 0.8,
+      "minimumHeapSampleCoverage": 0.8
+    },
+    "checks": {
+      "metric_sample_coverage": {
+        "passed": false,
+        "actual": {
+          "tps": 5,
+          "tickDuration": 5,
+          "availableMemory": 5,
+          "rss": 5
+        },
+        "minimum": 96
+      },
+      "heap_sample_coverage": {
+        "passed": false,
+        "actual": 1,
+        "minimum": 24
+      },
+      "median_tps": {
+        "passed": true,
+        "actual": 19.93,
+        "minimum": 19
+      },
+      "tick_duration_p95_ms": {
+        "passed": true,
+        "actual": 2.95,
+        "maximum": 50,
+        "source": "sampled MSPT mean"
+      },
+      "available_memory_mib": {
+        "passed": false,
+        "actual_minimum": 275.6171875,
+        "minimum": 1024
+      },
+      "rss_mib": {
+        "passed": true,
+        "actual_maximum": 750.62890625,
+        "maximum": 1536
+      },
+      "heap_used_mib": {
+        "passed": true,
+        "actual_maximum": 377.61328125,
+        "maximum": 480
+      }
+    }
+  },
+  "server_exit": {
+    "process_id": 24768,
+    "code": 0,
+    "signal": null,
+    "observed_at": "2026-11-24T17:55:27.337Z",
+    "elapsed_seconds": 80
+  }
+}

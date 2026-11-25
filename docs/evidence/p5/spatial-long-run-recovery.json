@@ -1,0 +1,45 @@
+{
+  "phase": "P5 spatial ecology checkpoint recovery",
+  "captured_at": "2026-11-22",
+  "scenario": {
+    "engine": "ecology/4",
+    "max_steps": 100000,
+    "max_population": 256,
+    "checkpoint_interval_steps": 10000,
+    "checkpoint_recoveries": 10,
+    "final_tick": 100000,
+    "final_population": 256,
+    "terminal_reason": "MAX_STEPS_REACHED",
+    "checkpoint_size_limit_bytes": 65536
+  },
+  "test": {
+    "class": "dev.stargenesis.sim.EcologyWorldTest",
+    "method": "maximumLengthRunPreservesEcologyAcrossRepeatedCheckpointRecovery",
+    "runtime_seconds": 22.11,
+    "result": "passed"
+  },
+  "assertions": [
+    "At each 10,000-step interval, checkpoint encoding stays within the 65,536-byte limit and decoding preserves the complete snapshot, including the SHA-256 state hash.",
+    "Restored worlds continue at the expected tick with population 256 and balanced matter and energy ledgers.",
+    "The run reaches tick 100,000 with terminal reason MAX_STEPS_REACHED and rejects an additional step.",
+    "A separate spatial test verifies food-driven movement, local feeding and waste, the 64-cell habitat, and the matter ledger."
+  ],
+  "verification": {
+    "java_21": {
+      "runtime": "Temurin 21.0.13.1+2",
+      "command": ".\\mvnw.cmd -B -ntp verify",
+      "passed": true,
+      "tests": 301,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "benchmark_node_tests": {
+      "command": "node --test scripts/server_benchmark.test.mjs",
+      "passed": true,
+      "tests": 6,
+      "failures": 0
+    }
+  },
+  "scope_limit": "This evidence covers deterministic in-memory ecology/4 checkpoints. It does not exercise Paper/Folia player PDC writes, repeated server save cycles, process crashes, or human usability."
+}

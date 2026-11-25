@@ -1,0 +1,35 @@
+{
+  "phase": "P11 Folia server telemetry parser diagnostic",
+  "verified_at": "2026-11-22T19:26:05+08:00",
+  "benchmark_script_sha256_at_failed_run": "d93c92f5bbd6ce4d56f4f7d9eaae18d8dbdfb47d35ea175486a2f58cbed4f921",
+  "raw_evidence": ".work/p11-folia-long-01-result.json",
+  "raw_evidence_sha256": "a3a8d78b8ce2143002dbb61f4a0a1af611f07069619a533b88f364497528d707",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 23,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201"
+  },
+  "observations": {
+    "server_ready": true,
+    "connected_clients": 4,
+    "status_commands": 32,
+    "advance_commands": 8,
+    "simulated_ticks": 800,
+    "performance_samples": 0,
+    "failure": "The benchmark parser required a Paper/Spark TPS header that Folia does not emit in this configuration.",
+    "new_java_process_during_run": "A separate Maven build was observed after startup.",
+    "server_exit_code_after_harness_shutdown": 0
+  },
+  "replay_after_parser_fix": {
+    "source": "Captured Folia server health report from the raw run log",
+    "median_region_tps": 19.93,
+    "highest_utilization_region_mspt": 2.9,
+    "regression_test_count": 1
+  },
+  "resolution": "The parser now reads median region TPS and the highest-utilization region MSPT from Folia's health report.",
+  "passed": false,
+  "scope": "Parser replay and client workload diagnostic only. No runtime performance sample or P11 duration gate was completed."
+}

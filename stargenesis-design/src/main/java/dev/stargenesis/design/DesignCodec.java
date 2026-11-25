@@ -10,6 +10,7 @@ import dev.stargenesis.api.design.*;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.*;
+import java.util.UUID;
 
 /** Strict, bounded JSON interchange. Never loads user-supplied classes or runs code. */
 public final class DesignCodec {
@@ -57,10 +58,38 @@ public final class DesignCodec {
         if (!(document instanceof Blueprint || document instanceof Program || document instanceof Protocol
                 || document instanceof Contract || document instanceof ArenaRuleset))
             throw new DesignValidationException("Unregistered design class");
-        ObjectNode root = mapper.valueToTree(document); root.put("kind", document.kind().name());
+        ObjectNode root = encode(document);
         String encoded = json(canonical(root));
         load(encoded); // Never silently re-sign an object with a stale hash.
         return encoded;
+    }
+
+    /** Saves an edited design only after checking the actor against its author/editor metadata. */
+    public String writeEdited(DesignDocument document, UUID actor) {
+        Objects.requireNonNull(document, "document");
+        Objects.requireNonNull(actor, "actor");
+        DesignMetadata metadata = document.metadata();
+        if (!metadata.permissions().mayEdit(actor, metadata.author())) {
+            throw new SecurityException("Actor is not authorized to edit this design");
+        }
+        DesignMetadata unsignedMetadata = new DesignMetadata(metadata.id(), metadata.schemaVersion(), metadata.version(),
+                metadata.author(), metadata.source(), metadata.dependencies(), "", metadata.permissions());
+        DesignDocument unsigned = withMetadata(document, unsignedMetadata);
+        return seal(json(encode(unsigned)));
+    }
+
+    private DesignDocument withMetadata(DesignDocument document, DesignMetadata metadata) {
+        if (document instanceof Blueprint blueprint)
+            return new Blueprint(metadata, blueprint.components(), blueprint.connections());
+        if (document instanceof Program program)
+            return new Program(metadata, program.nodes(), program.edges(), program.maxInstructionsPerStep());
+        if (document instanceof Protocol protocol)
+            return new Protocol(metadata, protocol.fields(), protocol.maxPayloadBytes());
+        if (document instanceof Contract contract)
+            return new Contract(metadata, contract.protocol(), contract.timeoutSteps(), contract.maxUnits());
+        if (document instanceof ArenaRuleset ruleset)
+            return ruleset.withMetadata(metadata);
+        throw new DesignValidationException("Unregistered design class");
     }
 
     /** Explicit legacy migration: v0 metadata.revision is renamed to metadata.version. */
@@ -77,7 +106,45 @@ public final class DesignCodec {
         return new MigrationResult(originalHash, document.metadata().hash(), migratedJson, document);
     }
 
+    /** Upgrades a verified schema-1 arena without changing its identity, ACL or pinned dependencies. */
+    public MigrationResult migrateArenaV1(String legacyJson) {
+        DesignDocument document = load(legacyJson);
+        if (!(document instanceof ArenaRuleset legacy) || legacy.metadata().schemaVersion() != SCHEMA_VERSION)
+            throw new DesignValidationException("Expected a verified schema-1 arena ruleset");
+        DesignMetadata old = legacy.metadata();
+        DesignMetadata metadata = new DesignMetadata(old.id(), ArenaRuleset.SCHEMA_VERSION, nextPatch(old.version()),
+                old.author(), old.source(), old.dependencies(), "", old.permissions());
+        int objectiveX = legacy.width() / 2;
+        int objectiveY = (legacy.height() - 1) / 2;
+        int blueX = legacy.width() - 1;
+        int blueY = legacy.height() - 1;
+        long minimumRound = Math.max(objectiveX + objectiveY, blueX - objectiveX + blueY - objectiveY);
+        long cellCount = (long) legacy.width() * legacy.height();
+        long maximumRound = ArenaRulesetValidator.MAX_WORK_UNITS / (cellCount * 2);
+        long duration = Math.max(minimumRound, Math.min(legacy.durationSteps(), maximumRound));
+        int unitBudget = (int) Math.max(2,
+                Math.min(legacy.unitBudget(), ArenaRulesetValidator.MAX_WORK_UNITS / (cellCount * duration)));
+        var layout = new ArenaRuleset.Layout(List.of(), List.of(
+                new ArenaRuleset.Team("red", List.of(new ArenaRuleset.Cell(0, 0))),
+                new ArenaRuleset.Team("blue", List.of(new ArenaRuleset.Cell(blueX, blueY)))),
+                List.of(new ArenaRuleset.Cell(objectiveX, objectiveY)));
+        var victory = new ArenaRuleset.Victory(ArenaRuleset.Combination.ANY,
+                List.of(new ArenaRuleset.Condition(ArenaRuleset.Metric.CONTROLLED_OBJECTIVES, 1)));
+        ArenaRuleset upgraded = new ArenaRuleset(metadata, legacy.width(), legacy.height(), duration, unitBudget,
+                layout, victory);
+        String encoded = seal(json(encode(upgraded)));
+        DesignDocument migrated = load(encoded);
+        return new MigrationResult(old.hash(), migrated.metadata().hash(), encoded, migrated);
+    }
+
     public record MigrationResult(String previousHash, String currentHash, String json, DesignDocument document) { }
+
+    private static String nextPatch(String version) {
+        String[] parts = version.split("\\.");
+        int patch = Integer.parseInt(parts[2]);
+        if (patch >= 999_999) throw new DesignValidationException("Arena patch version is exhausted");
+        return parts[0] + "." + parts[1] + "." + (patch + 1);
+    }
 
     private ObjectNode parse(String value) {
         if (value == null || value.length() > MAX_DOCUMENT_BYTES
@@ -119,11 +186,26 @@ public final class DesignCodec {
             };
             rejectDuplicateEditors(root);
             ObjectNode body = root.deepCopy(); body.remove("kind");
+            if (kind == DesignKind.ARENA_RULESET && metadata(root).path("schemaVersion").intValue() == SCHEMA_VERSION) {
+                LegacyArena arena = mapper.treeToValue(body, LegacyArena.class);
+                return new ArenaRuleset(arena.metadata(), arena.width(), arena.height(), arena.durationSteps(),
+                        arena.unitBudget());
+            }
             return mapper.treeToValue(body, type);
         } catch (JsonProcessingException | IllegalArgumentException ex) {
             throw new DesignValidationException("Invalid " + kindNode.asText() + " document", ex);
         }
     }
+
+    private ObjectNode encode(DesignDocument document) {
+        ObjectNode root = mapper.valueToTree(document);
+        if (document instanceof ArenaRuleset arena && arena.metadata().schemaVersion() == SCHEMA_VERSION)
+            root.remove(List.of("layout", "victory"));
+        root.put("kind", document.kind().name());
+        return root;
+    }
+
+    private record LegacyArena(DesignMetadata metadata, int width, int height, long durationSteps, int unitBudget) { }
 
     private void rejectDuplicateEditors(ObjectNode root) {
         String uuid = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
@@ -145,7 +227,10 @@ public final class DesignCodec {
 
     private void checkVersion(ObjectNode root) {
         JsonNode version = metadata(root).get("schemaVersion");
-        if (version == null || !version.isIntegralNumber() || !version.canConvertToInt() || version.intValue() != SCHEMA_VERSION)
+        boolean arenaV2 = DesignKind.ARENA_RULESET.name().equals(root.path("kind").textValue())
+                && version != null && version.intValue() == ArenaRuleset.SCHEMA_VERSION;
+        if (version == null || !version.isIntegralNumber() || !version.canConvertToInt()
+                || (version.intValue() != SCHEMA_VERSION && !arenaV2))
             throw new DesignValidationException("Unsupported schemaVersion; migration must be explicit");
     }
 

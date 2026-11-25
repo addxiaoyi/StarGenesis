@@ -1,0 +1,31 @@
+{
+  "phase": "P11 Java 21 full verify resource-limited retry",
+  "attempted_at": "2026-11-25T11:23:45+08:00",
+  "runtime": {
+    "distribution": "Eclipse Temurin",
+    "version": "21.0.13.1+2-LTS"
+  },
+  "command": "mvnw.cmd -o -B -ntp -T1 -DargLine=-Xmx384m verify",
+  "maven_memory_limits": {
+    "heap": "512 MiB",
+    "metaspace": "192 MiB",
+    "surefire_fork_heap": "384 MiB"
+  },
+  "result": "failed",
+  "completed_modules": {
+    "stargenesis-api": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "failed_module": "stargenesis-design",
+  "failure": {
+    "kind": "native-memory-allocation",
+    "requested_bytes": 1070816,
+    "surefire_assertion_failures": 0,
+    "jvm_report": "stargenesis-design/hs_err_pid29600.log",
+    "observed_system_free_memory_kib_after_failure": 1
+  },
+  "limitations": "The design module tests did not complete and later modules were skipped. Focused P7 and P9 suites passed independently; this attempt does not establish a full-repository verification."
+}

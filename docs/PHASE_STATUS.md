@@ -1,6 +1,6 @@
 # 阶段状态
 
-更新时间：2026-11-19。状态以当前代码和可复现证据为准；没有执行的验收不得记为通过。
+更新时间：2026-11-25。状态以当前代码和可复现证据为准；没有执行的验收不得记为通过。
 
 ## 差异审计
 
@@ -13,23 +13,55 @@
 | 阶段 | 状态 | 已有实现/仍缺的验收 |
 |---|---|---|
 | P0 | 已通过本阶段基础验收 | 五模块/三方源码审计/设计格式/API/配置权限已落地；88测试通过，全新Maven缓存verify通过；同一JAR在Paper1.21.11-132与Folia1.21.11-14实际启停及控制台命令通过，见evidence/p0/summary.json。第三方功能与真人客户端不属于此通过声明 |
-| P1 | 开发中，未验收 | P0接口已冻结，正在实现确定性空间引擎、四动作、检查点/回放和Inventory可视化；仍缺完整构建/真实玩家验收 |
-| P2 | 未实现 | 缺模块能力/物理代价、游戏内结构编辑/预览/保存/撤销及形态差异验证 |
-| P3 | 未实现 | 仅有 Program 格式；缺 typed IR、24+原语、解释器、调试器和玩家编辑闭环 |
-| P4 | 未实现 | 仅有 Protocol/Contract 格式；缺通信媒介、知识芯片与跨玩家服务 |
-| P5 | 未实现 | 缺守恒生态、可编程物质、有限进化与统计看板 |
-| P6 | 未实现 | 缺竞价/组织/订单/故障恢复与四玩家工厂 |
-| P7 | 未实现 | 仅有 ArenaRuleset 格式；缺规则编辑、发布、依赖许可、UGC 完成与反作弊 |
-| P8 | 未实现 | 缺群智争界完整对局、队伍/重连/观战/结算与真人验证 |
-| P9 | 未实现 | 真实库存与经济均禁用；缺权限部署、持久 saga 与真实产业流程 |
-| P10 | 未实现 | 仅有能力发现基线；缺真实桥接、扩展 SDK、签名/导入、迁移与第三方验收 |
-| P11 | 未实现 | 缺全量集成、性能规模、真实客户端、留存统计、SBOM 与正式发布 |
+| P1 | 开发中，自动化测试通过，真人验收待做 | 已实现有界确定性网格、move/gather/deposit/wait、不可变快照、检查点二进制编解码、有界逐步输入日志、PDC 回放验证及 Paper Inventory 操作界面；仍缺真实 Paper/Folia 玩家验收和最终服务端保存周期耐久性验证 |
+| P2 | 开发中，自动化测试通过，真人验收待做 | 已实现模块能力目录、物理代价与连接范围分析、形态哈希/差异、带权限的编辑会话、撤销/预览/签名保存、玩家 PDC 编辑检查点和 Paper 蓝图编辑菜单；新增绑定已保存蓝图的私有虚拟装配会话、确定性拓扑装配顺序、坐标/朝向/连接显示、PDC 进度校验和 /genesis assemble [reset]；仍缺 Paper/Folia 真人验收、交互可用性和保存周期耐久性验证 |
+| P3 | 开发中，自动化测试通过，真人验收待做 | 已实现 25 个有类型操作、确定性 typed IR 编译器、有界解释器、传感器快照、断点/单步跟踪、模拟动作输出；新增有限类型输入的 Paper 行为图编辑器、节点增删、撤销、参数模板、编译预览、作者专属保存、PDC 编辑检查点，以及 /genesis program [reset|run] 入口；仍缺 Paper/Folia 真人验收和玩家可用性反馈 |
+| P4 | 开发中，自动化测试及 Paper/Folia 代理离线客户端验收通过，真人验收待做 | 已实现按 Protocol 字段校验的确定性载荷编解码、有界同服私信队列、双方许可、逻辑步过期、owner-thread 限制、入门芯片、Inventory 收件箱和 owner-bound PDC；新增 BungeeCord 兼容代理跨服转发、peer 专属 HMAC、在线客户端承载、有限重试发件箱、收件端权限/芯片/schema 复验、同写 PDC 的 UUID 回执去重及收件箱 v1→v2 兼容读取。Paper 1.21.11-132 和 Folia 1.21.11-14 各以两个后端、Velocity 3.5.1-615 及离线客户端通过 12 项代理检查，包含 40 秒离线重连投递与清空后重放去重；证据见 `docs/evidence/p4/paper-retry-window-02-20261124.json` 与 `folia-retry-window-01-20261124.json`。仍缺平台保存周期崩溃耐久性和真人多玩家验收 |
+| P5 | 开发中，自动化测试和 Paper/Folia 离线多客户端流程通过，真人体验及耐久性待做 | 已实现确定性封闭生态、物质与能量双账本、有限遗传程序和配方编辑、人口/步数上限及哈希检查点；`ecology/4` 加入确定性 8×8 栖息地、按格营养/废料库存、局部摄取与分解、食物供给驱动移动及格内繁殖密度上限；反应按稳定 ID 顺序运行，`ecology:nutrient` 产物进入局部食物网。v4 检查点保存 64 格库存与个体位置；v3、v2、v1 迁移前分别验证旧哈希，旧空反应目录迁移不增加初始物质。网络最多 64 种物质、48 个反应、每反应每侧 16 种物质、每步 1,024 次触发。共享组提供命令和 Inventory，支持分页查看、在线成员邀请/移除、离组、二次确认解散、状态查看与共同步进；每组最多 8 人，服务器最多 128 组。组记录使用独立校验和、嵌入完整 v4 检查点，并通过同目录原子替换保存。Java 21 全仓 `verify` 通过 309 项测试，包含组权限/容量、codec 篡改拒绝、存储恢复和删除测试；空间移动/局部账本测试及 100,000 步、每 10,000 步恢复一次的 v4 模拟检查点测试通过，证据见 `docs/evidence/p5/spatial-long-run-recovery.json`。Paper/Folia 1.21.11 三客户端离线流程各通过 28 项共享组菜单、权限、共同步进、正常重启恢复及个人 v4 PDC 两次重启恢复检查，证据见 `docs/evidence/p5/shared-ecology-paper.json` 与 `shared-ecology-folia.json`。`docs/evidence/p5/long-run-recovery.json` 保留为 v3 历史证据；`player-recovery.json` 是较早版本的个人 PDC 历史证据。仍缺真人协作与体验评估、长时间和异常/崩溃保存耐久性 |
+| P6 | 开发中，模拟核心、受信 peer 命令 relay、组织菜单及 Paper/Folia 离线客户端验收通过 | 固定四成员虚拟工厂提供持久组织名册、开厂前成员管理及开厂后冻结、订单竞价/贡献/交付、质量平衡配方与每成员持久工位。工厂所属服务器持有唯一账本；新增受信 peer 的 HMAC 命令包、持久发件箱与目标回执日志，可远程查询和执行成员的查单、竞价、贡献、交付、推进及工位操作。须显式设置 `factory-relay.enabled: true` 并配置 P4 peer HMAC；目标校验 UUID 属于固定四人名册。远程操作使用现有 action-sequence 或 expected-tick 防重，发件箱和回执各有 4,096 条容量且不逐出去重记录。工厂、订单创建及组织管理留在账本所属服务器。订单查询按每页 16 项输出，控制代理回包大小。检查点 codec v2 兼容 v1；Paper/Folia 全局调度串行执行并原子保存。72,000 tick 场景每 10,000 tick 及终点进行编码/恢复，共 8 次，状态哈希和质量账本一致。Java 21、Java 25 全仓 `verify` 均通过 329 项测试，证据见 `docs/evidence/p11/java21-java25-verify-20261124.json`。Paper/Folia Mineflayer 客户端验证组织菜单、生产和正常/强制重启恢复；2026-11-24 又以真实 Paper/Folia 双后端、Velocity 3.5.1-615 和四名离线客户端完成 peer relay 检查，各 11 项通过，覆盖非成员拒绝、远程生产/领取、tick 推进后请求重放保持检查点不变及事务日志完成，证据见 `docs/evidence/p6/paper-proxy-transaction-03-20261124.json` 与 `folia-proxy-transaction-01-20261124.json`。仍缺真人四人、机器断电和提交前后故障验收 |
+| P7 | 开发中，自动化测试通过，真人验收待做 | 已实现 schema-2 障碍/出生点/目标地图、`ANY`/`ALL` 胜利条件、路径与预算校验、显式 schema-1 迁移、玩家地图编辑、作者/编辑者 ACL 撤销检查及精确发布依赖。管理员按 reviewer 玩家 UUID 固定 Ed25519 公钥；新的 v3 审批/拒绝决议要求对候选 hash、审核者、动作和拒绝理由的离线签名，原子持久化后才发布。决议保留可独立验证的公钥、指纹与签名，发布中断可用同一签名恢复；v1/v2 旧决议仍可由原审核者重试恢复，但不能创建新决议。新增有权限控制的审核历史分页与单项决议查询，区分已发布和已批准待发布；只读查询不触发恢复。决议读写统一 2 KiB 上限，修复 240 字中文拒绝理由无法重读的问题，并拒绝损坏的 Unicode。Node 离线验签须提供预先核对的 reviewer 指纹；Java/Node 共用多语言签名向量。新增 `/genesis arena recover`，支持授权玩家与控制台按原审核者 UUID 和原签名恢复已有批准；不创建决议，恢复前复核当前 ACL、版本、依赖与候选来源，失败后可重试。Java 21/25 `clean verify` 各 392 项通过，Node 全部 36 项通过；Paper/Folia 实服控制台各 31 项检查通过，覆盖查询、恢复用法与拒绝新建批准。实际签名批准的成功恢复目前由代码测试覆盖，尚未做实服完整流程。Windows 验收脚本已修复 263 字符发布路径的读取误判。最新证据见 `docs/evidence/p7/review-recovery-20261125.json`；此前查询与签名证据保留在 `review-audit-20261125.json`、`reviewer-signatures-20261125.json`。仍缺真人可用性、UGC 内容策略、反作弊和真实身份核验 |
+| P8 | 自动化服务端验收通过，真人体验与安全验收待做 | 已实现公开房间发现、玩家 UUID 入座、双队员额、房主开局/踢出、玩家私有动作提交、同步回合、冲突等待、首回合及后续回合 30 秒超时、已发布规则固定版本、只读观战地图、房间内状态通知和分页历史。每次房间修改在副本执行，再通过带校验和的 `arena-room/1` 检查点原子保存；Paper/Folia 五客户端离线自动流程覆盖完整入座、两回合锁步、观战和重启恢复，结果见 `docs/evidence/p10/summary.json`。仍缺真人可用性评估、反作弊、跨服和长期故障测试 |
+| P9 | 本地 provider bridge 合同通过测试，真实结算未启用 | 最多 16 笔不可变转账计划、provider 绑定的分步幂等键、一步一检查点、逆序补偿、UNKNOWN 人工复核、20 KiB 有界校验和原子日志及 OP 检查命令。新增 fail-closed nation-resource bridge：观察将持久 transfer 与 apply/compensation 方向一起传入；只接受完整精确回执；缺失/冲突证据不会写入或推进；完整 SHA-256 domain 摘要进入 provider ID；14 项合同测试覆盖真实余额模型下副作用成功但检查点写入失败的重启，以及 UTF-16 标识符边界。测试仅使用模拟 provider，不是 StarCore 实服适配器。候选 StarCore nation-resource API 仍未提交且不属于固定 API 基线。仍缺固定发布依赖、生产 adapter、initiator/nation 授权入口、上游原子域验证/线程保证、provider 处置和人工恢复流程、跨服协调与实服故障验收；`integrations.allow-real-settlement` 仍必须保持关闭。证据见 `docs/evidence/p9/nation-resource-contract-20261125.json` |
+| P10 | 静态签名交换与受信扩展 SDK 已实现，阶段验收未通过 | 设计模块提供严格有界 `.sgdesign` Ed25519 签名/验证 API；服务器按作者 UUID 原子保存受信公钥，竞技规则进入现有审核队列并记录签名指纹，蓝图/程序/协议/合约进入有界原子归档并支持分页查询和哈希检查；新增 Bukkit `IntegrationExtension` 服务 API，默认关闭，管理员可按扩展 ID、精确版本、JAR SHA-256 与能力白名单授权，启停时管理适配器生命周期，详见 `docs/EXTENSION_SDK.md`。仍缺生产密钥管理、第三方互操作和真人验收；服务 API 不隔离已安装插件代码 |
+| P11 | 双 JDK 构建通过，运行性能门仍未通过 | 最新在 Java 21 和 Java 25 下分别完成全仓验证，各 392 项测试，零失败/错误/跳过。先前一次 Java 21 验证因 javac C2 compiler native malloc 失败退出，后续限制编译并发后两套 JDK 均全仓成功。P11 harness 新增运行中 `passed:false` 原子快照、日志写入和异步 pipe 错误受控处理、部分 bot 清理、owned-server 有界停服/强停、运行期间客户端断线/踢出/错误即失败；28 项 Node 回归通过。Release 工作流已有插件/SDK、SBOM、SHA-256 和 provenance 步骤，但非 SNAPSHOT 发布尚未发生。性能门仍要求 30 分钟、TPS P50≥19、tick P95≤50 ms、可用内存≥1,024 MiB、RSS≤1,536 MiB、heap≤480 MiB 及五类指标样本覆盖率≥80%。本轮没有运行服务器 benchmark；Paper/Folia 各 30 分钟门、实际发布、真人验收和留存数据仍未完成。最新构建哈希和测试边界见 `docs/evidence/p7/review-recovery-20261125.json`；此前 343 项构建及性能脚本记录见 `docs/evidence/p11/p9-p11-verification-20261125.json`；既有历史 gate 回放见 `docs/evidence/p11/performance-gate-replay-folia-long-10-20261123.json` |
+
+2026-11-23 Java 21 与 Java 25 均运行全仓 324 项测试，0 失败、0 错误、0 跳过；两轮均编译了本轮变更的 saga 测试，最终插件 JAR 哈希和双运行时记录见 `docs/evidence/p11/java21-java25-verify-20261122-relay-durability.json`。基准脚本 11 项 Node 测试、模块边界检查和 `git diff --check` 均通过。此前 BungeeCord `Forward` 帧修复时的 JAR SHA-256 和验证记录见 `docs/evidence/p4/proxy-frame-validation.json`。Paper 两次 30 分钟长测因状态超时失败，后续两次分别在 208 秒和 54 秒遇到 Paper 进程提前退出；`paper-long-08` 因外部 Paper 负载受控停止，`paper-long-09` 在服务端就绪前结束且没有采样。P11 的 Paper/Folia 长时门槛仍未通过。P5 共享生态 Paper/Folia Inventory、多客户端恢复和个人 v4 PDC 两次重启流程各通过 28 项离线客户端检查，证据见 P5 对应 JSON。P6 peer relay 尚未进行代理实服双端验收，真人验收仍待做。
+
+P11 基准每个遥测采样点现在同时记录宿主机可用内存和服务器进程 RSS/private bytes，并汇总宿主机可用内存的 MiB 分布，便于分析外部负载对服务器内存读数的影响。
+
+2026-11-25 P9 增加 nation stockpile provider bridge 合同，14 项定向测试通过；回执必须精确匹配 transfer、方向及 domain，账本身份由 provider ID 持久绑定。Java 21 与 Java 25 全仓 `verify` 各通过 343 项测试。P11 benchmark 修复了异步日志/管道异常、部分客户端清理和运行中客户端断线漏判，Node benchmark + proxy helper 共 28/28 通过。Java 21 第一次全仓尝试在 Paper 测试编译时报告 native malloc 失败，限制 Maven/Javac 线程后两套 JDK 重跑成功；失败尝试和成功日志均保留在 `.work/` 并由 `docs/evidence/p11/p9-p11-verification-20261125.json` 摘要。运行 benchmark 未执行；P11 Paper/Folia 30 分钟门槛、生产 provider、真人及实服故障验收仍未完成。真实结算继续关闭。
+
+2026-11-25 P4 与 P6 的 Paper/Folia peer relay 验收现已完成：P4 各 12 项、P6 各 11 项通过；细节及限制见上述阶段记录和代理 JSON。Java 21、Java 25 全仓 `verify` 各 329 项、零失败/错误/跳过，摘要与哈希见 `docs/evidence/p11/java21-java25-verify-20261124.json`。P9 只读审计确认 StarCore 候选 nation-resource transfer API 尚处于未提交改动中，不能作为稳定集成依赖。
+
+本轮构建、自动化测试及基准故障汇总见 `docs/evidence/p11/development-summary-20261125.json`；Windows 进程清点器实测和 22 项 Node 用例哈希见 `docs/evidence/p11/benchmark-monitoring-20261125.json`。Paper 隔离运行第一次尝试使用旧的 `jcmd` 监控版本，结果保留为失败记录，不能当作修复后的性能测试。
+
+2026-11-25 P11 增加显式 `--allow-concurrent-java` 共享主机观测模式；默认隔离模式和数值门槛保持不变，22 项基准/代理 Node 测试、脚本语法、模块边界和 whitespace 检查通过。Windows 改用带终止错误处理的 `Win32_Process` JVM 清点，非 Windows 仍用 `jcmd`；实测检测到另一 Folia JVM 的 PID 与完整命令行。Folia 60 秒试跑有 3 组指标，TPS P50 19.98、最高利用率区域 MSPT P95 3.24 ms、RSS 峰值 793.5 MiB、heap 354.5 MiB，但可用内存最低 376.9 MiB，且指标覆盖不足，因此判失败。Folia 30 分钟共享主机运行在约 80 秒时因 JVM 无法提交内存提前退出，证据见 `docs/evidence/p11/folia-shared-long-01-20261125.json`。Paper 隔离模式首轮在启动后第 11 秒遇到 `jcmd` 监控错误，无性能样本并正常停服，失败 JSON 保留于 `docs/evidence/p11/paper-isolated-long-01-20261125.json`；Windows 进程清点修复尚未得到新 Paper 长测结果。当前外部 Folia JVM 活跃且主机可用内存低于门槛，尚未重启隔离基准。共享主机 Folia 记录不能代表隔离性能对比。
+
+2026-11-23 P11 detached Folia 60 秒试跑连接 4 个客户端并推进 1,400 tick；第 27 秒发现新 Maven `spotless:check` JVM 后受控停止，服务端以退出码 0 结束，但没有取得有效 TPS/MSPT 样本，不构成长测通过。完整结果见 `docs/evidence/p11/folia-detached-pilot-20261123.json`。
+
+2026-11-23 P11 detached Folia 30 分钟运行启动后 5 秒检测到新 StarCore Maven 测试 JVM 和另一台 `folia.jar` JVM，并于 9 秒受控关闭。四个客户端已连接并推进 300 tick，未取得 TPS/MSPT/堆样本，不构成长测通过；完整结果见 `docs/evidence/p11/folia-detached-long-01-20261123.json`。
+
+P5 复合配方编辑版本的 Java 21/25 构建、测试和 Paper/Folia 控制台结果记录在 `docs/evidence/p5/summary.json`；v3 长测与玩家恢复结果分别保留于 `long-run-recovery.json` 和 `player-recovery.json`，当前 v4 100,000 步模拟恢复证据见 `spatial-long-run-recovery.json`。`shared-ecology-paper.json` 和 `shared-ecology-folia.json` 使用当前插件哈希验证共享组 Inventory、多客户端重启恢复，以及个人 v4 PDC 经两次正常停服重启后的恢复。离线自动化客户端不是真人 GUI/体验评估，也不替代长时间或异常/崩溃保存耐久性验收。P8、P9、P10 和 P11 的客户端流程、结算核心、签名导入、SBOM 和此前 JAR 哈希记录在 `docs/evidence/p10/summary.json`。P9 测试使用幂等模拟 gateway 验证 saga 状态机和补偿流程，未执行真实经济或库存交易。P10 的签名、信任与导入审核经过单元测试和隔离服务器控制台验收，仍不构成第三方插件兼容证明。SBOM 生成成功，JSON Schema 验证器报告两个未识别关键字告警（`meta:enum` 与 `deprecated`）。
+
+P11 隔离预检的脱敏结果见 `docs/evidence/p11/paper-preflight-guard-20261122.json`。基准在检测到既有服务端 JVM 后于 0 秒拒绝启动，未连接客户端、发送命令或采集性能样本；该证据只验证启动保护，不计作 Paper 长测结果。首次长测启动尝试发现相对 Java 可执行路径会随子进程工作目录切换而失效，脚本现已将显式路径解析为绝对路径并新增回归测试；路径错误诊断见 `docs/evidence/p11/paper-long-10-20261122.json`，不构成长测结果。随后 paper-long-11 四客户端运行 72 秒时检测到新 Folia JVM，采集 4 组样本，TPS 为 19.1 至 20，tick P95 为 3.3 至 4.2 ms；脚本受控终止且 Paper 正常停服。脱敏部分样本见 `docs/evidence/p11/paper-long-11-20261122.json`，该次未通过 30 分钟门槛。paper-long-12 在 121 秒无新增 JVM 冲突的情况下以 `0xffffffff` 异常退出，四客户端共推进 6,100 tick 并取得 8 组样本；未找到崩溃报告、正常停服日志或匹配的 Windows 应用/系统事件，原因仍未查明。脱敏诊断见 `docs/evidence/p11/paper-long-12-20261122.json`，不计作长测通过。
+
+P11 Folia 首轮四客户端流程已连接并推进 800 tick，但 23 秒时因遥测解析器不支持该环境的原生输出而停止，未取得性能样本；原始失败摘要见 `docs/evidence/p11/folia-health-report-diagnostic-20261122.json`。解析器现已支持 Folia 健康报告中的中位区域 TPS 和最高利用率区域 MSPT，基于保存日志回放得到 19.93 TPS 与 2.90 MSPT；新增解析器测试后 Node 测试共 11 项通过。Folia 30 分钟门槛仍待隔离环境下重跑。随后 Folia 复测使用修复后的解析器取得 6 组样本，四客户端推进 5,000 tick，TPS 为 19.93 至 20、最高利用率区域 MSPT 为 0.94 至 2.76 ms；98 秒时因新 Maven 测试 JVM 出现而受控停服。证据见 `docs/evidence/p11/folia-long-02-20261122.json`，Folia 长时门槛仍未通过。第三轮 Folia 测试在无新 JVM 冲突情况下运行 257 秒，四客户端推进 12,800 tick 并采集 17 组样本，TPS 为 18.54 至 20、最高利用率区域 MSPT 为 0.85 至 3.01 ms；Paper/Folia 服务端在 257 秒以 `0xffffffff` 退出，随后客户端状态查询超时。最后一次 heap attach 被拒，但日志未建立它与服务端退出的因果关系；未发现崩溃报告或匹配的 Windows 应用/系统/Security 事件，且系统的进程终止审计处于关闭状态；服务端墙钟进程寿命为 302 秒，与约 300 秒命令会话上限接近，需在脱离命令会话后复测以区分工具生命周期与服务端故障。脱敏证据见 `docs/evidence/p11/folia-long-03-20261122.json`，不构成长测通过。第六轮由 WMI 创建进程，163 秒时发现新 Folia JVM 并受控停止，采集 10 组样本、推进 8,200 tick；脱敏结果见 `docs/evidence/p11/folia-long-06-20261122.json`。随后重启检查发现 Maven JVM 活跃，未再次启动。第九轮 WMI 启动预检在启动前检测到另一台 Folia JVM并拒绝启动，未连接客户端或采集样本；脱敏结果见 `docs/evidence/p11/folia-preflight-09-20261122.json`。
+
+Folia 第十轮只确认运行库目录准备不完整，存在 `cache` 与 `libraries`，未发现 `versions` 目录或基准结果文件；没有证据表明服务端已启动，因此该轮不构成性能测试。部分目录保留待诊断。
+
+2026-11-23 P11 Folia gate 版 detached 首轮在第 5 秒检测到外部 Folia JVM（PID 3368）后于第 6 秒受控停服；四客户端推进 300 tick，没有性能样本。新 gate 对零样本结果的性能、内存及覆盖率检查均判失败；脚本 SHA-256 为 `07F7130976CA124FB2C22B3DD022CBB3B654A2CCB980269BB8CBB70D381BFEFC`，完整记录见 `docs/evidence/p11/folia-gate-long-01-20261123.json`。
+
+2026-11-23 P11 Folia gate 版 detached 第二轮运行 50 秒，四客户端推进 2,500 tick，采集 3 组性能样本和 1 组 heap 样本。TPS P50=20、最高利用率区域 MSPT P95=2.94 ms、RSS 峰值 882 MiB、heap 峰值 383 MiB；但可用内存最低 741 MiB，低于 1,024 MiB。第 49 秒检测到外部 Folia JVM（PID 26532）后受控停服；资源门槛与覆盖率均正确判为失败，证据见 `docs/evidence/p11/folia-gate-long-02-20261123.json`。
+
+2026-11-23 P11 Folia gate 版 detached 第三轮在第 5 秒发现 StarCore Maven 对 Narrative owner 测试的 JVM（PID 7432）后受控停服；四客户端推进 300 tick、无性能样本，gate 对各项零样本指标判为失败。证据见 `docs/evidence/p11/folia-gate-long-03-20261123.json`。本轮反复出现外部 Folia/Maven JVM，尚未获得可持续的隔离长测窗口。
+
+2026-11-23 P11 Folia gate 版 detached 第四轮运行 45 秒，四客户端推进 2,300 tick，TPS P50=19.93、采样 MSPT P95=2.90 ms、可用内存最低 1,477 MiB、RSS 峰值 863 MiB、heap 峰值 386 MiB，数值项通过。第 44 秒发现 StarCore Maven `verify` JVM（PID 26884）后受控停服；2/96 组性能样本和 1/24 组 heap 样本导致覆盖率门槛失败，证据见 `docs/evidence/p11/folia-gate-long-04-20261123.json`。
 
 ## P0 交付与检查
 
 1. 目标/变更：从空基线建立可编译工程；审计权威边界并提供诚实能力报告。
 2. 关键接口：见 PRODUCT_CONTRACT.md；API 与模拟无 Bukkit，设计使用有界不可变结构与严格 codec。
-3. 配置/操作：见 README；`/genesis status`、`help`、`debug capabilities`、`debug budgets`。
+3. 配置/操作：见 README；`/genesis status`、`help`、`lab`、`lab reset`、`lab close`、`debug capabilities`、`debug budgets`。
 4. 纵向闭环：安装→启动→验证五份设计→查询真实安装/版本状态→拒绝未验证能力→停服清理。P0 没有玩法回合，不能作为 P1 验收。
 5. 测试/构建：88测试，0失败/错误/跳过；正式clean verify与空依赖缓存verify均通过。Paper/Folia各11项真实进程控制台检查通过。证据位于evidence/p0/，三次构建/两服验证对应同一SHA256：`5821c9d44ba52efeb765f39bce8f80f8410ac66aaa93e32952e8fd87f84590cb`。脚本仅证明控制台生命周期，不冒充真人/第三方验收。
 6. 具体缺口：上表逐项列出；所有第三方真实能力默认 inactive；helstera Folia 与 StarCore 原子交易不能默认承诺。
@@ -38,3 +70,31 @@
 ## 并行交接
 
 公共 API 当前以 api 模块为冻结候选。P0 最终验收后，P1 可在不改 api 的前提下新增 bounded world/immutable view/snapshot/replay；P2 可消费设计结构；第三方桥接继续只读/契约验证。共享接口修改先提案，合并时串行构建，禁止并行写同一 target 或另一工作流的文件。
+
+2026-11-23 P4 协议确认与 P6 工厂远程响应现按 message/request ID 直接读取单条发件箱记录。P4 发件箱写入临时文件后强制刷盘，再通过原子移动提交；相同 ID 的不同包被拒绝。P4/P6 outbox 回归测试和 P6 交付恢复重放测试通过。另新增 P9 补偿副作用后检查点写入失败的重启恢复测试。Java 21 与 Java 25 均通过全仓 324 项测试，零失败、零错误、零跳过。P9 验收见 `docs/evidence/p9/compensation-recovery-idempotency-20261123.json`，最终插件 JAR 哈希及 relay 记录见 `docs/evidence/p11/java21-java25-verify-20261122-relay-durability.json`、`docs/evidence/p4/relay-outbox-indexed-ack-20261122.json`、`docs/evidence/p6/relay-outbox-targeted-test-20261122.json` 和 `docs/evidence/p6/fulfillment-recovery-retry-20261122.json`。Paper/Folia 代理实服双端和真人验收仍未完成。
+
+2026-11-23 P7 修复重复审批在 release 与 decision 已持久化、pending 已删除后的重试失败。相同 reviewer 现在通过审批 decision 和 release 内容 hash 返回已发布规则，不重复发布；Java 21 与 Java 25 全仓各通过 324 项测试，见 `docs/evidence/p7/approval-retry-idempotency-20261123.json`。最终插件 JAR 哈希为 `8756082B7FF686EE8372AF77357C77870B5E029BF6D61B89F9BA85623D4C8E6E`。
+
+2026-11-23 P11 基准脚本新增 `--detach`，以独立进程组启动 worker，并立即返回 PID 与结果文件路径，降低长测依赖前台命令会话的风险。14 项 Node 测试通过，其中覆盖 worker 退出会话后仍完成短任务及中止时性能汇总；Paper/Folia detached 长测尚未通过。边界检查与 `git diff --check` 通过，证据见 `docs/evidence/p11/detached-benchmark-launcher-20261123.json`。
+2026-11-23 P11 基准现在会在受控中止后汇总已采集样本；新增回归测试验证部分遥测摘要。Folia detached 长测第 59 秒检测到新 JVM 后停止，已保留 3 个样本，TPS 为 20、最高利用率区域 MSPT 为 1.14–2.71；没有完成 30 分钟门槛，记录见 `docs/evidence/p11/folia-detached-long-03-20261123.json`。
+2026-11-23 P11 Folia detached 第四轮在第 21 秒检测到新 StarCore Maven `verify` JVM 后受控停止，四客户端已推进 1,100 tick，并保留 1 个有效性能样本（TPS 20.05、最高利用率区域 MSPT 3.15、堆约 420 MiB）。结果见 `docs/evidence/p11/folia-detached-long-04-20261123.json`，仍未完成 30 分钟门槛。
+2026-11-23 P11 Folia detached 第五轮运行 312 秒，收集 20 个性能样本；四客户端推进 15,600 tick，TPS 均值 19.95，最高利用率区域 MSPT 均值 1.02、P95 1.34，RSS 均值约 889 MiB，堆均值约 360 MiB。第 312 秒检测到新 Paper JVM 后受控停止，未完成 30 分钟门槛；记录见 `docs/evidence/p11/folia-detached-long-05-20261123.json`。
+2026-11-23 P11 Folia detached 第六轮在启动后 11 秒发现新 Paper JVM，并于 14 秒受控停止；四客户端推进 600 tick，没有性能样本，未通过长测门槛。记录见 `docs/evidence/p11/folia-detached-long-06-20261123.json`。
+2026-11-23 P11 Folia detached 第七轮在第 208 秒检测到 PID 18904 的外部 Paper 1.21.11 JVM 后受控停止；四客户端推进 10,300 tick，采集 13 组样本，TPS 均值 19.81、最高利用率区域 MSPT 均值 1.12、RSS 均值约 882 MiB、堆均值约 349 MiB（4 次采样）。服务端正常退出，但因外部负载冲突未达到 30 分钟门槛；证据见 `docs/evidence/p11/folia-detached-long-07-20261123.json`。
+2026-11-23 P11 Folia detached 第八轮预检发现 `starworld-tools` 工作树的 Paper 1.21.11 JVM（PID 31572，`-Xmx2G`）并拒绝启动；未启动基准服务端、连接客户端或采集样本。证据见 `docs/evidence/p11/folia-detached-long-08-20261123.json`。
+2026-11-23 P11 Folia detached 第九轮连接四客户端并推进 300 tick；第 5 秒发现 StarCore 工作树中针对 `WarServiceImplDirtyDataTest` 与 `WarSituationServiceThreadingTest` 的 Maven JVM，随后受控结束，没有取得性能样本。证据见 `docs/evidence/p11/folia-detached-long-09-20261123.json`。
+2026-11-23 P11 基准启动隔离现拒绝启动前已存在的任何 Java JVM（包括 Maven 构建/测试），运行期间的新 JVM 监测保持不变。14 项 Node 测试、Node 语法检查、模块边界检查和 `git diff --check` 通过；新脚本哈希与检查结果见 `docs/evidence/p11/startup-process-isolation-guard-20261123.json`。此哈希尚无对应的 Paper/Folia 长测结果。
+2026-11-23 P11 Folia detached 第十轮使用启动隔离新脚本运行 262 秒，四客户端推进 13,100 tick，采集 17 组样本；TPS 均值 20.00、最高利用率区域 MSPT 均值 1.05、P95 2.83、RSS 均值约 883 MiB、堆均值约 408 MiB。第 261 秒发现 StarCore `spotless:check` JVM 后受控停止，服务端正常退出但未完成 30 分钟门槛；证据见 `docs/evidence/p11/folia-detached-long-10-20261123.json`，脚本哈希为 `6EE014D5B848DD521B4A8403F5F687A3546118846E515602CEFB4E09297CFBD1`。
+2026-11-23 P11 Folia detached 第十一轮在第 5 秒检测到另一 Folia JVM（PID 15368，`folia.jar nogui`）后于 6 秒受控停服；四客户端推进 300 tick，没有性能样本，未达到长测门槛。证据见 `docs/evidence/p11/folia-detached-long-11-20261123.json`。
+2026-11-23 P4 联调烟测已实际启动两台 Paper 1.21.11-132 后端和 Velocity 3.5.1 build 615；确认两端 relay 均启用，两个离线客户端经 forced-host 分别进入 `hub_a` 与 `hub_b`，并从后端日志验证 UUID 转发。当前烟测仍在菜单动作断言处停止，尚未发送跨服包或验证目标回执；范围证据见 `docs/evidence/p4/protocol-proxy-e2e-retry-01-20261123.json` 与 `protocol-proxy-e2e-retry-02-20261123.json`。后续运行被外部 Folia/Maven JVM 隔离保护拒绝或中止。
+2026-11-23 P4 联调脚本现在要求至少 1.5 GiB 可用磁盘空间后才复制后端运行库；在 C 盘剩余 14.6 MB 时预检按预期拒绝启动并保存诊断 JSON，见 `docs/evidence/p4/protocol-proxy-disk-preflight-20261123.json`。脚本语法检查和 `git diff --check` 通过；完整跨服载荷和目标回执仍未验收。
+2026-11-23 P4 联调 smoke helper 新增离线 UUID、Minecraft chat component、Mineflayer custom lore 与 NBT 文本解析测试共 4 项，并加入 GitHub Actions Node job；P4/P11 Node 测试共 18 项通过，烟测脚本语法检查通过。第二次低磁盘预检在 11.6 MiB 可用空间时于复制运行库前拒绝启动，证据见 `docs/evidence/p4/protocol-proxy-disk-preflight-02-20261123.json`，烟测脚本 SHA-256 为 `9A6FD207F7B4BE1542F3B898E12D3C04C598A830421CF83603E2F116C5F509C9`。完整代理消息仍未验收。
+2026-11-23 P4 新增 Paper+Velocity 双后端协议代理烟测脚本，并从 PaperMC 官方源取得 Velocity 3.5.1 build 615，SHA-256 为 `b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3`。首次预检发现外部 Folia JVM（PID 5076）并拒绝启动，没有启动测试服务器或客户端；这不构成代理转发验收，结果见 `docs/evidence/p4/protocol-proxy-e2e-20261123.json`。
+2026-11-23 P4 烟测 helper 新增 4 项离线 UUID 与 Mineflayer 组件/lore/NBT 文本提取测试，并纳入 GitHub Actions Node job。与 P11 基准测试合计 18 项 Node 测试通过，detached worker 用例单独重复通过；Node 语法检查和 `git diff --check` 通过，哈希和测试摘要见 `docs/evidence/p4/protocol-smoke-helper-tests-20261123.json`。跨服消息、目标收件箱写入及回执端到端结果仍未验证。
+2026-11-23 P11 基准将性能目标显式写入结果并纳入 `passed`：TPS P50 至少 19，tick P95 至多 50 ms，系统可用内存至少 1,024 MiB，RSS 至多 1,536 MiB，JVM heap 至多 480 MiB；TPS、tick、可用内存、RSS 和 heap 样本覆盖率均至少 80%。按默认运行时长，最低为 96 组 15 秒性能样本和 24 组 60 秒 heap 样本。Paper 使用服务端 P95；Folia 当前无分布式 P95 数据，门槛使用最高利用率区域 MSPT 样本并标示其来源。包含各门槛失败场景的 P11 基准 Node 测试 15 项通过，另有 4 项 P4 helper 测试通过，详细设定见 `docs/P11_BENCHMARKS.md`；30 分钟运行门槛尚未验证。
+
+2026-11-23 P11 用默认性能 gate 重放第十轮 262 秒历史样本：TPS P50=20、Folia 采样 MSPT P95=2.83 ms、可用内存最低 1,752 MiB、RSS 峰值 892 MiB、heap 峰值 479 MiB，数值项通过；仅有 17/96 组性能样本及 5/24 组 heap 样本，gate 正确判为失败。摘要证据见 `docs/evidence/p11/performance-gate-replay-folia-long-10-20261123.json`，不替代完整 30 分钟运行。
+2026-11-25 P7 审批恢复定向验证：`ArenaReviewQueueTest` 与 `PublishedDesignStoreTest` 共 15 项通过，覆盖决议写入失败不发布、决议已持久化后的发布失败可由同一审核者重试恢复，以及发布存储 ACL/版本约束。验证使用 Java 21；仅是模块单测，不代表 Paper/Folia 实服或断电耐久性验收。证据见 `docs/evidence/p7/approval-write-recovery-20261125.json`。
+2026-11-25 P7 审核者 Ed25519 身份证明：新决议格式 v3 将审核者 UUID、动作、候选 hash 和拒绝理由与签名绑定；独立信任文件按 UUID 固定公钥。新增 Node 离线签名器、公钥管理命令及 v1/v2 决议读取兼容。Java 21 定向运行 `ArenaReviewSignatureTest` 3 项、`ArenaReviewQueueTest` 12 项、`ArenaReviewTrustFileStoreTest` 2 项和 `PublishedDesignStoreTest` 5 项，共 22 项通过；Node 签名器 4 项通过，模块边界检查和 `git diff --check` 通过。证据见 `docs/evidence/p7/reviewer-signatures-20261125.json`。签名验证身份密钥持有，不证明真实世界身份，也不替代 Paper/Folia 真人流程验收。
+2026-11-25 P9 saga 与 journal 定向验证：nation-resource provider bridge 14 项、coordinator 7 项、journal commands 7 项和 durable file store 9 项，共 37 项通过。测试验证模拟 provider 的 fail-closed 回执、幂等恢复、只读复核和有界持久化；不代表生产经济适配器或实服结算验收。证据见 `docs/evidence/p9/settlement-journal-tests-20261125.json`。
+2026-11-25 Java 21 全仓复验因宿主机 native memory 失败：API 模块 4 项通过后，Surefire 在启动 design 模块首个 fork 时无法分配约 1 MiB，尚未报告设计模块断言结果。失败发生时 Java 进程已退出，随后观察到系统可用内存为 1 KiB；不是可归因于代码的测试失败。P7/P9 定向测试结果独立通过；全仓复验状态仍失败，诊断摘要见 `docs/evidence/p11/full-verify-memory-retry-20261125.json`，JVM 原始报告保留于 `stargenesis-design/hs_err_pid29600.log`。

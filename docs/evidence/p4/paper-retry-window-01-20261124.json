@@ -1,0 +1,96 @@
+{
+  "phase": "P4 paper and Velocity cross-server protocol relay",
+  "kind": "paper",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "8553f5144c9ccda7d181d0d719cf656899184be523c465656e2722f1530e3d46",
+  "server_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "backend_jar_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "811477214e68305f5965bf516f948e1ba1785c2ad21aef5b77c61087f8962034",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 506023936,
+    "minimum_free_bytes": 268435456,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 3700,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "09c46974cbaa9074968d25d62c54ce693899d96880f3e966051b1f0548b4ab53",
+      "log_file": "hub_a.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 12640,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "ee2448745b2ab95af059d1ee72ed28f62a0175add92712459d37512ad4459f04",
+      "log_file": "hub_b.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 14668,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "1865e1ef6ca1a10ca53a2a3a0cdca2486809960783ba145efa591e1fac20839d",
+      "log_file": "velocity.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game",
+        "已解锁公开入门协议芯片：genesis:protocol",
+        "已装备协议芯片：genesis:protocol",
+        "跨服协议消息已进入持久发件箱，等待目标服务器确认。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game",
+        "已解锁公开入门协议芯片：genesis:protocol",
+        "已装备协议芯片：genesis:protocol"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true,
+    "both_clients_equipped_starter_protocol": true
+  },
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: Timed out waiting for SgRelaySource relay acknowledgement; received=[\"跨服协议消息已进入持久发件箱，等待目标服务器确认。\"]\n    at Timeout._onTimeout (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:308:14)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)",
+  "duration_seconds": 107.7
+}

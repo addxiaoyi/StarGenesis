@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:stargenesis:design:arena_ruleset:2",
+  "title": "StarGenesis ARENA_RULESET schema 2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "metadata", "width", "height", "durationSteps", "unitBudget", "layout", "victory"],
+  "properties": {
+    "kind": { "const": "ARENA_RULESET" },
+    "metadata": { "$ref": "#/$defs/metadata" },
+    "width": { "type": "integer", "minimum": 4, "maximum": 128 },
+    "height": { "type": "integer", "minimum": 4, "maximum": 128 },
+    "durationSteps": { "type": "integer", "minimum": 1, "maximum": 72000 },
+    "unitBudget": { "type": "integer", "minimum": 1, "maximum": 64 },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["obstacles", "teams", "objectives"],
+      "properties": {
+        "obstacles": { "type": "array", "maxItems": 512, "uniqueItems": true, "items": { "$ref": "#/$defs/cell" } },
+        "teams": { "type": "array", "minItems": 2, "maxItems": 8, "items": { "$ref": "#/$defs/team" } },
+        "objectives": { "type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": { "$ref": "#/$defs/cell" } }
+      }
+    },
+    "victory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["combination", "conditions"],
+      "properties": {
+        "combination": { "enum": ["ANY", "ALL"] },
+        "conditions": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "$ref": "#/$defs/condition" } }
+      }
+    }
+  },
+  "$defs": {
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer", "minimum": 0, "maximum": 127 },
+        "y": { "type": "integer", "minimum": 0, "maximum": 127 }
+      }
+    },
+    "team": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "spawns"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,23}$" },
+        "spawns": { "type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": { "$ref": "#/$defs/cell" } }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "threshold"],
+      "properties": {
+        "metric": { "enum": ["CONTROLLED_OBJECTIVES", "OBJECTIVE_POINTS"] },
+        "threshold": { "type": "integer", "minimum": 1, "maximum": 1152000 }
+      },
+      "if": { "properties": { "metric": { "const": "CONTROLLED_OBJECTIVES" } } },
+      "then": { "properties": { "threshold": { "maximum": 16 } } }
+    },
+    "id": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-z][a-z0-9_-]{0,31}:[a-z0-9][a-z0-9_./-]{0,94}$",
+          "not": { "pattern": "\\.\\.|/$" }
+        }
+      }
+    },
+    "version": { "type": "string", "pattern": "^(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})$" },
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "uuid": { "type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "hash"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/version" },
+        "hash": { "$ref": "#/$defs/hash" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "schemaVersion", "version", "author", "source", "dependencies", "hash", "permissions"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "schemaVersion": { "const": 2 },
+        "version": { "$ref": "#/$defs/version" },
+        "author": { "$ref": "#/$defs/uuid" },
+        "source": { "type": "string", "minLength": 1, "maxLength": 512, "pattern": "\\S" },
+        "dependencies": { "type": "array", "maxItems": 64, "items": { "$ref": "#/$defs/dependency" } },
+        "hash": { "$ref": "#/$defs/hash" },
+        "permissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["publicRead", "allowClone", "editors"],
+          "properties": {
+            "publicRead": { "type": "boolean" },
+            "allowClone": { "type": "boolean" },
+            "editors": { "type": "array", "maxItems": 64, "uniqueItems": true, "items": { "$ref": "#/$defs/uuid" } }
+          }
+        }
+      }
+    }
+  }
+}

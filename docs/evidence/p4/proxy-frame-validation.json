@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-22",
+  "java": {
+    "distribution": "Eclipse Temurin",
+    "version": "21.0.13.1"
+  },
+  "mavenVerify": {
+    "command": ".\\mvnw.cmd -B -ntp verify",
+    "result": "passed",
+    "tests": 299,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "modules": {
+      "api": 4,
+      "design": 102,
+      "sim": 93,
+      "integrations": 25,
+      "paper": 75
+    }
+  },
+  "postVerifyChangeTest": {
+    "command": ".\\mvnw.cmd -B -ntp -pl stargenesis-paper -am '-Dtest=ProtocolRelayProxyFrameTest' '-Dsurefire.failIfNoSpecifiedTests=false' test",
+    "result": "passed",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "packageBuild": {
+    "command": ".\\mvnw.cmd -B -ntp -DskipTests package",
+    "result": "passed"
+  },
+  "additionalChecks": {
+    "moduleBoundaries": "passed",
+    "benchmarkScriptSyntax": "passed",
+    "benchmarkScriptTests": 3,
+    "gitDiffCheck": "passed"
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 61,
+    "result": "passed"
+  },
+  "paperJar": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sizeBytes": 3094336,
+    "sha256": "88A9ACDB38D07DFEFD28E8D9C101160BEEBE001AB8A0D2E9E8EA23DD59117B07"
+  },
+  "notRun": [
+    "Paper/Folia proxy end-to-end relay",
+    "30-minute Paper benchmark",
+    "30-minute Folia benchmark"
+  ]
+}

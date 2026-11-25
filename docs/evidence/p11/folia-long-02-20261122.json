@@ -1,0 +1,45 @@
+{
+  "phase": "P11 Folia runtime load and memory benchmark",
+  "verified_at": "2026-11-22T19:39:59+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-02-result.json",
+  "raw_evidence_sha256": "55b5e4d4b4061c470491ffdfc2c9bd31c969fa26a5a8e2d5d034fce50aaac0d4",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 99,
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc",
+    "jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201"
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_mib": 8192,
+    "available_memory_mib_at_start": 2951
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 200,
+    "advance_commands": 50,
+    "simulated_ticks": 5000,
+    "total_client_commands": 259
+  },
+  "samples": [
+    { "elapsed_seconds": 16, "median_region_tps": 19.93, "highest_utilization_region_mspt": 2.76, "available_memory_mib": 1977, "rss_mib": 863, "heap_used_mib": 425 },
+    { "elapsed_seconds": 31, "median_region_tps": 20, "highest_utilization_region_mspt": 1.26, "available_memory_mib": 1897, "rss_mib": 878, "heap_used_mib": null },
+    { "elapsed_seconds": 45, "median_region_tps": 20, "highest_utilization_region_mspt": 1.13, "available_memory_mib": 1912, "rss_mib": 887, "heap_used_mib": null },
+    { "elapsed_seconds": 61, "median_region_tps": 20, "highest_utilization_region_mspt": 1.09, "available_memory_mib": 1928, "rss_mib": 889, "heap_used_mib": null },
+    { "elapsed_seconds": 75, "median_region_tps": 20, "highest_utilization_region_mspt": 1.05, "available_memory_mib": 1904, "rss_mib": 881, "heap_used_mib": 365 },
+    { "elapsed_seconds": 91, "median_region_tps": 20, "highest_utilization_region_mspt": 0.94, "available_memory_mib": 1939, "rss_mib": 888, "heap_used_mib": null }
+  ],
+  "environment_conflict": {
+    "detected_process_kind": "Maven test JVM",
+    "first_observed_elapsed_seconds": 98,
+    "benchmark_aborted": true
+  },
+  "server_exit_code_after_harness_shutdown": 0,
+  "passed": false,
+  "scope": "Six valid Folia metric samples confirm the health-report parser. The run was stopped by process isolation before the 30-minute P11 gate."
+}

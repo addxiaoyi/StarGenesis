@@ -1,0 +1,327 @@
+[11:49:05 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.1+2-LTS; Eclipse Adoptium Temurin-21.0.13.1+2) on Windows Server 2022 10.0 (amd64)
+[11:49:05 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[11:49:06 INFO]: [PluginInitializerManager] Initializing plugins...
+[11:49:08 INFO]: [ReobfServer] Remapping server...
+[11:49:25 INFO]: [ReobfServer] Done remapping server in 16983ms.
+[11:49:25 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[11:49:26 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1311ms.
+[11:49:27 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[11:49:27 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[11:49:34 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[11:49:34 INFO]: Found new data pack file/bukkit, loading it automatically
+[11:49:34 INFO]: Found new data pack paper, loading it automatically
+[11:49:35 INFO]: No existing world data, creating new world
+[11:49:36 INFO]: Loaded 1470 recipes
+[11:49:36 INFO]: Loaded 1584 advancements
+[11:49:36 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[11:49:37 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 577.1ms
+[11:49:37 INFO]: Starting minecraft server version 1.21.11
+[33;1m[11:49:37 WARN]: ****************************
+[m[33;1m[11:49:37 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[11:49:37 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[11:49:37 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[11:49:37 WARN]: ****************************
+[m[11:49:37 INFO]: Loading properties
+[11:49:37 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[11:49:37 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[11:49:37 INFO]: Using 4 threads for Netty based IO
+[11:49:37 INFO]: Server Ping Player Sample Count: 12
+[11:49:38 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[11:49:39 INFO]: Default game type: SURVIVAL
+[11:49:39 INFO]: Generating keypair
+[11:49:39 INFO]: Starting Minecraft server on 127.0.0.1:25584
+>   [11:49:39 INFO]: Paper: Using Java compression from Velocity.
+>   [11:49:39 INFO]: Paper: Using Java cipher from Velocity.
+>   [11:49:39 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+>   [33;1m[11:49:39 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m>   [33;1m[11:49:39 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m>   [33;1m[11:49:39 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m>   [33;1m[11:49:39 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m>   [11:49:39 INFO]: Preparing level "world"
+>   [11:49:40 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+>   [11:49:41 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+>   [11:49:42 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+>   [11:49:42 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+>   [11:49:42 INFO]: Preparing spawn area: 100%
+>   [11:49:42 INFO]: Prepared spawn area in 2504 ms
+>   [11:49:42 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+>   [11:49:42 INFO]: Preparing spawn area: 100%
+>   [11:49:42 INFO]: Prepared spawn area in 1908 ms
+>   [11:49:42 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+>   [11:49:42 INFO]: Preparing spawn area: 100%
+>   [11:49:42 INFO]: Prepared spawn area in 465 ms
+>   [11:49:42 INFO]: Done preparing level "world" (2.980s)
+>   [11:49:42 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+>   [11:49:44 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 signed schema-v1 examples and arena schema-v2
+>   [11:49:44 INFO]: [StarGenesis] Settlement saga journal verified | records=0 | unresolved=0 | real-settlement=disabled
+>   [11:49:44 INFO]: [StarGenesis] Design signing trust verified | authors=0 | signed-archive=0
+>   [11:49:44 INFO]: [StarGenesis] StarGenesis ready | phases=P1-P10 development | api=1 | engine=genesis-sim/1 | real-settlement=disabled
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:49:44 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+>   [11:49:44 INFO]: [spark] Starting background profiler...
+>   [11:49:44 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+>   [11:49:44 INFO]: Running delayed init tasks
+>   [11:49:44 INFO]: Done (42.114s)! For help, type "help"
+>   [11:49:44 INFO]: *************************************************************************************
+>   [11:49:44 INFO]: This is the first time you're starting this server.
+>   [11:49:44 INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
+>   [11:49:44 INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
+>   [11:49:44 INFO]: *************************************************************************************
+>   [11:49:46 INFO]: UUID of player SgProdPaper is 0147fa94-0460-3c64-83f0-7872b03c24e4
+>   [33;1m[11:49:47 WARN]: *************************************************************************************
+[m>   [33;1m[11:49:47 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m>   [33;1m[11:49:47 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m>   [33;1m[11:49:47 WARN]: It is recommended that you update as soon as possible
+[m>   [33;1m[11:49:47 WARN]: https://papermc.io/downloads/paper
+[m>   [33;1m[11:49:47 WARN]: *************************************************************************************
+[m>   [11:49:49 INFO]: [93mSgProdPaper joined the game[0m
+>   [11:49:49 INFO]: SgProdPaper[/127.0.0.1:55808] logged in with entity id 1 at ([world]-7.5, -63.0, 1.5)
+>   [11:49:50 INFO]: SgProdPaper issued server command: /genesis factory identity
+>   [11:49:51 INFO]: SgProdPaper issued server command: /genesis factory org create p6prod_paper
+>   [11:49:51 INFO]: UUID of player SgInvitePaper is 8ce73bf1-7fc5-317f-8914-81dfb04ee6d1
+>   [11:49:51 INFO]: [93mSgInvitePaper joined the game[0m
+>   [11:49:51 INFO]: SgInvitePaper[/127.0.0.1:55815] logged in with entity id 2 at ([world]-3.5, -63.0, 7.5)
+>   [11:49:52 INFO]: SgInvitePaper issued server command: /genesis factory org menu
+>   [11:49:53 INFO]: SgProdPaper issued server command: /genesis factory org menu
+>   [11:49:54 INFO]: SgProdPaper issued server command: /genesis factory org add 00000000-0000-0000-0000-000000000102
+>   [11:49:55 INFO]: SgProdPaper issued server command: /genesis factory org add 00000000-0000-0000-0000-000000000103
+>   [11:49:55 INFO]: SgProdPaper issued server command: /genesis factory org add 00000000-0000-0000-0000-000000000104
+>   [11:49:56 INFO]: SgProdPaper issued server command: /genesis factory create
+>   [11:49:57 INFO]: SgProdPaper issued server command: /genesis factory org menu
+>   [11:49:58 INFO]: SgProdPaper issued server command: /genesis factory station queue factory:frame 41 2
+>   [11:49:59 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:00 INFO]: SgProdPaper issued server command: /genesis factory advance 0 4
+>   [11:50:01 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:01 INFO]: SgProdPaper issued server command: /genesis factory station collect 42 8
+>   [11:50:02 INFO]: SgProdPaper issued server command: /genesis factory station queue factory:plate 43 4
+> >   [11:50:02 INFO]: SgProdPaper lost connection: Disconnected
+>   [11:50:02 INFO]: [93mSgProdPaper left the game[0m
+>   [11:50:02 INFO]: SgInvitePaper lost connection: Disconnected
+>   [11:50:02 INFO]: [93mSgInvitePaper left the game[0m
+>   [11:50:02 INFO]: Stopping the server
+>   [11:50:02 INFO]: Stopping server
+>   [11:50:02 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:02 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+>   [11:50:02 INFO]: Saving players
+>   [11:50:03 INFO]: Saving worlds
+>   [11:50:03 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saved 1089 block chunks, 121 entity chunks, 0 poi chunks in world 'world' in 0.64s
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+>   [11:50:03 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+>   [11:50:03 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+>   [11:50:03 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+>   [11:50:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+>   [11:50:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+>   [11:50:03 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+>   [11:50:03 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+>   [11:50:03 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+>   [11:50:03 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+>   [11:50:03 INFO]: Waiting for all RegionFile I/O tasks to complete...
+>   [11:50:03 INFO]: All RegionFile I/O tasks to complete
+>   [11:50:03 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+>   [11:50:03 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> [11:50:06 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.1+2-LTS; Eclipse Adoptium Temurin-21.0.13.1+2) on Windows Server 2022 10.0 (amd64)
+[11:50:06 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[11:50:07 INFO]: [PluginInitializerManager] Initializing plugins...
+[11:50:08 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[11:50:08 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[11:50:15 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[11:50:19 INFO]: Loaded 1470 recipes
+[11:50:19 INFO]: Loaded 1584 advancements
+[11:50:19 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[11:50:19 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 564.1ms
+[11:50:19 INFO]: Starting minecraft server version 1.21.11
+[33;1m[11:50:19 WARN]: ****************************
+[m[33;1m[11:50:19 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[11:50:19 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[11:50:19 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[11:50:19 WARN]: ****************************
+[m[11:50:19 INFO]: Loading properties
+[11:50:19 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[11:50:20 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[11:50:20 INFO]: Server Ping Player Sample Count: 12
+[11:50:20 INFO]: Using 4 threads for Netty based IO
+[11:50:21 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+>   [11:50:21 INFO]: Default game type: SURVIVAL
+>   [11:50:21 INFO]: Generating keypair
+>   [11:50:21 INFO]: Starting Minecraft server on 127.0.0.1:25584
+>   [11:50:21 INFO]: Paper: Using Java compression from Velocity.
+>   [11:50:21 INFO]: Paper: Using Java cipher from Velocity.
+>   [11:50:22 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:22 INFO]: Server permissions file permissions.yml is empty, ignoring it
+>   [33;1m[11:50:22 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m>   [33;1m[11:50:22 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m>   [33;1m[11:50:22 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m>   [33;1m[11:50:22 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m>   [11:50:22 INFO]: Preparing level "world"
+>   [11:50:22 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+>   [11:50:22 INFO]: Preparing spawn area: 100%
+>   [11:50:22 INFO]: Prepared spawn area in 2 ms
+>   [11:50:22 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+>   [11:50:22 INFO]: Prepared spawn area in 1 ms
+>   [11:50:22 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+>   [11:50:22 INFO]: Prepared spawn area in 1 ms
+>   [11:50:22 INFO]: Done preparing level "world" (0.537s)
+>   [11:50:22 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:24 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 signed schema-v1 examples and arena schema-v2
+>   [11:50:24 INFO]: [StarGenesis] Settlement saga journal verified | records=0 | unresolved=0 | real-settlement=disabled
+>   [11:50:24 INFO]: [StarGenesis] Design signing trust verified | authors=0 | signed-archive=0
+>   [11:50:24 INFO]: [StarGenesis] StarGenesis ready | phases=P1-P10 development | api=1 | engine=genesis-sim/1 | real-settlement=disabled
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:24 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+>   [11:50:24 INFO]: [spark] Starting background profiler...
+>   [11:50:24 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+>   [11:50:24 INFO]: Running delayed init tasks
+>   [11:50:24 INFO]: Done (19.729s)! For help, type "help"
+>   [11:50:24 INFO]: UUID of player SgProdPaper is 0147fa94-0460-3c64-83f0-7872b03c24e4
+>   [33;1m[11:50:25 WARN]: *************************************************************************************
+[m>   [33;1m[11:50:25 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m>   [33;1m[11:50:25 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m>   [33;1m[11:50:25 WARN]: It is recommended that you update as soon as possible
+[m>   [33;1m[11:50:25 WARN]: https://papermc.io/downloads/paper
+[m>   [33;1m[11:50:25 WARN]: *************************************************************************************
+[m>   [11:50:26 INFO]: [93mSgProdPaper joined the game[0m
+>   [11:50:26 INFO]: SgProdPaper[/127.0.0.1:55834] logged in with entity id 1 at ([world]-7.5, -63.0, 1.5)
+>   [11:50:27 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:28 INFO]: SgProdPaper issued server command: /genesis factory advance 4 4
+>   [11:50:28 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:29 INFO]: SgProdPaper issued server command: /genesis factory station collect 44 12
+>   [11:50:30 INFO]: SgProdPaper issued server command: /genesis factory station queue factory:frame 45 1
+> [11:50:32 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.1+2-LTS; Eclipse Adoptium Temurin-21.0.13.1+2) on Windows Server 2022 10.0 (amd64)
+[11:50:32 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[11:50:33 INFO]: [PluginInitializerManager] Initializing plugins...
+[11:50:34 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[11:50:34 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[11:50:41 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[11:50:45 INFO]: Loaded 1470 recipes
+[11:50:45 INFO]: Loaded 1584 advancements
+[11:50:45 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[11:50:46 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 619.3ms
+[11:50:46 INFO]: Starting minecraft server version 1.21.11
+[33;1m[11:50:46 WARN]: ****************************
+[m[33;1m[11:50:46 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[11:50:46 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[11:50:46 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[11:50:46 WARN]: ****************************
+[m[11:50:46 INFO]: Loading properties
+[11:50:46 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[11:50:46 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[11:50:46 INFO]: Server Ping Player Sample Count: 12
+[11:50:46 INFO]: Using 4 threads for Netty based IO
+[11:50:47 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[11:50:47 INFO]: Default game type: SURVIVAL
+>   [11:50:47 INFO]: Generating keypair
+>   [11:50:48 INFO]: Starting Minecraft server on 127.0.0.1:25584
+>   [11:50:48 INFO]: Paper: Using Java compression from Velocity.
+>   [11:50:48 INFO]: Paper: Using Java cipher from Velocity.
+>   [11:50:48 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:48 INFO]: Server permissions file permissions.yml is empty, ignoring it
+>   [33;1m[11:50:48 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m>   [33;1m[11:50:48 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m>   [33;1m[11:50:48 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m>   [33;1m[11:50:48 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m>   [11:50:48 INFO]: Preparing level "world"
+>   [11:50:48 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+>   [11:50:48 INFO]: Preparing spawn area: 100%
+>   [11:50:48 INFO]: Prepared spawn area in 2 ms
+>   [11:50:48 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+>   [11:50:48 INFO]: Prepared spawn area in 1 ms
+>   [11:50:48 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+>   [11:50:48 INFO]: Prepared spawn area in 1 ms
+>   [11:50:48 INFO]: Done preparing level "world" (0.460s)
+>   [11:50:48 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:50 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 signed schema-v1 examples and arena schema-v2
+>   [11:50:50 INFO]: [StarGenesis] Settlement saga journal verified | records=0 | unresolved=0 | real-settlement=disabled
+>   [11:50:50 INFO]: [StarGenesis] Design signing trust verified | authors=0 | signed-archive=0
+>   [11:50:50 INFO]: [StarGenesis] StarGenesis ready | phases=P1-P10 development | api=1 | engine=genesis-sim/1 | real-settlement=disabled
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+>   [11:50:50 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+>   [11:50:50 INFO]: [spark] Starting background profiler...
+>   [11:50:50 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+>   [11:50:50 INFO]: Running delayed init tasks
+>   [11:50:50 INFO]: Done (19.538s)! For help, type "help"
+>   [11:50:50 INFO]: UUID of player SgProdPaper is 0147fa94-0460-3c64-83f0-7872b03c24e4
+>   [11:50:52 INFO]: [93mSgProdPaper joined the game[0m
+>   [11:50:52 INFO]: SgProdPaper[/127.0.0.1:55852] logged in with entity id 1 at ([world]-7.5, -63.0, 1.5)
+>   [33;1m[11:50:53 WARN]: *************************************************************************************
+[m>   [33;1m[11:50:53 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m>   [33;1m[11:50:53 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m>   [33;1m[11:50:53 WARN]: It is recommended that you update as soon as possible
+[m>   [33;1m[11:50:53 WARN]: https://papermc.io/downloads/paper
+[m>   [33;1m[11:50:53 WARN]: *************************************************************************************
+[m>   [11:50:53 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:54 INFO]: SgProdPaper issued server command: /genesis factory advance 8 2
+>   [11:50:55 INFO]: SgProdPaper issued server command: /genesis factory station status
+>   [11:50:55 INFO]: SgProdPaper issued server command: /genesis factory station collect 46 4
+> >   [11:50:56 INFO]: SgProdPaper lost connection: Disconnected
+>   [11:50:56 INFO]: [93mSgProdPaper left the game[0m
+>   [11:50:56 INFO]: Stopping the server
+>   [11:50:56 INFO]: Stopping server
+>   [11:50:56 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+>   [11:50:56 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+>   [11:50:56 INFO]: Saving players
+>   [11:50:56 INFO]: Saving worlds
+>   [11:50:56 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saved 121 block chunks, 121 entity chunks, 0 poi chunks in world 'world' in 0.26s
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+>   [11:50:56 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+>   [11:50:56 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+>   [11:50:56 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+>   [11:50:56 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+>   [11:50:56 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+>   [11:50:56 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+>   [11:50:56 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+>   [11:50:56 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+>   [11:50:56 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+>   [11:50:56 INFO]: Waiting for all RegionFile I/O tasks to complete...
+>   [11:50:56 INFO]: All RegionFile I/O tasks to complete
+>   [11:50:56 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+>   [11:50:56 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

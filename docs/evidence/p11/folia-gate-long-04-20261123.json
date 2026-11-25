@@ -1,0 +1,378 @@
+{
+  "phase": "P11 Paper/Folia runtime load and memory benchmark",
+  "kind": "folia",
+  "benchmark_script_sha256": "07f7130976ca124fb2c22b3dd022cbb3b654a2ccb980269bb8cbb70d381bfefc",
+  "requested_duration_seconds": 1800,
+  "sample_interval_seconds": 15,
+  "work_interval_seconds": 2,
+  "advance_steps_per_write": 100,
+  "memory_sample_interval_seconds": 60,
+  "jvm_arguments": [
+    "-Xms128M",
+    "-Xmx512M",
+    "-XX:ActiveProcessorCount=4",
+    "-XX:+UseG1GC",
+    "-jar",
+    "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\folia-1.21.11-14.jar",
+    "--nogui"
+  ],
+  "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "server_log": "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\p11-folia-gate-long-04-20261123\\benchmark-server.log",
+  "server_process": {
+    "pid": 5264,
+    "spawned_at": "2026-11-23T00:51:29.825Z"
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 17,
+      "tps": 19.93,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 2.9,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[08:52:24 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[08:52:24 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 7.8% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 3.27",
+        "- Lowest Region TPS: 19.93",
+        "- Median Region TPS: 19.93",
+        "- Highest Region TPS: 19.93",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',7,80,-9]:",
+        "5.7% util at 2.90 MSPT at 19.93 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[08:52:24 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[08:52:24 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": null,
+      "available_memory_bytes": 1569947648,
+      "rss_bytes": 904994816,
+      "private_bytes": 931004416,
+      "heap_used_bytes": 404228096
+    },
+    {
+      "elapsed_seconds": 31,
+      "tps": 19.98,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.29,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[08:52:39 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[08:52:39 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.9% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 19.98",
+        "- Median Region TPS: 19.98",
+        "- Highest Region TPS: 19.98",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',7,80,-9]:",
+        "2.6% util at 1.29 MSPT at 19.98 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[08:52:39 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[08:52:39 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 6.785119779981183,
+      "available_memory_bytes": 1548312576,
+      "rss_bytes": 902258688,
+      "private_bytes": 928382976,
+      "heap_used_bytes": null
+    }
+  ],
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 92,
+    "advance_commands": 23,
+    "simulated_ticks": 2300,
+    "total_client_commands": 124
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_bytes": 8589004800,
+    "available_memory_bytes_at_start": 2313539584,
+    "other_server_workload": "No other Java servers were running at launch; TPS, tick-time, memory and coverage gates enabled",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [
+      {
+        "pid": 26884,
+        "jvm": "org.codehaus.plexus.classworlds.launcher.Launcher -T 1 -o verify",
+        "first_observed_elapsed_seconds": 44
+      }
+    ],
+    "java_process_probe_errors": []
+  },
+  "scope": "Four offline Mineflayer clients exercise the persisted P6 factory on an isolated server. Metrics are observational and do not by themselves establish a release threshold or human usability.",
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "environment_conflict": {
+    "elapsed_seconds": 44,
+    "java_processes": [
+      {
+        "pid": 26884,
+        "jvm": "org.codehaus.plexus.classworlds.launcher.Launcher -T 1 -o verify",
+        "first_observed_elapsed_seconds": 44
+      }
+    ]
+  },
+  "error": "Error: Another Java process started during the benchmark: [{\"pid\":26884,\"jvm\":\"org.codehaus.plexus.classworlds.launcher.Launcher -T 1 -o verify\",\"first_observed_elapsed_seconds\":44}]\n    at assertBenchmarkProcessIsolation (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:313:11)\n    at main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:647:9)",
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc"
+  },
+  "failed_after_seconds": 45,
+  "passed": false,
+  "client_diagnostics": {
+    "SgBenchF1": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "工厂已推进 100 步，当前 tick 1700。",
+        "虚拟工厂 factory-main | tick 1700/72000 | 订单 0/64\n状态哈希 a25f9f01959a3903\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1800/72000 | 订单 0/64\n状态哈希 d211cf1aa1699547\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1900/72000 | 订单 0/64\n状态哈希 dd0746133b152803\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2000/72000 | 订单 0/64\n状态哈希 db503a7ad3e69287\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 2100。",
+        "虚拟工厂 factory-main | tick 2100/72000 | 订单 0/64\n状态哈希 1ae7721178b44ca0\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2200/72000 | 订单 0/64\n状态哈希 9ab259ab290a5257\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    },
+    "SgBenchF2": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 1700/72000 | 订单 0/64\n状态哈希 a25f9f01959a3903\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 1800。",
+        "虚拟工厂 factory-main | tick 1800/72000 | 订单 0/64\n状态哈希 d211cf1aa1699547\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1900/72000 | 订单 0/64\n状态哈希 dd0746133b152803\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2000/72000 | 订单 0/64\n状态哈希 db503a7ad3e69287\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2100/72000 | 订单 0/64\n状态哈希 1ae7721178b44ca0\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 2200。",
+        "虚拟工厂 factory-main | tick 2200/72000 | 订单 0/64\n状态哈希 9ab259ab290a5257\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    },
+    "SgBenchF3": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 1700/72000 | 订单 0/64\n状态哈希 a25f9f01959a3903\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1800/72000 | 订单 0/64\n状态哈希 d211cf1aa1699547\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 1900。",
+        "虚拟工厂 factory-main | tick 1900/72000 | 订单 0/64\n状态哈希 dd0746133b152803\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2000/72000 | 订单 0/64\n状态哈希 db503a7ad3e69287\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2100/72000 | 订单 0/64\n状态哈希 1ae7721178b44ca0\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2200/72000 | 订单 0/64\n状态哈希 9ab259ab290a5257\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 2300。"
+      ]
+    },
+    "SgBenchF4": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 1600/72000 | 订单 0/64\n状态哈希 dc2b030e52793d4e\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1700/72000 | 订单 0/64\n状态哈希 a25f9f01959a3903\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1800/72000 | 订单 0/64\n状态哈希 d211cf1aa1699547\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 1900/72000 | 订单 0/64\n状态哈希 dd0746133b152803\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 2000。",
+        "虚拟工厂 factory-main | tick 2000/72000 | 订单 0/64\n状态哈希 db503a7ad3e69287\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2100/72000 | 订单 0/64\n状态哈希 1ae7721178b44ca0\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 2200/72000 | 订单 0/64\n状态哈希 9ab259ab290a5257\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-"
+      ]
+    }
+  },
+  "commands": {
+    "status_latency_ms": {
+      "count": 101,
+      "min": 17.39850000000297,
+      "mean": 63.04306336633734,
+      "p50": 58.918100000002596,
+      "p95": 95.35919999999896,
+      "max": 191.76239999999962
+    },
+    "advance_latency_ms": {
+      "count": 23,
+      "min": 112.0561000000016,
+      "mean": 125.76853043478236,
+      "p50": 114.13959999999497,
+      "p95": 130.48739999999816,
+      "max": 329.8665000000037
+    }
+  },
+  "performance": {
+    "tps": {
+      "count": 2,
+      "min": 19.93,
+      "mean": 19.955,
+      "p50": 19.93,
+      "p95": 19.98,
+      "max": 19.98
+    },
+    "tick_duration_mean_ms": {
+      "count": 2,
+      "min": 1.29,
+      "mean": 2.0949999999999998,
+      "p50": 1.29,
+      "p95": 2.9,
+      "max": 2.9
+    },
+    "tick_duration_median_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_p95_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_max_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "cpu_percent_of_one_core": {
+      "count": 1,
+      "min": 6.785119779981183,
+      "mean": 6.785119779981183,
+      "p50": 6.785119779981183,
+      "p95": 6.785119779981183,
+      "max": 6.785119779981183
+    },
+    "available_memory_mib": {
+      "count": 2,
+      "min": 1476.5859375,
+      "mean": 1486.90234375,
+      "p50": 1476.5859375,
+      "p95": 1497.21875,
+      "max": 1497.21875
+    },
+    "rss_mib": {
+      "count": 2,
+      "min": 860.4609375,
+      "mean": 861.765625,
+      "p50": 860.4609375,
+      "p95": 863.0703125,
+      "max": 863.0703125
+    },
+    "private_mib": {
+      "count": 2,
+      "min": 885.375,
+      "mean": 886.625,
+      "p50": 885.375,
+      "p95": 887.875,
+      "max": 887.875
+    },
+    "heap_used_mib": {
+      "count": 1,
+      "min": 385.501953125,
+      "mean": 385.501953125,
+      "p50": 385.501953125,
+      "p95": 385.501953125,
+      "max": 385.501953125
+    }
+  },
+  "telemetry_complete": true,
+  "performance_gate": {
+    "passed": false,
+    "limits": {
+      "minimumTpsP50": 19,
+      "maximumTickDurationP95Milliseconds": 50,
+      "minimumAvailableMemoryMebibytes": 1024,
+      "maximumRssMebibytes": 1536,
+      "maximumHeapUsedMebibytes": 480,
+      "minimumMetricSampleCoverage": 0.8,
+      "minimumHeapSampleCoverage": 0.8
+    },
+    "checks": {
+      "metric_sample_coverage": {
+        "passed": false,
+        "actual": {
+          "tps": 2,
+          "tickDuration": 2,
+          "availableMemory": 2,
+          "rss": 2
+        },
+        "minimum": 96
+      },
+      "heap_sample_coverage": {
+        "passed": false,
+        "actual": 1,
+        "minimum": 24
+      },
+      "median_tps": {
+        "passed": true,
+        "actual": 19.93,
+        "minimum": 19
+      },
+      "tick_duration_p95_ms": {
+        "passed": true,
+        "actual": 2.9,
+        "maximum": 50,
+        "source": "sampled MSPT mean"
+      },
+      "available_memory_mib": {
+        "passed": true,
+        "actual_minimum": 1476.5859375,
+        "minimum": 1024
+      },
+      "rss_mib": {
+        "passed": true,
+        "actual_maximum": 863.0703125,
+        "maximum": 1536
+      },
+      "heap_used_mib": {
+        "passed": true,
+        "actual_maximum": 385.501953125,
+        "maximum": 480
+      }
+    }
+  },
+  "server_exit": {
+    "process_id": 5264,
+    "code": 0,
+    "signal": null,
+    "observed_at": "2026-11-23T00:52:55.616Z",
+    "elapsed_seconds": 47
+  }
+}

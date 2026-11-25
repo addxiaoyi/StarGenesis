@@ -1,0 +1,80 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "344deffd218aecb2b674ef39701968b8f03d10ad0a88db97b0fd986a5833ee73",
+  "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "java_processes_at_end": []
+  },
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 22636,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "a1290685bf3ca50aa0fa0583ae09a931578ccd374718f8b28548d3be364abf29",
+      "log_file": "hub_a.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 11812,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "71f59f411d96d2f38ff7953f14e5dec625548a71d9c113b571429099e74bff04",
+      "log_file": "hub_b.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 31836,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "e8fa77f75fe78c1ad73b0598a13810e6717b2cc6f33b12047193d18ac3097ee3",
+      "log_file": "velocity.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "messages": [
+        "SgRelaySource joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "messages": [
+        "SgRelayTarget joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends": false
+  },
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: SgRelaySource opened an incomplete protocol menu\n    at equipStarterProtocol (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:346:53)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:446:3)\n    at async file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:471:3",
+  "duration_seconds": 102.7
+}

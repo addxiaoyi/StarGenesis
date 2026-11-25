@@ -1,0 +1,29 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "6b42cbaac22bee659726395edac594ef4879808d6ff6ae123e54c2836e0016b3",
+  "paper_jar_sha256": null,
+  "velocity_jar_sha256": null,
+  "plugin_jar_sha256": null,
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 14557184,
+    "minimum_free_bytes": 1610612736,
+    "java_processes_at_end": [
+      {
+        "pid": 13976,
+        "description": "folia.jar nogui"
+      }
+    ]
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {},
+  "clients": {},
+  "checks": {},
+  "passed": false,
+  "error": "Error: Proxy test requires at least 1610612736 free bytes; found 14557184\n    at main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:412:11)\n    at file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:490:9\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "duration_seconds": 0
+}

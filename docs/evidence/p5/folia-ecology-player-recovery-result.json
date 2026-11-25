@@ -1,0 +1,15 @@
+{
+  "phase": "P5 ecology Paper player-data persistence",
+  "kind": "folia",
+  "version": "1.21.11-14-ver/1.21.11@529aabc",
+  "username": "SgEcoFolia",
+  "port": 25574,
+  "checks": {
+    "initial_tick_zero": true,
+    "first_step_reached_tick_one": true,
+    "restart_restored_tick_one": true,
+    "recovered_world_advanced_to_tick_two": true
+  },
+  "passed": true,
+  "scope": "Offline Mineflayer player advances the in-game ecology, disconnects, the isolated server saves and restarts, then the same player resumes the saved tick and advances again."
+}

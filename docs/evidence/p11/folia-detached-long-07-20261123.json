@@ -1,0 +1,708 @@
+{
+  "phase": "P11 Paper/Folia runtime load and memory benchmark",
+  "kind": "folia",
+  "benchmark_script_sha256": "13f61f2b14fb05fbcb726797484d26c079d1d511e4d6f71bc250425ea2709fce",
+  "requested_duration_seconds": 1800,
+  "sample_interval_seconds": 15,
+  "work_interval_seconds": 2,
+  "advance_steps_per_write": 100,
+  "memory_sample_interval_seconds": 60,
+  "jvm_arguments": [
+    "-Xms128M",
+    "-Xmx512M",
+    "-XX:ActiveProcessorCount=4",
+    "-XX:+UseG1GC",
+    "-jar",
+    "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\folia-1.21.11-14.jar",
+    "--nogui"
+  ],
+  "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "server_log": "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\p11-folia-detached-long-07-20261123\\benchmark-server.log",
+  "server_process": {
+    "pid": 18524,
+    "spawned_at": "2026-11-22T19:02:23.874Z"
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 17,
+      "tps": 18.78,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 2.82,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:03:22 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:03:22 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 13.3% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 2.80",
+        "- Lowest Region TPS: 18.78",
+        "- Median Region TPS: 18.78",
+        "- Highest Region TPS: 18.78",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "5.1% util at 2.82 MSPT at 18.78 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:03:22 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:03:22 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": null,
+      "available_memory_bytes": 1907707904,
+      "rss_bytes": 908673024,
+      "private_bytes": 939192320,
+      "heap_used_bytes": 312475648
+    },
+    {
+      "elapsed_seconds": 30,
+      "tps": 18.86,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.35,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:03:36 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:03:36 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 4.5% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 18.86",
+        "- Median Region TPS: 18.86",
+        "- Highest Region TPS: 18.86",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "2.7% util at 1.35 MSPT at 18.86 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:03:36 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:03:36 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 12.182530492511965,
+      "available_memory_bytes": 1936764928,
+      "rss_bytes": 921284608,
+      "private_bytes": 950284288,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 46,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.18,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:03:52 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:03:52 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.6% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "2.4% util at 1.18 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:03:52 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:03:52 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 11.44577336963568,
+      "available_memory_bytes": 1967370240,
+      "rss_bytes": 905093120,
+      "private_bytes": 932306944,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 60,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.12,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:04:06 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:04:06 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.4% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "2.2% util at 1.12 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:04:06 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:04:06 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 8.14081031055049,
+      "available_memory_bytes": 1950588928,
+      "rss_bytes": 922320896,
+      "private_bytes": 949903360,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 75,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 1.08,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:04:21 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:04:21 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.4% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "2.2% util at 1.08 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:04:21 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:04:21 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 14.689458594479264,
+      "available_memory_bytes": 1945292800,
+      "rss_bytes": 925356032,
+      "private_bytes": 952709120,
+      "heap_used_bytes": 436611072
+    },
+    {
+      "elapsed_seconds": 90,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.98,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:04:36 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:04:36 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.1% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "2.0% util at 0.98 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:04:36 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:04:36 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 5.523410925098379,
+      "available_memory_bytes": 1951559680,
+      "rss_bytes": 927158272,
+      "private_bytes": 954421248,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 105,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.91,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:04:52 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:04:52 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 3.0% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.8% util at 0.91 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:04:52 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:04:52 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 5.89622641509434,
+      "available_memory_bytes": 1977909248,
+      "rss_bytes": 932003840,
+      "private_bytes": 959078400,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 120,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.92,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:05:06 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:05:06 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.9% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.8% util at 0.92 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:05:06 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:05:06 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 10.806251258980728,
+      "available_memory_bytes": 1940267008,
+      "rss_bytes": 932499456,
+      "private_bytes": 959950848,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 135,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.87,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:05:21 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:05:21 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.9% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.7% util at 0.87 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:05:21 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:05:21 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 7.696531984290754,
+      "available_memory_bytes": 1964036096,
+      "rss_bytes": 934825984,
+      "private_bytes": 961581056,
+      "heap_used_bytes": 315835392
+    },
+    {
+      "elapsed_seconds": 150,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.85,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:05:36 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:05:36 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.7% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.7% util at 0.85 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:05:36 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:05:36 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 3.3362247280976844,
+      "available_memory_bytes": 1955958784,
+      "rss_bytes": 915574784,
+      "private_bytes": 945713152,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 165,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.85,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:05:51 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:05:51 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.9% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.7% util at 0.85 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:05:51 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:05:51 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 6.042875241715009,
+      "available_memory_bytes": 1969840128,
+      "rss_bytes": 932093952,
+      "private_bytes": 959664128,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 180,
+      "tps": 19.93,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.83,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:06:06 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:06:06 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.7% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 19.93",
+        "- Median Region TPS: 19.93",
+        "- Highest Region TPS: 19.93",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.6% util at 0.83 MSPT at 19.93 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:06:06 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:06:06 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 12.704098633788737,
+      "available_memory_bytes": 1966268416,
+      "rss_bytes": 933892096,
+      "private_bytes": 960892928,
+      "heap_used_bytes": null
+    },
+    {
+      "elapsed_seconds": 195,
+      "tps": 20,
+      "tps_window": "median Folia region",
+      "tick_duration_mean_ms": 0.78,
+      "tick_duration_min_ms": null,
+      "tick_duration_median_ms": null,
+      "tick_duration_p95_ms": null,
+      "tick_duration_max_ms": null,
+      "tick_duration_window": "highest-utilization Folia region",
+      "tick_metric": "Folia highest-utilization region MSPT",
+      "performance_lines": [
+        "[03:06:21 INFO]: Unknown or incomplete command. See below for error",
+        "spark tps<--[HERE]",
+        "[03:06:21 INFO]: Server Health Report",
+        "- Online Players: 4",
+        "- Total regions: 1",
+        "- Utilisation: 2.7% / 100.0%",
+        "- Load rate: 0.00, Gen rate: 0.00",
+        "- Lowest Region TPS: 20.00",
+        "- Median Region TPS: 20.00",
+        "- Highest Region TPS: 20.00",
+        "Highest 3 utilisation regions",
+        "- Region around block [w:'world',-265,80,7]:",
+        "1.6% util at 0.78 MSPT at 20.00 TPS",
+        "Chunks: 132 Players: 4 Entities: 4",
+        "[03:06:21 INFO]: Server tick times (avg/min/max) from last 5s, 10s, 1m:",
+        "[03:06:21 INFO]: ◴ 0.0/0.0/0.0, 0.0/0.0/0.0, 0.0/0.0/0.0"
+      ],
+      "cpu_percent_of_one_core": 3.3333333333333335,
+      "available_memory_bytes": 1975705600,
+      "rss_bytes": 933945344,
+      "private_bytes": 960892928,
+      "heap_used_bytes": 400485376
+    }
+  ],
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 412,
+    "advance_commands": 103,
+    "simulated_ticks": 10300,
+    "total_client_commands": 524
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_bytes": 8589004800,
+    "available_memory_bytes_at_start": 2668724224,
+    "other_server_workload": "No other Java servers were running at launch; monitoring every five seconds",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [
+      {
+        "pid": 18904,
+        "jvm": "paper-1.21.11-132.jar --nogui",
+        "first_observed_elapsed_seconds": 208
+      }
+    ],
+    "java_process_probe_errors": []
+  },
+  "scope": "Four offline Mineflayer clients exercise the persisted P6 factory on an isolated server. Metrics are observational and do not by themselves establish a release threshold or human usability.",
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "environment_conflict": {
+    "elapsed_seconds": 208,
+    "java_processes": [
+      {
+        "pid": 18904,
+        "jvm": "paper-1.21.11-132.jar --nogui",
+        "first_observed_elapsed_seconds": 208
+      }
+    ]
+  },
+  "error": "Error: Another Java process started during the benchmark: [{\"pid\":18904,\"jvm\":\"paper-1.21.11-132.jar --nogui\",\"first_observed_elapsed_seconds\":208}]\n    at assertBenchmarkProcessIsolation (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:304:11)\n    at main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/server_benchmark.mjs:574:9)",
+  "server": {
+    "kind": "folia",
+    "build": "1.21.11-14-ver/1.21.11@529aabc"
+  },
+  "failed_after_seconds": 208,
+  "passed": false,
+  "client_diagnostics": {
+    "SgBenchF1": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "工厂已推进 100 步，当前 tick 9700。",
+        "虚拟工厂 factory-main | tick 9700/72000 | 订单 0/64\n状态哈希 ceb8a97d6f3d63d6\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9800/72000 | 订单 0/64\n状态哈希 1743ef7dad497f90\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9900/72000 | 订单 0/64\n状态哈希 e493e5e0df72bc2c\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 10000/72000 | 订单 0/64\n状态哈希 3a0510aa94af0b35\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "工厂已推进 100 步，当前 tick 10100。",
+        "虚拟工厂 factory-main | tick 10100/72000 | 订单 0/64\n状态哈希 bf91c1145470b188\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10200/72000 | 订单 0/64\n状态哈希 6cd51f486615e953\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1"
+      ]
+    },
+    "SgBenchF2": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 9700/72000 | 订单 0/64\n状态哈希 ceb8a97d6f3d63d6\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 9800。",
+        "虚拟工厂 factory-main | tick 9800/72000 | 订单 0/64\n状态哈希 1743ef7dad497f90\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9900/72000 | 订单 0/64\n状态哈希 e493e5e0df72bc2c\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 10000/72000 | 订单 0/64\n状态哈希 3a0510aa94af0b35\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10100/72000 | 订单 0/64\n状态哈希 bf91c1145470b188\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "工厂已推进 100 步，当前 tick 10200。",
+        "虚拟工厂 factory-main | tick 10200/72000 | 订单 0/64\n状态哈希 6cd51f486615e953\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1"
+      ]
+    },
+    "SgBenchF3": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 9700/72000 | 订单 0/64\n状态哈希 ceb8a97d6f3d63d6\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9800/72000 | 订单 0/64\n状态哈希 1743ef7dad497f90\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 9900。",
+        "虚拟工厂 factory-main | tick 9900/72000 | 订单 0/64\n状态哈希 e493e5e0df72bc2c\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 10000/72000 | 订单 0/64\n状态哈希 3a0510aa94af0b35\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10100/72000 | 订单 0/64\n状态哈希 bf91c1145470b188\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10200/72000 | 订单 0/64\n状态哈希 6cd51f486615e953\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "工厂已推进 100 步，当前 tick 10300。"
+      ]
+    },
+    "SgBenchF4": {
+      "events": [
+        {
+          "event": "end",
+          "reason": "benchmark complete"
+        }
+      ],
+      "recent_messages": [
+        "虚拟工厂 factory-main | tick 9600/72000 | 订单 0/64\n状态哈希 bceeb1c59b1d9a5c\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9700/72000 | 订单 0/64\n状态哈希 ceb8a97d6f3d63d6\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9800/72000 | 订单 0/64\n状态哈希 1743ef7dad497f90\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "虚拟工厂 factory-main | tick 9900/72000 | 订单 0/64\n状态哈希 e493e5e0df72bc2c\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1-",
+        "工厂已推进 100 步，当前 tick 10000。",
+        "虚拟工厂 factory-main | tick 10000/72000 | 订单 0/64\n状态哈希 3a0510aa94af0b35\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10100/72000 | 订单 0/64\n状态哈希 bf91c1145470b188\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1",
+        "虚拟工厂 factory-main | tick 10200/72000 | 订单 0/64\n状态哈希 6cd51f486615e953\n四人固定名册与虚拟余额\n0d12e4c0-7369-3758-90a4-c3159c09bea6 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n12a42441-96c2-3530-a206-3e305ed5a0f5 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\n4bb2919f-9f41-3a8d-80a1"
+      ]
+    }
+  },
+  "commands": {
+    "status_latency_ms": {
+      "count": 421,
+      "min": 48.73070000000007,
+      "mean": 84.00671306413358,
+      "p50": 85.56650000001537,
+      "p95": 90.76029999999446,
+      "max": 164.1440999999977
+    },
+    "advance_latency_ms": {
+      "count": 103,
+      "min": 109.04069999998319,
+      "mean": 121.34273398058188,
+      "p50": 111.78549999999814,
+      "p95": 117.60689999999886,
+      "max": 1018.7778000000035
+    }
+  },
+  "performance": {
+    "tps": {
+      "count": 13,
+      "min": 18.78,
+      "mean": 19.813076923076924,
+      "p50": 20,
+      "p95": 20,
+      "max": 20
+    },
+    "tick_duration_mean_ms": {
+      "count": 13,
+      "min": 0.78,
+      "mean": 1.1184615384615382,
+      "p50": 0.92,
+      "p95": 2.82,
+      "max": 2.82
+    },
+    "tick_duration_median_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_p95_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "tick_duration_max_ms": {
+      "count": 0,
+      "min": null,
+      "mean": null,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "cpu_percent_of_one_core": {
+      "count": 12,
+      "min": 3.3333333333333335,
+      "mean": 8.48312710729803,
+      "p50": 7.696531984290754,
+      "p95": 14.689458594479264,
+      "max": 14.689458594479264
+    },
+    "available_memory_mib": {
+      "count": 13,
+      "min": 1819.33203125,
+      "mean": 1864.012920673077,
+      "p50": 1865.34765625,
+      "p95": 1886.28125,
+      "max": 1886.28125
+    },
+    "rss_mib": {
+      "count": 13,
+      "min": 863.1640625,
+      "mean": 882.1283052884615,
+      "p50": 884.20703125,
+      "p95": 891.51953125,
+      "max": 891.51953125
+    },
+    "private_mib": {
+      "count": 13,
+      "min": 889.1171875,
+      "mean": 908.6748798076923,
+      "p50": 910.20703125,
+      "p95": 917.03515625,
+      "max": 917.03515625
+    },
+    "heap_used_mib": {
+      "count": 4,
+      "min": 298,
+      "mean": 349.38037109375,
+      "p50": 301.2041015625,
+      "p95": 416.384765625,
+      "max": 416.384765625
+    }
+  },
+  "telemetry_complete": true,
+  "server_exit": {
+    "process_id": 18524,
+    "code": 0,
+    "signal": null,
+    "observed_at": "2026-11-22T19:06:37.206Z",
+    "elapsed_seconds": 210
+  }
+}

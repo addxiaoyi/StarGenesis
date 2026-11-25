@@ -1,0 +1,110 @@
+{
+  "phase": "P11 Paper runtime load and memory benchmark",
+  "verified_at": "2026-11-22T19:05:32+08:00",
+  "benchmark_script_sha256": "d93c92f5bbd6ce4d56f4f7d9eaae18d8dbdfb47d35ea175486a2f58cbed4f921",
+  "raw_evidence": ".work/p11-paper-long-12-result.json",
+  "raw_evidence_sha256": "5251bd342f597eed8013d014019c578eaddfb4118a444673ff80fcafc80d2f43",
+  "requested_duration_seconds": 1800,
+  "failed_after_seconds": 121,
+  "server": {
+    "kind": "paper",
+    "build": "1.21.11-132-ver/1.21.11@c5eb079",
+    "jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201"
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_mib": 8192,
+    "available_memory_mib_at_start": 2407
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 244,
+    "advance_commands": 61,
+    "simulated_ticks": 6100,
+    "total_client_commands": 314
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 17,
+      "tps": 19.1,
+      "tick_duration_p95_ms": 5.2,
+      "available_memory_mib": 1777,
+      "rss_mib": 874,
+      "heap_used_mib": 438
+    },
+    {
+      "elapsed_seconds": 30,
+      "tps": 20,
+      "tick_duration_p95_ms": 4.5,
+      "available_memory_mib": 1790,
+      "rss_mib": 875,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 45,
+      "tps": 20,
+      "tick_duration_p95_ms": 3.9,
+      "available_memory_mib": 1805,
+      "rss_mib": 867,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 60,
+      "tps": 20,
+      "tick_duration_p95_ms": 3.7,
+      "available_memory_mib": 1795,
+      "rss_mib": 870,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 75,
+      "tps": 20,
+      "tick_duration_p95_ms": 3.3,
+      "available_memory_mib": 1804,
+      "rss_mib": 874,
+      "heap_used_mib": 409
+    },
+    {
+      "elapsed_seconds": 91,
+      "tps": 20,
+      "tick_duration_p95_ms": 3,
+      "available_memory_mib": 1781,
+      "rss_mib": 892,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 105,
+      "tps": 20,
+      "tick_duration_p95_ms": 3,
+      "available_memory_mib": 1813,
+      "rss_mib": 896,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 121,
+      "tps": 20,
+      "tick_duration_p95_ms": 3,
+      "available_memory_mib": 1756,
+      "rss_mib": 897,
+      "heap_used_mib": null
+    }
+  ],
+  "process_isolation": {
+    "java_processes_at_start": 0,
+    "new_processes_detected": 0,
+    "probe_errors": 0,
+    "environment_conflict": false
+  },
+  "server_exit": {
+    "signed_code": -1,
+    "reported_unsigned_code": 4294967295,
+    "crash_report_found": false,
+    "normal_shutdown_log_found": false,
+    "matching_windows_application_or_system_events_found": false
+  },
+  "passed": false,
+  "scope": "Partial observational samples only. Paper exited unexpectedly before the 30-minute P11 gate; the cause remains unknown."
+}

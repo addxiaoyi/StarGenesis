@@ -1,0 +1,72 @@
+{
+  "phase": "P11 Paper runtime load and memory benchmark",
+  "verified_at": "2026-11-22T18:55:14+08:00",
+  "benchmark_script_sha256": "d93c92f5bbd6ce4d56f4f7d9eaae18d8dbdfb47d35ea175486a2f58cbed4f921",
+  "raw_evidence": ".work/p11-paper-long-11-result.json",
+  "raw_evidence_sha256": "deb2360cd0fe2920ecfc5292667a437fa127e7768b9133f838ea8a3e99478c23",
+  "requested_duration_seconds": 1800,
+  "observed_duration_seconds": 72,
+  "server": {
+    "kind": "paper",
+    "build": "1.21.11-132-ver/1.21.11@c5eb079",
+    "jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "plugin_jar_sha256": "9efd816f293fce247b6f7e88345b62322c1f3ae7bffb2a57de6d81bd1bab9201"
+  },
+  "runtime_environment": {
+    "os": "win32 10.0.20348",
+    "architecture": "x64",
+    "logical_processors": 4,
+    "total_memory_mib": 8192,
+    "available_memory_mib_at_start": 2447
+  },
+  "workload": {
+    "connected_clients": 4,
+    "status_commands": 144,
+    "advance_commands": 36,
+    "simulated_ticks": 3600,
+    "total_client_commands": 189
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 17,
+      "tps": 19.1,
+      "tick_duration_p95_ms": 4.2,
+      "available_memory_mib": 1593,
+      "rss_mib": 877,
+      "heap_used_mib": 459
+    },
+    {
+      "elapsed_seconds": 30,
+      "tps": 19.96,
+      "tick_duration_p95_ms": 3.8,
+      "available_memory_mib": 1663,
+      "rss_mib": 872,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 45,
+      "tps": 20,
+      "tick_duration_p95_ms": 3.9,
+      "available_memory_mib": 1626,
+      "rss_mib": 892,
+      "heap_used_mib": null
+    },
+    {
+      "elapsed_seconds": 60,
+      "tps": 20,
+      "tick_duration_p95_ms": 3.3,
+      "available_memory_mib": 1640,
+      "rss_mib": 866,
+      "heap_used_mib": null
+    }
+  ],
+  "environment_conflict": {
+    "detected_server_kind": "folia",
+    "first_observed_elapsed_seconds": 71,
+    "benchmark_aborted": true
+  },
+  "server_exit_code_after_harness_shutdown": 0,
+  "plugin_shutdown_cleanly": true,
+  "passed": false,
+  "scope": "Partial observational samples only. The environment conflict stopped the run before the 30-minute P11 gate."
+}

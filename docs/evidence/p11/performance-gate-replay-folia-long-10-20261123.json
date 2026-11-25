@@ -1,0 +1,28 @@
+{
+  "phase": "P11 Paper/Folia runtime load and memory benchmark",
+  "source_result": "docs/evidence/p11/folia-detached-long-10-20261123.json",
+  "source_run_script_sha256": "6ee014d5b848dd521b4a8403f5f687a3546118846e515602cefb4e09297cfbd1",
+  "gate_implementation_sha256": "07f7130976ca124fb2c22b3dd022cbb3b654a2ccb980269bb8cbb70d381bfefc",
+  "gate_test_sha256": "0dd7b31a56e4878e08147871faf215bb947d2f3bdaa8783003f77965866bc882",
+  "measured_duration_seconds": 262,
+  "requested_duration_seconds": 1800,
+  "performance_gate_passed": false,
+  "performance": {
+    "tps_p50": 20.0,
+    "tick_mspt_sample_p95_ms": 2.83,
+    "available_memory_min_mib": 1752.39,
+    "rss_max_mib": 892.48,
+    "heap_max_mib": 478.75
+  },
+  "coverage": {
+    "metric_samples": 17,
+    "metric_samples_required": 96,
+    "heap_samples": 5,
+    "heap_samples_required": 24
+  },
+  "failed_checks": [
+    "metric_sample_coverage",
+    "heap_sample_coverage"
+  ],
+  "scope": "Historical partial-run replay verifies the evaluator's decision. It is not a completed 30-minute benchmark."
+}

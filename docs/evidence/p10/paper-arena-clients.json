@@ -1,0 +1,23 @@
+{
+  "phase": "P8 player integration smoke",
+  "kind": "paper",
+  "version": "1.21.11-132-ver/1.21.11@c5eb079",
+  "port": 25991,
+  "checks": {
+    "server_kind": "paper",
+    "server_version": "1.21.11-132-ver/1.21.11@c5eb079",
+    "plugin_enabled": true,
+    "room_created": true,
+    "four_uuid_seats": true,
+    "first_lockstep_turn": true,
+    "spectator_map": true,
+    "restart_server_version": "1.21.11-132-ver/1.21.11@c5eb079",
+    "restart_restores_tick": true,
+    "restored_uuid_seats": true,
+    "room_cleanup": true
+  },
+  "passed": true,
+  "scope": "Actual offline Paper/Folia clients, four UUID seats, lockstep turn, spectator view, restart recovery, and clean room deletion.",
+  "pluginJar": "C:\\Users\\Administrator\\Documents\\stargenesis\\stargenesis-paper\\target\\stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "serverJar": "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\paper-1.21.11-132.jar"
+}

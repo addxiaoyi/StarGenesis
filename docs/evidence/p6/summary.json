@@ -1,0 +1,47 @@
+{
+  "phase": "P6 organization roster and factory freeze",
+  "captured_at": "2026-11-22",
+  "runtime": {
+    "java": "Temurin 21.0.13.1+2",
+    "node": "v24.22.3",
+    "client": "mineflayer 4.39.0"
+  },
+  "plugin": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sha256": "EFBF3FDC18915AA794AAA2E436AD8E99E5460A73B81A35DA14AA0DF3E245DBE9"
+  },
+  "workflow": [
+    "Start an isolated Paper or Folia server with a fresh data directory.",
+    "Create an organization as a player and reject a membership change from a non-owner.",
+    "Add three distinct members and confirm the four-person roster.",
+    "Stop and restart the same server directory, then confirm the roster and owner are restored.",
+    "Start the virtual factory from the owner roster and reject later roster changes."
+  ],
+  "servers": {
+    "paper": {
+      "build": "1.21.11-132-ver/1.21.11@c5eb079",
+      "result": "paper-result.json",
+      "result_sha256": "4153779923F664112F56AFA452C77C83E57B6E02CBDFB32A77ADB69E710B1A68",
+      "console_log": "paper-organization.log",
+      "console_log_sha256": "8A4C005AA2E55C8E90A3A4C2A25AB2FC1EB5551C8218E17433B8B7ED44F37BE0",
+      "passed": true
+    },
+    "folia": {
+      "build": "1.21.11-14-ver/1.21.11@529aabc",
+      "result": "folia-result.json",
+      "result_sha256": "CE379BC20E012A404102B1862F25845A77F16F68DE6E021046FA0B36AD60E4DC",
+      "console_log": "folia-organization.log",
+      "console_log_sha256": "72940F3DB62E4133F2EEAE44A974411C226A9B7CA7255C98054C0112356CBCDF",
+      "passed": true
+    }
+  },
+  "checks": {
+    "player_created_organization": true,
+    "non_owner_membership_change_rejected": true,
+    "four_member_roster_prepared": true,
+    "roster_restored_after_restart": true,
+    "owner_started_factory_from_roster": true,
+    "roster_frozen_after_factory_start": true
+  },
+  "scope_limit": "This automated offline-client test covers one normal shutdown and restart on each server. It does not assess human usability, repeated long-duration storage or abrupt-crash durability."
+}

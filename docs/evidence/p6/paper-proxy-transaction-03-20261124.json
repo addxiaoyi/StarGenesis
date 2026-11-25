@@ -1,0 +1,195 @@
+{
+  "phase": "P6 factory paper and Velocity relay",
+  "kind": "paper",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "30e11c113f2caaa568e968c4b989db675f78fd3602672e57ef8fe8714ee53b7c",
+  "server_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "backend_jar_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "5e9d3d3ba5908e66ae8ebf8b5beab0e21c1e9dace6c6f49be7d04c99fa6f708a",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [
+      {
+        "pid": 26548,
+        "description": "org.codehaus.plexus.classworlds.launcher.Launcher -T 1 -o -Dtest=TechnologyHistoryStorageTest,TechnologyModuleBoundaryTest,ResearchSchedulerDurabilityTest,ResearchSchedulerBoundaryTest,ResearchStateCodecTest,ResearchPaymentProcessorTest,NarrativeEngineOwnerContractTest,PublicApiCompatibilityTest -DforkCount=1 -DreuseForks=false -Djunit.jupiter.execution.parallel.enabled=false -Djacoco.skip=true test"
+      }
+    ],
+    "java_processes_started_during_run": [
+      {
+        "pid": 9936,
+        "jvm": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926\\surefirebooter-20261124002736154_6.jar C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926 2026-11-24T00-27-34_960-jvmRun1 surefire-20261124002736154_4tmp surefire_1-20261124002736154_5tmp",
+        "first_observed_at": "2026-11-23T16:27:47.998Z"
+      },
+      {
+        "pid": 18384,
+        "jvm": "Unknown",
+        "first_observed_at": "2026-11-23T16:27:50.224Z"
+      },
+      {
+        "pid": 29392,
+        "jvm": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926\\surefirebooter-20261124002736154_21.jar C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926 2026-11-24T00-27-34_960-jvmRun1 surefire-20261124002736154_19tmp surefire_3-20261124002736154_20tmp",
+        "first_observed_at": "2026-11-23T16:27:57.780Z"
+      },
+      {
+        "pid": 22892,
+        "jvm": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926\\surefirebooter-20261124002736154_26.jar C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926 2026-11-24T00-27-34_960-jvmRun1 surefire-20261124002736154_24tmp surefire_4-20261124002736154_25tmp",
+        "first_observed_at": "2026-11-23T16:28:00.340Z"
+      },
+      {
+        "pid": 12328,
+        "jvm": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926\\surefirebooter-20261124002736154_36.jar C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926 2026-11-24T00-27-34_960-jvmRun1 surefire-20261124002736154_34tmp surefire_6-20261124002736154_35tmp",
+        "first_observed_at": "2026-11-23T16:28:12.395Z"
+      },
+      {
+        "pid": 7544,
+        "jvm": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926\\surefirebooter-20261124002736154_41.jar C:\\Users\\Administrator\\AppData\\Local\\Temp\\surefire15494309093139830926 2026-11-24T00-27-34_960-jvmRun1 surefire-20261124002736154_39tmp surefire_7-20261124002736154_40tmp",
+        "first_observed_at": "2026-11-23T16:28:20.716Z"
+      }
+    ],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 262881280,
+    "minimum_free_bytes": 67108864,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 15348,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "6d30985e8a7ff30cc586f5eeeb2631a67af769d819650a54bd152bf630aa741b",
+      "log_file": "hub_a-1795451243439.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 18444,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "0ec378f8119837e612393a8b2f5a300b780b921093a3999dc00d653a27a459ae",
+      "log_file": "hub_b-1795451243439.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 16340,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "5129b058d1c7b4c15aa622de62312991511ebadf045fb1400f06c108f319aa21",
+      "log_file": "velocity-1795451243439.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game",
+        "SgFactoryOne joined the game",
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=15c1760b-07df-4a23-9687-be65473f505e。等待目标服务器处理。",
+        "虚拟工厂 factory-main | tick 0/72000 | 订单 0/64\n状态哈希 d5016bae1f22b29f\n四人固定名册与虚拟余额\n604fe399-b183-3ad4-80d7-7424f69ce3f4 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\nd0b5e70c-681a-3409-b706-b8dcb1ff5dce | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\nd6b7d6f7-225b-3ed7-a40f-7996963f4ecf | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\ned72fb90-7439-3e52-",
+        "跨服工厂请求已持久排队，requestId=ae111bdb-de79-4a6d-b588-c09d58e25c54。等待目标服务器处理。",
+        "生产任务已排入 factory:frame，预计 tick 2 完成。",
+        "跨服工厂请求已持久排队，requestId=5da51cbc-bbd9-4996-a0df-a5e5c2c4d8d5。等待目标服务器处理。",
+        "已领取 2 个组件到成员虚拟库存。",
+        "已领取 2 个组件到成员虚拟库存。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game",
+        "四人虚拟工厂已创建并保存。使用 /genesis factory status 查看名册。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    },
+    "SgFactoryOne": {
+      "username": "SgFactoryOne",
+      "host": "localhost",
+      "uuid": "d6b7d6f7-225b-3ed7-a40f-7996963f4ecf",
+      "messages": [
+        "SgFactoryOne joined the game",
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=7e2472c8-77ec-42c0-a43e-cc1eeaf0e569。等待目标服务器处理。",
+        "工厂已推进 2 步，当前 tick 2。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgFactoryTwo": {
+      "username": "SgFactoryTwo",
+      "host": "localhost",
+      "uuid": "604fe399-b183-3ad4-80d7-7424f69ce3f4",
+      "messages": [
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=054274d2-e333-4180-aa4b-d99c0c6a7381。等待目标服务器处理。",
+        "工厂已推进 1 步，当前 tick 3。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgFactoryGuest": {
+      "username": "SgFactoryGuest",
+      "host": "localhost",
+      "uuid": "af4707d9-abf5-3759-a65d-a5b3b9dd8a77",
+      "messages": [
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=c5e9b2f5-d3d7-416a-82ca-ec573611d9ad。等待目标服务器处理。",
+        "工厂操作未完成：玩家不属于此服务器的工厂四人名册。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true,
+    "four_client_factory_created": true,
+    "remote_member_status": true,
+    "non_member_rejected_without_mutation": true,
+    "remote_production_and_collection": true,
+    "same_request_after_tick_change_preserves_checkpoint": true,
+    "replayed_factory_outbox_removed": true,
+    "factory_journal_completed": true,
+    "remote_backend_has_no_factory_ledger": true
+  },
+  "passed": true,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "duration_seconds": 81.1
+}

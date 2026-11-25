@@ -1,0 +1,126 @@
+{
+  "phase": "P6 factory paper and Velocity relay",
+  "kind": "paper",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "4a7a0f7ba074d073d2ee080013a1a3c9781d1dda97b5a126de58402c4824b572",
+  "server_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "backend_jar_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "5e9d3d3ba5908e66ae8ebf8b5beab0e21c1e9dace6c6f49be7d04c99fa6f708a",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [
+      {
+        "pid": 25808,
+        "description": "org.codehaus.plexus.classworlds.launcher.Launcher -T 1 -o verify"
+      }
+    ],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 221020160,
+    "minimum_free_bytes": 67108864,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 24800,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "4b013cde2c31e7b1be557b1b2ae5bf2f44362d35736fe7939d508b25082f0a38",
+      "log_file": "hub_a-1795450994533.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 14664,
+      "version": "1.21.11-132-ver/1.21.11@c5eb079",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "cb2a0c5f7e6ec9bb40e6857aa578b023800dab5214b014129177c21402224045",
+      "log_file": "hub_b-1795450994533.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 2284,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "8a183e8ba0849f9f711dde1028ad44414ecfff849adf8b98bb16a19d5e0d6427",
+      "log_file": "velocity-1795450994533.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game",
+        "SgFactoryOne joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    },
+    "SgFactoryOne": {
+      "username": "SgFactoryOne",
+      "host": "localhost",
+      "uuid": "d6b7d6f7-225b-3ed7-a40f-7996963f4ecf",
+      "messages": [
+        "SgFactoryOne joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgFactoryTwo": {
+      "username": "SgFactoryTwo",
+      "host": "localhost",
+      "uuid": "604fe399-b183-3ad4-80d7-7424f69ce3f4",
+      "messages": [],
+      "events": [
+        {
+          "event": "kicked",
+          "reason": "{\"text\":\"您的登录过于频繁，请稍后重试。\"}"
+        },
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true
+  },
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: SgFactoryTwo was kicked: {\"text\":\"您的登录过于频繁，请稍后重试。\"}\n    at EventEmitter.<anonymous> (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:361:14)\n    at Object.onceWrapper (node:events:634:26)\n    at EventEmitter.emit (node:events:531:35)\n    at Client.<anonymous> (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\mineflayer\\lib\\plugins\\kick.js:8:9)\n    at Client.emit (node:events:531:35)\n    at emitPacket (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\minecraft-protocol\\src\\client.js:85:12)\n    at FullPacketParser.<anonymous> (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\minecraft-protocol\\src\\client.js:114:9)\n    at FullPacketParser.emit (node:events:519:28)\n    at addChunk (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\readable-stream\\lib\\internal\\streams\\readable.js:323:12)\n    at readableAddChunk (C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\arena-e2e\\node_modules\\readable-stream\\lib\\internal\\streams\\readable.js:300:9)",
+  "duration_seconds": 61.9
+}

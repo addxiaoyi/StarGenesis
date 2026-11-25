@@ -1,0 +1,48 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default-cli) @ stargenesis-parent ---
+[INFO] Artifact com.fasterxml.jackson:jackson-bom:pom:2.17.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact com.fasterxml.jackson:jackson-bom:pom:2.17.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact com.fasterxml.jackson:jackson-parent:pom:2.17 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact com.fasterxml.jackson:jackson-parent:pom:2.17 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact com.fasterxml:oss-parent:pom:58 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact com.fasterxml:oss-parent:pom:58 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.yaml:snakeyaml:jar:2.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] Artifact org.yaml:snakeyaml:jar:2.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), maven-central (https://repo1.maven.org/maven2, default, releases+snapshots), ossrh-snapshot (https://oss.sonatype.org/content/repositories/snapshots, default, releases+snapshots), sonatype-nexus-snapshots (https://oss.sonatype.org/content/repositories/snapshots, default, snapshots)]
+[INFO] CycloneDX: Resolving Aggregated Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 61 component(s)
+[INFO] CycloneDX: Writing and validating BOM (XML): C:\Users\Administrator\Documents\stargenesis\target\bom.xml
+[INFO]            attaching as stargenesis-parent-4.0.0-SNAPSHOT-cyclonedx.xml
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\stargenesis\target\bom.json
+[WARNING] Unknown keyword meta:enum - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[WARNING] Unknown keyword deprecated - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[INFO]            attaching as stargenesis-parent-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [ 19.712 s]
+[INFO] stargenesis-api .................................... SKIPPED
+[INFO] stargenesis-design ................................. SKIPPED
+[INFO] stargenesis-sim .................................... SKIPPED
+[INFO] StarGenesis Integration Contracts .................. SKIPPED
+[INFO] stargenesis-paper .................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  20.021 s
+[INFO] Finished at: 2026-11-22T08:03:34+08:00
+[INFO] ------------------------------------------------------------------------

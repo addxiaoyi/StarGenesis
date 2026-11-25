@@ -1,0 +1,159 @@
+{
+  "phase": "P6 factory folia and Velocity relay",
+  "kind": "folia",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "30e11c113f2caaa568e968c4b989db675f78fd3602672e57ef8fe8714ee53b7c",
+  "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "backend_jar_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "5e9d3d3ba5908e66ae8ebf8b5beab0e21c1e9dace6c6f49be7d04c99fa6f708a",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "available_bytes_before_start": 253337600,
+    "minimum_free_bytes": 67108864,
+    "library_mode": "shared classpath",
+    "java_processes_at_end": []
+  },
+  "scope": "Functional cross-server relay test only; concurrent Java workloads are recorded and no performance result is inferred.",
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 12916,
+      "version": "1.21.11-14-ver/1.21.11@529aabc",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "1594e4526be841ba8cf27726cb18c59ef76a08b78e2284d0a9f5ff03da7c3e92",
+      "log_file": "hub_a-1795451377102.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 19276,
+      "version": "1.21.11-14-ver/1.21.11@529aabc",
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "12be279e7234f0b8efba3ce093a70137899c1bd982a8fa1470c1ec7d62fca1d7",
+      "log_file": "hub_b-1795451377102.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 14116,
+      "exit_code": 0,
+      "signal": null,
+      "log_sha256": "9f24df77181593eed6cf6083d99fe01daf4e978fd5449006865159e563e70e05",
+      "log_file": "velocity-1795451377102.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game",
+        "SgFactoryOne joined the game",
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=81a18509-755a-40ce-8a88-367880539b9b。等待目标服务器处理。",
+        "虚拟工厂 factory-main | tick 0/72000 | 订单 0/64\n状态哈希 d5016bae1f22b29f\n四人固定名册与虚拟余额\n604fe399-b183-3ad4-80d7-7424f69ce3f4 | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\nd0b5e70c-681a-3409-b706-b8dcb1ff5dce | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\nd6b7d6f7-225b-3ed7-a40f-7996963f4ecf | 组件 24 | 矿石 8 | 聚合物 16 | 信用 0\ned72fb90-7439-3e52-",
+        "跨服工厂请求已持久排队，requestId=e2f8b8be-93d5-4efa-ab9d-1354d60c79ea。等待目标服务器处理。",
+        "生产任务已排入 factory:frame，预计 tick 2 完成。",
+        "跨服工厂请求已持久排队，requestId=96f8e533-1beb-4265-af0f-a9dc0a938d5a。等待目标服务器处理。",
+        "已领取 2 个组件到成员虚拟库存。",
+        "已领取 2 个组件到成员虚拟库存。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game",
+        "四人虚拟工厂已创建并保存。使用 /genesis factory status 查看名册。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    },
+    "SgFactoryOne": {
+      "username": "SgFactoryOne",
+      "host": "localhost",
+      "uuid": "d6b7d6f7-225b-3ed7-a40f-7996963f4ecf",
+      "messages": [
+        "SgFactoryOne joined the game",
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=a6d7ceb6-d327-4900-92e0-20504147a183。等待目标服务器处理。",
+        "工厂已推进 2 步，当前 tick 2。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgFactoryTwo": {
+      "username": "SgFactoryTwo",
+      "host": "localhost",
+      "uuid": "604fe399-b183-3ad4-80d7-7424f69ce3f4",
+      "messages": [
+        "SgFactoryTwo joined the game",
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=26c4b118-9919-4261-ab20-6be21d568bbc。等待目标服务器处理。",
+        "工厂已推进 1 步，当前 tick 3。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    },
+    "SgFactoryGuest": {
+      "username": "SgFactoryGuest",
+      "host": "localhost",
+      "uuid": "af4707d9-abf5-3759-a65d-a5b3b9dd8a77",
+      "messages": [
+        "SgFactoryGuest joined the game",
+        "跨服工厂请求已持久排队，requestId=9ee7e329-a858-49bf-af5b-5b8987168740。等待目标服务器处理。",
+        "工厂操作未完成：玩家不属于此服务器的工厂四人名册。"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true,
+    "four_client_factory_created": true,
+    "remote_member_status": true,
+    "non_member_rejected_without_mutation": true,
+    "remote_production_and_collection": true,
+    "same_request_after_tick_change_preserves_checkpoint": true,
+    "replayed_factory_outbox_removed": true,
+    "factory_journal_completed": true,
+    "remote_backend_has_no_factory_ledger": true
+  },
+  "passed": true,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "duration_seconds": 67.4
+}

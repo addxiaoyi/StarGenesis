@@ -1,0 +1,55 @@
+{
+  "phase": "P5 ecology player checkpoint persistence",
+  "captured_at": "2026-11-22",
+  "runtime": {
+    "java": "Temurin 21.0.13.1+2",
+    "node": "v24.22.3",
+    "client": "mineflayer 4.39.0"
+  },
+  "plugin": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sha256": "B7C228F5EAD3ED91DCFBD3D3C20BD67A3B713B7C68A0FB47915E73B7A84DA5A0"
+  },
+  "workflow": [
+    "Start an isolated server with a fresh player-data directory.",
+    "Connect an offline Mineflayer player and open the ecology Inventory.",
+    "Advance one ecology step and disconnect the player.",
+    "Stop the server normally, preserving player data, then restart the same server directory.",
+    "Reconnect the same player, verify the saved tick is one, and advance to tick two."
+  ],
+  "servers": {
+    "paper": {
+      "build": "1.21.11-132-ver/1.21.11@c5eb079",
+      "server_jar_sha256": "5FFEF465EEEB5F2A3C23A24419D97C51AFD7DBB4923FF42DF9A3F58BBA1CCFBA",
+      "username": "SgEcoPaper",
+      "passed": true,
+      "checks": {
+        "initial_tick_zero": true,
+        "first_step_reached_tick_one": true,
+        "restart_restored_tick_one": true,
+        "recovered_world_advanced_to_tick_two": true
+      },
+      "console_log": "paper-ecology-player-recovery.log",
+      "console_log_sha256": "016BEAD2C4DD880F1ECCBC0E5A7F754771056185D13B4235674DD47FE90E58A1",
+      "result": "paper-ecology-player-recovery-result.json",
+      "result_sha256": "85C06281A28F1D56CDF52A11F891ADC388581FD99AE9DDDA7D95368579C247AF"
+    },
+    "folia": {
+      "build": "1.21.11-14-ver/1.21.11@529aabc",
+      "server_jar_sha256": "F52C408490A0225611E67907A3CA19F7E6DA2C6BC899E715D5F46844E7103C39",
+      "username": "SgEcoFolia",
+      "passed": true,
+      "checks": {
+        "initial_tick_zero": true,
+        "first_step_reached_tick_one": true,
+        "restart_restored_tick_one": true,
+        "recovered_world_advanced_to_tick_two": true
+      },
+      "console_log": "folia-ecology-player-recovery.log",
+      "console_log_sha256": "6AAB42CF3832475F0A122D2C39B0A27A8EE4B510BD6CBE64D1B166C5640EDB36",
+      "result": "folia-ecology-player-recovery-result.json",
+      "result_sha256": "98D55EFE4D0183FE311934C2BDD45D9E2C0FBF634C283B0B45F44F44278AEFDB"
+    }
+  },
+  "scope_limit": "This is an automated offline-client test of one normal shutdown and restart on each server. It does not assess human usability or repeated long-duration and abrupt-crash save durability."
+}

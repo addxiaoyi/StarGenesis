@@ -32,6 +32,20 @@ public final class CapabilityRegistry implements AutoCloseable {
     }
 
     public static CapabilityRegistry auditedDefaults() {
+        return new CapabilityRegistry(auditedDescriptors());
+    }
+
+    public static CapabilityRegistry withExtensions(Collection<ExtensionGrant> extensions) {
+        Objects.requireNonNull(extensions, "extensions");
+        if (extensions.size() > 32) {
+            throw new IllegalArgumentException("At most 32 trusted extension providers are permitted");
+        }
+        List<IntegrationDescriptor> descriptors = auditedDescriptors();
+        extensions.stream().map(ExtensionGrant::descriptor).forEach(descriptors::add);
+        return new CapabilityRegistry(descriptors);
+    }
+
+    private static List<IntegrationDescriptor> auditedDescriptors() {
         String starcore = "f769e62799e769a18fe51305b545869a17f80cd1";
         String senluo = "6a432fe54097a3ebf22ba5757e016b602c711f28";
         List<IntegrationDescriptor> descriptors = new ArrayList<>();
@@ -52,7 +66,7 @@ public final class CapabilityRegistry implements AutoCloseable {
                 Set.of("0.1.0-dev"), senluo, Set.of("items.resolve")));
         descriptors.add(new IntegrationDescriptor("senluo.music", "KaleidoscopeMusicPlugin",
                 Set.of("0.1.0-dev"), senluo, Set.of("items.resolve")));
-        return new CapabilityRegistry(descriptors);
+        return descriptors;
     }
 
     /** Called only by trusted plugin bootstrap, never by a player-supplied document. */
@@ -65,6 +79,19 @@ public final class CapabilityRegistry implements AutoCloseable {
         if (adapters.putIfAbsent(id, Objects.requireNonNull(adapter, "adapter")) != null) {
             throw new IllegalStateException("Adapter already registered: " + id);
         }
+    }
+
+    public boolean unregisterAdapter(String id) {
+        requireOpen();
+        if (inspecting) throw new IllegalStateException("Cannot mutate adapters during inspection");
+        IntegrationAdapter adapter = adapters.remove(id);
+        if (adapter == null) return false;
+        try {
+            adapter.close();
+        } catch (RuntimeException | LinkageError failure) {
+            throw new IllegalStateException("Integration adapter cleanup failed: " + id, failure);
+        }
+        return true;
     }
 
     public List<IntegrationStatus> inspect(PluginInventory inventory) {

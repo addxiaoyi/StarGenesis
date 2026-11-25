@@ -1,0 +1,48 @@
+{
+  "archived_at": "2026-11-25T16:04:32.4755439+08:00",
+  "scope": "Raw logs copied byte-for-byte for cross-device continuation; original summaries retain their original local paths.",
+  "logs": [
+    {
+      "original_path": ".work/p7-review-recovery-java21-verify.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/java21-clean-verify.log",
+      "sha256": "54a882d918714d82fdc183aba7d8be5a7d6625f477f28a0d2d7c91d3fb0a4414",
+      "bytes": 27965
+    },
+    {
+      "original_path": ".work/p7-review-recovery-java25-verify.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/java25-clean-verify.log",
+      "sha256": "f099d3f910d50a34f96949b50a2419dcd6a2faa84c9b223cfc678c5fee96754d",
+      "bytes": 27189
+    },
+    {
+      "original_path": ".work/p7-review-recovery-targeted.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/review-targeted-tests.log",
+      "sha256": "2e0bd48c8b8cab10112aa7506ef54cbb136f1d57ba677655abdfce9238c8cdb8",
+      "bytes": 9750
+    },
+    {
+      "original_path": ".work/p7-review-recovery-node-tests.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/node-tests.log",
+      "sha256": "dabb05e8e5e913de2d4ffb7ad6e432ae884915ff12e6f41f7a14afdb194db8e0",
+      "bytes": 7763
+    },
+    {
+      "original_path": ".work/p7-review-recovery-paper-20261125/smoke-console.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/paper-console.log",
+      "sha256": "18fe2e8bb3d0397433495f5e43436e5c44b77cf10f7275862a3bd98130726738",
+      "bytes": 17868
+    },
+    {
+      "original_path": ".work/p7-review-recovery-folia-20261125/smoke-console.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/folia-console.log",
+      "sha256": "83c20f21ad6e7dbb43b995bd9dda3f9c0a19c766dc3ca3c4c668658b3eea3bed",
+      "bytes": 20141
+    },
+    {
+      "original_path": ".work/p7-review-recovery-paper-long-path-failure.log",
+      "repository_path": "docs/evidence/p7/handoff-logs-20261125/paper-long-path-failure.log",
+      "sha256": "091fd160a5a4265e2fb49a58d7cbb1c4c227a00e3530109055370cb9a1b7aa9f",
+      "bytes": 19225
+    }
+  ]
+}

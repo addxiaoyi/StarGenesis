@@ -1,0 +1,69 @@
+{
+  "phase": "P11 full verification after P4 and P6 relay outbox durability changes",
+  "verified_at": "2026-11-23T00:46:45+08:00",
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "8756082B7FF686EE8372AF77357C77870B5E029BF6D61B89F9BA85623D4C8E6E",
+  "modules": {
+    "api": 4,
+    "design": 102,
+    "sim": 95,
+    "integrations": 26,
+    "paper": 97
+  },
+  "tests": {
+    "run": 324,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "runs": {
+    "java_21": {
+      "distribution": "Eclipse Adoptium Temurin",
+      "version": "21.0.13.1+2-LTS",
+      "completed_at": "2026-11-23T00:34:26+08:00",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -DargLine=-Xmx512m verify",
+      "maven_opts": "-Xmx512m -XX:ActiveProcessorCount=1 -XX:+UseSerialGC",
+      "integration_test_sources_compiled_at": "2026-11-23T00:17:16+08:00",
+      "integration_test_sources_compiled": 3,
+      "paper_main_sources_compiled_at": "2026-11-22T23:39:23+08:00",
+      "paper_test_sources_compiled_at": "2026-11-23T00:34:26+08:00",
+      "paper_main_sources_compiled": 57,
+      "paper_test_sources_compiled": 30,
+      "p7_approval_retry_test_included": true,
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "java_25": {
+      "distribution": "Microsoft Build of OpenJDK",
+      "version": "25.0.5.1+2-LTS",
+      "completed_at": "2026-11-23T00:20:12+08:00",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -pl stargenesis-paper -am -DargLine=-Xmx512m verify",
+      "maven_opts": "-Xmx512m -XX:ActiveProcessorCount=1 -XX:+UseSerialGC",
+      "integration_main_sources_compiled": 15,
+      "integration_test_sources_compiled": 3,
+      "paper_target_cleaned_before_run": true,
+      "paper_sources_recompiled_in_this_run": true,
+      "paper_main_sources_compiled": 57,
+      "paper_test_sources_compiled": 30,
+      "p7_approval_retry_test_included": true,
+      "p9_compensation_recovery_test_included": true,
+      "tests": {
+        "run": 324,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "relay_tests": {
+    "protocol_outbox": 3,
+    "factory_outbox": 2,
+    "factory_session_recovery": 9
+  },
+  "server_runtime_started": false,
+  "limitations": "The changed integrations tests and current Paper sources were compiled with Java 21 and Java 25. Unchanged API, design and simulation source outputs were reused from the immediately preceding builds. Paper, Folia and proxy runtime behavior were not tested."
+}

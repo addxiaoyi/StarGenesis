@@ -1,0 +1,23 @@
+{
+  "phase": "P8 player integration smoke",
+  "kind": "folia",
+  "version": "1.21.11-14-ver/1.21.11@529aabc",
+  "port": 25994,
+  "checks": {
+    "server_kind": "folia",
+    "server_version": "1.21.11-14-ver/1.21.11@529aabc",
+    "plugin_enabled": true,
+    "room_created": true,
+    "four_uuid_seats": true,
+    "first_lockstep_turn": true,
+    "spectator_map": true,
+    "restart_server_version": "1.21.11-14-ver/1.21.11@529aabc",
+    "restart_restores_tick": true,
+    "restored_uuid_seats": true,
+    "room_cleanup": true
+  },
+  "passed": true,
+  "scope": "Actual offline Paper/Folia clients, four UUID seats, lockstep turn, spectator view, restart recovery, and clean room deletion.",
+  "pluginJar": "C:\\Users\\Administrator\\Documents\\stargenesis\\stargenesis-paper\\target\\stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "serverJar": "C:\\Users\\Administrator\\Documents\\stargenesis\\.work\\folia-1.21.11-14.jar"
+}

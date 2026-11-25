@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-24",
+  "command": "mvnw.cmd -o -B -ntp -l .work/p4-p6-java21-verify-20261124.log -DargLine=-Xmx512m verify",
+  "java": {
+    "version": "21.0.13.1+2",
+    "tests": 329,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": ".work/p4-p6-java21-verify-20261124.log",
+    "log_sha256": "2506CE426081FCC37AF6E10EE96E2408583316ADB7E8C653CF887B33DC683E36"
+  },
+  "second_jdk": {
+    "version": "25.0.5.1+2",
+    "tests": 329,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": ".work/p4-p6-java25-verify-20261124.log",
+    "log_sha256": "980BF3EB739770C6413882141CFCDF98BE3CDCB89B8D31B5169C27870E1088D6"
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "5E9D3D3BA5908E66AE8EBF8B5BEAB0E21C1E9DACE6C6F49BE7D04C99FA6F708A",
+  "scope": "Full Maven reactor verify on Java 21 and Java 25; 329 tests per runtime with zero failures, errors or skips."
+}

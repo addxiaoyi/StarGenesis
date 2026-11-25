@@ -1,0 +1,68 @@
+{
+  "phase": "P5 compound ecology recipe editor",
+  "captured_at": "2026-11-22",
+  "implementation": [
+    "Paper recipe inventory supports up to 16 ingredient slots on each side.",
+    "Repeated species are merged by DesignId before mass-balance validation.",
+    "Each slot has a bounded coefficient and the per-step firing limit remains adjustable.",
+    "Three unit tests cover compound reactions, duplicate aggregation, and invalid drafts."
+  ],
+  "builds": {
+    "java_21": {
+      "runtime": "Temurin 21.0.13.1",
+      "command": ".\\mvnw.cmd -B -ntp verify",
+      "passed": true,
+      "tests": 267,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "artifact_sha256": "21eba48ca68156b3498aae72e6bd0aa64dc847aa12b87e89597bafe357c27bc3",
+      "log": "p5-compound-verify.log",
+      "log_sha256": "704164abe38235c84af4c9d80bfa1c570641fa0243a621a50907245b90362efe"
+    },
+    "java_25": {
+      "runtime": "Microsoft OpenJDK 25.0.5.0.2",
+      "command": ".\\mvnw.cmd -B -ntp verify",
+      "passed": true,
+      "tests": 267,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "artifact_sha256": "b7c228f5ead3ed91dcfbd3d3c20bd67a3b713b7c68a0fb47915e73b7a84da5a0",
+      "log": "p5-compound-java25-verify.log",
+      "log_sha256": "007e4f4619f1854c08fe78542c3dbc0a036e1ec6c782a3ec32bdcce33521bc30"
+    }
+  },
+  "current_plugin_artifact": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sha256": "b7c228f5ead3ed91dcfbd3d3c20bd67a3b713b7c68a0fb47915e73b7a84da5a0"
+  },
+  "server_smoke": {
+    "scope": "Paper/Folia console startup, plugin enablement, command checks, and clean shutdown using the current plugin artifact.",
+    "paper": {
+      "build": "1.21.11-132-ver/1.21.11@c5eb079",
+      "passed": true,
+      "result": "paper-result.json",
+      "result_sha256": "312410b3d1a9b0f1b594a5a495f800b6de46b6b5462bfb65779f81cc820a0f25",
+      "console_log": "paper-console.log",
+      "console_log_sha256": "94b2aa1fa03753ef527165da92ad0a4155d3ca6a1df62af4eee99a684c046604",
+      "server_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+      "plugin_jar_sha256": "b7c228f5ead3ed91dcfbd3d3c20bd67a3b713b7c68a0fb47915e73b7a84da5a0"
+    },
+    "folia": {
+      "build": "1.21.11-14-ver/1.21.11@529aabc",
+      "passed": true,
+      "result": "folia-result.json",
+      "result_sha256": "2fe93b541008e39c115b02cff1a2bc7e8ced3b0ef6b4a265a3f5160b59e2f6d0",
+      "console_log": "folia-console.log",
+      "console_log_sha256": "b6fde111376b22bf013359732caf45397450cebe10b01c7331f6f9fef75ef3b2",
+      "server_jar_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+      "plugin_jar_sha256": "b7c228f5ead3ed91dcfbd3d3c20bd67a3b713b7c68a0fb47915e73b7a84da5a0"
+    }
+  },
+  "remaining_acceptance": [
+    "Recipe inventory interactions have not been evaluated by a human Minecraft client.",
+    "P5 still lacks a spatial food web, ecosystem balance feedback, and long-duration save-cycle testing.",
+    "Java 25 passed locally; the GitHub Actions release workflow has not run."
+  ]
+}

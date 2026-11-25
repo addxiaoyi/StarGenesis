@@ -1,0 +1,40 @@
+{
+  "phase": "P5 long-run ecology checkpoint recovery",
+  "captured_at": "2026-11-22",
+  "scenario": {
+    "engine": "ecology/3",
+    "max_steps": 100000,
+    "max_population": 256,
+    "checkpoint_interval_steps": 10000,
+    "checkpoint_recoveries": 10,
+    "final_population": 256,
+    "terminal_reason": "MAX_STEPS_REACHED",
+    "maximum_checkpoint_bytes": 65536
+  },
+  "assertions": [
+    "Checkpoint encoding and decoding preserve the complete snapshot and state hash.",
+    "Restored worlds retain the configured population and continue to the step limit.",
+    "Matter and energy ledgers balance at each recovery point.",
+    "The world rejects a step after reaching its configured limit."
+  ],
+  "verification": {
+    "java_21": {
+      "runtime": "Temurin 21.0.13.1",
+      "command": ".\\mvnw.cmd -B -ntp test",
+      "passed": true,
+      "tests": 268,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "ecology_world_test_seconds": 15.05,
+      "boundary_check": "passed"
+    },
+    "java_25": {
+      "status": "not rerun",
+      "previous_suite_tests": 267,
+      "previous_result_includes_new_test": false,
+      "reason": "A Java 25 runtime was not available in this workspace."
+    }
+  },
+  "scope_limit": "This test exercises in-memory checkpoint recovery. It does not simulate server filesystem flushes, process crashes, or Paper/Folia save cycles."
+}

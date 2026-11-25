@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-25",
+  "plugin_jar_sha256": "5E9D3D3BA5908E66AE8EBF8B5BEAB0E21C1E9DACE6C6F49BE7D04C99FA6F708A",
+  "java_verify": [
+    {
+      "java": "21.0.13.1+2",
+      "tests": 329,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": ".work/p4-p6-java21-verify-20261124.log",
+      "log_sha256": "2506CE426081FCC37AF6E10EE96E2408583316ADB7E8C653CF887B33DC683E36"
+    },
+    {
+      "java": "25.0.5.1+2",
+      "tests": 329,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": ".work/p4-p6-java25-verify-20261124.log",
+      "log_sha256": "980BF3EB739770C6413882141CFCDF98BE3CDCB89B8D31B5169C27870E1088D6"
+    }
+  ],
+  "node_tests": {
+    "tests": 22,
+    "failures": 0,
+    "command": "node --test scripts/server_benchmark.test.mjs scripts/protocol_proxy_smoke_helpers.test.mjs",
+    "log": ".work/p11-monitoring-tests-20261125.log",
+    "log_sha256": "666FB1C72302251DCF9DAF74FAD7D97646C55AEE90F3F6258CB15DFA38BB8D0A",
+    "script_sha256": "F456DC0F0F0DE44813CBE5872240B160B627B37C43C12DF2DAB52E128902C7EC",
+    "test_sha256": "85DB5537B1F6BF92EC5675388B88C06C5BF11307635319C515FC23C7929418A3"
+  },
+  "boundary_check": {
+    "passed": true,
+    "command": "python scripts/check_boundaries.py"
+  },
+  "p4_proxy": [
+    "docs/evidence/p4/paper-retry-window-02-20261124.json",
+    "docs/evidence/p4/folia-retry-window-01-20261124.json"
+  ],
+  "p6_proxy": [
+    "docs/evidence/p6/paper-proxy-transaction-03-20261124.json",
+    "docs/evidence/p6/folia-proxy-transaction-01-20261124.json"
+  ],
+  "p11": {
+    "concurrent_mode_pilot": {
+      "result": "docs/evidence/p11/folia-shared-pilot-20261125.json",
+      "passed": false,
+      "reason": "60-second run had 3 metric samples and available memory below threshold"
+    },
+    "concurrent_mode_long": {
+      "result": "docs/evidence/p11/folia-shared-long-01-20261125.json",
+      "passed": false,
+      "reason": "Folia JVM could not commit memory on shared host at about 80 seconds"
+    },
+    "isolated_mode_attempt": {
+      "result": "docs/evidence/p11/paper-isolated-long-01-20261125.json",
+      "passed": false,
+      "reason": "Run before the Windows process inventory change; jcmd monitoring failed at 11 seconds and no samples were captured"
+    },
+    "duration_gate": "not passed",
+    "current_host_observation": {
+      "other_java_server_detected": true,
+      "available_memory_mib": 496,
+      "full_benchmark_started": false
+    }
+  },
+  "remaining": [
+    "P1-P3/P5/P7-P10真人体验与长期耐久性",
+    "P9 fixed StarCore provider API and real settlement",
+    "P11 isolated Paper/Folia 30-minute numeric gates",
+    "release and production verification"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "protocol_proxy_smoke_sha256": "9a6fd207f7b4be1542f3b898e12d3c04c598a830421cf83603e2f116c5f509c9",
+  "helper_sha256": "715c1c54c09c30ce1ea294e2719b901b29c25efe2e013e10471d1e79fec073e2",
+  "helper_tests_sha256": "7ecdd87dacfc7d986779ac94bdb8b022d63ac1f26db6451ae38d40621c368323",
+  "checks": {
+    "offline_uuid_tests": "passed",
+    "chat_component_and_inventory_metadata_tests": "passed",
+    "custom_lore_and_nested_nbt_payload_tests": "passed",
+    "helper_test_count": 4,
+    "combined_node_test_count": 18,
+    "combined_node_test_failures": 0,
+    "proxy_script_syntax": "passed",
+    "github_actions_node_job": "helper tests and proxy script syntax included"
+  },
+  "end_to_end_proxy_receipt": "not verified",
+  "runtime_note": "Paper/Velocity test servers were not started during these unit checks."
+}

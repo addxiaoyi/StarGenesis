@@ -178,6 +178,27 @@ class CapabilityRegistryTest {
     }
 
     @Test
+    void unregisterClosesAdapterAndAllowsAReplacement() {
+        try (CapabilityRegistry registry = registry()) {
+            AtomicInteger closed = new AtomicInteger();
+            registry.registerAdapter("test", new IntegrationAdapter() {
+                public AdapterVerification verify(InstalledPlugin plugin) {
+                    return new AdapterVerification(true, true, Set.of("read"), "fixture:first");
+                }
+                public void close() { closed.incrementAndGet(); }
+            });
+            assertTrue(registry.inspect(inventory("1.0", true)).getFirst().active());
+            assertTrue(registry.unregisterAdapter("test"));
+            assertFalse(registry.unregisterAdapter("test"));
+            assertEquals(1, closed.get());
+            assertEquals("ADAPTER_NOT_VERIFIED", registry.inspect(inventory("1.0", true)).getFirst().reason());
+            registry.registerAdapter("test", plugin ->
+                    new AdapterVerification(true, true, Set.of("read"), "fixture:replacement"));
+            assertTrue(registry.inspect(inventory("1.0", true)).getFirst().active());
+        }
+    }
+
+    @Test
     void auditedDefaultsHaveSourceRevisionsAndAllRemainInactive() {
         try (CapabilityRegistry registry = CapabilityRegistry.auditedDefaults()) {
             List<IntegrationStatus> statuses = registry.inspect(name -> Optional.empty());

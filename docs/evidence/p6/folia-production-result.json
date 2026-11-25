@@ -1,0 +1,37 @@
+{
+  "phase": "P6 factory recipes and virtual workstations",
+  "kind": "folia",
+  "versions": [
+    "1.21.11-14-ver/1.21.11@529aabc",
+    "1.21.11-14-ver/1.21.11@529aabc",
+    "1.21.11-14-ver/1.21.11@529aabc"
+  ],
+  "owner": "SgProdFolia",
+  "owner_uuid": "d37739e5-e406-31b4-8c2f-929f3a2f7075",
+  "checks": {
+    "non_owner_cannot_edit_roster_from_menu": true,
+    "organization_menu_opened": true,
+    "owner_cannot_be_removed_from_menu": true,
+    "factory_created_from_four_member_roster": true,
+    "menu_reports_frozen_roster": true,
+    "frozen_roster_rejects_menu_mutation": true,
+    "frame_recipe_queued": true,
+    "station_status_reports_active_job": true,
+    "frame_recipe_completed": true,
+    "completed_components_collected": true,
+    "second_job_queued_for_restart": true,
+    "pending_job_restored_after_restart": true,
+    "plate_recipe_completed": true,
+    "resumed_job_output_collected": true,
+    "job_saved_before_abrupt_termination": true,
+    "pending_job_restored_after_abrupt_termination": true,
+    "pending_job_completed_after_abrupt_termination": true,
+    "abrupt_restart_output_collected": true
+  },
+  "passed": true,
+  "plugin_sha256": "9c0a710b71a3875c4f9e2f14e4081a38fcc0d437ed3fc0f4690a9c57510c8651",
+  "server_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "interaction_log": "folia-production-interaction.log",
+  "server_log": "folia-production-server.log",
+  "scope": "Offline Mineflayer verification of organization Inventory interactions and factory recipes on Paper/Folia. Covers normal restart and forced server-process termination after an acknowledged checkpoint. This is not human usability or machine power-loss durability evidence."
+}

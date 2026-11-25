@@ -20,9 +20,27 @@ jobs:
           python-version: '3.12'
       - run: python scripts/check_boundaries.py
       - run: sh mvnw -B -ntp verify
+      - name: Generate aggregate CycloneDX SBOM
+        run: sh mvnw -B -ntp org.cyclonedx:cyclonedx-maven-plugin:2.9.1:makeAggregateBom -DskipTests
       - uses: actions/upload-artifact@v4
         with:
           name: stargenesis-java-${{ matrix.java }}
           path: |
             stargenesis-paper/target/stargenesis-paper-*.jar
+            target/bom.json
+            target/bom.xml
             **/target/surefire-reports/*
+
+  benchmark-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/server_benchmark.mjs
+      - run: node --check scripts/protocol_proxy_smoke.mjs
+      - run: node --check scripts/arena_review_sign.mjs
+      - run: node --test scripts/server_benchmark.test.mjs
+      - run: node --test scripts/protocol_proxy_smoke_helpers.test.mjs
+      - run: node --test scripts/arena_review_sign.test.mjs

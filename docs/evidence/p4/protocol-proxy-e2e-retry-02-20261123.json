@@ -1,0 +1,82 @@
+{
+  "phase": "P4 Paper and Velocity cross-server protocol relay",
+  "requested_proxy_build": "Velocity 3.5.1 build 615",
+  "benchmark_script_sha256": "fb39180319b2576898160a152b60be0d0dace6f95623067b4be43e07143cf0ef",
+  "paper_jar_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "velocity_jar_sha256": "b4e3164df5377346854dc6cb9e6a78022b1946ff69e89676313f5f6f1c6f0fb3",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "runtime_environment": {
+    "os": "win32",
+    "java_processes_at_start": [],
+    "java_processes_started_during_run": [],
+    "java_process_probe_errors": [],
+    "java_processes_at_end": []
+  },
+  "servers": {
+    "hub_a": {
+      "name": "hub_a",
+      "pid": 21396,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "d439c27993ccfde04cee2f5021b0058cd7a40566653cb7adc1ee42c7052f2a95",
+      "log_file": "hub_a.log"
+    },
+    "hub_b": {
+      "name": "hub_b",
+      "pid": 27580,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "57688f2d02db0cf30e9b2ac67973e7f2dab2758109d372786baf2766164b7770",
+      "log_file": "hub_b.log"
+    },
+    "velocity": {
+      "name": "velocity",
+      "pid": 12244,
+      "exitCode": 0,
+      "exit_code": 0,
+      "log_sha256": "26fe7ae3e62a876850088a18c0f7ab5aff766661d6c7651c0cfe6c05aaf71af2",
+      "log_file": "velocity.log"
+    }
+  },
+  "clients": {
+    "SgRelaySource": {
+      "username": "SgRelaySource",
+      "host": "localhost",
+      "uuid": "ed72fb90-7439-3e52-94a4-639a0a05eff3",
+      "messages": [
+        "SgRelaySource joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_a"
+    },
+    "SgRelayTarget": {
+      "username": "SgRelayTarget",
+      "host": "127.0.0.1",
+      "uuid": "d0b5e70c-681a-3409-b706-b8dcb1ff5dce",
+      "messages": [
+        "SgRelayTarget joined the game"
+      ],
+      "events": [
+        {
+          "event": "end",
+          "reason": "protocol relay test complete"
+        }
+      ],
+      "server_route": "hub_b"
+    }
+  },
+  "checks": {
+    "velocity_started": true,
+    "both_backends_enabled_with_relay": true,
+    "clients_joined_distinct_backends_and_uuid_forwarding": true
+  },
+  "passed": false,
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\r\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\r\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "error": "Error: SgRelaySource did not see the starter chip unlock action\n    at equipStarterProtocol (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:356:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async main (file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:456:3)\n    at async file:///C:/Users/Administrator/Documents/stargenesis/scripts/protocol_proxy_smoke.mjs:481:3",
+  "duration_seconds": 107.9
+}

@@ -1,0 +1,109 @@
+{
+  "phase": "P9 nation-resource contract and P11 benchmark failure-path verification",
+  "verified_at": "2026-11-25T09:55:37+08:00",
+  "full_verify": {
+    "java_21": {
+      "runtime": {
+        "java_version": "21.0.13.1",
+        "java_runtime_version": "21.0.13.1+2-LTS",
+        "implementor": "Eclipse Adoptium"
+      },
+      "command": "mvnw.cmd -o -B -ntp \"-DargLine=-Xmx256m -Xss512k -XX:ActiveProcessorCount=1 -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -XX:-CreateCoredumpOnCrash\" -l .work/p9-p11-java21-verify-20261125.log verify",
+      "maven_opts": "-Xmx384m -Xss512k -XX:ActiveProcessorCount=2 -XX:CICompilerCount=2 -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -XX:-CreateCoredumpOnCrash",
+      "build_mode": "incremental full reactor verify; all tests executed",
+      "tests": {
+        "run": 343,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "test_classes": 57,
+      "completed_at": "2026-11-25T08:00:08+08:00",
+      "log": ".work/p9-p11-java21-verify-20261125.log",
+      "log_sha256": "357228dce76a247661af8821f45cfba826cfca1d4bb741704341c09ac3917d79"
+    },
+    "java_25": {
+      "runtime": {
+        "java_version": "25.0.5.1",
+        "java_runtime_version": "25.0.5.1+2-LTS",
+        "implementor": "Microsoft"
+      },
+      "command": "mvnw.cmd -o -B -ntp \"-DargLine=-Xmx256m -Xss512k -XX:ActiveProcessorCount=1 -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -XX:-CreateCoredumpOnCrash\" -l .work/p9-p11-java25-verify-20261125.log verify",
+      "maven_opts": "-Xmx384m -Xss512k -XX:ActiveProcessorCount=2 -XX:CICompilerCount=2 -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -XX:-CreateCoredumpOnCrash",
+      "build_mode": "incremental full reactor verify; all tests executed",
+      "tests": {
+        "run": 343,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "test_classes": 57,
+      "completed_at": "2026-11-25T08:02:04+08:00",
+      "log": ".work/p9-p11-java25-verify-20261125.log",
+      "log_sha256": "ad61aad351320888c68ca02dec9895767ad5f2e1ddc7606279602d614c190db9"
+    }
+  },
+  "node_tests": {
+    "command": "node --test --test-concurrency=1 scripts/server_benchmark.test.mjs scripts/protocol_proxy_smoke_helpers.test.mjs",
+    "run": 28,
+    "pass": 28,
+    "fail": 0,
+    "skipped": 0,
+    "log": ".work/p9-p11-node-tests-final-20261125.log",
+    "log_sha256": "737910cb36985719e299188e8267d70b229c61b49a74151ebbfb1d9e7633af20",
+    "scope": "24 benchmark tests, including six process/I/O/cleanup/client-disconnect regressions; four proxy helper tests"
+  },
+  "checks": {
+    "node_syntax": "passed for benchmark and proxy smoke/helper scripts",
+    "module_boundaries": "passed: scripts/check_boundaries.py",
+    "git_diff_check": "passed"
+  },
+  "source_sha256": {
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/NationResourceSettlementGateway.java": "c9fe05c5eff6bbc8439f48ee165d1c3ff2fd0a6e71a1ad9756d9d85795961a85",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementGateway.java": "ac42c8f479d1043c56b17c4b6b3ef2af419b74f1604f75585cc6c76fc4c894a9",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSagaCoordinator.java": "2e67da0a91b43cd42fbf2fad41a03f86fa2ab0639a6211b3056d1c8ad6d39bbe",
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/NationResourceSettlementGatewayTest.java": "7105f84103c098c7e4c18fa03ed32b75f65b59c932390297e2dfa3d1c1d72360",
+    "scripts/server_benchmark.mjs": "39de1f96cbdc05b67d29962c38fcf6bbb240d2b9ef640d87ff56dd408f9b2c40",
+    "scripts/server_benchmark.test.mjs": "6b060192880e7130e5d0e9bc80e9e04d66d0f06e447c7075f7ef1a368436f764"
+  },
+  "plugin_jar": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "bytes": 3195682,
+    "sha256": "8f484c6da01fbb9ce4f86d8a97786b9e93d09fc508a34ad60c736f84bbfecc8f",
+    "contains_nation_resource_gateway": true,
+    "excludes_gateway_tests": true
+  },
+  "earlier_failed_java21_attempt": {
+    "log": ".work/p9-nation-java21-verify-20261125.log",
+    "log_sha256": "8994cd8a425e82865755cf3eba3c1ae6aff72c06ab6446c170c174c5aaf94498",
+    "status": "failed; not a full verification pass",
+    "exit_code": 1,
+    "crash_report": "hs_err_pid23988.log",
+    "crash_report_sha256": "36d34b89235d71e22c2ae402f7d8a86a32633457dcc171064e02dafb5ba217b4",
+    "reported_failure": "Native malloc failed allocating 1631696 bytes in the javac C2 compiler thread; later resource-limited complete reactor runs passed."
+  },
+  "benchmark": {
+    "runtime_run_executed_in_this_verification": false,
+    "paper_folia_30_minute_gate_passed": false,
+    "result_lifecycle": [
+      "running (passed=false)",
+      "completed (final outcome after cleanup)"
+    ],
+    "fixed_failure_paths": [
+      "log write callback exception",
+      "asynchronous stdin pipe error",
+      "partial client connection failure",
+      "client quit exception",
+      "bounded owned-server stop and termination",
+      "worker exits after initial incomplete snapshot",
+      "client end, kick or runtime error during command gaps aborts before passing the runtime gate"
+    ],
+    "historical_missing_result_cause": "The historical server crash log proves a native-memory allocation failure. It does not establish why the Node worker failed to persist a final result."
+  },
+  "limitations": [
+    "The gateway is a local provider contract tested with simulated providers; no production StarCore adapter is registered.",
+    "Real settlement stays disabled and no currency or player inventory was transferred.",
+    "No Paper/Folia runtime benchmark or 30-minute performance gate was completed by these checks.",
+    "Human usability, third-party interoperability, power-loss durability and release gates remain outstanding."
+  ]
+}

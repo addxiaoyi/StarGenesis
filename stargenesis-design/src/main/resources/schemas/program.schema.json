@@ -149,7 +149,23 @@
               "MOVE",
               "HARVEST",
               "DEPOSIT",
-              "WAIT"
+              "WAIT",
+              "OR",
+              "XOR",
+              "EQUAL",
+              "VECTOR",
+              "ADD",
+              "SUBTRACT",
+              "MULTIPLY",
+              "DIVIDE",
+              "REMAINDER",
+              "MIN",
+              "MAX",
+              "ABS",
+              "NEGATE",
+              "CLAMP",
+              "SELECT",
+              "VECTOR_SELECT"
             ]
           },
           "inputType": {

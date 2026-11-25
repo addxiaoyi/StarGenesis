@@ -1,0 +1,42 @@
+{
+  "phase": "P6 factory relay outbox direct lookup",
+  "verified_at": "2026-11-22T23:41:21+08:00",
+  "java_distribution": "Eclipse Adoptium Temurin",
+  "java_version": "21.0.13.1+2-LTS",
+  "targeted_test_command": "mvnw.cmd -o -B -ntp -T 1 -pl stargenesis-paper -am -Dtest=FactoryRelayOutboxStoreTest -Dsurefire.failIfNoSpecifiedTests=false -DargLine=-Xmx256m test",
+  "tests": {
+    "class": "dev.stargenesis.paper.FactoryRelayOutboxStoreTest",
+    "run": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "full_verify": {
+    "java_21": {
+      "version": "21.0.13.1+2-LTS",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -DargLine=-Xmx512m verify",
+      "completed_at": "2026-11-22T23:39:23+08:00",
+      "tests": {
+        "run": 322,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "java_25": {
+      "version": "25.0.5.1+2-LTS",
+      "command": "mvnw.cmd -o -B -ntp -T 1 -DargLine=-Xmx512m verify",
+      "completed_at": "2026-11-22T23:41:21+08:00",
+      "tests": {
+        "run": 322,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "plugin_jar": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+  "plugin_jar_sha256": "AF6CAD26F3C16605D64D363CAD9875F4CB8F19A03A90385D9F6EE72C5C21F403",
+  "server_runtime_started": false,
+  "limitations": "Build and test verification only. Paper, Folia and proxy runtime behavior were not tested in this follow-up."
+}

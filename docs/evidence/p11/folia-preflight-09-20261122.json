@@ -1,0 +1,17 @@
+{
+  "phase": "P11 Folia benchmark process-isolation preflight",
+  "verified_at": "2026-11-22T21:23:15+08:00",
+  "benchmark_script_sha256": "a327783a5baf0cb5946c1a4eb2d97fa99e63fa4c7bea57d302d270f649730cc1",
+  "raw_evidence": ".work/p11-folia-long-09-result.json",
+  "raw_evidence_sha256": "a702c0cf796ed00290eba14b486ab6cfd64314764cd14ab9744e82fc46a968dc",
+  "requested_duration_seconds": 1800,
+  "result": "rejected-before-server-start",
+  "observations": {
+    "existing_folia_server_detected": true,
+    "benchmark_server_started": false,
+    "connected_clients": 0,
+    "commands_sent": 0,
+    "performance_samples": 0
+  },
+  "scope": "Process-isolation guard check only. No load was generated and no P11 duration gate was measured."
+}

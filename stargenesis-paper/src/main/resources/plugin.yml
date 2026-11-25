@@ -2,12 +2,12 @@ name: StarGenesis
 version: '${project.version}'
 main: dev.stargenesis.paper.StarGenesisPlugin
 api-version: '1.21.11'
-description: Players invent rules; the world tests inventions. P0 foundation.
+description: Players invent rules; the world tests inventions. P1-P11 development.
 folia-supported: true
 softdepend: [StarCore, helsteraMobs, CraftEngine, KaleidoscopeCookeryPlugin, KaleidoscopeDollPlugin, KaleidoscopeTavernPlugin, KaleidoscopeDecoPlugin, KaleidoscopeMusicPlugin]
 commands:
   genesis:
-    description: StarGenesis status, help and operator diagnostics
+    description: StarGenesis laboratory, status and diagnostics
     usage: /genesis help
     aliases: [sg]
 permissions:
@@ -19,4 +19,34 @@ permissions:
     default: true
   stargenesis.debug:
     description: Inspect integration capabilities and budgets
+    default: op
+  stargenesis.lab:
+    description: Use a private StarGenesis simulation laboratory
+    default: true
+  stargenesis.blueprint:
+    description: Edit and privately assemble a StarGenesis blueprint
+    default: true
+  stargenesis.program:
+    description: Edit and run bounded StarGenesis behavior programs in the private laboratory
+    default: true
+  stargenesis.protocol:
+    description: Manage bounded StarGenesis protocol chips and private messages
+    default: true
+  stargenesis.ecosystem:
+    description: Use private and shared bounded StarGenesis ecologies
+    default: true
+  stargenesis.factory:
+    description: Use the bounded four-member virtual StarGenesis factory
+    default: true
+  stargenesis.arena:
+    description: Edit arena rulesets, submit reviews, join and play bounded arena matches
+    default: true
+  stargenesis.arena.review:
+    description: Review and publish community arena rulesets
+    default: op
+  stargenesis.settlement.review:
+    description: View settlement journal records and reconciliation keys
+    default: op
+  stargenesis.design.admin:
+    description: Manage trusted signed design imports and publisher keys
     default: op

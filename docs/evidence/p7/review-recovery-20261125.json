@@ -1,0 +1,171 @@
+{
+  "phase": "P7 explicit signed approval recovery",
+  "verified_at": "2026-11-25T14:17:25.163683+08:00",
+  "command": "/genesis arena recover <sha256> <reviewer-uuid> <original-signature>",
+  "permission": "stargenesis.arena.review",
+  "behavior": [
+    "Available to authorized players and server console, without requiring the original reviewer online",
+    "Only replays an existing signed approval; cannot create decisions, reverse rejections or recover unsigned legacy decisions",
+    "Requires exact original reviewer UUID and persisted signature; validates the recorded Ed25519 proof",
+    "Before new publication, validates submitter/signing provenance, current editor ACL, version and exact dependencies",
+    "Keeps immutable approval bytes; failed writes retain pending content; successful retries are idempotent",
+    "Recorded approvals remain recoverable after reviewer trust rotation or revocation; legacy in-game recovery remains available"
+  ],
+  "targeted_tests": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": {
+      "ArenaReviewCommandsTest": 15,
+      "ArenaReviewQueueTest": 19,
+      "PublishedDesignStoreTest": 5
+    },
+    "log": ".work/p7-review-recovery-targeted.log",
+    "coverage": [
+      "Successful recovery and repeated retry after restart/trust revocation",
+      "No decision, rejection and unsigned legacy refusal",
+      "Wrong reviewer, forged/wrong-outcome/noncanonical signature and malformed arguments",
+      "Permission denied before unavailable archive access",
+      "Tampered decision with recomputed checksum",
+      "Latest editor ACL revocation and provenance conflict",
+      "Publication write failure and retry",
+      "Missing exact dependency and subsequent successful retry"
+    ]
+  },
+  "java_runs": [
+    {
+      "runtime": "Java 21",
+      "command": ".\\mvnw.cmd -T1 \"-DargLine=-Xmx192m -XX:ActiveProcessorCount=2\" clean verify",
+      "maven_opts": "-Xmx384m -XX:MaxMetaspaceSize=192m -XX:ActiveProcessorCount=2",
+      "tests": 392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "stargenesis-api",
+          "tests": 4
+        },
+        {
+          "module": "stargenesis-design",
+          "tests": 107
+        },
+        {
+          "module": "stargenesis-sim",
+          "tests": 95
+        },
+        {
+          "module": "stargenesis-integrations",
+          "tests": 40
+        },
+        {
+          "module": "stargenesis-paper",
+          "tests": 146
+        }
+      ],
+      "log": ".work/p7-review-recovery-java21-verify.log",
+      "log_sha256": "54a882d918714d82fdc183aba7d8be5a7d6625f477f28a0d2d7c91d3fb0a4414",
+      "plugin_sha256": "6540760de42201143edb07cc4257cf9ae32cbf01a3a8813906802c5aa532e418"
+    },
+    {
+      "runtime": "Java 25",
+      "command": ".\\mvnw.cmd -T1 \"-DargLine=-Xmx192m -XX:ActiveProcessorCount=2\" clean verify",
+      "maven_opts": "-Xmx384m -XX:MaxMetaspaceSize=192m -XX:ActiveProcessorCount=2",
+      "tests": 392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "modules": [
+        {
+          "module": "stargenesis-api",
+          "tests": 4
+        },
+        {
+          "module": "stargenesis-design",
+          "tests": 107
+        },
+        {
+          "module": "stargenesis-sim",
+          "tests": 95
+        },
+        {
+          "module": "stargenesis-integrations",
+          "tests": 40
+        },
+        {
+          "module": "stargenesis-paper",
+          "tests": 146
+        }
+      ],
+      "log": ".work/p7-review-recovery-java25-verify.log",
+      "log_sha256": "f099d3f910d50a34f96949b50a2419dcd6a2faa84c9b223cfc678c5fee96754d",
+      "plugin_sha256": "84e67dd2c014390f85c64cba5e6a579608de93226415d7313958e53817a90ab1"
+    }
+  ],
+  "node_tests": {
+    "tests": 36,
+    "failures": 0,
+    "skipped": 0,
+    "log": ".work/p7-review-recovery-node-tests.log",
+    "log_sha256": "dabb05e8e5e913de2d4ffb7ad6e432ae884915ff12e6f41f7a14afdb194db8e0"
+  },
+  "server_runs": [
+    {
+      "kind": "paper",
+      "build": "1.21.11-132-ver/1.21.11@c5eb079",
+      "checks": 31,
+      "passed": true,
+      "evidence": "docs/evidence/p7/review-recovery-paper-20261125.json",
+      "evidence_sha256": "ea4d3eb64945ffe02de51c8a25cb77d57a5c4ccab61d844631c522ec2aaf0373",
+      "log": ".work/p7-review-recovery-paper-20261125/smoke-console.log",
+      "log_sha256": "18fe2e8bb3d0397433495f5e43436e5c44b77cf10f7275862a3bd98130726738",
+      "scope": "Actual server console lifecycle, read-only history/unknown decision, recovery usage and refusal to create a new approval. No successful persisted-approval recovery was exercised on server."
+    },
+    {
+      "kind": "folia",
+      "build": "1.21.11-14-ver/1.21.11@529aabc",
+      "checks": 31,
+      "passed": true,
+      "evidence": "docs/evidence/p7/review-recovery-folia-20261125.json",
+      "evidence_sha256": "47a9cc35a6f71f66d94ac195e3066cd8a7a4d0049c8181720be6dff1d401c95c",
+      "log": ".work/p7-review-recovery-folia-20261125/smoke-console.log",
+      "log_sha256": "83c20f21ad6e7dbb43b995bd9dda3f9c0a19c766dc3ca3c4c668658b3eea3bed",
+      "scope": "Actual server console lifecycle, read-only history/unknown decision, recovery usage and refusal to create a new approval. No successful persisted-approval recovery was exercised on server."
+    }
+  ],
+  "harness_fix": {
+    "problem": "Windows ordinary path open failed for 263-character hashed release paths, causing a false missing schema-2 release result",
+    "fix": "Use resolved Windows extended paths when opening release JSON; preserve UNC handling and normal paths on non-Windows",
+    "initial_failure_evidence": "docs/evidence/p7/review-recovery-paper-long-path-failure-20261125.json",
+    "initial_failure_sha256": "2917b5f96a697a0af04666b1c1ca88af2a7cc54d4617dbfdb108933872a17889",
+    "initial_failure_log": ".work/p7-review-recovery-paper-long-path-failure.log",
+    "verification": "Read both 263-character schema-1/schema-2 paths successfully, then reran actual Paper smoke; final Paper and Folia all checks passed"
+  },
+  "checks": {
+    "module_boundaries": "passed",
+    "git_diff_check": "passed",
+    "changed_code_whitespace": "passed",
+    "python_syntax": "passed",
+    "plugin_class_target": "Java 21, class major 65",
+    "plugin_zip_duplicate_entries": 0
+  },
+  "artifact": {
+    "path": "stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar",
+    "sha256": "84e67dd2c014390f85c64cba5e6a579608de93226415d7313958e53817a90ab1"
+  },
+  "source_sha256": {
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ArenaReviewRecoveryCommands.java": "8bf89f55c2bdb636158cf5178ad7d722cf8d426a25b647e6b99ec608c974fc55",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ArenaReviewCommands.java": "f90b750f486cc75fa40c549653181116b58ffb52a8bdb6b41bb2a961fc016e92",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ArenaReviewQueue.java": "b89ee4a0ab0caa9cf96c0616563487983b1450d5cf8f0bc7b264797512e54aa7",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/StarGenesisPlugin.java": "1172dfc62a931175ca936e49c6c9ea3d946f761c5f0adabd808a4201c0a475a4",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/ArenaReviewCommandsTest.java": "08e5b61b99b7240e1ca066a0d82384969f86750b998d59a4bedd9321dea384f1",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/ArenaReviewQueueTest.java": "e97c2d70d9208f9a8c6b1c1db6375b19c58d743666dd8781f96e9615a2612bb6",
+    "scripts/server_smoke.py": "7757645b02742bdecd2a107b616cf7b90e8b40f66c697d126c97acf140d03a0c"
+  },
+  "not_validated": [
+    "Successful recovery of a persisted signed approval on actual Paper/Folia server",
+    "Human in-game recovery, production key lifecycle and crash/power-loss durability",
+    "P11 long-running real-server performance gate"
+  ]
+}

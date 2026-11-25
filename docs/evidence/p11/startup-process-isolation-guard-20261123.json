@@ -1,0 +1,18 @@
+{
+  "phase": "P11 Paper/Folia runtime load and memory benchmark",
+  "benchmark_script_sha256": "6ee014d5b848dd521b4a8403f5f687a3546118846e515602cefb4e09297cfbd1",
+  "plugin_jar_sha256": "8756082b7ff686ee8372af77357c77870b5e029bf6d61b89f9ba85623d4c8e6e",
+  "startup_isolation": "Reject any pre-existing Java process, including build and test JVMs",
+  "runtime_isolation": "Reject any Java process first observed after benchmark startup",
+  "checks": {
+    "node_syntax": "passed",
+    "node_tests": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "module_boundaries": "passed",
+    "git_diff_check": "passed"
+  },
+  "long_run_with_this_script_hash": "not run"
+}

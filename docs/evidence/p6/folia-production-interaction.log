@@ -1,0 +1,64 @@
+/genesis factory identity
+你的 UUID d37739e5-e406-31b4-8c2f-929f3a2f7075
+/genesis factory org create p6prod_folia
+组织 p6prod_folia 已创建，你是所有者。使用 /genesis factory org add <uuid> 邀请成员。
+window click 28
+只有组织所有者可以修改成员。
+window click 28
+已将 c6a2722a-7262-3ee0-83a8-06d211d6dbb6 加入组织 p6prod_folia。
+window click 10
+已将 c6a2722a-7262-3ee0-83a8-06d211d6dbb6 从组织 p6prod_folia 移除。
+window click 10
+组织所有者不能从名册中移除。
+/genesis factory org add 00000000-0000-0000-0000-000000000102
+已将 00000000-0000-0000-0000-000000000102 加入组织 p6prod_folia。
+/genesis factory org add 00000000-0000-0000-0000-000000000103
+已将 00000000-0000-0000-0000-000000000103 加入组织 p6prod_folia。
+/genesis factory org add 00000000-0000-0000-0000-000000000104
+已将 00000000-0000-0000-0000-000000000104 加入组织 p6prod_folia。
+/genesis factory create
+四人虚拟工厂已创建并保存。使用 /genesis factory status 查看名册。
+window click 11
+工厂已创建，组织名册已冻结。
+/genesis factory station queue factory:frame 41 2
+生产任务已排入 factory:frame，预计 tick 4 完成。
+/genesis factory station status
+虚拟工位 | tick 0 | 原料：成员库存矿石 6、聚合物 12 | 工位矿石 2、聚合物 4、组件 0
+运行中 factory:frame | 批次 2 | 完成 tick 4
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory advance 0 4
+工厂已推进 4 步，当前 tick 4。
+/genesis factory station status
+虚拟工位 | tick 4 | 原料：成员库存矿石 6、聚合物 12 | 工位矿石 0、聚合物 0、组件 8
+当前没有运行任务。
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory station collect 42 8
+已领取 8 个组件到成员虚拟库存。
+/genesis factory station queue factory:plate 43 4
+生产任务已排入 factory:plate，预计 tick 8 完成。
+/genesis factory station status
+虚拟工位 | tick 4 | 原料：成员库存矿石 2、聚合物 8 | 工位矿石 4、聚合物 4、组件 0
+运行中 factory:plate | 批次 4 | 完成 tick 8
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory advance 4 4
+工厂已推进 4 步，当前 tick 8。
+/genesis factory station status
+虚拟工位 | tick 8 | 原料：成员库存矿石 2、聚合物 8 | 工位矿石 0、聚合物 0、组件 12
+当前没有运行任务。
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory station collect 44 12
+已领取 12 个组件到成员虚拟库存。
+/genesis factory station queue factory:frame 45 1
+生产任务已排入 factory:frame，预计 tick 10 完成。
+/genesis factory station status
+虚拟工位 | tick 8 | 原料：成员库存矿石 1、聚合物 6 | 工位矿石 1、聚合物 2、组件 0
+运行中 factory:frame | 批次 1 | 完成 tick 10
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory advance 8 2
+工厂已推进 2 步，当前 tick 10。
+/genesis factory station status
+虚拟工位 | tick 10 | 原料：成员库存矿石 1、聚合物 6 | 工位矿石 0、聚合物 0、组件 4
+当前没有运行任务。
+配方 factory:frame 2 tick/批，最多 8 批、factory:plate 1 tick/批，最多 8 批
+/genesis factory station collect 46 4
+已领取 4 个组件到成员虚拟库存。
