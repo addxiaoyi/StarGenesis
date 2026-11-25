@@ -115,6 +115,10 @@ Folia 受控负载在4个分离 region 同时运行4个 P1 世界，每世界4�
 
 2026-11-25 的 `4.0.0-rc.2` 隔离 clean verify 通过232项测试，两次构建的源码/JAR/SBOM 哈希一致。候选 JAR SHA 为 `574db042891fb79a2a7e7dcd79e29cfcc0ffa7ebda688dfb67a8c3c93abafdbe`。Paper/Folia 五客户端完整流程均通过，包含双平台各八 seed 生态扫描和 Folia 跨区域移动。Ed25519 工具自检使用临时测试密钥并通过篡改检查，候选包尚待正式发行方签署。详细结果见 `docs/evidence/p11/release-candidate-rc2.json`。
 
+2026-11-26 RC2稳定性续开发已汇入未签署 `4.0.0-rc.3` 候选。候选构建器支持显式 `--fork-count 0`，记录实际JDK/参数/日志hash，证据按版本命名且拒绝覆盖已有文件。新增3项Python回归验证失败/跳过/空报告不能包装、隔离副本不带旧工件或修改源码版本、旧证据不被覆盖。CI加入跨进程结算锁探针并归档SBOM，在Linux Temurin Java21/25各通过415项Java测试、3项Python回归、锁探针和双签名自检；对应提交 `1eb14b8`，workflow run `45658631648`。
+
+RC3使用两个独立源码副本和Microsoft JDK21分别clean verify，各415项测试通过；源码树/JAR/SBOM哈希完全一致。候选JAR SHA256为 `fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001`，SBOM为 `e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719`，含61组件。Windows Java21/25均对同一RC3执行跨进程锁和临时密钥签名自检。证据见 `docs/evidence/p11/rc3-recovery/summary.json`。重复性只覆盖同主机同JDK两次构建；不同JDK/主机的插件hash不要求相同。尚未对RC3重跑Paper/Folia实服工作流，无正式私钥签署、GitHub release/tag或生产部署；全阶段门不因此自动通过。
+
 ## 未闭合阶段门
 
 P1–P8 仍需真人玩家验收、留存和公平性研究。P5 candidate 已有双平台八 seed 实服覆盖，更广 seed/参数空间、长期研究与参数稳健性验收仍未完成。P9 需要指定真实 provider 的持久外部幂等副作用、授权和补偿故障审计。P10 需要运营方 trust-root 生命周期、真实第三方 bridge 及第三方验收。P11 需要生产规模/跨硬件容量研究和正式发行方签名。2026-11-25 已清理包管理器缓存并使用本机已安装的 JDK 21/25 恢复整仓构建，Paper/Folia 八 seed 客户端扫描已完成。

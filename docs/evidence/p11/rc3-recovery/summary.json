@@ -1,0 +1,193 @@
+{
+  "date": "2026-11-26",
+  "version": "4.0.0-rc.3",
+  "sourceCommit": "1eb14b80dbedb3326dce356adea14a80bb3a8b9a",
+  "scope": "Unsigned RC3 candidate after RC2 stability recovery; two isolated Java 21 builds, local Windows Java 21/25 checks and Linux GitHub Actions checks.",
+  "reproducibleBuild": {
+    "sameBuildInputHash": true,
+    "samePluginHash": true,
+    "sameSbomHash": true,
+    "sourceTreeSha256": "1ab82abf6ce013f9eb68c2cdc9998c065c664ddcb2144399b1ff8e886143a848",
+    "pluginSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+    "pluginSizeBytes": 3016985,
+    "sbomSha256": "e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719",
+    "sbomComponents": 61,
+    "builds": [
+      "release-candidate-rc3-first.json",
+      "release-candidate-rc3-repeat.json"
+    ],
+    "localArtifact": ".work\\releases\\4.0.0-rc.3\\StarGenesis-4.0.0-rc.3.jar",
+    "localSbom": ".work\\releases\\4.0.0-rc.3\\sbom.json",
+    "scope": "Two independent isolated source copies on the same Windows host and Microsoft JDK 21. Not a cross-JDK or cross-host reproducibility guarantee."
+  },
+  "ci": {
+    "commit": "1eb14b80dbedb3326dce356adea14a80bb3a8b9a",
+    "runUrl": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45658631648",
+    "jobs": {
+      "java21": {
+        "suites": 56,
+        "tests": 415,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "java25": {
+        "suites": 56,
+        "tests": 415,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "newPythonTests": 3,
+    "scope": "Linux ubuntu-latest, Temurin Java 21/25. Maven defaults fork tests. New workflow checks include process-lock recovery and candidate-builder evidence guards.",
+    "logs": "Only labeled verification excerpts were archived; the original job logs remain linked by workflow run/job IDs."
+  },
+  "candidateChecks": {
+    "java21": {
+      "processLock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "releaseSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "4.0.0-rc.3",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-4.0.0-rc.3.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+        "sourceSbomSha256": "e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "designSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "processLock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "releaseSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "4.0.0-rc.3",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-4.0.0-rc.3.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+        "sourceSbomSha256": "e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "designSigner": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "releaseBuilderGuards": [
+    "Existing output/evidence refuses overwrite.",
+    "No test reports, zero tests, failures, errors or skipped tests reject candidate success.",
+    "Isolated source copying excludes target artifacts and does not rewrite workspace reactor versions.",
+    "Explicit --fork-count 0 supports bounded-memory full verification; evidence records actual command/JDK/options/log hash."
+  ],
+  "scripts": {
+    "scripts/build_release_candidate.py": "346aabdeec3b50d7e666a892b5c9de943a8c375b39b8740b1c677813c5f87008",
+    "scripts/test_release_candidate_builder.py": "4aea1c9bae37563b24b3131931e087a7c51e3eddcc20676b238e5953c57783cb",
+    ".github/workflows/verify.yml": "29654fcae63ec9926b2d747feda464398872fccfafc4367a0232b544e8262d5f"
+  },
+  "boundaryCheck": "PASS in local Java 21/25 batch verification and both Linux CI jobs.",
+  "limitations": [
+    "No new RC3 Paper/Folia startup or client acceptance runs. Prior RC2 live evidence does not cover new lifecycle changes.",
+    "Signing self-tests use ephemeral keys and do not officially sign the candidate.",
+    "P5 long-cycle candidate retained all three species in only 40/64 expanded cases; robust balance remains open.",
+    "P9 real settlement remains disabled; real provider, operator trust-root, third-party bridge and production capacity acceptance remain open.",
+    "P1-P8 human workflow, fairness and retention gates remain open.",
+    "RC3 was not tagged, published as a GitHub release, deployed to production or represented as full P0-P11 completion."
+  ],
+  "files": {
+    "release-candidate-rc3-first.json": "16d414a6a6f510d1bbc150732909e3b96587eb5b22ca33b77d1d5178303305d9",
+    "release-candidate-rc3-repeat.json": "74fe0094a048a5a85b4a0cf26a79da98d646fd521e4e8aa48f19ef4d1f67be1e",
+    "rc3-ci-verification.json": "78bceffc924b570bb6584b6cc7d2324a7151425a536923ebeb800963af7b1095",
+    "release-builder-tests.log": "5f1adf9fe60e40b0ac9be8d59c428ecf5b23d7fc3e9ba2421dbb1f5d931bc766",
+    "rc3-ci-java21-excerpt.log": "842f63e8fd24d11f9f7d54f48ce96e663f8b3c1f682c8047e59c08ff083d0fff",
+    "rc3-ci-java21-counts.json": "8c84db88d07d36b6da9e706660fc777e3af17d3334022c5442a888a62af3ce0a",
+    "rc3-process-lock-java21.json": "b33cc3e2cf681300372927bdd7ad2a9f39da1df0d06bad36d599b1bdbd8e667f",
+    "rc3-release-signer-java21.json": "17b679f2bb57da9bf2480b46dd348401d45ae398d9e8d93d4e006ffbf3eeb517",
+    "rc3-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "rc3-ci-java25-excerpt.log": "5d161f970aa2592641a1fda98ffa87bab570db99b7356534a306f93c08b949a6",
+    "rc3-ci-java25-counts.json": "8c84db88d07d36b6da9e706660fc777e3af17d3334022c5442a888a62af3ce0a",
+    "rc3-process-lock-java25.json": "2f0598076c404caaa1ce4d75d6480f5199c2634bf15edc737fd4b0536b2df61e",
+    "rc3-release-signer-java25.json": "17b679f2bb57da9bf2480b46dd348401d45ae398d9e8d93d4e006ffbf3eeb517",
+    "rc3-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "rc3-first-verify.log": "c889c7f7018f8e0c246ff9140db4cd1c004d3bd4bd31d98320a461fcd3cb114e",
+    "rc3-repeat-verify.log": "68e2b1c09080e305ae4603cff59faaf98221dd6075d6b80d47bbc9ba9cd0e666",
+    "sbom.json": "e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719"
+  }
+}

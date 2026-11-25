@@ -10,3 +10,4 @@ mvnw text eol=lf
 *.cmd text eol=crlf
 # Raw evidence must preserve bytes and hashes across Windows/Linux checkout.
 docs/evidence/**/*.log -text -diff
+docs/evidence/**/sbom.json -text -diff

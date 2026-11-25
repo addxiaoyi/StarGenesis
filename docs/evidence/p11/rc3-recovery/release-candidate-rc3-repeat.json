@@ -1,0 +1,42 @@
+{
+  "version": "4.0.0-rc.3",
+  "builtAt": "2026-11-25T16:59:40.934971+00:00",
+  "buildCommand": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+  "buildArguments": [
+    "mvnw.cmd",
+    "-B",
+    "-ntp",
+    "-DforkCount=0",
+    "clean",
+    "verify"
+  ],
+  "forkCount": 0,
+  "javaVersion": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "isolatedSourceCopy": true,
+  "sourceVersion": "4.0.0-SNAPSHOT",
+  "sourceTreeSha256": "1ab82abf6ce013f9eb68c2cdc9998c065c664ddcb2144399b1ff8e886143a848",
+  "tests": {
+    "reports": 56,
+    "tests": 415,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "file": ".work\\releases\\4.0.0-rc.3-repeat\\StarGenesis-4.0.0-rc.3.jar",
+    "sizeBytes": 3016985,
+    "sha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001"
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 61,
+    "file": ".work\\releases\\4.0.0-rc.3-repeat\\sbom.json",
+    "sha256": "e0c2a36d3f424029b7df1e0ecec1dbca404fb0aa8f8d550811aab9c12a4b8719"
+  },
+  "signed": false,
+  "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
+  "buildLog": ".work\\releases\\4.0.0-rc.3-repeat\\release-verify.log",
+  "buildLogSha256": "68e2b1c09080e305ae4603cff59faaf98221dd6075d6b80d47bbc9ba9cd0e666"
+}
