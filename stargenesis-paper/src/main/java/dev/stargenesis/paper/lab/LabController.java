@@ -3,6 +3,7 @@ package dev.stargenesis.paper.lab;
 import dev.stargenesis.api.sim.SimulationBudget;
 import dev.stargenesis.paper.lab.LabExperiment.Mode;
 import dev.stargenesis.paper.lab.LabExperiment.Phase;
+import dev.stargenesis.paper.runtime.PersistentWorker;
 import dev.stargenesis.sim.SandboxConfig;
 import dev.stargenesis.sim.SandboxView;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
@@ -25,8 +26,6 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
@@ -45,28 +44,32 @@ public final class LabController implements Listener, AutoCloseable {
     private final Logger logger;
     private final SimulationBudget budget;
     private final LabPersistence persistence;
-    private final ScheduledExecutorService worker;
+    private final PersistentWorker worker;
     private final ConcurrentMap<UUID, Session> sessions = new ConcurrentHashMap<>();
     private final ConcurrentMap<UUID, LabMenu> menus = new ConcurrentHashMap<>();
     private final Object reservationLock = new Object();
     private final AtomicBoolean closed = new AtomicBoolean();
     private final boolean folia;
+    private volatile boolean shutdownSaved;
 
     public LabController(JavaPlugin plugin, SimulationBudget budget, long stepMillis, Path dataDir) {
         this.plugin = Objects.requireNonNull(plugin);
         this.logger = plugin.getLogger();
         this.budget = Objects.requireNonNull(budget);
         Objects.requireNonNull(dataDir, "dataDir");
-        try { persistence = new LabPersistence(dataDir.resolve("lab")); }
-        catch (IOException failure) { throw new IllegalStateException("Cannot prepare lab evidence directory", failure); }
         if (stepMillis < 50 || stepMillis > 1000) throw new IllegalArgumentException("Lab step duration must be 50..1000ms");
         String server = (plugin.getServer().getName() + " " + plugin.getServer().getVersion()).toLowerCase(Locale.ROOT);
         folia = server.contains("folia");
-        worker = Executors.newSingleThreadScheduledExecutor(task -> {
-            Thread thread = new Thread(task, "StarGenesis-Lab"); thread.setDaemon(true); return thread;
-        });
-        worker.scheduleWithFixedDelay(this::tick, 0, stepMillis, TimeUnit.MILLISECONDS);
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        try { worker = PersistentWorker.scheduled("StarGenesis-Lab", dataDir.resolve("lab")); }
+        catch (IOException failure) { throw new IllegalStateException("Cannot acquire lab evidence directory", failure); }
+        try {
+            persistence = new LabPersistence(dataDir.resolve("lab"));
+            plugin.getServer().getPluginManager().registerEvents(this, plugin);
+            worker.scheduleWithFixedDelay(this::tick, 0, stepMillis, TimeUnit.MILLISECONDS);
+        } catch (IOException failure) {
+            worker.close();
+            throw new IllegalStateException("Cannot prepare lab evidence directory", failure);
+        } catch (RuntimeException | Error failure) { worker.close(); throw failure; }
     }
 
     public boolean isAvailable() { return !closed.get(); }
@@ -132,6 +135,7 @@ public final class LabController implements Listener, AutoCloseable {
         UUID owner = player.getUniqueId();
         Session session;
         synchronized (reservationLock) {
+            if (closed.get()) { player.sendMessage("资源试验箱当前不可用：STOPPED"); return; }
             Session previous = sessions.get(owner);
             if (previous != null && previous.active()) {
                 player.sendMessage("先停止当前实验再开始或重播；/genesis lab status 可重新查看。"); return;
@@ -245,15 +249,17 @@ public final class LabController implements Listener, AutoCloseable {
     @Override public void close() {
         if (closed.get()) return;
         if (!folia && !Bukkit.isPrimaryThread()) throw new IllegalStateException("Paper lab must close on the primary thread");
-        if (!closed.compareAndSet(false, true)) return;
+        synchronized (reservationLock) { if (!closed.compareAndSet(false, true)) return; }
         for (LabMenu menu : menus.values()) if (menu.task != null) menu.task.cancel();
         for (LabMenu menu : menus.values()) menu.getInventory().clear();
         menus.clear();
         worker.execute(() -> {
+            boolean saved = true;
             for (Session session : sessions.values()) {
                 if (session.experiment != null) {
                     try { session.experiment.close(); }
                     catch (IOException | RuntimeException failure) {
+                        saved = false;
                         logger.warning("Lab shutdown evidence save failed for " + session.owner + ": " + failure.getMessage());
                         session.experiment.abort("SHUTDOWN_SAVE_FAILED_PREVIOUS_CHECKPOINT_PRESERVED");
                     }
@@ -261,12 +267,12 @@ public final class LabController implements Listener, AutoCloseable {
                 } else { session.phase = Phase.STOPPED; session.message = "PLUGIN_STOPPED"; }
             }
             sessions.clear();
+            shutdownSaved = saved;
         });
-        worker.shutdown();
-        try {
-            if (!worker.awaitTermination(5, TimeUnit.SECONDS)) { worker.shutdownNow(); logger.warning("Lab worker shutdown exceeded 5s"); }
-        } catch (InterruptedException interrupted) { worker.shutdownNow(); Thread.currentThread().interrupt(); }
+        worker.shutdown(logger, "Lab");
     }
+
+    public boolean isStopped() { return worker.isStopped() && shutdownSaved; }
 
     static final class Session {
         final UUID owner;

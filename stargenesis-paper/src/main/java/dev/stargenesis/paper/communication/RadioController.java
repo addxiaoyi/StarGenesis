@@ -31,6 +31,7 @@ public final class RadioController implements Listener, AutoCloseable {
     private final AtomicBoolean closed = new AtomicBoolean();
     private final ScheduledTask ticker;
     private boolean checkpointFailureReported;
+    private boolean shutdownSaved;
 
     public RadioController(JavaPlugin plugin, int messagesPerTick) throws java.io.IOException {
         this.plugin = plugin;
@@ -100,11 +101,14 @@ public final class RadioController implements Listener, AutoCloseable {
             ticker.cancel();
             try {
                 service.close();
+                shutdownSaved = true;
             } catch (java.io.IOException | RuntimeException failure) {
                 plugin.getLogger().log(Level.SEVERE, "Could not persist P4 radio state during shutdown", failure);
             }
         }
     }
+
+    public boolean isStopped() { synchronized (stateLock) { return closed.get() && shutdownSaved; } }
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         synchronized (stateLock) {

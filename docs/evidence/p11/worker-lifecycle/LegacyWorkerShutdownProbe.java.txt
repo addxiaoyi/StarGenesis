@@ -1,0 +1,31 @@
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+// Reproduction of the close sequence in baseline 5aed5b7's Ecology/Factory/Arena controllers.
+// A controlled operation ignores interruption, modelling slow/native I/O; this is not a live server.
+class LegacyWorkerShutdownProbe {
+    public static void main(String[] args) throws Exception {
+        var entered = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        var finished = new CountDownLatch(1);
+        var committed = new AtomicBoolean();
+        var worker = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(128));
+        worker.execute(() -> {
+            entered.countDown();
+            while (true) { try { release.await(); break; } catch (InterruptedException ignored) { } }
+            committed.set(true);
+            finished.countDown();
+        });
+        if (!entered.await(3, TimeUnit.SECONDS)) throw new AssertionError("Operation did not start");
+        try {
+            worker.shutdown();
+            if (!worker.awaitTermination(5, TimeUnit.SECONDS)) worker.shutdownNow();
+            boolean returnedWithWorkerAlive = !worker.isTerminated();
+            boolean committedBeforeReturn = committed.get();
+            release.countDown();
+            if (!finished.await(3, TimeUnit.SECONDS)) throw new AssertionError("Operation did not finish");
+            if (!returnedWithWorkerAlive || committedBeforeReturn || !committed.get()) throw new AssertionError("Did not reproduce late work");
+            System.out.println("{\"baseCommit\":\"5aed5b76bdadd0503f58c2a3900463f867cda61c\",\"closeReturnedWithWorkerAlive\":true,\"operationCompletedAfterCloseReturned\":true,\"scope\":\"Copied baseline executor close algorithm with controlled interrupt-ignoring task; not a live controller or server.\"}");
+        } finally { release.countDown(); worker.shutdownNow(); worker.awaitTermination(3, TimeUnit.SECONDS); }
+    }
+}

@@ -1,0 +1,1 @@
+{"baseCommit":"5aed5b76bdadd0503f58c2a3900463f867cda61c","closeReturnedWithWorkerAlive":true,"operationCompletedAfterCloseReturned":true,"scope":"Copied baseline executor close algorithm with controlled interrupt-ignoring task; not a live controller or server."}

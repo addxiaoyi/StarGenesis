@@ -1,6 +1,7 @@
 package dev.stargenesis.paper.factory;
 
 import dev.stargenesis.sim.FactoryReplay;
+import dev.stargenesis.paper.runtime.PersistentWorker;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,10 +14,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -26,18 +24,16 @@ public final class FactoryController implements Listener, AutoCloseable {
     private static final int MAX_QUEUE = 128;
     private final JavaPlugin plugin;
     private final FactoryService service;
-    private final ThreadPoolExecutor worker;
+    private final PersistentWorker worker;
     private final AtomicBoolean closed = new AtomicBoolean();
 
     public FactoryController(JavaPlugin plugin, Path directory) throws IOException {
         this.plugin = plugin;
-        service = new FactoryService(new FactoryPersistence(directory));
-        worker = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(MAX_QUEUE), task -> {
-            Thread thread = new Thread(task, "StarGenesis-Factory");
-            thread.setDaemon(true);
-            return thread;
-        }, new ThreadPoolExecutor.AbortPolicy());
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        worker = PersistentWorker.commands("StarGenesis-Factory", directory, MAX_QUEUE);
+        try {
+            service = new FactoryService(new FactoryPersistence(directory));
+            plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        } catch (IOException | RuntimeException | Error failure) { worker.close(); throw failure; }
     }
 
     public boolean handle(Player player, String[] args) {
@@ -56,6 +52,7 @@ public final class FactoryController implements Listener, AutoCloseable {
         boolean manager = player.hasPermission("stargenesis.factory.manage");
         if (args.length > 0 && args[0].equalsIgnoreCase("start")) {
             plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
+                if (closed.get()) return;
                 Set<UUID> online = plugin.getServer().getOnlinePlayers().stream()
                         .map(Player::getUniqueId).collect(Collectors.toUnmodifiableSet());
                 enqueue(owner, player, request, online, manager);
@@ -95,6 +92,7 @@ public final class FactoryController implements Listener, AutoCloseable {
         String inviterName = inviter.getName();
         String invitedName = args[1];
         plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
+            if (closed.get()) return;
             Player invited = plugin.getServer().getPlayerExact(invitedName);
             if (invited == null) { send(owner, inviter, List.of("受邀玩家须在线。")); return; }
             UUID invitedId = invited.getUniqueId();
@@ -133,12 +131,14 @@ public final class FactoryController implements Listener, AutoCloseable {
                 send(owner, player, lines);
             });
         } catch (RejectedExecutionException full) {
-            send(owner, player, List.of("工厂命令队列已满，请稍后重试。"));
+            send(owner, player, List.of(closed.get() ? "工厂模拟已停止。" : "工厂命令队列已满，请稍后重试。"));
         }
     }
 
     private void broadcastMatch(FactoryReplay replay) {
+        if (closed.get()) return;
         plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
+            if (closed.get()) return;
             for (UUID participant : replay.participants()) {
                 Player player = plugin.getServer().getPlayer(participant);
                 if (player != null) send(participant, player, List.of("四人工厂已开始 · match=" + replay.matchId()));
@@ -147,10 +147,10 @@ public final class FactoryController implements Listener, AutoCloseable {
     }
 
     private void send(UUID owner, Player player, List<String> lines) {
-        if (player == null) return;
+        if (player == null || closed.get()) return;
         try {
             player.getScheduler().run(plugin, task -> {
-                if (player.isOnline()) lines.forEach(player::sendMessage);
+                if (!closed.get() && player.isOnline()) lines.forEach(player::sendMessage);
             }, () -> { });
         } catch (RuntimeException failure) {
             plugin.getLogger().log(Level.FINE, "Factory response could not reach player " + owner, failure);
@@ -158,8 +158,10 @@ public final class FactoryController implements Listener, AutoCloseable {
     }
 
     private void notifyOnline(UUID owner, String message) {
+        if (closed.get()) return;
         try {
             plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
+                if (closed.get()) return;
                 Player player = plugin.getServer().getPlayer(owner);
                 if (player != null) send(owner, player, List.of(message));
             });
@@ -169,15 +171,11 @@ public final class FactoryController implements Listener, AutoCloseable {
     }
 
     @Override public void close() {
-        if (!closed.compareAndSet(false, true)) return;
-        worker.shutdown();
-        try {
-            if (!worker.awaitTermination(5, TimeUnit.SECONDS)) worker.shutdownNow();
-        } catch (InterruptedException interrupted) {
-            worker.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
+        closed.set(true);
+        worker.shutdown(plugin.getLogger(), "Factory");
     }
+
+    public boolean isStopped() { return worker.isStopped(); }
 
     @FunctionalInterface private interface Operation { List<String> run() throws IOException; }
 }

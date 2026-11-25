@@ -268,16 +268,26 @@ public final class StarGenesisPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        boolean clean = true;
         if (publisherTrust != null) { publisherTrust = null; }
         if (designImports != null) { designImports = null; }
-        if (arenas != null) { arenas.close(); arenas = null; }
-        if (factory != null) { factory.close(); factory = null; }
-        if (ecology != null) { ecology.close(); ecology = null; }
-        if (radio != null) { radio.close(); radio = null; }
-        if (programs != null) { programs.close(); programs = null; }
-        if (blueprints != null) { blueprints.close(); blueprints = null; }
-        if (labs != null) { labs.close(); labs = null; }
+        if (arenas != null) { clean &= stop("Arena", arenas::close, arenas::isStopped); arenas = null; }
+        if (factory != null) { clean &= stop("Factory", factory::close, factory::isStopped); factory = null; }
+        if (ecology != null) { clean &= stop("Ecology", ecology::close, ecology::isStopped); ecology = null; }
+        if (radio != null) { clean &= stop("Radio", radio::close, radio::isStopped); radio = null; }
+        if (programs != null) { clean &= stop("Program", programs::close, () -> true); programs = null; }
+        if (blueprints != null) { clean &= stop("Blueprint", blueprints::close, () -> true); blueprints = null; }
+        if (labs != null) { clean &= stop("Lab", labs::close, labs::isStopped); labs = null; }
         statuses = List.of();
-        getLogger().info("StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.");
+        if (clean) getLogger().info("StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.");
+        else getLogger().severe("StarGenesis shutdown incomplete; inspect service failures. Active workers retain their storage directory locks until they exit.");
+    }
+
+    private boolean stop(String service, Runnable action, java.util.function.BooleanSupplier stopped) {
+        try { action.run(); return stopped.getAsBoolean(); }
+        catch (RuntimeException failure) {
+            getLogger().log(java.util.logging.Level.SEVERE, service + " shutdown failed; continuing other service cleanup", failure);
+            return false;
+        }
     }
 }

@@ -37,7 +37,9 @@ python scripts/build_release_candidate.py --version 4.0.0-rc.3 --java java
 
 候选 JAR、SBOM 与构建日志写入 `.work/releases/<version>/`，来源树哈希、实际构建参数、JDK版本、测试汇总和日志hash写入 `docs/evidence/p11/release-candidate-<version>.json`。已有输出或证据会拒绝覆盖；重复制备同版本时指定不同的 `--output-directory` 和 `--evidence-file`。内存受限时可用 `--fork-count 0` 在Maven进程内执行全部测试，默认仍为1个测试JVM；设置合适的 `MAVEN_OPTS` 并保留到证据。测试失败、跳过或没有报告均不能产出成功候选。可将候选 JAR 传给 `scripts/server_smoke.py`，分别在隔离 Paper 与 Folia 目录验证启动和退出。RC 构建不会修改工作树版本，也不会生成运营方发行签名。
 
-Java 21/25 CI同时运行模块边界、Java完整测试、候选构建脚本的Python回归、跨进程结算锁探针，以及发行/设计包签名自检。CI归档插件、SBOM、Surefire报告和工具结果；本地可执行 `python -m unittest discover -s scripts -p test_release_candidate_builder.py` 检查候选证据拒绝边界。
+Java 21/25 CI同时运行模块边界、Java完整测试、候选构建脚本的Python回归、跨进程结算锁和工作目录锁探针，以及发行/设计包签名自检。CI归档插件、SBOM、Surefire报告和工具结果；本地可执行 `python -m unittest discover -s scripts -p test_release_candidate_builder.py` 检查候选证据拒绝边界。
+
+实验室、生态、工厂和竞技场比赛在关闭时停止准入并排空已接受命令；超时会取消尚未开始的命令并中断当前操作。若工作线程仍未退出，其目录锁继续阻止新实例启动，日志明确报告关闭未完成；不会仅因发出中断就报告干净退出。原存档格式不变，重启读取最后成功提交的状态。关闭预算、恢复边界和本地探针命令见[工作线程生命周期](docs/WORKER_LIFECYCLE.md)。
 
 ## 安装与操作
 

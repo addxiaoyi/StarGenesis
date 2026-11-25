@@ -1,0 +1,301 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "5aed5b76bdadd0503f58c2a3900463f867cda61c",
+  "scope": "Worker shutdown completion and directory ownership for P1/P5/P6/P8; honest plugin shutdown result with final radio/lab save status.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 62,
+      "tests": 465,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "worker-lifecycle-verify-java21.log",
+      "logSha256": "0cdd7165bc7c883f6af0e1c756c0ee5e66ee84c047cf5a2ffc942168ebc4dd66",
+      "pluginSha256": "5464e896b7b082d1d41b77999bdd73b59ae3a3e3c420b15291299d046c0388e6",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 62,
+      "tests": 465,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "worker-lifecycle-verify-java25.log",
+      "logSha256": "ad7f771dbe480d444b6c481784af328fc314ee69fb729908bf4a9170fbf7a991",
+      "pluginSha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "newTests": {
+    "PersistentWorkerTest": 9,
+    "EcologyWorkerLifecycleTest": 2,
+    "LabWorkerLifecycleTest": 1
+  },
+  "baselineReproduction": {
+    "baseCommit": "5aed5b76bdadd0503f58c2a3900463f867cda61c",
+    "closeReturnedWithWorkerAlive": true,
+    "operationCompletedAfterCloseReturned": true,
+    "scope": "Copied baseline executor close algorithm with controlled interrupt-ignoring task; not a live controller or server."
+  },
+  "rules": {
+    "shutdownGraceSeconds": 5,
+    "interruptGraceSeconds": 1,
+    "commandQueueCapacity": 128,
+    "directoryLease": "Acquired before service state load, released from executor termination. A task ignoring interruption keeps the lease and rejects a replacement runtime.",
+    "jvmReservation": "Real lock path, normalized case on Windows; token stored in system properties and removed only by matching token, shared across plugin classloaders.",
+    "osLock": "Persistent .worker.lock inode, tryLock rejects other processes; same-JVM contenders are rejected before opening a descriptor to preserve the original POSIX lock.",
+    "admissionAndResponses": "Shutdown closes executor admission. Queued commands drain during grace, then queued tasks are cancelled. Player response callbacks check controller close state.",
+    "data": "No schema, replay or engine migration. Atomic persistence remains authoritative. Unstarted queued commands are not durable."
+  },
+  "regressions": [
+    "Bounded queue overflow, ordered drain, post-close rejection, idempotent close and separate-directory independence.",
+    "Running commands and scheduled tasks that ignore interruption retain ownership until final work completes.",
+    "Forced interruption cancels queued writes; caller interruption remains set after shutdown.",
+    "Scheduled lab shutdown runs a final checkpoint on the simulation owner and stops further periodic ticks.",
+    "Task failure does not release ownership while the executor replaces the worker and continues queued work.",
+    "Independent URLClassLoader models plugin reload and cannot acquire the old runtime directory.",
+    "Real ecology files drain to tick 40, restart to 60 and match uninterrupted replay exactly.",
+    "Cancelled queued reset does not delete ecology evidence; late active step completes before restart is admitted.",
+    "Real lab close saves step 12 on owner thread and next runtime resumes to 13; replay verifies."
+  ],
+  "processProbes": {
+    "java21": {
+      "directory-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "5464e896b7b082d1d41b77999bdd73b59ae3a3e3c420b15291299d046c0388e6",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "process-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "5464e896b7b082d1d41b77999bdd73b59ae3a3e3c420b15291299d046c0388e6",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      }
+    },
+    "java25": {
+      "directory-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "process-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      }
+    }
+  },
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JDKs use the final Java25 shaded JAR with ephemeral test keys.",
+  "pythonBuilderRegression": {
+    "tests": 3,
+    "passed": true
+  },
+  "boundaryCheck": "passed",
+  "sources": {
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/runtime/PersistentWorker.java": "327de66b8b668f3b153609a741e60e9d45732b683ff26a20a6bd52329afae7b5",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/StarGenesisPlugin.java": "1342109371d646c8a05730c310ffed04a514b457d957aacf9eb6ea90a2edb9bd",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/lab/LabController.java": "e4abd55098b0331098782c2a3cf26a292c798c92d30caa5e7a85f4d0db7f2653",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/ecology/EcologyController.java": "f5ea85186794a0592ee34a62d5895caf12bf0c2cecdaaff7055e3bdeb45d9445",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/factory/FactoryController.java": "be3a84930fc5da566b706bd03ddffaf636d0f96a84298cfc350782020c0d8a14",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaController.java": "9e08d93a86514a439718cfe8fee9e77258bd3feac3bdb926f17d4dfd2b242f62",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioController.java": "5e36e886fafc91549e65d1b23fb7c97305ba6193d6dee4427ea0cef4dd017a1d",
+    "scripts/test_worker_directory_lock.py": "1ba8b292cf9def1477311efa5acb0f2bd7d0f7d755885f8fb4f073d5d5acb379",
+    "scripts/WorkerDirectoryLockProbe.java": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+    ".github/workflows/verify.yml": "53a55ab0ce112a7499b6c1ea546390c5ba477802724b591a22381817afb7d9ea"
+  },
+  "sourceHashEncoding": "UTF-8 with LF, matching staged Git source bytes; raw logs keep original bytes.",
+  "limitations": [
+    "Copied baseline close sequence reproduces late work with a controlled task; it is not a historical live-server failure trace.",
+    "No new live Paper/Folia plugin-disable/reload, player callback or multi-region acceptance in this batch.",
+    "Java cannot safely kill a task ignoring interruption; directory remains unavailable until it exits or the process ends.",
+    "Unstarted commands are not persisted; active operations may commit after the close timeout. Verify latest saved state before retry.",
+    "OS lock probes cover temporary local filesystems only, not network storage, multiple hosts, hostile plugins or non-cooperating old versions.",
+    "System properties are process-local cooperative reservations, not authorization or a security boundary.",
+    "This worker lease does not establish lifecycle guarantees for synchronous blueprint/program editing or production third-party providers.",
+    "No official release signature, release tag, deployment, human acceptance or P0-P11 stage completion."
+  ],
+  "files": {
+    "worker-lifecycle-focused.log": "9e8a40ee7a782c3033dfb6301dc16a74bb1fb1ccbc7e191a191b55314ff65d21",
+    "worker-lifecycle-persistence-focused.log": "35efb8386ac5140361270390247e9ce45651fd1eaa60ac9c9ff8c65767f6d0b5",
+    "worker-lifecycle-final-focused.log": "3314b777d3ad61698cc3d9cdcf0ecd91b89755706cf7d86983faa52b0798ecf9",
+    "worker-lifecycle-boundary.log": "1d0a7abad03e46ffa81335eb61048d1a02a0afa0f7906a72a6613e1ac8a1ea6c",
+    "worker-lifecycle-python.log": "ff637cdd7729d7add9ac85a95c2465b662b167ad029c2df787aaa125a4f88449",
+    "worker-lifecycle-legacy-reproduction.log": "a72f1a630aad4db7dd7e0174d8095e4a811b21f9cd80f63bf7fab7f16b9858e9",
+    "worker-lifecycle-verify-java21.log": "0cdd7165bc7c883f6af0e1c756c0ee5e66ee84c047cf5a2ffc942168ebc4dd66",
+    "worker-lifecycle-build-java21.json": "ed2a13faa614b6e0c12190e293d158676b6d87b119695b64a5afb9fdea446a2f",
+    "worker-lifecycle-directory-lock-java21.json": "770bff054bb27eb8fc6fce5ff89517904554c595b83edcfad0870ced744e9fa3",
+    "worker-lifecycle-directory-lock-java21.log": "96a57021731e79fb820b75285310fb761de2b0cf7423e81a934ed5b087728842",
+    "worker-lifecycle-process-lock-java21.json": "38fa114adedeb404fec5d9631a9dc3b3938e008cc84e2f8df8e3475525f33546",
+    "worker-lifecycle-process-lock-java21.log": "94800af2038e4a36b431d2a507480a1fe5c650ef9ea169374600bcdb7c2cee9e",
+    "worker-lifecycle-release-signer-java21.json": "d7c353e2f957cab30b00e8a21fbda8f4ad13f2d5bf16d6242f5ecf3b69973bc3",
+    "worker-lifecycle-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "worker-lifecycle-verify-java25.log": "ad7f771dbe480d444b6c481784af328fc314ee69fb729908bf4a9170fbf7a991",
+    "worker-lifecycle-build-java25.json": "1a0c5f7100930c20f0fb7961ea67beca039625175713b0f74be3df9b7798a184",
+    "worker-lifecycle-directory-lock-java25.json": "98d1eb9c5aef45fa2f67118eef58f614031374aa7f2a568dba11ca1d33b01984",
+    "worker-lifecycle-directory-lock-java25.log": "04dea69f0180ba40c19b25eec1d4f016bce26859661381e596d86fd796fb4340",
+    "worker-lifecycle-process-lock-java25.json": "9c7ff0393f945860f3bd711dd91d0d4bb1f40ff16d3e97e5e93dca3135677af4",
+    "worker-lifecycle-process-lock-java25.log": "50d99f336df135bddd518ff42f920501a6ccd35c4c7ed7023226d53a819115bf",
+    "worker-lifecycle-release-signer-java25.json": "d7c353e2f957cab30b00e8a21fbda8f4ad13f2d5bf16d6242f5ecf3b69973bc3",
+    "worker-lifecycle-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "LegacyWorkerShutdownProbe.java.txt": "e862b4570697e22249a3f27b5b305aebb46e7ff106e91da877479a0397f65367"
+  }
+}

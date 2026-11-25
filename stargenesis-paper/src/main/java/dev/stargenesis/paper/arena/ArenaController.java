@@ -7,6 +7,7 @@ import dev.stargenesis.design.ArenaRulesetWorkspace;
 import dev.stargenesis.sim.ArenaAction;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchView;
+import dev.stargenesis.paper.runtime.PersistentWorker;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -21,12 +22,9 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 
@@ -39,20 +37,18 @@ public final class ArenaController implements Listener, AutoCloseable {
     private final ConcurrentMap<UUID, Invitation> invitations = new ConcurrentHashMap<>();
     private final Object invitationLock = new Object();
     private final ArenaMatchService matchService;
-    private final ThreadPoolExecutor worker;
+    private final PersistentWorker worker;
     private final AtomicBoolean closed = new AtomicBoolean();
 
     public ArenaController(JavaPlugin plugin, ArenaRulesetStore store, java.nio.file.Path dataDirectory) throws IOException {
         this.plugin = plugin;
         this.store = store;
-        matches = new ArenaMatchPersistence(dataDirectory);
-        matchService = new ArenaMatchService(store, matches);
-        worker = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(128), task -> {
-            Thread thread = new Thread(task, "StarGenesis-Arena");
-            thread.setDaemon(true);
-            return thread;
-        }, new ThreadPoolExecutor.AbortPolicy());
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        worker = PersistentWorker.commands("StarGenesis-Arena", dataDirectory, 128);
+        try {
+            matches = new ArenaMatchPersistence(dataDirectory);
+            matchService = new ArenaMatchService(store, matches);
+            plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        } catch (IOException | RuntimeException | Error failure) { worker.close(); throw failure; }
     }
 
     public boolean handle(Player player, String[] args) {
@@ -88,17 +84,13 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     public void close() {
-        if (!closed.compareAndSet(false, true)) return;
-        worker.shutdown();
-        try {
-            if (!worker.awaitTermination(5, TimeUnit.SECONDS)) worker.shutdownNow();
-        } catch (InterruptedException interrupted) {
-            worker.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
+        closed.set(true);
+        worker.shutdown(plugin.getLogger(), "Arena");
         sessions.clear();
-        invitations.clear();
+        synchronized (invitationLock) { invitations.clear(); }
     }
+
+    public boolean isStopped() { return worker.isStopped(); }
 
     @EventHandler public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -361,7 +353,12 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private void scheduleGlobal(Runnable task) {
-        plugin.getServer().getGlobalRegionScheduler().execute(plugin, task);
+        if (closed.get()) return;
+        try {
+            plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> { if (!closed.get()) task.run(); });
+        } catch (RuntimeException failure) {
+            plugin.getLogger().log(Level.FINE, "Arena global callback could not be scheduled", failure);
+        }
     }
 
     private void broadcastStarted(UUID owner) throws IOException {
@@ -373,10 +370,10 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private void send(UUID owner, Player player, List<String> lines) {
-        if (player == null) return;
+        if (player == null || closed.get()) return;
         try {
             player.getScheduler().run(plugin, task -> {
-                if (player.isOnline()) lines.forEach(player::sendMessage);
+                if (!closed.get() && player.isOnline()) lines.forEach(player::sendMessage);
             }, () -> { });
         } catch (RuntimeException ignored) { }
     }

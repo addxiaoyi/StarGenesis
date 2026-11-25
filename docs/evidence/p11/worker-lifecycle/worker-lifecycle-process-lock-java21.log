@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "pluginSha256": "5464e896b7b082d1d41b77999bdd73b59ae3a3e3c420b15291299d046c0388e6",
+  "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+  "cases": [
+    {
+      "holderTerminated": false,
+      "blockedWhileHeld": true,
+      "acquiredAfterRelease": true,
+      "holderExitCode": 0,
+      "contenderExitCode": 0
+    },
+    {
+      "holderTerminated": true,
+      "blockedWhileHeld": true,
+      "acquiredAfterRelease": true,
+      "holderExitCode": 1,
+      "contenderExitCode": 0
+    }
+  ],
+  "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+}

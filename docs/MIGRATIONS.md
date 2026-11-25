@@ -6,6 +6,8 @@
 
 持久设计格式、配置版本、引擎版本和插件发布版本分别升级。加载未知设计或配置版本时明确拒绝，不猜测兼容性。
 
+后台服务关闭加固仅新增`labs/lab`、`ecology`、`factory`和`arena-matches`目录中的`.worker.lock`，不改写任何旧存档或回放格式。锁文件保持存在，是否被占用由运行时/OS锁判断，不能按文件存在判定故障或在持锁时删除。回退旧版本前必须确认新版本工作线程与进程已退出；旧版本不遵守此新增锁协议。具体关闭、超时及恢复合同见`WORKER_LIFECYCLE.md`。
+
 ## 设计 v0 → v1
 
 `DesignCodec.migrateV0(String)` 验证旧文档哈希，显式把 `metadata.revision` 改为 `metadata.version`、schemaVersion 改为1，重新计算内容哈希，并返回前后哈希、迁移后的 JSON 和不可变对象。普通 `load` 不执行迁移。
