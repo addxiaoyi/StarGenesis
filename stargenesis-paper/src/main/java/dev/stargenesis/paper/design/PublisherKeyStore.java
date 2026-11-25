@@ -1,13 +1,19 @@
 package dev.stargenesis.paper.design;
 
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.cfg.CoercionAction;
+import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
+import com.fasterxml.jackson.databind.type.LogicalType;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
@@ -37,17 +43,36 @@ public final class PublisherKeyStore {
     private static final String KEY_ID_PATTERN = "[a-z0-9][a-z0-9_.:-]{0,63}";
     private static final String FILE_ALIAS_PATTERN = "[a-z0-9][a-z0-9_.-]{0,63}";
     private static final String REVOCATION_SUFFIX = ".revoked.json";
+    private static final Object[] JVM_LOCKS = new Object[64];
+    private static final ThreadLocal<Path> ACTIVE_LOCK = new ThreadLocal<>();
+    static { for (int index = 0; index < JVM_LOCKS.length; index++) JVM_LOCKS[index] = new Object(); }
     private static final ObjectMapper JSON = new ObjectMapper(JsonFactory.builder()
-            .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION).build())
+            .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
+            .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(8)
+                    .maxStringLength(MAX_KEY_FILE_BYTES).maxNumberLength(20).build()).build())
             .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                     DeserializationFeature.FAIL_ON_TRAILING_TOKENS,
                     DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES,
-                    DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES);
+                    DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+            .disable(DeserializationFeature.ACCEPT_FLOAT_AS_INT)
+            .disable(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+    static {
+        JSON.coercionConfigFor(LogicalType.Textual)
+                .setCoercion(CoercionInputShape.Integer, CoercionAction.Fail)
+                .setCoercion(CoercionInputShape.Float, CoercionAction.Fail)
+                .setCoercion(CoercionInputShape.Boolean, CoercionAction.Fail);
+    }
 
     private final Path directory;
     private final Path inbox;
+    private final EntryWriter entryWriter;
 
     public PublisherKeyStore(Path directory) throws IOException {
+        this(directory, PublisherKeyStore::writeNewAtomic);
+    }
+
+    PublisherKeyStore(Path directory, EntryWriter entryWriter) throws IOException {
+        this.entryWriter = java.util.Objects.requireNonNull(entryWriter, "entryWriter");
         this.directory = directory.toAbsolutePath().normalize();
         Path parent = this.directory.getParent();
         if (parent == null) throw new IOException("Publisher trust directory must have a parent");
@@ -57,7 +82,11 @@ public final class PublisherKeyStore {
         checkDirectories();
     }
 
-    public synchronized Map<String, PublicKey> loadAll() throws IOException {
+    public Map<String, PublicKey> loadAll() throws IOException {
+        return withTrustLock(this::loadAllLocked);
+    }
+
+    private Map<String, PublicKey> loadAllLocked() throws IOException {
         checkDirectories();
         Map<String, RevocationRecord> revoked = loadRevocations();
         List<Path> files = listFiles("*.pub", MAX_KEYS + MAX_REVOKED_KEYS + 1);
@@ -76,7 +105,11 @@ public final class PublisherKeyStore {
         return Map.copyOf(keys);
     }
 
-    public synchronized PublisherEntry addFromInbox(String keyId, String fileAlias) throws IOException {
+    public PublisherEntry addFromInbox(String keyId, String fileAlias) throws IOException {
+        return withTrustLock(() -> addFromInboxLocked(keyId, fileAlias));
+    }
+
+    private PublisherEntry addFromInboxLocked(String keyId, String fileAlias) throws IOException {
         requireKeyId(keyId);
         requireFileAlias(fileAlias);
         checkDirectories();
@@ -93,13 +126,19 @@ public final class PublisherKeyStore {
             return new PublisherEntry(keyId, true, fingerprint(existing), "", "");
         }
         if (active.size() >= MAX_KEYS) throw new IOException("Publisher key count exceeds its 32-key budget");
+        if (active.size() + revoked.size() >= MAX_REVOKED_KEYS)
+            throw new IOException("Publisher history has no reserved revocation capacity for another key");
 
         Path target = directory.resolve(keyFileStem(keyId) + ".pub");
-        writeNewAtomic(target, pem(candidate.getEncoded()).getBytes(StandardCharsets.US_ASCII));
+        entryWriter.write(target, pem(candidate.getEncoded()).getBytes(StandardCharsets.US_ASCII));
         return new PublisherEntry(keyId, true, fingerprint(candidate), "", "");
     }
 
-    public synchronized PublisherEntry revoke(String keyId, String reason) throws IOException {
+    public PublisherEntry revoke(String keyId, String reason) throws IOException {
+        return withTrustLock(() -> revokeLocked(keyId, reason));
+    }
+
+    private PublisherEntry revokeLocked(String keyId, String reason) throws IOException {
         requireKeyId(keyId);
         String checkedReason = validateReason(reason);
         checkDirectories();
@@ -109,17 +148,23 @@ public final class PublisherKeyStore {
             removeKeyFiles(keyId);
             return entry(existingRevocation);
         }
+        if (revoked.size() >= MAX_REVOKED_KEYS)
+            throw new IOException("Publisher revocation history has reached its 4096-entry budget");
 
         PublicKey key = loadAll().get(keyId);
         if (key == null) throw new IOException("Publisher key is not currently trusted");
         RevocationRecord record = new RevocationRecord(1, keyId, fingerprint(key), Instant.now().toString(), checkedReason);
         Path target = directory.resolve(keyFileStem(keyId) + REVOCATION_SUFFIX);
-        writeNewAtomic(target, JSON.writeValueAsBytes(record));
+        entryWriter.write(target, JSON.writeValueAsBytes(record));
         removeKeyFiles(keyId);
         return entry(record);
     }
 
-    public synchronized List<PublisherEntry> listEntries() throws IOException {
+    public List<PublisherEntry> listEntries() throws IOException {
+        return withTrustLock(this::listEntriesLocked);
+    }
+
+    private List<PublisherEntry> listEntriesLocked() throws IOException {
         Map<String, PublicKey> active = loadAll();
         Map<String, RevocationRecord> revoked = loadRevocations();
         List<PublisherEntry> entries = new ArrayList<>();
@@ -136,8 +181,7 @@ public final class PublisherKeyStore {
             String filename = file.getFileName().toString();
             String stem = filename.substring(0, filename.length() - REVOCATION_SUFFIX.length());
             String fileKeyId = keyIdFromFilename(stem);
-            rejectSymbolicOrLargeFile(file, MAX_KEY_FILE_BYTES);
-            RevocationRecord record = JSON.readValue(Files.readAllBytes(file), RevocationRecord.class);
+            RevocationRecord record = JSON.readValue(readSmallFile(file), RevocationRecord.class);
             validateRevocation(record, fileKeyId);
             if (records.putIfAbsent(record.keyId(), record) != null)
                 throw new IOException("Duplicate publisher revocation record " + record.keyId());
@@ -157,8 +201,7 @@ public final class PublisherKeyStore {
     }
 
     private PublicKey readPublicKey(Path file, String keyId) throws IOException {
-        rejectSymbolicOrLargeFile(file, MAX_KEY_FILE_BYTES);
-        String pem = Files.readString(file, StandardCharsets.US_ASCII);
+        String pem = new String(readSmallFile(file), StandardCharsets.US_ASCII);
         byte[] encoded = decodePem(pem);
         try {
             PublicKey key = KeyFactory.getInstance("Ed25519").generatePublic(new X509EncodedKeySpec(encoded));
@@ -251,26 +294,28 @@ public final class PublisherKeyStore {
         return "-----BEGIN PUBLIC KEY-----\n" + body + "\n-----END PUBLIC KEY-----\n";
     }
 
-    private void writeNewAtomic(Path target, byte[] bytes) throws IOException {
+    static void writeNewAtomic(Path target, byte[] bytes) throws IOException {
         Path temporary = target.resolveSibling(target.getFileName() + "." + UUID.randomUUID() + ".tmp");
         rejectSymbolicOrMissingParent(target);
         if (Files.exists(target, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Publisher trust entry already exists");
-        try (FileChannel channel = FileChannel.open(temporary, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
-            ByteBuffer buffer = ByteBuffer.wrap(bytes);
-            while (buffer.hasRemaining()) channel.write(buffer);
-            channel.force(true);
+        try {
+            try (FileChannel channel = FileChannel.open(temporary, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
+                ByteBuffer buffer = ByteBuffer.wrap(bytes);
+                while (buffer.hasRemaining()) channel.write(buffer);
+                channel.force(true);
+            }
+            Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE);
         }
-        try { Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE); }
         catch (AtomicMoveNotSupportedException failure) {
-            Files.deleteIfExists(temporary);
+            try { Files.deleteIfExists(temporary); } catch (IOException cleanup) { failure.addSuppressed(cleanup); }
             throw new IOException("Atomic publisher trust update unavailable", failure);
         } catch (IOException failure) {
-            Files.deleteIfExists(temporary);
+            try { Files.deleteIfExists(temporary); } catch (IOException cleanup) { failure.addSuppressed(cleanup); }
             throw failure;
         }
     }
 
-    private void rejectSymbolicOrMissingParent(Path file) throws IOException {
+    private static void rejectSymbolicOrMissingParent(Path file) throws IOException {
         if (Files.isSymbolicLink(file.getParent()) || Files.isSymbolicLink(file))
             throw new IOException("Publisher trust symlink rejected");
     }
@@ -280,6 +325,38 @@ public final class PublisherKeyStore {
                 || Files.size(file) > maximumBytes)
             throw new IOException("Publisher key or revocation file is missing, symbolic, or exceeds its size limit");
     }
+
+    private byte[] readSmallFile(Path file) throws IOException {
+        rejectSymbolicOrLargeFile(file, MAX_KEY_FILE_BYTES);
+        try (var input = Files.newInputStream(file)) {
+            byte[] bytes = input.readNBytes(MAX_KEY_FILE_BYTES + 1);
+            if (bytes.length > MAX_KEY_FILE_BYTES) throw new IOException("Publisher trust file exceeds its size limit");
+            return bytes;
+        }
+    }
+
+    private <T> T withTrustLock(TrustAction<T> action) throws IOException {
+        checkDirectories();
+        Path lockFile = directory.resolve(".publisher.lock");
+        Path active = ACTIVE_LOCK.get();
+        if (active != null) {
+            if (!active.equals(lockFile)) throw new IOException("Cannot nest a different publisher trust directory lock");
+            return action.run();
+        }
+        synchronized (JVM_LOCKS[Math.floorMod(directory.hashCode(), JVM_LOCKS.length)]) {
+            rejectSymbolicOrMissingParent(lockFile);
+            try (FileChannel channel = FileChannel.open(lockFile, StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
+                 FileLock ignored = channel.lock()) {
+                ACTIVE_LOCK.set(lockFile);
+                try { return action.run(); }
+                finally { ACTIVE_LOCK.remove(); }
+            }
+        }
+    }
+
+    @FunctionalInterface
+    private interface TrustAction<T> { T run() throws IOException; }
 
     private void checkDirectories() throws IOException {
         if (Files.isSymbolicLink(directory) || !Files.isDirectory(directory, LinkOption.NOFOLLOW_LINKS)
@@ -292,6 +369,9 @@ public final class PublisherKeyStore {
     }
 
     private record RevocationRecord(int schemaVersion, String keyId, String fingerprint, String revokedAt, String reason) { }
+
+    @FunctionalInterface
+    interface EntryWriter { void write(Path target, byte[] bytes) throws IOException; }
 
     public record PublisherEntry(String keyId, boolean trusted, String fingerprint, String revokedAt, String reason) { }
 }

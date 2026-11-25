@@ -249,6 +249,8 @@ plugins/StarGenesis/design-inbox/starter_pack.json
 
 publisher 可用发布包 CLI 读取严格校验过的 design JSON 并生成签名 envelope。密钥轮换时，先加入新 keyId 并验证新签名包，再用 `/genesis design publishers revoke <keyId> <reason>` 撤销旧 key。撤销会持久记录原因和时间、拒绝该 keyId 再次注册，并使之后的导入和验证拒绝旧 key 签名的包。信任状态由 `stargenesis.publishers` 权限保护，默认仅 OP 可管理。
 
+信任库的读写使用目录锁，多个store实例不能并发重绑同一keyId或突破32个活跃公钥上限。新key同时占用未来撤销容量，活跃加已撤销身份最多4096个；重复添加相同公钥不增加占用。撤销记录先持久保存再清理公钥，清理未完成时撤销也已生效，重试保留原原因和时间。旧库若已满4096条撤销记录，新的撤销会在写盘前拒绝并保留当前状态；需要保留历史语义的容量迁移，不能直接删除撤销记录释放空间。新的容量/并发限制尚无实服验收。
+
 签名包放入 `design-inbox/<package>.json`：
 
 ```sh

@@ -68,6 +68,10 @@ P9 并发恢复修复不改变文件格式、operation key 或合法旧状态。
 
 P10 signed design envelope 固定 envelopeVersion=1、Ed25519、publisher keyId、规范 design JSON 和 signature。Paper 导入包按玩家 UUID 与 DesignId hash 保存，读取时重新验证 trust root、签名、hash 和 schema。未受信 key、未知 envelope/schema 或签名不匹配均拒绝，不自动执行或迁移。OP 可通过 `/genesis design publishers add` 从 `publisher-inbox` 显式加入 X.509 PEM 公钥，并用 `list` 检查 SHA-256 指纹。`revoke` 会先原子写入带原因和时间的不可覆盖撤销记录，再清理活动公钥文件；加载时撤销记录优先，keyId 不能复用。轮换先加入新 key，再验证新 key 签名包，最后撤销旧 key。撤销后，之后的读取会重新验证并拒绝仅由旧 key 签名的已导入包。历史 `.pub` 信任文件继续兼容，控制台/OP 操作不读取或保存 publisher 私钥。
 
+P10 信任库稳定性修复保持PEM、revocation schemaVersion=1和签名格式不变。新读写都通过目录内 `.publisher.lock`，使用JVM锁与OS文件锁覆盖完整检查/写入；该目录及锁文件须可写。新keyId须满足active+revoked<4096后才可加入，为每个活跃key预留将来的撤销记录；原32活跃/4096撤销上限不增加。重复添加同一key仍幂等。旧库即使已超过新的总身份准入条件也保持读兼容，但4096条撤销记录写满时会在新增撤销前拒绝，避免写出自身无法再读的第4097条记录。历史容量迁移仍待实现，不自动删记录或重用撤销keyId。
+
+撤销JSON现在拒绝小数/字符串schema及数字/布尔值冒充文本，读取限制4 KiB并再次检查实际读取字节数；原合法v1记录不重写。固定 `publisher-v1-active.pub` / `publisher-v1-revoked.json` 从`f7564af`已验证JAR导出，重复add/revoke保留原公钥、撤销时间、原因与原字节。持久写入失败保留原信任状态；若撤销记录已提交但清理未完成，加载立即按撤销处理，重试只补清理，不覆盖原证据。
+
 P11 `mvnw.cmd -B verify` 运行 CycloneDX Maven Plugin 2.9.1 aggregate goal，输出 CycloneDX 1.6 JSON 到 `target/sbom.json`。该 SBOM 是本构建的组件清单，不等价于第三方源码审计、签名发行或运行时兼容验收。
 
 ## 后续变更流程

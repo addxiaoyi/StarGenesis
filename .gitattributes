@@ -5,6 +5,7 @@
 *.xml text eol=lf
 *.yml text eol=lf
 *.py text eol=lf
+*.pub text eol=lf
 mvnw text eol=lf
 *.cmd text eol=crlf
 # Raw evidence must preserve bytes and hashes across Windows/Linux checkout.

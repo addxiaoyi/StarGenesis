@@ -126,6 +126,18 @@ class SignedDesignPackageStoreTest {
         assertThrows(java.io.IOException.class, () -> store.install(OWNER, "starter_pack"));
     }
 
+    @Test void revokedPublisherFromAnotherStoreInvalidatesAllImportEntryPoints(@TempDir Path directory) throws Exception {
+        SignedDesignPackageStore store = installedStore(directory);
+        var imported = store.list(OWNER).getFirst();
+        Path file = importedPath(directory, imported.id());
+        byte[] before = Files.readAllBytes(file);
+        new PublisherKeyStore(directory.resolve("trusted-publishers")).revoke(KEY_ID, "retired signing key");
+        assertThrows(java.io.IOException.class, () -> store.load(OWNER, imported.id()));
+        assertThrows(java.io.IOException.class, () -> store.list(OWNER));
+        assertThrows(java.io.IOException.class, () -> store.install(OWNER, "starter_pack"));
+        assertArrayEquals(before, Files.readAllBytes(file));
+    }
+
     private SignedDesignPackageStore installedStore(Path directory) throws Exception {
         KeyPair keys = KeyPairGenerator.getInstance("Ed25519").generateKeyPair();
         installKey(directory, keys);

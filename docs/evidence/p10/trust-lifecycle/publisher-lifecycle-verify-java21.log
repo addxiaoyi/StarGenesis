@@ -1,0 +1,414 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-parent ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\target
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-parent ---
+[INFO] CycloneDX: Resolving Aggregated Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 61 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\target\sbom.json
+[WARNING] Unknown keyword meta:enum - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[WARNING] Unknown keyword deprecated - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[INFO]            attaching as stargenesis-parent-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-api >-------------------
+[INFO] Building stargenesis-api 4.0.0-SNAPSHOT                            [2/6]
+[INFO]   from stargenesis-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-api ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-api ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.api.ContractTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.229 s -- in dev.stargenesis.api.ContractTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-api ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\target\stargenesis-api-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-api ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 0 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\target\sbom.json
+[INFO]            attaching as stargenesis-api-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-design >-----------------
+[INFO] Building stargenesis-design 4.0.0-SNAPSHOT                         [3/6]
+[INFO]   from stargenesis-design\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-design ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-design\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-design ---
+[INFO] Copying 12 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-design ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 21 source files with javac [debug release 21] to target\classes
+[INFO] /C:/Users/Administrator/Documents/luoseng/StarGenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: ĳЩ�����ļ�ʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /C:/Users/Administrator/Documents/luoseng/StarGenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-design ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-design\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-design ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-design ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.design.ArenaRulesetWorkspaceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.617 s -- in dev.stargenesis.design.ArenaRulesetWorkspaceTest
+[INFO] Running dev.stargenesis.design.BlueprintEvaluatorTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.162 s -- in dev.stargenesis.design.BlueprintEvaluatorTest
+[INFO] Running dev.stargenesis.design.BlueprintWorkspaceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in dev.stargenesis.design.BlueprintWorkspaceTest
+[INFO] Running dev.stargenesis.design.DesignCodecTest
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[INFO] Tests run: 44, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.015 s -- in dev.stargenesis.design.DesignCodecTest
+[INFO] Running dev.stargenesis.design.ProgramInterpreterTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.185 s -- in dev.stargenesis.design.ProgramInterpreterTest
+[INFO] Running dev.stargenesis.design.ProtocolMessageCodecTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 s -- in dev.stargenesis.design.ProtocolMessageCodecTest
+[INFO] Running dev.stargenesis.design.SignedDesignCodecTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.77 s -- in dev.stargenesis.design.SignedDesignCodecTest
+[INFO] Running dev.stargenesis.design.TypedProgramCodecTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in dev.stargenesis.design.TypedProgramCodecTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-design ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-design\target\stargenesis-design-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-design ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 4 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-design\target\sbom.json
+[INFO]            attaching as stargenesis-design-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-sim >-------------------
+[INFO] Building stargenesis-sim 4.0.0-SNAPSHOT                            [4/6]
+[INFO]   from stargenesis-sim\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-sim ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-sim ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 37 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-sim ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-sim ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.sim.ArenaMatchIdentityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.154 s -- in dev.stargenesis.sim.ArenaMatchIdentityTest
+[INFO] Running dev.stargenesis.sim.ArenaMatchWorldTest
+P11_SCALE arena=128x128 players=8 rounds=128 elapsedMillis=1910 finalHash=127c0a8e23f18e2bf34725de4dffc7049138432993b45eb815e216a7ecef42f6
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.074 s -- in dev.stargenesis.sim.ArenaMatchWorldTest
+[INFO] Running dev.stargenesis.sim.EcologyLongRunTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.85 s -- in dev.stargenesis.sim.EcologyLongRunTest
+[INFO] Running dev.stargenesis.sim.EcologyWorldTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.605 s -- in dev.stargenesis.sim.EcologyWorldTest
+[INFO] Running dev.stargenesis.sim.FactoryMatchIdentityTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.087 s -- in dev.stargenesis.sim.FactoryMatchIdentityTest
+[INFO] Running dev.stargenesis.sim.FactoryWorldTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in dev.stargenesis.sim.FactoryWorldTest
+[INFO] Running dev.stargenesis.sim.ResourceSandboxWorldTest
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.026 s -- in dev.stargenesis.sim.ResourceSandboxWorldTest
+[INFO] Running dev.stargenesis.sim.SimulationContractsTest
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.882 s -- in dev.stargenesis.sim.SimulationContractsTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 79, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-sim ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\target\stargenesis-sim-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-sim ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 1 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\target\sbom.json
+[INFO]            attaching as stargenesis-sim-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] --------------< dev.stargenesis:stargenesis-integrations >--------------
+[INFO] Building StarGenesis Integration Contracts 4.0.0-SNAPSHOT          [5/6]
+[INFO]   from stargenesis-integrations\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-integrations ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-integrations ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.163 s -- in dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Running dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-integrations ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\target\stargenesis-integrations-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-integrations ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 0 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\target\sbom.json
+[INFO]            attaching as stargenesis-integrations-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-paper >------------------
+[INFO] Building stargenesis-paper 4.0.0-SNAPSHOT                          [6/6]
+[INFO]   from stargenesis-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ stargenesis-paper ---
+[INFO] Deleting C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-paper ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 38 source files with javac [debug release 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] /C:/Users/Administrator/Documents/luoseng/StarGenesis/stargenesis-paper/src/main/java/dev/stargenesis/paper/design/PublisherKeyStore.java: ĳЩ�����ļ�ʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /C:/Users/Administrator/Documents/luoseng/StarGenesis/stargenesis-paper/src/main/java/dev/stargenesis/paper/design/PublisherKeyStore.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-paper ---
+[INFO] Copying 12 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 37 source files with javac [debug release 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-paper ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.paper.arena.ArenaDependencyClosureTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.550 s -- in dev.stargenesis.paper.arena.ArenaDependencyClosureTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.196 s -- in dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.404 s -- in dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaMatchPersistenceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in dev.stargenesis.paper.arena.ArenaMatchPersistenceTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaMatchRoundTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.483 s -- in dev.stargenesis.paper.arena.ArenaMatchRoundTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaMatchServiceTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.666 s -- in dev.stargenesis.paper.arena.ArenaMatchServiceTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest
+P8_STORAGE rejectedDuration=6000 players=8 actualPassReplayBytes=16148334
+P8_STORAGE players=4 duration=1200 reservedBytes=4094757 maxAdmittedRounds=2460
+P8_STORAGE players=8 duration=1200 reservedBytes=6745173 maxAdmittedRounds=1492
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.750 s -- in dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.791 s -- in dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest
+[INFO] Running dev.stargenesis.paper.arena.ArenaRulesetStoreTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.699 s -- in dev.stargenesis.paper.arena.ArenaRulesetStoreTest
+[INFO] Running dev.stargenesis.paper.blueprint.BlueprintCollaborationTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.355 s -- in dev.stargenesis.paper.blueprint.BlueprintCollaborationTest
+[INFO] Running dev.stargenesis.paper.blueprint.BlueprintStoreTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.791 s -- in dev.stargenesis.paper.blueprint.BlueprintStoreTest
+[INFO] Running dev.stargenesis.paper.communication.ContractRadioWorkflowTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 s -- in dev.stargenesis.paper.communication.ContractRadioWorkflowTest
+[INFO] Running dev.stargenesis.paper.communication.ContractRecoveryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.184 s -- in dev.stargenesis.paper.communication.ContractRecoveryTest
+[INFO] Running dev.stargenesis.paper.communication.ContractRuntimeTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 s -- in dev.stargenesis.paper.communication.ContractRuntimeTest
+[INFO] Running dev.stargenesis.paper.communication.RadioPersistenceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.226 s -- in dev.stargenesis.paper.communication.RadioPersistenceTest
+[INFO] Running dev.stargenesis.paper.communication.RadioServiceTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.460 s -- in dev.stargenesis.paper.communication.RadioServiceTest
+[INFO] Running dev.stargenesis.paper.communication.VirtualMessageBusTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in dev.stargenesis.paper.communication.VirtualMessageBusTest
+[INFO] Running dev.stargenesis.paper.design.PublisherKeyStoreTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.175 s -- in dev.stargenesis.paper.design.PublisherKeyStoreTest
+[INFO] Running dev.stargenesis.paper.design.PublisherTrustConcurrencyTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.091 s -- in dev.stargenesis.paper.design.PublisherTrustConcurrencyTest
+[INFO] Running dev.stargenesis.paper.design.PublisherTrustLifecycleTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 58.28 s -- in dev.stargenesis.paper.design.PublisherTrustLifecycleTest
+[INFO] Running dev.stargenesis.paper.design.SignedDesignPackageStoreTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.463 s -- in dev.stargenesis.paper.design.SignedDesignPackageStoreTest
+[INFO] Running dev.stargenesis.paper.ecology.EcologyPersistenceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.333 s -- in dev.stargenesis.paper.ecology.EcologyPersistenceTest
+[INFO] Running dev.stargenesis.paper.ecology.EcologyServiceTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.798 s -- in dev.stargenesis.paper.ecology.EcologyServiceTest
+[INFO] Running dev.stargenesis.paper.factory.FactoryCompatibilityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.283 s -- in dev.stargenesis.paper.factory.FactoryCompatibilityTest
+[INFO] Running dev.stargenesis.paper.factory.FactoryPersistenceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s -- in dev.stargenesis.paper.factory.FactoryPersistenceTest
+[INFO] Running dev.stargenesis.paper.factory.FactoryServiceTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.98 s -- in dev.stargenesis.paper.factory.FactoryServiceTest
+[INFO] Running dev.stargenesis.paper.lab.LabExperimentTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.314 s -- in dev.stargenesis.paper.lab.LabExperimentTest
+[INFO] Running dev.stargenesis.paper.LabPersistenceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.383 s -- in dev.stargenesis.paper.LabPersistenceTest
+[INFO] Running dev.stargenesis.paper.PluginDescriptorTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.stargenesis.paper.PluginDescriptorTest
+[INFO] Running dev.stargenesis.paper.program.ProgramSandboxRunnerTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 s -- in dev.stargenesis.paper.program.ProgramSandboxRunnerTest
+[INFO] Running dev.stargenesis.paper.program.ProgramSessionTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 s -- in dev.stargenesis.paper.program.ProgramSessionTest
+[INFO] Running dev.stargenesis.paper.program.ProgramSimulationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in dev.stargenesis.paper.program.ProgramSimulationTest
+[INFO] Running dev.stargenesis.paper.program.ProgramStoreTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.862 s -- in dev.stargenesis.paper.program.ProgramStoreTest
+[INFO] Running dev.stargenesis.paper.program.ProgramWorkflowTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in dev.stargenesis.paper.program.ProgramWorkflowTest
+[INFO] Running dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.193 s -- in dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+[INFO] Running dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.078 s -- in dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+[INFO] Running dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.140 s -- in dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 230, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-paper ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- shade:3.6.0:shade (default) @ stargenesis-paper ---
+[INFO] Including dev.stargenesis:stargenesis-api:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-design:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.18.3 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:2.18.3 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:2.18.3 in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-sim:jar:4.0.0-SNAPSHOT in the shaded jar.
+[INFO] Including dev.stargenesis:stargenesis-integrations:jar:4.0.0-SNAPSHOT in the shaded jar.
+[WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar define 2 overlapping resources: 
+[WARNING]   - META-INF/LICENSE
+[WARNING]   - META-INF/NOTICE
+[WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar, stargenesis-api-4.0.0-SNAPSHOT.jar, stargenesis-design-4.0.0-SNAPSHOT.jar, stargenesis-integrations-4.0.0-SNAPSHOT.jar, stargenesis-paper-4.0.0-SNAPSHOT.jar, stargenesis-sim-4.0.0-SNAPSHOT.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT.jar with C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target\stargenesis-paper-4.0.0-SNAPSHOT-shaded.jar
+[INFO] 
+[INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-paper ---
+[INFO] CycloneDX: Resolving Dependencies
+[225.235s][warning][codecache] CodeCache is full. Compiler has been disabled.
+OpenJDK 64-Bit Server VM warning: CodeCache is full. Compiler has been disabled.
+OpenJDK 64-Bit Server VM warning: Try increasing the code cache size using -XX:ReservedCodeCacheSize=
+[225.235s][warning][codecache] Try increasing the code cache size using -XX:ReservedCodeCacheSize=
+CodeCache: size=16384Kb used=16383Kb max_used=16383Kb free=0Kb
+ bounds [0x000001a979760000, 0x000001a97a760000, 0x000001a97a760000]
+ total_blobs=8966, nmethods=8084, adapters=806, full_count=1
+Compilation: disabled (not enough contiguous free space left), stopped_count=1, restarted_count=0
+[INFO] CycloneDX: Creating BOM version 1.6 with 60 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target\sbom.json
+[INFO]            attaching as stargenesis-paper-4.0.0-SNAPSHOT-cyclonedx.json
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [  5.015 s]
+[INFO] stargenesis-api .................................... SUCCESS [  4.245 s]
+[INFO] stargenesis-design ................................. SUCCESS [ 22.377 s]
+[INFO] stargenesis-sim .................................... SUCCESS [ 57.186 s]
+[INFO] StarGenesis Integration Contracts .................. SUCCESS [  2.755 s]
+[INFO] stargenesis-paper .................................. SUCCESS [02:12 min]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:43 min
+[INFO] Finished at: 2026-11-26T00:44:08+08:00
+[INFO] ------------------------------------------------------------------------

@@ -101,6 +101,10 @@ P9 并发稳定性批次先复现两条过期恢复竞态：另一请求可能�
 
 P10 signed design envelope 使用 domain-separated Ed25519。OP 可从 `publisher-inbox` 加入 X.509 PEM key，列出指纹、添加新 key 和记录撤销原因；撤销状态跨重启保持且旧 key ID 不可复用。玩家导入仅写入个人目录并在读取时按当前 trust root 再验签。重复导入同样复验已保存内容，load/list 核对 schema v1 与设计 ID 派生路径，拒绝未知版本、错路径和损坏签名。自动流程使用临时测试 key，不构成运营信任根。当前没有第三方 extension bridge 和真实第三方运行证据。
 
+P10 后续稳定性批次复现并修复5项问题：缺少未来撤销容量、第4097条撤销会使库不可读、错误JSON标量被转换接受，以及跨store实例同ID/活跃容量的并发检查竞态。新读写持有目录级JVM/OS锁，新增key为未来撤销预留容量，满历史在写盘前拒绝；严格类型与4 KiB有界读取保持合法旧格式。新增10项回归覆盖这些边界、提交前/提交后故障、撤销先于公钥清理生效、重试保留原证据，以及旧v1固定公钥/撤销文件原字节兼容；另一store撤销后，已导入包的load/list/install均拒绝且不改写原包。
+
+Java 21/25各通过415项测试（56个类），失败/错误/跳过为0，边界与双JVM签名工具自检通过，见 `docs/evidence/p10/trust-lifecycle/summary.json`。故障通过可注入的原子写入回调模拟，成功路径实际写入文件；并发验证为同JVM多实例和OS锁持有检查，未声称新的多进程/网络盘或实服验收。旧库满历史的容量迁移、运营方真实key、真实第三方bridge与验收仍未完成。
+
 ## P11
 
 2026-11-25 主 reactor `mvnw.cmd -B verify` 在 Java 21.0.13+9 与 Java 25.0.5+8 各通过232项测试，32份 Surefire report failures/errors/skipped 均为0。Java 21 工件 SHA 为 `8ce8920998217336c11ccf8ca28cddea02cf30df2604f8c35d09b0686d103e8b`，Java 25 工件 SHA 为 `8d32bafb9acbd5ce1943b5786fc1249a7a26cb9f0ba4da3803f1db1d1fb19fce`。本次日志与统计见 `docs/evidence/p11/maven-resume-java21.log`、`maven-resume-java25.log`、`resume-java21.json` 和 `resume-java25.json`。Paper/Folia 1.21.11 双端自动客户端覆盖 P1–P10，以及 P4/P6/P8 故障边界。

@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "f7564af7a4c010543a8639cee11e9d048e8e92bb",
+  "scope": "P10 trust-directory exclusion, revocation capacity reservation, strict bounded JSON, failed/uncertain write retry and valid v1 compatibility.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 56,
+      "tests": 415,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "publisher-lifecycle-verify-java21.log",
+      "logSha256": "208a0c8cdf17d4ded69b3faf8fc482d1854c124f85bb0ff295317106cf7f1515",
+      "pluginSha256": "a9dc1e2f77b088a4c0e570f604620c34f36bdf652390bce03d532f0e82259be7",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 56,
+      "tests": 415,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "publisher-lifecycle-verify-java25.log",
+      "logSha256": "a84b9bc27d0e41b03ffb535e957db134c1a88f5273936e089ade4d3324ff714b",
+      "pluginSha256": "7370a6e3a2c0db27297174980021c1fad560bb9babf62ccf4ff8c7b3d0cdca98",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "newTests": {
+    "lifecycleAndLegacy": 4,
+    "concurrencyAndPersistence": 5,
+    "importRevocation": 1
+  },
+  "redRegressions": [
+    {
+      "log": "publisher-lifecycle-before.log",
+      "failures": 3,
+      "before": "New trust did not reserve future revocation capacity; a 4097th revocation made the store unreadable; coercible scalar types were accepted.",
+      "after": "Admission reserves a revocation slot per active identity, full history rejects before mutation, and revocation JSON has strict scalar types."
+    },
+    {
+      "log": "publisher-concurrency-before.log",
+      "failures": 2,
+      "before": "Separate instances could pass the same key-ID or 32-active-key admission checks concurrently.",
+      "after": "A directory-scoped JVM and OS lock protects complete reads/additions/revocations across instances.",
+      "fixture": "The atomic-write seam delayed the first write deterministically before the directory-lock fix."
+    },
+    {
+      "log": "publisher-lifecycle-focused.log",
+      "failures": 1,
+      "finding": "Disabling general Jackson scalar coercion did not reject numeric reason-to-string conversion.",
+      "resolution": "Explicit Textual coercion rules reject integer, float and boolean values; the targeted follow-up and both full builds passed."
+    }
+  ],
+  "failureMatrix": [
+    "Concurrent attempts to bind one key ID preserve the first committed key and reject different material.",
+    "Concurrent additions at 31 active keys admit exactly one new key.",
+    "An add that fails before commit can retry; an uncertain add after commit returns the same key on retry.",
+    "Revocation write failure before commit preserves the active key.",
+    "Committed revocation takes effect while the stale public key remains; retry preserves original bytes, reason and time and finishes cleanup.",
+    "OS file lock is held during injected write callbacks and released after exceptions.",
+    "4095 retired identities plus one active key deny a new key and retain the reserved final revocation slot.",
+    "Legacy full history with an active key rejects further revocation before creating an unreadable entry.",
+    "Another store instance revoking a publisher invalidates load/list/repeated install without changing the imported bytes."
+  ],
+  "legacyFixtures": {
+    "origin": "Exported from the verified f7564af shaded JAR before P10 changes; public keys only, no stored private key.",
+    "sourceJarSha256": "66fe467f00fafc663de73ba3f45567214432f010dfb04b98e03427711ba2ec38",
+    "files": {
+      "stargenesis-paper/src/test/resources/publisher-v1-active.pub": "ff7d66d4e3e0acf58155557873ba2d45b9cc8a9ca79b876509ba211730b66edf",
+      "stargenesis-paper/src/test/resources/publisher-v1-revoked.json": "1837bc78d133a9ea6ac68f17cd2ceacbe57765f2d4866f6ff2599ae3deea919e"
+    },
+    "activeFingerprint": "e262ac8c85b8194645c97f02466c3746af931fa9e72c6f205db092914e994cb6",
+    "outcome": "Valid PEM and schema-v1 revocation load unchanged; repeated add/revoke preserves the exact fixture bytes."
+  },
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "7370a6e3a2c0db27297174980021c1fad560bb9babf62ccf4ff8c7b3d0cdca98",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "7370a6e3a2c0db27297174980021c1fad560bb9babf62ccf4ff8c7b3d0cdca98",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final Java 25 shaded artifact targeting release 21 using ephemeral test keys.",
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": true,
+    "java25": false
+  },
+  "limitations": [
+    "Publisher fault injection uses an atomic-write callback; successful commits use the actual file writer. It is not storage-device failure testing.",
+    "Concurrency evidence covers multiple instances in one JVM and checks OS-lock ownership. No new publisher multi-process or network-filesystem claim.",
+    "All trust operations now require access to the writable .publisher.lock file.",
+    "Legacy histories already at 4096 revoked identities can remain readable with active keys, but further revocation rejects before writing. Capacity migration preserving permanent revocations remains operational work.",
+    "No publisher IDs, old signatures, valid schema-v1 data or private imported bytes are rewritten automatically.",
+    "No new Paper/Folia client, operator trust-root, real third-party bridge, human acceptance or official signing evidence.",
+    "P0-P11 goal remains active; external phase gates remain incomplete."
+  ],
+  "files": {
+    "publisher-lifecycle-before.log": "925dde54677ca406daaa38897b5df188970cfa5f5c6f7016a25bc9d47b00316e",
+    "publisher-concurrency-before.log": "aceb39c7e8ac11cb27b6b371402d511d96b3ae5cd95248fa57bdc3a1cbeb55d0",
+    "publisher-lifecycle-focused.log": "f4707c663877f34057a142d48ae0ef6323d326c8cc8da3714e041df0d2860256",
+    "publisher-strict-json-focused.log": "6432d5a9f36652de075576d2dde3f92fa35ed7afc0bf1fb15fefb0e9b4b045d0",
+    "publisher-lifecycle-verify-java21.log": "208a0c8cdf17d4ded69b3faf8fc482d1854c124f85bb0ff295317106cf7f1515",
+    "publisher-lifecycle-build-java21.json": "a1f4bd91e1812cf36338bb9afc2c0ebffe4bfa9c904c396dd47d1d7cd49c96ff",
+    "publisher-lifecycle-release-signer-java21.json": "de7be1f4f170d9b455a2dee218048fe3b1f7174c747649d5930af6485e337922",
+    "publisher-lifecycle-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "publisher-lifecycle-verify-java25.log": "a84b9bc27d0e41b03ffb535e957db134c1a88f5273936e089ade4d3324ff714b",
+    "publisher-lifecycle-build-java25.json": "d648663080173d0386d1f70bd4b2380d4ee5d7b4d4af59c3fca9f6668b40068f",
+    "publisher-lifecycle-release-signer-java25.json": "de7be1f4f170d9b455a2dee218048fe3b1f7174c747649d5930af6485e337922",
+    "publisher-lifecycle-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}
