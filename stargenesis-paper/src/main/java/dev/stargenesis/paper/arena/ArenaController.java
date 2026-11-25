@@ -5,11 +5,8 @@ import dev.stargenesis.api.design.DesignId;
 import dev.stargenesis.design.ArenaRuleset;
 import dev.stargenesis.design.ArenaRulesetWorkspace;
 import dev.stargenesis.sim.ArenaAction;
-import dev.stargenesis.sim.ArenaConfig;
-import dev.stargenesis.sim.ArenaMatchReplay;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchView;
-import dev.stargenesis.sim.ArenaMatchWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -23,10 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -44,8 +38,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private final ConcurrentMap<UUID, Session> sessions = new ConcurrentHashMap<>();
     private final ConcurrentMap<UUID, Invitation> invitations = new ConcurrentHashMap<>();
     private final Object invitationLock = new Object();
-    private final ConcurrentMap<UUID, String> teamRoster = new ConcurrentHashMap<>();
-    private final ConcurrentMap<UUID, String> activeMatches = new ConcurrentHashMap<>();
+    private final ArenaMatchService matchService;
     private final ThreadPoolExecutor worker;
     private final AtomicBoolean closed = new AtomicBoolean();
 
@@ -53,7 +46,7 @@ public final class ArenaController implements Listener, AutoCloseable {
         this.plugin = plugin;
         this.store = store;
         matches = new ArenaMatchPersistence(dataDirectory);
-        teamRoster.putAll(matches.loadTeamRoster());
+        matchService = new ArenaMatchService(store, matches);
         worker = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(128), task -> {
             Thread thread = new Thread(task, "StarGenesis-Arena");
             thread.setDaemon(true);
@@ -105,8 +98,6 @@ public final class ArenaController implements Listener, AutoCloseable {
         }
         sessions.clear();
         invitations.clear();
-        teamRoster.clear();
-        activeMatches.clear();
     }
 
     @EventHandler public void onJoin(PlayerJoinEvent event) {
@@ -117,6 +108,8 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         UUID leaving = event.getPlayer().getUniqueId();
+        try { worker.execute(() -> matchService.disconnected(leaving)); }
+        catch (RejectedExecutionException ignored) { }
         synchronized (invitationLock) {
             invitations.remove(leaving);
             invitations.entrySet().removeIf(entry -> entry.getValue().inviter().equals(leaving));
@@ -136,6 +129,7 @@ public final class ArenaController implements Listener, AutoCloseable {
             return true;
         }
         if (request[0].equalsIgnoreCase("accept")) {
+            if (request.length != 1) { send(owner, player, List.of("用法：/genesis arena match accept")); return true; }
             scheduleGlobal(() -> accept(player, request));
             return true;
         }
@@ -154,13 +148,12 @@ public final class ArenaController implements Listener, AutoCloseable {
         if (!args[2].matches("[a-z][a-z0-9_-]{0,31}")) {
             send(owner, inviter, List.of("team ID 须为 1-32 位小写字母、数字、下划线或连字符。")); return;
         }
-        String currentTeam = teamRoster.get(owner);
+        String currentTeam = matchService.roster().get(owner);
         if (currentTeam != null && !currentTeam.equals(args[2])) {
             send(owner, inviter, List.of("你已加入另一个 Arena 队伍，不能跨队邀请。")); return;
         }
         Player invited = Bukkit.getPlayerExact(args[1]);
-        if (invited == null || invited.equals(inviter) || teamRoster.containsKey(invited.getUniqueId())
-                || activeMatchPlayer(owner) || activeMatchPlayer(invited.getUniqueId())) {
+        if (invited == null || invited.equals(inviter) || matchService.roster().containsKey(invited.getUniqueId())) {
             send(owner, inviter, List.of("需要指定一位在线且尚未加入 roster 的其他玩家。")); return;
         }
         Invitation invitation = new Invitation(owner, args[2]);
@@ -189,36 +182,17 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     private void acceptInvitation(UUID owner, String name, Player player) {
         Invitation invitation;
-        synchronized (invitationLock) {
-            invitation = invitations.remove(owner);
-        }
-        if (invitation == null || teamRoster.containsKey(owner) || activeMatchPlayer(owner)) {
-            send(owner, player, List.of("没有可接受的有效 Arena 邀请。")); return;
-        }
-        long currentTeamSize = teamRoster.values().stream().filter(team -> team.equals(invitation.team())).count();
-        String inviterTeam = teamRoster.get(invitation.inviter());
-        if (inviterTeam != null && !inviterTeam.equals(invitation.team())) {
-            send(owner, player, List.of("邀请方已加入另一个队伍。")); return;
-        }
-        if (activeMatchPlayer(invitation.inviter())) {
-            send(owner, player, List.of("邀请方已进入另一场 Arena match。")); return;
-        }
-        int newMembers = inviterTeam == null ? 2 : 1;
-        if (currentTeamSize + newMembers > 4 || teamRoster.size() + newMembers > ArenaMatchWorld.MAX_PLAYERS) {
-            send(owner, player, List.of("该队伍或 Arena roster 已满。")); return;
-        }
-        if (inviterTeam == null) teamRoster.put(invitation.inviter(), invitation.team());
-        teamRoster.put(owner, invitation.team());
+        synchronized (invitationLock) { invitation = invitations.remove(owner); }
+        if (invitation == null) { send(owner, player, List.of("没有可接受的有效 Arena 邀请。")); return; }
         try {
-            matches.saveTeamRoster(teamRoster);
-        } catch (IOException | RuntimeException failure) {
-            teamRoster.remove(owner, invitation.team());
-            if (inviterTeam == null) teamRoster.remove(invitation.inviter(), invitation.team());
-            synchronized (invitationLock) {
-                invitations.put(owner, invitation);
-            }
+            matchService.joinTeam(invitation.inviter(), owner, invitation.team());
+        } catch (IOException failure) {
+            synchronized (invitationLock) { invitations.putIfAbsent(owner, invitation); }
             plugin.getLogger().log(Level.SEVERE, "Arena team roster persistence failed for " + owner, failure);
             send(owner, player, List.of("Arena 组织状态未能持久保存；请重试接受邀请。"));
+            return;
+        } catch (RuntimeException failure) {
+            send(owner, player, List.of("Arena 邀请未完成：" + failure.getMessage()));
             return;
         }
         send(owner, player, List.of("已加入队伍 " + invitation.team() + "。"));
@@ -228,34 +202,20 @@ public final class ArenaController implements Listener, AutoCloseable {
         });
     }
 
-    private boolean activeMatchPlayer(UUID player) {
-        return activeMatches.containsKey(player);
-    }
-
-    private boolean hasActiveMatch(UUID player) throws IOException {
-        for (ArenaMatchPersistence.MatchSession session : matches.findForPlayer(player)) {
-            if (!session.replay().teams().containsKey(player)) continue;
-            try (ArenaMatchWorld world = restoreWorld(session.replay())) {
-                if (!world.view().terminal()) return true;
-            }
-        }
-        return false;
-    }
-
     private void enqueue(UUID owner, Player player, String[] args) {
-        try { worker.execute(() -> executeMatch(owner, player, args, Set.of())); }
-        catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满。")); }
+        enqueue(owner, player, args, Set.of());
     }
 
     private void enqueue(UUID owner, Player player, String[] args, Set<UUID> onlineAtStart) {
-        try { worker.execute(() -> executeMatch(owner, player, args, onlineAtStart)); }
+        boolean manager = player.hasPermission("stargenesis.arena.manage");
+        try { worker.execute(() -> executeMatch(owner, player, args, onlineAtStart, manager)); }
         catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满。")); }
     }
 
-    private void executeMatch(UUID owner, Player player, String[] args, Set<UUID> onlineAtStart) {
+    private void executeMatch(UUID owner, Player player, String[] args, Set<UUID> onlineAtStart, boolean manager) {
         List<String> response;
         try {
-            response = executeMatch(owner, args, onlineAtStart);
+            response = executeMatch(owner, args, onlineAtStart, manager);
             if (args.length > 0 && args[0].equalsIgnoreCase("start")) broadcastStarted(owner);
         }
         catch (IOException failure) {
@@ -270,34 +230,55 @@ public final class ArenaController implements Listener, AutoCloseable {
         send(owner, player, response);
     }
 
-    private List<String> executeMatch(UUID owner, String[] args, Set<UUID> onlineAtStart) throws IOException {
-        if (args.length == 0) return List.of("/genesis arena match invite <player> <team> | accept | start <rulesetId> <version> [seed]",
-                "/genesis arena match pass | claim <x> <y> <force> | dashboard | replay | watch <matchId> | matches");
+    private List<String> executeMatch(UUID owner, String[] args, Set<UUID> onlineAtStart, boolean manager) throws IOException {
+        if (args.length == 0) return matchHelp();
         return switch (args[0].toLowerCase(Locale.ROOT)) {
-            case "restore" -> restorePlayer(owner);
+            case "restore" -> { requireLength(args, 1); yield restorePlayer(owner); }
             case "start" -> startMatch(owner, args, onlineAtStart);
-            case "pass" -> submit(owner, ArenaAction.pass(owner));
+            case "pass" -> { requireLength(args, 1); yield submit(owner, ArenaAction.pass(owner)); }
             case "claim" -> claim(owner, args);
-            case "dashboard" -> dashboardMatch(owner);
-            case "replay" -> verifyMatch(owner);
+            case "withdraw" -> {
+                requireLength(args, 1);
+                matchService.withdraw(owner);
+                yield List.of("已撤回本轮尚未结算的动作，可以重新提交。");
+            }
+            case "dashboard" -> { requireLength(args, 1); yield dashboardMatch(owner); }
+            case "replay" -> { requireLength(args, 1); yield verifyMatch(owner); }
             case "watch" -> watch(owner, args);
+            case "unwatch" -> {
+                requireLength(args, 1);
+                matchService.unwatch(owner);
+                yield List.of("已退出当前比赛的观战名单。");
+            }
+            case "select" -> {
+                requireLength(args, 2);
+                ArenaMatchView view = matchService.select(owner, args[1]);
+                List<String> lines = new ArrayList<>(viewLines(view));
+                lines.add(0, "已选择 Arena match " + view.matchId());
+                yield List.copyOf(lines);
+            }
+            case "leave" -> {
+                requireLength(args, 1);
+                boolean left = matchService.leaveTeam(owner);
+                synchronized (invitationLock) {
+                    invitations.remove(owner);
+                    invitations.entrySet().removeIf(entry -> entry.getValue().inviter().equals(owner));
+                }
+                yield List.of(left ? "已退出赛前队伍，可以重新接受邀请。" : "当前没有加入赛前队伍；待处理邀请已取消。");
+            }
+            case "prune" -> {
+                requireLength(args, 2);
+                matchService.pruneCompleted(args[1], manager);
+                yield List.of("已清理完成的历史比赛 " + args[1]);
+            }
             case "matches" -> matchList(owner, args);
-            default -> List.of("/genesis arena match invite <player> <team> | accept | start <rulesetId> <version> [seed]",
-                    "/genesis arena match pass | claim <x> <y> <force> | dashboard | replay | watch <matchId> | matches");
+            default -> matchHelp();
         };
     }
 
     private List<String> restorePlayer(UUID owner) throws IOException {
-        List<ArenaMatchPersistence.MatchSession> saved = matches.findForPlayer(owner);
-        if (saved.isEmpty()) return List.of();
-        ArenaMatchPersistence.MatchSession session = saved.stream()
-                .filter(match -> match.replay().teams().containsKey(owner))
-                .max(Comparator.comparingLong(match -> match.replay().frames().size())).orElse(saved.getFirst());
-        requirePinnedRuleset(session.replay());
-        try (ArenaMatchWorld restored = restoreWorld(session.replay())) {
-            if (!restored.view().terminal()) activeMatches.put(owner, session.replay().matchId());
-        }
-        session.replay().teams().forEach(teamRoster::putIfAbsent);
+        var session = matchService.restorePlayer(owner).orElse(null);
+        if (session == null) return List.of();
         return List.of("已恢复 Arena match " + session.replay().matchId()
                 + " · round=" + session.replay().frames().size() + " · pending=" + session.pending().size());
     }
@@ -305,34 +286,11 @@ public final class ArenaController implements Listener, AutoCloseable {
     private List<String> startMatch(UUID owner, String[] args, Set<UUID> onlineAtStart) throws IOException {
         if (args.length < 3 || args.length > 4)
             throw new IllegalArgumentException("用法：/genesis arena match start <rulesetId> <version> [seed]");
-        Map<UUID, String> roster = new TreeMap<>(Comparator.comparing(UUID::toString));
-        teamRoster.forEach(roster::put);
-        Map<String, Long> teamCounts = roster.values().stream()
-                .collect(java.util.stream.Collectors.groupingBy(team -> team, TreeMap::new, java.util.stream.Collectors.counting()));
-        if (roster.size() < 4 || roster.size() > ArenaMatchWorld.MAX_PLAYERS
-                || teamCounts.size() != 2 || teamCounts.values().stream().anyMatch(count -> count < 2 || count > 4))
-            throw new IllegalStateException("Arena 至少需要两队各2名玩家，最多8人。");
-        for (UUID participant : roster.keySet()) {
-            if (hasActiveMatch(participant))
-                throw new IllegalStateException("Roster 中有玩家正在参加另一场 Arena match。");
-        }
-        if (!onlineAtStart.containsAll(roster.keySet())) throw new IllegalStateException("比赛开始时全部参与者必须在线。");
-        if (!roster.containsKey(owner)) throw new SecurityException("Arena starter must join the roster");
-        ArenaRuleset ruleset = store.loadPublished(new DesignId(args[1]), args[2])
-                .orElseThrow(() -> new IllegalArgumentException("指定的已发布 ArenaRuleset 不存在。"));
-        store.validatePublishedDependencies(ruleset);
-        String matchId = ArenaMatchWorld.matchIdFor(ruleset.metadata().hash(), roster);
-        if (matches.load(matchId).isPresent()) throw new IllegalStateException("此 roster/ruleset 已有比赛记录。");
         long seed = args.length == 4 ? Long.parseLong(args[3]) : 20_261_122L;
-        ArenaConfig config = new ArenaConfig(ruleset.width(), ruleset.height(), ruleset.durationSteps(), ruleset.unitBudget());
-        try (ArenaMatchWorld world = new ArenaMatchWorld(matchId, seed, config, ruleset.metadata().id().value(),
-                ruleset.metadata().version(), ruleset.metadata().hash(), roster)) {
-            matches.save(ArenaMatchPersistence.MatchSession.initial(world.replay()));
-            roster.keySet().forEach(player -> activeMatches.put(player, matchId));
-            List<String> result = new ArrayList<>(viewLines(world.view()));
-            result.add(0, "Arena match 已创建；每个回合所有玩家各提交一次动作，matchId=" + matchId);
-            return List.copyOf(result);
-        }
+        var session = matchService.start(owner, new DesignId(args[1]), args[2], seed, onlineAtStart);
+        List<String> result = new ArrayList<>(viewLines(matchService.view(session.replay())));
+        result.add(0, "Arena match 已创建；每个回合所有玩家各提交一次动作，matchId=" + session.replay().matchId());
+        return List.copyOf(result);
     }
 
     private List<String> claim(UUID owner, String[] args) throws IOException {
@@ -342,35 +300,23 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private List<String> submit(UUID owner, ArenaAction action) throws IOException {
-        String matchId = matchIdFor(owner);
-        ArenaMatchPersistence.MatchSession session = matches.load(matchId).orElseThrow();
-        requirePinnedRuleset(session.replay());
-        ArenaMatchRound.Submission submission = ArenaMatchRound.submit(session, owner, action);
-        matches.save(submission.session());
-        if (!submission.session().pending().isEmpty()) {
-            return List.of("动作已封存 · round=" + session.replay().frames().size()
-                    + " · waiting=" + (session.replay().teams().size() - submission.session().pending().size()));
+        ArenaMatchRound.Submission submission = matchService.submit(owner, action);
+        var saved = submission.session();
+        if (!saved.pending().isEmpty()) {
+            return List.of("动作已封存 · round=" + saved.replay().frames().size()
+                    + " · waiting=" + (saved.replay().teams().size() - saved.pending().size()));
         }
-        if (submission.view().terminal()) session.replay().teams().keySet().forEach(activeMatches::remove);
         return viewLines(submission.view());
     }
 
     private List<String> dashboardMatch(UUID owner) throws IOException {
-        String matchId = matchIdFor(owner);
-        ArenaMatchPersistence.MatchSession session = matches.load(matchId).orElseThrow();
-        if (!session.replay().teams().containsKey(owner) && !session.spectators().contains(owner))
-            throw new SecurityException("Arena dashboard is restricted to participants and observers");
-        try (ArenaMatchWorld world = restoreWorld(session.replay())) {
-            return viewLines(world.observe(owner));
-        }
+        return viewLines(matchService.view(matchService.current(owner).replay()));
     }
 
     private List<String> verifyMatch(UUID owner) throws IOException {
-        String matchId = matchIdFor(owner);
-        ArenaMatchPersistence.MatchSession session = matches.load(matchId).orElseThrow();
+        ArenaMatchPersistence.MatchSession session = matchService.current(owner);
         if (!session.replay().teams().containsKey(owner) && !session.spectators().contains(owner))
             throw new SecurityException("Only participants and observers may replay this match");
-        requirePinnedRuleset(session.replay());
         ArenaMatchReplayVerifier.Verification result = ArenaMatchReplayVerifier.verify(session.replay());
         if (!result.passed()) throw new IllegalStateException("Arena replay rejected: " + result.reason());
         return List.of("Arena replay verified " + session.replay().frames().size() + " rounds · ruleset="
@@ -380,28 +326,16 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     private List<String> watch(UUID owner, String[] args) throws IOException {
         if (args.length != 2) throw new IllegalArgumentException("用法：/genesis arena match watch <matchId>");
-        ArenaMatchPersistence.MatchSession session = matches.load(args[1])
-                .orElseThrow(() -> new IllegalArgumentException("Arena match 不存在。"));
-        if (session.replay().teams().containsKey(owner)) throw new IllegalArgumentException("参赛玩家无需登记为 observer。");
-        if (!session.spectators().contains(owner) && session.spectators().size() >= 128)
-            throw new IllegalStateException("Arena observer budget exhausted");
-        List<UUID> observers = new ArrayList<>(session.spectators());
-        if (!observers.contains(owner)) observers.add(owner);
-        matches.save(new ArenaMatchPersistence.MatchSession(ArenaMatchPersistence.SCHEMA_VERSION,
-                session.replay(), session.pending(), observers));
-        try (ArenaMatchWorld world = restoreWorld(session.replay())) {
-            List<String> lines = new ArrayList<>();
-            lines.add("Observer mode is read-only · match=" + session.replay().matchId());
-            lines.addAll(viewLines(world.observe(owner)));
-            return List.copyOf(lines);
-        }
+        ArenaMatchView view = matchService.watch(owner, args[1]);
+        List<String> lines = new ArrayList<>();
+        lines.add("Observer mode is read-only · match=" + view.matchId());
+        lines.addAll(viewLines(view));
+        return List.copyOf(lines);
     }
 
     private List<String> matchList(UUID owner, String[] args) throws IOException {
         if (args.length != 1) throw new IllegalArgumentException("用法：/genesis arena match matches");
-        List<ArenaMatchPersistence.MatchSession> entries = matches.catalog().stream()
-                .filter(session -> session.replay().teams().containsKey(owner)
-                        || session.spectators().contains(owner)).toList();
+        List<ArenaMatchPersistence.MatchSession> entries = matches.findForPlayer(owner);
         if (entries.isEmpty()) return List.of("没有参与或观察的 Arena matches。");
         return entries.stream().map(session -> session.replay().matchId()
                 + " · round=" + session.replay().frames().size() + " · pending=" + session.pending().size()
@@ -410,7 +344,7 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     private List<String> viewLines(ArenaMatchView view) {
         List<String> lines = new ArrayList<>();
-        lines.add("Arena " + view.rulesetId() + " v" + view.rulesetVersion() + " · round="
+        lines.add("Arena " + view.matchId() + " · " + view.rulesetId() + " v" + view.rulesetVersion() + " · round="
                 + view.tick() + "/" + view.durationSteps());
         lines.add("Territory=" + view.territory() + " · units=" + view.remainingUnits());
         lines.add("Leaderboard=" + view.leaderboard() + (view.settledWinner().isEmpty()
@@ -420,38 +354,10 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private List<String> matchHelp() {
-        return List.of("/genesis arena match invite <player> <team> | accept | start <rulesetId> <version> [seed]",
-                "/genesis arena match pass | claim <x> <y> <force> | dashboard | replay | watch <matchId> | matches");
-    }
-
-    private String matchIdFor(UUID owner) throws IOException {
-        String active = activeMatches.get(owner);
-        if (active != null) {
-            ArenaMatchPersistence.MatchSession current = matches.load(active).orElse(null);
-            if (current != null && current.replay().teams().containsKey(owner)) return active;
-        }
-        List<ArenaMatchPersistence.MatchSession> found = matches.findForPlayer(owner);
-        if (found.isEmpty()) throw new IllegalStateException("当前玩家不属于 Arena match。");
-        ArenaMatchPersistence.MatchSession selected = found.stream()
-                .filter(match -> match.replay().teams().containsKey(owner))
-                .max(Comparator.comparingLong(match -> match.replay().frames().size())).orElse(found.getFirst());
-        try (ArenaMatchWorld restored = restoreWorld(selected.replay())) {
-            if (!restored.view().terminal()) activeMatches.put(owner, selected.replay().matchId());
-        }
-        return selected.replay().matchId();
-    }
-
-    private ArenaMatchWorld restoreWorld(ArenaMatchReplay replay) throws IOException {
-        requirePinnedRuleset(replay);
-        return ArenaMatchWorld.restore(replay);
-    }
-
-    private void requirePinnedRuleset(ArenaMatchReplay replay) throws IOException {
-        ArenaRuleset ruleset = store.requirePinnedPlayable(replay.rulesetId(), replay.rulesetVersion(), replay.rulesetHash());
-        if (ruleset.width() != replay.config().width() || ruleset.height() != replay.config().height()
-                || ruleset.durationSteps() != replay.config().durationSteps()
-                || ruleset.unitBudget() != replay.config().unitBudget())
-            throw new IOException("Arena replay config differs from its pinned ruleset");
+        return List.of("/genesis arena match invite <player> <team> | accept | leave | start <rulesetId> <version> [seed]",
+                "/genesis arena match pass | claim <x> <y> <force> | withdraw | dashboard | replay",
+                "/genesis arena match matches | select <matchId> | watch <matchId> | unwatch",
+                "管理历史：/genesis arena match prune <已结束的 matchId>（需要 stargenesis.arena.manage）");
     }
 
     private void scheduleGlobal(Runnable task) {
@@ -459,10 +365,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private void broadcastStarted(UUID owner) throws IOException {
-        List<ArenaMatchPersistence.MatchSession> sessions = matches.findForPlayer(owner);
-        if (sessions.isEmpty()) return;
-        ArenaMatchPersistence.MatchSession started = sessions.stream()
-                .filter(session -> session.replay().teams().containsKey(owner)).findFirst().orElse(sessions.getFirst());
+        ArenaMatchPersistence.MatchSession started = matchService.current(owner);
         scheduleGlobal(() -> started.replay().teams().keySet().forEach(participant -> {
             Player online = Bukkit.getPlayer(participant);
             if (online != null) send(participant, online, List.of("Arena match started · matchId=" + started.replay().matchId()));

@@ -16,7 +16,7 @@ v0 是本项目带测试的遗留契约样例，不声称曾在生产服发布�
 
 P0 不提供在线 reload 命令。调整 config.yml 后通过受控重启应用；越界预算、未知 config-version 或启用真实结算会拒绝插件启动。先备份插件数据目录，再升级。
 
-P1 实验室的磁盘快照与事件回放使用有界 JSON 文件，启动时校验格式和预算后再恢复。P2 个人蓝图继续使用 schemaVersion=1，通过 DesignCodec 校验 SHA-256；每位玩家最多64份，文件名由蓝图 ID 哈希生成。只在显式 save 时持久化工作区；保存会验证打开时的基准哈希，检测到并发变更时拒绝覆盖。当前不支持 P2 文件格式迁移或共享编辑。MemoryEventOutbox 仍不持久化，P9 的订单持久化仍须实现，不能宣称重启后存在真实物品/经济恢复。
+P1 实验室的磁盘快照与事件回放使用有界 JSON 文件，启动时校验格式和预算后再恢复。P2 个人蓝图继续使用 schemaVersion=1，通过 DesignCodec 校验 SHA-256；每位作者最多64份，文件名由蓝图 ID 哈希生成。只在显式 save 时持久化工作区；保存会验证打开时的基准哈希，检测到并发变更时拒绝覆盖。共享编辑仍写回作者目录，授权以当前持久文档为准；旧 schema-v1 私有文档不需要迁移。MemoryEventOutbox 仍不持久化，P9 已有持久 saga，但没有真实经济/物品 adapter，不能宣称重启后存在真实资产恢复。
 
 P3 typed IR 使用独立 `TYPED_PROGRAM` schemaVersion=1，不改变原 schema-v1 Program 文档；旧 Program 只通过显式 `ProgramCompiler` 编译。typed-program 文档使用规范 JSON SHA-256，未知 schema、原语、字段或类型拒绝加载。Paper 存储按作者 UUID 隔离，每玩家64份，显式保存并检查打开时的基准哈希。当前尚无 schema v0 或兼容性迁移。
 
@@ -26,7 +26,11 @@ P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版
 
 P7 沿用 `ArenaRuleset` schemaVersion=1，不增添可执行字段。玩家草稿位于 `arenas/drafts/<author UUID>/<sha256(id)>.json`，公开不可变版本位于 `arenas/published/<sha256(id@version)>.json`。同一 ID/version 一经发布不覆盖，变更必须提升语义版本。依赖以精确 DesignId/version/hash 固定，加载/发布时解析并校验公开与复用许可。发布文件未知字段、hash错配或依赖授权失效时拒绝加载和引用。
 
-P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限制8个玩家、每队至多4人。ArenaMatch replay schemaVersion=1 固定引擎 `genesis-arena-match/1`，包含公开 ruleset ID/version/hash、初始 roster、完整每轮动作、事件及 state/event commitments。Paper match session 同时保存尚未凑齐的一轮动作和 observer roster，文件上限8 MiB并原子替换。恢复时再次解析 ruleset 发布版及许可闭包，并校验尺寸、时长、unitBudget 与 pinned document 一致。未知字段、规则被撤销、roster 不匹配或 replay commitment 变化均拒绝恢复。算法变更需提升 match engine version。
+P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限制8个玩家、每队至多4人。历史 ArenaMatch replay schemaVersion=1 固定引擎 `genesis-arena-match/1`；读入和继续运行保持原格式、match ID 派生方式及 state/event commitments，不补写 runId。固定回归样本 `stargenesis-paper/src/test/resources/arena-match-v1.json` 从 `31ecf9c` 编译产物导出，包含已完成一轮、一个 pending action 和 observer。
+
+新比赛使用 replay schemaVersion=2 / `genesis-arena-match/2`，增加必填规范 UUID 字符串 `runId`。match ID 同时固定 runId、ruleset hash 和 roster，允许同一 seed/规则/队伍重复开赛而不复用事件 EvidenceId。回放器按明确版本构造引擎；未知或不匹配的 schema/engine、v2 缺少 runId、v1 混入 runId、身份或哈希被修改均拒绝。模拟 Java API 保留原 String matchId 构造函数供 v1 消费者使用；新比赛使用 UUID runId 构造函数。ArenaMatchReplay 保留旧构造函数，v2 使用新增 runId 的完整构造函数。
+
+Paper 外层 match session 仍为 schemaVersion=1，同时保存 replay、尚未凑齐的一轮动作和 observer roster。单文件上限8 MiB、目录128场且合计64 MiB，写盘与扫描均检查预算，强制落盘后原子替换。历史不会自动删除；OP 使用 `match prune <matchId>` 只清理已结束且无 pending 的记录。恢复时再次解析 ruleset 发布版及许可闭包，并校验尺寸、时长、unitBudget 与 pinned document 一致。未知字段、规则被撤销、roster 不匹配或 replay commitment 变化均拒绝恢复。赛前 roster 与比赛历史分开恢复；历史不重新加入已退出的玩家。显式查看选择仅保留在当前连接，重连/重启优先选择活跃参赛，其次活跃观战，最后已结束记录；同级按 match ID 排序。旧错误 pending 可由提交者使用 `withdraw` 撤回，不能重写已结算回合。
 
 P9 saga file schemaVersion=1 按 saga UUID 保存请求、授权 permit、状态和 revision，文件上限64 KiB并原子替换。付款/物品操作 key 根据 saga UUID 与 phase 稳定派生。恢复时先 lookup 外部 key；UNKNOWN 或副作用调用不确定时不会自动重试，并进入人工复核或保持可查状态。真实结算 adapter 尚未注册，StarCore/Vault 交易保持禁用。
 

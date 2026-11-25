@@ -6,7 +6,8 @@ import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.stargenesis.api.design.DesignId;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.stargenesis.sim.ArenaAction;
 import dev.stargenesis.sim.ArenaMatchReplay;
 
@@ -19,8 +20,6 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,6 +30,7 @@ public final class ArenaMatchPersistence {
     public static final int SCHEMA_VERSION = 1;
     public static final long MAX_FILE_BYTES = 8L * 1024 * 1024;
     public static final int MAX_RETAINED_MATCHES = 128;
+    public static final long MAX_CATALOG_BYTES = 64L * 1024 * 1024;
     private final Path directory;
     private final Path rosterFile;
     private final ObjectMapper mapper;
@@ -60,12 +60,24 @@ public final class ArenaMatchPersistence {
         byte[] data;
         try (var input = Files.newInputStream(file)) { data = input.readNBytes((int) MAX_FILE_BYTES + 1); }
         if (data.length > MAX_FILE_BYTES) throw new IOException("Arena match exceeds 8 MiB");
-        MatchSession session = mapper.readValue(data, MatchSession.class);
-        if (session.schemaVersion() != SCHEMA_VERSION || session.replay() == null
-                || !matchId.equals(session.replay().matchId())
-                || !matchId.equals(dev.stargenesis.sim.ArenaMatchWorld.matchIdFor(
-                session.replay().rulesetHash(), session.replay().teams())))
+        JsonNode document = mapper.readTree(data);
+        if (document == null || !document.isObject()) throw new IOException("Arena match must be a JSON object");
+        JsonNode replay = document.path("replay");
+        // v1 has no runId field. Preserve its schema, engine and commitments, including when re-saving it.
+        if (replay.isObject() && replay.path("schemaVersion").isInt() && replay.path("schemaVersion").intValue() == 1) {
+            if (replay.has("runId")) throw new IOException("Legacy Arena replay must not contain runId");
+            ((ObjectNode) replay).putNull("runId");
+        }
+        MatchSession session = mapper.treeToValue(document, MatchSession.class);
+        validateSession(session);
+        if (!matchId.equals(session.replay().matchId()))
             throw new IOException("Arena match identity or schema mismatch");
+        return Optional.of(session);
+    }
+
+    private void validateSession(MatchSession session) throws IOException {
+        if (session == null || session.schemaVersion() != SCHEMA_VERSION || session.replay() == null)
+            throw new IOException("Invalid Arena match session schema");
         if (session.pending().size() > session.replay().teams().size()
                 || session.pending().entrySet().stream().anyMatch(entry -> !session.replay().teams().containsKey(entry.getKey())
                 || !entry.getKey().equals(entry.getValue().actor()))
@@ -73,21 +85,39 @@ public final class ArenaMatchPersistence {
                 || session.spectators().stream().anyMatch(session.replay().teams()::containsKey)
                 || session.spectators().stream().distinct().count() != session.spectators().size())
             throw new IOException("Arena pending action roster mismatch");
-        return Optional.of(session);
     }
 
     public synchronized void save(MatchSession session) throws IOException {
-        if (session.schemaVersion() != SCHEMA_VERSION || session.replay() == null
-                || session.pending().size() > session.replay().teams().size())
-            throw new IOException("Invalid Arena match session");
+        validateSession(session);
         Path target = path(session.replay().matchId());
-        byte[] data = mapper.writeValueAsBytes(session);
+        ObjectNode document = mapper.valueToTree(session);
+        if (session.replay().schemaVersion() == 1) ((ObjectNode) document.path("replay")).remove("runId");
+        byte[] data = mapper.writeValueAsBytes(document);
         if (data.length > MAX_FILE_BYTES) throw new IOException("Arena match exceeds 8 MiB");
+        List<Path> files = matchFiles();
+        if (!files.contains(target) && files.size() >= MAX_RETAINED_MATCHES)
+            throw new IOException("Arena match catalog is full; an operator must prune completed history");
+        long totalBytes = data.length;
+        for (Path file : files) {
+            if (!file.equals(target)) totalBytes = Math.addExact(totalBytes, Files.size(file));
+        }
+        if (totalBytes > MAX_CATALOG_BYTES) throw new IOException("Arena match catalog exceeds 64 MiB");
         atomicWrite(target, data);
     }
 
     public synchronized List<MatchSession> findForPlayer(UUID player) throws IOException {
         if (player == null) throw new IllegalArgumentException("Missing arena player");
+        List<MatchSession> result = new ArrayList<>();
+        for (Path file : matchFiles()) {
+            String name = file.getFileName().toString();
+            load(name.substring(0, name.length() - ".match.json".length()))
+                    .filter(session -> session.replay().teams().containsKey(player) || session.spectators().contains(player))
+                    .ifPresent(result::add);
+        }
+        return List.copyOf(result);
+    }
+
+    private List<Path> matchFiles() throws IOException {
         List<Path> files;
         try (var stream = Files.list(directory)) {
             files = stream.filter(file -> file.getFileName().toString().matches("arena-[0-9a-f]{32}\\.match\\.json"))
@@ -95,25 +125,17 @@ public final class ArenaMatchPersistence {
         }
         if (files.size() > MAX_RETAINED_MATCHES) throw new IOException("Arena match catalog exceeds its budget");
         long totalBytes = 0;
-        List<MatchSession> matches = new ArrayList<>();
         for (Path file : files) {
+            if (Files.isSymbolicLink(file) || !Files.isRegularFile(file) || Files.size(file) > MAX_FILE_BYTES)
+                throw new IOException("Arena match is not regular or exceeds 8 MiB");
             totalBytes = Math.addExact(totalBytes, Files.size(file));
-            if (totalBytes > 64L * 1024 * 1024) throw new IOException("Arena match scan exceeds 64 MiB");
-            String name = file.getFileName().toString();
-            String matchId = name.substring(0, name.length() - ".match.json".length());
-            load(matchId).filter(session -> session.replay().teams().containsKey(player)
-                    || session.spectators().contains(player)).ifPresent(matches::add);
+            if (totalBytes > MAX_CATALOG_BYTES) throw new IOException("Arena match scan exceeds 64 MiB");
         }
-        return List.copyOf(matches);
+        return files;
     }
 
     public synchronized List<MatchSession> catalog() throws IOException {
-        List<Path> files;
-        try (var stream = Files.list(directory)) {
-            files = stream.filter(file -> file.getFileName().toString().matches("arena-[0-9a-f]{32}\\.match\\.json"))
-                    .sorted().limit(MAX_RETAINED_MATCHES + 1).toList();
-        }
-        if (files.size() > MAX_RETAINED_MATCHES) throw new IOException("Arena match catalog exceeds its budget");
+        List<Path> files = matchFiles();
         List<MatchSession> result = new ArrayList<>();
         for (Path file : files) result.add(load(file.getFileName().toString().substring(0,
                 file.getFileName().toString().length() - ".match.json".length())).orElseThrow());
@@ -183,7 +205,7 @@ public final class ArenaMatchPersistence {
                                List<UUID> spectators) {
         public MatchSession {
             pending = Map.copyOf(pending);
-            spectators = spectators.stream().distinct().sorted(Comparator.comparing(UUID::toString)).toList();
+            spectators = spectators.stream().sorted(Comparator.comparing(UUID::toString)).toList();
         }
         public static MatchSession initial(ArenaMatchReplay replay) { return new MatchSession(SCHEMA_VERSION, replay, Map.of(), List.of()); }
     }

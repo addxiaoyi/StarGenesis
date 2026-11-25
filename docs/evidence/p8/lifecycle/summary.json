@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "31ecf9c",
+  "scope": "P8 repeated matches, active match recovery, explicit viewing, roster lifecycle and bounded history.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 39,
+      "tests": 278,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-lifecycle-verify-java21.log",
+      "logSha256": "b8ae76c630c3e434274f252fed72d55f18cd0229feb09df5b85746d4b343a3b5",
+      "pluginSha256": "02e8bf007b2dba821b74d35baba8bd8567d9d4507f5910e509810a61efb3d29a",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 39,
+      "tests": 278,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-lifecycle-verify-java25.log",
+      "logSha256": "b8e47ffa7f19314f25377e3a21031df1afeae0fe34b199311ff369f1998f17b6",
+      "pluginSha256": "d6bfceafcfd9420af491ffc5c4a497f375bb9891d627edf7a0c0b1b0055887b9",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "d6bfceafcfd9420af491ffc5c4a497f375bb9891d627edf7a0c0b1b0055887b9",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "d6bfceafcfd9420af491ffc5c4a497f375bb9891d627edf7a0c0b1b0055887b9",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "matchIdentity": 4,
+    "persistenceCompatibilityAndBudgets": 5,
+    "matchLifecycle": 12
+  },
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/arena-match-v1.json",
+    "origin": "Exported from the shaded JAR built at 31ecf9c before modifying the replay format.",
+    "sha256": "14107e7e0d76b397be058301d29592380c71d81e03e030b53ce2716b8b2690d9",
+    "initialStateHash": "4ee94ba757a217afa18a9d26f3c55345fb9b78ef889ee0ec16491133af60f6ac",
+    "afterOneRoundStateHash": "a6f48fe08b0e997d2f806e5314f612651534c213124eff01c45abcebfbd3f18b",
+    "resumePreservesV1WireFormat": true
+  },
+  "checks": [
+    "Run UUID, ruleset hash and roster bind v2 match identity; repeated seeds get independent evidence IDs.",
+    "Legacy v1 commitments remain identical and a saved partial round resumes without adding runId.",
+    "Unknown, missing, null, duplicate, trailing and inconsistent replay fields are rejected.",
+    "Reconnect and restart prefer active participant matches over longer completed history.",
+    "Observer selection switches the viewed game; observers cannot submit actions or withdraw another player input.",
+    "Viewing historical matches cannot bypass active participation or roster exit restrictions.",
+    "Roster exits persist and match history cannot reinsert departed players.",
+    "Roster, observer and final-round write failures preserve disk state; retries commit exactly one transition.",
+    "The owner can withdraw an invalid v1 pending action while preserving all other inputs and completed frames.",
+    "Count and aggregate byte budgets apply to both reads and writes; bounded replacement writes remain allowed.",
+    "Only operators can prune completed history; active games remain intact and freed capacity allows a new game.",
+    "Observer seats can be reclaimed explicitly without changing gameplay state.",
+    "Boundary scan and git diff whitespace checks passed."
+  ],
+  "logs": {
+    "arena-lifecycle-existing.log": "6bdaecf141267c32c48c597e0454aa8c8173bfd22186ab9fe021df3b7df2858c",
+    "arena-lifecycle-focused.log": "62626313ea2383254edcfb598d2a0162dcec68fad821f37121b6981c1b7f94b3",
+    "arena-lifecycle-focused-retry.log": "4c9c314147265bba6ce25c6887767dea051af1e441074a92dc757640b028307f",
+    "arena-lifecycle-verify-java21.log": "b8ae76c630c3e434274f252fed72d55f18cd0229feb09df5b85746d4b343a3b5",
+    "arena-lifecycle-verify-java25.log": "b8e47ffa7f19314f25377e3a21031df1afeae0fe34b199311ff369f1998f17b6"
+  },
+  "limits": [
+    "No new live Paper/Folia client run for this batch; automated unit tests are not human or fairness acceptance.",
+    "Manual viewing selection lasts for the connection; persisted memberships drive active-first restart selection.",
+    "Initial focused run aborted due to host native memory pressure; the bounded retry and both full builds passed.",
+    "Tests ran without forks in a constrained Maven JVM; Java 21 reported a full code cache. No capacity claim.",
+    "Worst-case long-match admission against the 8 MiB persistence budget still needs further work.",
+    "Signer self-tests used ephemeral keys; no official release signing or real settlement integration.",
+    "Other P0-P11 implementation and human/external acceptance items remain open."
+  ]
+}

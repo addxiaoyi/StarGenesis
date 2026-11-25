@@ -12,18 +12,30 @@ import java.util.UUID;
 public record ArenaMatchReplay(int schemaVersion, String engineVersion, String matchId, long seed,
                                ArenaConfig config, Map<UUID, String> teams, String rulesetId,
                                String rulesetVersion, String rulesetHash, String initialStateHash,
-                               List<Frame> frames) {
+                               List<Frame> frames, String runId) {
+    /** Legacy v1 constructor retained for existing replay consumers. */
+    public ArenaMatchReplay(int schemaVersion, String engineVersion, String matchId, long seed,
+                            ArenaConfig config, Map<UUID, String> teams, String rulesetId,
+                            String rulesetVersion, String rulesetHash, String initialStateHash, List<Frame> frames) {
+        this(schemaVersion, engineVersion, matchId, seed, config, teams, rulesetId,
+                rulesetVersion, rulesetHash, initialStateHash, frames, null);
+    }
+
     public ArenaMatchReplay {
         Objects.requireNonNull(config, "config");
         Objects.requireNonNull(teams, "teams");
         teams = Map.copyOf(teams);
         frames = List.copyOf(frames);
-        if (schemaVersion != 1 || !ArenaMatchWorld.ENGINE_VERSION.equals(engineVersion)
+        boolean legacy = schemaVersion == 1 && ArenaMatchWorld.LEGACY_ENGINE_VERSION.equals(engineVersion) && runId == null;
+        boolean current = schemaVersion == 2 && ArenaMatchWorld.ENGINE_VERSION.equals(engineVersion)
+                && runId != null && runId.matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}");
+        if ((!legacy && !current)
                 || matchId == null || !matchId.matches("arena-[0-9a-f]{32}")
                 || teams.size() < 2 || teams.size() > ArenaMatchWorld.MAX_PLAYERS
                 || teams.values().stream().distinct().count() != 2
                 || !validHash(rulesetHash) || !validHash(initialStateHash)
-                || !matchId.equals(ArenaMatchWorld.matchIdFor(rulesetHash, teams))
+                || !matchId.equals(legacy ? ArenaMatchWorld.matchIdFor(rulesetHash, teams)
+                        : ArenaMatchWorld.matchIdFor(rulesetHash, teams, UUID.fromString(runId)))
                 || rulesetId == null || rulesetVersion == null || frames.size() > config.durationSteps())
             throw new IllegalArgumentException("Invalid or unbounded arena replay");
         DesignMetadataBounds.validate(rulesetId, rulesetVersion, teams);

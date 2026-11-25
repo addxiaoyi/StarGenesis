@@ -8,11 +8,11 @@ public final class ArenaMatchReplayVerifier {
 
     public static Verification verify(ArenaMatchReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!ArenaMatchWorld.ENGINE_VERSION.equals(replay.engineVersion()))
+        if (!ArenaMatchWorld.ENGINE_VERSION.equals(replay.engineVersion())
+                && !ArenaMatchWorld.LEGACY_ENGINE_VERSION.equals(replay.engineVersion()))
             return new Verification(false, -1, "UNSUPPORTED_ENGINE");
         long currentTick = 0;
-        try (ArenaMatchWorld world = new ArenaMatchWorld(replay.matchId(), replay.seed(), replay.config(),
-                replay.rulesetId(), replay.rulesetVersion(), replay.rulesetHash(), replay.teams())) {
+        try (ArenaMatchWorld world = ArenaMatchWorld.initialWorld(replay)) {
             if (!world.stateHash().equals(replay.initialStateHash()))
                 return new Verification(false, -1, "INITIAL_STATE_MISMATCH");
             for (ArenaMatchReplay.Frame frame : replay.frames()) {

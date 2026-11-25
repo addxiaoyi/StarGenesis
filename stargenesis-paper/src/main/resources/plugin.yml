@@ -44,6 +44,9 @@ permissions:
   stargenesis.arena.review:
     description: Review, approve or reject public ArenaRuleset submissions
     default: op
+  stargenesis.arena.manage:
+    description: Permanently prune completed Arena match history to free its bounded catalog
+    default: op
   stargenesis.import:
     description: Import administrator-staged designs signed by a trusted Ed25519 publisher
     default: true

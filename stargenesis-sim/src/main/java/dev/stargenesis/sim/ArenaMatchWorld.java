@@ -17,13 +17,16 @@ import java.util.UUID;
 
 /** Deterministic two-team, multi-player territory contest powered by one published ArenaRuleset. */
 public final class ArenaMatchWorld implements AutoCloseable {
-    public static final String ENGINE_VERSION = "genesis-arena-match/1";
+    public static final String LEGACY_ENGINE_VERSION = "genesis-arena-match/1";
+    public static final String ENGINE_VERSION = "genesis-arena-match/2";
     public static final int MAX_PLAYERS = 8;
     public static final int MAX_EVENTS_PER_TICK = 128;
     private static final String ZERO_HASH = "0".repeat(64);
     private static final Comparator<UUID> UUID_ORDER = Comparator.comparing(UUID::toString);
     private final OwnerThread owner = new OwnerThread();
     private final String matchId;
+    private final String runId;
+    private final String engineVersion;
     private final long seed;
     private final ArenaConfig config;
     private final String rulesetId;
@@ -46,12 +49,26 @@ public final class ArenaMatchWorld implements AutoCloseable {
 
     public ArenaMatchWorld(String matchId, long seed, ArenaConfig config, String rulesetId,
                            String rulesetVersion, String rulesetHash, Map<UUID, String> roster) {
-        new EvidenceId(matchId.replace("-", "_"), 0, 0);
+        this(matchId, null, seed, config, rulesetId, rulesetVersion, rulesetHash, roster);
+    }
+
+    /** New games pin a unique run UUID as well as their ruleset and roster. */
+    public ArenaMatchWorld(UUID runId, long seed, ArenaConfig config, String rulesetId,
+                           String rulesetVersion, String rulesetHash, Map<UUID, String> roster) {
+        this(matchIdFor(rulesetHash, roster, runId), runId.toString(), seed, config,
+                rulesetId, rulesetVersion, rulesetHash, roster);
+    }
+
+    private ArenaMatchWorld(String matchId, String runId, long seed, ArenaConfig config, String rulesetId,
+                            String rulesetVersion, String rulesetHash, Map<UUID, String> roster) {
         if (matchId == null || !matchId.matches("arena-[0-9a-f]{32}")
                 || !validHash(rulesetHash) || !validRulesetId(rulesetId)
                 || rulesetVersion == null || !rulesetVersion.matches("(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})"))
             throw new IllegalArgumentException("Invalid arena match or ruleset identity");
+        new EvidenceId(matchId.replace("-", "_"), 0, 0);
         this.matchId = matchId;
+        this.runId = runId;
+        this.engineVersion = runId == null ? LEGACY_ENGINE_VERSION : ENGINE_VERSION;
         this.seed = seed;
         this.config = Objects.requireNonNull(config, "config");
         this.rulesetId = rulesetId;
@@ -81,11 +98,23 @@ public final class ArenaMatchWorld implements AutoCloseable {
         return "arena-" + sha256(input.toString()).substring(0, 32);
     }
 
+    public static String matchIdFor(String rulesetHash, Map<UUID, String> roster, UUID runId) {
+        Objects.requireNonNull(runId, "runId");
+        StringBuilder input = new StringBuilder();
+        token(input, ENGINE_VERSION);
+        token(input, runId.toString());
+        token(input, matchIdFor(rulesetHash, roster));
+        return "arena-" + sha256(input.toString()).substring(0, 32);
+    }
+
+    static ArenaMatchWorld initialWorld(ArenaMatchReplay replay) {
+        return new ArenaMatchWorld(replay.matchId(), replay.runId(), replay.seed(), replay.config(), replay.rulesetId(),
+                replay.rulesetVersion(), replay.rulesetHash(), replay.teams());
+    }
+
     public static ArenaMatchWorld restore(ArenaMatchReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!ENGINE_VERSION.equals(replay.engineVersion())) throw new IllegalArgumentException("Unsupported arena match engine");
-        ArenaMatchWorld world = new ArenaMatchWorld(replay.matchId(), replay.seed(), replay.config(), replay.rulesetId(),
-                replay.rulesetVersion(), replay.rulesetHash(), replay.teams());
+        ArenaMatchWorld world = initialWorld(replay);
         try {
             if (!world.initialStateHash.equals(replay.initialStateHash()))
                 throw new IllegalArgumentException("Arena match initial state commitment mismatch");
@@ -265,7 +294,8 @@ public final class ArenaMatchWorld implements AutoCloseable {
                 || roster.keySet().stream().anyMatch(Objects::isNull)
                 || roster.values().stream().anyMatch(team -> team == null || !team.matches("[a-z][a-z0-9_-]{0,31}"))
                 || roster.values().stream().distinct().count() != 2
-                || !matchId.equals(matchIdFor(rulesetHash, roster)))
+                || !matchId.equals(runId == null ? matchIdFor(rulesetHash, roster)
+                        : matchIdFor(rulesetHash, roster, UUID.fromString(runId))))
             throw new IllegalArgumentException("Arena match requires a bounded two-team authenticated roster");
         teams.putAll(roster);
     }
@@ -314,15 +344,15 @@ public final class ArenaMatchWorld implements AutoCloseable {
 
     public ArenaMatchReplay replay() {
         owner.check();
-        return new ArenaMatchReplay(1, ENGINE_VERSION, matchId, seed, config, teams, rulesetId,
-                rulesetVersion, rulesetHash, initialStateHash, history);
+        return new ArenaMatchReplay(runId == null ? 1 : 2, engineVersion, matchId, seed, config, teams, rulesetId,
+                rulesetVersion, rulesetHash, initialStateHash, history, runId);
     }
 
     public String matchId() { owner.check(); return matchId; }
     public String stateHash() {
         owner.check();
         StringBuilder state = new StringBuilder();
-        token(state, ENGINE_VERSION); token(state, matchId); token(state, Long.toString(seed));
+        token(state, engineVersion); token(state, matchId); token(state, Long.toString(seed));
         token(state, Integer.toString(config.width())); token(state, Integer.toString(config.height()));
         token(state, Long.toString(config.durationSteps())); token(state, Integer.toString(config.unitBudget()));
         token(state, rulesetId); token(state, rulesetVersion); token(state, rulesetHash); token(state, Long.toString(tick));

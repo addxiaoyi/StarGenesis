@@ -188,9 +188,18 @@ P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两
 /genesis arena match dashboard
 /genesis arena match replay
 /genesis arena match watch <matchId>
+/genesis arena match matches
+/genesis arena match select <matchId>
+/genesis arena match unwatch
+/genesis arena match withdraw
+/genesis arena match leave
 ```
 
 合法 claim 必须贴邻本队领地，不能越过 ArenaRuleset 的地图尺寸或单位预算。争夺按 seed 和 round 轮换先手确定胜负，时限结束后按 territory score 结算。比赛文件保存 ruleset 精确 hash、完整 roster、事件和每轮 commitments；每次提交先验证坐标、邻接、比赛状态和本队所有已提交动作的合计消耗，合法动作才原子保存，四人动作齐全后才更新 match replay。非法提交保留原存档，玩家可重新提交合法动作。断线玩家重连后恢复 match 和待提交动作，observer 只读 dashboard/replay，不能提交动作。Paper/Folia 五客户端实服流程已注入 socket 断线，验证 observer 所见 pending action、同一 UUID 重连、原 match 恢复和最终回合 replay；这是自动化客户端覆盖，不替代真人双队验收和公平性研究。P8 不生成真实物品或货币。
+
+同一队伍、规则和 seed 可在比赛结束后再次开赛，每场保留独立记录。重连/重启默认优先恢复未结束的参赛比赛，其次是正在观战的比赛，最后才是已结束的历史；相同优先级按 match ID 稳定选择，其他记录可通过 `matches` 和 `select` 查看。`watch` 会选中目标比赛，`unwatch` 释放观战席位；动作只作用于当前选择的参赛比赛。手动选择仅保留到断线，观战名单会持久保存。`withdraw` 只撤回本人尚未结算的动作，可用于修复旧存档中错误封存的输入；已结算回合不可撤回。`leave` 仅在本人没有活跃比赛时退出赛前 roster，历史比赛不会把已退出成员重新加回。
+
+比赛目录最多128场、合计64 MiB，单场8 MiB、每场128位 observer。写入前检查上限，超限时保留原记录。管理员可用 `/genesis arena match prune <matchId>` 永久删除已结束且无待处理动作的历史比赛以释放空间；该命令需要 `stargenesis.arena.manage`（默认 OP），不能删除进行中的比赛。v1 回放保留原引擎和 commitments；新场次使用 v2，详见 `docs/MIGRATIONS.md`。上述生命周期新增命令目前通过纯 Java 回归验证，尚未重复实服客户端验收。
 
 P9 settlement saga 已定义显式授权 permit、credits/item 双腿、稳定幂等 operation key 查询、补偿退款和不确定结果的人工复核状态。Paper 按 saga UUID 原子保存状态并以 revision 防覆盖冲突。当前 StarCore 公开转账没有外部幂等键，TransactionFabric 不执行钱包/物品副作用，所以没有注册真实结算 adapter，生产扣款与物品交付继续关闭。
 
