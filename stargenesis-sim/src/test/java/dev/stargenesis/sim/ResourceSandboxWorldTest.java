@@ -132,6 +132,23 @@ class ResourceSandboxWorldTest {
         }
     }
 
+    @Test void checkpointRestoreRejectsAlteredHistoricalInputWithUnchangedEventsAndFinalState() {
+        try (var original = world()) {
+            for (int step = 0; step < 30; step++) next(original);
+            var snapshot = original.snapshot();
+            var history = new ArrayList<>(snapshot.history());
+            var frame = history.get(11);
+            var id = original.view().agents().getFirst().id();
+            history.set(11, new ReplayLog.Frame(new StepInput(11,
+                    List.of(new StepInput.Command(id, 0, "pause", Map.of()))), frame.stateHash(), frame.events()));
+            var tampered = new WorldSnapshot(snapshot.engineVersion(), snapshot.schemaVersion(), snapshot.worldId(),
+                    snapshot.seed(), snapshot.config(), snapshot.tick(), snapshot.terrain(), snapshot.base(), snapshot.nodes(),
+                    snapshot.agents(), snapshot.ledger(), snapshot.ledgerHistoryHash(), snapshot.eventHistoryHash(),
+                    snapshot.terminal(), snapshot.reason(), history, snapshot.stateHash());
+            assertThrows(IllegalArgumentException.class, () -> ResourceSandboxWorld.restore(tampered));
+        }
+    }
+
     @Test void twoToFourAgentsStayInBoundsAndDoNotPassThroughWallsOrEachOther() {
         for (int count = 2; count <= 4; count++) {
             try (var simulation = new ResourceSandboxWorld("sandbox-test", 42L, SandboxConfig.defaults().withAgentCount(count))) {

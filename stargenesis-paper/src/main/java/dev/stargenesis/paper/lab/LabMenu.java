@@ -64,9 +64,9 @@ final class LabMenu implements InventoryHolder {
                 "阶段 " + session.phase, session.message, "仅模拟分，无真实物品或货币"));
         inventory.setItem(46, item(Material.COMPASS, "种子 " + session.seed,
                 view == null ? "等待受控模拟线程" : "状态哈希 " + view.stateHash().substring(0, 16), "相同种子与输入应得到相同结果"));
-        inventory.setItem(47, item(Material.BARRIER, "停止实验", "保存本次内存回放，下一逻辑步生效"));
-        inventory.setItem(49, item(Material.RECOVERY_COMPASS, "验证并重播上一局", "逐步核对状态哈希与事件", "当前实验须先结束；内存回放重启不保留"));
-        inventory.setItem(50, item(Material.CHEST, "恢复最近检查点", "使用 /genesis lab resume", "每100逻辑步及停止时原子保存"));
+        inventory.setItem(47, item(Material.BARRIER, "停止实验", "保存进度和回放，下一逻辑步生效", "保存失败时暂停并自动重试"));
+        inventory.setItem(49, item(Material.RECOVERY_COMPASS, "验证并重播上一局", "逐步核对状态哈希与事件", "当前实验须先结束；已保存回放可在重启后读取"));
+        inventory.setItem(50, item(Material.CHEST, "恢复最近检查点", "使用 /genesis lab resume", "每100逻辑步及停止时保存进度和回放"));
         inventory.setItem(51, item(Material.LIME_DYE, "再开始一局", "先结束当前实验", "命令可指定种子和1–4造物"));
         inventory.setItem(53, item(Material.PAPER, "观察四个原语", "寻找 → 移动 → 采集 → 投递", "灰色=阻挡，桶=基地，时钟=造物", "关闭界面将停止本局"));
     }

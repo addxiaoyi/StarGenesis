@@ -1,12 +1,10 @@
 package dev.stargenesis.paper.lab;
 
 import dev.stargenesis.api.sim.SimulationBudget;
-import dev.stargenesis.api.sim.StepInput;
-import dev.stargenesis.sim.ReplayLog;
-import dev.stargenesis.sim.ResourceSandboxWorld;
+import dev.stargenesis.paper.lab.LabExperiment.Mode;
+import dev.stargenesis.paper.lab.LabExperiment.Phase;
 import dev.stargenesis.sim.SandboxConfig;
 import dev.stargenesis.sim.SandboxView;
-import dev.stargenesis.sim.WorldSnapshot;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,10 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +29,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
 /**
@@ -54,9 +48,7 @@ public final class LabController implements Listener, AutoCloseable {
     private final ScheduledExecutorService worker;
     private final ConcurrentMap<UUID, Session> sessions = new ConcurrentHashMap<>();
     private final ConcurrentMap<UUID, LabMenu> menus = new ConcurrentHashMap<>();
-    private final Map<UUID, ReplayLog> recordings = new LinkedHashMap<>();
     private final Object reservationLock = new Object();
-    private final AtomicLong nextWorld = new AtomicLong();
     private final AtomicBoolean closed = new AtomicBoolean();
     private final boolean folia;
 
@@ -101,7 +93,7 @@ public final class LabController implements Listener, AutoCloseable {
                     long seed = args.length > 1 ? Long.parseLong(args[1]) : 20_261_119L;
                     int count = args.length > 2 ? Integer.parseInt(args[2]) : Math.min(2, budget.maxAgents());
                     if (count < 1 || count > 4 || count > budget.maxAgents()) throw new IllegalArgumentException();
-                    start(player, seed, count, null, Mode.NEW);
+                    start(player, seed, count, Mode.NEW);
                 } catch (IllegalArgumentException invalid) {
                     player.sendMessage("参数无效：/genesis lab start [整数种子] [1–4造物，受配置上限限制]");
                 }
@@ -111,12 +103,8 @@ public final class LabController implements Listener, AutoCloseable {
                 if (current == null || !current.active()) player.sendMessage("当前没有正在运行的实验。");
                 else { current.stopRequested.set(true); player.sendMessage("实验将在下一个逻辑步安全停止，并保留本次回放。"); }
             }
-            case "replay" -> {
-                ReplayLog log;
-                synchronized (reservationLock) { log = recordings.get(owner); }
-                start(player, log == null ? 0 : log.seed(), log == null ? 1 : log.config().agentCount(), log, Mode.REPLAY);
-            }
-            case "resume" -> start(player, 0, 1, null, Mode.RESUME);
+            case "replay" -> start(player, 0, 1, Mode.REPLAY);
+            case "resume" -> start(player, 0, 1, Mode.RESUME);
             case "status" -> {
                 Session current = sessions.get(owner);
                 if (current == null) { player.sendMessage("尚未开始实验；/genesis lab start"); break; }
@@ -140,7 +128,7 @@ public final class LabController implements Listener, AutoCloseable {
                 : "默认约4分钟；只计模拟分，不生成真实物品或货币。关闭菜单会停止实验。");
     }
 
-    private void start(Player player, long seed, int count, ReplayLog replay, Mode mode) {
+    private void start(Player player, long seed, int count, Mode mode) {
         UUID owner = player.getUniqueId();
         Session session;
         synchronized (reservationLock) {
@@ -156,11 +144,10 @@ public final class LabController implements Listener, AutoCloseable {
                 sessions.remove(idle.get().getKey(), idle.get().getValue());
             }
             SandboxConfig defaults = SandboxConfig.defaults();
-            SandboxConfig config = replay == null
-                    ? new SandboxConfig(defaults.width(), defaults.height(), count, defaults.actionIntervalSteps(),
+            SandboxConfig config = new SandboxConfig(defaults.width(), defaults.height(), count, defaults.actionIntervalSteps(),
                     Math.min(defaults.durationSteps(), budget.maxSteps()), defaults.energyPerAgent(), defaults.nodeStock(),
-                    defaults.carryCapacity(), budget) : replay.config();
-            session = new Session(owner, "lab-" + Long.toUnsignedString(nextWorld.incrementAndGet()), seed, config, replay, mode);
+                    defaults.carryCapacity(), budget);
+            session = new Session(owner, "lab-" + UUID.randomUUID(), seed, config, mode);
             sessions.put(owner, session);
         }
         if (!folia) open(player, session);
@@ -197,92 +184,25 @@ public final class LabController implements Listener, AutoCloseable {
     private void tick() {
         if (closed.get()) return;
         for (Session session : new ArrayList<>(sessions.values())) {
+            if (!session.active()) continue;
+            if (session.experiment == null) session.experiment = new LabExperiment(session.owner, session.worldId,
+                    session.seed, session.config, session.mode, budget, persistence);
             try {
-                if (!session.active()) continue;
-                if (session.stopRequested.get()) { finish(session, Phase.STOPPED, "PLAYER_STOPPED"); continue; }
-                if (session.world == null) {
-                    initialize(session);
-                    session.view = session.world.view(); session.phase = Phase.RUNNING;
-                    session.message = session.mode == Mode.REPLAY ? "REPLAY_VERIFYING" : "RUNNING";
-                    if (session.view.terminal()) { finish(session, Phase.FINISHED, "CHECKPOINT_ALREADY_TERMINAL_USE_START"); continue; }
+                session.experiment.advance(session.stopRequested.get());
+                if (session.persistenceFailureReported) {
+                    logger.info("Lab evidence persistence recovered for " + session.owner);
+                    session.persistenceFailureReported = false;
                 }
-                StepInput input;
-                ReplayLog.Frame expected = null;
-                if (session.replay == null) input = new StepInput(session.world.tick(), List.of());
-                else {
-                    if (session.replayIndex >= session.replay.frames().size()) { finish(session, Phase.FINISHED, "REPLAY_HASH_AND_EVENTS_VERIFIED"); continue; }
-                    expected = session.replay.frames().get(session.replayIndex);
-                    input = expected.input();
-                }
-                var result = session.world.step(input);
-                session.view = session.world.view();
-                if (session.mode != Mode.REPLAY && session.view.tick() % 100 == 0)
-                    persistence.saveSnapshot(session.owner, session.world.snapshot());
-                if (expected != null) {
-                    if (!result.stateHash().equals(expected.stateHash()) || !result.events().equals(expected.events())) {
-                        finish(session, Phase.ERROR, "REPLAY_DIVERGED_AT_STEP_" + input.tick()); continue;
-                    }
-                    session.replayIndex++;
-                    if (session.replayIndex == session.replay.frames().size()) { finish(session, Phase.FINISHED, "REPLAY_HASH_AND_EVENTS_VERIFIED"); continue; }
-                }
-                if (result.terminal()) finish(session, Phase.FINISHED, result.reason());
-            } catch (RuntimeException | IOException failure) {
-                finish(session, Phase.ERROR, (failure instanceof IOException ? "PERSISTENCE_FAILED:" : "SIMULATION_REJECTED:") + failure.getClass().getSimpleName());
-                logger.warning("Lab " + session.worldId + " rejected: " + failure.getMessage());
-            }
-        }
-    }
-
-    private void initialize(Session session) throws IOException {
-        if (session.mode == Mode.RESUME) {
-            WorldSnapshot snapshot = persistence.loadSnapshot(session.owner)
-                    .orElseThrow(() -> new IllegalArgumentException("NO_CHECKPOINT_AVAILABLE"));
-            requireCurrentBudget(snapshot.config());
-            session.config = snapshot.config(); session.seed = snapshot.seed();
-            session.world = ResourceSandboxWorld.restore(snapshot);
-        } else {
-            if (session.mode == Mode.REPLAY && session.replay == null)
-                session.replay = persistence.loadReplay(session.owner)
-                        .orElseThrow(() -> new IllegalArgumentException("NO_REPLAY_AVAILABLE"));
-            ReplayLog replay = session.replay;
-            if (replay != null) { requireCurrentBudget(replay.config()); session.config = replay.config(); session.seed = replay.seed(); }
-            session.world = new ResourceSandboxWorld(replay == null ? session.worldId : replay.worldId(), session.seed, session.config);
-            if (session.mode == Mode.NEW) persistence.saveSnapshot(session.owner, session.world.snapshot());
-        }
-    }
-
-    private void requireCurrentBudget(SandboxConfig config) {
-        SimulationBudget previous = config.budget();
-        if (config.width() > 9 || config.height() > 5 || config.agentCount() > budget.maxAgents()
-                || previous.nodesPerAgentStep() > budget.nodesPerAgentStep() || previous.maxAgents() > budget.maxAgents()
-                || previous.pathRequestsPerStep() > budget.pathRequestsPerStep() || config.durationSteps() > budget.maxSteps()
-                || previous.sensorRadius() > budget.sensorRadius() || previous.messagesPerStep() > budget.messagesPerStep())
-            throw new IllegalArgumentException("EVIDENCE_EXCEEDS_CURRENT_LAB_BUDGET");
-    }
-
-    /** Worker-thread only: retrieve evidence before closing its owner-thread world. */
-    private void finish(Session session, Phase phase, String reason) {
-        if (session.world != null) {
-            try {
-                if (session.mode != Mode.REPLAY) {
-                    if (phase != Phase.ERROR) persistence.saveSnapshot(session.owner, session.world.snapshot());
-                    ReplayLog recording = session.world.replayLog();
-                    persistence.saveReplay(session.owner, recording);
-                    synchronized (reservationLock) {
-                        recordings.remove(session.owner); recordings.put(session.owner, recording);
-                        while (recordings.size() > MAX_RETAINED_PLAYERS) recordings.remove(recordings.keySet().iterator().next());
-                    }
-                }
-            } catch (IOException | RuntimeException failure) {
-                phase = Phase.ERROR; reason = "EVIDENCE_SAVE_FAILED:" + failure.getClass().getSimpleName();
-                logger.warning("Lab evidence save failed for " + session.worldId + ": " + failure.getMessage());
+            } catch (IOException failure) {
+                if (!session.persistenceFailureReported)
+                    logger.warning("Lab evidence save/load failed for " + session.owner + ": " + failure.getMessage());
+                session.persistenceFailureReported = true;
+            } catch (RuntimeException invalid) {
+                logger.warning("Lab " + session.worldId + " rejected: " + invalid.getMessage());
             } finally {
-                try { session.world.close(); }
-                catch (RuntimeException failure) { phase = Phase.ERROR; reason = "WORLD_CLOSE_FAILED:" + failure.getClass().getSimpleName(); }
-                session.world = null;
+                session.refresh();
             }
         }
-        session.message = reason; session.phase = phase;
     }
 
     private void retire(LabMenu menu) {
@@ -331,10 +251,16 @@ public final class LabController implements Listener, AutoCloseable {
         menus.clear();
         worker.execute(() -> {
             for (Session session : sessions.values()) {
-                if (session.world != null) finish(session, Phase.STOPPED, "PLUGIN_STOPPED");
+                if (session.experiment != null) {
+                    try { session.experiment.close(); }
+                    catch (IOException | RuntimeException failure) {
+                        logger.warning("Lab shutdown evidence save failed for " + session.owner + ": " + failure.getMessage());
+                        session.experiment.abort("SHUTDOWN_SAVE_FAILED_PREVIOUS_CHECKPOINT_PRESERVED");
+                    }
+                    session.refresh();
+                } else { session.phase = Phase.STOPPED; session.message = "PLUGIN_STOPPED"; }
             }
             sessions.clear();
-            synchronized (reservationLock) { recordings.clear(); }
         });
         worker.shutdown();
         try {
@@ -342,25 +268,26 @@ public final class LabController implements Listener, AutoCloseable {
         } catch (InterruptedException interrupted) { worker.shutdownNow(); Thread.currentThread().interrupt(); }
     }
 
-    enum Phase { STARTING, RUNNING, FINISHED, STOPPED, ERROR }
-    enum Mode { NEW, REPLAY, RESUME }
     static final class Session {
         final UUID owner;
         final String worldId;
         volatile long seed;
         volatile SandboxConfig config;
-        volatile ReplayLog replay;
         final Mode mode;
         final AtomicBoolean stopRequested = new AtomicBoolean();
         final AtomicBoolean terminalMessageSent = new AtomicBoolean();
         volatile Phase phase = Phase.STARTING;
         volatile String message = "STARTING";
         volatile SandboxView view;
-        ResourceSandboxWorld world; // worker only
-        int replayIndex; // worker only
-        Session(UUID owner, String worldId, long seed, SandboxConfig config, ReplayLog replay, Mode mode) {
-            this.owner = owner; this.worldId = worldId; this.seed = seed; this.config = config; this.replay = replay; this.mode = mode;
+        LabExperiment experiment; // worker only
+        boolean persistenceFailureReported; // worker only
+        Session(UUID owner, String worldId, long seed, SandboxConfig config, Mode mode) {
+            this.owner = owner; this.worldId = worldId; this.seed = seed; this.config = config; this.mode = mode;
         }
-        boolean active() { return phase == Phase.STARTING || phase == Phase.RUNNING; }
+        void refresh() {
+            view = experiment.view(); seed = experiment.seed(); config = experiment.config();
+            message = experiment.message(); phase = experiment.phase();
+        }
+        boolean active() { return phase == Phase.STARTING || phase == Phase.RUNNING || phase == Phase.SAVING; }
     }
 }

@@ -57,41 +57,24 @@ public final class ResourceSandboxWorld implements SimulationWorld {
         validateConservation();
     }
 
-    private ResourceSandboxWorld(WorldSnapshot snapshot) {
+    public static ResourceSandboxWorld restore(WorldSnapshot snapshot) {
+        Objects.requireNonNull(snapshot);
         if (!SANDBOX_ENGINE_VERSION.equals(snapshot.engineVersion())) throw new IllegalArgumentException("Unsupported sandbox engine");
-        new EvidenceId(snapshot.worldId(),0,0);
-        worldId=snapshot.worldId(); seed=snapshot.seed(); config=snapshot.config(); terrain=snapshot.terrain(); base=snapshot.base(); nodes=snapshot.nodes();
-        tick=snapshot.tick(); terminal=snapshot.terminal(); reason=snapshot.reason(); ledger=ConservingResourceLedger.restore(snapshot.ledger());
-        ledgerHistoryHash=snapshot.ledgerHistoryHash(); eventHistoryHash=snapshot.eventHistoryHash(); history.addAll(snapshot.history());
-        ResourceSandboxWorld initial = new ResourceSandboxWorld(worldId,seed,config);
-        if (!terrain.equals(initial.terrain) || !base.equals(initial.base) || !nodes.equals(initial.nodes)) throw new IllegalArgumentException("Snapshot geography differs from seed");
-        for (WorldSnapshot.AgentState state : snapshot.agents()) {
-            if (!initial.agents.containsKey(state.id()) || agents.containsKey(state.id()) || !walkable(state.position()))
-                throw new IllegalArgumentException("Invalid snapshot agent");
-            Agent a=new Agent(state.id(),state.position()); a.target=state.targetNode(); a.preferred=state.preferredResource(); a.paused=state.paused(); a.lastSequence=state.lastSequence(); a.status=state.status(); agents.put(a.id,a);
+        var restored = new ResourceSandboxWorld(snapshot.worldId(), snapshot.seed(), snapshot.config());
+        try {
+            for (var frame : snapshot.history()) {
+                var result = restored.step(frame.input());
+                if (!result.stateHash().equals(frame.stateHash()) || !result.events().equals(frame.events()))
+                    throw new IllegalArgumentException("Snapshot replay mismatch at tick " + frame.input().tick());
+            }
+            if (!restored.snapshot().equals(snapshot))
+                throw new IllegalArgumentException("Snapshot state or ledger differs from its complete replay history");
+            return restored;
+        } catch (RuntimeException invalid) {
+            restored.close();
+            throw new IllegalArgumentException("Invalid sandbox checkpoint", invalid);
         }
-        if (agents.values().stream().map(a->a.position).distinct().count()!=agents.size()) throw new IllegalArgumentException("Snapshot agents overlap");
-        if (!ledger.snapshot().keySet().equals(initial.ledger.snapshot().keySet())) throw new IllegalArgumentException("Unknown snapshot ledger account");
-        String ledgerChain=ZERO_HASH;
-        for (ConservingResourceLedger.Attempt attempt : snapshot.ledger().attempts()) {
-            if (!attempt.key().world().equals(worldId) || attempt.key().tick()>=tick) throw new IllegalArgumentException("Invalid ledger evidence time");
-            ledgerChain=chainAttempt(ledgerChain,attempt);
-        }
-        if (!ledgerChain.equals(ledgerHistoryHash)) throw new IllegalArgumentException("Ledger history commitment mismatch");
-        String eventChain=ZERO_HASH;
-        for(int i=0;i<history.size();i++) {
-            ReplayLog.Frame frame=history.get(i);
-            if(frame.input().tick()!=i) throw new IllegalArgumentException("Nonsequential snapshot replay");
-            for(EventRecord event:frame.events()) eventChain=chainEvent(eventChain,event);
-        }
-        if (!eventChain.equals(eventHistoryHash)) throw new IllegalArgumentException("Event history commitment mismatch");
-        validateConservation();
-        if (!stateHash().equals(snapshot.stateHash())) throw new IllegalArgumentException("Snapshot state hash mismatch");
-        if (!history.isEmpty() && !history.getLast().stateHash().equals(snapshot.stateHash())) throw new IllegalArgumentException("Snapshot replay tail mismatch");
-        initial.close();
     }
-
-    public static ResourceSandboxWorld restore(WorldSnapshot snapshot) { return new ResourceSandboxWorld(Objects.requireNonNull(snapshot)); }
     @Override public String worldId() { owner.check(); return worldId; }
     @Override public long seed() { owner.check(); return seed; }
     @Override public long tick() { owner.check(); return tick; }

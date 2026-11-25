@@ -18,6 +18,10 @@ P0 不提供在线 reload 命令。调整 config.yml 后通过受控重启应用
 
 P1 实验室的磁盘快照与事件回放使用有界 JSON 文件，启动时校验格式和预算后再恢复。P2 个人蓝图继续使用 schemaVersion=1，通过 DesignCodec 校验 SHA-256；每位作者最多64份，文件名由蓝图 ID 哈希生成。只在显式 save 时持久化工作区；保存会验证打开时的基准哈希，检测到并发变更时拒绝覆盖。共享编辑仍写回作者目录，授权以当前持久文档为准；旧 schema-v1 私有文档不需要迁移。MemoryEventOutbox 仍不持久化，P9 已有持久 saga，但没有真实经济/物品 adapter，不能宣称重启后存在真实资产恢复。
 
+P1 新生命周期将快照及其完整历史放入单个 `lab/<owner UUID>.lab.json`，外层 schemaVersion=1 固定 owner，内层继续使用 `genesis-sandbox/1` / snapshot schemaVersion=1；回放从同一历史派生。文件上限仍为4 MiB，强制落盘后原子替换，失败不得只更新快照或回放之一。若合并文件不存在，读取旧 `.snapshot.json` / `.replay.json`；存在但损坏、归属不符或版本未知时明确拒绝，不退回旧记录。首次成功保存合并文件后优先读取它，原旧文件原字节保留。回退旧插件会重新读到旧文件，因此回退前须保留最新合并文件，不应把旧进度误当成当前进度。
+
+新实验先提交第0步，之后每100步、停止、自然结束及关闭保存；失败进入 SAVING 并冻结待保存状态，下一轮重试。首次提交失败可取消且不会替代上一局；后续停止保存失败仍占用活跃实验席位。最终关服保存失败会记录错误并保留上一有效文件，不保证未保存步骤。回放始终只读；终局检查点恢复不会再推进。检查点恢复按历史输入重演并逐帧核对状态哈希、事件及最终完整状态，矛盾旧存档现在拒绝；合法旧档保留原哈希。固定 snapshot/replay fixture 从 `556a5e3` 的已验证JAR导出，验证第50步到第100步的原哈希。新场次ID使用随机UUID，重复种子与重启不会复用旧实验事件身份；恢复继续使用已存ID。
+
 P3 typed IR 使用独立 `TYPED_PROGRAM` schemaVersion=1，不改变原 schema-v1 Program 文档；旧 Program 只通过显式 `ProgramCompiler` 编译。typed-program 文档使用规范 JSON SHA-256，未知 schema、原语、字段或类型拒绝加载。Paper 存储按作者 UUID 隔离，每玩家64份，显式保存并检查打开时的基准哈希。当前尚无 schema v0 或兼容性迁移。
 
 P4 radio wire message 引用已封存 Protocol ID 与 SHA-256，不引入 wire message 格式变化。PDC chip 记录 protocol ID/hash，不构成数字签名或身份授权。Paper 将 mailbox、发送/确认事件、sequence 去重、ContractRuntime 状态以及当前 Protocol/Contract ID 与 hash 写入 `radio-state.json` schemaVersion=1，文件上限16 MiB并通过原子替换更新。入队、确认、成功处理的 Contract 消息和关服时立即保存，逻辑 tick 每20步检查点保存。未知 schema、pinned hash 变化、tick 不一致或超预算时拒绝恢复，不自动丢弃或迁移数据。在线端点不落盘，重启后玩家须重新 join。当前固定 service Contract 定义变化需要后续显式迁移，不能直接替换后复用旧快照。

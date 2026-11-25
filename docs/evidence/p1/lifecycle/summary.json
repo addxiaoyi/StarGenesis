@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "556a5e3e7b4e63e8fbfd899b7a469b1b27212dcd",
+  "scope": "P1 atomic checkpoint/replay evidence, retryable lifecycle, read-only replay, unique new world IDs and full historical restoration validation.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 48,
+      "tests": 353,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "lab-lifecycle-verify-java21.log",
+      "logSha256": "5f681ced7c70f08d9317d23509f806e5fb24bf4052717594c924d0c18e72009a",
+      "pluginSha256": "9abc27d90c17567ba8e506b8f73f75685b4ca12566d8e3a0d726db4120b06b87",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 48,
+      "tests": 353,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "lab-lifecycle-verify-java25.log",
+      "logSha256": "0203660dded34ef1e066ebb93383e7f4f8aacf6165eaf4bc03d2520a94166bc4",
+      "pluginSha256": "51128b46bc4d353c80bf93fdbeef2e2208da914de760969333dd363503dca148",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "51128b46bc4d353c80bf93fdbeef2e2208da914de760969333dd363503dca148",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "51128b46bc4d353c80bf93fdbeef2e2208da914de760969333dd363503dca148",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "lifecycle": 13,
+    "combinedPersistence": 4,
+    "historicalInputTamper": 1
+  },
+  "redRegression": {
+    "log": "lab-history-before.log",
+    "before": "Restore accepted a modified historical pause command while recorded events, commitments and final snapshot were unchanged.",
+    "after": "Restore replays every input and checks each state/event commitment and the complete final checkpoint, including ledger history."
+  },
+  "legacyFixtures": {
+    "origin": "Exported from the verified 556a5e3 shaded JAR before P1 changes.",
+    "sourceJarSha256": "f5d08dcfa2890fefb7a0ac9b85a4ffc6895379fc5fc05fb795fc8bc05b96ce46",
+    "files": {
+      "stargenesis-paper/src/test/resources/lab-v1-snapshot.json": "6e7ad9beb6f0d30ffc3b92ab9f1d856b01d35a04bcbc1395df179e1229f38b67",
+      "stargenesis-paper/src/test/resources/lab-v1-replay.json": "0c1c2be2fd6bf189e08f650405558cb811ca5ae80e7f3cfcd6ea4691fb7d3cf1"
+    },
+    "worldId": "lab-legacy-1",
+    "seed": 42,
+    "tick50Hash": "f72a9e0fc1ffbb4d904d9546e18b3dfcaae421e7ce13a65674e3ac65ce3955c0",
+    "tick100Hash": "6e683a16dc594cc47ec543dd035bd2ecc2d902a1eb7096958ef31e70cbf7a703",
+    "outcome": "Legacy snapshot resumes to the original tick-100 hash; combined evidence supersedes but does not alter legacy files."
+  },
+  "failureMatrix": [
+    "Cancellation before initial publication preserves the previous run, including failed tick-zero writes.",
+    "Initial-save retry writes tick zero before executing tick one.",
+    "100-tick checkpoint failure freezes progress, retains active participation and retries the exact pending state.",
+    "Stop during a pending checkpoint, repeated stops and close retry do not advance the simulation.",
+    "Terminal-save retry preserves the final state; terminal resume does not execute another tick.",
+    "Final shutdown failure aborts without overwriting the last durable checkpoint.",
+    "Replay completion, interruption and invalid replay rejection never write evidence.",
+    "Unknown/missing/duplicate/null/trailing/coerced envelopes and owner mismatches reject without legacy fallback.",
+    "Failed combined-file replacement preserves both published views and their exact bytes.",
+    "Current host budgets reject incompatible history; repeated seeds create distinct identities and resume retains identity."
+  ],
+  "capacityTest": "Four-agent default config, seed 42, 500 ordinary ticks then paused agents through tick 2400: complete combined evidence stays below 4 MiB and replays. This sample is not a universal capacity proof.",
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "No new Paper/Folia client, shutdown-load or human interaction run; existing platform evidence predates this lifecycle change.",
+    "Ordinary progress checkpoints every 100 ticks; abrupt termination may rewind unsaved steps.",
+    "Final plugin shutdown cannot guarantee pending writes on unavailable storage; it logs failure and preserves the last successful file.",
+    "Combined files are new, while inner snapshot/replay engine and schema remain version 1. Older plugins read the preserved legacy files, not the latest combined evidence.",
+    "Full replay validation is bounded by 4 MiB and 6000 history steps but has not been measured under production load.",
+    "Memory-constrained non-forked tests and ephemeral signer keys do not establish production performance or official signing.",
+    "The P0-P11 objective remains active; phase gates retain their documented incomplete status."
+  ],
+  "files": {
+    "lab-history-before.log": "6f2ec407f49dc2c511421acb0c6912830ea435192308eaa54d82974dc7b66335",
+    "lab-lifecycle-focused.log": "338d920b86ad819ad7313e856794d4a8462e6b656fd5d6bc0868daaf3df1bb80",
+    "lab-lifecycle-verify-java21.log": "5f681ced7c70f08d9317d23509f806e5fb24bf4052717594c924d0c18e72009a",
+    "lab-lifecycle-build-java21.json": "dd9062fc1744d0b1976c1f0ea1b56e29628dd2479771699ce781aa1120463611",
+    "lab-lifecycle-release-signer-java21.json": "78abc17d8d116a1fef33853345e0e1db5925fc7a290bba0ba71ecb45f87427a0",
+    "lab-lifecycle-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "lab-lifecycle-verify-java25.log": "0203660dded34ef1e066ebb93383e7f4f8aacf6165eaf4bc03d2520a94166bc4",
+    "lab-lifecycle-build-java25.json": "3156ee364cc4d624a0518b359b5bd1829b6e6b3df5d5ad0d026f1e1c5e47fdae",
+    "lab-lifecycle-release-signer-java25.json": "78abc17d8d116a1fef33853345e0e1db5925fc7a290bba0ba71ecb45f87427a0",
+    "lab-lifecycle-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}
