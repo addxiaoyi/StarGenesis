@@ -1,0 +1,128 @@
+completed=1/128 decomposer-intake-1 world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+completed=2/128 decomposer-intake-1 world=0 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=22, producer=2}
+completed=3/128 decomposer-intake-1 world=0 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=9, grazer=20, producer=3}
+completed=4/128 decomposer-intake-1 world=0 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=19, producer=6}
+completed=5/128 decomposer-intake-1 world=0 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+completed=6/128 decomposer-intake-1 world=0 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=25, grazer=6, producer=1}
+completed=7/128 decomposer-intake-1 world=0 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=23, producer=1}
+completed=8/128 decomposer-intake-1 world=0 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=23, producer=1}
+completed=9/128 decomposer-intake-1 world=0 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=16, producer=2}
+completed=10/128 decomposer-intake-1 world=0 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=16, producer=3}
+completed=11/128 decomposer-intake-1 world=0 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=25, grazer=6, producer=1}
+completed=12/128 decomposer-intake-1 world=0 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=16, producer=3}
+completed=13/128 decomposer-intake-1 world=0 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=18, producer=7}
+completed=14/128 decomposer-intake-1 world=0 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=1, grazer=29, producer=2}
+completed=15/128 decomposer-intake-1 world=0 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=14, producer=2}
+completed=16/128 decomposer-intake-1 world=0 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=18, producer=3}
+completed=17/128 decomposer-intake-1 world=1 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=22, grazer=3, producer=7}
+completed=18/128 decomposer-intake-1 world=1 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=15, producer=4}
+completed=19/128 decomposer-intake-1 world=1 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=11, producer=4}
+completed=20/128 decomposer-intake-1 world=1 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=4, grazer=19, producer=9}
+completed=21/128 decomposer-intake-1 world=1 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=4, grazer=19, producer=9}
+completed=22/128 decomposer-intake-1 world=1 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=9, producer=10}
+completed=23/128 decomposer-intake-1 world=1 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=8, producer=7}
+completed=24/128 decomposer-intake-1 world=1 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=11, producer=4}
+completed=25/128 decomposer-intake-1 world=1 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=6, producer=19}
+completed=26/128 decomposer-intake-1 world=1 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=3, grazer=21, producer=8}
+completed=27/128 decomposer-intake-1 world=1 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=18, producer=9}
+completed=28/128 decomposer-intake-1 world=1 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=19, producer=2}
+completed=29/128 decomposer-intake-1 world=1 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=27, grazer=4, producer=1}
+completed=30/128 decomposer-intake-1 world=1 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=19, producer=8}
+completed=31/128 decomposer-intake-1 world=1 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=19, producer=2}
+completed=32/128 decomposer-intake-1 world=1 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=4, grazer=19, producer=9}
+completed=33/128 decomposer-intake-1 world=2 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=22, grazer=9, producer=1}
+completed=34/128 decomposer-intake-1 world=2 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=15, producer=4}
+completed=35/128 decomposer-intake-1 world=2 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=12, producer=5}
+completed=36/128 decomposer-intake-1 world=2 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=23, grazer=8, producer=1}
+completed=37/128 decomposer-intake-1 world=2 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=19, grazer=12, producer=1}
+completed=38/128 decomposer-intake-1 world=2 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=22, grazer=9, producer=1}
+completed=39/128 decomposer-intake-1 world=2 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=23, grazer=8, producer=1}
+completed=40/128 decomposer-intake-1 world=2 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=15, producer=5}
+completed=41/128 decomposer-intake-1 world=2 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=22, grazer=9, producer=1}
+completed=42/128 decomposer-intake-1 world=2 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=14, producer=5}
+completed=43/128 decomposer-intake-1 world=2 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=19, grazer=10, producer=3}
+completed=44/128 decomposer-intake-1 world=2 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=14, producer=6}
+completed=45/128 decomposer-intake-1 world=2 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=13, producer=6}
+completed=46/128 decomposer-intake-1 world=2 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=11, producer=3}
+completed=47/128 decomposer-intake-1 world=2 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=14, producer=5}
+completed=48/128 decomposer-intake-1 world=2 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=14, producer=5}
+completed=49/128 decomposer-intake-1 world=3 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=18, producer=1}
+completed=50/128 decomposer-intake-1 world=3 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=10, producer=22}
+completed=51/128 decomposer-intake-1 world=3 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=10, producer=22}
+completed=52/128 decomposer-intake-1 world=3 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=15, producer=2}
+completed=53/128 decomposer-intake-1 world=3 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=12}
+completed=54/128 decomposer-intake-1 world=3 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=18, producer=1}
+completed=55/128 decomposer-intake-1 world=3 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=19, producer=2}
+completed=56/128 decomposer-intake-1 world=3 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=15, producer=1}
+completed=57/128 decomposer-intake-1 world=3 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=23, grazer=6, producer=3}
+completed=58/128 decomposer-intake-1 world=3 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=15, producer=2}
+completed=59/128 decomposer-intake-1 world=3 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=21}
+completed=60/128 decomposer-intake-1 world=3 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=17, producer=3}
+completed=61/128 decomposer-intake-1 world=3 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=14, producer=1}
+completed=62/128 decomposer-intake-1 world=3 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=10, producer=22}
+completed=63/128 decomposer-intake-1 world=3 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=21, grazer=11}
+completed=64/128 decomposer-intake-1 world=3 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=16, producer=2}
+completed=65/128 decomposer-mass-8 world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=12, producer=10}
+completed=66/128 decomposer-mass-8 world=0 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=1, producer=11}
+completed=67/128 decomposer-mass-8 world=0 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=6, grazer=18, producer=8}
+completed=68/128 decomposer-mass-8 world=0 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=20, producer=7}
+completed=69/128 decomposer-mass-8 world=0 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=12, producer=4}
+completed=70/128 decomposer-mass-8 world=0 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=13, producer=7}
+completed=71/128 decomposer-mass-8 world=0 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=12, producer=9}
+completed=72/128 decomposer-mass-8 world=0 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=24, grazer=3, producer=5}
+completed=73/128 decomposer-mass-8 world=0 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=12, producer=3}
+completed=74/128 decomposer-mass-8 world=0 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=16, producer=5}
+completed=75/128 decomposer-mass-8 world=0 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=3, grazer=24, producer=5}
+completed=76/128 decomposer-mass-8 world=0 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=17, producer=3}
+completed=77/128 decomposer-mass-8 world=0 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=6, grazer=19, producer=7}
+completed=78/128 decomposer-mass-8 world=0 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=10, producer=4}
+completed=79/128 decomposer-mass-8 world=0 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=15, producer=5}
+completed=80/128 decomposer-mass-8 world=0 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=22, producer=3}
+completed=81/128 decomposer-mass-8 world=1 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=24, grazer=6, producer=2}
+completed=82/128 decomposer-mass-8 world=1 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=13, producer=9}
+completed=83/128 decomposer-mass-8 world=1 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=24, grazer=7, producer=1}
+completed=84/128 decomposer-mass-8 world=1 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=5, producer=10}
+completed=85/128 decomposer-mass-8 world=1 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=10, producer=4}
+completed=86/128 decomposer-mass-8 world=1 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=18, producer=4}
+completed=87/128 decomposer-mass-8 world=1 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=11, producer=1}
+completed=88/128 decomposer-mass-8 world=1 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=5, producer=10}
+completed=89/128 decomposer-mass-8 world=1 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=5, producer=10}
+completed=90/128 decomposer-mass-8 world=1 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=10, producer=4}
+completed=91/128 decomposer-mass-8 world=1 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+completed=92/128 decomposer-mass-8 world=1 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=4, grazer=15, producer=13}
+completed=93/128 decomposer-mass-8 world=1 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=8, producer=9}
+completed=94/128 decomposer-mass-8 world=1 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=5, producer=10}
+completed=95/128 decomposer-mass-8 world=1 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=5, producer=10}
+completed=96/128 decomposer-mass-8 world=1 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=14, producer=1}
+completed=97/128 decomposer-mass-8 world=2 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=15, producer=6}
+completed=98/128 decomposer-mass-8 world=2 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=15, producer=5}
+completed=99/128 decomposer-mass-8 world=2 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=8, producer=9}
+completed=100/128 decomposer-mass-8 world=2 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=15, producer=6}
+completed=101/128 decomposer-mass-8 world=2 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=7, producer=9}
+completed=102/128 decomposer-mass-8 world=2 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=15, producer=6}
+completed=103/128 decomposer-mass-8 world=2 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=9, producer=8}
+completed=104/128 decomposer-mass-8 world=2 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=14, producer=6}
+completed=105/128 decomposer-mass-8 world=2 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+completed=106/128 decomposer-mass-8 world=2 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=15, producer=6}
+completed=107/128 decomposer-mass-8 world=2 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=9, producer=8}
+completed=108/128 decomposer-mass-8 world=2 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=18, producer=9}
+completed=109/128 decomposer-mass-8 world=2 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=15, producer=6}
+completed=110/128 decomposer-mass-8 world=2 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=7, producer=8}
+completed=111/128 decomposer-mass-8 world=2 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=7, producer=9}
+completed=112/128 decomposer-mass-8 world=2 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=23, producer=2}
+completed=113/128 decomposer-mass-8 world=3 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=20, producer=5}
+completed=114/128 decomposer-mass-8 world=3 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=30, producer=2}
+completed=115/128 decomposer-mass-8 world=3 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=27, producer=5}
+completed=116/128 decomposer-mass-8 world=3 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=14, producer=1}
+completed=117/128 decomposer-mass-8 world=3 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=14}
+completed=118/128 decomposer-mass-8 world=3 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=15}
+completed=119/128 decomposer-mass-8 world=3 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=10, producer=8}
+completed=120/128 decomposer-mass-8 world=3 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=14, grazer=18}
+completed=121/128 decomposer-mass-8 world=3 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=11, producer=11}
+completed=122/128 decomposer-mass-8 world=3 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=22, grazer=10}
+completed=123/128 decomposer-mass-8 world=3 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=12}
+completed=124/128 decomposer-mass-8 world=3 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=15, producer=1}
+completed=125/128 decomposer-mass-8 world=3 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=11, producer=3}
+completed=126/128 decomposer-mass-8 world=3 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=17}
+completed=127/128 decomposer-mass-8 world=3 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=15, producer=1}
+completed=128/128 decomposer-mass-8 world=3 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=21}

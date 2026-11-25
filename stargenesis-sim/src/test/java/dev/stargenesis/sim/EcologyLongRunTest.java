@@ -140,16 +140,32 @@ class EcologyLongRunTest {
                 "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 3, 4, 320, 0));
         var config = EcologyConfig.forDuration(1536);
         long firstProducerExtinction = -1;
+        long lastProducerBirthTick = -1;
+        var producerGenerations = new java.util.TreeMap<Integer, Integer>(Map.of(0, 3));
         try (var world = new EcologyWorld("ecology-long-study-2", 52008, config)) {
             while (!world.view().terminal()) {
                 long tick = world.tick();
                 String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;
-                world.step(species == null ? EcologyInput.idle(tick) : new EcologyInput(tick, Map.of(species, programs.get(species))));
+                var result = world.step(species == null ? EcologyInput.idle(tick) : new EcologyInput(tick, Map.of(species, programs.get(species))));
+                for (var event : result.events()) {
+                    if (!"producer".equals(event.data().get("species"))) continue;
+                    int change = event.type().equals("ecology.organism_born") ? 1 : event.type().equals("ecology.organism_died") ? -1 : 0;
+                    if (change == 0) continue;
+                    producerGenerations.merge(Integer.parseInt(event.data().get("generation")), change, Integer::sum);
+                    if (change > 0) lastProducerBirthTick = tick;
+                }
                 assertConserved(world.view(), config);
+                if (world.tick() == 1280) {
+                    assertEquals(4, producerGenerations.get(config.maxGenerations()));
+                    assertEquals(4, producerGenerations.values().stream().mapToInt(Integer::intValue).sum());
+                    assertEquals(962, lastProducerBirthTick);
+                    assertTrue(world.view().births() < config.maxBirths());
+                }
                 if (firstProducerExtinction < 0 && !world.view().populationBySpecies().containsKey("producer"))
                     firstProducerExtinction = world.tick();
             }
-            assertTrue(firstProducerExtinction > 0 && firstProducerExtinction < config.maxTicks());
+            assertEquals(1283, firstProducerExtinction);
+            assertEquals(962, lastProducerBirthTick);
             assertEquals(1536, world.tick());
             assertEquals(2, world.view().populationBySpecies().size());
             assertFalse(world.view().populationBySpecies().containsKey("producer"));

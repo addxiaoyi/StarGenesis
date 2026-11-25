@@ -10,3 +10,5 @@
 - P2/P3/P4可提案扩展模型，不能绕过codec/预算/权限；语义变化提高schema或engine版本并保留旧fixture与拒绝测试。
 
 变更流程：列出受影响消费者→提出最小接口差异→增加合同/迁移测试→串行整仓verify→最小回放→适当实机验收。不得并发写他人模块或同一target。
+
+P9复核增量接口：integrations增加SettlementReviewRequest/Authorizer/Review/Coordinator；SettlementSagaRepository新增默认拒绝的reviews/commitReview能力，旧实现不会自动获得终局重开权限。消费者为FileSettlementSagaRepository与后续经审计的运营适配层，不改`dev.stargenesis.api`签名。自动coordinator和复核共用SettlementOperation.forPhase，固定旧幂等key；普通状态转移保持原契约。外层持久v2只用于已有复核证据的文件，v1保持读写兼容。协议、预算和生产接入边界见`SETTLEMENT_PROVIDER_CONTRACT.md`。

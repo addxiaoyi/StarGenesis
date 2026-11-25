@@ -1,6 +1,7 @@
 package dev.stargenesis.integrations;
 
 import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -21,4 +22,14 @@ public interface SettlementSagaRepository {
     SettlementSaga create(SettlementSaga initial);
 
     SettlementSaga replace(SettlementSaga updated, long expectedRevision);
+
+    /** Older repositories reject reconciliation until they can retain its audit evidence atomically. */
+    default List<SettlementReview> reviews(UUID sagaId) {
+        throw new UnsupportedOperationException("Repository does not support settlement review evidence");
+    }
+
+    /** Compare the complete before snapshot, append evidence and publish after in one atomic commit. */
+    default SettlementReview commitReview(SettlementReview review) {
+        throw new UnsupportedOperationException("Repository does not support atomic settlement review");
+    }
 }

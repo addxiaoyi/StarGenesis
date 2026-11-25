@@ -47,6 +47,7 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 - 余额不足也消耗该 evidence；补充余额后须以新 evidence 重试。账本 checkpoint 包含余额与成功/失败历史，恢复后继续去重。容量达到上限时停止，不能删除历史后重用旧键。
 - MemoryEventOutbox 是内存参考实现，不具备崩溃持久性。P9 已有持久 saga protocol 和本地 repository；真实世界订单仍须额外通过真实 adapter 的外部幂等、权限、compensation 和第三方故障恢复验收后才启用。
 - P9 每个同步推进必须在repository提供的排他范围内完成查询、授权、外部调用和持久状态替换。外部副作用与本地文件不是一个原子事务，写盘失败后仍需权威幂等查询。provider的NOT_APPLIED/NO_EFFECT必须排除仍可能晚到生效的请求，pending或不确定结果返回UNKNOWN/INDETERMINATE；具体要求见 `SETTLEMENT_PROVIDER_CONTRACT.md`。
+- P9人工复核由独立审核员和单独授权adapter发起，固定saga/review UUID、预期revision和case reference；审核员不能填写资产结果。复核只重新查询付款/交付/退款，在相同排他范围内原子保存结果与审计记录，已确认APPLIED不能被后续缺失查询抹除。未扣款则关闭、已交付则完成、已退款则补偿完成、仅扣款则进入原幂等退款流程；未知或矛盾结果保持停止。16条历史/64 KiB预算不自动清理。当前没有生产授权adapter或命令入口，真实交易继续禁用。
 
 ## 权限、预算与公平
 

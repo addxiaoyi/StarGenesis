@@ -15,11 +15,11 @@
 | P2 | 实现已落地，阶段门未通过 | Paper/Folia 客户端创建、编辑、预览、保存并重开个人蓝图。仍缺真人编辑体验和长期重启/隔离验收 |
 | P3 | 实现已落地，阶段门未通过 | typed program 编辑、沙盒执行和 replay 已覆盖。仍缺真人程序工作流和多人性能验收 |
 | P4 | 实现已落地，阶段门未通过 | Paper/Folia 实服流程验证 at-least-once poll、ack、收件人断线重投和跨 tick 去重。仍缺真人通信体验与长期网络负载验收 |
-| P5 | 实现已落地，阶段门未通过 | 四组实服对照 profile 均会灭绝。固定候选 profile 曾在 Paper/Folia SNAPSHOT/RC 和16次实服 seed 扩展中到达500 tick并保留三物种，另有200次固定候选和400次多参数纯模拟500步筛选。新增1–1536步有界实验与24个纯模拟长期对照：原候选8/8在512步失去食草者，三组参数均未保持三物种至1536步；后续128组搜索的新候选在64组扩展中只有40组保留三物种。长期平衡、实服长局和真人验收仍未完成 |
+| P5 | 实现已落地，阶段门未通过 | 已有500步实服/纯模拟候选与1–1536步有界实验。后续128组搜索候选仅40/64保持三物种；64组单参数筛选得到两个候选，扩大后分别58/64与55/64。已固定一个代数额度耗尽的灭绝反例。长期平衡、实服长局和真人验收仍未完成 |
 | P6 | 实现已落地，阶段门未通过 | Paper/Folia 既有客户端流程验证 compensation、退款、escrow 释放和 replay；新增独立场次、退出重组、活跃优先恢复、管理员终局清理及写盘失败回归。新增生命周期命令尚无实服验证，仍缺四名真人玩家故障比赛验收 |
 | P7 | 代码和自动审核流程已落地，阶段门未通过 | 待审不可见、作者不能自审、独立 OP 批准/拒绝、拒绝理由和版本隔离已有实服覆盖。仍缺真人创作体验、运营治理和反作弊比赛验收 |
 | P8 | 实现已落地，阶段门未通过 | Paper/Folia 验证四人回合、只读 observer、replay 以及 TCP 硬断线后 pending action/match ID/UUID 恢复。仍缺真人双队比赛、公平性和竞技性能验收 |
-| P9 | 部分实现，阶段门未通过 | 已有整笔推进排他锁、持久 saga、不可变request/permit、补偿和manual review；并发过期与真实写盘失败恢复有回归。没有通过外部幂等/权限/故障审计的真实经济/库存adapter，生产结算保持关闭 |
+| P9 | 部分实现，阶段门未通过 | 已有整笔推进排他锁、持久saga、不可变request/permit、补偿和显式复核协议；复核只做三项查询，状态与审计原子保存。没有通过审计的真实经济/库存provider、生产审核授权adapter或命令入口，生产结算保持关闭 |
 | P10 | 签署/导入和 trust-root 生命周期已落地，阶段门未通过 | 有 Ed25519 包签署/验证、OP 公钥添加/轮换/撤销和私有导入。仍缺运营方真实 trust root、真实第三方 bridge 和第三方验收 |
 | P11 | 部分实现，阶段门未通过 | 有 CycloneDX 1.6 SBOM、scale probe、双平台自动流程、15分钟受控 Folia 沙盒负载、可重复 RC 构建。仍缺生产规模容量研究、真人验收/留存研究、最终正式发行签名 |
 
@@ -63,6 +63,10 @@ P5 续开发保留默认500步，新增 `ecology start <seed> <ticks>` 的1–15
 
 新增两项回归分别固定世界0/1在768步恢复后逐步一致，以及世界2发生producer灭绝但守恒/回放仍正确的反例。Java 21/25 各通过391项测试（52个类），失败/错误/跳过为0，模块边界通过；生产源码未修改，同JDK的JAR/SBOM哈希与P7批次一致，因此沿用相同工件的签名自检证据。完整搜索、失败样本、脚本hash和构建日志见 `docs/evidence/p5/balance-search/summary.json`。新候选没有设为默认，8/8初步成功不能外推为跨world/seed稳健；未新增实服或真人证据，P5阶段门保持未通过。
 
+2026-11-26 继续围绕该候选执行64组单参数敏感性筛选。四个预先选定的困难场景中，仅降低decomposer intake到1、提高decomposer reproductionMass到8两组全部通过。随后两组各在原4个world与seed 52008–52023执行64次完整长局：低摄入组58/64通过，分world为16/16、16/16、16/16、10/16；繁殖阈值8组55/64通过，分world为16/16、16/16、16/16、7/16。128/128扩展均守恒并通过回放，失败样本完整保留；没有变更v1算法、默认程序或预算。
+
+按birth/death事件重建代数后，旧候选world2/seed52008在1280步的4个剩余producer全部达到generation 8，最后一次出生为tick962，1283步全部死亡，出生预算尚未耗尽。已有单元回归现在固定这条代数边界。三世界全部成功仍不能推断另一世界的表现，64个单参数候选中没有一个通过完整的世界/种子组合。脚本与原始结果见`docs/evidence/p5/sensitivity/summary.json`；两个新profile继续仅供研究，没有新增实服或真人验收。
+
 ## P6–P8
 
 P6 由四名不同 UUID 玩家组成两个组织、竞价并下单。额外实服流程使用 roster 派生的确定 fault seed 触发部分生产失败，断言 `FAILED_RECOVERED`、recovered order、credits/ore 退回至预期余额、parts escrow 释放和 replay。结果见 `paper-factory-compensation-retest-workflow-result.json` 与 Folia 对应文件。这仍是五自动客户端，不替代真人比赛。
@@ -98,6 +102,10 @@ P9 coordinator 要求 adapter 声明 durable idempotency 和按 key lookup，包
 P9 并发稳定性批次先复现两条过期恢复竞态：另一请求可能在付款/交付仍未返回时提交失败/待退款状态。现通过repository排他范围将查询、授权、外部调用与保存串行化，Paper同时使用JVM分片锁和OS文件锁；同saga嵌套可重入，不同saga嵌套拒绝，异常释放锁。三条额外失败回归确认新建状态、原请求/permit和合法状态转移也需要保护，现拒绝跳过步骤或重开终局。重复begin返回原记录，过期仅阻止新建。
 
 新增14项测试，Java 21/25各通过405项（54个类），失败/错误/跳过为0，模块边界和双JVM签名工具自检通过。三条真实文件写盘失败路径分别验证付款、交付、补偿在外部已应用后重启查询，避免重复扣款/退款或误退已交付交易。旧schema-v1已付款固定文件保持原字节，过期后继续补偿。两个独立本地JVM的探针分别验证正常释放和终止持锁进程后等待者继续，双JDK均通过；它不代表网络文件系统、多主机或真实provider验收。日志与哈希见 `docs/evidence/p9/concurrent-recovery/summary.json`，接入合同见 `SETTLEMENT_PROVIDER_CONTRACT.md`。外部副作用与本地文件仍非单次原子提交，UNKNOWN/INDETERMINATE规则保留，MANUAL_REVIEW没有生产处置入口；真实结算仍关闭。
+
+2026-11-26 P9增加显式复核协议：独立审核员提交固定review ID、saga ID、revision与case reference，由单独授权adapter提供证据。复核在同一排他范围内重新查询付款/交付/退款，不调用外部apply。全未发生则FAILED，已交付且未退款则COMPLETED，已退款且未交付则COMPENSATED，仅已付款则进入原COMPENSATION_REQUIRED；未知、矛盾或抹除既有APPLIED的结果保持MANUAL_REVIEW。原request/permit及幂等key不变。
+
+状态与复核历史以同一外层schema-v2文件原子发布，16条/64 KiB预算，普通未复核文件继续写v1。新增23项单测覆盖27种查询组合、参与者自审/授权撤销、过期与重试、并发审核与退款排他、提交前/提交后故障、退款已生效后写盘失败、历史篡改、容量上限与从RC3导出的旧v1停止样本。Java21/25各438项测试（58个类）全部通过，失败/错误/跳过为0，模块边界、双JVM跨进程锁与临时密钥签名自检通过；3项Python构建器回归也通过。证据见`docs/evidence/p9/manual-reconciliation/summary.json`。这些代码尚未纳入旧RC3，当前为后续SNAPSHOT；没有生产审核授权adapter/命令、真实provider收据、实服或真人运营验收，真实结算仍关闭。
 
 P10 signed design envelope 使用 domain-separated Ed25519。OP 可从 `publisher-inbox` 加入 X.509 PEM key，列出指纹、添加新 key 和记录撤销原因；撤销状态跨重启保持且旧 key ID 不可复用。玩家导入仅写入个人目录并在读取时按当前 trust root 再验签。重复导入同样复验已保存内容，load/list 核对 schema v1 与设计 ID 派生路径，拒绝未知版本、错路径和损坏签名。自动流程使用临时测试 key，不构成运营信任根。当前没有第三方 extension bridge 和真实第三方运行证据。
 

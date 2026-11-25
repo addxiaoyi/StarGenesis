@@ -16,38 +16,48 @@ import java.util.TreeMap;
 /** Bounded simulation-only study. Run with the shaded plugin JAR on the classpath. */
 class EcologyLongRunStudy {
     public static void main(String[] args) throws Exception {
-        if (args.length < 1 || args.length > 4)
-            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8] [profile|all]");
+        if (args.length < 1 || args.length > 6)
+            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8] [profiles:comma-separated|all] [firstSeed] [firstWorld:0-1023]");
         int seeds = args.length > 1 ? Integer.parseInt(args[1]) : 4;
         int worlds = args.length > 2 ? Integer.parseInt(args[2]) : 2;
+        long firstSeed = args.length > 4 ? Long.parseLong(args[4]) : 52_008L;
+        int firstWorld = args.length > 5 ? Integer.parseInt(args[5]) : 0;
         if (seeds < 1 || seeds > 32 || worlds < 1 || worlds > 8) throw new IllegalArgumentException("Study budget exceeded");
+        if (firstWorld < 0 || firstWorld > 1023) throw new IllegalArgumentException("World offset outside 0..1023");
+        Math.addExact(firstSeed, seeds - 1);
         var profiles = Map.of(
                 "previous-500-tick-candidate", profile(6, 2, 512, 1, 12, 512, 1, 12, 512),
                 "delayed-reproduction", profile(1, 32, 512, 1, 32, 512, 1, 32, 512),
                 "staggered-lifespans", profile(3, 8, 256, 1, 16, 384, 2, 12, 512),
-                "long-cycle-candidate", profile(6, 4, 320, 4, 24, 512, 3, 4, 320));
+                "long-cycle-candidate", profile(6, 4, 320, 4, 24, 512, 3, 4, 320),
+                "decomposer-mass-8", profile(6, 4, 320, 4, 24, 512, 3, 8, 320),
+                "decomposer-intake-1", profile(6, 4, 320, 4, 24, 512, 1, 4, 320));
         String selected = args.length > 3 ? args[3] : "all";
-        if (!selected.equals("all") && !profiles.containsKey(selected)) throw new IllegalArgumentException("Unknown study profile");
+        var selectedProfiles = selected.equals("all") ? profiles.keySet() : new java.util.TreeSet<>(List.of(selected.split(",", -1)));
+        if (!profiles.keySet().containsAll(selectedProfiles)) throw new IllegalArgumentException("Unknown study profile");
+        Path output = Path.of(args[0]).toAbsolutePath().normalize();
+        Files.createDirectories(output.getParent());
+        var mapper = new ObjectMapper();
+        int expectedCases = Math.multiplyExact(Math.multiplyExact(seeds, worlds), selectedProfiles.size());
         List<Result> results = new ArrayList<>();
         for (var profile : new TreeMap<>(profiles).entrySet()) {
-            if (!selected.equals("all") && !selected.equals(profile.getKey())) continue;
+            if (!selectedProfiles.contains(profile.getKey())) continue;
             for (int world = 0; world < worlds; world++) {
                 for (int seed = 0; seed < seeds; seed++) {
-                    Result result = run("ecology-long-study-" + world, 52_008L + seed, profile.getKey(), profile.getValue());
+                    Result result = run("ecology-long-study-" + (firstWorld + world), firstSeed + seed, profile.getKey(), profile.getValue());
                     results.add(result);
-                    System.out.println(result.profile() + " world=" + world + " seed=" + result.seed()
+                    System.out.println("completed=" + results.size() + "/" + expectedCases + " " + result.profile() + " world=" + (firstWorld + world) + " seed=" + result.seed()
                             + " tick=" + result.finalState().tick() + " end=" + result.finalState().reason()
                             + " species=" + result.finalState().populationBySpecies());
+                    var report = Map.of("engineVersion", EcologyWorld.ENGINE_VERSION,
+                            "config", EcologyConfig.forDuration(EcologyConfig.MAX_TICKS), "cases", results,
+                            "expectedCases", expectedCases, "complete", results.size() == expectedCases,
+                            "scope", "Pure simulation; every step conserves matter and every completed case's final replay is verified. No live-server, human, performance or indefinite-balance claim.",
+                            "programTiming", "producer at tick 0, grazer at tick 1, decomposer at tick 2; no later intervention.");
+                    Files.writeString(output, mapper.writerWithDefaultPrettyPrinter().writeValueAsString(report) + "\n");
                 }
             }
         }
-        var report = Map.of("engineVersion", EcologyWorld.ENGINE_VERSION,
-                "config", EcologyConfig.forDuration(EcologyConfig.MAX_TICKS), "cases", results,
-                "scope", "Pure simulation; every step conserves matter and every final replay is verified. No live-server, human, performance or indefinite-balance claim.",
-                "programTiming", "producer at tick 0, grazer at tick 1, decomposer at tick 2; no later intervention.");
-        Path output = Path.of(args[0]).toAbsolutePath().normalize();
-        Files.createDirectories(output.getParent());
-        Files.writeString(output, new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(report) + "\n");
     }
 
     private static Result run(String worldId, long seed, String profile, Map<String, MatterProgram> programs) {

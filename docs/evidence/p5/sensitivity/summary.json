@@ -1,0 +1,221 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "d3019dc60d33df78b9f10a8936d440971e025df5",
+  "scope": "One-parameter sensitivity around the prior v1 long-cycle candidate, followed by full four-world/sixteen-seed validation of both selected profiles.",
+  "engineVersion": "genesis-ecology/1",
+  "productionEngineChanged": false,
+  "studyRuntime": {
+    "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+    "pluginSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+    "artifact": ".work/releases/4.0.0-rc.3/StarGenesis-4.0.0-rc.3.jar",
+    "commands": [
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp .work/releases/4.0.0-rc.3/StarGenesis-4.0.0-rc.3.jar scripts/EcologySensitivityStudy.java .work/ecology-sensitivity.json 64",
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp .work/releases/4.0.0-rc.3/StarGenesis-4.0.0-rc.3.jar scripts/EcologyLongRunStudy.java .work/ecology-sensitivity-validation.json 16 4 decomposer-mass-8,decomposer-intake-1"
+    ],
+    "scripts": {
+      "scripts/EcologySensitivityStudy.java": "2247251fa1e18167e5769cc27750180326224a521584e361900f7193fb45c4d7",
+      "scripts/EcologyLongRunStudy.java": "3d47028c0eb2f1dcc48ce8e4effa66006f159d8c16ea5be19b3a3044853935ce"
+    }
+  },
+  "sensitivity": {
+    "profiles": 64,
+    "selectedProfiles": [
+      "decomposer.reproductionMass=8",
+      "decomposer.intake=1"
+    ],
+    "executedCases": 83,
+    "orderedScenarios": [
+      {
+        "worldId": "ecology-long-study-2",
+        "seed": 52008
+      },
+      {
+        "worldId": "ecology-long-study-3",
+        "seed": 52016
+      },
+      {
+        "worldId": "ecology-long-study-1",
+        "seed": 52016
+      },
+      {
+        "worldId": "ecology-long-study-0",
+        "seed": 52008
+      }
+    ],
+    "scope": "One parameter differs from the prior long-cycle candidate. Profiles stop at the first failing scenario; individual runs stop at first species extinction. All executed final replays verified. Four selected cases, not random sampling or balance acceptance."
+  },
+  "expandedValidation": {
+    "decomposer-intake-1": {
+      "cases": 64,
+      "threeSpeciesAt1536": 58,
+      "byWorld": {
+        "ecology-long-study-0": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-1": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-2": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-3": {
+          "cases": 16,
+          "threeSpeciesAt1536": 10,
+          "extinctions": [
+            {
+              "seed": 52009,
+              "firstSpeciesExtinction": {
+                "grazer": 836
+              }
+            },
+            {
+              "seed": 52010,
+              "firstSpeciesExtinction": {
+                "grazer": 836
+              }
+            },
+            {
+              "seed": 52012,
+              "firstSpeciesExtinction": {
+                "producer": 1473
+              }
+            },
+            {
+              "seed": 52018,
+              "firstSpeciesExtinction": {
+                "producer": 1476
+              }
+            },
+            {
+              "seed": 52021,
+              "firstSpeciesExtinction": {
+                "grazer": 836
+              }
+            },
+            {
+              "seed": 52022,
+              "firstSpeciesExtinction": {
+                "producer": 1473
+              }
+            }
+          ]
+        }
+      }
+    },
+    "decomposer-mass-8": {
+      "cases": 64,
+      "threeSpeciesAt1536": 55,
+      "byWorld": {
+        "ecology-long-study-0": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-1": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-2": {
+          "cases": 16,
+          "threeSpeciesAt1536": 16,
+          "extinctions": []
+        },
+        "ecology-long-study-3": {
+          "cases": 16,
+          "threeSpeciesAt1536": 7,
+          "extinctions": [
+            {
+              "seed": 52009,
+              "firstSpeciesExtinction": {
+                "grazer": 837
+              }
+            },
+            {
+              "seed": 52010,
+              "firstSpeciesExtinction": {
+                "grazer": 837
+              }
+            },
+            {
+              "seed": 52012,
+              "firstSpeciesExtinction": {
+                "producer": 1478
+              }
+            },
+            {
+              "seed": 52013,
+              "firstSpeciesExtinction": {
+                "producer": 1473
+              }
+            },
+            {
+              "seed": 52015,
+              "firstSpeciesExtinction": {
+                "producer": 1476
+              }
+            },
+            {
+              "seed": 52017,
+              "firstSpeciesExtinction": {
+                "producer": 1476
+              }
+            },
+            {
+              "seed": 52018,
+              "firstSpeciesExtinction": {
+                "producer": 1476
+              }
+            },
+            {
+              "seed": 52021,
+              "firstSpeciesExtinction": {
+                "producer": 1477
+              }
+            },
+            {
+              "seed": 52023,
+              "firstSpeciesExtinction": {
+                "producer": 1477
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "generationDiagnosis": {
+    "profile": "baseline",
+    "worldId": "ecology-long-study-2",
+    "seed": 52008,
+    "at1280": "All four remaining producers are generation 8; last producer birth is tick 962. The birth budget is not exhausted.",
+    "firstProducerExtinction": 1283,
+    "regression": "Existing EcologyLongRunTest now reconstructs producer generations from events and fixes this causal boundary, while still checking conserved matter and replay."
+  },
+  "verification": {
+    "testsPerJVM": 438,
+    "suites": 58,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "evidence": "docs/evidence/p9/manual-reconciliation/summary.json"
+  },
+  "limitations": [
+    "The four screening scenarios are selected counterexamples, not unbiased sampling.",
+    "Finite generation/birth budgets do not establish indefinitely sustainable ecology.",
+    "Profiles remain research-only and are not new defaults; no live-server or human evidence was added.",
+    "All failed candidates and expanded extinction cases are retained. P5 balance acceptance remains open."
+  ],
+  "files": {
+    "ecology-sensitivity.json": "4f7869ff71408b082388432cbf1d0c5541d2506752be8382c33b55069224ad33",
+    "ecology-sensitivity.log": "2fcbbac417da0fb52a79a73a593df3ee08008bdc532218640a51b868027ef68c",
+    "ecology-sensitivity-validation.json": "45cc6afa301784f05647b68e25e799eca8848f057eee26d9ca72351372fb85ce",
+    "ecology-sensitivity-validation.log": "acf72572752f686e85fea45cfbf4a99b8417955ed9c8d0c8cbce9c00050e93d0"
+  }
+}

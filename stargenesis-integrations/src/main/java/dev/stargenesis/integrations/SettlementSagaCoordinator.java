@@ -1,9 +1,5 @@
 package dev.stargenesis.integrations;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HexFormat;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -55,25 +51,19 @@ public final class SettlementSagaCoordinator {
     }
 
     private SettlementSaga applyPayment(SettlementSaga saga, long logicalTick) {
-        SettlementRequest request = saga.request();
-        SettlementOperation payment = new SettlementOperation(key(request, "payment"), request.buyer(), request.seller(),
-                SettlementOperation.Asset.CREDITS, "credits", request.credits());
+        SettlementOperation payment = SettlementOperation.forPhase(saga.request(), SettlementOperation.Phase.PAYMENT);
         return execute(saga, payment, logicalTick, SettlementSaga.State.PAYMENT_APPLIED,
                 SettlementSaga.State.FAILED, "PAYMENT_REJECTED", "AUTHORIZATION_EXPIRED");
     }
 
     private SettlementSaga applyDelivery(SettlementSaga saga, long logicalTick) {
-        SettlementRequest request = saga.request();
-        SettlementOperation delivery = new SettlementOperation(key(request, "delivery"), request.seller(), request.buyer(),
-                SettlementOperation.Asset.ITEM, request.itemId(), request.itemCount());
+        SettlementOperation delivery = SettlementOperation.forPhase(saga.request(), SettlementOperation.Phase.DELIVERY);
         return execute(saga, delivery, logicalTick, SettlementSaga.State.COMPLETED,
                 SettlementSaga.State.COMPENSATION_REQUIRED, "DELIVERY_REJECTED", "AUTHORIZATION_EXPIRED_AFTER_PAYMENT");
     }
 
     private SettlementSaga compensate(SettlementSaga saga) {
-        SettlementRequest request = saga.request();
-        SettlementOperation refund = new SettlementOperation(key(request, "compensation"), request.seller(), request.buyer(),
-                SettlementOperation.Asset.CREDITS, "credits", request.credits());
+        SettlementOperation refund = SettlementOperation.forPhase(saga.request(), SettlementOperation.Phase.COMPENSATION);
         IdempotentSettlementPort.Observation observation = inspect(refund);
         if (observation == IdempotentSettlementPort.Observation.APPLIED)
             return replace(saga, SettlementSaga.State.COMPENSATED, "CURRENCY_REFUNDED");
@@ -127,10 +117,4 @@ public final class SettlementSagaCoordinator {
         return repository.replace(updated, previous.revision());
     }
 
-    private String key(SettlementRequest request, String phase) {
-        try {
-            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
-                    .digest((request.sagaId() + ":" + phase).getBytes(StandardCharsets.US_ASCII)));
-        } catch (NoSuchAlgorithmException impossible) { throw new IllegalStateException("SHA-256 unavailable", impossible); }
-    }
 }

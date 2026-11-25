@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.stargenesis.integrations.SettlementSaga;
 import dev.stargenesis.integrations.SettlementSagaRepository;
+import dev.stargenesis.integrations.SettlementReview;
 
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -21,11 +22,15 @@ import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.function.Supplier;
 
 /** Durable player-saga snapshots using UUID-derived paths, strict JSON and optimistic revisions. */
 public final class FileSettlementSagaRepository implements SettlementSagaRepository {
     public static final int SCHEMA_VERSION = 1;
+    public static final int REVIEW_SCHEMA_VERSION = 2;
     public static final long MAX_FILE_BYTES = 64 * 1024;
     private static final Object[] JVM_LOCKS = new Object[64];
     private static final ThreadLocal<Path> ACTIVE_LOCK = new ThreadLocal<>();
@@ -54,6 +59,14 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
     }
 
     @Override public Optional<SettlementSaga> load(UUID sagaId) {
+        return loadStored(sagaId).map(StoredState::saga);
+    }
+
+    @Override public List<SettlementReview> reviews(UUID sagaId) {
+        return loadStored(sagaId).map(StoredState::reviews).orElse(List.of());
+    }
+
+    private Optional<StoredState> loadStored(UUID sagaId) {
         Path file = path(sagaId);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) return Optional.empty();
         try {
@@ -62,10 +75,20 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
             byte[] data;
             try (var input = Files.newInputStream(file)) { data = input.readNBytes((int) MAX_FILE_BYTES + 1); }
             if (data.length > MAX_FILE_BYTES) throw new IOException("Saga file exceeds its byte budget");
-            StoredSaga stored = mapper.readValue(data, StoredSaga.class);
-            if (stored.schemaVersion() != SCHEMA_VERSION || stored.saga() == null
-                    || !sagaId.equals(stored.saga().request().sagaId())) throw new IOException("Saga file identity mismatch");
-            return Optional.of(stored.saga());
+            var json = mapper.readTree(data);
+            if (json == null || !json.isObject() || !json.path("schemaVersion").isIntegralNumber()
+                    || !json.path("schemaVersion").canConvertToInt()) throw new IOException("Invalid saga schema");
+            StoredState stored;
+            if (json.path("schemaVersion").intValue() == SCHEMA_VERSION) {
+                StoredSaga legacy = mapper.treeToValue(json, StoredSaga.class);
+                stored = new StoredState(legacy.saga(), List.of());
+            } else if (json.path("schemaVersion").intValue() == REVIEW_SCHEMA_VERSION) {
+                ReviewedSaga reviewed = mapper.treeToValue(json, ReviewedSaga.class);
+                if (reviewed.reviews() == null || reviewed.reviews().isEmpty()) throw new IOException("Missing settlement review history");
+                stored = new StoredState(reviewed.saga(), reviewed.reviews());
+            } else throw new IOException("Unsupported settlement schema");
+            if (!sagaId.equals(stored.saga().request().sagaId())) throw new IOException("Saga file identity mismatch");
+            return Optional.of(stored);
         } catch (IOException | RuntimeException failure) {
             throw new SagaStorageException("Settlement saga failed integrity validation", failure);
         }
@@ -76,7 +99,7 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         UUID sagaId = saga.request().sagaId();
         return withExclusiveSaga(sagaId, () -> {
             if (load(sagaId).isPresent()) throw new SagaStorageException("Settlement saga already exists");
-            write(saga);
+            write(new StoredState(saga, List.of()));
             return saga;
         });
     }
@@ -84,13 +107,32 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
     @Override public SettlementSaga replace(SettlementSaga updated, long expectedRevision) {
         UUID sagaId = updated.request().sagaId();
         return withExclusiveSaga(sagaId, () -> {
-            SettlementSaga previous = load(sagaId)
+            StoredState stored = loadStored(sagaId)
                     .orElseThrow(() -> new SagaStorageException("Settlement saga does not exist"));
+            SettlementSaga previous = stored.saga();
             if (previous.revision() != expectedRevision || updated.revision() != Math.addExact(expectedRevision, 1))
                 throw new SagaStorageException("Settlement saga revision conflict");
             updated.requireSuccessorOf(previous);
-            write(updated);
+            write(new StoredState(updated, stored.reviews()));
             return updated;
+        });
+    }
+
+    @Override public SettlementReview commitReview(SettlementReview review) {
+        Objects.requireNonNull(review, "review");
+        return withExclusiveSaga(review.request().sagaId(), () -> {
+            var stored = loadStored(review.request().sagaId())
+                    .orElseThrow(() -> new SagaStorageException("Settlement saga does not exist"));
+            for (var existing : stored.reviews()) {
+                if (!existing.request().reviewId().equals(review.request().reviewId())) continue;
+                if (!existing.equals(review)) throw new SagaStorageException("Settlement review ID conflict");
+                return existing;
+            }
+            if (!stored.saga().equals(review.before())) throw new SagaStorageException("Settlement review snapshot conflict");
+            var history = new ArrayList<>(stored.reviews());
+            history.add(review);
+            write(new StoredState(review.after(), history));
+            return review;
         });
     }
 
@@ -120,11 +162,13 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         }
     }
 
-    private void write(SettlementSaga saga) {
+    private void write(StoredState stored) {
+        SettlementSaga saga = stored.saga();
         Path file = path(saga.request().sagaId());
         Path temporary = file.resolveSibling(file.getFileName() + ".tmp");
         try {
-            byte[] data = mapper.writeValueAsBytes(new StoredSaga(SCHEMA_VERSION, saga));
+            byte[] data = mapper.writeValueAsBytes(stored.reviews().isEmpty()
+                    ? new StoredSaga(SCHEMA_VERSION, saga) : new ReviewedSaga(REVIEW_SCHEMA_VERSION, saga, stored.reviews()));
             if (data.length > MAX_FILE_BYTES) throw new IOException("Settlement saga exceeds 64 KiB");
             if (Files.isSymbolicLink(file) || Files.isSymbolicLink(temporary))
                 throw new IOException("Settlement saga symlink path rejected");
@@ -149,6 +193,35 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
     }
 
     public record StoredSaga(int schemaVersion, SettlementSaga saga) { }
+    public record ReviewedSaga(int schemaVersion, SettlementSaga saga, List<SettlementReview> reviews) { }
+
+    private record StoredState(SettlementSaga saga, List<SettlementReview> reviews) {
+        private StoredState {
+            Objects.requireNonNull(saga, "saga");
+            reviews = List.copyOf(reviews);
+            if (reviews.size() > SettlementReview.MAX_REVIEWS) throw new IllegalArgumentException("Settlement review history budget exhausted");
+            var identifiers = new HashSet<UUID>();
+            var earlier = new ArrayList<SettlementReview>();
+            SettlementReview previous = null;
+            for (var review : reviews) {
+                if (!review.before().request().equals(saga.request()) || !review.before().permit().equals(saga.permit())
+                        || !identifiers.add(review.request().reviewId())) throw new IllegalArgumentException("Settlement review identity mismatch");
+                if (!review.previouslyApplied().equals(SettlementReview.previouslyApplied(review.before(), earlier)))
+                    throw new IllegalArgumentException("Settlement review discards previously applied operation evidence");
+                if (previous != null) {
+                    if (review.logicalTick() < previous.logicalTick()) throw new IllegalArgumentException("Settlement review clock moved backwards");
+                    requireSameOrSuccessor(review.before(), previous.after());
+                }
+                previous = review;
+                earlier.add(review);
+            }
+            if (previous != null) requireSameOrSuccessor(saga, previous.after());
+        }
+
+        private static void requireSameOrSuccessor(SettlementSaga next, SettlementSaga previous) {
+            if (!next.equals(previous)) next.requireSuccessorOf(previous);
+        }
+    }
 
     public static final class SagaStorageException extends RuntimeException {
         public SagaStorageException(String message) { super(message); }

@@ -1,0 +1,219 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "d3019dc60d33df78b9f10a8936d440971e025df5",
+  "scope": "P9 explicitly authorized, query-only reconciliation with atomic saga/audit publication and schema-v1 compatibility. Production settlement remains disabled.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 58,
+      "tests": 438,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "settlement-review-verify-java21.log",
+      "logSha256": "3a1d06c7f1e16b82abdfd01c4ab41270285c84491340413c882a8b22299da434",
+      "pluginSha256": "9785699bfdca67269983ffeb9470a1f85761dda3abc5fec26611e00991fdcb2c",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 58,
+      "tests": 438,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "settlement-review-verify-java25.log",
+      "logSha256": "8bda4cf5571690d7513330e2b13844a34243ab23e683a49b3887911c4dc1564f",
+      "pluginSha256": "df4181616b57cc4827b0b74a5017d4159b02ff14ab33f7e55d36e33c03fbae5d",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "newTests": {
+    "observationMatrixAndLegacyKeys": 2,
+    "reviewRecoveryAndPersistence": 21
+  },
+  "protocol": {
+    "request": "Stable review UUID, saga UUID, independent reviewer UUID, expected revision and case reference; callers cannot select an asset outcome.",
+    "authorization": "An explicit trusted review authorizer grants operator-policy evidence. Trade participants are rejected even if an adapter would authorize them.",
+    "observations": "Fresh payment, delivery and compensation lookups use the unchanged complete operation identities under the same saga lock as automatic advance. No provider apply occurs during review.",
+    "resolvedStates": [
+      "FAILED (all absent)",
+      "COMPLETED (paid/delivered, not refunded)",
+      "COMPENSATED (paid/refunded, not delivered)",
+      "COMPENSATION_REQUIRED (paid only)"
+    ],
+    "uncertainResults": "UNKNOWN, null, runtime/linkage failure, inconsistent combinations or contradiction of any prior APPLIED evidence remain MANUAL_REVIEW with a new audit entry.",
+    "persistence": "Outer schema v2 stores the current schema-v1 saga and ordered review records in one atomic file. Ordinary create/replace retains schema v1 until a review occurs. Later automatic refunds retain audit history.",
+    "budgets": {
+      "reviews": 16,
+      "fileBytes": 65536,
+      "caseReferenceCharacters": 256
+    },
+    "retry": "Same review ID/request requires current operator authorization and returns the original record without querying again or rewriting evidence. Changed payloads, stale revisions and exhausted budgets reject."
+  },
+  "failureMatrix": [
+    "Completed delivery after expired trade permit is reconciled without refund or new transfer.",
+    "Paid-only reconciliation schedules the existing idempotent refund; real file failure after refund application preserves old bytes and recovers without another refund.",
+    "Already refunded and all-absent outcomes close without external side effects.",
+    "A rejected refund can re-enter review and later recover while preserving both decisions.",
+    "Null/throwing/unloaded provider lookup and conflicting prior APPLIED results stay quarantined.",
+    "Participant self-review, denied/revoked authorization, missing evidence, unknown saga, stale revision and reused review ID reject.",
+    "Legacy repositories without audit capabilities and ordinary replace cannot reopen MANUAL_REVIEW.",
+    "Real pre-commit file failure preserves v1 bytes; lost post-commit response returns the exact original audit on retry.",
+    "Concurrent reviewers permit one revision winner; automatic refund waits for the complete reconciliation lock scope.",
+    "Snapshot/observation/reviewer/revision/tick/ordering/schema tampering rejects without rewriting the file.",
+    "Sixteen-entry and 64 KiB limits preserve all existing evidence; large legal legacy fields can hit the byte limit first.",
+    "Unknown legacy review origins and lost provider capability reject before querying."
+  ],
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/settlement-v1-manual.json",
+    "source": "Paid v1 fixture transitioned through the unchanged RC3 repository to MANUAL_REVIEW/revision 2.",
+    "sourceJarSha256": "fbc0ce3213fb271d5c9b09c826fcda8ea107bac0d703d75198b2d510d7184001",
+    "sha256": "220cf5a906cc946277866efefa32b9cb050876956ab26b8a2dcecd24d7dbcee3",
+    "exportCommand": "java -cp .work/releases/4.0.0-rc.3/StarGenesis-4.0.0-rc.3.jar .work/ExportSettlementReviewLegacy.java .work/settlement-review-legacy-export"
+  },
+  "processLockProbe": {
+    "java21": {
+      "passed": true,
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "9785699bfdca67269983ffeb9470a1f85761dda3abc5fec26611e00991fdcb2c",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    },
+    "java25": {
+      "passed": true,
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "pluginSha256": "df4181616b57cc4827b0b74a5017d4159b02ff14ab33f7e55d36e33c03fbae5d",
+      "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "cases": [
+        {
+          "holderTerminated": false,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 0,
+          "contenderExitCode": 0
+        },
+        {
+          "holderTerminated": true,
+          "blockedWhileHeld": true,
+          "acquiredAfterRelease": true,
+          "holderExitCode": 1,
+          "contenderExitCode": 0
+        }
+      ],
+      "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+    }
+  },
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "df4181616b57cc4827b0b74a5017d4159b02ff14ab33f7e55d36e33c03fbae5d",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "df4181616b57cc4827b0b74a5017d4159b02ff14ab33f7e55d36e33c03fbae5d",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JDKs verify the final Java 25 shaded artifact using ephemeral keys.",
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "No real provider, operator authorizer or player/OP review command is registered. This is an executable protocol and persistence component, not production workflow acceptance.",
+    "Provider capability evidence is a declaration, not a signed per-operation receipt. The trusted adapter must supply authoritative durable lookup semantics.",
+    "Audit validation protects structure and transitions; it is not a digital signature against malicious replacement of whole files.",
+    "Unknown legacy review origins, contradictory facts or exhausted history require separate operational investigation; records are not truncated.",
+    "No new live Paper/Folia, human, multi-host/network-filesystem or production-capacity acceptance. P0-P11 remains active."
+  ],
+  "files": {
+    "settlement-review-focused.log": "5e34ee034a6796bc4bfd7a6fbcc57ef415cd9025ece338858463acdf754ed4be",
+    "settlement-review-boundary.log": "1d0a7abad03e46ffa81335eb61048d1a02a0afa0f7906a72a6613e1ac8a1ea6c",
+    "ExportSettlementReviewLegacy.java": "970d1605efd0c5f3f7db8840d41b66605d603763c5852145813aee390290948b",
+    "settlement-review-verify-java21.log": "3a1d06c7f1e16b82abdfd01c4ab41270285c84491340413c882a8b22299da434",
+    "settlement-review-build-java21.json": "36b427b204c3d79360e6b63872a6e8309f1c80dc75c78912a679d418dbc680e5",
+    "settlement-review-process-lock-java21.json": "ffb5cdfd7252970e9a0be63f54f64a3f4cf3c3e145551dcd0f52d52b61ca4b80",
+    "settlement-review-process-lock-java21.log": "7510bb10aa69b5238d99157c8724179d6e132c882368a8ab70cdc03fe173fee9",
+    "settlement-review-release-signer-java21.json": "05c583f50467e64038fa843e691300f389e99ae31fd8b7a8f952a62851edec9d",
+    "settlement-review-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "settlement-review-verify-java25.log": "8bda4cf5571690d7513330e2b13844a34243ab23e683a49b3887911c4dc1564f",
+    "settlement-review-build-java25.json": "7f8bc555f31c670625d5d77eceaf841cd9d72f37dcf89ba72436dd11fa04b4d7",
+    "settlement-review-process-lock-java25.json": "c48bce8f125f1e6f3118b3b76b3ac5a8d4cb50b9e6c5e896bebdab04cbaa9bd4",
+    "settlement-review-process-lock-java25.log": "48ce90741733024d6598c26371ce65762aa541bba59677a0f7a17cf69080f98d",
+    "settlement-review-release-signer-java25.json": "05c583f50467e64038fa843e691300f389e99ae31fd8b7a8f952a62851edec9d",
+    "settlement-review-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

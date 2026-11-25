@@ -2,6 +2,11 @@ package dev.stargenesis.integrations;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
+import java.util.Locale;
 
 public record SettlementOperation(String idempotencyKey, UUID source, UUID target,
                                   Asset asset, String assetId, long amount) {
@@ -22,4 +27,21 @@ public record SettlementOperation(String idempotencyKey, UUID source, UUID targe
     }
 
     public enum Asset { CREDITS, ITEM }
+    public enum Phase { PAYMENT, DELIVERY, COMPENSATION }
+
+    /** The operation identity is shared by automatic recovery and explicit reconciliation. */
+    public static SettlementOperation forPhase(SettlementRequest request, Phase phase) {
+        Objects.requireNonNull(request, "request");
+        Objects.requireNonNull(phase, "phase");
+        String key;
+        try {
+            key = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(
+                    (request.sagaId() + ":" + phase.name().toLowerCase(Locale.ROOT)).getBytes(StandardCharsets.US_ASCII)));
+        } catch (NoSuchAlgorithmException impossible) { throw new IllegalStateException("SHA-256 unavailable", impossible); }
+        return switch (phase) {
+            case PAYMENT -> new SettlementOperation(key, request.buyer(), request.seller(), Asset.CREDITS, "credits", request.credits());
+            case DELIVERY -> new SettlementOperation(key, request.seller(), request.buyer(), Asset.ITEM, request.itemId(), request.itemCount());
+            case COMPENSATION -> new SettlementOperation(key, request.seller(), request.buyer(), Asset.CREDITS, "credits", request.credits());
+        };
+    }
 }

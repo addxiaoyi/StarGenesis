@@ -62,6 +62,8 @@ P8 长局准入不改变文件 schema 或模拟 commitments。Paper 新建入口
 
 P9 saga file schemaVersion=1 按 saga UUID 保存请求、授权 permit、状态和 revision，文件上限64 KiB并原子替换。付款/物品操作 key 根据 saga UUID 与 phase 稳定派生。恢复时先 lookup 外部 key；UNKNOWN 或副作用调用不确定时不会自动重试，并进入人工复核或保持可查状态。真实结算 adapter 尚未注册，StarCore/Vault 交易保持禁用。
 
+P9 显式复核引入外层schemaVersion=2，内层SettlementSaga仍为schemaVersion=1，原operation key和请求/permit不变。普通新建与从未复核的旧文件继续写v1；只读加载不改写。首次成功`commitReview`才将前后snapshot、身份/授权和三项查询证据与新状态一起原子写为v2，后续自动推进保留全部记录。未知外层/记录版本、空或超过16条历史、重复review ID、乱序revision/tick、错误状态组合、参与者自审、被抹除的APPLIED证据均拒绝；64 KiB实际字节上限仍执行。旧插件不理解v2，回退前须保留已复核文件并使用支持它的版本恢复，禁止删掉审计字段伪装成v1。
+
 P9 并发恢复修复不改变文件格式、operation key 或合法旧状态。新增 `SettlementSagaRepository.withExclusiveSaga(UUID, Supplier<T>)` 合同要求跨仓库实例、跨共享存储进程互斥，作用域覆盖整个同步推进；同一saga的嵌套读写可重入，嵌套不同saga明确拒绝。旧repository实现继承的默认方法会在授权/外部调用前抛出UnsupportedOperationException，必须实现新的排他范围后才能用于coordinator。Paper复用按UUID分片的JVM锁与OS文件锁，移除会阻塞其他saga的实例级锁，并在异常时释放作用域。持锁期间外部adapter须自行提供有限超时，不能把异步副作用逃逸到回调结束之后。
 
 新建只能写PREPARED/revision=0/空reason，替换必须保留原request/permit、递增一版并遵循现有状态转移；不允许普通replace重开MANUAL_REVIEW或其他终局。重复begin的同请求会先返回已存记录，过期只阻止新建；负tick与ID复用为不同请求仍拒绝。旧v1已付款fixture从`a0cf186`的已验证JAR导出，读取不改原字节，并可在过期后继续补偿。人工复核仍无生产管理入口，不能通过直接改JSON绕过授权或外部结果核对。
