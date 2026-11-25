@@ -144,7 +144,7 @@ java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/E
 
 末尾两个参数分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2。长期结果及完整测试证据见 `docs/evidence/p5/long-run/summary.json`。旧候选参数在长期样本中出现第512步食草者灭绝；到达500步不能作为三物种长期共存的依据。可选时长命令目前仅通过单元测试，尚未重新执行实服客户端流程。
 
-P6 四人工厂由两组双人组织组成。玩家邀请在线伙伴并接受邀请后，双人 roster 原子保存到 `plugins/StarGenesis/factory/organizations.json`。两组各有成员在线后，由四人中的任意一位创建比赛：
+P6 四人工厂由两组双人组织组成。玩家邀请在线伙伴并接受邀请后，双人 roster 原子保存到 `plugins/StarGenesis/factory/organizations.json`。两组四名成员均在线且未参加其他活跃工厂时，任意一位可创建比赛；同一组玩家可以在上一场结束后再次开赛：
 
 ```text
 /genesis factory invite <player>
@@ -156,9 +156,14 @@ P6 四人工厂由两组双人组织组成。玩家邀请在线伙伴并接受�
 /genesis factory step 2
 /genesis factory dashboard
 /genesis factory replay
+/genesis factory matches
+/genesis factory select <matchId>
+/genesis factory leave
 ```
 
-拍卖在第4 tick 截止，模拟 ore 归最高出价组织，平局按组织 ID 决胜。获胜方提交订单时 escrow 预留 credits、ore 与 parts。订单按 deadline 完成；固定 seed 可能触发部分生产故障，补偿路径退回已处理和未处理 ore、credits 与 parts，并把每条 saga 事件写入 replay。比赛 replay 原子保存在 `<matchId>.factory.json`，服务端重启后可由 UUID 查回并继续。比赛账户只保存模拟资产，不调用 Bukkit 库存、真实经济或 StarCore。P6 代码测试和服务端启动不代替四名真人玩家的比赛验收。
+拍卖在第4 tick 截止，模拟 ore 归最高出价组织，平局按组织 ID 决胜。获胜方提交订单时 escrow 预留 credits、ore 与 parts。订单按 deadline 完成；固定 seed 可能触发部分生产故障，补偿路径退回已处理和未处理 ore、credits 与 parts，并把每条 saga 事件写入 replay。比赛 replay 原子保存在 `<matchId>.factory.json`，新场次使用独立 run UUID，旧 v1 回放继续保持原哈希。重连/重启优先恢复活跃参赛，`select` 可查看自己的历史；查看历史不能绕过活跃参赛限制。比赛结束后任一成员 `leave` 解散双人组织，历史不会重新加入已退出成员。
+
+目录限256场且合计64 MiB，单场限8 MiB；写入失败保留原数据。具备 `stargenesis.factory.manage` 的管理员（默认 OP）可用 `/genesis factory prune <matchId>` 清理已结束且全部订单已完成或补偿的历史。旧 `reset [matchId]` 改为同权限的历史清理别名，普通成员不能删除共享比赛，管理员也不能删除活跃比赛。`matches` 对普通玩家只列本人记录，对管理员列全部记录。比赛账户只保存模拟资产，不调用 Bukkit 库存、真实经济或 StarCore。P6 代码测试和服务端启动不代替四名真人玩家的比赛验收。
 
 P7 ArenaRuleset 使用现有 schema-v1 严格格式。玩家编辑有界宽高、时长、单位预算、版本和访问许可，并可撤销最近32次修改。公开提交需要 publicRead，所有依赖都必须在内置设计或公开 catalog 中存在，版本/hash 精确一致且授权 publicRead + allowClone；依赖循环和超过16层的链拒绝提交。`publish` 将固定设计 hash 提交到持久审核队列，批准前不进入公开 catalog。具有 `stargenesis.arena.review` 权限的审核员必须是非作者，拒绝决定需记录理由；批准后才将该版本不可变发布，升级需提高语义版本。公开 catalog 仅包含内置示例与已批准 UGC：
 

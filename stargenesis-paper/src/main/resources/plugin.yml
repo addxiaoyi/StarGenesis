@@ -38,6 +38,9 @@ permissions:
   stargenesis.factory:
     description: Run a four-player simulated organization factory
     default: true
+  stargenesis.factory.manage:
+    description: List all factory matches and permanently prune completed history
+    default: op
   stargenesis.arena:
     description: Author, license and submit bounded arena rulesets for review
     default: true

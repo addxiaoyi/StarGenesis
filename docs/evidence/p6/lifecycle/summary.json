@@ -1,0 +1,148 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "b7f9e4d8d7bd6712dcb93e226d235b3c8a94ac5a",
+  "scope": "P6 worker-owned factory lifecycle, independent runs, active membership, completed-history permissions, v1 compatibility and persistence-failure recovery.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 44,
+      "tests": 313,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "factory-lifecycle-verify-java21.log",
+      "logSha256": "32104e1b83d17ff3d96f8e0e3fd8b3b2bb6c5cfdfea28b9329b5d572e5f589ae",
+      "pluginSha256": "9e5f5671301a4591f69e4b0bba7a7c69881f04371d935a2d9857163b2f13e2cc",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 44,
+      "tests": 313,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "factory-lifecycle-verify-java25.log",
+      "logSha256": "a2f7389dbddd4f73962da456a2ba4a814e9435e0278b398476e772ddfb38fe39",
+      "pluginSha256": "1cced3ea7ef4ec006a567de0a9452ee6b885d998b2b275faebeadda84f1fb23c",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "1cced3ea7ef4ec006a567de0a9452ee6b885d998b2b275faebeadda84f1fb23c",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "1cced3ea7ef4ec006a567de0a9452ee6b885d998b2b275faebeadda84f1fb23c",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "eventTamperingRegression": 1,
+    "simulationIdentity": 3,
+    "persistenceCompatibilityAndBudgets": 5,
+    "serviceLifecycleAndFailureMatrix": 14
+  },
+  "redRegression": {
+    "test": "FactoryWorldTest.restoringRejectsChangedEventsEvenWhenStoredHashesWereNotChanged",
+    "before": "Old restore accepted a changed event list while state/event hash strings were unchanged; the new regression failed before the fix.",
+    "after": "Restore verifies exact event records as well as the state and event commitments.",
+    "log": "factory-events-before.log"
+  },
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/factory-v1-pending-order.json",
+    "origin": "Exported from the b7f9e4d shaded JAR before factory identity or restore changes.",
+    "sha256": "bb49894789510fcef6ecf72c7c6554976c00d43a5b40a6493b7b5f282c239f88",
+    "matchId": "factory-a4520b4908f1d3f5fdf61c9d64befb37",
+    "initialStateHash": "d1c265179f23f6c6168ffb9622192667f6e23053f82382b455d63e55a79c4aeb",
+    "pendingAtTick5StateHash": "aedb894b7af80a1411b8298886f057c9e2674c0216606ae0ddef67840e28f78f",
+    "compensatedAtTick6StateHash": "319e5e6d4e16c0b28b83d9d306470833a97160f8246f326aa7851714983b0a71"
+  },
+  "failureMatrix": [
+    "Organization acceptance/leave: blocked temporary path preserves disk and in-memory roster, pending invitation remains retryable.",
+    "New game at catalog limit: no match or selection is published; pruning completed history enables retry.",
+    "Bid reservation: failed save preserves exact prior bytes; retry escrows credits once.",
+    "Order reservation: failed save preserves auction state; retry reserves ore/credits/parts once.",
+    "Compensation completion: failed save preserves RUNNING order; restart/retry refunds once and conserves all three resources.",
+    "Corrupt event list: restore, step and manager prune all reject without altering the corrupted bytes.",
+    "Unauthorized reset: participants and outsiders cannot delete shared history; managers cannot delete an active game."
+  ],
+  "boundaryCheck": "PASS: scripts/check_boundaries.py; no server or reflective imports in public API, simulation, design or integrations.",
+  "limitations": [
+    "No new Paper/Folia client or human four-player acceptance run for the new lifecycle commands.",
+    "Unit tests run without forked JVMs under explicit memory limits due to host memory pressure; timings are not capacity measurements.",
+    "Signer checks use ephemeral test keys, not official publisher trust roots or release signatures.",
+    "All factory assets remain simulated; this batch does not enable P9 real settlement.",
+    "The P0-P11 goal remains active; phase gates retain their documented incomplete status."
+  ],
+  "files": {
+    "factory-events-before.log": "f5e4b1fbdafcb858853c0511b8a9ee07d259a8f2a83e3dc4d6926d647f5aa677",
+    "factory-lifecycle-focused.log": "4c389313ede68543c432f1e98cc46be86bd18e2f2ed05b722681a0f0406dbe6c",
+    "factory-lifecycle-verify-java21.log": "32104e1b83d17ff3d96f8e0e3fd8b3b2bb6c5cfdfea28b9329b5d572e5f589ae",
+    "factory-lifecycle-build-java21.json": "3029ff6dc66c9087c74b8f759ba1bb480494b9daaa68b7f272923b98adc23e0d",
+    "factory-lifecycle-release-signer-java21.json": "e7df3b825d905c8a0ec15991d798dbbb84c5defb7082d35af4a3726d83e57def",
+    "factory-lifecycle-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "factory-lifecycle-verify-java25.log": "a2f7389dbddd4f73962da456a2ba4a814e9435e0278b398476e772ddfb38fe39",
+    "factory-lifecycle-build-java25.json": "d08296a667cd262c98e0318d14fc48f43315164d9a53cec6f90720e816654af4",
+    "factory-lifecycle-release-signer-java25.json": "e7df3b825d905c8a0ec15991d798dbbb84c5defb7082d35af4a3726d83e57def",
+    "factory-lifecycle-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

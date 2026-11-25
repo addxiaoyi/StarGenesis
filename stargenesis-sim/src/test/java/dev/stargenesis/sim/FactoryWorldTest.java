@@ -11,6 +11,19 @@ class FactoryWorldTest {
     private static final List<UUID> PLAYERS = List.of(
             new UUID(0, 1001), new UUID(0, 1002), new UUID(0, 1003), new UUID(0, 1004));
 
+    @Test void restoringRejectsChangedEventsEvenWhenStoredHashesWereNotChanged() {
+        try (FactoryWorld world = new FactoryWorld(FactoryWorld.matchIdFor(PLAYERS), PLAYERS, 9, config(0))) {
+            world.step(new FactoryInput(0, FactoryAction.pass(PLAYERS.getFirst())));
+            var replay = world.replay();
+            var frame = replay.frames().getFirst();
+            var changed = new FactoryReplay.Frame(frame.input(), frame.stateHash(), List.of(), frame.eventHash());
+            var tampered = new FactoryReplay(replay.schemaVersion(), replay.engineVersion(), replay.matchId(),
+                    replay.participants(), replay.seed(), replay.config(), replay.initialStateHash(), List.of(changed));
+            assertFalse(FactoryReplayVerifier.verify(tampered).passed());
+            assertThrows(IllegalArgumentException.class, () -> FactoryWorld.restore(tampered));
+        }
+    }
+
     @Test void fourSeatAuctionAndFaultedOrderCompensateAllEscrow() {
         FactoryConfig config = config(1_000);
         try (FactoryWorld world = new FactoryWorld("factory-00000000000000000000000000000001", PLAYERS, 99, config)) {

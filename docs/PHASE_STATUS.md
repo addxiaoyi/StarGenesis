@@ -16,7 +16,7 @@
 | P3 | 实现已落地，阶段门未通过 | typed program 编辑、沙盒执行和 replay 已覆盖。仍缺真人程序工作流和多人性能验收 |
 | P4 | 实现已落地，阶段门未通过 | Paper/Folia 实服流程验证 at-least-once poll、ack、收件人断线重投和跨 tick 去重。仍缺真人通信体验与长期网络负载验收 |
 | P5 | 实现已落地，阶段门未通过 | 四组实服对照 profile 均会灭绝。固定候选 profile 曾在 Paper/Folia SNAPSHOT/RC 和16次实服 seed 扩展中到达500 tick并保留三物种，另有200次固定候选和400次多参数纯模拟500步筛选。新增1–1536步有界实验与24个纯模拟长期对照：原候选8/8在512步失去食草者，三组参数均未保持三物种至1536步；长期平衡、实服长局和真人验收仍未完成 |
-| P6 | 实现已落地，阶段门未通过 | Paper/Folia 客户端流程触发部分生产故障，验证 compensation、credits/ore 退款、parts escrow 释放和 replay。仍缺四名真人玩家故障比赛验收 |
+| P6 | 实现已落地，阶段门未通过 | Paper/Folia 既有客户端流程验证 compensation、退款、escrow 释放和 replay；新增独立场次、退出重组、活跃优先恢复、管理员终局清理及写盘失败回归。新增生命周期命令尚无实服验证，仍缺四名真人玩家故障比赛验收 |
 | P7 | 代码和自动审核流程已落地，阶段门未通过 | 待审不可见、作者不能自审、独立 OP 批准/拒绝、拒绝理由和版本隔离已有实服覆盖。仍缺真人创作体验、运营治理和反作弊比赛验收 |
 | P8 | 实现已落地，阶段门未通过 | Paper/Folia 验证四人回合、只读 observer、replay 以及 TCP 硬断线后 pending action/match ID/UUID 恢复。仍缺真人双队比赛、公平性和竞技性能验收 |
 | P9 | 部分实现，阶段门未通过 | 有持久 saga、revision、permit、补偿和 manual review。没有通过外部幂等/权限/故障审计的真实经济/库存 adapter，生产结算保持关闭 |
@@ -50,6 +50,10 @@ P5 续开发保留默认500步，新增 `ecology start <seed> <ticks>` 的1–15
 ## P6–P8
 
 P6 由四名不同 UUID 玩家组成两个组织、竞价并下单。额外实服流程使用 roster 派生的确定 fault seed 触发部分生产失败，断言 `FAILED_RECOVERED`、recovered order、credits/ore 退回至预期余额、parts escrow 释放和 replay。结果见 `paper-factory-compensation-retest-workflow-result.json` 与 Folia 对应文件。这仍是五自动客户端，不替代真人比赛。
+
+P6 续开发将组织/比赛操作集中到单线程服务，先写盘再发布结果。新场次使用 run UUID 的 replay v2，允许相同 roster/seed 重复比赛；v1 订单 fixture 按原哈希继续补偿。重连/重启优先恢复活跃比赛，选择历史不改变参赛占用；成员退出解散双人组织，历史恢复不重新加入旧成员。匹配跳过离线或忙碌组织，邀请不能相互覆盖，断线清理待处理邀请。`factory reset` 收紧为管理员清理已结束且无待补偿订单的历史别名，与新 `prune` 相同；普通成员不能删除共享比赛，OP也不能清理活跃比赛。目录256场/64 MiB与单场8 MiB预算在写盘前检查。
+
+本批次新增23项单元回归，覆盖事件列表篡改（修复前先复现失败）、v1黄金样本、v2身份、目录容量、重复开赛、退出重组、管理员权限，以及组织/竞价/订单/补偿保存失败后的原字节保留和重试守恒。Java 21/25 各通过313项测试（44个测试类），失败/错误/跳过均为0；模块边界检查及两个JVM的发行/设计包签名工具自检通过。日志、固定哈希、故障矩阵和验证范围见 `docs/evidence/p6/lifecycle/summary.json`。新命令没有新增实服或真人证据，阶段门保持未通过。
 
 P7 的 `ArenaRulesetStore` 将作者提交与公开 catalog 分开，提交绑定 content hash，作者不能自审，独立 OP 才能批准/拒绝，拒绝记录理由。审核状态跨重启恢复。Paper/Folia 自动流程覆盖待审不可见、批准后发布及拒绝版本隔离。
 

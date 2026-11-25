@@ -8,10 +8,11 @@ public final class FactoryReplayVerifier {
 
     public static Verification verify(FactoryReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!FactoryWorld.ENGINE_VERSION.equals(replay.engineVersion()))
+        if (!FactoryWorld.ENGINE_VERSION.equals(replay.engineVersion())
+                && !FactoryWorld.LEGACY_ENGINE_VERSION.equals(replay.engineVersion()))
             return new Verification(false, -1, "UNSUPPORTED_ENGINE");
         long currentTick = 0;
-        try (FactoryWorld world = new FactoryWorld(replay.matchId(), replay.participants(), replay.seed(), replay.config())) {
+        try (FactoryWorld world = FactoryWorld.initialWorld(replay)) {
             if (!world.stateHash().equals(replay.initialStateHash()))
                 return new Verification(false, -1, "INITIAL_STATE_MISMATCH");
             for (FactoryReplay.Frame frame : replay.frames()) {

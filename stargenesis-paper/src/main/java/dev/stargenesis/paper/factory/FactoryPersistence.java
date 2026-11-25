@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.stargenesis.sim.FactoryReplay;
 import dev.stargenesis.sim.FactoryWorld;
 
@@ -31,7 +33,8 @@ public final class FactoryPersistence {
     public static final int SCHEMA_VERSION = 1;
     public static final long MAX_FILE_BYTES = 8L * 1024 * 1024;
     public static final int MAX_ORGANIZATIONS = 64;
-    private static final long MAX_INDEX_SCAN_BYTES = 64L * 1024 * 1024;
+    public static final int MAX_RETAINED_MATCHES = 256;
+    public static final long MAX_CATALOG_BYTES = 64L * 1024 * 1024;
     private final Path directory;
     private final Path organizationsFile;
     private final ObjectMapper mapper;
@@ -39,6 +42,7 @@ public final class FactoryPersistence {
     public FactoryPersistence(Path directory) throws IOException {
         this.directory = directory.toAbsolutePath().normalize();
         Files.createDirectories(this.directory);
+        if (Files.isSymbolicLink(this.directory)) throw new IOException("Factory directory symlink rejected");
         organizationsFile = this.directory.resolve("organizations.json");
         mapper = new ObjectMapper(JsonFactory.builder().enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
                 .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(32)
@@ -52,7 +56,7 @@ public final class FactoryPersistence {
         mapper.disable(MapperFeature.ALLOW_COERCION_OF_SCALARS);
     }
 
-    public Optional<FactoryReplay> load(String matchId) throws IOException {
+    public synchronized Optional<FactoryReplay> load(String matchId) throws IOException {
         Path file = path(matchId);
         if (!Files.exists(file)) return Optional.empty();
         if (Files.isSymbolicLink(file) || !Files.isRegularFile(file) || Files.size(file) > MAX_FILE_BYTES)
@@ -62,38 +66,60 @@ public final class FactoryPersistence {
             data = input.readNBytes((int) MAX_FILE_BYTES + 1);
         }
         if (data.length > MAX_FILE_BYTES) throw new IOException("Factory replay exceeds 8 MiB");
-        MatchReplay saved = mapper.readValue(data, MatchReplay.class);
-        if (saved.schemaVersion() != SCHEMA_VERSION || saved.replay() == null
+        JsonNode document = mapper.readTree(data);
+        if (document == null || !document.isObject()) throw new IOException("Factory replay must be a JSON object");
+        JsonNode replay = document.path("replay");
+        if (replay.isObject() && replay.path("schemaVersion").isInt() && replay.path("schemaVersion").intValue() == 1) {
+            if (replay.has("runId")) throw new IOException("Legacy factory replay must not contain runId");
+            ((ObjectNode) replay).putNull("runId");
+        }
+        MatchReplay saved = mapper.treeToValue(document, MatchReplay.class);
+        if (saved == null || saved.schemaVersion() != SCHEMA_VERSION || saved.replay() == null
                 || !matchId.equals(saved.replay().matchId())
-                || !matchId.equals(FactoryWorld.matchIdFor(saved.replay().participants())))
+                || saved.replay().schemaVersion() == 1 && !matchId.equals(FactoryWorld.matchIdFor(saved.replay().participants())))
             throw new IOException("Factory replay identity or schema mismatch");
         return Optional.of(saved.replay());
     }
 
-    public List<FactoryReplay> findForPlayer(UUID player) throws IOException {
+    public synchronized List<FactoryReplay> findForPlayer(UUID player) throws IOException {
         if (player == null) throw new IllegalArgumentException("Missing factory player");
-        List<Path> files;
-        try (var paths = Files.list(directory)) {
-            files = paths.filter(path -> path.getFileName().toString().matches("factory-[0-9a-f]{32}\\.factory\\.json"))
-                    .sorted().limit(257).toList();
-        }
-        if (files.size() > 256) throw new IOException("Factory replay directory exceeds its 256-match budget");
         List<FactoryReplay> matches = new ArrayList<>();
-        long scanBytes = 0;
-        for (Path file : files) {
-            scanBytes = Math.addExact(scanBytes, Files.size(file));
-            if (scanBytes > MAX_INDEX_SCAN_BYTES)
-                throw new IOException("Factory replay lookup exceeds its 64 MiB scan budget");
+        for (Path file : matchFiles()) {
             String name = file.getFileName().toString();
-            String matchId = name.substring(0, name.length() - ".factory.json".length());
-            Optional<FactoryReplay> replay = load(matchId);
-            replay.filter(value -> value.participants().contains(player)).ifPresent(matches::add);
+            load(name.substring(0, name.length() - ".factory.json".length()))
+                    .filter(value -> value.participants().contains(player)).ifPresent(matches::add);
         }
-        if (matches.size() > 1) throw new IOException("Player is present in multiple factory matches");
         return List.copyOf(matches);
     }
 
-    public Map<UUID, UUID> loadOrganizations() throws IOException {
+    public synchronized List<FactoryReplay> catalog() throws IOException {
+        List<FactoryReplay> matches = new ArrayList<>();
+        for (Path file : matchFiles()) {
+            String name = file.getFileName().toString();
+            matches.add(load(name.substring(0, name.length() - ".factory.json".length())).orElseThrow());
+        }
+        return List.copyOf(matches);
+    }
+
+    private List<Path> matchFiles() throws IOException {
+        List<Path> files;
+        try (var paths = Files.list(directory)) {
+            files = paths.filter(path -> path.getFileName().toString().matches("factory-[0-9a-f]{32}\\.factory\\.json"))
+                    .sorted().limit(MAX_RETAINED_MATCHES + 1).toList();
+        }
+        if (files.size() > MAX_RETAINED_MATCHES) throw new IOException("Factory replay directory exceeds its 256-match budget");
+        long scanBytes = 0;
+        for (Path file : files) {
+            if (Files.isSymbolicLink(file) || !Files.isRegularFile(file) || Files.size(file) > MAX_FILE_BYTES)
+                throw new IOException("Factory replay is not a regular file or exceeds 8 MiB");
+            scanBytes = Math.addExact(scanBytes, Files.size(file));
+            if (scanBytes > MAX_CATALOG_BYTES)
+                throw new IOException("Factory replay lookup exceeds its 64 MiB scan budget");
+        }
+        return files;
+    }
+
+    public synchronized Map<UUID, UUID> loadOrganizations() throws IOException {
         if (!Files.exists(organizationsFile)) return Map.of();
         if (Files.isSymbolicLink(organizationsFile) || !Files.isRegularFile(organizationsFile)
                 || Files.size(organizationsFile) > 256 * 1024)
@@ -102,7 +128,7 @@ public final class FactoryPersistence {
         try (var input = Files.newInputStream(organizationsFile)) { data = input.readNBytes(256 * 1024 + 1); }
         if (data.length > 256 * 1024) throw new IOException("Factory organization file exceeds 256 KiB");
         Organizations saved = mapper.readValue(data, Organizations.class);
-        if (saved.schemaVersion() != SCHEMA_VERSION || saved.pairs().size() > MAX_ORGANIZATIONS)
+        if (saved == null || saved.schemaVersion() != SCHEMA_VERSION || saved.pairs().size() > MAX_ORGANIZATIONS)
             throw new IOException("Factory organization schema or count is invalid");
         Map<UUID, UUID> result = new HashMap<>();
         for (OrganizationPair pair : saved.pairs()) {
@@ -115,7 +141,7 @@ public final class FactoryPersistence {
         return Map.copyOf(result);
     }
 
-    public void saveOrganizations(Map<UUID, UUID> partners) throws IOException {
+    public synchronized void saveOrganizations(Map<UUID, UUID> partners) throws IOException {
         if (partners == null || partners.size() % 2 != 0 || partners.size() / 2 > MAX_ORGANIZATIONS)
             throw new IOException("Factory organization count exceeds its budget");
         Set<UUID> written = new HashSet<>();
@@ -137,11 +163,22 @@ public final class FactoryPersistence {
         atomicWrite(organizationsFile, data, "Factory organization");
     }
 
-    public void save(FactoryReplay replay) throws IOException {
+    public synchronized void save(FactoryReplay replay) throws IOException {
         Path file = path(replay.matchId());
-        Path temporary = file.resolveSibling(file.getFileName() + ".tmp");
-        byte[] data = mapper.writeValueAsBytes(new MatchReplay(SCHEMA_VERSION, replay));
+        if (replay.schemaVersion() == 1 && !replay.matchId().equals(FactoryWorld.matchIdFor(replay.participants())))
+            throw new IOException("Factory replay identity mismatch");
+        ObjectNode document = mapper.valueToTree(new MatchReplay(SCHEMA_VERSION, replay));
+        if (replay.schemaVersion() == 1) ((ObjectNode) document.path("replay")).remove("runId");
+        byte[] data = mapper.writeValueAsBytes(document);
         if (data.length > MAX_FILE_BYTES) throw new IOException("Factory replay exceeds 8 MiB");
+        List<Path> files = matchFiles();
+        if (!files.contains(file) && files.size() >= MAX_RETAINED_MATCHES)
+            throw new IOException("Factory catalog is full; an operator must prune completed history");
+        long totalBytes = data.length;
+        for (Path existing : files) {
+            if (!existing.equals(file)) totalBytes = Math.addExact(totalBytes, Files.size(existing));
+        }
+        if (totalBytes > MAX_CATALOG_BYTES) throw new IOException("Factory replay catalog exceeds 64 MiB");
         atomicWrite(file, data, "Factory replay");
     }
 
@@ -163,7 +200,7 @@ public final class FactoryPersistence {
         }
     }
 
-    public boolean delete(String matchId) throws IOException {
+    public synchronized boolean delete(String matchId) throws IOException {
         Path file = path(matchId);
         if (Files.isSymbolicLink(file)) throw new IOException("Factory replay symlink path rejected");
         return Files.deleteIfExists(file);

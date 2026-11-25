@@ -9,17 +9,28 @@ import java.util.UUID;
 /** Complete, bounded inputs and commitments for one four-player factory match. */
 public record FactoryReplay(int schemaVersion, String engineVersion, String matchId,
                             List<UUID> participants, long seed, FactoryConfig config,
-                            String initialStateHash, List<Frame> frames) {
+                            String initialStateHash, List<Frame> frames, String runId) {
+    /** Retains the v1 constructor for existing replay consumers. */
+    public FactoryReplay(int schemaVersion, String engineVersion, String matchId,
+                         List<UUID> participants, long seed, FactoryConfig config,
+                         String initialStateHash, List<Frame> frames) {
+        this(schemaVersion, engineVersion, matchId, participants, seed, config, initialStateHash, frames, null);
+    }
+
     public FactoryReplay {
         Objects.requireNonNull(engineVersion, "engineVersion");
         Objects.requireNonNull(config, "config");
         participants = List.copyOf(participants);
         frames = List.copyOf(frames);
-        if (schemaVersion != 1 || !FactoryWorld.ENGINE_VERSION.equals(engineVersion)
+        boolean legacy = schemaVersion == 1 && FactoryWorld.LEGACY_ENGINE_VERSION.equals(engineVersion) && runId == null;
+        boolean current = schemaVersion == 2 && FactoryWorld.ENGINE_VERSION.equals(engineVersion)
+                && runId != null && runId.matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}");
+        if ((!legacy && !current)
                 || matchId == null || !matchId.matches("factory-[0-9a-f]{32}")
                 || participants.size() != FactoryWorld.PLAYER_COUNT || participants.stream().anyMatch(Objects::isNull)
                 || participants.stream().distinct().count() != FactoryWorld.PLAYER_COUNT
-                || !validHash(initialStateHash) || frames.size() > config.maxTicks())
+                || !validHash(initialStateHash) || frames.size() > config.maxTicks()
+                || current && !matchId.equals(FactoryWorld.matchIdFor(participants, UUID.fromString(runId))))
             throw new IllegalArgumentException("Invalid or unbounded factory replay");
         for (int i = 0; i < frames.size(); i++) {
             if (frames.get(i).input().tick() != i

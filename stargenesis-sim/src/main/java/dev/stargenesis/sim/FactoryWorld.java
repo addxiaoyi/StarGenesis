@@ -17,7 +17,8 @@ import java.util.UUID;
 
 /** Four-seat organization factory with a finite auction, escrowed orders and replayable compensation. */
 public final class FactoryWorld implements AutoCloseable {
-    public static final String ENGINE_VERSION = "genesis-factory/1";
+    public static final String LEGACY_ENGINE_VERSION = "genesis-factory/1";
+    public static final String ENGINE_VERSION = "genesis-factory/2";
     public static final int PLAYER_COUNT = 4;
     public static final int MAX_EVENTS_PER_TICK = 256;
     public static final String CREDITS = "credits";
@@ -28,6 +29,8 @@ public final class FactoryWorld implements AutoCloseable {
     private static final List<String> ORGANIZATIONS = List.of("org_cedar", "org_ember");
     private final OwnerThread owner = new OwnerThread();
     private final String matchId;
+    private final String runId;
+    private final String engineVersion;
     private final List<UUID> participants;
     private final Map<UUID, String> organizationByPlayer = new HashMap<>();
     private final long seed;
@@ -54,8 +57,19 @@ public final class FactoryWorld implements AutoCloseable {
     private List<EventRecord> stepEvents = new ArrayList<>();
 
     public FactoryWorld(String matchId, List<UUID> participants, long seed, FactoryConfig config) {
+        this(matchId, null, participants, seed, config);
+    }
+
+    /** Pins a new run identity to the ordered two-organization roster. */
+    public FactoryWorld(UUID runId, List<UUID> participants, long seed, FactoryConfig config) {
+        this(matchIdFor(participants, runId), runId.toString(), participants, seed, config);
+    }
+
+    private FactoryWorld(String matchId, String runId, List<UUID> participants, long seed, FactoryConfig config) {
         new EvidenceId(matchId, 0, 0);
         this.matchId = matchId;
+        this.runId = runId;
+        this.engineVersion = runId == null ? LEGACY_ENGINE_VERSION : ENGINE_VERSION;
         this.participants = validateParticipants(participants);
         this.seed = seed;
         this.config = Objects.requireNonNull(config, "config");
@@ -82,16 +96,29 @@ public final class FactoryWorld implements AutoCloseable {
         return "factory-" + sha256(key.toString()).substring(0, 32);
     }
 
+    public static String matchIdFor(List<UUID> participants, UUID runId) {
+        Objects.requireNonNull(runId, "runId");
+        StringBuilder key = new StringBuilder();
+        token(key, ENGINE_VERSION);
+        token(key, runId.toString());
+        token(key, matchIdFor(participants));
+        return "factory-" + sha256(key.toString()).substring(0, 32);
+    }
+
+    static FactoryWorld initialWorld(FactoryReplay replay) {
+        return new FactoryWorld(replay.matchId(), replay.runId(), replay.participants(), replay.seed(), replay.config());
+    }
+
     public static FactoryWorld restore(FactoryReplay replay) {
         Objects.requireNonNull(replay, "replay");
-        if (!ENGINE_VERSION.equals(replay.engineVersion())) throw new IllegalArgumentException("Unsupported factory engine");
-        FactoryWorld world = new FactoryWorld(replay.matchId(), replay.participants(), replay.seed(), replay.config());
+        FactoryWorld world = initialWorld(replay);
         try {
             if (!world.initialStateHash.equals(replay.initialStateHash()))
                 throw new IllegalArgumentException("Factory initial-state commitment mismatch");
             for (FactoryReplay.Frame frame : replay.frames()) {
                 FactoryStepResult result = world.step(frame.input());
-                if (!result.stateHash().equals(frame.stateHash()) || !result.eventHash().equals(frame.eventHash()))
+                if (!result.stateHash().equals(frame.stateHash()) || !result.eventHash().equals(frame.eventHash())
+                        || !result.events().equals(frame.events()))
                     throw new IllegalArgumentException("Factory replay commitment mismatch at tick " + frame.input().tick());
             }
             return world;
@@ -377,7 +404,8 @@ public final class FactoryWorld implements AutoCloseable {
 
     public FactoryReplay replay() {
         owner.check();
-        return new FactoryReplay(1, ENGINE_VERSION, matchId, participants, seed, config, initialStateHash, history);
+        return new FactoryReplay(runId == null ? 1 : 2, engineVersion, matchId, participants, seed, config,
+                initialStateHash, history, runId);
     }
 
     public String matchId() { owner.check(); return matchId; }
@@ -387,7 +415,7 @@ public final class FactoryWorld implements AutoCloseable {
     public String stateHash() {
         owner.check();
         StringBuilder state = new StringBuilder();
-        token(state, ENGINE_VERSION); token(state, matchId); token(state, Long.toString(seed));
+        token(state, engineVersion); token(state, matchId); token(state, Long.toString(seed));
         token(state, Long.toString(config.initialCreditsPerOrganization()));
         token(state, Long.toString(config.auctionOre())); token(state, Long.toString(config.initialFactoryParts()));
         token(state, Integer.toString(config.auctionCloseTick())); token(state, Integer.toString(config.orderDurationTicks()));

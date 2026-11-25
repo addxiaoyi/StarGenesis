@@ -26,6 +26,12 @@ P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版
 
 P5 可选时长将已存在的 config.maxTicks 允许范围扩到1–1536，默认500与默认50,000次账本证据保持不变。新长局按 `max(50,000, ticks * 32 * 2)` 预留证据，最大98,304，不改变账本100,000、个体32、代数8和默认出生512的硬预算。格式与每步算法均未改变，因此仍为 schemaVersion=1 / `genesis-ecology/1`；旧文件按原配置原哈希恢复，不升级时长。固定样本 `stargenesis-paper/src/test/resources/ecology-v1-default.json` 从 `9be9cb5` 的构建产物导出并校验原初态/末态哈希。旧插件会拒绝大于500步的新文件，回退前须保留新数据，不能篡改 maxTicks 强行读取。Paper 同时验证外层 owner 与内层 worldId，替换 owner 字段不能转移生态舱归属。
 
+P6 工厂旧 replay schemaVersion=1 / `genesis-factory/1` 继续按原有序四人 roster 派生 match ID，恢复和推进保留原 commitments，不补写 runId。固定样本 `stargenesis-paper/src/test/resources/factory-v1-pending-order.json` 从 `b7f9e4d` 编译产物导出，保存到订单已预留但尚未补偿的第5 tick；测试核对原初态、第5 tick和第6 tick补偿后哈希。
+
+P6 新比赛使用 replay schemaVersion=2 / `genesis-factory/2` 与必填规范 UUID `runId`，match ID 同时固定场次和有序 roster，允许同队伍/seed 重复比赛；事件身份随场次变化，经济/故障算法不变。Java API 保留旧 String matchId 和八参数 replay 构造函数；新场次使用 UUID 构造函数。读取拒绝版本错配、v2 缺失 runId、v1 混入 runId、文件身份错误和事件或哈希篡改。旧插件不能读取 v2，回退前须保留新场次文件。
+
+P6 外层 match 文件与 `organizations.json` 仍为 schemaVersion=1。单场8 MiB，目录256场/64 MiB，写盘前核对预算并强制落盘后原子替换。当前组织与历史分开恢复，重连/重启优先选择活跃比赛，同级按 match ID 排序。退出组织须双方均无活跃比赛，不能通过选择历史绕过限制；未完成邀请不落盘，断线取消邀请。旧 `factory reset` 不再删除共享活跃比赛，改为具备 `stargenesis.factory.manage`（默认 OP）才能调用的已完成历史清理别名；管理员也必须等所有订单完成或补偿后才能用 `prune <matchId>` / `reset [matchId]` 清理。
+
 P7 沿用 `ArenaRuleset` schemaVersion=1，不增添可执行字段。玩家草稿位于 `arenas/drafts/<author UUID>/<sha256(id)>.json`，公开不可变版本位于 `arenas/published/<sha256(id@version)>.json`。同一 ID/version 一经发布不覆盖，变更必须提升语义版本。依赖以精确 DesignId/version/hash 固定，加载/发布时解析并校验公开与复用许可。发布文件未知字段、hash错配或依赖授权失效时拒绝加载和引用。
 
 P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限制8个玩家、每队至多4人。历史 ArenaMatch replay schemaVersion=1 固定引擎 `genesis-arena-match/1`；读入和继续运行保持原格式、match ID 派生方式及 state/event commitments，不补写 runId。固定回归样本 `stargenesis-paper/src/test/resources/arena-match-v1.json` 从 `31ecf9c` 编译产物导出，包含已完成一轮、一个 pending action 和 observer。
