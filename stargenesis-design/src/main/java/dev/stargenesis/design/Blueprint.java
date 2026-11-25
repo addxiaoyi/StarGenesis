@@ -3,7 +3,7 @@ package dev.stargenesis.design;
 import dev.stargenesis.api.design.*;
 import java.util.*;
 
-/** P0 structural interchange contract; component physics are introduced in P2. */
+/** Bounded immutable blueprint interchange contract. */
 public record Blueprint(DesignMetadata metadata, List<Component> components,
                         List<Connection> connections) implements DesignDocument {
     public Blueprint {

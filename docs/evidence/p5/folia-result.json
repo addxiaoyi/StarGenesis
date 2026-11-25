@@ -1,0 +1,30 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true
+  },
+  "passed": true,
+  "seconds": 125.67,
+  "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_sha256": "728cad76042ae5b320219d784d453347d2a4c90456badb5460852ee756dd5c19",
+  "log_sha256": "d1201bffc1354c54cf5b23237bbf88b17fec908c44f4635222acf8d89bc86293",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "scope": "actual-server console lifecycle only; no human clients or integration plugins"
+}

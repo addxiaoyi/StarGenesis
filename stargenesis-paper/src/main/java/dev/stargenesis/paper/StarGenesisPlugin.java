@@ -4,6 +4,22 @@ import dev.stargenesis.api.sim.SimulationBudget;
 import dev.stargenesis.api.sim.SimulationWorld;
 import dev.stargenesis.api.design.DesignKind;
 import dev.stargenesis.design.DesignCodec;
+import dev.stargenesis.paper.lab.LabController;
+import dev.stargenesis.paper.blueprint.BlueprintController;
+import dev.stargenesis.paper.blueprint.BlueprintStore;
+import dev.stargenesis.paper.program.ProgramController;
+import dev.stargenesis.paper.program.ProgramStore;
+import dev.stargenesis.paper.communication.RadioController;
+import dev.stargenesis.paper.communication.RadioProtocol;
+import dev.stargenesis.paper.communication.ServiceContractDefinition;
+import dev.stargenesis.paper.ecology.EcologyController;
+import dev.stargenesis.paper.factory.FactoryController;
+import dev.stargenesis.paper.arena.ArenaController;
+import dev.stargenesis.paper.arena.ArenaRulesetStore;
+import dev.stargenesis.paper.design.DesignImportController;
+import dev.stargenesis.paper.design.PublisherTrustController;
+import dev.stargenesis.paper.communication.RadioProtocol;
+import dev.stargenesis.paper.communication.RadioProtocol;
 import dev.stargenesis.integrations.CapabilityRegistry;
 import dev.stargenesis.integrations.InstalledPlugin;
 import dev.stargenesis.integrations.IntegrationStatus;
@@ -11,6 +27,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,13 +45,22 @@ public final class StarGenesisPlugin extends JavaPlugin {
     private List<IntegrationStatus> statuses = List.of();
     private SimulationBudget budget;
     private long stepDuration;
+    private LabController labs;
+    private BlueprintController blueprints;
+    private ProgramController programs;
+    private RadioController radio;
+    private EcologyController ecology;
+    private FactoryController factory;
+    private ArenaController arenas;
+    private DesignImportController designImports;
+    private PublisherTrustController publisherTrust;
 
     @Override public void onEnable() {
         try {
             saveDefaultConfig();
             if (getConfig().getInt("config-version", -1) != 1) throw new IllegalArgumentException("Unsupported config-version; migrate explicitly");
             if (getConfig().getBoolean("integrations.allow-real-settlement"))
-                throw new IllegalArgumentException("Real settlement is unavailable in P0; set integrations.allow-real-settlement=false");
+                throw new IllegalArgumentException("Real settlement requires a configured and verified provider; set integrations.allow-real-settlement=false");
             budget = new SimulationBudget(getConfig().getInt("simulation.nodes-per-agent-step"), getConfig().getInt("simulation.max-agents"),
                     getConfig().getInt("simulation.path-requests-per-step"), getConfig().getLong("simulation.max-steps"),
                     getConfig().getInt("simulation.sensor-radius"), getConfig().getInt("simulation.messages-per-step"));
@@ -45,18 +71,97 @@ public final class StarGenesisPlugin extends JavaPlugin {
                     .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
                     .collect(Collectors.toUnmodifiableMap(InstalledPlugin::name, Function.identity()));
             statuses = CapabilityRegistry.auditedDefaults().inspect(name -> Optional.ofNullable(inventory.get(name)));
+            labs = new LabController(this, budget, stepDuration, getDataFolder().toPath().resolve("labs"));
+            blueprints = new BlueprintController(this,
+                    new BlueprintStore(getDataFolder().toPath().resolve("blueprints"), new DesignCodec()));
+            programs = new ProgramController(this,
+                    new ProgramStore(getDataFolder().toPath().resolve("programs"), new dev.stargenesis.design.TypedProgramCodec()));
+            ecology = new EcologyController(this, getDataFolder().toPath().resolve("ecology"));
+            factory = new FactoryController(this, getDataFolder().toPath().resolve("factory"));
+            arenas = new ArenaController(this, new ArenaRulesetStore(getDataFolder().toPath().resolve("arenas")),
+                    getDataFolder().toPath().resolve("arena-matches"));
+            designImports = new DesignImportController(getDataFolder().toPath());
+            publisherTrust = new PublisherTrustController(getDataFolder().toPath());
+            radio = new RadioController(this, budget.messagesPerStep());
+            getLogger().info("Virtual radio protocol pinned | " + RadioProtocol.ID.value() + " | hash="
+                    + RadioProtocol.protocol().metadata().hash());
+            getLogger().info("Virtual service contract pinned | " + ServiceContractDefinition.CONTRACT_ID.value()
+                    + " | hash=" + ServiceContractDefinition.contract().metadata().hash());
             PluginCommand command = Objects.requireNonNull(getCommand("genesis"), "Missing genesis command");
             command.setExecutor(this::execute);
             command.setTabCompleter((sender, cmd, alias, args) -> {
-                List<String> options = args.length == 1 ? List.of("help", "status", "debug")
+                List<String> options = args.length == 1 ? List.of("help", "status", "debug", "lab", "blueprint", "program", "radio", "ecology", "factory", "arena", "design")
+                        : args.length == 2 && args[0].equalsIgnoreCase("design") ? List.of("list", "install", "inspect", "publishers")
+                        : args.length == 3 && args[0].equalsIgnoreCase("design") && args[1].equalsIgnoreCase("publishers")
+                        ? List.of("list", "add", "revoke")
+                        : args.length == 2 && args[0].equalsIgnoreCase("lab") ? List.of("start", "stop", "replay", "resume", "status")
+                        : args.length == 2 && args[0].equalsIgnoreCase("blueprint")
+                        ? List.of("create", "list", "open", "close", "add", "move", "rotate", "connect", "disconnect", "remove", "undo", "preview", "save")
+                        : args.length == 4 && args[0].equalsIgnoreCase("blueprint") && args[1].equalsIgnoreCase("add")
+                        ? List.of("genesis:core", "genesis:frame", "genesis:solar_panel", "genesis:sensor", "genesis:wheel", "genesis:thruster", "genesis:wing")
+                        : args.length == 2 && args[0].equalsIgnoreCase("program")
+                        ? List.of("create", "list", "open", "close", "add", "replace", "remove", "undo", "save", "status", "show", "catalog", "context", "sensor", "resource", "signal", "breakpoint", "run", "step", "continue", "simulate")
+                        : args.length == 2 && args[0].equalsIgnoreCase("radio")
+                        ? List.of("chip", "join", "leave", "send", "inbox", "ack", "contract", "status")
+                        : args.length == 3 && args[0].equalsIgnoreCase("radio") && args[1].equalsIgnoreCase("chip")
+                        ? List.of("genesis:radio", "genesis:service")
+                        : args.length == 7 && args[0].equalsIgnoreCase("radio") && args[1].equalsIgnoreCase("send") && args[2].equalsIgnoreCase("contract")
+                        ? List.of("offer", "accept", "fulfill", "reject", "cancel")
+                        : args.length == 2 && args[0].equalsIgnoreCase("ecology")
+                        ? List.of("start", "program", "step", "dashboard", "replay", "reset")
+                        : args.length == 3 && args[0].equalsIgnoreCase("ecology") && args[1].equalsIgnoreCase("program")
+                        ? List.of("producer", "grazer", "decomposer")
+                        : args.length == 3 && args[0].equalsIgnoreCase("ecology") && args[1].equalsIgnoreCase("step")
+                        ? List.of("1", "5", "10", "20")
+                        : args.length == 2 && args[0].equalsIgnoreCase("factory")
+                        ? List.of("invite", "accept", "start", "bid", "order", "step", "dashboard", "replay", "reset")
+                        : args.length == 4 && args[0].equalsIgnoreCase("factory") && args[1].equalsIgnoreCase("order")
+                        ? List.of("press", "mill", "assembly")
+                        : args.length == 3 && args[0].equalsIgnoreCase("factory") && args[1].equalsIgnoreCase("step")
+                        ? List.of("1", "5", "10")
+                        : args.length == 2 && args[0].equalsIgnoreCase("arena")
+                        ? List.of("create", "clone", "list", "catalog", "open", "close", "set", "access", "dep", "undo", "preview", "save", "publish", "review", "match")
+                        : args.length == 3 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("review")
+                        ? List.of("pending", "status", "show", "approve", "reject")
+                        : args.length == 3 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match")
+                        ? List.of("invite", "accept", "start", "pass", "claim", "dashboard", "replay", "watch", "matches")
+                        : args.length == 4 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("invite")
+                        ? getServer().getOnlinePlayers().stream().map(Player::getName).toList()
+                        : args.length == 5 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("invite")
+                        ? List.of("cedar", "ember")
+                        : args.length == 4 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("start")
+                        ? List.of("genesis:arena_ruleset")
+                        : args.length == 5 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("start")
+                        ? List.of("1.0.0")
+                        : args.length == 4 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("claim")
+                        ? List.of("0", "1", "2", "3")
+                        : args.length == 5 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("claim")
+                        ? List.of("0", "1", "2", "3")
+                        : args.length == 6 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("claim")
+                        ? List.of("1", "2", "3", "4")
+                        : args.length == 4 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("match") && args[2].equalsIgnoreCase("watch")
+                        ? List.of("arena-")
+                        : args.length == 3 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("access")
+                        ? List.of("public", "clone", "editor", "revoke")
+                        : args.length == 3 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("set")
+                        ? List.of("width", "height", "duration", "units", "version")
+                        : args.length == 3 && args[0].equalsIgnoreCase("arena") && args[1].equalsIgnoreCase("dep")
+                        ? List.of("add", "remove")
+                        : args.length == 4 && args[0].equalsIgnoreCase("program") && args[1].equalsIgnoreCase("add")
+                        ? Arrays.stream(dev.stargenesis.design.PrimitiveCatalog.Operation.values()).map(Enum::name).toList()
+                        : args.length == 4 && args[0].equalsIgnoreCase("program") && args[1].equalsIgnoreCase("sensor")
+                        ? List.of("boolean", "integer", "vector", "resource")
+                        : args.length == 4 && args[0].equalsIgnoreCase("program") && args[1].equalsIgnoreCase("breakpoint")
+                        ? List.of("on", "off")
                         : args.length == 2 && args[0].equalsIgnoreCase("debug") && sender.hasPermission("stargenesis.debug")
                         ? List.of("capabilities", "budgets") : List.of();
                 String prefix = args[args.length - 1].toLowerCase(Locale.ROOT);
                 return options.stream().filter(s -> s.startsWith(prefix)).toList();
             });
-            getLogger().info("StarGenesis ready | phase=P0 | api=1 | engine=" + SimulationWorld.ENGINE_VERSION + " | real-settlement=disabled");
+            getLogger().info("StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine="
+                    + SimulationWorld.ENGINE_VERSION + " | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=" + labs.availabilityReason());
             statuses.forEach(s -> getLogger().info(s.toString()));
-        } catch (RuntimeException failure) {
+        } catch (RuntimeException | IOException failure) {
             getLogger().severe("StarGenesis startup rejected: " + failure.getMessage());
             getServer().getPluginManager().disablePlugin(this);
         }
@@ -73,17 +178,61 @@ public final class StarGenesisPlugin extends JavaPlugin {
                 throw new IllegalStateException("Cannot verify bundled design: " + resource, failure);
             }
         }
-        getLogger().info("StarGenesis design self-check passed: 5 signed schema-v1 examples");
+        getLogger().info("StarGenesis design self-check passed: 5 hashed schema-v1 examples");
     }
 
     private boolean execute(CommandSender sender, Command command, String label, String[] args) {
         String sub = args.length == 0 ? "help" : args[0].toLowerCase(Locale.ROOT);
+        if (sub.equals("lab")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis lab requires a player; use /genesis status for server diagnostics."); return true; }
+            return labs.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("blueprint")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis blueprint editing requires an in-game player."); return true; }
+            return blueprints.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("program")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis program editing requires an in-game player."); return true; }
+            return programs.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("radio")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis radio requires an in-game player."); return true; }
+            return radio.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("ecology")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis ecology requires an in-game player."); return true; }
+            return ecology.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("factory")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis factory requires an in-game player."); return true; }
+            return factory.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("arena")) {
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis arena editing requires an in-game player."); return true; }
+            return arenas.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
+        if (sub.equals("design")) {
+            if (args.length > 1 && args[1].equalsIgnoreCase("publishers"))
+                return publisherTrust.handle(sender, Arrays.copyOfRange(args, 2, args.length));
+            if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis signed design import requires an in-game player."); return true; }
+            return designImports.handle(player, Arrays.copyOfRange(args, 1, args.length));
+        }
         String permission = "stargenesis." + (sub.equals("debug") ? "debug" : sub.equals("status") ? "status" : "help");
         if (!sender.hasPermission(permission)) { sender.sendMessage("StarGenesis: permission denied (" + permission + ")"); return true; }
         if (sub.equals("status") && args.length == 1) {
-            sender.sendMessage("StarGenesis " + getPluginMeta().getVersion() + " | phase=P0 foundation | engine=" + SimulationWorld.ENGINE_VERSION);
-            sender.sendMessage("Design schema=1 | simulation-worker=not-started | real-settlement=disabled | integrations=" + statuses.size());
-            sender.sendMessage("P1 laboratory and P2-P11 gameplay are not implemented in this build.");
+            sender.sendMessage("StarGenesis " + getPluginMeta().getVersion()
+                    + " | foundation accepted; automated workflows available, human acceptance pending | engine=" + SimulationWorld.ENGINE_VERSION);
+            sender.sendMessage("Design schema=1 | simulation-worker=" + (labs.isAvailable() ? "scheduled" : "inactive")
+                    + " | real-settlement=disabled | integrations=" + statuses.size());
+            sender.sendMessage("P1 resource lab=" + labs.availabilityReason() + " | P2 blueprint editor=available | P3 typed program editor=available");
+            sender.sendMessage("P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.");
+            sender.sendMessage("P4 virtual radio=available | /genesis radio");
+            sender.sendMessage("P5 closed ecology=available | /genesis ecology dashboard");
+            sender.sendMessage("P6 four-seat simulated factory=available | /genesis factory dashboard");
+            sender.sendMessage("P7 licensed arena catalog=available | /genesis arena catalog");
+            sender.sendMessage("P8 simultaneous territory match=available | /genesis arena match matches");
+            sender.sendMessage("P9 durable saga contract=available, real gateway=inactive");
+            sender.sendMessage("P10 signed Ed25519 design import=available | /genesis design list");
         } else if (sub.equals("debug") && args.length == 2 && args[1].equalsIgnoreCase("capabilities")) {
             sender.sendMessage("StarGenesis capabilities (startup snapshot; installed != active):");
             statuses.forEach(s -> sender.sendMessage(s.toString()));
@@ -92,13 +241,31 @@ public final class StarGenesisPlugin extends JavaPlugin {
         } else {
             sender.sendMessage("StarGenesis - 玩家发明规则，世界检验发明。");
             sender.sendMessage("/genesis status - current foundation and capability state");
+            sender.sendMessage("/genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment");
+            sender.sendMessage("/genesis blueprint - create, edit, preview, undo, and save private virtual structures");
+            sender.sendMessage("/genesis program - edit and debug a private typed program in a virtual context");
+            sender.sendMessage("/genesis radio - install the virtual radio endpoint, send and receive protocol messages");
+            sender.sendMessage("/genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it");
+            sender.sendMessage("/genesis factory - form a two-player organization, bid, place simulated orders, recover and replay");
+            sender.sendMessage("/genesis arena - create, license, submit for review, and play approved ArenaRulesets");
+            sender.sendMessage("/genesis design - install and inspect administrator-staged signed design packages");
+            sender.sendMessage("/genesis design publishers - operator-managed publisher trust roots and key rotation");
             sender.sendMessage("/genesis debug capabilities | /genesis debug budgets - operator diagnostics");
-            sender.sendMessage("/genesis help - this help. P0 has no laboratory or real inventory settlement.");
+            sender.sendMessage("/genesis help - this help. Laboratory score cannot create real inventory or money.");
         }
         return true;
     }
 
     @Override public void onDisable() {
+        if (publisherTrust != null) { publisherTrust = null; }
+        if (designImports != null) { designImports = null; }
+        if (arenas != null) { arenas.close(); arenas = null; }
+        if (factory != null) { factory.close(); factory = null; }
+        if (ecology != null) { ecology.close(); ecology = null; }
+        if (radio != null) { radio.close(); radio = null; }
+        if (programs != null) { programs.close(); programs = null; }
+        if (blueprints != null) { blueprints.close(); blueprints = null; }
+        if (labs != null) { labs.close(); labs = null; }
         statuses = List.of();
         getLogger().info("StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.");
     }

@@ -1,0 +1,152 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25575,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "region-travel",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "interface": "Folia command workflow",
+      "replayVerified": true,
+      "checkpointResumed": true
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arena3a2b96",
+      "rejectedRuleset": "smoke:rejected3a2b96",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signed3a2b96",
+      "publisherKeyId": "smoke.publisher-3a2b96",
+      "rotatedPublisherKeyId": "smoke.publisher-3a2b96-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    },
+    {
+      "stage": "P11-sustained-load",
+      "passed": true,
+      "profile": "four-concurrent-p1-labs",
+      "requestedMinutes": 15,
+      "durationSeconds": 903,
+      "participants": 4,
+      "concurrentWorlds": 4,
+      "agentsPerWorld": 4,
+      "totalLabStarts": 16,
+      "labRestarts": 12,
+      "statusPolls": 58,
+      "separatedRegions": true
+    },
+    {
+      "stage": "P1-live-disable",
+      "passed": true,
+      "interface": "Folia command workflow",
+      "simulationWasRunning": true,
+      "checkpointPersisted": true,
+      "replayPersisted": true,
+      "seed": 100,
+      "savedTick": 30,
+      "replayFrames": 30,
+      "runtimeSample": {
+        "sampleCount": 224,
+        "fivePlayerSamples": 222,
+        "intervalSeconds": 1123,
+        "minFivePlayerTps1m": 16.132,
+        "maxFivePlayerAverageTickMillis": 3.972,
+        "maxOnlinePlayers": 5
+      }
+    }
+  ],
+  "passed": true,
+  "regionTravel": [
+    {
+      "role": "alice",
+      "x": 2,
+      "z": -7,
+      "distanceFromTarget": 8
+    },
+    {
+      "role": "bob",
+      "x": 184,
+      "z": 0,
+      "distanceFromTarget": 8
+    },
+    {
+      "role": "carol",
+      "x": -3,
+      "z": 185,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "dave",
+      "x": 187,
+      "z": 187,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "observer",
+      "x": 378,
+      "z": 378,
+      "distanceFromTarget": 8
+    }
+  ]
+}

@@ -2,7 +2,7 @@ name: StarGenesis
 version: '${project.version}'
 main: dev.stargenesis.paper.StarGenesisPlugin
 api-version: '1.21.11'
-description: Players invent rules; the world tests inventions. P0 foundation.
+description: Players invent rules; the world tests inventions. Deterministic resource laboratory.
 folia-supported: true
 softdepend: [StarCore, helsteraMobs, CraftEngine, KaleidoscopeCookeryPlugin, KaleidoscopeDollPlugin, KaleidoscopeTavernPlugin, KaleidoscopeDecoPlugin, KaleidoscopeMusicPlugin]
 commands:
@@ -19,4 +19,34 @@ permissions:
     default: true
   stargenesis.debug:
     description: Inspect integration capabilities and budgets
+    default: op
+  stargenesis.lab:
+    description: Start, inspect, stop and replay an isolated virtual resource experiment
+    default: true
+  stargenesis.blueprint:
+    description: Create and edit private virtual blueprints
+    default: true
+  stargenesis.program:
+    description: Create and debug private typed programs in an isolated virtual context
+    default: true
+  stargenesis.radio:
+    description: Join a virtual radio network and exchange pinned protocol messages
+    default: true
+  stargenesis.ecology:
+    description: Run a private, bounded, matter-conserving ecology simulation
+    default: true
+  stargenesis.factory:
+    description: Run a four-player simulated organization factory
+    default: true
+  stargenesis.arena:
+    description: Author, license and submit bounded arena rulesets for review
+    default: true
+  stargenesis.arena.review:
+    description: Review, approve or reject public ArenaRuleset submissions
+    default: op
+  stargenesis.import:
+    description: Import administrator-staged designs signed by a trusted Ed25519 publisher
+    default: true
+  stargenesis.publishers:
+    description: Add, list and revoke signed-design publisher trust roots
     default: op

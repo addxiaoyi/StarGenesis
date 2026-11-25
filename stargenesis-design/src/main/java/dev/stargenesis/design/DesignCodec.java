@@ -52,15 +52,27 @@ public final class DesignCodec {
         return json(canonical(root));
     }
 
+    public String seal(DesignDocument document) {
+        if (!isSupported(document)) throw new DesignValidationException("Unregistered design class");
+        if (!document.metadata().hash().isEmpty())
+            throw new DesignValidationException("New document hash must be empty; existing documents must be verified");
+        ObjectNode root = mapper.valueToTree(document);
+        root.put("kind", document.kind().name());
+        return seal(json(root));
+    }
+
     public String write(DesignDocument document) {
         Objects.requireNonNull(document, "document");
-        if (!(document instanceof Blueprint || document instanceof Program || document instanceof Protocol
-                || document instanceof Contract || document instanceof ArenaRuleset))
-            throw new DesignValidationException("Unregistered design class");
+        if (!isSupported(document)) throw new DesignValidationException("Unregistered design class");
         ObjectNode root = mapper.valueToTree(document); root.put("kind", document.kind().name());
         String encoded = json(canonical(root));
         load(encoded); // Never silently re-sign an object with a stale hash.
         return encoded;
+    }
+
+    private boolean isSupported(DesignDocument document) {
+        return document instanceof Blueprint || document instanceof Program || document instanceof Protocol
+                || document instanceof Contract || document instanceof ArenaRuleset;
     }
 
     /** Explicit legacy migration: v0 metadata.revision is renamed to metadata.version. */

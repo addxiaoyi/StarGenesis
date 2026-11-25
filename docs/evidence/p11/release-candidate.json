@@ -1,0 +1,138 @@
+{
+  "version": "4.0.0-rc.1",
+  "builtAt": "2026-11-22T16:56:10.759682+00:00",
+  "buildCommand": "mvnw.cmd -B -ntp clean verify",
+  "isolatedSourceCopy": true,
+  "sourceVersion": "4.0.0-SNAPSHOT",
+  "sourceTreeSha256": "db0ee9a894abeb93cf8e281065b80bb791ae97cf936fc2af840294e5e1499456",
+  "tests": {
+    "reports": 32,
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "file": ".work\\releases\\4.0.0-rc.1\\StarGenesis-4.0.0-rc.1.jar",
+    "sizeBytes": 2966213,
+    "sha256": "8d6887351988c2f601026bb654b2ea9d3affe69b78df2216a8c8d535631e9913"
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 61,
+    "file": ".work\\releases\\4.0.0-rc.1\\sbom.json",
+    "sha256": "34fa65d853e71e2c9d328f70e4e90a771c15c80103fd2972c4b4be98793510c1"
+  },
+  "paperSmoke": {
+    "passed": true,
+    "serverSha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "pluginSha256": "8d6887351988c2f601026bb654b2ea9d3affe69b78df2216a8c8d535631e9913",
+    "result": "release-candidate-paper-result.json",
+    "consoleLog": "release-candidate-paper-console.log"
+  },
+  "foliaSmoke": {
+    "passed": true,
+    "serverSha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+    "pluginSha256": "8d6887351988c2f601026bb654b2ea9d3affe69b78df2216a8c8d535631e9913",
+    "result": "release-candidate-folia-result.json",
+    "consoleLog": "release-candidate-folia-console.log"
+  },
+  "paperPlayerWorkflow": {
+    "passed": true,
+    "players": 5,
+    "stages": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"],
+    "p4AtLeastOnceAndAck": {
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 483,
+      "sequence": 1
+    },
+    "p6FactoryFailureRecovery": {
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "failureSeed": 1,
+      "failedOrder": "org_ember:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+      "recoveredOrganization": "org_ember members=[9057ff8c-ed53-3177-9855-090f38020269, d4a070d1-0c25-352c-8abd-3d63aebc527b] · credits=85 · ore=16 · parts=0"
+    },
+    "p8DisconnectReconnect": {
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-5505d346861488ebcba6ce1665557a30"
+    },
+    "p5ThreeSpeciesCandidate": {
+      "seed": 52008,
+      "ticks": 500,
+      "populationBySpecies": {"producer": 26, "grazer": 2, "decomposer": 4},
+      "totalMatter": 1000,
+      "replayVerified": true
+    },
+    "humanAcceptance": false,
+    "result": "release-candidate-paper-player-workflow-result.json",
+    "consoleLog": "release-candidate-paper-player-console.log"
+  },
+  "foliaPlayerWorkflow": {
+    "passed": true,
+    "players": 5,
+    "regionTravel": true,
+    "stages": ["region-travel", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"],
+    "p4AtLeastOnceAndAck": {
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 3216,
+      "sequence": 1
+    },
+    "p6FactoryFailureRecovery": {
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "failureSeed": 4,
+      "failedOrder": "org_cedar:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+      "recoveredOrganization": "org_cedar members=[458a62b5-37f3-3b39-b6da-b0e4eb7ec0f7, d0081d15-fc5d-3f5b-acb4-c1b7e71df216] · credits=85 · ore=16 · parts=0"
+    },
+    "p8DisconnectReconnect": {
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-4cc9432c1660d918cba2bb6b13f33dbc"
+    },
+    "p5ThreeSpeciesCandidate": {
+      "seed": 52008,
+      "ticks": 500,
+      "populationBySpecies": {"producer": 26, "grazer": 2, "decomposer": 4},
+      "totalMatter": 1000,
+      "replayVerified": true
+    },
+    "humanAcceptance": false,
+    "result": "release-candidate-folia-player-workflow-result.json",
+    "consoleLog": "release-candidate-folia-player-console.log"
+  },
+  "signerSelfTest": {
+    "passed": true,
+    "testVersion": "4.0.0-rc.1",
+    "signatureVerified": true,
+    "tamperRejected": true,
+    "testKeyEphemeral": true,
+    "result": "release-candidate-signer-smoke.json"
+  },
+  "reproducibility": {
+    "passed": true,
+    "sourceTreeSha256Matched": true,
+    "artifactSha256Matched": true,
+    "sbomSha256Matched": true,
+    "secondBuild": "release-candidate-reproduction.json"
+  },
+  "signed": false,
+  "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
+  "buildLog": ".work\\releases\\4.0.0-rc.1\\release-verify.log"
+}

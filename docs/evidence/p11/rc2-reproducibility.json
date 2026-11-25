@@ -1,0 +1,9 @@
+﻿{
+    "passed":  true,
+    "version":  "4.0.0-rc.2",
+    "sourceTreeSha256":  "e60d42dc1bed8688205404e50e96f9dface45f4cd140fcf6a1244954791b2afb",
+    "artifactSha256":  "574db042891fb79a2a7e7dcd79e29cfcc0ffa7ebda688dfb67a8c3c93abafdbe",
+    "sbomSha256":  "2c4097be6b199fed61303db58f82262476232d47bf10a635d3eacb5f5a8d0991",
+    "first":  "release-candidate-rc2.json",
+    "second":  "release-candidate-rc2-reproduction.json"
+}

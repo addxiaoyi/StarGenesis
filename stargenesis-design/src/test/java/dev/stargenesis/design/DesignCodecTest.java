@@ -69,6 +69,16 @@ class DesignCodecTest {
         assertThrows(DesignValidationException.class, () -> codec.load(unsigned(DesignKind.BLUEPRINT).toString()));
     }
 
+    @Test void immutableNewDocumentCanBeSealedWithoutHandBuildingJson() throws IOException {
+        Blueprint source = (Blueprint) codec.load(fixture(DesignKind.BLUEPRINT));
+        DesignMetadata metadata = new DesignMetadata(source.metadata().id(), source.metadata().schemaVersion(),
+                source.metadata().version(), source.metadata().author(), source.metadata().source(),
+                source.metadata().dependencies(), "", source.metadata().permissions());
+        Blueprint unsigned = new Blueprint(metadata, source.components(), source.connections());
+        assertEquals(source, codec.load(codec.seal(unsigned)));
+        assertThrows(DesignValidationException.class, () -> codec.seal(source));
+    }
+
     @Test void jsonOrderWhitespaceAndEditorSetOrderDoNotChangeHash() throws IOException {
         ObjectNode source = unsigned(DesignKind.BLUEPRINT);
         ArrayNode editors = (ArrayNode) source.path("metadata").path("permissions").path("editors");

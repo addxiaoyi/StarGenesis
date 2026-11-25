@@ -1,0 +1,16 @@
+{
+  "test": "dev.stargenesis.sim.ArenaMatchWorldTest.maximumMapAndEightPlayerRosterCompleteABoundedScaleRun",
+  "arena": {
+    "width": 128,
+    "height": 128,
+    "players": 8,
+    "teams": 2,
+    "rounds": 128
+  },
+  "result": {
+    "passed": true,
+    "elapsedMillis": 1216,
+    "stateHash": "127c0a8e23f18e2bf34725de4dffc7049138432993b45eb815e216a7ecef42f6"
+  },
+  "scope": "Single-process pure simulation scale probe. This is not Paper/Folia player throughput or network load evidence."
+}

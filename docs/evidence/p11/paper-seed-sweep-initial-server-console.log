@@ -1,0 +1,1904 @@
+[13:02:23 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13+9-LTS; Eclipse Adoptium Temurin-21.0.13+9) on Windows Server 2019 10.0 (amd64)
+[13:02:23 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[13:02:24 INFO]: [PluginInitializerManager] Initializing plugins...
+[13:02:26 INFO]: [ReobfServer] Remapping server...
+[13:02:44 INFO]: [ReobfServer] Done remapping server in 18588ms.
+[13:02:44 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[13:02:46 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1813ms.
+[13:02:46 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[13:02:46 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[13:03:00 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[13:03:01 INFO]: Found new data pack file/bukkit, loading it automatically
+[13:03:01 INFO]: Found new data pack paper, loading it automatically
+[13:03:03 INFO]: No existing world data, creating new world
+[13:03:07 INFO]: Loaded 1470 recipes
+[13:03:07 INFO]: Loaded 1584 advancements
+[13:03:07 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[13:03:09 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 1,837.9ms
+[13:03:09 INFO]: Starting minecraft server version 1.21.11
+[33;1m[13:03:09 WARN]: ****************************
+[m[33;1m[13:03:09 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[13:03:09 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[13:03:09 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[13:03:09 WARN]: ****************************
+[m[13:03:09 INFO]: Loading properties
+[13:03:09 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[13:03:10 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[13:03:10 INFO]: Server Ping Player Sample Count: 12
+[13:03:10 INFO]: Using 4 threads for Netty based IO
+[13:03:12 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[13:03:12 INFO]: Default game type: SURVIVAL
+[13:03:12 INFO]: Generating keypair
+[13:03:12 INFO]: Starting Minecraft server on 127.0.0.1:25574
+> 
+  
+[13:03:13 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[13:03:13 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[13:03:13 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[33;1m[13:03:13 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[13:03:13 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[13:03:13 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[13:03:13 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[13:03:13 INFO]: Preparing level "world"
+> 
+  
+[13:03:14 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[13:03:15 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[13:03:18 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[13:03:18 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[13:03:18 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:03:18 INFO]: Prepared spawn area in 4571 ms
+> 
+  
+[13:03:18 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[13:03:18 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:03:18 INFO]: Prepared spawn area in 3446 ms
+> 
+  
+[13:03:18 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[13:03:18 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:03:18 INFO]: Prepared spawn area in 783 ms
+> 
+  
+[13:03:18 INFO]: Done preparing level "world" (5.384s)
+> 
+  
+[13:03:18 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[13:03:21 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[13:03:22 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[13:03:22 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[13:03:22 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=PAPER_VIRTUAL_INVENTORY_LAB
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[13:03:22 INFO]: [spark] Starting background profiler...
+> 
+  
+[13:03:22 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2019/amd64), so the built-in Java engine will be used instead.
+> 
+  
+[13:03:23 INFO]: Running delayed init tasks
+> 
+  
+[13:03:23 INFO]: Done (65.700s)! For help, type "help"
+> 
+  
+[13:03:23 INFO]: *************************************************************************************
+> 
+  
+[13:03:23 INFO]: This is the first time you're starting this server.
+> 
+  
+[13:03:23 INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
+> gene
+      
+[13:03:23 INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
+> genesis statu[13:03:23 INFO]: *************************************************************************************
+> > > > > 
+  
+[13:03:23 INFO]: StarGenesis 4.0.0-SNAPSHOT | foundation accepted; automated workflows available, human acceptance pending | engine=genesis-sim/1
+> 
+  
+[33;1m[13:03:23 WARN]: *************************************************************************************
+[m> 
+  
+[13:03:23 INFO]: Design schema=1 | simulation-worker=scheduled | real-settlement=disabled | integrations=8
+> 
+  
+[13:03:23 INFO]: P1 resource lab=PAPER_VIRTUAL_INVENTORY_LAB | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[13:03:23 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[13:03:23 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[13:03:23 INFO]: P5 closed ecology=available | /genesis ecology dashboard
+> 
+  
+[13:03:23 INFO]: P6 four-seat simulated factory=available | /genesis factory dashboard
+> 
+  
+[33;1m[13:03:23 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m> 
+  
+[13:03:23 INFO]: P7 licensed arena catalog=available | /genesis arena catalog
+> 
+  
+[13:03:23 INFO]: P8 simultaneous territory match=available | /genesis arena match matches
+> 
+  
+[13:03:23 INFO]: P9 durable saga contract=available, real gateway=inactive
+> 
+  
+[13:03:23 INFO]: P10 signed Ed25519 design import=available | /genesis design list
+> 
+  
+[13:03:23 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[13:03:23 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[13:03:23 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[13:03:23 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[33;1m[13:03:23 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m> 
+  
+[13:03:23 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[33;1m[13:03:23 WARN]: It is recommended that you update as soon as possible
+[m> 
+  
+[13:03:23 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[13:03:23 INFO]: /genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it
+> 
+  
+[13:03:23 INFO]: /genesis factory - form a two-player organization, bid, place simulated orders, recover and replay
+> 
+  
+[33;1m[13:03:23 WARN]: https://papermc.io/downloads/paper
+[m> 
+  
+[13:03:23 INFO]: /genesis arena - create, license, submit for review, and play approved ArenaRulesets
+> 
+  
+[33;1m[13:03:23 WARN]: *************************************************************************************
+[m> 
+  
+[13:03:23 INFO]: /genesis design - install and inspect administrator-staged signed design packages
+> 
+  
+[13:03:23 INFO]: /genesis design publishers - operator-managed publisher trust roots and key rotation
+> 
+  
+[13:03:23 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[13:03:23 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[13:03:23 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:03:23 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[13:03:23 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> 
+  
+[13:03:23 INFO]: Made SGReview a server operator
+> 
+  
+[13:03:46 INFO]: UUID of player SGA33b3fd is 569825c1-2b3e-3793-8fc4-0ca35316d0a9
+> 
+  
+[13:03:50 INFO]: [93mSGA33b3fd joined the game[0m
+> 
+  
+[13:03:50 INFO]: SGA33b3fd[/127.0.0.1:58290] logged in with entity id 1 at ([world]5.5, -63.0, 1.5)
+> 
+  
+[13:03:50 INFO]: UUID of player SGB33b3fd is 47928bd1-1d3d-378e-ba66-a1273a28d9cb
+> 
+  
+[13:03:51 INFO]: [93mSGB33b3fd joined the game[0m
+> 
+  
+[13:03:51 INFO]: SGB33b3fd[/127.0.0.1:58291] logged in with entity id 2 at ([world]-9.5, -63.0, 9.5)
+> 
+  
+[13:03:51 INFO]: UUID of player SGC33b3fd is 0594dcb7-612a-3dd8-adb8-b0b7dc20d310
+> 
+  
+[13:03:51 INFO]: [93mSGC33b3fd joined the game[0m
+> 
+  
+[13:03:51 INFO]: SGC33b3fd[/127.0.0.1:58292] logged in with entity id 3 at ([world]6.5, -63.0, 1.5)
+> 
+  
+[13:03:51 INFO]: UUID of player SGD33b3fd is 06a5ae04-2727-3a7b-979a-3e372045711f
+> 
+  
+[13:03:52 INFO]: [93mSGD33b3fd joined the game[0m
+> 
+  
+[13:03:52 INFO]: SGD33b3fd[/127.0.0.1:58293] logged in with entity id 4 at ([world]5.5, -63.0, -7.5)
+> 
+  
+[13:03:52 INFO]: UUID of player SGReview is f1b041fd-32c0-37d1-8a14-d04bce2f870d
+> 
+  
+[13:03:52 INFO]: [93mSGReview joined the game[0m
+> 
+  
+[13:03:52 INFO]: SGReview[/127.0.0.1:58294] logged in with entity id 5 at ([world]1.5, -63.0, -0.5)
+> 
+  
+[13:03:52 INFO]: SGA33b3fd issued server command: /genesis lab start 42 1
+> 
+  
+[13:03:53 INFO]: SGA33b3fd issued server command: /genesis lab stop
+> 
+  
+[13:03:55 INFO]: SGA33b3fd issued server command: /genesis blueprint create smoke:blueprint33b3fd
+> 
+  
+[13:03:56 INFO]: SGA33b3fd issued server command: /genesis blueprint add solar genesis:solar_panel 1 0 0 core
+> 
+  
+[13:03:57 INFO]: SGA33b3fd issued server command: /genesis blueprint preview
+> 
+  
+[13:03:58 INFO]: SGA33b3fd issued server command: /genesis blueprint save
+> 
+  
+[13:03:59 INFO]: SGA33b3fd issued server command: /genesis blueprint close
+> 
+  
+[13:04:01 INFO]: SGA33b3fd issued server command: /genesis blueprint open smoke:blueprint33b3fd
+> 
+  
+[13:04:02 INFO]: SGA33b3fd issued server command: /genesis program create smoke:program33b3fd
+> 
+  
+[13:04:03 INFO]: SGA33b3fd issued server command: /genesis program replace start CONSTANT_INTEGER - value=5
+> 
+  
+[13:04:04 INFO]: SGA33b3fd issued server command: /genesis program add result COMPARE_THRESHOLD_INTEGER start operator=gt,value=4
+> 
+  
+[13:04:05 INFO]: SGA33b3fd issued server command: /genesis program simulate 42 3
+> 
+  
+[13:04:07 INFO]: SGA33b3fd issued server command: /genesis program save
+> 
+  
+[13:04:08 INFO]: SGA33b3fd issued server command: /genesis radio chip genesis:radio
+> 
+  
+[13:04:08 INFO]: SGB33b3fd issued server command: /genesis radio chip genesis:radio
+> 
+  
+[13:04:09 INFO]: SGA33b3fd issued server command: /genesis radio join sector_a 0 0 0 16
+> 
+  
+[13:04:09 INFO]: SGB33b3fd issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[13:04:10 INFO]: SGA33b3fd issued server command: /genesis radio send 47928bd1-1d3d-378e-ba66-a1273a28d9cb 1 supply ore_offer
+> 
+  
+[13:04:10 INFO]: SGB33b3fd issued server command: /genesis radio inbox
+> 
+  
+[13:04:12 INFO]: SGB33b3fd issued server command: /genesis radio inbox
+> 
+  
+[13:04:12 INFO]: SGB33b3fd lost connection: Disconnected
+> 
+  
+[13:04:12 INFO]: UUID of player SGB33b3fd is 47928bd1-1d3d-378e-ba66-a1273a28d9cb
+> 
+  
+[13:04:12 INFO]: [93mSGB33b3fd left the game[0m
+> 
+  
+[13:04:12 INFO]: [93mSGB33b3fd joined the game[0m
+> 
+  
+[13:04:12 INFO]: SGB33b3fd[/127.0.0.1:58298] logged in with entity id 6 at ([world]-9.5, -63.0, 9.5)
+> 
+  
+[13:04:12 INFO]: SGB33b3fd issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[13:04:13 INFO]: SGB33b3fd issued server command: /genesis radio inbox
+> 
+  
+[13:04:15 INFO]: SGB33b3fd issued server command: /genesis radio ack 569825c1-2b3e-3793-8fc4-0ca35316d0a9 906 1
+> 
+  
+[13:04:16 INFO]: SGB33b3fd issued server command: /genesis radio inbox
+> 
+  
+[13:04:16 INFO]: SGA33b3fd issued server command: /genesis radio send 47928bd1-1d3d-378e-ba66-a1273a28d9cb 1 supply ore_offer
+> 
+  
+[13:04:17 INFO]: SGB33b3fd issued server command: /genesis radio inbox
+> 
+  
+[13:04:17 INFO]: SGA33b3fd issued server command: /genesis ecology start 42
+> 
+  
+[13:04:18 INFO]: SGA33b3fd issued server command: /genesis ecology step 2
+> 
+  
+[13:04:20 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:04:21 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:04:21 INFO]: SGC33b3fd issued server command: /genesis ecology start 52003
+> 
+  
+[13:04:21 INFO]: SGB33b3fd issued server command: /genesis ecology start 52002
+> 
+  
+[13:04:21 INFO]: SGD33b3fd issued server command: /genesis ecology start 52004
+> 
+  
+[13:04:22 INFO]: SGA33b3fd issued server command: /genesis ecology start 52001
+> 
+  
+[13:04:22 INFO]: SGB33b3fd issued server command: /genesis ecology program producer 2 6 64 100
+> 
+  
+[13:04:22 INFO]: SGC33b3fd issued server command: /genesis ecology program producer 5 5 40 500
+> 
+  
+[13:04:22 INFO]: SGD33b3fd issued server command: /genesis ecology program producer 4 2 40 100
+> 
+  
+[13:04:23 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 3 5 40 150
+> 
+  
+[13:04:23 INFO]: SGB33b3fd issued server command: /genesis ecology program grazer 1 8 48 60
+> 
+  
+[13:04:23 INFO]: SGC33b3fd issued server command: /genesis ecology program grazer 3 8 28 400
+> 
+  
+[13:04:23 INFO]: SGD33b3fd issued server command: /genesis ecology program grazer 3 2 24 100
+> 
+  
+[13:04:24 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 2 6 24 100
+> 
+  
+[13:04:24 INFO]: SGB33b3fd issued server command: /genesis ecology program decomposer 1 7 64 80
+> 
+  
+[13:04:24 INFO]: SGC33b3fd issued server command: /genesis ecology program decomposer 3 5 36 350
+> 
+  
+[13:04:24 INFO]: SGD33b3fd issued server command: /genesis ecology program decomposer 3 2 32 100
+> 
+  
+[13:04:26 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 2 5 32 80
+> 
+  
+[13:04:26 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:26 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:26 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:27 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:27 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:27 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:28 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:28 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:28 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:28 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:29 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:29 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:29 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:29 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:31 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:31 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:31 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:32 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:32 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:32 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:33 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:33 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:34 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:34 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:34 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:35 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:35 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:35 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:35 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:37 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:37 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:37 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:37 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:39 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:39 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:39 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:39 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:41 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:41 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:41 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:41 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:43 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:43 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:43 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:43 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:45 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:45 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:45 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:45 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:47 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:47 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:47 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:47 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:49 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:49 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:49 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:52 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:52 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:52 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:52 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:54 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:54 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:54 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:54 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:56 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:56 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:56 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:56 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:59 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:59 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:59 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:04:59 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:02 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:02 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:02 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:02 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:05 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:05 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:05 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:05 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:08 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:08 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:08 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:10 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:10 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:10 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:10 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:13 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:13 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:13 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:13 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:16 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:16 INFO]: SGD33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:16 INFO]: SGB33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:16 INFO]: SGC33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:19 INFO]: SGB33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:05:19 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:05:19 INFO]: SGC33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:05:19 INFO]: SGD33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:05:20 INFO]: SGB33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:05:20 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:05:21 INFO]: SGC33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:05:21 INFO]: SGD33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:05:24 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:05:25 INFO]: SGA33b3fd issued server command: /genesis ecology start 52008
+> 
+  
+[13:05:26 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:05:27 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:05:28 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:05:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:31 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:33 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:34 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:36 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:37 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:38 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:39 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:40 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:42 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:43 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:44 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:45 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:46 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:48 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:50 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:51 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:52 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:54 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:55 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:56 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:57 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:05:58 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:00 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:06:01 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:06:02 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:06:03 INFO]: SGA33b3fd issued server command: /genesis ecology start 52009
+> 
+  
+[13:06:04 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:06:06 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:06:07 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:06:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:09 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:11 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:12 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:13 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:14 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:15 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:17 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:18 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:19 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:20 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:21 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:23 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:24 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:25 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:26 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:29 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:31 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:33 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:35 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:36 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:37 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:38 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:06:39 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:06:41 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:06:42 INFO]: SGA33b3fd issued server command: /genesis ecology start 52010
+> 
+  
+[13:06:43 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:06:44 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:06:45 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:06:47 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:48 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:50 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:51 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:53 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:54 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:55 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:56 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:57 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:06:59 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:00 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:01 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:02 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:03 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:05 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:06 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:07 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:09 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:11 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:12 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:13 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:14 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:15 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:17 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:07:18 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:07:19 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:07:20 INFO]: SGA33b3fd issued server command: /genesis ecology start 52011
+> 
+  
+[13:07:21 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:07:23 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:07:24 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:07:25 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:26 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:29 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:31 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:33 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:35 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:36 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:37 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:38 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:39 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:41 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:42 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:43 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:44 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:45 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:47 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:48 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:50 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:51 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:53 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:54 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:07:55 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:07:56 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:07:57 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:07:59 INFO]: SGA33b3fd issued server command: /genesis ecology start 52012
+> 
+  
+[13:08:00 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:08:01 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:08:02 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:08:03 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:05 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:06 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:07 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:09 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:11 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:12 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:13 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:14 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:15 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:17 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:18 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:19 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:20 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:21 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:23 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:24 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:25 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:26 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:29 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:31 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:33 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:08:35 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:08:36 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:08:37 INFO]: SGA33b3fd issued server command: /genesis ecology start 52013
+> 
+  
+[13:08:38 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:08:39 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:08:41 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:08:42 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:43 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:44 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:45 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:47 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:48 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:50 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:51 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:53 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:54 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:55 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:56 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:57 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:08:59 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:00 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:01 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:02 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:03 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:05 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:06 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:07 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:09 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:11 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:12 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:09:13 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:09:14 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:09:15 INFO]: SGA33b3fd issued server command: /genesis ecology start 52014
+> 
+  
+[13:09:17 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:09:18 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:09:19 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:09:20 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:21 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:23 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:24 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:25 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:26 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:29 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:30 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:31 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:32 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:33 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:35 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:36 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:37 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:38 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:39 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:41 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:42 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:43 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:44 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:45 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:47 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:48 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:49 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:09:50 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:09:51 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:09:53 INFO]: SGA33b3fd issued server command: /genesis ecology reset
+> 
+  
+[13:09:54 INFO]: SGA33b3fd issued server command: /genesis ecology start 52015
+> 
+  
+[13:09:55 INFO]: SGA33b3fd issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:09:56 INFO]: SGA33b3fd issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:09:57 INFO]: SGA33b3fd issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:09:59 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:00 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:01 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:02 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:03 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:05 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:06 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:07 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:08 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:09 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:11 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:12 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:13 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:14 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:15 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:17 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:18 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:19 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:20 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:21 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:23 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:24 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:25 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:26 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:27 INFO]: SGA33b3fd issued server command: /genesis ecology step 20
+> 
+  
+[13:10:29 INFO]: SGA33b3fd issued server command: /genesis ecology dashboard
+> 
+  
+[13:10:30 INFO]: SGA33b3fd issued server command: /genesis ecology replay
+> 
+  
+[13:10:31 INFO]: SGA33b3fd issued server command: /genesis factory invite SGB33b3fd
+> 
+  
+[13:10:31 INFO]: SGB33b3fd issued server command: /genesis factory accept
+> 
+  
+[13:10:31 INFO]: SGC33b3fd issued server command: /genesis factory invite SGD33b3fd
+> 
+  
+[13:10:31 INFO]: SGD33b3fd issued server command: /genesis factory accept
+> 
+  
+[13:10:32 INFO]: SGA33b3fd issued server command: /genesis factory start 1
+> 
+  
+[13:10:33 INFO]: SGA33b3fd issued server command: /genesis factory bid 15
+> 
+  
+[13:10:35 INFO]: SGA33b3fd issued server command: /genesis factory step 4
+> 
+  
+[13:10:36 INFO]: SGA33b3fd issued server command: /genesis factory order press_fault 2
+> 
+  
+[13:10:37 INFO]: SGA33b3fd issued server command: /genesis factory step 2
+> 
+  
+[13:10:38 INFO]: SGA33b3fd issued server command: /genesis factory replay
+> 
+  
+[13:10:39 INFO]: SGA33b3fd issued server command: /genesis arena create smoke:arena33b3fd
+> 
+  
+[13:10:41 INFO]: SGA33b3fd issued server command: /genesis arena set width 24
+> 
+  
+[13:10:42 INFO]: SGA33b3fd issued server command: /genesis arena set height 20
+> 
+  
+[13:10:43 INFO]: SGA33b3fd issued server command: /genesis arena set units 6
+> 
+  
+[13:10:44 INFO]: SGA33b3fd issued server command: /genesis arena access public on
+> 
+  
+[13:10:45 INFO]: SGA33b3fd issued server command: /genesis arena access clone on
+> 
+  
+[13:10:47 INFO]: SGA33b3fd issued server command: /genesis arena preview
+> 
+  
+[13:10:48 INFO]: SGA33b3fd issued server command: /genesis arena save
+> 
+  
+[13:10:49 INFO]: SGA33b3fd issued server command: /genesis arena publish
+> 
+  
+[13:10:50 INFO]: SGA33b3fd issued server command: /genesis arena review status smoke:arena33b3fd 1.0.0
+> 
+  
+[13:10:51 INFO]: SGA33b3fd issued server command: /genesis arena catalog
+> 
+  
+[13:10:53 INFO]: SGA33b3fd issued server command: /genesis arena review approve smoke:arena33b3fd 1.0.0
+> 
+  
+[13:10:53 INFO]: SGReview issued server command: /genesis arena review pending
+> 
+  
+[13:10:54 INFO]: SGReview issued server command: /genesis arena review approve smoke:arena33b3fd 1.0.0
+> 
+  
+[13:10:54 INFO]: SGA33b3fd issued server command: /genesis arena review status smoke:arena33b3fd 1.0.0
+> 
+  
+[13:10:55 INFO]: SGA33b3fd issued server command: /genesis arena catalog
+> 
+  
+[13:10:55 INFO]: SGB33b3fd issued server command: /genesis arena create smoke:rejected33b3fd
+> 
+  
+[13:10:57 INFO]: SGB33b3fd issued server command: /genesis arena access public on
+> 
+  
+[13:10:58 INFO]: SGB33b3fd issued server command: /genesis arena save
+> 
+  
+[13:10:59 INFO]: SGB33b3fd issued server command: /genesis arena publish
+> 
+  
+[13:11:00 INFO]: SGB33b3fd issued server command: /genesis arena review status smoke:rejected33b3fd 1.0.0
+> 
+  
+[13:11:00 INFO]: SGReview issued server command: /genesis arena review reject smoke:rejected33b3fd 1.0.0 needs_balance_changes
+> 
+  
+[13:11:01 INFO]: SGB33b3fd issued server command: /genesis arena review status smoke:rejected33b3fd 1.0.0
+> 
+  
+[13:11:03 INFO]: SGB33b3fd issued server command: /genesis arena catalog
+> 
+  
+[13:11:03 INFO]: SGA33b3fd issued server command: /genesis arena match invite SGB33b3fd cedar
+> 
+  
+[13:11:04 INFO]: SGB33b3fd issued server command: /genesis arena match accept
+> 
+  
+[13:11:04 INFO]: SGC33b3fd issued server command: /genesis arena match invite SGD33b3fd moss
+> 
+  
+[13:11:04 INFO]: SGD33b3fd issued server command: /genesis arena match accept
+> 
+  
+[13:11:04 INFO]: SGA33b3fd issued server command: /genesis arena match start genesis:arena_ruleset 1.0.0 42
+> 
+  
+[13:11:04 INFO]: SGReview issued server command: /genesis arena match watch arena-91ffc48372998b4ec6541ee19a5f287e
+> 
+  
+[13:11:05 INFO]: SGA33b3fd issued server command: /genesis arena match pass
+> 
+  
+[13:11:06 INFO]: SGReview issued server command: /genesis arena match matches
+> 
+  
+[13:11:06 INFO]: UUID of player SGB33b3fd is 47928bd1-1d3d-378e-ba66-a1273a28d9cb
+> 
+  
+[13:11:06 INFO]: SGB33b3fd lost connection: Disconnected
+> 
+  
+[13:11:06 INFO]: [93mSGB33b3fd left the game[0m
+> 
+  
+[13:11:06 INFO]: [93mSGB33b3fd joined the game[0m
+> 
+  
+[13:11:06 INFO]: SGB33b3fd[/127.0.0.1:58324] logged in with entity id 7 at ([world]-9.5, -63.0, 9.5)
+> 
+  
+[13:11:06 INFO]: SGB33b3fd issued server command: /genesis arena match pass
+> 
+  
+[13:11:06 INFO]: SGC33b3fd issued server command: /genesis arena match pass
+> 
+  
+[13:11:06 INFO]: SGD33b3fd issued server command: /genesis arena match pass
+> 
+  
+[13:11:07 INFO]: SGA33b3fd issued server command: /genesis arena match replay
+> 
+  
+[13:11:08 INFO]: SGA33b3fd issued server command: /genesis status
+> 
+  
+[13:11:09 INFO]: SGA33b3fd issued server command: /genesis design publishers add smoke.publisher-33b3fd publisher-33b3fd
+> 
+  
+[13:11:09 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-33b3fd publisher-33b3fd
+> 
+  
+[13:11:10 INFO]: SGReview issued server command: /genesis design publishers list
+> 
+  
+[13:11:10 INFO]: SGA33b3fd issued server command: /genesis design install offline_fixture
+> 
+  
+[13:11:12 INFO]: SGA33b3fd issued server command: /genesis design list
+> 
+  
+[13:11:13 INFO]: SGA33b3fd issued server command: /genesis design inspect smoke:signed33b3fd
+> 
+  
+[13:11:13 INFO]: SGB33b3fd issued server command: /genesis design inspect smoke:signed33b3fd
+> 
+  
+[13:11:13 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-33b3fd-rotated publisher-33b3fd-rotated
+> 
+  
+[13:11:14 INFO]: SGA33b3fd issued server command: /genesis design install offline_fixture
+> 
+  
+[13:11:15 INFO]: SGA33b3fd issued server command: /genesis design inspect smoke:signed33b3fd-rotated
+> 
+  
+[13:11:15 INFO]: SGReview issued server command: /genesis design publishers revoke smoke.publisher-33b3fd scheduled-rotation
+> 
+  
+[13:11:16 INFO]: SGA33b3fd issued server command: /genesis design inspect smoke:signed33b3fd
+> 
+  
+[13:11:18 INFO]: SGA33b3fd issued server command: /genesis design inspect smoke:signed33b3fd-rotated
+> 
+  
+[13:11:18 INFO]: SGA33b3fd lost connection: Disconnected
+> 
+  
+[13:11:18 INFO]: [93mSGA33b3fd left the game[0m
+> 
+  
+[13:11:18 INFO]: SGC33b3fd lost connection: Disconnected
+> > 
+  
+[13:11:18 INFO]: [93mSGC33b3fd left the game[0m
+> 
+  
+[13:11:18 INFO]: SGD33b3fd lost connection: Disconnected
+> 
+  
+[13:11:18 INFO]: [93mSGD33b3fd left the game[0m
+> 
+  
+[13:11:18 INFO]: SGReview lost connection: Disconnected
+> 
+  
+[13:11:18 INFO]: [93mSGReview left the game[0m
+> 
+  
+[13:11:18 INFO]: SGB33b3fd lost connection: Disconnected
+> 
+  
+[13:11:18 INFO]: [93mSGB33b3fd left the game[0m
+> 
+  
+[13:11:18 INFO]: Stopping the server
+> 
+  
+[13:11:18 INFO]: Stopping server
+> 
+  
+[13:11:18 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[13:11:18 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[13:11:18 INFO]: Saving players
+> 
+  
+[13:11:18 INFO]: Saving worlds
+> 
+  
+[13:11:18 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+> 
+  
+[13:11:18 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[13:11:18 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[13:11:18 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Saved 1012 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.93s
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[13:11:19 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[13:11:19 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[13:11:19 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[13:11:19 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[13:11:19 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[13:11:19 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[13:11:19 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[13:11:19 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[13:11:19 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[13:11:19 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[13:11:19 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

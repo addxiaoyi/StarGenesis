@@ -6,19 +6,19 @@
 
 以结构、有限行为图、协议、契约、组织和实验规则的组合产生玩法。5 分钟修改公共设计并观察反馈，15–20 分钟完成竞技，长期复用发明与跨玩家协作。不得用宠物升级、抽卡、固定任务或数值膨胀替代开放组合。
 
-P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口、守恒账本和能力发现基线。当前没有可玩的实验、结构编辑器、行为解释器或经济交付；后续功能须通过各自验收才启用。
+P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口、守恒账本和能力发现基线。P1–P8 已有确定性沙盒、创作器、radio/contract、生态、组织工厂、审核后发布的 ArenaRuleset UGC 与多玩家回合竞技代码；Paper/Folia 自动客户端覆盖已实现的玩家命令，真人验收仍逐阶段待完成。P5 自动 parameter profile 扫描验证了 matter 守恒与 replay，四组对照规则在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500 tick预算前灭绝；一组固定 seed 52008 candidate 在四次 Paper/Folia SNAPSHOT/RC 运行中都到达500 tick并保留三物种。纯 Java 模拟还对两个归档的 Alice worldId 分别扫描100个 seeds，200/200 到500 ticks时保留三物种，但这不是服务器负载证据。2026-11-25 完成 Paper/Folia 各八 seed 自动客户端实服扩展，16/16 均到500 tick保留三物种，matter 守恒与 replay 校验全部通过。P5 的广泛 seed 稳健性、长期生态平衡与真人验证仍未完成。P9 已有 saga 协调协议和持久文件 repository，但真实结算 adapter 未通过幂等/权限/故障验收，交易保持关闭。P10 有 Ed25519 signed design import、publisher 包签署 CLI 和 OP 管理的 trust-root 添加/轮换/撤销流程，但尚无运营方真实 key、第三方 bridge acceptance。P11 有 CycloneDX aggregate SBOM、15分钟 Folia 受控沙盒负载和 `4.0.0-rc.1` 隔离候选构建；生产规模性能、玩家留存和发行方正式签名验收仍未完成。
 
 ## 模块与冻结接口
 
 | 模块 | P0 实际责任 | 后续消费者 |
 |---|---|---|
 | stargenesis-api | 不可变 ID/元数据、SimulationClock/World、输入/结果/事件/预算/ResourceLedger/EventOutbox | 所有模块 |
-| stargenesis-design | Blueprint/Program/Protocol/Contract/ArenaRuleset、严格 JSON 编解码、SHA-256、显式迁移、Schema/示例 | P2/P3/P4/P7 |
-| stargenesis-sim | 单线程时钟、守恒账本、内存 outbox 与 checkpoint 值对象 | P1/P5 |
-| stargenesis-integrations | 只读插件清单、版本审计描述符、能力逐项验证和失效隔离 | P9/P10 |
-| stargenesis-paper | 生命周期、命令、权限、配置硬限制、设计加载自检 | 玩家入口/区域调度 |
+| stargenesis-design | Blueprint/Program/Protocol/Contract/ArenaRuleset、严格 JSON 编解码、SHA-256、显式迁移、Ed25519 signed envelope、Schema/示例、蓝图物理评估、typed-program IR/解释器与有界编辑撤销 | P2/P3/P4/P7/P10 |
+| stargenesis-sim | 单线程时钟、守恒账本、内存 outbox、checkpoint/replay 与封闭 matter 生态 | P1/P5 |
+| stargenesis-integrations | 只读插件清单、版本审计描述符、能力逐项验证、失效隔离和持久 settlement saga contract | P9/P10 |
+| stargenesis-paper | 生命周期、命令、权限、配置硬限制、设计加载自检、作者私有工作区/replay 持久化、程序/生态/竞技适配、签名设计导入 | 玩家入口/区域调度 |
 
-仅创建有代码和测试的模块。Program 文档通过格式验证不代表其算法已经编译/执行。Protocol/Contract/ArenaRuleset 文档存在不代表网络、交易、竞技可运行。
+仅创建有代码和测试的模块。Program 文档通过格式验证不代表其算法已经编译/执行；当前显式编译只接受已实现的旧格式子集。typed IR 使用独立 schema v1 并可由 Paper 玩家工作区保存，解释器不直接修改世界；Paper 模拟适配器将受限动作映射到资源沙盒的有界输入。Protocol/Contract/ArenaRuleset 文档存在不代表网络、交易、竞技可运行。
 
 公共 API 位于 `dev.stargenesis.api`。设计实现位于 `dev.stargenesis.design`；第三方类型不得进入上述 API 或纯模拟。变更使用提案→增加兼容/迁移测试→合并队列→整仓 verify 的顺序，不由并行工作者随意改签名。
 
@@ -27,7 +27,7 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 - DesignId 使用有界 `namespace:path`，拒绝 `..`，不可解释为磁盘路径；AgentId 使用 UUID，其字典顺序为 UUID ASCII 字符串序。
 - 文档包含 stable ID、schemaVersion、语义版本、UUID 作者、来源、精确版本/哈希依赖、权限与哈希。集合防御复制并不可变。
 - 当前持久格式为 schemaVersion=1。只有显式 v0→v1 迁移；未知版本拒绝，不自动覆盖原文。迁移保留前后哈希，参见 MIGRATIONS.md。
-- SHA-256 用于内容完整性与依赖固定，不是作者数字签名或授权证明。P10 的签名信任链尚未实现。
+- SHA-256 用于内容完整性与依赖固定，不是作者数字签名或授权证明。P10 signed envelope 可证明受信 Ed25519 publisher key 签过内容，但不替代 publisher trust-root 生命周期、设计作者许可或游戏操作授权。
 - 玩家只能组合服务端审核的有限原语；不接收 Java、命令、反射、文件/网络 IO、任意脚本或无界递归。P0 不执行玩家程序。
 
 ## 确定性与线程模型
@@ -44,11 +44,11 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 - EvidenceId 格式 `sg:v1:<world>:<tick>:<sequence>`；world 不含冒号。用于事件和模拟转移去重，不能直接当作第三方已经支持的幂等参数。
 - ResourceLedger 只在初始场景中注入有限资产；随后只能账户间转移，禁止 mint。相同 evidence + 同请求不重复支付；同 evidence + 不同请求拒绝。
 - 余额不足也消耗该 evidence；补充余额后须以新 evidence 重试。账本 checkpoint 包含余额与成功/失败历史，恢复后继续去重。容量达到上限时停止，不能删除历史后重用旧键。
-- MemoryEventOutbox 是内存参考实现，不具备崩溃持久性。真实世界订单必须等 P9 的持久 saga/outbox、补偿和第三方事务证据完成后才启用。
+- MemoryEventOutbox 是内存参考实现，不具备崩溃持久性。P9 已有持久 saga protocol 和本地 repository；真实世界订单仍须额外通过真实 adapter 的外部幂等、权限、compensation 和第三方故障恢复验收后才启用。
 
 ## 权限、预算与公平
 
-实验与竞技不得更改生存建筑、实际库存或他人造物。作者/编辑者权限、克隆授权与来源须在 P2/P7/P10 的每个入口检查；仅存在元数据并不构成完整授权系统。
+实验与竞技不得更改生存建筑、实际库存或他人造物。当前 P2 工作区只允许文档作者保存和打开自己的蓝图，不支持共享编辑或克隆。蓝图质量、代价和能力是抽象模拟单位，不对应真实材料、物品或实体。完整作者/编辑者权限、克隆授权与来源仍须在 P2/P7/P10 的各入口检查；仅存在元数据并不构成完整授权系统。
 
 默认预算：每造物每步128节点、16造物、每步8路径请求、最多3000步、感知半径16、每步64消息；硬上限见 SimulationBudget。P0 对配置做校验，后续执行器负责实际计量并给出可理解的超限事件。
 

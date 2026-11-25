@@ -1,0 +1,14 @@
+﻿{
+    "date":  "2026-11-25",
+    "command":  "mvnw.cmd -B verify",
+    "java":  "25.0.5+8",
+    "tests":  {
+                  "suites":  32,
+                  "tests":  232,
+                  "failures":  0,
+                  "errors":  0,
+                  "skipped":  0
+              },
+    "artifactSha256":  "8d32bafb9acbd5ce1943b5786fc1249a7a26cb9f0ba4da3803f1db1d1fb19fce",
+    "log":  "maven-resume-java25.log"
+}

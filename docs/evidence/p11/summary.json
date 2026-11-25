@@ -1,0 +1,349 @@
+{
+  "date": "2026-11-23",
+  "build": {
+    "command": "mvnw.cmd -B clean verify",
+    "exitCode": 0,
+    "testsPassed": 224,
+    "paperArtifactSha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a"
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 61,
+    "file": "sbom.json",
+    "sha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+  },
+  "releaseSigner": {
+    "passed": true,
+    "algorithm": "Ed25519",
+    "signatureVerified": true,
+    "tamperRejected": true,
+    "testKeyEphemeral": true,
+    "manifestTool": "scripts/ReleaseArtifactSigner.java",
+    "smokeResult": "release-signer-smoke.json",
+    "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+  },
+  "signedDesignSigner": {
+    "passed": true,
+    "algorithm": "Ed25519",
+    "validSignatureVerified": true,
+    "signatureTamperRejected": true,
+    "unknownKeyIdRejected": true,
+    "testKeyEphemeral": true,
+    "signerTool": "scripts/SignedDesignPackageSigner.java",
+    "smokeResult": "signed-design-signer-smoke.json",
+    "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+  },
+  "boundaryCheck": {
+    "command": "python scripts/check_boundaries.py",
+    "passed": true
+  },
+  "scaleProbe": {
+    "arena": "128x128",
+    "players": 8,
+    "rounds": 128,
+    "elapsedMillis": 1216,
+    "finalStateHash": "127c0a8e23f18e2bf34725de4dffc7049138432993b45eb815e216a7ecef42f6",
+    "test": "dev.stargenesis.sim.ArenaMatchWorldTest.maximumMapAndEightPlayerRosterCompleteABoundedScaleRun",
+    "scope": "Single-process pure simulation unit test, not server or network load"
+  },
+  "paper": {
+    "version": "1.21.11-132",
+    "passed": true,
+    "serverSha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "pluginSha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a",
+    "result": "paper-result.json",
+    "consoleLog": "paper-console.log"
+  },
+  "folia": {
+    "version": "1.21.11-14",
+    "passed": true,
+    "serverSha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+    "pluginSha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a",
+    "result": "folia-result.json",
+    "consoleLog": "folia-console.log"
+  },
+  "scope": "SBOM, bounded simulation probe, Paper/Folia lifecycle and client workflows, and a controlled 15-minute Folia P1 simulation workload were verified. No human acceptance, real settlement provider, production capacity study, retention study, release signing, or deployment was performed.",
+  "automatedPlayerWorkflow": {
+    "passed": true,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "stages": [
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "P7",
+      "P8",
+      "P9",
+      "P10"
+    ],
+    "humanAcceptance": false,
+    "result": "player-workflow-result.json",
+    "consoleLog": "player-paper-console.log",
+    "scope": "Automated offline clients exercised Paper user workflows. This is not human acceptance."
+  },
+  "foliaSustainedLoadTest": {
+    "passed": true,
+    "profile": "four-concurrent-p1-labs",
+    "requestedMinutes": 15,
+    "durationSeconds": 903,
+    "participants": 4,
+    "concurrentWorlds": 4,
+    "agentsPerWorld": 4,
+    "totalLabStarts": 16,
+    "labRestarts": 12,
+    "statusPolls": 58,
+    "separatedRegions": true,
+    "result": "folia-player-workflow-result.json",
+    "runtimeSample": "folia-runtime-sample.json",
+    "scope": "Controlled P1 simulation workload with four concurrent worlds and four agents per world across Folia regions. This does not represent production world activity, real players, or multi-hardware capacity."
+  },
+  "foliaAutomatedPlayerWorkflow": {
+    "passed": true,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "stages": [
+      "region-travel",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "P7",
+      "P8",
+      "P9",
+      "P10",
+      "P1-live-disable"
+    ],
+    "regionTravel": [
+      {
+        "role": "alice",
+        "x": 2,
+        "z": -7,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "bob",
+        "x": 184,
+        "z": 0,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "carol",
+        "x": -3,
+        "z": 185,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "dave",
+        "x": 187,
+        "z": 187,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "observer",
+        "x": 378,
+        "z": 378,
+        "distanceFromTarget": 8
+      }
+    ],
+    "liveDisable": {
+      "seed": 100,
+      "savedTick": 30,
+      "replayFrames": 30
+    },
+    "sustainedLoadTest": true,
+    "humanAcceptance": false,
+    "result": "folia-player-workflow-result.json",
+    "consoleLog": "folia-player-console.log",
+    "scope": "Automated offline clients exercised command-driven P1 and P2-P10 across Folia regions, followed by a live plugin-disable checkpoint/replay check. This is not human acceptance."
+  },
+  "p4P8ReliabilityRetest": {
+    "passed": true,
+    "paper": {
+      "p4AtLeastOnceAndAck": {
+        "deliveredMessage": true,
+        "atLeastOncePolls": 2,
+        "recipientDisconnectPersisted": true,
+        "acknowledgementClearedMailbox": true,
+        "crossTickDuplicateNotRedelivered": true,
+        "messageTick": 500,
+        "sequence": 1
+      },
+      "p8DisconnectReconnect": {
+        "abruptDisconnect": true,
+        "observerSawPendingActionBeforeDisconnect": true,
+        "participantUuidPreserved": true,
+        "pendingActionRestored": true,
+        "matchIdRestored": "arena-6dc197b37ea8cdff794693145acb3293"
+      },
+      "result": "paper-reliability-retest-workflow-result.json",
+      "consoleLog": "paper-reliability-retest-server-console.log"
+    },
+    "folia": {
+      "p4AtLeastOnceAndAck": {
+        "deliveredMessage": true,
+        "atLeastOncePolls": 2,
+        "recipientDisconnectPersisted": true,
+        "acknowledgementClearedMailbox": true,
+        "crossTickDuplicateNotRedelivered": true,
+        "messageTick": 3204,
+        "sequence": 1
+      },
+      "p8DisconnectReconnect": {
+        "abruptDisconnect": true,
+        "observerSawPendingActionBeforeDisconnect": true,
+        "participantUuidPreserved": true,
+        "pendingActionRestored": true,
+        "matchIdRestored": "arena-9826c084cf38d4fecca78c5d5c1c8e70"
+      },
+      "result": "folia-reliability-retest-workflow-result.json",
+      "consoleLog": "folia-reliability-retest-server-console.log"
+    },
+    "humanAcceptance": false,
+    "scope": "Automated five-client server workflows that separately revalidated P4 message redelivery/ack/idempotency and P8 abrupt disconnect recovery. The original Folia sustained-load run remains linked through foliaAutomatedPlayerWorkflow."
+  },
+  "p6FactoryCompensationRetest": {
+    "passed": true,
+    "paper": {
+      "passed": true,
+      "failureSeed": 4,
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "replayVerified": true,
+      "result": "paper-factory-compensation-retest-workflow-result.json",
+      "consoleLog": "paper-factory-compensation-retest-server-console.log"
+    },
+    "folia": {
+      "passed": true,
+      "failureSeed": 4,
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "replayVerified": true,
+      "result": "folia-factory-compensation-retest-workflow-result.json",
+      "consoleLog": "folia-factory-compensation-retest-server-console.log"
+    },
+    "humanAcceptance": false,
+    "scope": "Five automated clients exercised the deterministic partial-production failure and compensation path on Paper and Folia. This does not replace a four-human recovery match."
+  },
+  "p5EcologyStudyRetest": {
+    "passed": true,
+    "requestedTicksPerTank": 500,
+    "parameterProfiles": 4,
+    "paper": {
+      "passed": true,
+      "results": [
+        {"role": "alice", "seed": 52001, "ticks": 123, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "bob", "seed": 52002, "ticks": 391, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "carol", "seed": 52003, "ticks": 265, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "dave", "seed": 52004, "ticks": 234, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true}
+      ],
+      "result": "paper-ecology-study-retest-workflow-result.json"
+    },
+    "folia": {
+      "passed": true,
+      "results": [
+        {"role": "alice", "seed": 52001, "ticks": 235, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "bob", "seed": 52002, "ticks": 417, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "carol", "seed": 52003, "ticks": 206, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true},
+        {"role": "dave", "seed": 52004, "ticks": 206, "totalMatter": 1000, "terminalReason": "EXTINCTION", "replayVerified": true}
+      ],
+      "result": "folia-ecology-study-retest-workflow-result.json"
+    },
+    "threeSpeciesCandidate": {
+      "seed": 52008,
+      "ticks": 500,
+      "population": 32,
+      "totalMatter": 1000,
+      "replications": 4,
+      "paper": {
+        "populationBySpecies": {"producer": 26, "grazer": 2, "decomposer": 4},
+        "births": 25,
+        "deaths": 0
+      },
+      "folia": {
+        "populationBySpecies": {"producer": 26, "grazer": 2, "decomposer": 4},
+        "births": 25,
+        "deaths": 0
+      },
+      "terminalReason": "DURATION_BUDGET",
+      "replayVerified": true,
+      "programs": [
+        ["producer", 6, 2, 512, 0],
+        ["grazer", 1, 12, 512, 0],
+        ["decomposer", 1, 12, 512, 0]
+      ]
+    },
+    "pureSimulationSeedSweep": {
+      "engine": "genesis-ecology/1",
+      "worldIdCount": 2,
+      "seedStart": 52008,
+      "seedEndInclusive": 52107,
+      "runs": 200,
+      "fullSpeciesSurvivalRuns": 200,
+      "fullExtinctionRuns": 0,
+      "tickLimit": 500,
+      "populationAtLimit": 32,
+      "matterConserved": true,
+      "scope": "Pure Java simulation using two world IDs copied from archived Paper/Folia Alice ecology replays. This is not 200 server runs."
+    },
+    "pureSimulationParameterSweep": {
+      "engine": "genesis-ecology/1",
+      "worldIdCount": 8,
+      "seedStart": 52008,
+      "seedEndInclusive": 52017,
+      "runsPerProfile": 80,
+      "profiles": [
+        {
+          "producer": [6, 2, 512, 0], "grazer": [2, 8, 512, 0], "decomposer": [1, 8, 512, 0],
+          "allSpeciesSurvivalRuns": 80, "averageLeastSpeciesPopulation": 2.0, "minimumLeastSpeciesPopulation": 2
+        },
+        {
+          "producer": [5, 2, 512, 0], "grazer": [2, 6, 512, 0], "decomposer": [2, 6, 512, 0],
+          "allSpeciesSurvivalRuns": 80, "averageLeastSpeciesPopulation": 4.45, "minimumLeastSpeciesPopulation": 4
+        },
+        {
+          "producer": [4, 2, 512, 0], "grazer": [2, 5, 512, 0], "decomposer": [2, 5, 512, 0],
+          "allSpeciesSurvivalRuns": 80, "averageLeastSpeciesPopulation": 5.2125, "minimumLeastSpeciesPopulation": 4
+        },
+        {
+          "producer": [6, 2, 512, 0], "grazer": [3, 8, 512, 0], "decomposer": [2, 8, 512, 0],
+          "allSpeciesSurvivalRuns": 80, "averageLeastSpeciesPopulation": 3.8875, "minimumLeastSpeciesPopulation": 3
+        },
+        {
+          "producer": [4, 2, 512, 0], "grazer": [2, 12, 512, 0], "decomposer": [2, 12, 512, 0],
+          "allSpeciesSurvivalRuns": 80, "averageLeastSpeciesPopulation": 2.0, "minimumLeastSpeciesPopulation": 2
+        }
+      ],
+      "allRunsReachedTickLimit": true,
+      "totalPopulationAtLimit": 32,
+      "scope": "400 pure Java simulation runs across eight archived world IDs and ten seeds per profile. This is parameter screening, not 400 Paper/Folia server runs, replay verification, or a balance acceptance."
+    },
+    "clientServerSeedSweep": {
+      "status": "NOT_RUN",
+      "plannedSeedStart": 52008,
+      "plannedSeedEndInclusive": 52015,
+      "reason": "Host C drive had zero bytes free and the isolated Paper server launch failed with ENOSPC."
+    },
+    "humanAcceptance": false,
+    "scope": "Four independently parameterized automated ecology tanks were run on each server until extinction or the 500-tick limit and all four control profiles became extinct. A fifth fixed seed/profile reached 500 ticks with all three species present in four Paper/Folia and SNAPSHOT/RC client-workflow replications. Matter conservation and replay passed. This is one bounded candidate parameter result, not broad seed robustness, long-term human ecology research, or an ecology balance acceptance."
+  },
+  "foliaRuntimeSample": {
+    "sampleCount": 224,
+    "fivePlayerSamples": 222,
+    "intervalSeconds": 1123,
+    "minFivePlayerTps1m": 16.132,
+    "maxFivePlayerAverageTickMillis": 3.972,
+    "maxOnlinePlayers": 5,
+    "file": "folia-runtime-sample.json",
+    "scope": "Five-second TPS/MSPT samples collected from the running Folia test server during the automated multi-region workflow and any configured sustained P1 simulation workload. This is not a production capacity study."
+  }
+}

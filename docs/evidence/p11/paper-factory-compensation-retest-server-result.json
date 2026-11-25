@@ -1,0 +1,136 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 138.03,
+  "server_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "plugin_sha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a",
+  "log_sha256": "1660a8ad74ec07912fa88976abdd67df34ed89cbb43d9ba6110178f3abab2b4a",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "launch_mode": "extracted-server-classpath",
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "kind": "automated-offline-client-workflows",
+    "host": "127.0.0.1",
+    "port": 25574,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "humanAcceptance": false,
+    "checks": [
+      {
+        "stage": "client-login",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "P1",
+        "passed": true,
+        "openedSlots": 90
+      },
+      {
+        "stage": "P2",
+        "passed": true,
+        "savedAndReopened": true
+      },
+      {
+        "stage": "P3",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P4",
+        "passed": true,
+        "deliveredMessage": true,
+        "atLeastOncePolls": 2,
+        "recipientDisconnectPersisted": true,
+        "acknowledgementClearedMailbox": true,
+        "crossTickDuplicateNotRedelivered": true,
+        "messageTick": 482,
+        "sequence": 1
+      },
+      {
+        "stage": "P5",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P6",
+        "passed": true,
+        "fourPlayers": true,
+        "replayVerified": true,
+        "injectedProductionFailure": true,
+        "compensationRecovered": true,
+        "refundedCreditsAndOre": true,
+        "releasedPartsEscrow": true,
+        "recoveredOrdersLine": "orders=1 · completed=0 · recovered=1 · producedParts=0",
+        "failureSeed": 4,
+        "failedOrder": "org_cedar:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+        "recoveredOrganization": "org_cedar members=[3f91636f-664b-324c-978e-6a20ddb47e0a, 9a795ded-43a9-3cf8-b12a-0833d1d72dc7] · credits=85 · ore=16 · parts=0"
+      },
+      {
+        "stage": "P7",
+        "passed": true,
+        "reviewRequired": true,
+        "authorCannotApprove": true,
+        "approvedRuleset": "smoke:arenac0858c",
+        "rejectedRuleset": "smoke:rejectedc0858c",
+        "rejectionReasonPersisted": true,
+        "rejectedRulesetHidden": true
+      },
+      {
+        "stage": "P8",
+        "passed": true,
+        "fourPlayerRound": true,
+        "observerReadOnly": true,
+        "replayVerified": true,
+        "abruptDisconnect": true,
+        "observerSawPendingActionBeforeDisconnect": true,
+        "participantUuidPreserved": true,
+        "pendingActionRestored": true,
+        "matchIdRestored": "arena-fd587be36c5de49a033d617cc96b433b"
+      },
+      {
+        "stage": "P9",
+        "passed": true,
+        "realSettlementRemainsDisabled": true
+      },
+      {
+        "stage": "P10",
+        "passed": true,
+        "importedDesign": "smoke:signedc0858c",
+        "publisherKeyId": "smoke.publisher-c0858c",
+        "rotatedPublisherKeyId": "smoke.publisher-c0858c-rotated",
+        "oldKeyRevoked": true,
+        "oldSignatureRejected": true,
+        "ownerPrivate": true,
+        "trustRoot": "ephemeral test-only Ed25519 key"
+      }
+    ],
+    "passed": true,
+    "log": "player-workflow.log"
+  }
+}

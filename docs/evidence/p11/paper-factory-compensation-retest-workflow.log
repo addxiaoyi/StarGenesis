@@ -1,0 +1,99 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25574,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "openedSlots": 90
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true,
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 482,
+      "sequence": 1
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true,
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "recoveredOrdersLine": "orders=1 · completed=0 · recovered=1 · producedParts=0",
+      "failureSeed": 4,
+      "failedOrder": "org_cedar:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+      "recoveredOrganization": "org_cedar members=[3f91636f-664b-324c-978e-6a20ddb47e0a, 9a795ded-43a9-3cf8-b12a-0833d1d72dc7] · credits=85 · ore=16 · parts=0"
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arenac0858c",
+      "rejectedRuleset": "smoke:rejectedc0858c",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true,
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-fd587be36c5de49a033d617cc96b433b"
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signedc0858c",
+      "publisherKeyId": "smoke.publisher-c0858c",
+      "rotatedPublisherKeyId": "smoke.publisher-c0858c-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-22",
+  "focusedTests": {
+    "command": "mvnw.cmd -B -pl stargenesis-integrations test",
+    "exitCode": 0,
+    "capabilityAndSagaTestsPassed": 21
+  },
+  "paperPersistenceTests": {
+    "command": "mvnw.cmd -B -pl stargenesis-paper -am test",
+    "exitCode": 0,
+    "paperTestsPassed": 52
+  },
+  "scope": "Saga recovery and failure-injected fake settlement port plus durable local repository. No external StarCore/Vault adapter is registered, and real money/items remain disabled."
+}

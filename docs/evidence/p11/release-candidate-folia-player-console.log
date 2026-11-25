@@ -1,0 +1,1279 @@
+[04:11:50 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13+9-LTS; Eclipse Adoptium Temurin-21.0.13+9) on Windows Server 2019 10.0 (amd64)
+[04:11:50 INFO]: [bootstrap] Loading Folia 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) for Minecraft 1.21.11
+[04:11:51 INFO]: [PluginInitializerManager] Initializing plugins...
+[04:11:53 INFO]: [ReobfServer] Remapping server...
+[04:12:05 INFO]: [ReobfServer] Done remapping server in 11604ms.
+[04:12:05 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[04:12:06 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1307ms.
+[04:12:07 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[04:12:07 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-rc.1)
+[04:12:17 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[04:12:17 INFO]: Found new data pack file/bukkit, loading it automatically
+[04:12:17 INFO]: Found new data pack paper, loading it automatically
+[04:12:19 INFO]: No existing world data, creating new world
+[04:12:21 INFO]: Loaded 1470 recipes
+[04:12:21 INFO]: Loaded 1584 advancements
+[04:12:21 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[04:12:21 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 787.5ms
+[04:12:22 INFO]: Starting minecraft server version 1.21.11
+[33;1m[04:12:22 WARN]: ****************************
+[m[33;1m[04:12:22 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[04:12:22 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[04:12:22 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[04:12:22 WARN]: ****************************
+[m[04:12:22 INFO]: Loading properties
+[04:12:22 INFO]: This server is running Folia version 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[04:12:22 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[04:12:22 INFO]: Using 4 threads for Netty based IO
+[04:12:22 INFO]: Server Ping Player Sample Count: 12
+[04:12:24 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[04:12:24 INFO]: [io.papermc.paper.threadedregions.TickRegions] Initialised EDF Folia scheduler with initial 1 target thread(s)
+[04:12:24 INFO]: Default game type: SURVIVAL
+[04:12:24 INFO]: Generating keypair
+> 
+  
+[04:12:24 INFO]: Starting Minecraft server on 127.0.0.1:25575
+> 
+  
+[04:12:24 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[04:12:24 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[04:12:25 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-rc.1
+> 
+  
+[33;1m[04:12:25 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[04:12:25 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[04:12:25 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[04:12:25 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[04:12:25 INFO]: Preparing level "world"
+> 
+  
+[04:12:25 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[04:12:26 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[04:12:28 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[04:12:28 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[04:12:28 INFO]: Preparing spawn area: 100%
+> 
+  
+[04:12:28 INFO]: Prepared spawn area in 3059 ms
+> 
+  
+[04:12:28 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[04:12:28 INFO]: Preparing spawn area: 100%
+> 
+  
+[04:12:28 INFO]: Prepared spawn area in 2250 ms
+> 
+  
+[04:12:28 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[04:12:28 INFO]: Preparing spawn area: 100%
+> 
+  
+[04:12:28 INFO]: Prepared spawn area in 634 ms
+> 
+  
+[04:12:28 INFO]: Done preparing level "world" (3.628s)
+> 
+  
+[04:12:28 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-rc.1
+> 
+  
+[04:12:30 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[04:12:31 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[04:12:31 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[04:12:31 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=FOLIA_COMMAND_LAB
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[04:12:31 INFO]: [spark] The spark plugin has been preferred but was not loaded. The bundled spark profiler will enabled instead.
+> 
+  
+[04:12:31 INFO]: [spark] The spark profiler will not be enabled because it is currently disabled in the configuration.
+> 
+  
+[04:12:31 INFO]: Done (44.893s)! For help, type "help"
+> > > > > > 
+  
+[04:12:31 INFO]: StarGenesis 4.0.0-rc.1 | P0 accepted; P1/P2 code available, client acceptance pending | engine=genesis-sim/1
+> 
+  
+[04:12:31 INFO]: Design schema=1 | simulation-worker=scheduled | real-settlement=disabled | integrations=8
+> 
+  
+[04:12:31 INFO]: P1 resource lab=FOLIA_COMMAND_LAB | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[04:12:31 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[04:12:31 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[04:12:31 INFO]: P5 closed ecology=available | /genesis ecology dashboard
+> 
+  
+[04:12:31 INFO]: P6 four-seat simulated factory=available | /genesis factory dashboard
+> 
+  
+[04:12:31 INFO]: P7 licensed arena catalog=available | /genesis arena catalog
+> 
+  
+[04:12:31 INFO]: P8 simultaneous territory match=available | /genesis arena match matches
+> 
+  
+[04:12:31 INFO]: P9 durable saga contract=available, real gateway=inactive
+> 
+  
+[04:12:31 INFO]: P10 signed Ed25519 design import=available | /genesis design list
+> 
+  
+[04:12:31 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[04:12:31 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[04:12:31 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[04:12:31 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[04:12:31 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[04:12:31 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[04:12:31 INFO]: /genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it
+> 
+  
+[04:12:31 INFO]: /genesis factory - form a two-player organization, bid, place simulated orders, recover and replay
+> 
+  
+[04:12:31 INFO]: /genesis arena - create, license, submit for review, and play approved ArenaRulesets
+> 
+  
+[04:12:31 INFO]: /genesis design - install and inspect administrator-staged signed design packages
+> 
+  
+[04:12:31 INFO]: /genesis design publishers - operator-managed publisher trust roots and key rotation
+> 
+  
+[04:12:31 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[04:12:31 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[04:12:31 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[04:12:31 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[04:12:31 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> 
+  
+[04:12:31 INFO]: Made SGReview a server operator
+> 
+  
+[04:12:34 INFO]: UUID of player SGA9cc14c is fdd16892-2ca5-3bb0-a9dc-5bb1a88cf0a2
+> 
+  
+[04:12:37 INFO]: [93mSGA9cc14c joined the game[0m
+> 
+  
+[04:12:37 INFO]: SGA9cc14c[/127.0.0.1:51877] logged in with entity id 1 at ([world]-12.5, -63.0, 6.5)
+> 
+  
+[04:12:38 INFO]: UUID of player SGB9cc14c is 2dd96011-63b0-31a2-b4f3-beb4d06652cb
+> 
+  
+[04:12:38 INFO]: [93mSGB9cc14c joined the game[0m
+> 
+  
+[04:12:38 INFO]: SGB9cc14c[/127.0.0.1:51878] logged in with entity id 2 at ([world]-11.5, -63.0, -11.5)
+> 
+  
+[04:12:38 INFO]: UUID of player SGC9cc14c is 77f4ac73-c0e5-318a-aa5c-af83ae70818f
+> 
+  
+[04:12:39 INFO]: [93mSGC9cc14c joined the game[0m
+> 
+  
+[04:12:39 INFO]: SGC9cc14c[/127.0.0.1:51879] logged in with entity id 3 at ([world]5.5, -63.0, -1.5)
+> 
+  
+[04:12:39 INFO]: UUID of player SGD9cc14c is 314b659f-b72f-3073-8c2c-73d31daddea4
+> 
+  
+[04:12:39 INFO]: [93mSGD9cc14c joined the game[0m
+> 
+  
+[04:12:39 INFO]: SGD9cc14c[/127.0.0.1:51880] logged in with entity id 4 at ([world]-1.5, -63.0, -12.5)
+> 
+  
+[04:12:39 INFO]: UUID of player SGReview is f1b041fd-32c0-37d1-8a14-d04bce2f870d
+> 
+  
+[04:12:39 INFO]: [93mSGReview joined the game[0m
+> 
+  
+[04:12:39 INFO]: SGReview[/127.0.0.1:51881] logged in with entity id 5 at ([world]6.5, -63.0, -3.5)
+> 
+  
+[04:14:44 INFO]: SGA9cc14c issued server command: /genesis lab start 42 1
+> 
+  
+[04:14:45 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:46 INFO]: SGA9cc14c issued server command: /genesis lab stop
+> 
+  
+[04:14:47 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:48 INFO]: SGA9cc14c issued server command: /genesis lab replay
+> 
+  
+[04:14:50 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:51 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:52 INFO]: SGA9cc14c issued server command: /genesis lab resume
+> 
+  
+[04:14:53 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:54 INFO]: SGA9cc14c issued server command: /genesis lab stop
+> 
+  
+[04:14:56 INFO]: SGA9cc14c issued server command: /genesis lab status
+> 
+  
+[04:14:57 INFO]: SGA9cc14c issued server command: /genesis blueprint create smoke:blueprint9cc14c
+> 
+  
+[04:14:58 INFO]: SGA9cc14c issued server command: /genesis blueprint add solar genesis:solar_panel 1 0 0 core
+> 
+  
+[04:14:59 INFO]: SGA9cc14c issued server command: /genesis blueprint preview
+> 
+  
+[04:15:00 INFO]: SGA9cc14c issued server command: /genesis blueprint save
+> 
+  
+[04:15:02 INFO]: SGA9cc14c issued server command: /genesis blueprint close
+> 
+  
+[04:15:03 INFO]: SGA9cc14c issued server command: /genesis blueprint open smoke:blueprint9cc14c
+> 
+  
+[04:15:04 INFO]: SGA9cc14c issued server command: /genesis program create smoke:program9cc14c
+> 
+  
+[04:15:05 INFO]: SGA9cc14c issued server command: /genesis program replace start CONSTANT_INTEGER - value=5
+> 
+  
+[04:15:06 INFO]: SGA9cc14c issued server command: /genesis program add result COMPARE_THRESHOLD_INTEGER start operator=gt,value=4
+> 
+  
+[04:15:08 INFO]: SGA9cc14c issued server command: /genesis program simulate 42 3
+> 
+  
+[04:15:09 INFO]: SGA9cc14c issued server command: /genesis program save
+> 
+  
+[04:15:10 INFO]: SGA9cc14c issued server command: /genesis radio chip genesis:radio
+> 
+  
+[04:15:10 INFO]: SGB9cc14c issued server command: /genesis radio chip genesis:radio
+> 
+  
+[04:15:11 INFO]: SGA9cc14c issued server command: /genesis radio join sector_a 0 0 0 16
+> 
+  
+[04:15:12 INFO]: SGB9cc14c issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[04:15:12 INFO]: SGA9cc14c issued server command: /genesis radio send 2dd96011-63b0-31a2-b4f3-beb4d06652cb 1 supply ore_offer
+> 
+  
+[04:15:13 INFO]: SGB9cc14c issued server command: /genesis radio inbox
+> 
+  
+[04:15:14 INFO]: SGB9cc14c issued server command: /genesis radio inbox
+> 
+  
+[04:15:14 INFO]: UUID of player SGB9cc14c is 2dd96011-63b0-31a2-b4f3-beb4d06652cb
+> 
+  
+[04:15:14 INFO]: SGB9cc14c lost connection: Disconnected
+> 
+  
+[04:15:14 INFO]: [93mSGB9cc14c left the game[0m
+> 
+  
+[04:15:14 INFO]: [93mSGB9cc14c joined the game[0m
+> 
+  
+[04:15:14 INFO]: SGB9cc14c[/127.0.0.1:51892] logged in with entity id 6 at ([world]185.03332855220077, -63.0, -0.17219835821045493)
+> 
+  
+[04:15:14 INFO]: SGB9cc14c issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[04:15:16 INFO]: SGB9cc14c issued server command: /genesis radio inbox
+> 
+  
+[04:15:17 INFO]: SGB9cc14c issued server command: /genesis radio ack fdd16892-2ca5-3bb0-a9dc-5bb1a88cf0a2 3190 1
+> 
+  
+[04:15:18 INFO]: SGB9cc14c issued server command: /genesis radio inbox
+> 
+  
+[04:15:18 INFO]: SGA9cc14c issued server command: /genesis radio send 2dd96011-63b0-31a2-b4f3-beb4d06652cb 1 supply ore_offer
+> 
+  
+[04:15:19 INFO]: SGB9cc14c issued server command: /genesis radio inbox
+> 
+  
+[04:15:20 INFO]: SGA9cc14c issued server command: /genesis ecology start 42
+> 
+  
+[04:15:21 INFO]: SGA9cc14c issued server command: /genesis ecology step 2
+> 
+  
+[04:15:22 INFO]: SGA9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:15:23 INFO]: SGA9cc14c issued server command: /genesis ecology reset
+> 
+  
+[04:15:23 INFO]: SGB9cc14c issued server command: /genesis ecology start 52002
+> 
+  
+[04:15:23 INFO]: SGC9cc14c issued server command: /genesis ecology start 52003
+> 
+  
+[04:15:23 INFO]: SGD9cc14c issued server command: /genesis ecology start 52004
+> 
+  
+[04:15:24 INFO]: SGA9cc14c issued server command: /genesis ecology start 52001
+> 
+  
+[04:15:24 INFO]: SGD9cc14c issued server command: /genesis ecology program producer 4 2 40 100
+> 
+  
+[04:15:24 INFO]: SGB9cc14c issued server command: /genesis ecology program producer 2 6 64 100
+> 
+  
+[04:15:24 INFO]: SGC9cc14c issued server command: /genesis ecology program producer 5 5 40 500
+> 
+  
+[04:15:26 INFO]: SGA9cc14c issued server command: /genesis ecology program producer 3 5 40 150
+> 
+  
+[04:15:26 INFO]: SGD9cc14c issued server command: /genesis ecology program grazer 3 2 24 100
+> 
+  
+[04:15:26 INFO]: SGB9cc14c issued server command: /genesis ecology program grazer 1 8 48 60
+> 
+  
+[04:15:26 INFO]: SGC9cc14c issued server command: /genesis ecology program grazer 3 8 28 400
+> 
+  
+[04:15:27 INFO]: SGA9cc14c issued server command: /genesis ecology program grazer 2 6 24 100
+> 
+  
+[04:15:27 INFO]: SGD9cc14c issued server command: /genesis ecology program decomposer 3 2 32 100
+> 
+  
+[04:15:27 INFO]: SGB9cc14c issued server command: /genesis ecology program decomposer 1 7 64 80
+> 
+  
+[04:15:27 INFO]: SGC9cc14c issued server command: /genesis ecology program decomposer 3 5 36 350
+> 
+  
+[04:15:28 INFO]: SGA9cc14c issued server command: /genesis ecology program decomposer 2 5 32 80
+> 
+  
+[04:15:28 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:28 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:28 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:29 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:29 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:29 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:29 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:30 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:31 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:31 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:31 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:32 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:32 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:32 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:32 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:33 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:33 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:33 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:33 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:34 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:34 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:34 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:34 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:35 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:36 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:36 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:36 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:36 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:37 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:37 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:37 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:38 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:38 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:38 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:38 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:39 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:39 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:39 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:39 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:40 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:41 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:41 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:41 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:41 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:42 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:42 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:42 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:42 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:43 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:43 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:43 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:44 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:45 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:45 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:45 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:45 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:46 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:46 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:46 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:46 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:48 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:48 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:48 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:48 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:50 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:50 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:50 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:50 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:51 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:51 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:51 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:51 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:53 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:53 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:53 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:53 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:55 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:55 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:55 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:55 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:56 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:56 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:56 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:56 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:58 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:58 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:58 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:15:58 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:00 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:00 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:00 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:00 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:02 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:02 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:02 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:02 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:04 INFO]: SGC9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:04 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:04 INFO]: SGB9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:04 INFO]: SGD9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:06 INFO]: SGD9cc14c issued server command: /genesis ecology dashboard
+> 
+  
+[04:16:06 INFO]: SGB9cc14c issued server command: /genesis ecology dashboard
+> 
+  
+[04:16:06 INFO]: SGA9cc14c issued server command: /genesis ecology dashboard
+> 
+  
+[04:16:06 INFO]: SGC9cc14c issued server command: /genesis ecology dashboard
+> 
+  
+[04:16:07 INFO]: SGD9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:16:07 INFO]: SGB9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:16:08 INFO]: SGA9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:16:08 INFO]: SGC9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:16:09 INFO]: SGA9cc14c issued server command: /genesis ecology reset
+> 
+  
+[04:16:11 INFO]: SGA9cc14c issued server command: /genesis ecology start 52008
+> 
+  
+[04:16:12 INFO]: SGA9cc14c issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[04:16:13 INFO]: SGA9cc14c issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[04:16:14 INFO]: SGA9cc14c issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[04:16:15 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:17 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:18 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:19 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:20 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:21 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:23 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:24 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:25 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:26 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:27 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:29 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:30 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:31 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:32 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:33 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:35 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:36 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:37 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:38 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:39 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:41 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:42 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:43 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:44 INFO]: SGA9cc14c issued server command: /genesis ecology step 20
+> 
+  
+[04:16:45 INFO]: SGA9cc14c issued server command: /genesis ecology dashboard
+> 
+  
+[04:16:47 INFO]: SGA9cc14c issued server command: /genesis ecology replay
+> 
+  
+[04:16:48 INFO]: SGA9cc14c issued server command: /genesis factory invite SGB9cc14c
+> 
+  
+[04:16:48 INFO]: SGB9cc14c issued server command: /genesis factory accept
+> 
+  
+[04:16:48 INFO]: SGC9cc14c issued server command: /genesis factory invite SGD9cc14c
+> 
+  
+[04:16:48 INFO]: SGD9cc14c issued server command: /genesis factory accept
+> 
+  
+[04:16:49 INFO]: SGA9cc14c issued server command: /genesis factory start 4
+> 
+  
+[04:16:50 INFO]: SGA9cc14c issued server command: /genesis factory bid 15
+> 
+  
+[04:16:51 INFO]: SGA9cc14c issued server command: /genesis factory step 4
+> 
+  
+[04:16:53 INFO]: SGA9cc14c issued server command: /genesis factory order press_fault 2
+> 
+  
+[04:16:54 INFO]: SGA9cc14c issued server command: /genesis factory step 2
+> 
+  
+[04:16:55 INFO]: SGA9cc14c issued server command: /genesis factory replay
+> 
+  
+[04:16:56 INFO]: SGA9cc14c issued server command: /genesis arena create smoke:arena9cc14c
+> 
+  
+[04:16:57 INFO]: SGA9cc14c issued server command: /genesis arena set width 24
+> 
+  
+[04:16:59 INFO]: SGA9cc14c issued server command: /genesis arena set height 20
+> 
+  
+[04:17:00 INFO]: SGA9cc14c issued server command: /genesis arena set units 6
+> 
+  
+[04:17:01 INFO]: SGA9cc14c issued server command: /genesis arena access public on
+> 
+  
+[04:17:02 INFO]: SGA9cc14c issued server command: /genesis arena access clone on
+> 
+  
+[04:17:03 INFO]: SGA9cc14c issued server command: /genesis arena preview
+> 
+  
+[04:17:05 INFO]: SGA9cc14c issued server command: /genesis arena save
+> 
+  
+[04:17:06 INFO]: SGA9cc14c issued server command: /genesis arena publish
+> 
+  
+[04:17:07 INFO]: SGA9cc14c issued server command: /genesis arena review status smoke:arena9cc14c 1.0.0
+> 
+  
+[04:17:08 INFO]: SGA9cc14c issued server command: /genesis arena catalog
+> 
+  
+[04:17:09 INFO]: SGA9cc14c issued server command: /genesis arena review approve smoke:arena9cc14c 1.0.0
+> 
+  
+[04:17:09 INFO]: SGReview issued server command: /genesis arena review pending
+> 
+  
+[04:17:11 INFO]: SGReview issued server command: /genesis arena review approve smoke:arena9cc14c 1.0.0
+> 
+  
+[04:17:11 INFO]: SGA9cc14c issued server command: /genesis arena review status smoke:arena9cc14c 1.0.0
+> 
+  
+[04:17:12 INFO]: SGA9cc14c issued server command: /genesis arena catalog
+> 
+  
+[04:17:12 INFO]: SGB9cc14c issued server command: /genesis arena create smoke:rejected9cc14c
+> 
+  
+[04:17:13 INFO]: SGB9cc14c issued server command: /genesis arena access public on
+> 
+  
+[04:17:14 INFO]: SGB9cc14c issued server command: /genesis arena save
+> 
+  
+[04:17:16 INFO]: SGB9cc14c issued server command: /genesis arena publish
+> 
+  
+[04:17:17 INFO]: SGB9cc14c issued server command: /genesis arena review status smoke:rejected9cc14c 1.0.0
+> 
+  
+[04:17:17 INFO]: SGReview issued server command: /genesis arena review reject smoke:rejected9cc14c 1.0.0 needs_balance_changes
+> 
+  
+[04:17:18 INFO]: SGB9cc14c issued server command: /genesis arena review status smoke:rejected9cc14c 1.0.0
+> 
+  
+[04:17:19 INFO]: SGB9cc14c issued server command: /genesis arena catalog
+> 
+  
+[04:17:19 INFO]: SGA9cc14c issued server command: /genesis arena match invite SGB9cc14c cedar
+> 
+  
+[04:17:20 INFO]: SGB9cc14c issued server command: /genesis arena match accept
+> 
+  
+[04:17:21 INFO]: SGC9cc14c issued server command: /genesis arena match invite SGD9cc14c moss
+> 
+  
+[04:17:21 INFO]: SGD9cc14c issued server command: /genesis arena match accept
+> 
+  
+[04:17:21 INFO]: SGA9cc14c issued server command: /genesis arena match start genesis:arena_ruleset 1.0.0 42
+> 
+  
+[04:17:21 INFO]: SGReview issued server command: /genesis arena match watch arena-1e947cd64e57cabf34b651ef592949a6
+> 
+  
+[04:17:22 INFO]: SGA9cc14c issued server command: /genesis arena match pass
+> 
+  
+[04:17:22 INFO]: SGReview issued server command: /genesis arena match matches
+> 
+  
+[04:17:22 INFO]: SGB9cc14c lost connection: Disconnected
+> 
+  
+[04:17:22 INFO]: UUID of player SGB9cc14c is 2dd96011-63b0-31a2-b4f3-beb4d06652cb
+> 
+  
+[04:17:23 INFO]: [93mSGB9cc14c left the game[0m
+> 
+  
+[04:17:23 INFO]: [93mSGB9cc14c joined the game[0m
+> 
+  
+[04:17:23 INFO]: SGB9cc14c[/127.0.0.1:51908] logged in with entity id 7 at ([world]185.03332855220077, -63.0, -0.17219835821045493)
+> 
+  
+[04:17:23 INFO]: SGB9cc14c issued server command: /genesis arena match pass
+> 
+  
+[04:17:23 INFO]: SGC9cc14c issued server command: /genesis arena match pass
+> 
+  
+[04:17:23 INFO]: SGD9cc14c issued server command: /genesis arena match pass
+> 
+  
+[04:17:23 INFO]: SGA9cc14c issued server command: /genesis arena match replay
+> 
+  
+[04:17:25 INFO]: SGA9cc14c issued server command: /genesis status
+> 
+  
+[04:17:26 INFO]: SGA9cc14c issued server command: /genesis design publishers add smoke.publisher-9cc14c publisher-9cc14c
+> 
+  
+[04:17:26 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-9cc14c publisher-9cc14c
+> 
+  
+[04:17:27 INFO]: SGReview issued server command: /genesis design publishers list
+> 
+  
+[04:17:27 INFO]: SGA9cc14c issued server command: /genesis design install offline_fixture
+> 
+  
+[04:17:28 INFO]: SGA9cc14c issued server command: /genesis design list
+> 
+  
+[04:17:30 INFO]: SGA9cc14c issued server command: /genesis design inspect smoke:signed9cc14c
+> 
+  
+[04:17:30 INFO]: SGB9cc14c issued server command: /genesis design inspect smoke:signed9cc14c
+> 
+  
+[04:17:30 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-9cc14c-rotated publisher-9cc14c-rotated
+> 
+  
+[04:17:31 INFO]: SGA9cc14c issued server command: /genesis design install offline_fixture
+> 
+  
+[04:17:32 INFO]: SGA9cc14c issued server command: /genesis design inspect smoke:signed9cc14c-rotated
+> 
+  
+[04:17:32 INFO]: SGReview issued server command: /genesis design publishers revoke smoke.publisher-9cc14c scheduled-rotation
+> 
+  
+[04:17:33 INFO]: SGA9cc14c issued server command: /genesis design inspect smoke:signed9cc14c
+> 
+  
+[04:17:34 INFO]: SGA9cc14c issued server command: /genesis design inspect smoke:signed9cc14c-rotated
+> 
+  
+[04:17:34 INFO]: SGC9cc14c lost connection: Disconnected
+> 
+  
+[04:17:35 INFO]: [93mSGC9cc14c left the game[0m
+> 
+  
+[04:17:35 INFO]: SGB9cc14c lost connection: Disconnected
+> > 
+  
+[04:17:35 INFO]: [93mSGB9cc14c left the game[0m
+> 
+  
+[04:17:35 INFO]: SGA9cc14c lost connection: Disconnected
+> 
+  
+[04:17:35 INFO]: [93mSGA9cc14c left the game[0m
+> 
+  
+[04:17:35 INFO]: SGReview lost connection: Disconnected
+> 
+  
+[04:17:35 INFO]: [93mSGReview left the game[0m
+> 
+  
+[04:17:35 INFO]: SGD9cc14c lost connection: Disconnected
+> 
+  
+[04:17:35 INFO]: [93mSGD9cc14c left the game[0m
+> 
+  
+[04:17:35 INFO]: Stopping the server
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Awaiting scheduler termination for 60s...
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Scheduler halted
+> 
+  
+[04:17:35 INFO]: Stopping server
+> 
+  
+[04:17:35 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-rc.1
+> 
+  
+[04:17:35 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Halting chunk systems...
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[04:17:35 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Halted chunk systems
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Finishing pending teleports...
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Finished pending teleports
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Saving all worlds
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Saving world data for world 'world'
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[04:17:35 INFO]: [RegionShutdownThread] Saving chunks around region around chunk [12, 11] in world 'world'
+> 
+  
+[04:17:37 INFO]: [ChunkHolderManager] Saved 2650 block chunks, 782 entity chunks, 0 poi chunks in world 'world' in 2.04s
+> 
+  
+[04:17:37 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[04:17:37 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved world data for world 'world'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving world data for world 'world_nether'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved world data for world 'world_nether'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving world data for world 'world_the_end'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved world data for world 'world_the_end'
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved all worlds
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saving all player data...
+> 
+  
+[04:17:37 INFO]: [RegionShutdownThread] Saved all player data
+> 
+  
+[04:17:37 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[04:17:37 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[04:17:37 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[04:17:37 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

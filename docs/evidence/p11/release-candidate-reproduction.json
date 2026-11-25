@@ -1,0 +1,30 @@
+{
+  "version": "4.0.0-rc.1",
+  "builtAt": "2026-11-22T17:16:33.660876+00:00",
+  "buildCommand": "mvnw.cmd -B -ntp clean verify",
+  "isolatedSourceCopy": true,
+  "sourceVersion": "4.0.0-SNAPSHOT",
+  "sourceTreeSha256": "db0ee9a894abeb93cf8e281065b80bb791ae97cf936fc2af840294e5e1499456",
+  "tests": {
+    "reports": 32,
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "file": ".work\\releases\\4.0.0-rc.1-rebuild\\StarGenesis-4.0.0-rc.1.jar",
+    "sizeBytes": 2966213,
+    "sha256": "8d6887351988c2f601026bb654b2ea9d3affe69b78df2216a8c8d535631e9913"
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 61,
+    "file": ".work\\releases\\4.0.0-rc.1-rebuild\\sbom.json",
+    "sha256": "34fa65d853e71e2c9d328f70e4e90a771c15c80103fd2972c4b4be98793510c1"
+  },
+  "signed": false,
+  "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
+  "buildLog": ".work\\releases\\4.0.0-rc.1-rebuild\\release-verify.log"
+}

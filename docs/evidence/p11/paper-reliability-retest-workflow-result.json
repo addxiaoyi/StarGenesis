@@ -1,0 +1,91 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25574,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "openedSlots": 90
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true,
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 500,
+      "sequence": 1
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arenafed07d",
+      "rejectedRuleset": "smoke:rejectedfed07d",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true,
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-6dc197b37ea8cdff794693145acb3293"
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signedfed07d",
+      "publisherKeyId": "smoke.publisher-fed07d",
+      "rotatedPublisherKeyId": "smoke.publisher-fed07d-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    }
+  ],
+  "passed": true
+}

@@ -8,6 +8,6 @@ simulation:
   max-steps: 3000
   sensor-radius: 16
   messages-per-step: 64
-# P0 never moves real items or money, even if third-party plugins are installed.
+# Real settlement stays disabled until a provider is configured and audited.
 integrations:
   allow-real-settlement: false

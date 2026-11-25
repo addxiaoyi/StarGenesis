@@ -3,6 +3,8 @@
 .audit-sources/
 **/target/
 .idea/
+__pycache__/
+*.py[cod]
 *.iml
 *.log
 !docs/evidence/**/*.log

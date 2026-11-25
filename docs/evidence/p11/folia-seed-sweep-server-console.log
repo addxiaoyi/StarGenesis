@@ -1,0 +1,1951 @@
+[13:17:45 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13+9-LTS; Eclipse Adoptium Temurin-21.0.13+9) on Windows Server 2019 10.0 (amd64)
+[13:17:45 INFO]: [bootstrap] Loading Folia 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) for Minecraft 1.21.11
+[13:17:47 INFO]: [PluginInitializerManager] Initializing plugins...
+[13:17:49 INFO]: [ReobfServer] Remapping server...
+[13:18:04 INFO]: [ReobfServer] Done remapping server in 15043ms.
+[13:18:04 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[13:18:06 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1654ms.
+[13:18:06 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[13:18:06 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[13:18:19 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[13:18:20 INFO]: Found new data pack file/bukkit, loading it automatically
+[13:18:20 INFO]: Found new data pack paper, loading it automatically
+[13:18:22 INFO]: No existing world data, creating new world
+[13:18:25 INFO]: Loaded 1470 recipes
+[13:18:25 INFO]: Loaded 1584 advancements
+[13:18:25 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[13:18:26 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 983.7ms
+[13:18:26 INFO]: Starting minecraft server version 1.21.11
+[33;1m[13:18:26 WARN]: ****************************
+[m[33;1m[13:18:26 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[13:18:26 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[13:18:26 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[13:18:26 WARN]: ****************************
+[m[13:18:26 INFO]: Loading properties
+[13:18:26 INFO]: This server is running Folia version 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[13:18:27 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[13:18:27 INFO]: Server Ping Player Sample Count: 12
+[13:18:27 INFO]: Using 4 threads for Netty based IO
+[13:18:29 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[13:18:29 INFO]: [io.papermc.paper.threadedregions.TickRegions] Initialised EDF Folia scheduler with initial 1 target thread(s)
+[13:18:29 INFO]: Default game type: SURVIVAL
+[13:18:29 INFO]: Generating keypair
+> 
+  
+[13:18:29 INFO]: Starting Minecraft server on 127.0.0.1:25575
+> 
+  
+[13:18:30 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[13:18:30 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[13:18:30 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[33;1m[13:18:30 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[13:18:30 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[13:18:30 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[13:18:30 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[13:18:30 INFO]: Preparing level "world"
+> 
+  
+[13:18:31 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[13:18:32 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[13:18:35 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[13:18:36 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[13:18:36 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:18:36 INFO]: Prepared spawn area in 5573 ms
+> 
+  
+[13:18:36 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[13:18:36 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:18:36 INFO]: Prepared spawn area in 4428 ms
+> 
+  
+[13:18:36 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[13:18:36 INFO]: Preparing spawn area: 100%
+> 
+  
+[13:18:36 INFO]: Prepared spawn area in 825 ms
+> 
+  
+[13:18:36 INFO]: Done preparing level "world" (6.171s)
+> 
+  
+[13:18:36 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[13:18:39 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[13:18:40 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[13:18:40 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[13:18:40 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=FOLIA_COMMAND_LAB
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[13:18:40 INFO]: [spark] The spark plugin has been preferred but was not loaded. The bundled spark profiler will enabled instead.
+> 
+  
+[13:18:40 INFO]: [spark] The spark profiler will not be enabled because it is currently disabled in the configuration.
+> 
+  
+[13:18:40 INFO]: Done (57.359s)! For help, type "help"
+> > > > > > 
+  
+[13:18:40 INFO]: StarGenesis 4.0.0-SNAPSHOT | foundation accepted; automated workflows available, human acceptance pending | engine=genesis-sim/1
+> 
+  
+[13:18:40 INFO]: Design schema=1 | simulation-worker=scheduled | real-settlement=disabled | integrations=8
+> 
+  
+[13:18:40 INFO]: P1 resource lab=FOLIA_COMMAND_LAB | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[13:18:40 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[13:18:40 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[13:18:40 INFO]: P5 closed ecology=available | /genesis ecology dashboard
+> 
+  
+[13:18:40 INFO]: P6 four-seat simulated factory=available | /genesis factory dashboard
+> 
+  
+[13:18:40 INFO]: P7 licensed arena catalog=available | /genesis arena catalog
+> 
+  
+[13:18:40 INFO]: P8 simultaneous territory match=available | /genesis arena match matches
+> 
+  
+[13:18:40 INFO]: P9 durable saga contract=available, real gateway=inactive
+> 
+  
+[13:18:40 INFO]: P10 signed Ed25519 design import=available | /genesis design list
+> 
+  
+[13:18:40 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[13:18:40 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[13:18:40 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[13:18:40 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[13:18:40 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[13:18:40 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[13:18:40 INFO]: /genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it
+> 
+  
+[13:18:40 INFO]: /genesis factory - form a two-player organization, bid, place simulated orders, recover and replay
+> 
+  
+[13:18:40 INFO]: /genesis arena - create, license, submit for review, and play approved ArenaRulesets
+> 
+  
+[13:18:40 INFO]: /genesis design - install and inspect administrator-staged signed design packages
+> 
+  
+[13:18:40 INFO]: /genesis design publishers - operator-managed publisher trust roots and key rotation
+> 
+  
+[13:18:40 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[13:18:40 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[13:18:40 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[13:18:40 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[13:18:40 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> 
+  
+[13:18:40 INFO]: Made SGReview a server operator
+> 
+  
+[13:18:44 INFO]: UUID of player SGA24a19f is ecad8fa0-7f4f-31ed-a663-29e3a0e3b987
+> 
+  
+[13:18:48 INFO]: [93mSGA24a19f joined the game[0m
+> 
+  
+[13:18:48 INFO]: SGA24a19f[/127.0.0.1:58359] logged in with entity id 1 at ([world]1.5, -63.0, -10.5)
+> 
+  
+[13:18:48 INFO]: UUID of player SGB24a19f is fe820b09-ff09-31ae-bc53-2bae0c473138
+> 
+  
+[13:18:49 INFO]: [93mSGB24a19f joined the game[0m
+> 
+  
+[13:18:49 INFO]: SGB24a19f[/127.0.0.1:58360] logged in with entity id 2 at ([world]0.5, -63.0, 3.5)
+> 
+  
+[13:18:49 INFO]: UUID of player SGC24a19f is 9c7e874e-ac0d-3ebe-8009-8af8a04d6bd6
+> 
+  
+[13:18:50 INFO]: [93mSGC24a19f joined the game[0m
+> 
+  
+[13:18:50 INFO]: SGC24a19f[/127.0.0.1:58361] logged in with entity id 3 at ([world]-2.5, -63.0, -7.5)
+> 
+  
+[13:18:50 INFO]: UUID of player SGD24a19f is f64742a5-96b8-3242-9d93-71b9029f2e3e
+> 
+  
+[13:18:50 INFO]: [93mSGD24a19f joined the game[0m
+> 
+  
+[13:18:50 INFO]: SGD24a19f[/127.0.0.1:58362] logged in with entity id 4 at ([world]3.5, -63.0, -5.5)
+> 
+  
+[13:18:50 INFO]: UUID of player SGReview is f1b041fd-32c0-37d1-8a14-d04bce2f870d
+> 
+  
+[13:18:51 INFO]: [93mSGReview joined the game[0m
+> 
+  
+[13:18:51 INFO]: SGReview[/127.0.0.1:58363] logged in with entity id 5 at ([world]-11.5, -63.0, 1.5)
+> 
+  
+[13:20:57 INFO]: SGA24a19f issued server command: /genesis lab start 42 1
+> 
+  
+[13:20:58 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:20:59 INFO]: SGA24a19f issued server command: /genesis lab stop
+> 
+  
+[13:21:01 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:21:02 INFO]: SGA24a19f issued server command: /genesis lab replay
+> 
+  
+[13:21:03 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:21:04 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:21:05 INFO]: SGA24a19f issued server command: /genesis lab resume
+> 
+  
+[13:21:07 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:21:08 INFO]: SGA24a19f issued server command: /genesis lab stop
+> 
+  
+[13:21:09 INFO]: SGA24a19f issued server command: /genesis lab status
+> 
+  
+[13:21:10 INFO]: SGA24a19f issued server command: /genesis blueprint create smoke:blueprint24a19f
+> 
+  
+[13:21:11 INFO]: SGA24a19f issued server command: /genesis blueprint add solar genesis:solar_panel 1 0 0 core
+> 
+  
+[13:21:13 INFO]: SGA24a19f issued server command: /genesis blueprint preview
+> 
+  
+[13:21:14 INFO]: SGA24a19f issued server command: /genesis blueprint save
+> 
+  
+[13:21:15 INFO]: SGA24a19f issued server command: /genesis blueprint close
+> 
+  
+[13:21:16 INFO]: SGA24a19f issued server command: /genesis blueprint open smoke:blueprint24a19f
+> 
+  
+[13:21:17 INFO]: SGA24a19f issued server command: /genesis program create smoke:program24a19f
+> 
+  
+[13:21:19 INFO]: SGA24a19f issued server command: /genesis program replace start CONSTANT_INTEGER - value=5
+> 
+  
+[13:21:20 INFO]: SGA24a19f issued server command: /genesis program add result COMPARE_THRESHOLD_INTEGER start operator=gt,value=4
+> 
+  
+[13:21:21 INFO]: SGA24a19f issued server command: /genesis program simulate 42 3
+> 
+  
+[13:21:22 INFO]: SGA24a19f issued server command: /genesis program save
+> 
+  
+[13:21:24 INFO]: SGA24a19f issued server command: /genesis radio chip genesis:radio
+> 
+  
+[13:21:24 INFO]: SGB24a19f issued server command: /genesis radio chip genesis:radio
+> 
+  
+[13:21:25 INFO]: SGA24a19f issued server command: /genesis radio join sector_a 0 0 0 16
+> 
+  
+[13:21:25 INFO]: SGB24a19f issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[13:21:26 INFO]: SGA24a19f issued server command: /genesis radio send fe820b09-ff09-31ae-bc53-2bae0c473138 1 supply ore_offer
+> 
+  
+[13:21:26 INFO]: SGB24a19f issued server command: /genesis radio inbox
+> 
+  
+[13:21:28 INFO]: SGB24a19f issued server command: /genesis radio inbox
+> 
+  
+[13:21:28 INFO]: SGB24a19f lost connection: Disconnected
+> 
+  
+[13:21:28 INFO]: UUID of player SGB24a19f is fe820b09-ff09-31ae-bc53-2bae0c473138
+> 
+  
+[13:21:28 INFO]: [93mSGB24a19f left the game[0m
+> 
+  
+[13:21:28 INFO]: [93mSGB24a19f joined the game[0m
+> 
+  
+[13:21:28 INFO]: SGB24a19f[/127.0.0.1:58373] logged in with entity id 6 at ([world]184.80897586163454, -63.0, 1.966349238557508)
+> 
+  
+[13:21:28 INFO]: SGB24a19f issued server command: /genesis radio join sector_a 1 0 0 16
+> 
+  
+[13:21:29 INFO]: SGB24a19f issued server command: /genesis radio inbox
+> 
+  
+[13:21:31 INFO]: SGB24a19f issued server command: /genesis radio ack ecad8fa0-7f4f-31ed-a663-29e3a0e3b987 3268 1
+> 
+  
+[13:21:32 INFO]: SGB24a19f issued server command: /genesis radio inbox
+> 
+  
+[13:21:32 INFO]: SGA24a19f issued server command: /genesis radio send fe820b09-ff09-31ae-bc53-2bae0c473138 1 supply ore_offer
+> 
+  
+[13:21:33 INFO]: SGB24a19f issued server command: /genesis radio inbox
+> 
+  
+[13:21:33 INFO]: SGA24a19f issued server command: /genesis ecology start 42
+> 
+  
+[13:21:34 INFO]: SGA24a19f issued server command: /genesis ecology step 2
+> 
+  
+[13:21:35 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:21:37 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:21:37 INFO]: SGB24a19f issued server command: /genesis ecology start 52002
+> 
+  
+[13:21:37 INFO]: SGC24a19f issued server command: /genesis ecology start 52003
+> 
+  
+[13:21:37 INFO]: SGD24a19f issued server command: /genesis ecology start 52004
+> 
+  
+[13:21:38 INFO]: SGA24a19f issued server command: /genesis ecology start 52001
+> 
+  
+[13:21:38 INFO]: SGB24a19f issued server command: /genesis ecology program producer 2 6 64 100
+> 
+  
+[13:21:38 INFO]: SGC24a19f issued server command: /genesis ecology program producer 5 5 40 500
+> 
+  
+[13:21:38 INFO]: SGD24a19f issued server command: /genesis ecology program producer 4 2 40 100
+> 
+  
+[13:21:39 INFO]: SGA24a19f issued server command: /genesis ecology program producer 3 5 40 150
+> 
+  
+[13:21:39 INFO]: SGB24a19f issued server command: /genesis ecology program grazer 1 8 48 60
+> 
+  
+[13:21:39 INFO]: SGD24a19f issued server command: /genesis ecology program grazer 3 2 24 100
+> 
+  
+[13:21:39 INFO]: SGC24a19f issued server command: /genesis ecology program grazer 3 8 28 400
+> 
+  
+[13:21:40 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 2 6 24 100
+> 
+  
+[13:21:40 INFO]: SGC24a19f issued server command: /genesis ecology program decomposer 3 5 36 350
+> 
+  
+[13:21:40 INFO]: SGD24a19f issued server command: /genesis ecology program decomposer 3 2 32 100
+> 
+  
+[13:21:40 INFO]: SGB24a19f issued server command: /genesis ecology program decomposer 1 7 64 80
+> 
+  
+[13:21:41 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 2 5 32 80
+> 
+  
+[13:21:42 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:42 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:42 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:43 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:43 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:43 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:43 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:44 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:44 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:44 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:44 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:45 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:45 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:45 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:45 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:46 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:47 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:47 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:47 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:47 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:48 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:48 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:48 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:49 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:49 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:49 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:49 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:50 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:50 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:50 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:51 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:51 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:52 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:52 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:52 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:52 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:53 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:53 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:53 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:54 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:55 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:55 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:55 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:57 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:57 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:57 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:58 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:58 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:58 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:21:58 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:00 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:00 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:00 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:00 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:02 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:02 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:02 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:02 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:04 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:04 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:04 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:04 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:06 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:06 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:06 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:06 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:08 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:08 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:08 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:08 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:11 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:11 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:11 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:11 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:13 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:13 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:13 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:13 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:15 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:15 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:15 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:15 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:18 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:18 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:18 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:18 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:20 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:20 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:20 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:20 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:23 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:23 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:23 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:23 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:25 INFO]: SGD24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:25 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:25 INFO]: SGB24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:25 INFO]: SGC24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:27 INFO]: SGB24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:22:27 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:22:27 INFO]: SGC24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:22:27 INFO]: SGD24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:22:28 INFO]: SGB24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:22:29 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:22:29 INFO]: SGC24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:22:30 INFO]: SGD24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:22:32 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:22:33 INFO]: SGA24a19f issued server command: /genesis ecology start 52008
+> 
+  
+[13:22:34 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:22:35 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:22:37 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:22:38 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:39 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:40 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:41 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:43 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:44 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:45 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:46 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:47 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:49 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:50 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:51 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:52 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:53 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:56 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:58 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:22:59 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:01 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:02 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:03 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:04 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:05 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:07 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:08 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:23:09 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:23:10 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:23:11 INFO]: SGA24a19f issued server command: /genesis ecology start 52009
+> 
+  
+[13:23:13 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:23:14 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:23:15 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:23:16 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:17 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:19 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:20 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:21 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:22 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:23 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:25 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:26 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:27 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:28 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:29 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:31 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:32 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:33 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:34 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:35 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:37 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:38 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:39 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:40 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:41 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:43 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:44 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:45 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:46 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:23:47 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:23:49 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:23:50 INFO]: SGA24a19f issued server command: /genesis ecology start 52010
+> 
+  
+[13:23:51 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:23:52 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:23:53 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:23:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:56 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:58 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:23:59 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:01 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:02 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:03 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:04 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:05 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:07 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:08 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:09 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:10 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:11 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:13 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:14 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:15 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:16 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:17 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:19 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:20 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:21 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:22 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:23 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:25 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:24:26 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:24:27 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:24:28 INFO]: SGA24a19f issued server command: /genesis ecology start 52011
+> 
+  
+[13:24:29 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:24:31 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:24:32 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:24:33 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:34 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:35 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:37 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:38 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:39 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:40 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:41 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:43 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:44 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:45 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:46 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:47 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:49 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:50 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:51 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:52 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:53 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:56 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:58 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:24:59 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:01 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:02 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:03 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:25:04 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:25:05 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:25:07 INFO]: SGA24a19f issued server command: /genesis ecology start 52012
+> 
+  
+[13:25:08 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:25:09 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:25:10 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:25:11 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:13 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:14 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:15 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:16 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:17 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:19 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:20 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:21 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:22 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:23 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:25 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:26 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:27 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:28 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:29 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:31 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:32 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:33 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:34 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:35 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:37 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:38 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:39 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:40 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:41 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:25:43 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:25:44 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:25:45 INFO]: SGA24a19f issued server command: /genesis ecology start 52013
+> 
+  
+[13:25:46 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:25:47 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:25:49 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:25:50 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:51 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:52 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:53 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:56 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:58 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:25:59 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:01 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:02 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:03 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:04 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:05 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:07 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:08 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:09 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:10 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:11 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:13 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:14 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:15 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:16 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:17 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:19 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:20 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:26:21 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:26:22 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:26:23 INFO]: SGA24a19f issued server command: /genesis ecology start 52014
+> 
+  
+[13:26:25 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:26:26 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:26:27 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:26:28 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:29 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:31 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:32 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:33 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:34 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:35 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:37 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:38 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:39 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:40 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:41 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:43 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:44 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:45 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:46 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:47 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:49 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:50 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:51 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:52 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:53 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:55 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:56 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:57 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:26:58 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:26:59 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:27:01 INFO]: SGA24a19f issued server command: /genesis ecology reset
+> 
+  
+[13:27:02 INFO]: SGA24a19f issued server command: /genesis ecology start 52015
+> 
+  
+[13:27:03 INFO]: SGA24a19f issued server command: /genesis ecology program producer 6 2 512 0
+> 
+  
+[13:27:04 INFO]: SGA24a19f issued server command: /genesis ecology program grazer 1 12 512 0
+> 
+  
+[13:27:05 INFO]: SGA24a19f issued server command: /genesis ecology program decomposer 1 12 512 0
+> 
+  
+[13:27:07 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:08 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:09 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:10 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:11 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:13 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:14 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:15 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:16 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:17 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:19 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:20 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:21 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:22 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:23 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:25 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:26 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:27 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:28 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:29 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:31 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:32 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:33 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:34 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:35 INFO]: SGA24a19f issued server command: /genesis ecology step 20
+> 
+  
+[13:27:37 INFO]: SGA24a19f issued server command: /genesis ecology dashboard
+> 
+  
+[13:27:38 INFO]: SGA24a19f issued server command: /genesis ecology replay
+> 
+  
+[13:27:39 INFO]: SGA24a19f issued server command: /genesis factory invite SGB24a19f
+> 
+  
+[13:27:39 INFO]: SGB24a19f issued server command: /genesis factory accept
+> 
+  
+[13:27:39 INFO]: SGC24a19f issued server command: /genesis factory invite SGD24a19f
+> 
+  
+[13:27:39 INFO]: SGD24a19f issued server command: /genesis factory accept
+> 
+  
+[13:27:40 INFO]: SGA24a19f issued server command: /genesis factory start 1
+> 
+  
+[13:27:41 INFO]: SGA24a19f issued server command: /genesis factory bid 15
+> 
+  
+[13:27:43 INFO]: SGA24a19f issued server command: /genesis factory step 4
+> 
+  
+[13:27:44 INFO]: SGA24a19f issued server command: /genesis factory order press_fault 2
+> 
+  
+[13:27:45 INFO]: SGA24a19f issued server command: /genesis factory step 2
+> 
+  
+[13:27:46 INFO]: SGA24a19f issued server command: /genesis factory replay
+> 
+  
+[13:27:47 INFO]: SGA24a19f issued server command: /genesis arena create smoke:arena24a19f
+> 
+  
+[13:27:49 INFO]: SGA24a19f issued server command: /genesis arena set width 24
+> 
+  
+[13:27:50 INFO]: SGA24a19f issued server command: /genesis arena set height 20
+> 
+  
+[13:27:51 INFO]: SGA24a19f issued server command: /genesis arena set units 6
+> 
+  
+[13:27:52 INFO]: SGA24a19f issued server command: /genesis arena access public on
+> 
+  
+[13:27:53 INFO]: SGA24a19f issued server command: /genesis arena access clone on
+> 
+  
+[13:27:55 INFO]: SGA24a19f issued server command: /genesis arena preview
+> 
+  
+[13:27:56 INFO]: SGA24a19f issued server command: /genesis arena save
+> 
+  
+[13:27:57 INFO]: SGA24a19f issued server command: /genesis arena publish
+> 
+  
+[13:27:58 INFO]: SGA24a19f issued server command: /genesis arena review status smoke:arena24a19f 1.0.0
+> 
+  
+[13:28:00 INFO]: SGA24a19f issued server command: /genesis arena catalog
+> 
+  
+[13:28:01 INFO]: SGA24a19f issued server command: /genesis arena review approve smoke:arena24a19f 1.0.0
+> 
+  
+[13:28:01 INFO]: SGReview issued server command: /genesis arena review pending
+> 
+  
+[13:28:02 INFO]: SGReview issued server command: /genesis arena review approve smoke:arena24a19f 1.0.0
+> 
+  
+[13:28:02 INFO]: SGA24a19f issued server command: /genesis arena review status smoke:arena24a19f 1.0.0
+> 
+  
+[13:28:03 INFO]: SGA24a19f issued server command: /genesis arena catalog
+> 
+  
+[13:28:03 INFO]: SGB24a19f issued server command: /genesis arena create smoke:rejected24a19f
+> 
+  
+[13:28:05 INFO]: SGB24a19f issued server command: /genesis arena access public on
+> 
+  
+[13:28:06 INFO]: SGB24a19f issued server command: /genesis arena save
+> 
+  
+[13:28:07 INFO]: SGB24a19f issued server command: /genesis arena publish
+> 
+  
+[13:28:08 INFO]: SGB24a19f issued server command: /genesis arena review status smoke:rejected24a19f 1.0.0
+> 
+  
+[13:28:08 INFO]: SGReview issued server command: /genesis arena review reject smoke:rejected24a19f 1.0.0 needs_balance_changes
+> 
+  
+[13:28:09 INFO]: SGB24a19f issued server command: /genesis arena review status smoke:rejected24a19f 1.0.0
+> 
+  
+[13:28:11 INFO]: SGB24a19f issued server command: /genesis arena catalog
+> 
+  
+[13:28:11 INFO]: SGA24a19f issued server command: /genesis arena match invite SGB24a19f cedar
+> 
+  
+[13:28:12 INFO]: SGB24a19f issued server command: /genesis arena match accept
+> 
+  
+[13:28:12 INFO]: SGC24a19f issued server command: /genesis arena match invite SGD24a19f moss
+> 
+  
+[13:28:12 INFO]: SGD24a19f issued server command: /genesis arena match accept
+> 
+  
+[13:28:12 INFO]: SGA24a19f issued server command: /genesis arena match start genesis:arena_ruleset 1.0.0 42
+> 
+  
+[13:28:13 INFO]: SGReview issued server command: /genesis arena match watch arena-03012de9c8a93b174ac40683fa3f7379
+> 
+  
+[13:28:13 INFO]: SGA24a19f issued server command: /genesis arena match pass
+> 
+  
+[13:28:14 INFO]: SGReview issued server command: /genesis arena match matches
+> 
+  
+[13:28:14 INFO]: SGB24a19f lost connection: Disconnected
+> 
+  
+[13:28:14 INFO]: UUID of player SGB24a19f is fe820b09-ff09-31ae-bc53-2bae0c473138
+> 
+  
+[13:28:14 INFO]: [93mSGB24a19f left the game[0m
+> 
+  
+[13:28:14 INFO]: [93mSGB24a19f joined the game[0m
+> 
+  
+[13:28:14 INFO]: SGB24a19f[/127.0.0.1:58400] logged in with entity id 7 at ([world]184.80897586163454, -63.0, 1.966349238557508)
+> 
+  
+[13:28:14 INFO]: SGB24a19f issued server command: /genesis arena match pass
+> 
+  
+[13:28:14 INFO]: SGC24a19f issued server command: /genesis arena match pass
+> 
+  
+[13:28:15 INFO]: SGD24a19f issued server command: /genesis arena match pass
+> 
+  
+[13:28:15 INFO]: SGA24a19f issued server command: /genesis arena match replay
+> 
+  
+[13:28:16 INFO]: SGA24a19f issued server command: /genesis status
+> 
+  
+[13:28:17 INFO]: SGA24a19f issued server command: /genesis design publishers add smoke.publisher-24a19f publisher-24a19f
+> 
+  
+[13:28:17 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-24a19f publisher-24a19f
+> 
+  
+[13:28:18 INFO]: SGReview issued server command: /genesis design publishers list
+> 
+  
+[13:28:18 INFO]: SGA24a19f issued server command: /genesis design install offline_fixture
+> 
+  
+[13:28:20 INFO]: SGA24a19f issued server command: /genesis design list
+> 
+  
+[13:28:21 INFO]: SGA24a19f issued server command: /genesis design inspect smoke:signed24a19f
+> 
+  
+[13:28:21 INFO]: SGB24a19f issued server command: /genesis design inspect smoke:signed24a19f
+> 
+  
+[13:28:21 INFO]: SGReview issued server command: /genesis design publishers add smoke.publisher-24a19f-rotated publisher-24a19f-rotated
+> 
+  
+[13:28:22 INFO]: SGA24a19f issued server command: /genesis design install offline_fixture
+> 
+  
+[13:28:23 INFO]: SGA24a19f issued server command: /genesis design inspect smoke:signed24a19f-rotated
+> 
+  
+[13:28:23 INFO]: SGReview issued server command: /genesis design publishers revoke smoke.publisher-24a19f scheduled-rotation
+> 
+  
+[13:28:24 INFO]: SGA24a19f issued server command: /genesis design inspect smoke:signed24a19f
+> 
+  
+[13:28:26 INFO]: SGA24a19f issued server command: /genesis design inspect smoke:signed24a19f-rotated
+> 
+  
+[13:28:26 INFO]: SGD24a19f lost connection: Disconnected
+> 
+  
+[13:28:26 INFO]: [93mSGD24a19f left the game[0m
+> 
+  
+[13:28:26 INFO]: SGC24a19f lost connection: Disconnected
+> 
+  
+[13:28:26 INFO]: [93mSGC24a19f left the game[0m
+> 
+  
+[13:28:26 INFO]: SGA24a19f lost connection: Disconnected
+> 
+  
+[13:28:26 INFO]: [93mSGA24a19f left the game[0m
+> 
+  
+[13:28:26 INFO]: SGB24a19f lost connection: Disconnected
+> > 
+  
+[13:28:26 INFO]: [93mSGB24a19f left the game[0m
+> 
+  
+[13:28:26 INFO]: SGReview lost connection: Disconnected
+> 
+  
+[13:28:26 INFO]: [93mSGReview left the game[0m
+> 
+  
+[13:28:26 INFO]: Stopping the server
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Awaiting scheduler termination for 60s...
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Scheduler halted
+> 
+  
+[13:28:26 INFO]: Stopping server
+> 
+  
+[13:28:26 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[13:28:26 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Halting chunk systems...
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[13:28:26 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Halted chunk systems
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Finishing pending teleports...
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Finished pending teleports
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Saving all worlds
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Saving world data for world 'world'
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[13:28:26 INFO]: [RegionShutdownThread] Saving chunks around region around chunk [23, 11] in world 'world'
+> 
+  
+[13:28:27 INFO]: [ChunkHolderManager] Saved 1868 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 1.23s
+> 
+  
+[13:28:27 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[13:28:27 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved world data for world 'world'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving world data for world 'world_nether'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved world data for world 'world_nether'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving world data for world 'world_the_end'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved world data for world 'world_the_end'
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved all worlds
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saving all player data...
+> 
+  
+[13:28:27 INFO]: [RegionShutdownThread] Saved all player data
+> 
+  
+[13:28:27 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[13:28:27 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[13:28:27 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[13:28:27 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

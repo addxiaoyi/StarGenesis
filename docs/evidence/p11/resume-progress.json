@@ -1,0 +1,65 @@
+﻿{
+    "date":  "2026-11-25",
+    "project":  "StarGenesis",
+    "disk":  {
+                 "initialFreeBytes":  88412160,
+                 "afterPackageManagerCleanupFreeBytes":  1569742848,
+                 "commands":  [
+                                  "npm cache clean --force",
+                                  "pnpm store prune"
+                              ],
+                 "duplicateLibraryCleanup":  "Deletion denied by automatic approval policy; 6.828 GiB of identical dependencies identified and retained",
+                 "finalFreeBytes":  1103446016
+             },
+    "builds":  [
+                   "resume-java21.json",
+                   "resume-java25.json"
+               ],
+    "regressions":  {
+                        "settlementSagaTests":  9,
+                        "privateSignedDesignStoreTests":  7,
+                        "expiryRegressionBefore":  "../p9/expiry-before.log",
+                        "unknownSchemasRejected":  true,
+                        "designPathIdentityChecked":  true,
+                        "repeatedImportSignatureChecked":  true
+                    },
+    "paper":  {
+                  "workflow":  "paper-seed-sweep-workflow-result.json",
+                  "workflowPassed":  true,
+                  "seedRange":  [
+                                    52008,
+                                    52015
+                                ],
+                  "candidateRuns":  8,
+                  "fullSpeciesSurvivalRuns":  8,
+                  "initialServerResult":  "paper-seed-sweep-initial-server-result.json",
+                  "initialFailure":  "Obsolete status command text in test harness",
+                  "consoleRetest":  "paper-resume-console-result.json",
+                  "consoleRetestPassed":  true
+              },
+    "folia":  {
+                  "serverResult":  "folia-seed-sweep-server-result.json",
+                  "workflow":  "folia-seed-sweep-workflow-result.json",
+                  "passed":  true,
+                  "seedRange":  [
+                                    52008,
+                                    52015
+                                ],
+                  "candidateRuns":  8,
+                  "fullSpeciesSurvivalRuns":  8,
+                  "crossRegionClients":  5
+              },
+    "starcore":  {
+                     "remoteMain":  "f769e62799e769a18fe51305b545869a17f80cd1",
+                     "checked":  "2026-11-25",
+                     "economyApiSupportsExternalIdempotency":  false
+                 },
+    "remaining":  [
+                      "P1-P8 human player acceptance and retention/fairness",
+                      "P5 long duration and wider parameter ecology research",
+                      "P9 real provider durable side effects and authorization integration",
+                      "P10 operational publisher trust root and third-party bridge",
+                      "P11 production scale, cross-hardware capacity and official release signing"
+                  ],
+    "releaseCandidate":  "release-candidate-rc2.json"
+}

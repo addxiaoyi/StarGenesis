@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-22",
+  "focusedTests": {
+    "command": "mvnw.cmd -B -pl stargenesis-paper -am test",
+    "exitCode": 0,
+    "testsPassed": 211
+  },
+  "designTests": {
+    "command": "mvnw.cmd -B -pl stargenesis-design -am test",
+    "exitCode": 0,
+    "signedEnvelopeTestsPassed": 4,
+    "totalTestsPassed": 79
+  },
+  "paper": {
+    "version": "1.21.11-132",
+    "passed": true,
+    "serverSha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "pluginSha256": "e5a56b53376353e869d819987740ad839a4b16095a2fa58e642c6cc41d997516",
+    "result": "paper-result.json",
+    "consoleLog": "paper-console.log"
+  },
+  "folia": {
+    "version": "1.21.11-14",
+    "passed": true,
+    "serverSha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "pluginSha256": "e5a56b53376353e869d819987740ad839a4b16095a2fa58e642c6cc41d997516",
+    "result": "folia-result.json",
+    "consoleLog": "folia-console.log"
+  },
+  "scope": "Ed25519 codec/import and durable settlement saga contract tests. No production publisher trust root, real StarCore/Vault settlement adapter, third-party bridge, or player import session was exercised."
+}

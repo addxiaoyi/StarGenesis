@@ -1,0 +1,190 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 1183.09,
+  "server_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "plugin_sha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a",
+  "log_sha256": "874777ad419e613609efd35291f22c231d89376b447122861b4ccb0d1c7caf5c",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "launch_mode": "extracted-server-classpath",
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "kind": "automated-offline-client-workflows",
+    "host": "127.0.0.1",
+    "port": 25575,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "humanAcceptance": false,
+    "checks": [
+      {
+        "stage": "client-login",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "region-travel",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "P1",
+        "passed": true,
+        "interface": "Folia command workflow",
+        "replayVerified": true,
+        "checkpointResumed": true
+      },
+      {
+        "stage": "P2",
+        "passed": true,
+        "savedAndReopened": true
+      },
+      {
+        "stage": "P3",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P4",
+        "passed": true,
+        "deliveredMessage": true
+      },
+      {
+        "stage": "P5",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P6",
+        "passed": true,
+        "fourPlayers": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P7",
+        "passed": true,
+        "reviewRequired": true,
+        "authorCannotApprove": true,
+        "approvedRuleset": "smoke:arena3a2b96",
+        "rejectedRuleset": "smoke:rejected3a2b96",
+        "rejectionReasonPersisted": true,
+        "rejectedRulesetHidden": true
+      },
+      {
+        "stage": "P8",
+        "passed": true,
+        "fourPlayerRound": true,
+        "observerReadOnly": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P9",
+        "passed": true,
+        "realSettlementRemainsDisabled": true
+      },
+      {
+        "stage": "P10",
+        "passed": true,
+        "importedDesign": "smoke:signed3a2b96",
+        "publisherKeyId": "smoke.publisher-3a2b96",
+        "rotatedPublisherKeyId": "smoke.publisher-3a2b96-rotated",
+        "oldKeyRevoked": true,
+        "oldSignatureRejected": true,
+        "ownerPrivate": true,
+        "trustRoot": "ephemeral test-only Ed25519 key"
+      },
+      {
+        "stage": "P11-sustained-load",
+        "passed": true,
+        "profile": "four-concurrent-p1-labs",
+        "requestedMinutes": 15,
+        "durationSeconds": 903,
+        "participants": 4,
+        "concurrentWorlds": 4,
+        "agentsPerWorld": 4,
+        "totalLabStarts": 16,
+        "labRestarts": 12,
+        "statusPolls": 58,
+        "separatedRegions": true
+      },
+      {
+        "stage": "P1-live-disable",
+        "passed": true,
+        "interface": "Folia command workflow",
+        "simulationWasRunning": true,
+        "checkpointPersisted": true,
+        "replayPersisted": true,
+        "seed": 100,
+        "savedTick": 30,
+        "replayFrames": 30,
+        "runtimeSample": {
+          "sampleCount": 224,
+          "fivePlayerSamples": 222,
+          "intervalSeconds": 1123,
+          "minFivePlayerTps1m": 16.132,
+          "maxFivePlayerAverageTickMillis": 3.972,
+          "maxOnlinePlayers": 5
+        }
+      }
+    ],
+    "passed": true,
+    "regionTravel": [
+      {
+        "role": "alice",
+        "x": 2,
+        "z": -7,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "bob",
+        "x": 184,
+        "z": 0,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "carol",
+        "x": -3,
+        "z": 185,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "dave",
+        "x": 187,
+        "z": 187,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "observer",
+        "x": 378,
+        "z": 378,
+        "distanceFromTarget": 8
+      }
+    ],
+    "pluginDisableRequestedByHarness": true,
+    "log": "player-workflow.log"
+  }
+}

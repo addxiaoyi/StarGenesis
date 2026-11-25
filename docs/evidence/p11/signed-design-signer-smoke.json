@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "algorithm": "Ed25519",
+  "publisherKeyId": "publisher.smoke",
+  "designSourceSha256": "9869b5e4e2dc0f31e118e0b80784bc9a74097153443f8a0527fc3558a5975ea8",
+  "validSignatureVerified": true,
+  "signatureTamperRejected": true,
+  "unknownKeyIdRejected": true,
+  "privateTestKeyRemoved": true,
+  "testKeyEphemeral": true,
+  "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+}

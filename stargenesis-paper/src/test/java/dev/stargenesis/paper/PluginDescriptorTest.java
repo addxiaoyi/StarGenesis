@@ -12,6 +12,14 @@ class PluginDescriptorTest {
         assertTrue(descriptor.contains("main: dev.stargenesis.paper.StarGenesisPlugin"));
         assertTrue(descriptor.contains("api-version: '1.21.11'"));
         assertTrue(descriptor.contains("stargenesis.debug:"));
+        assertTrue(descriptor.contains("stargenesis.blueprint:"));
+        assertTrue(descriptor.contains("stargenesis.program:"));
+        assertTrue(descriptor.contains("stargenesis.radio:"));
+        assertTrue(descriptor.contains("stargenesis.ecology:"));
+        assertTrue(descriptor.contains("stargenesis.factory:"));
+        assertTrue(descriptor.contains("stargenesis.arena:"));
+        assertTrue(descriptor.contains("stargenesis.import:"));
+        assertTrue(descriptor.contains("stargenesis.publishers:"));
         assertTrue(descriptor.contains("default: op"));
         assertFalse(descriptor.contains("${project.version}"));
     }

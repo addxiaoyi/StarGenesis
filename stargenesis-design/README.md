@@ -1,6 +1,6 @@
-# 发明文档契约（P0 / schema 1）
+# 设计文档与 typed IR 契约
 
-本模块提供五类不可变 Java 文档、离线 JSON Schema、严格 JSON 编解码和显式迁移。P0 仅定义和校验数据，不执行 Program、通信、真实交易或竞技规则。模块没有 Bukkit、第三方游戏插件、反射和玩家脚本执行依赖。
+本模块提供五类不可变 Java 文档、离线 JSON Schema、严格 JSON 编解码和显式迁移。Blueprint 另有有限物理目录/代价评估。Program schema-v1 文档另有显式编译器，typed-program schema v1 有35个原语、确定性解释器和断点trace。Paper 层可编辑和保存 typed-program 文档，解释器本身不访问 Bukkit、第三方插件、反射或用户脚本。
 
 ## 公开入口
 
@@ -9,7 +9,7 @@
 - `DesignCodec.write(DesignDocument)`：输出现有不可变文档；哈希过期时拒绝，不能用此方法悄悄重新封存篡改文档。
 - `DesignCodec.migrateV0(String)`：仅支持显式 `schemaVersion=0` 的 `metadata.revision` → schema 1 的 `metadata.version`；验证旧哈希，返回旧/新哈希、迁移 JSON 和新文档。未知版本、隐式迁移、重复迁移均拒绝。
 
-五个公开 record 是 `Blueprint`、`Program`、`Protocol`、`Contract` 和 `ArenaRuleset`；公共元数据在 `stargenesis-api`。对应资源：`/schemas/{kind_lower}.schema.json` 与 `/examples/{kind_lower}.json`。`ARENA_RULESET` 文件名为 `arena_ruleset`。
+五个公开 record 是 `Blueprint`、`Program`、`Protocol`、`Contract` 和 `ArenaRuleset`；公共元数据在 `stargenesis-api`。对应资源：`/schemas/{kind_lower}.schema.json` 与 `/examples/{kind_lower}.json`。typed IR 的独立 schema 为 `/schemas/typed_program.schema.json`，`ARENA_RULESET` 文件名为 `arena_ruleset`。
 
 ## 版本、哈希和身份
 
@@ -23,7 +23,7 @@
 
 Schema 覆盖字段、类型、枚举、格式和数量边界；Java 模型继续验证无法由简洁 JSON Schema 表达的语义：结构重叠/端点/连通性、唯一组件/节点/协议字段、图边类型与无环约束、Contract 的协议依赖锁定，以及实际内容哈希。发布和导入必须调用 `DesignCodec.load`，不能只检查 JSON Schema。来源和参数的 Java 长度约束按 UTF-16 单元计算，因此对于包含补充平面字符的输入可能比 JSON Schema 的码点长度更严格。
 
-P0 Blueprint 只表示连接结构，不宣称有 P2 组件物理；Program 当前是批准枚举的无环类型图，不是 P3 可执行 IR；Protocol/Contract 只是有界交换格式；ArenaRuleset 只是有界容器，不宣称已完成 P7 规则/路径/胜负检查。任何新字段或语义变更必须提供版本兼容方案和测试。
+Program 的 schema-v1 JSON 与显式 typed IR 是不同表示。`ProgramCompiler.compile(Program)` 先校验已封存文档，再拒绝当前编译子集以外的参数和输入数量；`ProgramInterpreter` 的运行上下文只读，输出有界抽象动作，由 Paper `ProgramSandboxRunner` 映射到沙盒白名单命令并使用 P1 replay verifier 校验世界状态。该适配器不访问 Minecraft 真实世界或库存。Protocol/Contract 仍是有界交换格式；ArenaRuleset 仍不宣称已完成 P7 规则/路径/胜负检查。任何新字段或持久语义变更必须提供版本兼容方案和测试。
 
 ## 验证
 

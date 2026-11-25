@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-22",
+  "build": {
+    "command": "mvnw.cmd -B clean verify",
+    "exitCode": 0,
+    "testsPassed": 183
+  },
+  "boundaryCheck": {
+    "command": "python scripts/check_boundaries.py",
+    "passed": true
+  },
+  "paper": {
+    "version": "1.21.11-132",
+    "passed": true,
+    "serverSha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+    "pluginSha256": "0a0c3df98aedbd6456fccb50a71c9bbb4f7537dd90ceaaaefcd1a28a300303cd",
+    "result": "paper-result.json",
+    "consoleLog": "paper-console.log"
+  },
+  "folia": {
+    "version": "1.21.11-14",
+    "passed": true,
+    "serverSha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+    "pluginSha256": "0a0c3df98aedbd6456fccb50a71c9bbb4f7537dd90ceaaaefcd1a28a300303cd",
+    "result": "folia-result.json",
+    "consoleLog": "folia-console.log"
+  },
+  "scope": "Actual server startup, plugin enable, P4-P6 capability declarations, console diagnostics, plugin disable, and clean process exit. No four-human-player match or live Folia region-switching session was exercised."
+}

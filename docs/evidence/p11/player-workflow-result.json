@@ -1,0 +1,80 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25574,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "openedSlots": 90
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arenaff9eba",
+      "rejectedRuleset": "smoke:rejectedff9eba",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signedff9eba",
+      "publisherKeyId": "smoke.publisher-ff9eba",
+      "rotatedPublisherKeyId": "smoke.publisher-ff9eba-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    }
+  ],
+  "passed": true
+}

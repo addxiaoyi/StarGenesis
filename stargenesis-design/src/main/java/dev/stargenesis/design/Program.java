@@ -3,7 +3,7 @@ package dev.stargenesis.design;
 import dev.stargenesis.api.design.*;
 import java.util.*;
 
-/** Declarative P0 graph. This is not the P3 compiler or executable IR. */
+/** Persisted schema-v1 graph. Compilation to the transient typed IR is explicit. */
 public record Program(DesignMetadata metadata, List<Node> nodes, List<Edge> edges,
                       int maxInstructionsPerStep) implements DesignDocument {
     public Program {

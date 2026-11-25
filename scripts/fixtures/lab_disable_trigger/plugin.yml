@@ -1,0 +1,8 @@
+name: LabDisableTrigger
+version: 1.0.0
+main: dev.stargenesis.testfixture.LabDisableTrigger
+api-version: '1.21'
+folia-supported: true
+commands:
+  disable-star-genesis:
+    description: Test Folia inventory cleanup during plugin disable

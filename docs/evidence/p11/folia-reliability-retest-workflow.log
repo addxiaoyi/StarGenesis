@@ -1,0 +1,130 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25575,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "region-travel",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "interface": "Folia command workflow",
+      "replayVerified": true,
+      "checkpointResumed": true
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true,
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 3204,
+      "sequence": 1
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arena4fe7be",
+      "rejectedRuleset": "smoke:rejected4fe7be",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true,
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-9826c084cf38d4fecca78c5d5c1c8e70"
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signed4fe7be",
+      "publisherKeyId": "smoke.publisher-4fe7be",
+      "rotatedPublisherKeyId": "smoke.publisher-4fe7be-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    }
+  ],
+  "passed": true,
+  "regionTravel": [
+    {
+      "role": "alice",
+      "x": -1,
+      "z": -8,
+      "distanceFromTarget": 8
+    },
+    {
+      "role": "bob",
+      "x": 184,
+      "z": 0,
+      "distanceFromTarget": 8
+    },
+    {
+      "role": "carol",
+      "x": 2,
+      "z": 185,
+      "distanceFromTarget": 8
+    },
+    {
+      "role": "dave",
+      "x": 187,
+      "z": 187,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "observer",
+      "x": 379,
+      "z": 378,
+      "distanceFromTarget": 7
+    }
+  ]
+}

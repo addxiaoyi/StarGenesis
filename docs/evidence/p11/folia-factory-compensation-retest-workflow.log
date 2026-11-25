@@ -1,0 +1,138 @@
+{
+  "kind": "automated-offline-client-workflows",
+  "host": "127.0.0.1",
+  "port": 25575,
+  "minecraftVersion": "1.21.11",
+  "players": 5,
+  "humanAcceptance": false,
+  "checks": [
+    {
+      "stage": "client-login",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "region-travel",
+      "passed": true,
+      "players": 5
+    },
+    {
+      "stage": "P1",
+      "passed": true,
+      "interface": "Folia command workflow",
+      "replayVerified": true,
+      "checkpointResumed": true
+    },
+    {
+      "stage": "P2",
+      "passed": true,
+      "savedAndReopened": true
+    },
+    {
+      "stage": "P3",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P4",
+      "passed": true,
+      "deliveredMessage": true,
+      "atLeastOncePolls": 2,
+      "recipientDisconnectPersisted": true,
+      "acknowledgementClearedMailbox": true,
+      "crossTickDuplicateNotRedelivered": true,
+      "messageTick": 3264,
+      "sequence": 1
+    },
+    {
+      "stage": "P5",
+      "passed": true,
+      "replayVerified": true
+    },
+    {
+      "stage": "P6",
+      "passed": true,
+      "fourPlayers": true,
+      "replayVerified": true,
+      "injectedProductionFailure": true,
+      "compensationRecovered": true,
+      "refundedCreditsAndOre": true,
+      "releasedPartsEscrow": true,
+      "recoveredOrdersLine": "orders=1 · completed=0 · recovered=1 · producedParts=0",
+      "failureSeed": 4,
+      "failedOrder": "org_cedar:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+      "recoveredOrganization": "org_cedar members=[086b3fc0-d4b4-3106-88db-48f458b75ff4, 37253a88-2b45-355c-9768-bb6d23a32014] · credits=85 · ore=16 · parts=0"
+    },
+    {
+      "stage": "P7",
+      "passed": true,
+      "reviewRequired": true,
+      "authorCannotApprove": true,
+      "approvedRuleset": "smoke:arenad0d358",
+      "rejectedRuleset": "smoke:rejectedd0d358",
+      "rejectionReasonPersisted": true,
+      "rejectedRulesetHidden": true
+    },
+    {
+      "stage": "P8",
+      "passed": true,
+      "fourPlayerRound": true,
+      "observerReadOnly": true,
+      "replayVerified": true,
+      "abruptDisconnect": true,
+      "observerSawPendingActionBeforeDisconnect": true,
+      "participantUuidPreserved": true,
+      "pendingActionRestored": true,
+      "matchIdRestored": "arena-a0ba3aca3a0eb53eba7a12e15a3507de"
+    },
+    {
+      "stage": "P9",
+      "passed": true,
+      "realSettlementRemainsDisabled": true
+    },
+    {
+      "stage": "P10",
+      "passed": true,
+      "importedDesign": "smoke:signedd0d358",
+      "publisherKeyId": "smoke.publisher-d0d358",
+      "rotatedPublisherKeyId": "smoke.publisher-d0d358-rotated",
+      "oldKeyRevoked": true,
+      "oldSignatureRejected": true,
+      "ownerPrivate": true,
+      "trustRoot": "ephemeral test-only Ed25519 key"
+    }
+  ],
+  "passed": true,
+  "regionTravel": [
+    {
+      "role": "alice",
+      "x": -2,
+      "z": -1,
+      "distanceFromTarget": 2
+    },
+    {
+      "role": "bob",
+      "x": 185,
+      "z": -1,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "carol",
+      "x": 2,
+      "z": 185,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "dave",
+      "x": 187,
+      "z": 187,
+      "distanceFromTarget": 7
+    },
+    {
+      "role": "observer",
+      "x": 379,
+      "z": 378,
+      "distanceFromTarget": 7
+    }
+  ]
+}

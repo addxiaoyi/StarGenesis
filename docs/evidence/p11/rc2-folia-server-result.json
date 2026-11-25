@@ -1,0 +1,472 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 633.93,
+  "server_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+  "plugin_sha256": "574db042891fb79a2a7e7dcd79e29cfcc0ffa7ebda688dfb67a8c3c93abafdbe",
+  "log_sha256": "c0bd15820068965a1f6bcabd683f44a1cc33788ea32d9985d1e472216c5fc1e8",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "launch_mode": "extracted-server-classpath",
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "kind": "automated-offline-client-workflows",
+    "host": "127.0.0.1",
+    "port": 25576,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "humanAcceptance": false,
+    "checks": [
+      {
+        "stage": "client-login",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "region-travel",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "P1",
+        "passed": true,
+        "interface": "Folia command workflow",
+        "replayVerified": true,
+        "checkpointResumed": true
+      },
+      {
+        "stage": "P2",
+        "passed": true,
+        "savedAndReopened": true
+      },
+      {
+        "stage": "P3",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P4",
+        "passed": true,
+        "deliveredMessage": true,
+        "atLeastOncePolls": 2,
+        "recipientDisconnectPersisted": true,
+        "acknowledgementClearedMailbox": true,
+        "crossTickDuplicateNotRedelivered": true,
+        "messageTick": 3270,
+        "sequence": 1
+      },
+      {
+        "stage": "P5",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P5-ecology-study",
+        "passed": true,
+        "requestedTicksPerTank": 500,
+        "maximumWorlds": 4,
+        "profiles": {
+          "alice": [
+            [
+              "producer",
+              3,
+              5,
+              40,
+              150
+            ],
+            [
+              "grazer",
+              2,
+              6,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              2,
+              5,
+              32,
+              80
+            ]
+          ],
+          "bob": [
+            [
+              "producer",
+              2,
+              6,
+              64,
+              100
+            ],
+            [
+              "grazer",
+              1,
+              8,
+              48,
+              60
+            ],
+            [
+              "decomposer",
+              1,
+              7,
+              64,
+              80
+            ]
+          ],
+          "carol": [
+            [
+              "producer",
+              5,
+              5,
+              40,
+              500
+            ],
+            [
+              "grazer",
+              3,
+              8,
+              28,
+              400
+            ],
+            [
+              "decomposer",
+              3,
+              5,
+              36,
+              350
+            ]
+          ],
+          "dave": [
+            [
+              "producer",
+              4,
+              2,
+              40,
+              100
+            ],
+            [
+              "grazer",
+              3,
+              2,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              3,
+              2,
+              32,
+              100
+            ]
+          ]
+        },
+        "results": [
+          {
+            "role": "alice",
+            "seed": 52001,
+            "ticks": 94,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "bob",
+            "seed": 52002,
+            "ticks": 449,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "carol",
+            "seed": 52003,
+            "ticks": 85,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "dave",
+            "seed": 52004,
+            "ticks": 278,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          }
+        ],
+        "threeSpeciesCandidate": {
+          "seedRange": [
+            52008,
+            52015
+          ],
+          "worldOwnerRole": "alice",
+          "programs": [
+            [
+              "producer",
+              6,
+              2,
+              512,
+              0
+            ],
+            [
+              "grazer",
+              1,
+              12,
+              512,
+              0
+            ],
+            [
+              "decomposer",
+              1,
+              12,
+              512,
+              0
+            ]
+          ],
+          "runs": [
+            {
+              "seed": 52008,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52009,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52010,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52011,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52012,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52013,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52014,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52015,
+              "ticks": 500,
+              "population": 32,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 26,
+                "grazer": 2,
+                "decomposer": 4
+              },
+              "extinctSpecies": [],
+              "births": 25,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            }
+          ],
+          "fullSpeciesSurvivalRuns": 8,
+          "survivalFraction": 1
+        },
+        "scope": "Four isolated parameter profiles were stepped to extinction or the 500-tick budget. An additional eight-seed candidate sweep used Alice's same private world owner and repeated deterministic parameters. Matter conservation and replay were checked. This remains a bounded automated study, not human ecological research or ecological balance acceptance."
+      },
+      {
+        "stage": "P6",
+        "passed": true,
+        "fourPlayers": true,
+        "replayVerified": true,
+        "injectedProductionFailure": true,
+        "compensationRecovered": true,
+        "refundedCreditsAndOre": true,
+        "releasedPartsEscrow": true,
+        "recoveredOrdersLine": "orders=1 · completed=0 · recovered=1 · producedParts=0",
+        "failureSeed": 4,
+        "failedOrder": "org_cedar:press_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+        "recoveredOrganization": "org_cedar members=[3b8cd9af-6730-3aa4-9539-5bb1d985401a, f782bab1-4990-37c8-a9e7-590f76339594] · credits=85 · ore=16 · parts=0"
+      },
+      {
+        "stage": "P7",
+        "passed": true,
+        "reviewRequired": true,
+        "authorCannotApprove": true,
+        "approvedRuleset": "smoke:arena41d69c",
+        "rejectedRuleset": "smoke:rejected41d69c",
+        "rejectionReasonPersisted": true,
+        "rejectedRulesetHidden": true
+      },
+      {
+        "stage": "P8",
+        "passed": true,
+        "fourPlayerRound": true,
+        "observerReadOnly": true,
+        "replayVerified": true,
+        "abruptDisconnect": true,
+        "observerSawPendingActionBeforeDisconnect": true,
+        "participantUuidPreserved": true,
+        "pendingActionRestored": true,
+        "matchIdRestored": "arena-13c2d2703d4c78097cb955d15ba73b16"
+      },
+      {
+        "stage": "P9",
+        "passed": true,
+        "realSettlementRemainsDisabled": true
+      },
+      {
+        "stage": "P10",
+        "passed": true,
+        "importedDesign": "smoke:signed41d69c",
+        "publisherKeyId": "smoke.publisher-41d69c",
+        "rotatedPublisherKeyId": "smoke.publisher-41d69c-rotated",
+        "oldKeyRevoked": true,
+        "oldSignatureRejected": true,
+        "ownerPrivate": true,
+        "trustRoot": "ephemeral test-only Ed25519 key"
+      }
+    ],
+    "passed": true,
+    "regionTravel": [
+      {
+        "role": "alice",
+        "x": -2,
+        "z": -7,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "bob",
+        "x": 185,
+        "z": 0,
+        "distanceFromTarget": 7
+      },
+      {
+        "role": "carol",
+        "x": -1,
+        "z": 184,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "dave",
+        "x": 187,
+        "z": 186,
+        "distanceFromTarget": 8
+      },
+      {
+        "role": "observer",
+        "x": 380,
+        "z": 379,
+        "distanceFromTarget": 7
+      }
+    ],
+    "log": "player-workflow.log"
+  }
+}

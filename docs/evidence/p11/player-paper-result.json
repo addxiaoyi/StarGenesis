@@ -1,0 +1,117 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 153.81,
+  "server_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "plugin_sha256": "ffd945deb2abd14b96469c311eec94dceefa78248aec667bf87b485618a2d88a",
+  "log_sha256": "a8c68caa378e0228457008afa5388177973b8c40c7f1ca92e99823eb44d52081",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "launch_mode": "extracted-server-classpath",
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "kind": "automated-offline-client-workflows",
+    "host": "127.0.0.1",
+    "port": 25574,
+    "minecraftVersion": "1.21.11",
+    "players": 5,
+    "humanAcceptance": false,
+    "checks": [
+      {
+        "stage": "client-login",
+        "passed": true,
+        "players": 5
+      },
+      {
+        "stage": "P1",
+        "passed": true,
+        "openedSlots": 90
+      },
+      {
+        "stage": "P2",
+        "passed": true,
+        "savedAndReopened": true
+      },
+      {
+        "stage": "P3",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P4",
+        "passed": true,
+        "deliveredMessage": true
+      },
+      {
+        "stage": "P5",
+        "passed": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P6",
+        "passed": true,
+        "fourPlayers": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P7",
+        "passed": true,
+        "reviewRequired": true,
+        "authorCannotApprove": true,
+        "approvedRuleset": "smoke:arenaff9eba",
+        "rejectedRuleset": "smoke:rejectedff9eba",
+        "rejectionReasonPersisted": true,
+        "rejectedRulesetHidden": true
+      },
+      {
+        "stage": "P8",
+        "passed": true,
+        "fourPlayerRound": true,
+        "observerReadOnly": true,
+        "replayVerified": true
+      },
+      {
+        "stage": "P9",
+        "passed": true,
+        "realSettlementRemainsDisabled": true
+      },
+      {
+        "stage": "P10",
+        "passed": true,
+        "importedDesign": "smoke:signedff9eba",
+        "publisherKeyId": "smoke.publisher-ff9eba",
+        "rotatedPublisherKeyId": "smoke.publisher-ff9eba-rotated",
+        "oldKeyRevoked": true,
+        "oldSignatureRejected": true,
+        "ownerPrivate": true,
+        "trustRoot": "ephemeral test-only Ed25519 key"
+      }
+    ],
+    "passed": true,
+    "log": "player-workflow.log"
+  }
+}

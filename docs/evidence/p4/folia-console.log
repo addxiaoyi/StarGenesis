@@ -1,0 +1,342 @@
+Starting org.bukkit.craftbukkit.Main
+[12:54:43 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13+9-LTS; Eclipse Adoptium Temurin-21.0.13+9) on Windows Server 2019 10.0 (amd64)
+[12:54:43 INFO]: [bootstrap] Loading Folia 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) for Minecraft 1.21.11
+[12:54:45 INFO]: [PluginInitializerManager] Initializing plugins...
+[12:54:49 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[12:54:58 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 9647ms.
+[12:54:59 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[12:54:59 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[12:55:26 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[12:55:36 INFO]: Loaded 1470 recipes
+[12:55:36 INFO]: Loaded 1584 advancements
+[12:55:36 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[12:55:39 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 3,265.3ms
+[12:55:40 INFO]: Starting minecraft server version 1.21.11
+[33;1m[12:55:40 WARN]: ****************************
+[m[33;1m[12:55:40 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[12:55:40 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[12:55:40 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[12:55:40 WARN]: ****************************
+[m[12:55:40 INFO]: Loading properties
+[12:55:41 INFO]: This server is running Folia version 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[12:55:41 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[12:55:41 INFO]: Using 4 threads for Netty based IO
+[12:55:41 INFO]: Server Ping Player Sample Count: 12
+[12:55:45 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[12:55:45 INFO]: [io.papermc.paper.threadedregions.TickRegions] Initialised EDF Folia scheduler with initial 1 target thread(s)
+[12:55:46 INFO]: Default game type: SURVIVAL
+[12:55:46 INFO]: Generating keypair
+[12:55:46 INFO]: Starting Minecraft server on 127.0.0.1:0
+[12:55:46 INFO]: Paper: Using Java compression from Velocity.
+[12:55:46 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[12:55:47 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[12:55:47 INFO]: Server permissions file permissions.yml is empty, ignoring it
+> 
+  
+[33;1m[12:55:47 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[12:55:47 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[12:55:47 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[12:55:47 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[12:55:47 INFO]: Preparing level "world"
+> 
+  
+[12:55:48 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[12:55:48 INFO]: Preparing spawn area: 100%
+> 
+  
+[12:55:48 INFO]: Prepared spawn area in 3 ms
+> 
+  
+[12:55:48 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[12:55:48 INFO]: Prepared spawn area in 0 ms
+> 
+  
+[12:55:48 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[12:55:48 INFO]: Prepared spawn area in 0 ms
+> 
+  
+[12:55:48 INFO]: Done preparing level "world" (1.642s)
+> 
+  
+[12:55:48 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[12:55:54 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[12:55:54 INFO]: [StarGenesis] Restored P4 radio state | tick=14 | pending=0 | contracts=0
+> 
+  
+[12:55:54 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[12:55:54 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[12:55:54 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | real-settlement=disabled | lab=FOLIA_MENU_RETIREMENT_NOT_VERIFIED
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[12:55:54 INFO]: [spark] The spark plugin has been preferred but was not loaded. The bundled spark profiler will enabled instead.
+> 
+  
+[12:55:54 INFO]: [spark] The spark profiler will not be enabled because it is currently disabled in the configuration.
+> 
+  
+[12:55:55 INFO]: Done (75.703s)! For help, type "help"
+> > > > > 
+  
+[12:55:55 INFO]: StarGenesis 4.0.0-SNAPSHOT | P0 accepted; P1/P2 code available, client acceptance pending | engine=genesis-sim/1
+> 
+  
+[12:55:55 INFO]: Design schema=1 | simulation-worker=inactive | real-settlement=disabled | integrations=8
+> 
+  
+[12:55:55 INFO]: P1 resource lab=FOLIA_MENU_RETIREMENT_NOT_VERIFIED | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[12:55:55 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[12:55:55 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[12:55:55 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[12:55:55 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[12:55:55 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[12:55:55 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[12:55:55 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[12:55:55 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[12:55:55 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[12:55:55 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[12:55:55 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[12:55:55 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[12:55:55 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> > 
+  
+[12:55:55 INFO]: Stopping the server
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Awaiting scheduler termination for 60s...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Scheduler halted
+> 
+  
+[12:55:55 INFO]: Stopping server
+> 
+  
+[12:55:55 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[12:55:55 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Halting chunk systems...
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[12:55:55 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Halted chunk systems
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Finishing pending teleports...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Finished pending teleports
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving all worlds
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving world data for world 'world'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved world data for world 'world'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving world data for world 'world_nether'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved world data for world 'world_nether'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving world data for world 'world_the_end'
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[12:55:55 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[12:55:56 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[12:55:56 INFO]: [RegionShutdownThread] Saved world data for world 'world_the_end'
+> 
+  
+[12:55:56 INFO]: [RegionShutdownThread] Saved all worlds
+> 
+  
+[12:55:56 INFO]: [RegionShutdownThread] Saving all player data...
+> 
+  
+[12:55:56 INFO]: [RegionShutdownThread] Saved all player data
+> 
+  
+[12:55:56 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[12:55:56 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[12:55:56 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[12:55:56 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 
