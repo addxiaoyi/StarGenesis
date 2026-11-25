@@ -1,0 +1,8 @@
+completed=16 survivors=0 latest=325 {decomposer=8, producer=0, grazer=24}
+completed=32 survivors=0 latest=262 {decomposer=8, producer=0, grazer=24}
+completed=48 survivors=0 latest=327 {decomposer=0, producer=9, grazer=15}
+completed=64 survivors=1 latest=1536 {decomposer=10, producer=8, grazer=14}
+completed=80 survivors=1 latest=325 {decomposer=19, producer=0, grazer=7}
+completed=96 survivors=1 latest=513 {decomposer=13, producer=19, grazer=0}
+completed=112 survivors=1 latest=258 {decomposer=0, producer=30, grazer=2}
+completed=128 survivors=1 latest=256 {decomposer=9, producer=22, grazer=0}

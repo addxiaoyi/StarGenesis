@@ -1,0 +1,64 @@
+long-cycle-candidate world=0 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=14, producer=8}
+long-cycle-candidate world=0 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=2, grazer=27, producer=3}
+long-cycle-candidate world=0 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=6, grazer=25, producer=1}
+long-cycle-candidate world=0 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=0 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=15, grazer=11, producer=6}
+long-cycle-candidate world=0 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=18, producer=3}
+long-cycle-candidate world=0 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=24}
+long-cycle-candidate world=0 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=2, grazer=29, producer=1}
+long-cycle-candidate world=0 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=12, producer=12}
+long-cycle-candidate world=0 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=24, producer=1}
+long-cycle-candidate world=0 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=24, producer=3}
+long-cycle-candidate world=0 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=5, grazer=24, producer=3}
+long-cycle-candidate world=0 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=0 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=14, producer=6}
+long-cycle-candidate world=0 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=9, grazer=15, producer=8}
+long-cycle-candidate world=0 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=9, grazer=12, producer=11}
+long-cycle-candidate world=1 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+long-cycle-candidate world=1 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+long-cycle-candidate world=1 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+long-cycle-candidate world=1 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+long-cycle-candidate world=1 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=13, producer=7}
+long-cycle-candidate world=1 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=20, producer=1}
+long-cycle-candidate world=1 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=14, producer=7}
+long-cycle-candidate world=1 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=14, producer=18}
+long-cycle-candidate world=1 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=19, producer=3}
+long-cycle-candidate world=1 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=12, grazer=13, producer=7}
+long-cycle-candidate world=2 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=12}
+long-cycle-candidate world=2 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=13, grazer=19}
+long-cycle-candidate world=2 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=9, grazer=23}
+long-cycle-candidate world=2 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=22}
+long-cycle-candidate world=2 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=20, grazer=12}
+long-cycle-candidate world=2 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=14}
+long-cycle-candidate world=2 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=15}
+long-cycle-candidate world=2 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=21}
+long-cycle-candidate world=2 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=18, grazer=14}
+long-cycle-candidate world=2 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=9, grazer=23}
+long-cycle-candidate world=2 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=22}
+long-cycle-candidate world=2 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=21}
+long-cycle-candidate world=2 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=10, grazer=22}
+long-cycle-candidate world=2 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=24}
+long-cycle-candidate world=2 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=7, grazer=25}
+long-cycle-candidate world=2 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=24}
+long-cycle-candidate world=3 seed=52008 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+long-cycle-candidate world=3 seed=52009 tick=1536 end=DURATION_BUDGET species={decomposer=21, producer=11}
+long-cycle-candidate world=3 seed=52010 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=23, producer=1}
+long-cycle-candidate world=3 seed=52011 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+long-cycle-candidate world=3 seed=52012 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+long-cycle-candidate world=3 seed=52013 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+long-cycle-candidate world=3 seed=52014 tick=1536 end=DURATION_BUDGET species={decomposer=17, grazer=8, producer=7}
+long-cycle-candidate world=3 seed=52015 tick=1536 end=DURATION_BUDGET species={decomposer=8, grazer=23, producer=1}
+long-cycle-candidate world=3 seed=52016 tick=1536 end=DURATION_BUDGET species={decomposer=32}
+long-cycle-candidate world=3 seed=52017 tick=1536 end=DURATION_BUDGET species={decomposer=32}
+long-cycle-candidate world=3 seed=52018 tick=1536 end=DURATION_BUDGET species={decomposer=11, grazer=20, producer=1}
+long-cycle-candidate world=3 seed=52019 tick=1536 end=DURATION_BUDGET species={decomposer=32}
+long-cycle-candidate world=3 seed=52020 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}
+long-cycle-candidate world=3 seed=52021 tick=1536 end=DURATION_BUDGET species={decomposer=32}
+long-cycle-candidate world=3 seed=52022 tick=1536 end=DURATION_BUDGET species={decomposer=32}
+long-cycle-candidate world=3 seed=52023 tick=1536 end=DURATION_BUDGET species={decomposer=16, grazer=8, producer=8}

@@ -101,6 +101,62 @@ class EcologyLongRunTest {
         }
     }
 
+    @Test void longCycleCandidatePreservesThreeSpeciesAcrossTheOriginalLifespanAndRestoreBoundary() {
+        var programs = Map.of(
+                "producer", new MatterProgram("producer", MatterProgram.Role.PRODUCER, 6, 4, 320, 0),
+                "grazer", new MatterProgram("grazer", MatterProgram.Role.GRAZER, 4, 24, 512, 0),
+                "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 3, 4, 320, 0));
+        var config = EcologyConfig.forDuration(1536);
+        for (int index = 0; index < 2; index++) {
+            try (var world = new EcologyWorld("ecology-long-study-" + index, 52008, config)) {
+                while (world.tick() < 768) {
+                    long tick = world.tick();
+                    String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;
+                    world.step(species == null ? EcologyInput.idle(tick) : new EcologyInput(tick, Map.of(species, programs.get(species))));
+                    assertConserved(world.view(), config);
+                    assertEquals(3, world.view().populationBySpecies().size());
+                }
+                try (var restored = EcologyWorld.restore(world.replay())) {
+                    while (!world.view().terminal()) {
+                        var input = EcologyInput.idle(world.tick());
+                        assertEquals(world.step(input), restored.step(input));
+                        assertConserved(world.view(), config);
+                        assertEquals(3, world.view().populationBySpecies().size());
+                    }
+                    assertEquals(1536, world.tick());
+                    assertEquals("DURATION_BUDGET", world.view().reason());
+                    assertTrue(world.view().births() > 100);
+                    assertTrue(world.view().deaths() > 100);
+                    assertEquals(world.replay(), restored.replay());
+                }
+            }
+        }
+    }
+
+    @Test void expandedWorldSampleExposesProducerExtinctionDespiteConservedMatter() {
+        var programs = Map.of(
+                "producer", new MatterProgram("producer", MatterProgram.Role.PRODUCER, 6, 4, 320, 0),
+                "grazer", new MatterProgram("grazer", MatterProgram.Role.GRAZER, 4, 24, 512, 0),
+                "decomposer", new MatterProgram("decomposer", MatterProgram.Role.DECOMPOSER, 3, 4, 320, 0));
+        var config = EcologyConfig.forDuration(1536);
+        long firstProducerExtinction = -1;
+        try (var world = new EcologyWorld("ecology-long-study-2", 52008, config)) {
+            while (!world.view().terminal()) {
+                long tick = world.tick();
+                String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;
+                world.step(species == null ? EcologyInput.idle(tick) : new EcologyInput(tick, Map.of(species, programs.get(species))));
+                assertConserved(world.view(), config);
+                if (firstProducerExtinction < 0 && !world.view().populationBySpecies().containsKey("producer"))
+                    firstProducerExtinction = world.tick();
+            }
+            assertTrue(firstProducerExtinction > 0 && firstProducerExtinction < config.maxTicks());
+            assertEquals(1536, world.tick());
+            assertEquals(2, world.view().populationBySpecies().size());
+            assertFalse(world.view().populationBySpecies().containsKey("producer"));
+            assertTrue(EcologyReplayVerifier.verify(world.replay()).passed());
+        }
+    }
+
     private EcologyInput candidateInput(long tick) {
         String species = tick == 0 ? "producer" : tick == 1 ? "grazer" : tick == 2 ? "decomposer" : null;
         return species == null ? EcologyInput.idle(tick) : new EcologyInput(tick, Map.of(species, CANDIDATE.get(species)));

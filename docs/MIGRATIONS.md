@@ -38,6 +38,8 @@ P5 ecology replay 使用 schemaVersion=1 和固定 `genesis-ecology/1` 引擎版
 
 P5 可选时长将已存在的 config.maxTicks 允许范围扩到1–1536，默认500与默认50,000次账本证据保持不变。新长局按 `max(50,000, ticks * 32 * 2)` 预留证据，最大98,304，不改变账本100,000、个体32、代数8和默认出生512的硬预算。格式与每步算法均未改变，因此仍为 schemaVersion=1 / `genesis-ecology/1`；旧文件按原配置原哈希恢复，不升级时长。固定样本 `stargenesis-paper/src/test/resources/ecology-v1-default.json` 从 `9be9cb5` 的构建产物导出并校验原初态/末态哈希。旧插件会拒绝大于500步的新文件，回退前须保留新数据，不能篡改 maxTicks 强行读取。Paper 同时验证外层 owner 与内层 worldId，替换 owner 字段不能转移生态舱归属。
 
+P5 长周期候选研究只新增搜索脚本、可选研究profile与固定恢复/灭绝回归，不修改 `genesis-ecology/1`、默认程序、配置、历史输入或commitments。`EcologyLongRunStudy.java` 默认包含四组profile，也可通过末尾profile名称筛选；旧研究报告保留原三组结果。任何后续繁殖/寿命语义修改仍须单独提升引擎版本并明确处理旧回放。
+
 P6 工厂旧 replay schemaVersion=1 / `genesis-factory/1` 继续按原有序四人 roster 派生 match ID，恢复和推进保留原 commitments，不补写 runId。固定样本 `stargenesis-paper/src/test/resources/factory-v1-pending-order.json` 从 `b7f9e4d` 编译产物导出，保存到订单已预留但尚未补偿的第5 tick；测试核对原初态、第5 tick和第6 tick补偿后哈希。
 
 P6 新比赛使用 replay schemaVersion=2 / `genesis-factory/2` 与必填规范 UUID `runId`，match ID 同时固定场次和有序 roster，允许同队伍/seed 重复比赛；事件身份随场次变化，经济/故障算法不变。Java API 保留旧 String matchId 和八参数 replay 构造函数；新场次使用 UUID 构造函数。读取拒绝版本错配、v2 缺失 runId、v1 混入 runId、文件身份错误和事件或哈希篡改。旧插件不能读取 v2，回退前须保留新场次文件。

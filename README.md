@@ -142,13 +142,22 @@ P5 封闭生态舱使用有限 matter 账本。生产者、食草者和分解者
 
 Paper/Folia 自动客户端另运行四个 extinction 对照 profile 和固定 seed 52008 candidate，均核对 total matter 与 replay。四个对照 profile 在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500步前灭绝；candidate 在四次服务器/版本复现中均达到500步，终态 population 为 producer/grazer/decomposer 26/2/4。纯 Java 引擎另在两个归档 Paper/Folia Alice worldId 上扫描 seed 52008–52107，200/200 均到500 ticks并保留三物种；这是模拟扫描，不是200次服务器运行。2026-11-25 完成 Paper/Folia 各八 seed（52008–52015）自动客户端实服扩展，16/16 均到500 tick、保留三物种、matter=1000，replay 全部通过。Folia 流程同时覆盖跨区域客户端。上述数据不代表长期生态平衡或真人验收。
 
-新增 `scripts/EcologyLongRunStudy.java` 可在1,536步预算下比较三组固定参数，记录500/512/1024/1536步种群、出生/死亡、首次物种灭绝时点，并逐步检查守恒、最终验证 replay。运行时按生产者、食草者、分解者顺序在第0/1/2步应用参数，其后不干预：
+`scripts/EcologyLongRunStudy.java` 可在1,536步预算下比较四组固定参数，记录500/512/1024/1536步种群、出生/死亡、首次物种灭绝时点，并逐步检查守恒、最终验证 replay。运行时按生产者、食草者、分解者顺序在第0/1/2步应用参数，其后不干预：
 
 ```sh
 java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-study.json 4 2
 ```
 
-末尾两个参数分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2。长期结果及完整测试证据见 `docs/evidence/p5/long-run/summary.json`。旧候选参数在长期样本中出现第512步食草者灭绝；到达500步不能作为三物种长期共存的依据。可选时长命令目前仅通过单元测试，尚未重新执行实服客户端流程。
+末尾两个数字分别为 seed 数（1–32）和 world ID 数（1–8），默认4和2；可追加 profile 名称或 `all`（默认）筛选。原三组长期对照见 `docs/evidence/p5/long-run/summary.json`，旧候选在第512步失去食草者。
+
+可复现的参数搜索先固定 world/seed 筛选，再验证其他世界与种子：
+
+```sh
+java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyBalanceSearch.java .work/ecology-balance-search.json 128
+java -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-cycle-validation.json 16 4 long-cycle-candidate
+```
+
+128组搜索只有候选63达到1536步并保留三物种，其原8组验证全过；扩展到4个world ID、16个seed后仅40/64组保留三物种，24组发生物种灭绝。全部64组每步守恒、最终回放通过。候选参数 producer `(6,4,320,0)`、grazer `(4,24,512,0)`、decomposer `(3,4,320,0)` 仅用于研究，未设为默认。原始样本及恢复回归见 `docs/evidence/p5/balance-search/summary.json`。有限样本存活不代表长期平衡，可选时长与新候选仍缺实服和真人验收。
 
 P6 四人工厂由两组双人组织组成。玩家邀请在线伙伴并接受邀请后，双人 roster 原子保存到 `plugins/StarGenesis/factory/organizations.json`。两组四名成员均在线且未参加其他活跃工厂时，任意一位可创建比赛；同一组玩家可以在上一场结束后再次开赛：
 

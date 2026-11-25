@@ -1,0 +1,433 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "e137e9404920bc2e84b7359d8aef92ed374c5e89",
+  "scope": "Simulation-only P5 parameter search and expanded cross-world/seed validation in the unchanged genesis-ecology/1 engine.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 52,
+      "tests": 391,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-balance-verify-java21.log",
+      "logSha256": "fd689dc5120ea6debba920067975733d9074b7b370040f943d93f65b47e2d38d",
+      "pluginSha256": "5fd76581e388d81a8808524cd9e86705b90f9fc12885c625833026ce6084c571",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 52,
+      "tests": 391,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "ecology-balance-verify-java25.log",
+      "logSha256": "cec42aae8d94b35d29961bcf134733677304bb53079f72cb610a9f7e091f946a",
+      "pluginSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "studyRuntime": {
+    "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+    "pluginSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+    "reproductionCommands": [
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyBalanceSearch.java .work/ecology-balance-search.json 128",
+      "java -Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=64m -XX:ActiveProcessorCount=2 -cp stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar scripts/EcologyLongRunStudy.java .work/ecology-long-cycle-validation.json 16 4 long-cycle-candidate"
+    ],
+    "scripts": {
+      "scripts/EcologyBalanceSearch.java": "1167b45b109e5ab8efd103cda5c32a540db99d03c74e74290e2b7c6f52d04ac9",
+      "scripts/EcologyLongRunStudy.java": "f61a1727443a54c104e18c63f251d8c14cea76a874a156c77f03ab39cfffb046"
+    }
+  },
+  "search": {
+    "searchSeed": 20261125,
+    "candidates": 128,
+    "survivors": 1,
+    "candidate": {
+      "candidate": 63,
+      "worldId": "ecology-long-study-0",
+      "seed": 52008,
+      "programs": {
+        "decomposer": {
+          "species": "decomposer",
+          "role": "DECOMPOSER",
+          "intake": 3,
+          "reproductionMass": 4,
+          "lifespanSteps": 320,
+          "mutationPermille": 0
+        },
+        "grazer": {
+          "species": "grazer",
+          "role": "GRAZER",
+          "intake": 4,
+          "reproductionMass": 24,
+          "lifespanSteps": 512,
+          "mutationPermille": 0
+        },
+        "producer": {
+          "species": "producer",
+          "role": "PRODUCER",
+          "intake": 6,
+          "reproductionMass": 4,
+          "lifespanSteps": 320,
+          "mutationPermille": 0
+        }
+      },
+      "endTick": 1536,
+      "population": {
+        "decomposer": 10,
+        "producer": 8,
+        "grazer": 14
+      },
+      "milestones": {
+        "500": {
+          "decomposer": 14,
+          "producer": 9,
+          "grazer": 9
+        },
+        "512": {
+          "decomposer": 15,
+          "producer": 9,
+          "grazer": 7
+        },
+        "1024": {
+          "decomposer": 16,
+          "producer": 12,
+          "grazer": 4
+        },
+        "1536": {
+          "decomposer": 10,
+          "producer": 8,
+          "grazer": 14
+        }
+      },
+      "births": 149,
+      "deaths": 124,
+      "maxGeneration": 8,
+      "totalMatter": 1000,
+      "survived": true,
+      "replayVerified": true
+    },
+    "initialValidationCases": 8,
+    "initialValidationSurvivors": 8,
+    "sampling": "Candidates 0/1 are previous/delayed controls; others use java.util.Random with intake in 1,2,3,4,6,8; mass in 4,8,12,16,24,32; lifespan in 256,320,384,448,512; mutation zero.",
+    "programTiming": "producer/grazer/decomposer applied at ticks 0/1/2; no later intervention"
+  },
+  "expandedValidation": {
+    "worlds": 4,
+    "seedsPerWorld": 16,
+    "seeds": [
+      52008,
+      52023
+    ],
+    "cases": 64,
+    "threeSpeciesAt1536": 40,
+    "allConservedMatterAndVerifiedReplay": true,
+    "byWorld": {
+      "ecology-long-study-0": {
+        "cases": 16,
+        "threeSpeciesAt1536": 15,
+        "extinctionCases": [
+          {
+            "seed": 52014,
+            "firstSpeciesExtinction": {
+              "producer": 1475
+            },
+            "finalPopulation": {
+              "decomposer": 8,
+              "grazer": 24
+            }
+          }
+        ]
+      },
+      "ecology-long-study-1": {
+        "cases": 16,
+        "threeSpeciesAt1536": 15,
+        "extinctionCases": [
+          {
+            "seed": 52016,
+            "firstSpeciesExtinction": {
+              "grazer": 835
+            },
+            "finalPopulation": {
+              "decomposer": 14,
+              "producer": 18
+            }
+          }
+        ]
+      },
+      "ecology-long-study-2": {
+        "cases": 16,
+        "threeSpeciesAt1536": 0,
+        "extinctionCases": [
+          {
+            "seed": 52008,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 20,
+              "grazer": 12
+            }
+          },
+          {
+            "seed": 52009,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 13,
+              "grazer": 19
+            }
+          },
+          {
+            "seed": 52010,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 9,
+              "grazer": 23
+            }
+          },
+          {
+            "seed": 52011,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 10,
+              "grazer": 22
+            }
+          },
+          {
+            "seed": 52012,
+            "firstSpeciesExtinction": {
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 20,
+              "grazer": 12
+            }
+          },
+          {
+            "seed": 52013,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 18,
+              "grazer": 14
+            }
+          },
+          {
+            "seed": 52014,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 17,
+              "grazer": 15
+            }
+          },
+          {
+            "seed": 52015,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 11,
+              "grazer": 21
+            }
+          },
+          {
+            "seed": 52016,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 18,
+              "grazer": 14
+            }
+          },
+          {
+            "seed": 52017,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 9,
+              "grazer": 23
+            }
+          },
+          {
+            "seed": 52018,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 10,
+              "grazer": 22
+            }
+          },
+          {
+            "seed": 52019,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 11,
+              "grazer": 21
+            }
+          },
+          {
+            "seed": 52020,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 10,
+              "grazer": 22
+            }
+          },
+          {
+            "seed": 52021,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 8,
+              "grazer": 24
+            }
+          },
+          {
+            "seed": 52022,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 7,
+              "grazer": 25
+            }
+          },
+          {
+            "seed": 52023,
+            "firstSpeciesExtinction": {
+              "producer": 1283
+            },
+            "finalPopulation": {
+              "decomposer": 8,
+              "grazer": 24
+            }
+          }
+        ]
+      },
+      "ecology-long-study-3": {
+        "cases": 16,
+        "threeSpeciesAt1536": 10,
+        "extinctionCases": [
+          {
+            "seed": 52009,
+            "firstSpeciesExtinction": {
+              "grazer": 836
+            },
+            "finalPopulation": {
+              "decomposer": 21,
+              "producer": 11
+            }
+          },
+          {
+            "seed": 52016,
+            "firstSpeciesExtinction": {
+              "grazer": 836,
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 32
+            }
+          },
+          {
+            "seed": 52017,
+            "firstSpeciesExtinction": {
+              "grazer": 836,
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 32
+            }
+          },
+          {
+            "seed": 52019,
+            "firstSpeciesExtinction": {
+              "grazer": 836,
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 32
+            }
+          },
+          {
+            "seed": 52021,
+            "firstSpeciesExtinction": {
+              "grazer": 836,
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 32
+            }
+          },
+          {
+            "seed": 52022,
+            "firstSpeciesExtinction": {
+              "grazer": 836,
+              "producer": 1284
+            },
+            "finalPopulation": {
+              "decomposer": 32
+            }
+          }
+        ]
+      }
+    },
+    "birthsRange": [
+      147,
+      153
+    ],
+    "deathsRange": [
+      122,
+      128
+    ]
+  },
+  "regressions": [
+    "Worlds 0/1 seed 52008 retain three species through 1536 steps and resume identically after restoring at 768.",
+    "World 2 seed 52008 loses producers while retaining conserved matter and a valid replay; survival is not inferred from duration alone."
+  ],
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "artifactReuse": "Production sources are unchanged. Java 21/25 JAR and SBOM hashes exactly match the corresponding P7 publication builds. Prior signature tool self-tests remain the evidence for those identical bytes.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "The single-world parameter search and eight initial passing cases do not generalize to the expanded world/seed set.",
+    "The long-cycle profile is a research candidate, not a new default or a passed P5 balance gate.",
+    "Existing engine, default programs, budgets, saved inputs and replay commitments are unchanged.",
+    "No new Paper/Folia, human, production capacity or indefinite-balance evidence.",
+    "Generation and birth limits remain finite; 1536 steps cannot establish an indefinitely sustainable ecosystem."
+  ],
+  "files": {
+    "ecology-balance-search.json": "09a8bfd1688d344eaa8e56e358ea7dd6bb8bd86f94ed29a3abf18142809007a8",
+    "ecology-balance-search.log": "fab10554e9ba14aec9f421f90152ecc892d541a90bf66bbb1f115a25fb0656a6",
+    "ecology-long-cycle-validation.json": "2594a797f6d2e24f8412fd7b5f4084cdfe301160e98031625f56b884895b2a39",
+    "ecology-long-cycle-validation.log": "b6cf34d5141a544130a526ce3cd13e0eb222aacf1a27d89855bb3de78cda358b",
+    "ecology-balance-verify-java21.log": "fd689dc5120ea6debba920067975733d9074b7b370040f943d93f65b47e2d38d",
+    "ecology-balance-build-java21.json": "0f9b526e68fb0184c28150bfcbba07d93df43ffc0c2eea10d8400e3726913492",
+    "ecology-balance-verify-java25.log": "cec42aae8d94b35d29961bcf134733677304bb53079f72cb610a9f7e091f946a",
+    "ecology-balance-build-java25.json": "80b9d770936ebd6a1c6dc16e07c8d791670c8de6f2b2aa76373c06572a1a58b1"
+  }
+}

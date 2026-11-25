@@ -16,17 +16,21 @@ import java.util.TreeMap;
 /** Bounded simulation-only study. Run with the shaded plugin JAR on the classpath. */
 class EcologyLongRunStudy {
     public static void main(String[] args) throws Exception {
-        if (args.length < 1 || args.length > 3)
-            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8]");
+        if (args.length < 1 || args.length > 4)
+            throw new IllegalArgumentException("Usage: EcologyLongRunStudy.java <output.json> [seeds:1-32] [worlds:1-8] [profile|all]");
         int seeds = args.length > 1 ? Integer.parseInt(args[1]) : 4;
         int worlds = args.length > 2 ? Integer.parseInt(args[2]) : 2;
         if (seeds < 1 || seeds > 32 || worlds < 1 || worlds > 8) throw new IllegalArgumentException("Study budget exceeded");
         var profiles = Map.of(
                 "previous-500-tick-candidate", profile(6, 2, 512, 1, 12, 512, 1, 12, 512),
                 "delayed-reproduction", profile(1, 32, 512, 1, 32, 512, 1, 32, 512),
-                "staggered-lifespans", profile(3, 8, 256, 1, 16, 384, 2, 12, 512));
+                "staggered-lifespans", profile(3, 8, 256, 1, 16, 384, 2, 12, 512),
+                "long-cycle-candidate", profile(6, 4, 320, 4, 24, 512, 3, 4, 320));
+        String selected = args.length > 3 ? args[3] : "all";
+        if (!selected.equals("all") && !profiles.containsKey(selected)) throw new IllegalArgumentException("Unknown study profile");
         List<Result> results = new ArrayList<>();
         for (var profile : new TreeMap<>(profiles).entrySet()) {
+            if (!selected.equals("all") && !selected.equals(profile.getKey())) continue;
             for (int world = 0; world < worlds; world++) {
                 for (int seed = 0; seed < seeds; seed++) {
                     Result result = run("ecology-long-study-" + world, 52_008L + seed, profile.getKey(), profile.getValue());
