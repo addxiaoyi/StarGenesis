@@ -61,6 +61,9 @@ public record ProgramIR(List<Instruction> instructions, int maxInstructionsPerSt
                 && (Long.parseLong(instruction.parameters().get("bound")) < 1
                 || Long.parseLong(instruction.parameters().get("bound")) > 1_000_000))
             throw new IllegalArgumentException("Random bound outside 1..1000000");
+        if (instruction.operation() == PrimitiveCatalog.Operation.COMPARE_THRESHOLD_INTEGER
+                && !java.util.Set.of("eq", "lt", "gt").contains(instruction.parameters().get("operator")))
+            throw new IllegalArgumentException("Unsupported integer comparison");
     }
 
     public record Instruction(String id, PrimitiveCatalog.Operation operation, List<String> inputs,

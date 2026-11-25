@@ -1,16 +1,14 @@
 package dev.stargenesis.paper.program;
 
 import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.api.sim.AgentId;
+import dev.stargenesis.api.sim.SimulationBudget;
 import dev.stargenesis.design.PrimitiveCatalog;
 import dev.stargenesis.design.ProgramIR;
 import dev.stargenesis.design.ProgramInterpreter;
 import dev.stargenesis.design.ProgramValue;
 import dev.stargenesis.design.ProgramWorkspace;
 import dev.stargenesis.design.TypedProgramDocument;
-import dev.stargenesis.api.sim.AgentId;
-import dev.stargenesis.sim.ReplayVerifier;
-import dev.stargenesis.sim.ResourceSandboxWorld;
-import dev.stargenesis.sim.SandboxConfig;
 import dev.stargenesis.sim.SandboxView;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,13 +17,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -37,12 +32,17 @@ public final class ProgramController implements Listener {
     private static final int MAX_INSTRUCTIONS_PER_STEP = 256;
     private static final int CATALOG_PAGE_SIZE = 8;
     private final ProgramStore store;
-    private final ProgramInterpreter interpreter = new ProgramInterpreter();
-    private final ConcurrentMap<UUID, Session> sessions = new ConcurrentHashMap<>();
+    private final SimulationBudget budget;
+    private final ConcurrentMap<UUID, ProgramSession> sessions = new ConcurrentHashMap<>();
     private final Object sessionLock = new Object();
 
     public ProgramController(JavaPlugin plugin, ProgramStore store) {
+        this(plugin, store, SimulationBudget.defaults());
+    }
+
+    public ProgramController(JavaPlugin plugin, ProgramStore store, SimulationBudget budget) {
         this.store = store;
+        this.budget = java.util.Objects.requireNonNull(budget);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -97,12 +97,10 @@ public final class ProgramController implements Listener {
         if (store.exists(owner, id)) throw new IllegalArgumentException("程序已存在，请使用 open");
         ProgramWorkspace workspace = new ProgramWorkspace(MAX_INSTRUCTIONS_PER_STEP);
         workspace.append("start", PrimitiveCatalog.Operation.WAIT, List.of(), Map.of());
-        Session session = new Session(id, workspace, null);
+        ProgramSession session = new ProgramSession(owner, id, workspace, null, budget);
         putSession(owner, session);
         try {
-            TypedProgramDocument saved = store.save(owner, id, workspace.current(), "");
-            session.saved = saved;
-            session.baseHash = saved.hash();
+            session.save(store);
         } catch (IOException | RuntimeException failure) {
             sessions.remove(owner, session);
             throw failure;
@@ -125,7 +123,7 @@ public final class ProgramController implements Listener {
         requireNoOpenSession(owner);
         TypedProgramDocument document = store.load(owner, new DesignId(args[1]))
                 .orElseThrow(() -> new IllegalArgumentException("找不到个人程序 " + args[1]));
-        putSession(owner, new Session(document.id(), new ProgramWorkspace(document.program()), document));
+        putSession(owner, new ProgramSession(owner, document.id(), new ProgramWorkspace(document.program()), document, budget));
         player.sendMessage("已打开 " + document.id().value() + "，使用 catalog 查看原语，show 查看指令。");
     }
 
@@ -133,11 +131,11 @@ public final class ProgramController implements Listener {
         if (args.length > 2 || args.length == 2 && !args[1].equalsIgnoreCase("discard"))
             throw new IllegalArgumentException("用法：/genesis program close [discard]");
         UUID owner = player.getUniqueId();
-        Session session = requireSession(owner);
-        if (session.dirty() && args.length == 1)
+        ProgramSession session = requireSession(owner);
+        if (session.dirty && args.length == 1)
             throw new IllegalArgumentException("有未保存修改；先 save，或使用 close discard 丢弃。");
         sessions.remove(owner, session);
-        player.sendMessage(session.dirty() ? "未保存的程序修改已丢弃。" : "已关闭程序工作区。");
+        player.sendMessage(session.dirty ? "未保存的程序修改已丢弃。" : "已关闭程序工作区。");
     }
 
     private void add(Player player, String[] args) {
@@ -145,17 +143,15 @@ public final class ProgramController implements Listener {
         PrimitiveCatalog.Operation operation;
         try { operation = PrimitiveCatalog.Operation.valueOf(args[2].toUpperCase(Locale.ROOT)); }
         catch (IllegalArgumentException invalid) { throw new IllegalArgumentException("未知原语；使用 /genesis program catalog"); }
-        Session session = requireSession(player.getUniqueId());
-        session.workspace.append(args[1], operation, parseInputs(args[3]), parseParameters(args[4]));
-        changed(session);
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.append(args[1], operation, parseInputs(args[3]), parseParameters(args[4]));
         player.sendMessage("已加入 " + args[1] + " · " + operation + "；执行仅读取虚拟上下文。");
     }
 
     private void remove(Player player, String[] args) {
         requireLength(args, 2);
-        Session session = requireSession(player.getUniqueId());
-        session.workspace.remove(args[1]);
-        changed(session);
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.remove(args[1]);
         player.sendMessage("已移除指令 " + args[1] + "。");
     }
 
@@ -164,38 +160,29 @@ public final class ProgramController implements Listener {
         PrimitiveCatalog.Operation operation;
         try { operation = PrimitiveCatalog.Operation.valueOf(args[2].toUpperCase(Locale.ROOT)); }
         catch (IllegalArgumentException invalid) { throw new IllegalArgumentException("未知原语；使用 /genesis program catalog"); }
-        Session session = requireSession(player.getUniqueId());
-        session.workspace.replace(args[1], operation, parseInputs(args[3]), parseParameters(args[4]));
-        changed(session);
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.replace(args[1], operation, parseInputs(args[3]), parseParameters(args[4]));
         player.sendMessage("指令 " + args[1] + " 已替换为 " + operation + "。");
     }
 
     private void undo(Player player, String[] args) {
         requireLength(args, 1);
-        Session session = requireSession(player.getUniqueId());
-        if (!session.workspace.undo()) throw new IllegalArgumentException("没有可撤销的修改");
-        session.execution = null;
-        session.dirty = !session.workspace.current().equals(session.saved.program());
-        pruneBreakpoints(session);
+        ProgramSession session = requireSession(player.getUniqueId());
+        if (!session.undo()) throw new IllegalArgumentException("没有可撤销的修改");
         player.sendMessage("已撤销一步；剩余 " + session.workspace.undoDepth() + "/" + ProgramWorkspace.MAX_UNDO_STEPS + "。");
     }
 
     private void save(Player player, String[] args) throws IOException {
         requireLength(args, 1);
         UUID owner = player.getUniqueId();
-        Session session = requireSession(owner);
-        TypedProgramDocument saved = store.save(owner, session.id, session.workspace.current(), session.baseHash);
-        session.saved = saved;
-        session.baseHash = saved.hash();
-        session.workspace = new ProgramWorkspace(saved.program());
-        session.dirty = false;
-        session.execution = null;
+        ProgramSession session = requireSession(owner);
+        session.save(store);
         player.sendMessage("程序已原子保存 · hash=" + session.baseHash.substring(0, 12));
     }
 
     private void status(Player player, String[] args) {
         requireLength(args, 1);
-        Session session = requireSession(player.getUniqueId());
+        ProgramSession session = requireSession(player.getUniqueId());
         player.sendMessage("程序 " + session.id.value() + " · " + session.workspace.instructions().size()
                 + "/" + ProgramIR.MAX_INSTRUCTIONS + " 指令 · undo=" + session.workspace.undoDepth()
                 + " · " + (session.dirty ? "未保存" : "已保存"));
@@ -239,7 +226,7 @@ public final class ProgramController implements Listener {
 
     private void setSensor(Player player, String[] args) {
         requireLength(args, 4);
-        Session session = requireSession(player.getUniqueId());
+        ProgramSession session = requireSession(player.getUniqueId());
         ProgramValue value = switch (args[2].toLowerCase(Locale.ROOT)) {
             case "boolean" -> parseBoolean(args[3]);
             case "integer" -> new ProgramValue.IntegerValue(Long.parseLong(args[3]));
@@ -247,10 +234,7 @@ public final class ProgramController implements Listener {
             case "resource" -> new ProgramValue.ResourceValue(args[3]);
             default -> throw new IllegalArgumentException("类型必须是 boolean、integer、vector 或 resource");
         };
-        requireToken(args[1], "sensor key");
-        requireContextCapacity(session.sensors, args[1]);
-        session.sensors.put(args[1], value);
-        session.contextChanged();
+        session.setSensor(args[1], value);
         player.sendMessage("虚拟传感器已设置：" + args[1] + "=" + value);
     }
 
@@ -259,100 +243,68 @@ public final class ProgramController implements Listener {
         long seed = Long.parseLong(args[1]);
         long tick = Long.parseLong(args[2]);
         if (tick < 0) throw new IllegalArgumentException("逻辑 tick 不能为负数");
-        Session session = requireSession(player.getUniqueId());
-        session.seed = seed;
-        session.tick = tick;
-        session.contextChanged();
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.setClock(seed, tick);
         player.sendMessage("虚拟上下文已设置：seed=" + seed + " tick=" + tick);
     }
 
     private void setResource(Player player, String[] args) {
         requireLength(args, 3);
-        requireToken(args[1], "resource ID");
         long amount = Long.parseLong(args[2]);
         if (amount < 0 || amount > 1_000_000) throw new IllegalArgumentException("资源量范围：0-1000000");
-        Session session = requireSession(player.getUniqueId());
-        requireContextCapacity(session.resources, args[1]);
-        session.resources.put(args[1], amount);
-        session.contextChanged();
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.setResource(args[1], amount);
         player.sendMessage("虚拟资源已设置：" + args[1] + "=" + amount);
     }
 
     private void setSignal(Player player, String[] args) {
         requireLength(args, 3);
-        requireToken(args[1], "signal channel");
         long value = Long.parseLong(args[2]);
         if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE)
             throw new IllegalArgumentException("信号值超出32位整数范围");
-        Session session = requireSession(player.getUniqueId());
-        requireContextCapacity(session.signals, args[1]);
-        session.signals.put(args[1], value);
-        session.contextChanged();
+        ProgramSession session = requireSession(player.getUniqueId());
+        session.setSignal(args[1], value);
         player.sendMessage("虚拟信号已设置：" + args[1] + "=" + value);
     }
 
     private void breakpoint(Player player, String[] args) {
         requireLength(args, 3);
-        Session session = requireSession(player.getUniqueId());
+        ProgramSession session = requireSession(player.getUniqueId());
         boolean enabled = switch (args[2].toLowerCase(Locale.ROOT)) {
             case "on" -> true;
             case "off" -> false;
             default -> throw new IllegalArgumentException("状态必须为 on 或 off");
         };
-        boolean exists = session.workspace.instructions().stream().anyMatch(instruction -> instruction.id().equals(args[1]));
-        if (!exists) throw new IllegalArgumentException("未知指令 " + args[1]);
-        if (enabled && !session.breakpoints.contains(args[1]) && session.breakpoints.size() >= ProgramIR.MAX_INSTRUCTIONS)
-            throw new IllegalArgumentException("断点数量达到上限");
-        if (enabled) session.breakpoints.add(args[1]);
-        else session.breakpoints.remove(args[1]);
-        session.execution = null;
+        session.breakpoint(args[1], enabled);
         player.sendMessage("断点 " + args[1] + " " + (enabled ? "已启用" : "已关闭"));
     }
 
     private void run(Player player, String[] args, int quantum, boolean resume) {
         requireLength(args, 1);
-        Session session = requireSession(player.getUniqueId());
-        ProgramInterpreter.ProgramContext context = session.context();
-        if (!resume || session.execution == null)
-            session.execution = interpreter.execute(session.workspace.current(), context, quantum, session.breakpoints);
-        else session.execution = interpreter.resume(session.execution, quantum, session.breakpoints);
-        reportExecution(player, session.execution);
+        ProgramSession session = requireSession(player.getUniqueId());
+        reportExecution(player, session.execute(quantum, resume));
     }
 
     private void simulate(Player player, String[] args) {
         if (args.length < 1 || args.length > 3)
             throw new IllegalArgumentException("用法：/genesis program simulate [seed] [1-20 ticks]");
-        Session session = requireSession(player.getUniqueId());
+        ProgramSession session = requireSession(player.getUniqueId());
         long seed = args.length >= 2 ? Long.parseLong(args[1]) : 20_261_122L;
         int ticks = args.length == 3 ? integer(args[2]) : 20;
         if (ticks < 1 || ticks > 20) throw new IllegalArgumentException("单次模拟步数范围：1-20");
 
-        String worldId = "program-" + player.getUniqueId().toString().replace("-", "");
-        SandboxConfig config = SandboxConfig.defaults().withAgentCount(1);
-        try (ResourceSandboxWorld world = new ResourceSandboxWorld(worldId, seed, config)) {
-            AgentId agent = world.view().agents().getFirst().id();
-            ProgramSandboxRunner runner = new ProgramSandboxRunner(world, Map.of(agent, session.workspace.current()));
-            int advanced = 0;
-            int emittedActions = 0;
-            ProgramSandboxRunner.RuntimeStep last = null;
-            for (int index = 0; index < ticks; index++) {
-                last = runner.step();
-                if (last.status() != ProgramSandboxRunner.Status.ADVANCED) break;
-                advanced++;
-                emittedActions += last.actions().size();
-                if (last.worldResult().terminal()) break;
-            }
-
-            SandboxView view = runner.view();
-            boolean replayPassed = advanced > 0 && ReplayVerifier.verify(runner.replayLog()).passed();
-            player.sendMessage("程序沙盒 " + (last == null ? "未执行" : last.status()) + " · seed=" + seed
-                    + " · tick=" + view.tick() + " · score=" + view.score() + " · ore="
-                    + view.agents().getFirst().ore() + " · biomass=" + view.agents().getFirst().biomass());
-            player.sendMessage("program actions=" + emittedActions + " · replay=" + (replayPassed ? "verified" : "not verified")
-                    + " · hash=" + view.stateHash().substring(0, 16));
-            if (last != null && !last.message().isEmpty()) player.sendMessage("! " + last.message());
-            if (last != null) reportExecutions(player, last.executions());
-        }
+        String worldId = "program-" + UUID.randomUUID();
+        var result = ProgramSimulation.run(worldId, seed, session.workspace.current(), ticks, budget);
+        SandboxView view = result.view();
+        var last = result.last();
+        boolean replayPassed = result.advanced() > 0 && result.verification().passed();
+        player.sendMessage("程序沙盒 " + last.status() + " · seed=" + seed
+                + " · tick=" + view.tick() + " · score=" + view.score() + " · ore="
+                + view.agents().getFirst().ore() + " · biomass=" + view.agents().getFirst().biomass());
+        player.sendMessage("program actions=" + result.actions() + " · replay=" + (replayPassed ? "verified" : "not verified")
+                + " · hash=" + view.stateHash().substring(0, 16));
+        if (!last.message().isEmpty()) player.sendMessage("! " + last.message());
+        reportExecutions(player, last.executions());
     }
 
     private void reportExecutions(Player player, Map<AgentId, ProgramInterpreter.Execution> executions) {
@@ -418,17 +370,12 @@ public final class ProgramController implements Listener {
 
     private int integer(String value) { return Integer.parseInt(value); }
 
-    private void requireToken(String value, String label) {
-        if (value == null || !value.matches("[a-z][a-z0-9_:-]{0,63}"))
-            throw new IllegalArgumentException("Invalid " + label);
-    }
-
     private void requireLength(String[] args, int expected) {
         if (args.length != expected) throw new IllegalArgumentException("参数数量不正确；使用 /genesis program 查看用法");
     }
 
-    private Session requireSession(UUID owner) {
-        Session session = sessions.get(owner);
+    private ProgramSession requireSession(UUID owner) {
+        ProgramSession session = sessions.get(owner);
         if (session == null) throw new IllegalArgumentException("先 create 或 open 一个程序");
         return session;
     }
@@ -437,7 +384,7 @@ public final class ProgramController implements Listener {
         if (sessions.containsKey(owner)) throw new IllegalArgumentException("请先保存并 close 当前程序工作区");
     }
 
-    private void putSession(UUID owner, Session session) {
+    private void putSession(UUID owner, ProgramSession session) {
         synchronized (sessionLock) {
             if (sessions.size() >= MAX_OPEN_WORKSPACES && !sessions.containsKey(owner))
                 throw new IllegalArgumentException("当前打开的程序工作区已达服务器上限");
@@ -445,50 +392,4 @@ public final class ProgramController implements Listener {
         }
     }
 
-    private void changed(Session session) {
-        session.dirty = !session.workspace.current().equals(session.saved.program());
-        session.execution = null;
-        pruneBreakpoints(session);
-    }
-
-    private void pruneBreakpoints(Session session) {
-        Set<String> instructionIds = new HashSet<>();
-        session.workspace.instructions().forEach(instruction -> instructionIds.add(instruction.id()));
-        session.breakpoints.retainAll(instructionIds);
-    }
-
-    private void requireContextCapacity(Map<String, ?> values, String key) {
-        if (!values.containsKey(key) && values.size() >= 64)
-            throw new IllegalArgumentException("每个虚拟上下文类型最多64项");
-    }
-
-    private final class Session {
-        private final DesignId id;
-        private ProgramWorkspace workspace;
-        private TypedProgramDocument saved;
-        private String baseHash;
-        private boolean dirty;
-        private final Map<String, ProgramValue> sensors = new HashMap<>();
-        private final Map<String, Long> resources = new HashMap<>();
-        private final Map<String, Long> signals = new HashMap<>();
-        private final Set<String> breakpoints = new HashSet<>();
-        private ProgramInterpreter.Execution execution;
-        private long seed;
-        private long tick;
-
-        private Session(DesignId id, ProgramWorkspace workspace, TypedProgramDocument saved) {
-            this.id = id;
-            this.workspace = workspace;
-            this.saved = saved;
-            this.baseHash = saved == null ? "" : saved.hash();
-        }
-
-        private boolean dirty() { return dirty; }
-
-        private ProgramInterpreter.ProgramContext context() {
-            return new ProgramInterpreter.ProgramContext(seed, tick, sensors, resources, signals);
-        }
-
-        private void contextChanged() { execution = null; }
-    }
 }

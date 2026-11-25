@@ -139,6 +139,10 @@ class ProgramInterpreterTest {
                 instruction("sum", PrimitiveCatalog.Operation.ADD_INTEGER, List.of("flag", "flag"), Map.of())), 2));
         assertThrows(IllegalArgumentException.class, () -> new ProgramIR(List.of(
                 instruction("random", PrimitiveCatalog.Operation.RANDOM_INTEGER, List.of(), Map.of("bound", "0"))), 1));
+        assertThrows(IllegalArgumentException.class, () -> new ProgramIR(List.of(
+                instruction("value", PrimitiveCatalog.Operation.CONSTANT_INTEGER, List.of(), Map.of("value", "1")),
+                instruction("compare", PrimitiveCatalog.Operation.COMPARE_THRESHOLD_INTEGER, List.of("value"),
+                        Map.of("operator", "unknown", "value", "2"))), 2));
     }
 
     @Test void programWorkspaceCommitsOnlyValidEditsAndKeepsBoundedUndoHistory() {

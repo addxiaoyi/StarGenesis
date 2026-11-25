@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "606286f6660d048e8e212c24f19b3942d8a7c23b",
+  "scope": "P3 host-budget enforcement, testable editor/debugger and bounded sandbox command lifecycle, atomic program saves and canonical document identity.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 50,
+      "tests": 371,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "program-lifecycle-verify-java21.log",
+      "logSha256": "f22944f8ade3971e08b5b823d62ca0760b97262f84968d50e668dd2ffc76daf0",
+      "pluginSha256": "b46e8ae600dc00411811b8b10605b4eb85ff9266c91b8417750dd342531f7084",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 50,
+      "tests": 371,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "program-lifecycle-verify-java25.log",
+      "logSha256": "5686bfde7d466d81be22e3ba8a3db6d5a9f067c693fbf28c74bf4605c8183898",
+      "pluginSha256": "d654eec87f8d3d29fbee279f34d4a962b44e037da6b1012d1941542c6d694ef5",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "d654eec87f8d3d29fbee279f34d4a962b44e037da6b1012d1941542c6d694ef5",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "d654eec87f8d3d29fbee279f34d4a962b44e037da6b1012d1941542c6d694ef5",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "sessionLifecycle": 8,
+    "commandSimulation": 4,
+    "sandboxInputAndBudget": 3,
+    "programPersistence": 3
+  },
+  "extendedTests": "The existing typed-IR invalid-parameter test now also rejects unsupported threshold comparison operators before execution.",
+  "redRegressions": [
+    {
+      "log": "program-boundaries-before.log",
+      "before": "A three-instruction program advanced a world with a configured two-node host budget.",
+      "after": "Both debugger and sandbox use min(declared program budget, host node budget), including across step/continue."
+    },
+    {
+      "log": "program-boundaries-before.log",
+      "before": "Program list accepted an otherwise valid sealed program moved to the wrong ID-derived filename.",
+      "after": "List checks canonical filename together with sealed content and owner."
+    }
+  ],
+  "legacyFixture": {
+    "path": "stargenesis-paper/src/test/resources/program-v1-host-budget.json",
+    "origin": "Exported from the verified 606286f shaded JAR before P3 changes.",
+    "sourceJarSha256": "51128b46bc4d353c80bf93fdbeef2e2208da914de760969333dd363503dca148",
+    "sha256": "519146b12656094529216a4db7148756bc5668cd65bb3b638f6d569f82fd5683",
+    "contentHash": "075a71198ada2b5855431e826d412bee40152f242d6e13213c50305f5edc64af",
+    "declaredNodeBudget": 256,
+    "testedHostNodeBudget": 3,
+    "outcome": "Legacy schema-v1 program executes and can be saved without altering its declaration or content hash."
+  },
+  "failureMatrix": [
+    "Failed save retains dirty draft, undo history, debugger state and optimistic base hash; exact retry succeeds.",
+    "Concurrent stale workspace cannot overwrite a committed version and retains its own draft.",
+    "Edits and undo invalidate old execution; deleted instructions cannot retain orphaned breakpoints.",
+    "Invalid edit or invalid/over-capacity context input preserves the previous execution and valid state.",
+    "Sensor/resource/signal/clock changes restart execution; players have isolated contexts.",
+    "Step/continue share an execution budget and cannot exceed the current host limit or rewrite saved declarations.",
+    "Sandbox command honors host duration and zero-message budget; signals are isolated between runs.",
+    "Failure in a later bound agent publishes no earlier agent world input or signals; all agents read the prior tick signals.",
+    "Initial save failure publishes no program, permits same-ID retry; sealed cross-owner file copies are rejected."
+  ],
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "No new Paper/Folia client or human editor acceptance run; command-thread lifecycle and concurrent production performance remain to validate.",
+    "Short command simulations remain ephemeral, limited to 20 steps. Stored typed programs persist; debugger state, sandbox worlds and signals do not survive disconnect/restart.",
+    "Resource-world replay verifies mapped inputs, events and state; it is not independent proof of the original typed program and signal history.",
+    "Host limit changes can now reject programs that previously bypassed configuration. Valid stored schema-v1 content and hash are unchanged.",
+    "Threshold comparison operators other than eq/lt/gt previously faulted only during execution; they now fail validation on edit/load.",
+    "Memory-constrained non-forked tests and ephemeral signer keys do not establish production performance or official signing.",
+    "The P0-P11 objective remains active and phase gates retain their documented incomplete status."
+  ],
+  "files": {
+    "program-boundaries-before.log": "a7000c03aa7e11c4cb7a65112edf92b004e4d094473374577a6b9c6bd122095b",
+    "program-lifecycle-focused.log": "0eb57a289012cb309c48d8e71ee19166bf5c11a1e05aa31db4ef8cb71540640d",
+    "program-lifecycle-verify-java21.log": "f22944f8ade3971e08b5b823d62ca0760b97262f84968d50e668dd2ffc76daf0",
+    "program-lifecycle-build-java21.json": "95f42739583976208fc2652040336c22b89639c75896e8f5a94d44a82e9ca29e",
+    "program-lifecycle-release-signer-java21.json": "248d948a7eccafce7c5004e4fe5fe9bdc1b4223deca6cceee7aa76b6fbb40dcf",
+    "program-lifecycle-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "program-lifecycle-verify-java25.log": "5686bfde7d466d81be22e3ba8a3db6d5a9f067c693fbf28c74bf4605c8183898",
+    "program-lifecycle-build-java25.json": "783dea3e93e8a5b9b4617c1fd0348662fdf36ead3d9e6932f24704f046d4f256",
+    "program-lifecycle-release-signer-java25.json": "248d948a7eccafce7c5004e4fe5fe9bdc1b4223deca6cceee7aa76b6fbb40dcf",
+    "program-lifecycle-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

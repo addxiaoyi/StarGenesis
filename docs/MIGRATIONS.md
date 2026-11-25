@@ -24,6 +24,10 @@ P1 新生命周期将快照及其完整历史放入单个 `lab/<owner UUID>.lab.
 
 P3 typed IR 使用独立 `TYPED_PROGRAM` schemaVersion=1，不改变原 schema-v1 Program 文档；旧 Program 只通过显式 `ProgramCompiler` 编译。typed-program 文档使用规范 JSON SHA-256，未知 schema、原语、字段或类型拒绝加载。Paper 存储按作者 UUID 隔离，每玩家64份，显式保存并检查打开时的基准哈希。当前尚无 schema v0 或兼容性迁移。
 
+P3 预算修复继续使用同一typed-program schema与内容hash。执行时以 `min(program.maxInstructionsPerStep, host.nodesPerAgentStep)` 创建受限执行视图，保存文档的声明预算不改写；因此降低主机预算后仍可打开旧程序，但执行可能报告 BUDGET_EXCEEDED。逐指令step/continue共用同次执行额度，编辑或上下文变化则明确开始新执行。短时simulate使用完整主机SimulationBudget，最多20步且不越过主机maxSteps；任何参与agent的程序/消息/动作验证失败都不提交该tick的输入或信号。每次命令模拟使用独立UUID场次，已有世界回放算法与schema不变。
+
+保存使用强制落盘后原子替换；失败不清除编辑器草稿、撤销历史或打开时基准hash。load/list同时拒绝作者不符与ID文件名不符，矛盾文件不自动改名。阈值比较operator只允许eq/lt/gt；以前可保存但运行必报错的未知值现在在编辑/加载阶段拒绝。固定 `program-v1-host-budget.json` 从 `606286f` 的验证JAR导出，验证声明256节点的旧程序在较低主机预算下仍保留原内容hash。
+
 P4 radio wire message 引用已封存 Protocol ID 与 SHA-256，不引入 wire message 格式变化。PDC chip 记录 protocol ID/hash，不构成数字签名或身份授权。Paper 将 mailbox、发送/确认事件、sequence 去重、ContractRuntime 状态以及当前 Protocol/Contract ID 与 hash 写入 `radio-state.json` schemaVersion=1，文件上限16 MiB并通过原子替换更新。入队、确认、成功处理的 Contract 消息和关服时立即保存，逻辑 tick 每20步检查点保存。未知 schema、pinned hash 变化、tick 不一致或超预算时拒绝恢复，不自动丢弃或迁移数据。在线端点不落盘，重启后玩家须重新 join。当前固定 service Contract 定义变化需要后续显式迁移，不能直接替换后复用旧快照。
 
 P4 稳定性续开发仍使用同一schema-v1和固定协议/契约定义。发送、ack和契约收件在隔离候选状态中执行，原子保存成功才替换当前状态；失败保留原内存、消息额度、在线端点和文件，可按原幂等键重试。收件批次的成功契约处理与ack一起提交，非法消息继续保留；失败批次不会在关服时写入。契约超时必须先成功保存，失败时两边时钟均不前移；普通时钟仍每20步检查点，失败检查点可自动重试。恢复从当前tick的发送证据重建已用预算，降低配置额度后也不会清零历史用量。

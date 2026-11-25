@@ -107,6 +107,76 @@ class ProgramSandboxRunnerTest {
         }
     }
 
+    @Test void hostNodeBudgetStopsAnOverBudgetProgramBeforeWorldOrSignalsChange() {
+        var program = new ProgramIR(List.of(
+                instruction("value", PrimitiveCatalog.Operation.CONSTANT_INTEGER, List.of(), Map.of("value", "1")),
+                instruction("signal", PrimitiveCatalog.Operation.EMIT_SIGNAL, List.of("value"), Map.of("channel", "ready")),
+                instruction("wait", PrimitiveCatalog.Operation.WAIT, List.of(), Map.of())), 256);
+        var budget = new SimulationBudget(2, 1, 0, 20, 1, 1);
+        try (var world = new ResourceSandboxWorld("host-node-budget", 42, SandboxConfig.defaults().withAgentCount(1).withBudget(budget))) {
+            var runner = new ProgramSandboxRunner(world, Map.of(world.view().agents().getFirst().id(), program));
+            var before = runner.snapshot();
+            var result = runner.step();
+            assertEquals(ProgramSandboxRunner.Status.PROGRAM_FAILED, result.status());
+            assertEquals(ProgramInterpreter.Status.BUDGET_EXCEEDED, result.executions().values().iterator().next().status());
+            assertEquals(before, runner.snapshot());
+            assertTrue(runner.signals().isEmpty());
+            assertEquals(ProgramSandboxRunner.Status.PROGRAM_FAILED, runner.step().status());
+            assertEquals(before, runner.snapshot());
+        }
+    }
+
+    @Test void aLaterAgentFailureDoesNotPublishTheFirstAgentsActionsOrSignals() {
+        var signal = new ProgramIR(List.of(
+                instruction("value", PrimitiveCatalog.Operation.CONSTANT_INTEGER, List.of(), Map.of("value", "1")),
+                instruction("signal", PrimitiveCatalog.Operation.EMIT_SIGNAL, List.of("value"), Map.of("channel", "ready"))), 8);
+        var fail = new ProgramIR(List.of(instruction("missing", PrimitiveCatalog.Operation.SENSE_INTEGER,
+                List.of(), Map.of("key", "not_available"))), 8);
+        try (var world = new ResourceSandboxWorld("program-batch", 42, SandboxConfig.defaults())) {
+            var agents = world.view().agents().stream().map(SandboxView.AgentView::id).sorted().toList();
+            var runner = new ProgramSandboxRunner(world, Map.of(agents.getFirst(), signal, agents.getLast(), fail));
+            var before = runner.snapshot();
+            for (int attempt = 0; attempt < 2; attempt++) {
+                var result = runner.step();
+                assertEquals(ProgramSandboxRunner.Status.PROGRAM_FAILED, result.status());
+                assertEquals(2, result.executions().size());
+                assertTrue(result.actions().isEmpty());
+                assertTrue(runner.signals().isEmpty());
+                assertEquals(before, runner.snapshot());
+            }
+        }
+    }
+
+    @Test void allAgentsReadThePreviousTickSignalsAndFailuresDoNotConsumeMessageBudget() {
+        var signal = new ProgramIR(List.of(
+                instruction("previous", PrimitiveCatalog.Operation.READ_SIGNAL, List.of(), Map.of("channel", "counter")),
+                instruction("one", PrimitiveCatalog.Operation.CONSTANT_INTEGER, List.of(), Map.of("value", "1")),
+                instruction("value", PrimitiveCatalog.Operation.ADD_INTEGER, List.of("previous", "one"), Map.of()),
+                instruction("signal", PrimitiveCatalog.Operation.EMIT_SIGNAL, List.of("value"), Map.of("channel", "counter"))), 8);
+        var oneMessage = new SimulationBudget(8, 2, 0, 20, 1, 1);
+        try (var world = new ResourceSandboxWorld("program-message-batch", 42, SandboxConfig.defaults().withBudget(oneMessage))) {
+            var agents = world.view().agents();
+            var rejected = new ProgramSandboxRunner(world, Map.of(agents.getFirst().id(), signal, agents.getLast().id(), signal));
+            var before = world.snapshot();
+            assertEquals(ProgramSandboxRunner.Status.MESSAGE_BUDGET_EXCEEDED, rejected.step().status());
+            assertEquals(before, world.snapshot());
+            assertTrue(rejected.signals().isEmpty());
+            var accepted = new ProgramSandboxRunner(world, Map.of(agents.getFirst().id(), signal));
+            assertEquals(ProgramSandboxRunner.Status.ADVANCED, accepted.step().status());
+            assertEquals(1L, accepted.signals().get("counter"));
+        }
+        var twoMessages = new SimulationBudget(8, 2, 0, 20, 1, 2);
+        try (var world = new ResourceSandboxWorld("program-synchronous-signals", 42, SandboxConfig.defaults().withBudget(twoMessages))) {
+            var agents = world.view().agents();
+            var runner = new ProgramSandboxRunner(world, Map.of(agents.getFirst().id(), signal, agents.getLast().id(), signal));
+            assertEquals(ProgramSandboxRunner.Status.ADVANCED, runner.step().status());
+            assertEquals(1L, runner.signals().get("counter"));
+            assertEquals(ProgramSandboxRunner.Status.ADVANCED, runner.step().status());
+            assertEquals(2L, runner.signals().get("counter"));
+            assertTrue(ReplayVerifier.verify(runner.replayLog()).passed());
+        }
+    }
+
     private RunResult runCorridorProgram(String worldId, long seed) {
         try (var world = new ResourceSandboxWorld(worldId, seed, SandboxConfig.defaults().withAgentCount(1))) {
             AgentId agent = world.view().agents().getFirst().id();

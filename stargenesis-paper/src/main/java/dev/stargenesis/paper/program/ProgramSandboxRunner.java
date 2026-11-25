@@ -13,7 +13,6 @@ import dev.stargenesis.sim.WorldSnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -36,7 +35,7 @@ public final class ProgramSandboxRunner {
         programs.forEach((agent, program) -> {
             if (view.agents().stream().noneMatch(value -> value.id().equals(agent)))
                 throw new IllegalArgumentException("Program bound to an unknown sandbox agent");
-            sorted.put(Objects.requireNonNull(agent), Objects.requireNonNull(program));
+            sorted.put(Objects.requireNonNull(agent), ProgramExecutionBudget.bounded(Objects.requireNonNull(program), world.config().budget()));
         });
         this.programs = Collections.unmodifiableMap(sorted);
         for (WorldSnapshot.AgentState agent : world.snapshot().agents())

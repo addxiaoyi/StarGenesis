@@ -8,11 +8,13 @@ import dev.stargenesis.design.DesignValidationException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.channels.FileChannel;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -61,7 +63,12 @@ public final class ProgramStore {
         catch (DesignValidationException invalid) { throw new IOException("Program validation failed", invalid); }
         byte[] data = encoded.getBytes(StandardCharsets.UTF_8);
         if (data.length > TypedProgramCodec.MAX_DOCUMENT_BYTES) throw new IOException("Program exceeds the document size limit");
-        Files.write(temporary, data);
+        try (var channel = FileChannel.open(temporary, StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
+            var buffer = java.nio.ByteBuffer.wrap(data);
+            while (buffer.hasRemaining()) channel.write(buffer);
+            channel.force(true);
+        }
         try { Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
         catch (AtomicMoveNotSupportedException failure) {
             Files.deleteIfExists(temporary);
@@ -92,6 +99,7 @@ public final class ProgramStore {
                     throw new IOException("Program directory exceeds its file limit");
                 TypedProgramDocument document = read(file);
                 verifyOwner(owner, document.id(), document);
+                if (!file.equals(path(owner, document.id()))) throw new IOException("Program ID does not match its file path");
                 programs.add(document);
             }
         }

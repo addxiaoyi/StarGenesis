@@ -75,7 +75,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
             blueprints = new BlueprintController(this,
                     new BlueprintStore(getDataFolder().toPath().resolve("blueprints"), new DesignCodec()));
             programs = new ProgramController(this,
-                    new ProgramStore(getDataFolder().toPath().resolve("programs"), new dev.stargenesis.design.TypedProgramCodec()));
+                    new ProgramStore(getDataFolder().toPath().resolve("programs"), new dev.stargenesis.design.TypedProgramCodec()), budget);
             ecology = new EcologyController(this, getDataFolder().toPath().resolve("ecology"));
             factory = new FactoryController(this, getDataFolder().toPath().resolve("factory"));
             arenas = new ArenaController(this, new ArenaRulesetStore(getDataFolder().toPath().resolve("arenas")),

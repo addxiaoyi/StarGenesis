@@ -39,6 +39,10 @@ P2 使用服务器模块白名单和有界物理代价进行蓝图评估。个�
 
 P3 有35个封闭 typed primitive、IR schema/hash、解释器、断点/步进/撤销和有限资源沙盒。沙盒执行不访问 Minecraft world、真实库存或经济服务。自动客户端已编辑程序并验证 replay。
 
+P3 稳定性续开发修复主机预算旁路：原sandbox只限制发出的世界动作，三条IR指令可绕过2节点host配置；现在调试器和sandbox均执行程序声明与主机节点预算的较小值，simulate同时使用主机时长、消息等配置，step/continue不重置额度。ProgramSession与ProgramSimulation从Bukkit控制器提取，单测覆盖编辑/撤销/上下文改变后旧执行失效、非法编辑保持原状态、断点清理、失败保存保留草稿和基准hash、并发冲突以及多agent输入整体拒绝。ProgramStore强制落盘后替换，并拒绝ID与文件名不符的合法文档；此错误也先通过失败回归复现。
+
+本批新增18项测试并扩展非法比较operator回归。Java 21/25 各通过371项测试（50个类），失败/错误/跳过为0，模块边界与双JVM发行/设计包签名自检通过。旧typed-program schema-v1固定样本在较低host预算下保持原声明与hash。证据见 `docs/evidence/p3/lifecycle/summary.json`。simulate仍为每次最多20步的临时世界，保存的是程序文档，调试状态/信号不跨重启恢复；资源世界replay验证映射后的动作，不构成原typed程序来源证明。本批未新增实服/Folia多人或真人证据，阶段门未通过。
+
 ## P4–P5
 
 P4 协议以固定 ID/hash 验证消息字段、recipient、tick/sequence 和 payload budget。消息至少一次投递，ack 前重复 poll 返回相同 envelope。Paper/Folia 实服客户端已验证重复 poll、ack 清空、recipient socket 断线重连后原消息重投，以及跨 tick 相同幂等键不重复投递。结果在 `docs/evidence/p11/paper-reliability-retest-workflow-result.json` 与 `folia-reliability-retest-workflow-result.json`。
