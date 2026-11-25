@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.stargenesis.api.design.DesignDependency;
 import dev.stargenesis.api.design.DesignDocument;
 import dev.stargenesis.api.design.DesignId;
 import dev.stargenesis.api.design.DesignKind;
@@ -29,7 +28,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +46,6 @@ public final class ArenaRulesetStore {
     public static final int MAX_REVIEW_RECORDS = 512;
     public static final int MAX_REVIEW_REASON_LENGTH = 256;
     public static final long MAX_FILE_BYTES = 262_144;
-    private static final int MAX_DEPENDENCY_DEPTH = 16;
     private static final DesignId STARTER_ARENA = new DesignId("genesis:arena_ruleset");
     private final Path drafts;
     private final Path published;
@@ -83,9 +80,7 @@ public final class ArenaRulesetStore {
     public synchronized ArenaRuleset create(UUID owner, DesignId id) throws IOException {
         if (owner == null || id == null) throw new IllegalArgumentException("Missing arena owner or ID");
         if (loadDraft(owner, id).isPresent()) throw new IOException("Arena draft already exists; open it before editing");
-        Path directory = ownerDirectory(owner);
-        Files.createDirectories(directory);
-        rejectSymlink(directory);
+        Path directory = prepareOwnerDirectory(owner);
         if (countDrafts(directory) >= MAX_DRAFTS_PER_AUTHOR) throw new IOException("Arena draft limit reached");
         DesignMetadata metadata = new DesignMetadata(id, DesignCodec.SCHEMA_VERSION, "1.0.0", owner,
                 "genesis:player-arena", List.of(), "", new DesignPermissions(false, false, Set.of()));
@@ -99,16 +94,15 @@ public final class ArenaRulesetStore {
                 .orElseThrow(() -> new IOException("Published arena does not exist"));
         if (!source.metadata().permissions().publicRead() || !source.metadata().permissions().allowClone())
             throw new SecurityException("Arena does not allow public cloning");
+        validatePublishedDependencies(source);
         if (sourceId.equals(targetId)) throw new IllegalArgumentException("Clone must use a new design ID");
         Path target = path(owner, targetId);
         if (Files.exists(target, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Arena draft already exists");
-        Path directory = ownerDirectory(owner);
-        Files.createDirectories(directory);
-        rejectSymlink(directory);
+        Path directory = prepareOwnerDirectory(owner);
         if (countDrafts(directory) >= MAX_DRAFTS_PER_AUTHOR) throw new IOException("Arena draft limit reached");
         DesignMetadata old = source.metadata();
         DesignMetadata metadata = new DesignMetadata(targetId, old.schemaVersion(), "1.0.0", owner,
-                "genesis:arena-clone:" + sourceId.value(), old.dependencies(), "",
+                "clone:" + old.author() + ":" + sourceId.value() + "@" + old.version() + "#" + old.hash(), old.dependencies(), "",
                 new DesignPermissions(false, false, Set.of()));
         ArenaRuleset copy = new ArenaRuleset(metadata, source.width(), source.height(),
                 source.durationSteps(), source.unitBudget());
@@ -121,13 +115,13 @@ public final class ArenaRulesetStore {
         if (editor == null || id == null) throw new IllegalArgumentException("Missing arena editor or ID");
         Path own = path(editor, id);
         if (Files.exists(own, LinkOption.NOFOLLOW_LINKS)) {
-            ArenaRuleset document = read(own);
+            ArenaRuleset document = readDraft(own);
             authorize(editor, document);
             return Optional.of(document);
         }
         Path authorDirectory = findDraftAuthor(id);
         if (authorDirectory == null) return Optional.empty();
-        ArenaRuleset document = read(authorDirectory.resolve(fileName(id)));
+        ArenaRuleset document = readDraft(authorDirectory.resolve(fileName(id)));
         authorize(editor, document);
         return Optional.of(document);
     }
@@ -140,7 +134,7 @@ public final class ArenaRulesetStore {
         try (var files = Files.newDirectoryStream(directory, "*.json")) {
             for (Path file : files) {
                 if (result.size() >= MAX_DRAFTS_PER_AUTHOR) throw new IOException("Arena draft directory exceeds its count budget");
-                ArenaRuleset ruleset = read(file);
+                ArenaRuleset ruleset = readDraft(file);
                 authorize(owner, ruleset);
                 result.add(ruleset);
             }
@@ -164,7 +158,7 @@ public final class ArenaRulesetStore {
                     || current.metadata().schemaVersion() != candidate.metadata().schemaVersion())
                 throw new SecurityException("Only the Arena author may change permissions, version or provenance");
         }
-        Files.createDirectories(directory);
+        prepareOwnerDirectory(candidate.metadata().author());
         if (!Files.exists(target, LinkOption.NOFOLLOW_LINKS) && countDrafts(directory) >= MAX_DRAFTS_PER_AUTHOR)
             throw new IOException("Arena draft limit reached");
         ArenaRuleset signed = seal(candidate);
@@ -228,8 +222,7 @@ public final class ArenaRulesetStore {
         if (publishedVersion == null) {
             ArenaRuleset draft = loadDraft(submission.author(), id)
                     .orElseThrow(() -> new IOException("Submitted Arena draft no longer exists"));
-            if (!draft.metadata().hash().equals(submission.contentHash()))
-                throw new IOException("Submitted Arena draft changed; submit the new hash for review");
+            requireReviewIdentity(submission, draft);
             validatePublicationCandidate(draft, submission.contentHash());
             if (submission.status() == ReviewStatus.PENDING) {
                 submission = new ReviewRecord(1, submission.author(), id, version, submission.contentHash(),
@@ -237,12 +230,13 @@ public final class ArenaRulesetStore {
                 writeReview(reviewPath(id, version), submission);
             }
             publishDocument(draft);
-        } else if (!publishedVersion.metadata().hash().equals(submission.contentHash())) {
-            throw new IOException("Published Arena version does not match the review submission");
-        } else if (submission.status() == ReviewStatus.PENDING) {
-            submission = new ReviewRecord(1, submission.author(), id, version, submission.contentHash(),
-                    ReviewStatus.APPROVED, submission.submittedAt(), reviewer, "", Instant.now().toString());
-            writeReview(reviewPath(id, version), submission);
+        } else {
+            requireReviewIdentity(submission, publishedVersion);
+            if (submission.status() == ReviewStatus.PENDING) {
+                submission = new ReviewRecord(1, submission.author(), id, version, submission.contentHash(),
+                        ReviewStatus.APPROVED, submission.submittedAt(), reviewer, "", Instant.now().toString());
+                writeReview(reviewPath(id, version), submission);
+            }
         }
         return submission;
     }
@@ -275,11 +269,17 @@ public final class ArenaRulesetStore {
         if (expectedHash == null || !expectedHash.equals(draft.metadata().hash()))
             throw new IOException("Arena draft changed; reopen it before submission");
         if (!draft.metadata().permissions().publicRead()) throw new SecurityException("Public catalog publication requires publicRead");
+        if (draft.metadata().id().equals(STARTER_ARENA))
+            throw new SecurityException("The bundled Arena identity is reserved; clone it to a new ID");
         validateDependencies(draft);
         List<ArenaRuleset> versions = publishedVersions(draft.metadata().id());
-        for (ArenaRuleset version : versions)
+        for (ArenaRuleset version : versions) {
+            if (!version.metadata().author().equals(draft.metadata().author()))
+                throw new SecurityException("Published Arena identity belongs to a different author");
             if (version.metadata().version().equals(draft.metadata().version()))
                 throw new IOException("Arena version is already published");
+        }
+        requireReviewAuthor(draft);
         if (!versions.isEmpty() && compareVersions(draft.metadata().version(),
                 versions.getLast().metadata().version()) <= 0)
             throw new IOException("Published arena versions must increase monotonically");
@@ -339,26 +339,7 @@ public final class ArenaRulesetStore {
 
     private void validateDependencies(ArenaRuleset root) throws IOException {
         Map<Pin, DesignDocument> registry = loadRegistry();
-        Set<Pin> visiting = new HashSet<>();
-        visiting.add(pin(root));
-        validateDependencyClosure(root, registry, visiting, 0);
-    }
-
-    private void validateDependencyClosure(DesignDocument parent, Map<Pin, DesignDocument> registry,
-                                           Set<Pin> visiting, int depth) throws IOException {
-        if (depth > MAX_DEPENDENCY_DEPTH) throw new IOException("Arena dependency depth exceeds its budget");
-        for (DesignDependency dependency : parent.metadata().dependencies()) {
-            Pin dependencyPin = new Pin(dependency.id(), dependency.version(), dependency.hash());
-            DesignDocument target = registry.get(dependencyPin);
-            if (target == null) throw new IOException("Unresolved design dependency " + dependency.id().value());
-            if (!target.metadata().permissions().publicRead() || !target.metadata().permissions().allowClone())
-                throw new SecurityException("Dependency does not grant publicRead and allowClone: " + dependency.id().value());
-            if (target instanceof ArenaRuleset arena && !visiting.add(dependencyPin))
-                throw new IOException("Arena dependency cycle rejected");
-            if (target instanceof ArenaRuleset arena)
-                validateDependencyClosure(arena, registry, visiting, depth + 1);
-            visiting.remove(dependencyPin);
-        }
+        ArenaDependencyClosure.validate(root, dependency -> registry.get(new Pin(dependency.id(), dependency.version(), dependency.hash())));
     }
 
     private Map<Pin, DesignDocument> loadRegistry() throws IOException {
@@ -380,15 +361,17 @@ public final class ArenaRulesetStore {
 
     private List<ArenaRuleset> allPublished() throws IOException {
         List<ArenaRuleset> result = new ArrayList<>();
+        int records = 0;
         try (var files = Files.newDirectoryStream(published, "*.json")) {
             for (Path file : files) {
-                if (result.size() >= MAX_PUBLISHED_ARENAS) throw new IOException("Published arena catalog exceeds its count budget");
+                if (++records > MAX_PUBLISHED_ARENAS) throw new IOException("Published arena catalog exceeds its count budget");
                 ArenaRuleset arena = read(file);
+                if (!file.equals(publishedPath(arena.metadata().id(), arena.metadata().version())))
+                    throw new IOException("Arena publication identity does not match its storage path");
                 Optional<ReviewRecord> review = reviewRecord(arena.metadata().id(), arena.metadata().version());
                 if (review.isPresent()) {
                     ReviewRecord decision = review.orElseThrow();
-                    if (!decision.contentHash().equals(arena.metadata().hash()))
-                        throw new IOException("Arena publication hash does not match its review record");
+                    requireReviewIdentity(decision, arena);
                     if (decision.status() != ReviewStatus.APPROVED) continue;
                 }
                 result.add(arena);
@@ -439,6 +422,33 @@ public final class ArenaRulesetStore {
             throw new SecurityException("Arena draft is not editable by this player");
     }
 
+    private ArenaRuleset readDraft(Path file) throws IOException {
+        rejectSymlink(file.getParent());
+        ArenaRuleset document = read(file);
+        if (!file.equals(path(document.metadata().author(), document.metadata().id())))
+            throw new IOException("Arena draft identity does not match its storage path");
+        return document;
+    }
+
+    private void requireReviewIdentity(ReviewRecord record, ArenaRuleset document) throws IOException {
+        DesignMetadata metadata = document.metadata();
+        if (!record.author().equals(metadata.author()) || !record.id().equals(metadata.id())
+                || !record.version().equals(metadata.version()) || !record.contentHash().equals(metadata.hash()))
+            throw new IOException("Arena review identity or hash does not match its document");
+    }
+
+    private void requireReviewAuthor(ArenaRuleset draft) throws IOException {
+        int records = 0;
+        try (var files = Files.newDirectoryStream(reviews, "*.json")) {
+            for (Path file : files) {
+                if (++records > MAX_REVIEW_RECORDS) throw new IOException("Arena review queue exceeds its count budget");
+                ReviewRecord previous = readReview(file);
+                if (previous.id().equals(draft.metadata().id()) && !previous.author().equals(draft.metadata().author()))
+                    throw new SecurityException("Submitted Arena identity belongs to a different author");
+            }
+        }
+    }
+
     private ArenaRuleset verifyExpectedVersion(Path target, String expectedHash) throws IOException {
         if (expectedHash == null || !(expectedHash.isEmpty() || expectedHash.matches("[0-9a-f]{64}")))
             throw new IllegalArgumentException("Invalid expected arena hash");
@@ -446,9 +456,7 @@ public final class ArenaRulesetStore {
         if (expectedHash.isEmpty() && exists) throw new IOException("Arena draft exists; open it before saving");
         if (!expectedHash.isEmpty() && !exists) throw new IOException("Arena draft was removed; reopen it before saving");
         if (!exists) return null;
-        ArenaRuleset current = read(target);
-        if (!target.equals(path(current.metadata().author(), current.metadata().id())))
-            throw new IOException("Arena draft identity does not match its storage path");
+        ArenaRuleset current = readDraft(target);
         if (!current.metadata().hash().equals(expectedHash))
             throw new IOException("Arena draft changed since it was opened; reopen it before saving");
         return current;
@@ -509,7 +517,7 @@ public final class ArenaRulesetStore {
         try (var input = Files.newInputStream(file)) { data = input.readNBytes(8193); }
         if (data.length > 8192) throw new IOException("Arena review record exceeds 8 KiB");
         ReviewRecord record = reviewMapper.readValue(data, ReviewRecord.class);
-        if (record.schemaVersion() != 1 || record.author() == null || record.id() == null
+        if (record == null || record.schemaVersion() != 1 || record.author() == null || record.id() == null
                 || record.version() == null || !record.version().matches("(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})\\.(0|[1-9][0-9]{0,5})")
                 || record.contentHash() == null || !record.contentHash().matches("[0-9a-f]{64}")
                 || record.submittedAt() == null || record.reason() == null
@@ -557,6 +565,23 @@ public final class ArenaRulesetStore {
     private Path ownerDirectory(UUID owner) {
         if (owner == null) throw new IllegalArgumentException("Missing arena owner");
         return drafts.resolve(owner.toString());
+    }
+
+    private Path prepareOwnerDirectory(UUID owner) throws IOException {
+        rejectSymlink(drafts);
+        Path directory = ownerDirectory(owner);
+        rejectSymlink(directory);
+        if (!Files.exists(directory, LinkOption.NOFOLLOW_LINKS)) {
+            try (var entries = Files.list(drafts)) {
+                if (entries.filter(path -> Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS))
+                        .limit(MAX_DRAFT_AUTHORS).count() >= MAX_DRAFT_AUTHORS)
+                    throw new IOException("Arena author directory budget reached");
+            }
+            Files.createDirectory(directory);
+        }
+        if (!Files.isDirectory(directory, LinkOption.NOFOLLOW_LINKS))
+            throw new IOException("Arena author path is not a directory");
+        return directory;
     }
 
     private Path path(UUID owner, DesignId id) { return ownerDirectory(owner).resolve(fileName(id)); }

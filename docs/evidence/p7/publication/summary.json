@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "7021845c3f29cf894376c6b5dbed4c718175a9e6",
+  "scope": "P7 pinned clone provenance, publication authorship, canonical storage identity, review/document consistency, failure recovery, author admission and bounded dependency closure.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 52,
+      "tests": 389,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-publication-verify-java21.log",
+      "logSha256": "9543e7d3deac5547426f7e5c189bb5295ade054a657b126c7bc91d7d05a5c371",
+      "pluginSha256": "5fd76581e388d81a8808524cd9e86705b90f9fc12885c625833026ce6084c571",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 52,
+      "tests": 389,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-publication-verify-java25.log",
+      "logSha256": "54efe70c82341bbde91293ebacc52e6b01d61dc7ea21b0bc5c8afbb6f7864973",
+      "pluginSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "e1558cbfa3d4f4884eea57186c82aaf667d4e679e48b7815feba0173cb96f793",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "publicationIntegrityAndRecovery": 13,
+    "dependencyClosure": 5
+  },
+  "redRegressions": [
+    {
+      "log": "arena-publication-before.log",
+      "failingTests": 5,
+      "before": "Clones omitted source author/version/hash; draft/publication reads accepted wrong filenames; mismatched review author was accepted; null review caused NullPointerException.",
+      "after": "New clone provenance pins the exact source; reads check paths and document identity; review author/ID/version/hash must match; null review fails with IOException."
+    },
+    {
+      "log": "arena-ownership-before.log",
+      "failingTests": 3,
+      "before": "A different author could submit a higher version under an existing publication ID or the bundled starter ID; saveDraft could create a 65th author directory beyond the scan budget.",
+      "after": "Submitted/published IDs bind the original author, the bundled starter ID is reserved, and all author-creation paths check the 64-directory limit before creating."
+    }
+  ],
+  "legacyFixtures": {
+    "origin": "Exported from the verified 7021845 shaded JAR before P7 changes.",
+    "sourceJarSha256": "d654eec87f8d3d29fbee279f34d4a962b44e037da6b1012d1941542c6d694ef5",
+    "files": {
+      "stargenesis-paper/src/test/resources/arena-v1-published.json": "bbc52b244de4758b4324687fb01c845b0b0a389126e11baed2ecfb76cb9a91d6",
+      "stargenesis-paper/src/test/resources/arena-v1-reviews.json": "a455340ba8cd8e30686b5dfc9318cf3aea364e9e03a165e19a69026bb34e0499"
+    },
+    "contentHash": "62b245a04703d16bf97aa3c48bbef0062517aa75a9ce83749131b87100eacc9b",
+    "outcome": "Approved schema-v1 publication with the old short clone source remains playable. Repeated approval preserves both publication and review bytes; new copies pin its exact original hash."
+  },
+  "failureMatrix": [
+    "Failed submission creates no review or publication; retry succeeds.",
+    "Failed approval-record write preserves pending bytes and keeps the version private.",
+    "Failed publication write preserves the committed APPROVED decision; only its reviewer can retry publication after restart.",
+    "Repeated successful approval is byte-idempotent.",
+    "Failed rejection preserves pending bytes; successful retry persists rejection and hides the version.",
+    "Reviewed identity remains bound to its author before approval and after rejection/restart.",
+    "Legacy publication and review keep their original schema, source and hash."
+  ],
+  "dependencyValidation": {
+    "maxDepth": 16,
+    "sharedGraph": "16 layers of two shared nodes each plus a root: 32 dependency pins resolved exactly once each.",
+    "checks": [
+      "Longest path remains bounded when a cached node is reached more deeply.",
+      "Full transitive dependencies include non-Arena design types.",
+      "Missing or mismatched pins and missing publicRead/allowClone are rejected.",
+      "Cyclic resolver data rejects without unbounded recursion.",
+      "Validation caches are scoped to one call and do not retain stale permissions."
+    ],
+    "scope": "Deterministic unit-level resolver-call evidence, not a server throughput benchmark."
+  },
+  "boundaryCheck": "PASS: scripts/check_boundaries.py.",
+  "codeCacheWarnings": {
+    "java21": false,
+    "java25": false
+  },
+  "limitations": [
+    "No new Paper/Folia client or human UGC governance/anti-cheat acceptance run.",
+    "Review approval and publication remain separate atomic files; a durable APPROVED decision can precede a failed publication and requires original-reviewer retry.",
+    "A submitted draft changed by its author cannot publish under the prior content hash; new content requires a higher-version submission.",
+    "Existing legitimate pre-review publications remain readable. No historical sources or author ownership are automatically rewritten.",
+    "New submissions reserve their public ID for the author, including rejected submissions; reassignment and moderation policy remain operational work.",
+    "Memory-constrained non-forked tests and ephemeral signer keys do not establish production performance or official signing.",
+    "The P0-P11 objective remains active and phase gates retain their documented incomplete status."
+  ],
+  "files": {
+    "arena-publication-before.log": "9239e95415644fb77b1a3ab6d9674c80dfcb4f7911bb1737ff674fb6d457f60a",
+    "arena-ownership-before.log": "333040fb604b95b668b9493507a04b119b26fdf470b1b1cd5c4b95820ae595c3",
+    "arena-publication-focused.log": "31bfa0fe9f46219d29a99b3b49a3610bea169630fd17e8d2c27ba1c60915e088",
+    "arena-publication-verify-java21.log": "9543e7d3deac5547426f7e5c189bb5295ade054a657b126c7bc91d7d05a5c371",
+    "arena-publication-build-java21.json": "0c0d8030e8cd2e491cdb96b8228b08de42794e6790ddbed471ca5c9e5377d3ff",
+    "arena-publication-release-signer-java21.json": "7fa638ce472a76646175a784fe919102f68c2c111cdc1cde400b82164bf88052",
+    "arena-publication-design-signer-java21.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9",
+    "arena-publication-verify-java25.log": "54efe70c82341bbde91293ebacc52e6b01d61dc7ea21b0bc5c8afbb6f7864973",
+    "arena-publication-build-java25.json": "86f868a3b4571beb3a1b20908a6d26406cd6729fc7c582cb56d55b9d02f9702c",
+    "arena-publication-release-signer-java25.json": "7fa638ce472a76646175a784fe919102f68c2c111cdc1cde400b82164bf88052",
+    "arena-publication-design-signer-java25.json": "ee3cfdd54fa52dc2351ee06c0d676157c6fbcc291a89f46c2519586a69de2ad9"
+  }
+}

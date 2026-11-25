@@ -46,6 +46,10 @@ P6 外层 match 文件与 `organizations.json` 仍为 schemaVersion=1。单场8 
 
 P7 沿用 `ArenaRuleset` schemaVersion=1，不增添可执行字段。玩家草稿位于 `arenas/drafts/<author UUID>/<sha256(id)>.json`，公开不可变版本位于 `arenas/published/<sha256(id@version)>.json`。同一 ID/version 一经发布不覆盖，变更必须提升语义版本。依赖以精确 DesignId/version/hash 固定，加载/发布时解析并校验公开与复用许可。发布文件未知字段、hash错配或依赖授权失效时拒绝加载和引用。
 
+P7 稳定性修复不改变ruleset和review schema-v1。新clone使用 `clone:<author>:<id>@<version>#<hash>` 来源，旧clone的较短source保持原文，不自动补写导致hash变化。草稿读取/列表、发布目录和审核记录同时核对路径与文档身份；审核作者必须与文档作者相同。`null`审核文件返回明确的证据错误。已提交（包括被拒绝）或发布的ID保留原作者，禁止其他作者提交新版；内置starter ID不允许新UGC覆盖。此前已有的合法发布继续可读，不自动删除或重新归属历史文件。
+
+依赖解析缓存每个精确pin的验证结果和最长剩余深度，避免共享DAG反复展开；缓存仅存于本次校验，后续调用重新读取当前registry和许可。全部设计类型均检查递归依赖，仍保持16层和公开可复用许可要求。草稿新作者在写目录前执行64人准入；读取发布目录计数包含被审核状态隐藏的文件。审核/发布仍是两个原子文件：APPROVED决定可先于发布文件存在，发布失败由原审核员重试；不伪称两个文件具备单次原子提交。固定 `arena-v1-published.json` / `arena-v1-reviews.json` 从 `7021845` 的验证JAR导出，保留原短来源和内容hash，在新实现中读取与重复approve不改写原字节。
+
 P8 `teams.json` 以 schemaVersion=1 原子保存赛前 UUID 双队 roster，限制8个玩家、每队至多4人。历史 ArenaMatch replay schemaVersion=1 固定引擎 `genesis-arena-match/1`；读入和继续运行保持原格式、match ID 派生方式及 state/event commitments，不补写 runId。固定回归样本 `stargenesis-paper/src/test/resources/arena-match-v1.json` 从 `31ecf9c` 编译产物导出，包含已完成一轮、一个 pending action 和 observer。
 
 新比赛使用 replay schemaVersion=2 / `genesis-arena-match/2`，增加必填规范 UUID 字符串 `runId`。match ID 同时固定 runId、ruleset hash 和 roster，允许同一 seed/规则/队伍重复开赛而不复用事件 EvidenceId。回放器按明确版本构造引擎；未知或不匹配的 schema/engine、v2 缺少 runId、v1 混入 runId、身份或哈希被修改均拒绝。模拟 Java API 保留原 String matchId 构造函数供 v1 消费者使用；新比赛使用 UUID runId 构造函数。ArenaMatchReplay 保留旧构造函数，v2 使用新增 runId 的完整构造函数。

@@ -196,6 +196,8 @@ P7 ArenaRuleset 使用现有 schema-v1 严格格式。玩家编辑有界宽高�
 
 `/genesis arena review pending` 查看待审核条目，作者使用 `status <id> <version>` 查询自己的状态和拒绝理由，审核员使用 `show <id> <version>` 查看完整记录。审核员使用 `approve <id> <version>` 发布，或使用 `reject <id> <version> <reason>` 记录拒绝原因。`clone <publishedId> <newId>` 仅在源规则允许克隆时创建个人草稿，`dep add <id> <version> <sha256>` 固定许可依赖。草稿保存以磁盘上当前编辑许可为准；许可、版本和来源/依赖变更仅限原作者，提交的新文档不能自授编辑权。规则只描述尺寸、时长、单位预算与依赖，不携带脚本、命令或任意执行字段。P7 已有编辑、许可、审核、发布与 catalog 工作流，P8 提供竞技运行时，真人创作与反作弊比赛验收仍未完成。
 
+克隆来源固定原作者、ID、版本和hash，副本默认私有；原有依赖按原pin保留。已提交或发布的规则ID绑定原作者，其他作者须使用新ID，内置 `genesis:arena_ruleset` 不可覆盖。审核记录必须与文档作者、ID、版本和hash同时一致。保存批准决定后若发布文件写入失败，原审核员可在重启后重试同一approve命令。草稿最多64位作者、每人32份，发布256份、审核512份；新增作者在创建目录前检查预算。共享依赖图按每个pin验证一次，并检查最长路径不超过16层。
+
 P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两位、最多四位玩家，已接受的 team roster 原子保存在 `plugins/StarGenesis/arena-matches/teams.json`。全部 roster 同时在线后按已发布规则创建比赛。每一逻辑回合必须由所有参赛玩家各提交一次 `pass` 或 `claim`，服务端收齐后同时解析冲突、消耗单位并按领地数量补给：
 
 ```text
