@@ -1,5 +1,8 @@
 package dev.stargenesis.design;
 
+import dev.stargenesis.api.design.DesignMetadata;
+import dev.stargenesis.api.design.DesignPermissions;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -18,6 +21,28 @@ public final class BlueprintWorkspace {
 
     public Blueprint current() { return current; }
     public int undoDepth() { return history.size(); }
+
+    public void permissions(DesignPermissions permissions) {
+        Objects.requireNonNull(permissions, "permissions");
+        edit(blueprint -> {
+            DesignMetadata old = blueprint.metadata();
+            if (old.permissions().equals(permissions)) return blueprint;
+            DesignMetadata metadata = new DesignMetadata(old.id(), old.schemaVersion(), old.version(), old.author(),
+                    old.source(), old.dependencies(), "", permissions);
+            return new Blueprint(metadata, blueprint.components(), blueprint.connections());
+        });
+    }
+
+    public void version(String version) {
+        DesignMetadata.requireVersion(version);
+        edit(blueprint -> {
+            DesignMetadata old = blueprint.metadata();
+            if (old.version().equals(version)) return blueprint;
+            DesignMetadata metadata = new DesignMetadata(old.id(), old.schemaVersion(), version, old.author(),
+                    old.source(), old.dependencies(), "", old.permissions());
+            return new Blueprint(metadata, blueprint.components(), blueprint.connections());
+        });
+    }
 
     public void add(Blueprint.Component component, String connectTo) {
         Objects.requireNonNull(component, "component");

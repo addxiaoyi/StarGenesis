@@ -1,6 +1,7 @@
 package dev.stargenesis.paper.blueprint;
 
 import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.api.design.DesignPermissions;
 import dev.stargenesis.design.Blueprint;
 import dev.stargenesis.design.BlueprintEvaluator;
 import dev.stargenesis.design.BlueprintWorkspace;
@@ -12,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -39,6 +41,7 @@ public final class BlueprintController implements Listener {
         try {
             switch (args[0].toLowerCase(Locale.ROOT)) {
                 case "create" -> create(player, args);
+                case "clone" -> cloneBlueprint(player, args);
                 case "list" -> list(player, args);
                 case "open" -> open(player, args);
                 case "close" -> close(player, args);
@@ -51,6 +54,8 @@ public final class BlueprintController implements Listener {
                 case "undo" -> undo(player, args);
                 case "preview" -> preview(player, args);
                 case "save" -> save(player, args);
+                case "access" -> access(player, args);
+                case "version" -> version(player, args);
                 default -> help(player);
             }
         } catch (IllegalArgumentException | IOException | SecurityException failure) {
@@ -88,23 +93,92 @@ public final class BlueprintController implements Listener {
     }
 
     private void list(Player player, String[] args) throws IOException {
-        requireLength(args, 1);
-        var designs = store.list(player.getUniqueId());
-        if (designs.isEmpty()) { player.sendMessage("没有已保存的个人蓝图。使用 /genesis blueprint create <namespace:id>。"); return; }
-        player.sendMessage("个人蓝图 " + designs.size() + "/" + BlueprintStore.MAX_BLUEPRINTS_PER_PLAYER + ":");
+        if (args.length > 2) throw new IllegalArgumentException("用法：/genesis blueprint list [author UUID]");
+        UUID author = args.length == 2 ? UUID.fromString(args[1]) : player.getUniqueId();
+        var designs = store.listFor(player.getUniqueId(), author);
+        if (designs.isEmpty()) { player.sendMessage("没有可查看的已保存蓝图。使用 /genesis blueprint create <namespace:id>。"); return; }
+        player.sendMessage("可查看蓝图 " + designs.size() + "/" + BlueprintStore.MAX_BLUEPRINTS_PER_PLAYER + " · author=" + author + ":");
         designs.forEach(blueprint -> player.sendMessage("- " + blueprint.metadata().id().value()
                 + " v" + blueprint.metadata().version() + " · " + blueprint.components().size() + " 个组件"));
     }
 
     private void open(Player player, String[] args) throws IOException {
-        requireLength(args, 2);
+        if (args.length < 2 || args.length > 3)
+            throw new IllegalArgumentException("用法：/genesis blueprint open <id> [author UUID]");
         requireNoOpenSession(player);
         DesignId id = new DesignId(args[1]);
-        Blueprint blueprint = store.load(player.getUniqueId(), id)
-                .orElseThrow(() -> new IllegalArgumentException("找不到个人蓝图 " + id.value()));
+        UUID author = args.length == 3 ? UUID.fromString(args[2]) : player.getUniqueId();
+        Blueprint blueprint = store.loadFor(player.getUniqueId(), author, id)
+                .orElseThrow(() -> new IllegalArgumentException("找不到蓝图 " + id.value()));
         putSession(player.getUniqueId(), new EditSession(new BlueprintWorkspace(blueprint),
                 blueprint.metadata().hash(), false));
-        player.sendMessage("已打开 " + id.value() + "。使用 /genesis blueprint preview 查看结构评估。");
+        player.sendMessage("已打开 " + id.value() + " · author=" + author
+                + (blueprint.metadata().permissions().mayEdit(player.getUniqueId(), author) ? " · 可编辑" : " · 只读")
+                + "。使用 /genesis blueprint preview 查看结构评估。");
+    }
+
+    private void cloneBlueprint(Player player, String[] args) throws IOException {
+        if (args.length != 4)
+            throw new IllegalArgumentException("用法：/genesis blueprint clone <author UUID> <sourceId> <newId>");
+        requireNoOpenSession(player);
+        UUID actor = player.getUniqueId();
+        UUID author = UUID.fromString(args[1]);
+        DesignId source = new DesignId(args[2]);
+        DesignId target = new DesignId(args[3]);
+        EditSession session = new EditSession(new BlueprintWorkspace(store.newBlueprint(actor, target)), "", false);
+        putSession(actor, session);
+        try {
+            Blueprint copy = store.cloneBlueprint(actor, author, source, target);
+            session.workspace = new BlueprintWorkspace(copy);
+            session.saved = copy;
+            session.baseHash = copy.metadata().hash();
+        } catch (IOException | RuntimeException failure) {
+            sessions.remove(actor, session);
+            throw failure;
+        }
+        player.sendMessage("已克隆并打开 " + target.value() + "；副本默认私有并记录原作者、版本与哈希。");
+    }
+
+    private void access(Player player, String[] args) {
+        requireLength(args, 3);
+        EditSession session = requireEditableSession(player);
+        if (!player.getUniqueId().equals(session.workspace.current().metadata().author()))
+            throw new SecurityException("仅原作者可修改蓝图许可。");
+        Blueprint before = session.workspace.current();
+        DesignPermissions old = before.metadata().permissions();
+        DesignPermissions next;
+        switch (args[1].toLowerCase(Locale.ROOT)) {
+            case "public" -> next = new DesignPermissions(onOff(args[2]), old.allowClone(), old.editors());
+            case "clone" -> next = new DesignPermissions(old.publicRead(), onOff(args[2]), old.editors());
+            case "editor", "revoke" -> {
+                var editors = new HashSet<>(old.editors());
+                UUID editor = UUID.fromString(args[2]);
+                if (args[1].equalsIgnoreCase("editor")) editors.add(editor);
+                else editors.remove(editor);
+                next = new DesignPermissions(old.publicRead(), old.allowClone(), editors);
+            }
+            default -> throw new IllegalArgumentException("用法：access public|clone on|off，或 access editor|revoke <UUID>");
+        }
+        session.workspace.permissions(next);
+        markChanged(session, before);
+        player.sendMessage("蓝图许可已修改；使用 save 后生效，undo 可撤销。");
+    }
+
+    private void version(Player player, String[] args) {
+        requireLength(args, 2);
+        EditSession session = requireEditableSession(player);
+        if (!player.getUniqueId().equals(session.workspace.current().metadata().author()))
+            throw new SecurityException("仅原作者可修改蓝图版本。");
+        Blueprint before = session.workspace.current();
+        session.workspace.version(args[1]);
+        markChanged(session, before);
+        player.sendMessage("蓝图版本已修改；使用 save 后生效。");
+    }
+
+    private boolean onOff(String value) {
+        if (value.equalsIgnoreCase("on")) return true;
+        if (value.equalsIgnoreCase("off")) return false;
+        throw new IllegalArgumentException("许可开关须为 on 或 off");
     }
 
     private void close(Player player, String[] args) {
@@ -119,7 +193,7 @@ public final class BlueprintController implements Listener {
     private void add(Player player, String[] args) {
         requireLength(args, 7);
         if (!evaluator.hasModule(args[2])) throw new IllegalArgumentException("未知模块；可用模块：" + moduleIds());
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         Blueprint before = session.workspace.current();
         session.workspace.add(new Blueprint.Component(args[1], args[2], integer(args[3]), integer(args[4]),
                 integer(args[5]), 0), args[6]);
@@ -129,7 +203,7 @@ public final class BlueprintController implements Listener {
 
     private void move(Player player, String[] args) {
         requireLength(args, 5);
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         Blueprint before = session.workspace.current();
         session.workspace.move(args[1], integer(args[2]), integer(args[3]), integer(args[4]));
         markChanged(session, before);
@@ -138,7 +212,7 @@ public final class BlueprintController implements Listener {
 
     private void rotate(Player player, String[] args) {
         requireLength(args, 3);
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         Blueprint before = session.workspace.current();
         session.workspace.rotate(args[1], integer(args[2]));
         markChanged(session, before);
@@ -147,7 +221,7 @@ public final class BlueprintController implements Listener {
 
     private void connect(Player player, String[] args, boolean connect) {
         requireLength(args, 3);
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         Blueprint before = session.workspace.current();
         if (connect) session.workspace.connect(args[1], args[2]);
         else session.workspace.disconnect(args[1], args[2]);
@@ -157,7 +231,7 @@ public final class BlueprintController implements Listener {
 
     private void remove(Player player, String[] args) {
         requireLength(args, 2);
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         Blueprint before = session.workspace.current();
         session.workspace.remove(args[1]);
         markChanged(session, before);
@@ -166,7 +240,7 @@ public final class BlueprintController implements Listener {
 
     private void undo(Player player, String[] args) {
         requireLength(args, 1);
-        EditSession session = requireSession(player);
+        EditSession session = requireEditableSession(player);
         if (!session.workspace.undo()) throw new IllegalArgumentException("没有可撤销的修改");
         session.dirty = !session.workspace.current().equals(session.saved);
         player.sendMessage("已撤销一步；剩余撤销步数 " + session.workspace.undoDepth() + "/" + BlueprintWorkspace.MAX_UNDO_STEPS + "。");
@@ -209,10 +283,11 @@ public final class BlueprintController implements Listener {
     }
 
     private void help(Player player) {
-        player.sendMessage("/genesis blueprint create <namespace:id> | list | open <id> | close [discard]");
+        player.sendMessage("/genesis blueprint create <namespace:id> | list [author UUID] | open <id> [author UUID] | close [discard]");
+        player.sendMessage("/genesis blueprint clone <author UUID> <sourceId> <newId> | access public|clone on|off | access editor|revoke <UUID> | version <x.y.z>");
         player.sendMessage("/genesis blueprint add <componentId> <module> <x> <y> <z> <anchorId> | move <componentId> <x> <y> <z> | rotate <componentId> <0-3>");
         player.sendMessage("/genesis blueprint connect <from> <to> | disconnect <from> <to> | remove <componentId> | undo | preview [page] | save");
-        player.sendMessage("个人蓝图有数量上限且仅作者可见；所有修改只作用于虚拟设计，不更改方块、物品或货币。");
+        player.sendMessage("蓝图默认私有；作者可授权编辑、公开查看和克隆。所有修改只作用于虚拟设计。");
     }
 
     private String moduleIds() {
@@ -222,6 +297,14 @@ public final class BlueprintController implements Listener {
     private EditSession requireSession(Player player) {
         EditSession session = sessions.get(player.getUniqueId());
         if (session == null) throw new IllegalArgumentException("先 create 或 open 一个蓝图");
+        return session;
+    }
+
+    private EditSession requireEditableSession(Player player) {
+        EditSession session = requireSession(player);
+        Blueprint saved = session.saved;
+        if (!saved.metadata().permissions().mayEdit(player.getUniqueId(), saved.metadata().author()))
+            throw new SecurityException("此蓝图仅可查看；需要原作者授权编辑或允许克隆。");
         return session;
     }
 

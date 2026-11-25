@@ -66,7 +66,20 @@ P2 蓝图工作区提供个人虚拟结构编辑、结构代价预览、撤销�
 /genesis blueprint save
 ```
 
-支持 `genesis:core`、`frame`、`solar_panel`、`sensor`、`wheel`、`thruster` 和 `wing` 模块。预览报告质量/承载、材料代价、供能、推力、升力、能力和组件坐标。蓝图以作者 UUID 分目录、以 ID 哈希命名并通过 schema/hash 校验，每位玩家最多保存64份；只允许作者编辑，保存会检查基准哈希，避免覆盖已变化版本。修改只在个人虚拟蓝图中生效，不放置方块或物品。P2 仍需真人客户端验证实际命令、重启恢复和多玩家隔离。
+支持 `genesis:core`、`frame`、`solar_panel`、`sensor`、`wheel`、`thruster` 和 `wing` 模块。预览报告质量/承载、材料代价、供能、推力、升力、能力和组件坐标。蓝图以作者 UUID 分目录、以 ID 哈希命名并通过 schema/hash 校验，每位作者最多保存64份。默认私有；作者可授权协作者编辑，或开放只读查看和许可克隆：
+
+```text
+/genesis blueprint access editor <collaborator UUID>
+/genesis blueprint access public on
+/genesis blueprint access clone on
+/genesis blueprint version 1.1.0
+/genesis blueprint save
+/genesis blueprint list <author UUID>
+/genesis blueprint open player:rover <author UUID>
+/genesis blueprint clone <author UUID> player:rover player:my_rover
+```
+
+作者使用 `access revoke <UUID>` 撤销编辑许可，修改许可/版本均需 `save` 才生效，支持 `undo`。协作者只能修改结构，不能修改许可、版本或来源；每次保存检查磁盘上当前授权和打开时的基准哈希，撤销后的旧会话不能写回，并发编辑只能有一个基准版本保存成功。其他作者目录须显式提供 UUID，公开只读不授予编辑或克隆权。克隆要求已有读取许可且源作者允许克隆（原作者可复制自己的设计），副本默认私有，记录原作者、设计 ID、精确版本与内容哈希，且不会覆盖同名副本。所有修改只作用于虚拟设计，不放置方块或物品。单元测试覆盖授权、撤销、冲突、重启与克隆来源；新增协作命令尚待实际客户端验收。
 
 P3 typed-program 工作区提供35个有类型原语、个人程序保存和断点调试：
 
@@ -162,7 +175,7 @@ P7 ArenaRuleset 使用现有 schema-v1 严格格式。玩家编辑有界宽高�
 /genesis arena catalog
 ```
 
-`/genesis arena review pending` 查看待审核条目，作者使用 `status <id> <version>` 查询自己的状态和拒绝理由，审核员使用 `show <id> <version>` 查看完整记录。审核员使用 `approve <id> <version>` 发布，或使用 `reject <id> <version> <reason>` 记录拒绝原因。`clone <publishedId> <newId>` 仅在源规则允许克隆时创建个人草稿，`dep add <id> <version> <sha256>` 固定许可依赖。规则只描述尺寸、时长、单位预算与依赖，不携带脚本、命令或任意执行字段。P7 已有编辑、许可、审核、发布与 catalog 工作流，竞技运行时和反作弊比赛验收仍未实现。
+`/genesis arena review pending` 查看待审核条目，作者使用 `status <id> <version>` 查询自己的状态和拒绝理由，审核员使用 `show <id> <version>` 查看完整记录。审核员使用 `approve <id> <version>` 发布，或使用 `reject <id> <version> <reason>` 记录拒绝原因。`clone <publishedId> <newId>` 仅在源规则允许克隆时创建个人草稿，`dep add <id> <version> <sha256>` 固定许可依赖。草稿保存以磁盘上当前编辑许可为准；许可、版本和来源/依赖变更仅限原作者，提交的新文档不能自授编辑权。规则只描述尺寸、时长、单位预算与依赖，不携带脚本、命令或任意执行字段。P7 已有编辑、许可、审核、发布与 catalog 工作流，P8 提供竞技运行时，真人创作与反作弊比赛验收仍未完成。
 
 P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两位、最多四位玩家，已接受的 team roster 原子保存在 `plugins/StarGenesis/arena-matches/teams.json`。全部 roster 同时在线后按已发布规则创建比赛。每一逻辑回合必须由所有参赛玩家各提交一次 `pass` 或 `claim`，服务端收齐后同时解析冲突、消耗单位并按领地数量补给：
 

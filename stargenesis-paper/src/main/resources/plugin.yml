@@ -24,7 +24,7 @@ permissions:
     description: Start, inspect, stop and replay an isolated virtual resource experiment
     default: true
   stargenesis.blueprint:
-    description: Create and edit private virtual blueprints
+    description: Create, share and clone virtual blueprints with author-controlled permissions
     default: true
   stargenesis.program:
     description: Create and debug private typed programs in an isolated virtual context

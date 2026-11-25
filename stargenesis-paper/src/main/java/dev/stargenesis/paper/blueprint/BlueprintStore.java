@@ -8,11 +8,14 @@ import dev.stargenesis.design.DesignCodec;
 import dev.stargenesis.design.DesignValidationException;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +28,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-/** Owner-scoped, bounded persistence for player-authored blueprints. */
+/** Author-scoped, bounded persistence with persisted collaboration and cloning permissions. */
 public final class BlueprintStore {
     public static final int MAX_BLUEPRINTS_PER_PLAYER = 64;
     private final Path root;
@@ -51,16 +54,28 @@ public final class BlueprintStore {
         return Files.exists(path(owner, id), LinkOption.NOFOLLOW_LINKS);
     }
 
-    public synchronized Blueprint save(UUID owner, Blueprint blueprint, String expectedHash) throws IOException {
-        if (!blueprint.metadata().author().equals(owner)) throw new SecurityException("Only the blueprint author may save it");
+    public synchronized Blueprint save(UUID editor, Blueprint blueprint, String expectedHash) throws IOException {
+        Objects.requireNonNull(editor, "editor");
+        UUID owner = blueprint.metadata().author();
         Path ownerDirectory = ownerDirectory(owner);
-        Files.createDirectories(ownerDirectory);
         rejectSymlink(ownerDirectory);
         Path target = path(owner, blueprint.metadata().id());
         Path temporary = target.resolveSibling(target.getFileName() + ".tmp");
         if (Files.isSymbolicLink(target) || Files.isSymbolicLink(temporary))
             throw new IOException("Symlink blueprint path rejected");
-        verifyExpectedVersion(owner, blueprint.metadata().id(), target, expectedHash);
+        Blueprint current = verifyExpectedVersion(owner, blueprint.metadata().id(), target, expectedHash);
+        if (!owner.equals(editor)) {
+            if (current == null || !current.metadata().permissions().mayEdit(editor, owner))
+                throw new SecurityException("Blueprint editing requires the author's current permission");
+            DesignMetadata previous = current.metadata();
+            DesignMetadata candidate = blueprint.metadata();
+            if (!previous.permissions().equals(candidate.permissions())
+                    || !previous.source().equals(candidate.source())
+                    || !previous.dependencies().equals(candidate.dependencies())
+                    || !previous.version().equals(candidate.version())
+                    || previous.schemaVersion() != candidate.schemaVersion())
+                throw new SecurityException("Only the blueprint author may change permissions, version or provenance");
+        }
         if (!Files.exists(target) && countBlueprints(ownerDirectory) >= MAX_BLUEPRINTS_PER_PLAYER)
             throw new IOException("Blueprint limit reached");
 
@@ -73,7 +88,14 @@ public final class BlueprintStore {
         catch (DesignValidationException invalid) { throw new IOException("Blueprint validation failed", invalid); }
         byte[] data = encoded.getBytes(StandardCharsets.UTF_8);
         if (data.length > DesignCodec.MAX_DOCUMENT_BYTES) throw new IOException("Blueprint exceeds the document size limit");
-        Files.write(temporary, data);
+        Files.createDirectories(ownerDirectory);
+        rejectSymlink(ownerDirectory);
+        try (FileChannel channel = FileChannel.open(temporary, StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
+            ByteBuffer buffer = ByteBuffer.wrap(data);
+            while (buffer.hasRemaining()) channel.write(buffer);
+            channel.force(true);
+        }
         try { Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
         catch (AtomicMoveNotSupportedException failure) {
             Files.deleteIfExists(temporary);
@@ -93,6 +115,38 @@ public final class BlueprintStore {
         return Optional.of(blueprint);
     }
 
+    public synchronized Optional<Blueprint> loadFor(UUID reader, UUID author, DesignId id) throws IOException {
+        Objects.requireNonNull(reader, "reader");
+        Optional<Blueprint> saved = load(author, id);
+        if (saved.isPresent() && !mayRead(reader, saved.get()))
+            throw new SecurityException("Blueprint is private and has not been shared with this player");
+        return saved;
+    }
+
+    public synchronized List<Blueprint> listFor(UUID reader, UUID author) throws IOException {
+        Objects.requireNonNull(reader, "reader");
+        return list(author).stream().filter(blueprint -> mayRead(reader, blueprint)).toList();
+    }
+
+    public synchronized Blueprint cloneBlueprint(UUID actor, UUID sourceAuthor, DesignId sourceId,
+                                                  DesignId targetId) throws IOException {
+        Blueprint source = loadFor(actor, sourceAuthor, sourceId)
+                .orElseThrow(() -> new IOException("Source blueprint does not exist"));
+        if (!sourceAuthor.equals(actor) && !source.metadata().permissions().allowClone())
+            throw new SecurityException("Blueprint author has not allowed cloning");
+        if (sourceId.equals(targetId)) throw new IllegalArgumentException("Clone must use a new design ID");
+        DesignMetadata old = source.metadata();
+        String provenance = "clone:" + sourceAuthor + ":" + sourceId.value() + "@" + old.version() + "#" + old.hash();
+        DesignMetadata metadata = new DesignMetadata(targetId, DesignCodec.SCHEMA_VERSION, "1.0.0", actor,
+                provenance, old.dependencies(), "", new DesignPermissions(false, false, Set.of()));
+        return save(actor, new Blueprint(metadata, source.components(), source.connections()), "");
+    }
+
+    private boolean mayRead(UUID reader, Blueprint blueprint) {
+        return blueprint.metadata().permissions().publicRead()
+                || blueprint.metadata().permissions().mayEdit(reader, blueprint.metadata().author());
+    }
+
     public synchronized List<Blueprint> list(UUID owner) throws IOException {
         Path directory = ownerDirectory(owner);
         if (!Files.exists(directory, java.nio.file.LinkOption.NOFOLLOW_LINKS)) return List.of();
@@ -103,13 +157,15 @@ public final class BlueprintStore {
                 if (blueprints.size() == MAX_BLUEPRINTS_PER_PLAYER) throw new IOException("Blueprint directory exceeds its file limit");
                 Blueprint blueprint = read(file);
                 verifyOwner(owner, blueprint.metadata().id(), blueprint);
+                if (!file.equals(path(owner, blueprint.metadata().id())))
+                    throw new IOException("Blueprint filename does not match its design ID");
                 blueprints.add(blueprint);
             }
         }
         return blueprints.stream().sorted(Comparator.comparing(blueprint -> blueprint.metadata().id())).toList();
     }
 
-    private void verifyExpectedVersion(UUID owner, DesignId id, Path target, String expectedHash) throws IOException {
+    private Blueprint verifyExpectedVersion(UUID owner, DesignId id, Path target, String expectedHash) throws IOException {
         if (expectedHash == null || !(expectedHash.isEmpty() || expectedHash.matches("[0-9a-f]{64}")))
             throw new IllegalArgumentException("Invalid expected blueprint hash");
         boolean exists = Files.exists(target, LinkOption.NOFOLLOW_LINKS);
@@ -120,7 +176,9 @@ public final class BlueprintStore {
             verifyOwner(owner, id, current);
             if (!current.metadata().hash().equals(expectedHash))
                 throw new IOException("Saved blueprint changed since it was opened; reopen it before saving");
+            return current;
         }
+        return null;
     }
 
     private Blueprint read(Path file) throws IOException {
@@ -144,6 +202,7 @@ public final class BlueprintStore {
     }
 
     private int countBlueprints(Path directory) throws IOException {
+        if (!Files.exists(directory, LinkOption.NOFOLLOW_LINKS)) return 0;
         int count = 0;
         try (var files = Files.newDirectoryStream(directory, "*.json")) {
             for (Path ignored : files) {

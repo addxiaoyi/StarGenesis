@@ -545,7 +545,10 @@ public final class ArenaController implements Listener, AutoCloseable {
             case "height" -> session.workspace.resize(session.workspace.current().width(), integer(args[2]));
             case "duration" -> session.workspace.duration(Long.parseLong(args[2]));
             case "units" -> session.workspace.unitBudget(integer(args[2]));
-            case "version" -> session.workspace.version(args[2]);
+            case "version" -> {
+                requireAuthor(player, session);
+                session.workspace.version(args[2]);
+            }
             default -> throw new IllegalArgumentException("字段须为 width、height、duration、units 或 version");
         }
         player.sendMessage("已修改 " + args[1] + "，保存后新 hash 才会发布。");
@@ -554,6 +557,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private void access(Player player, String[] args) {
         requireLength(args, 3);
         Session session = requireSession(player.getUniqueId());
+        requireAuthor(player, session);
         switch (args[1].toLowerCase(Locale.ROOT)) {
             case "public" -> session.workspace.publicRead(enabled(args[2]));
             case "clone" -> session.workspace.allowClone(enabled(args[2]));
@@ -566,9 +570,15 @@ public final class ArenaController implements Listener, AutoCloseable {
         else player.sendMessage("已更新 " + args[1] + " 许可。");
     }
 
+    private void requireAuthor(Player player, Session session) {
+        if (!player.getUniqueId().equals(session.workspace.current().metadata().author()))
+            throw new SecurityException("Only the Arena author may change permissions, version or provenance");
+    }
+
     private void dependency(Player player, String[] args) {
         if (args.length < 3) throw new IllegalArgumentException("用法：/genesis arena dep add <id> <version> <sha256> | dep remove <id>");
         Session session = requireSession(player.getUniqueId());
+        requireAuthor(player, session);
         if (args[1].equalsIgnoreCase("add")) {
             requireLength(args, 5);
             session.workspace.addDependency(new DesignDependency(new DesignId(args[2]), args[3], args[4]));

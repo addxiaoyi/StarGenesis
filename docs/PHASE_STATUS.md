@@ -29,6 +29,10 @@ P1 在纯 Java 模块实现确定性地形、寻路、采集、投递、能源�
 
 P2 使用服务器模块白名单和有界物理代价进行蓝图评估。个人 workspace 支持编辑、预览、保存和撤销，文件按 UUID 与设计 ID 哈希隔离并用基准 hash 防止覆盖冲突。Paper/Folia 五客户端已创建、修改和重开蓝图。
 
+无人值守续开发补齐 P2 共享编辑、公开只读、许可克隆、版本和许可撤销命令。授权从持久文档读取，协作者不能修改许可/版本/来源，旧会话在撤销后不能保存。作者 UUID 显式限定跨作者访问，克隆副本默认私有并记录原作者/ID/version/hash，保存使用强制落盘后原子替换。新增9个协作存储测试与1个工作区撤销测试，覆盖并发基准哈希冲突、重启、私有隔离、非法自授权及克隆来源；新命令尚未进行实服客户端验证。
+
+该批次连同 P7 授权回归在 Java 21/25 各通过257项测试（36个测试类），失败/错误/跳过均为0；两个 JVM 的发行与设计包签名自检均通过。完整日志、工件哈希和验证边界见 `docs/evidence/p2/collaboration/summary.json`。全阶段剩余工程工作由 `docs/DEVELOPMENT_PLAN.md` 追踪。
+
 P3 有35个封闭 typed primitive、IR schema/hash、解释器、断点/步进/撤销和有限资源沙盒。沙盒执行不访问 Minecraft world、真实库存或经济服务。自动客户端已编辑程序并验证 replay。
 
 ## P4–P5
@@ -44,6 +48,8 @@ P5 以 `ConservingResourceLedger` 在 soil、detritus 和 organism biomass 间�
 P6 由四名不同 UUID 玩家组成两个组织、竞价并下单。额外实服流程使用 roster 派生的确定 fault seed 触发部分生产失败，断言 `FAILED_RECOVERED`、recovered order、credits/ore 退回至预期余额、parts escrow 释放和 replay。结果见 `paper-factory-compensation-retest-workflow-result.json` 与 Folia 对应文件。这仍是五自动客户端，不替代真人比赛。
 
 P7 的 `ArenaRulesetStore` 将作者提交与公开 catalog 分开，提交绑定 content hash，作者不能自审，独立 OP 才能批准/拒绝，拒绝记录理由。审核状态跨重启恢复。Paper/Folia 自动流程覆盖待审不可见、批准后发布及拒绝版本隔离。
+
+续开发同时修复 P7 草稿候选文档自授权路径：保存前检查持久文档的编辑许可，协作者只能修改尺寸/时长/单位预算，许可、版本、来源/依赖修改仅限原作者。4个新增回归覆盖自授权覆盖、撤销后恢复旧权限、协作者扩权/来源篡改以及代替其他作者创建草稿。
 
 P8 的公开规则固定 ID/version/hash，match 只接收 roster UUID，每轮收齐全部参赛者动作后才原子推进。Pending actions 和 observers 会持久保存。Paper/Folia 实服客户端在 observer 确认 `pending=1` 后强制断开 Bob TCP socket，Bob 以相同 UUID 重连并恢复原 match/pending action，再完成回合和 replay。真人双队、公平性和性能仍未验收。
 

@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-25",
+  "baseCommit": "8b89f80",
+  "scope": "P2 shared blueprint editing, permission-controlled cloning and P7 persisted draft authorization.",
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms32m -Xmx128m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=32m -XX:ActiveProcessorCount=2",
+      "suites": 36,
+      "tests": 257,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "collaboration-verify-java21.log",
+      "logSha256": "c870e5c3219cb885a475b8a34a888fa69b9a28654fe0b8552c179b6c43ad5db6",
+      "pluginSha256": "0d8bfaea12a5f26a6c46ab8eee515279974de6e69f45c32a1e326d1285b3d838",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms32m -Xmx128m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=32m -XX:ActiveProcessorCount=2",
+      "suites": 36,
+      "tests": 257,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "collaboration-verify-java25.log",
+      "logSha256": "30f21b5f4afda6048f97e56e61b4246b25ce9201bb4f38d80504218ffa45e120",
+      "pluginSha256": "21f6290c42f9257791e81ed132aee6e778aeee0e8328a5dcc51eba48f46cd43a",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "signers": {
+    "java21": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "21f6290c42f9257791e81ed132aee6e778aeee0e8328a5dcc51eba48f46cd43a",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "release": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "21f6290c42f9257791e81ed132aee6e778aeee0e8328a5dcc51eba48f46cd43a",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "signerArtifact": "Both JVMs checked the final shaded artifact built with Java 25 targeting release 21.",
+  "newTests": {
+    "blueprintStorage": 9,
+    "blueprintWorkspace": 1,
+    "arenaDraftAuthorization": 4
+  },
+  "checks": [
+    "Private blueprints remain private; public reading does not authorize saving or cloning.",
+    "Current persisted permissions control writes; candidate metadata cannot self-authorize.",
+    "Revoked editors cannot restore old permissions or save using the current hash.",
+    "Editors cannot alter author-controlled permissions, version, provenance or dependencies.",
+    "Authorized edits stay in the author directory and reload after restart.",
+    "Concurrent saves from one base hash allow exactly one winning write.",
+    "Clone records exact author, design ID, version and content hash; new copy starts private with no editors.",
+    "Cross-author access requires an explicit UUID; misnamed stored blueprint files are rejected.",
+    "Permission and version edits support undo; no-op or invalid edits preserve the workspace.",
+    "Boundary scan and whitespace checks passed."
+  ],
+  "logs": {
+    "blueprint-collaboration-focused.log": "182be6c5cd3d057dcb102c9fe1240736b76ad0fc53963db522c5bff9215a09cc",
+    "arena-authorization-focused.log": "a3bac8019393604e7ebf97c13f742af66d9bb4dbf8310b15ad33f4e51b8efa64",
+    "collaboration-verify-java21.log": "c870e5c3219cb885a475b8a34a888fa69b9a28654fe0b8552c179b6c43ad5db6",
+    "collaboration-verify-java25.log": "30f21b5f4afda6048f97e56e61b4246b25ce9201bb4f38d80504218ffa45e120"
+  },
+  "limits": [
+    "New collaborative commands have not been exercised on live Paper/Folia clients in this batch.",
+    "Tests ran in the Maven JVM (forkCount=0) with explicit memory limits; no capacity claim.",
+    "Signer self-tests use ephemeral keys; no official release was signed.",
+    "Other P0-P11 implementation and human/external acceptance items remain open."
+  ]
+}

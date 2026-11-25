@@ -149,12 +149,22 @@ public final class ArenaRulesetStore {
     }
 
     public synchronized ArenaRuleset saveDraft(UUID editor, ArenaRuleset candidate, String expectedHash) throws IOException {
-        authorize(editor, candidate);
+        Objects.requireNonNull(editor, "editor");
         Path target = path(candidate.metadata().author(), candidate.metadata().id());
         Path directory = ownerDirectory(candidate.metadata().author());
-        Files.createDirectories(directory);
         rejectSymlink(directory);
-        verifyExpectedVersion(target, expectedHash);
+        ArenaRuleset current = verifyExpectedVersion(target, expectedHash);
+        if (!candidate.metadata().author().equals(editor)) {
+            if (current == null) throw new SecurityException("Only the author may create an Arena draft");
+            authorize(editor, current);
+            if (!current.metadata().permissions().equals(candidate.metadata().permissions())
+                    || !current.metadata().source().equals(candidate.metadata().source())
+                    || !current.metadata().dependencies().equals(candidate.metadata().dependencies())
+                    || !current.metadata().version().equals(candidate.metadata().version())
+                    || current.metadata().schemaVersion() != candidate.metadata().schemaVersion())
+                throw new SecurityException("Only the Arena author may change permissions, version or provenance");
+        }
+        Files.createDirectories(directory);
         if (!Files.exists(target, LinkOption.NOFOLLOW_LINKS) && countDrafts(directory) >= MAX_DRAFTS_PER_AUTHOR)
             throw new IOException("Arena draft limit reached");
         ArenaRuleset signed = seal(candidate);
@@ -429,14 +439,19 @@ public final class ArenaRulesetStore {
             throw new SecurityException("Arena draft is not editable by this player");
     }
 
-    private void verifyExpectedVersion(Path target, String expectedHash) throws IOException {
+    private ArenaRuleset verifyExpectedVersion(Path target, String expectedHash) throws IOException {
         if (expectedHash == null || !(expectedHash.isEmpty() || expectedHash.matches("[0-9a-f]{64}")))
             throw new IllegalArgumentException("Invalid expected arena hash");
         boolean exists = Files.exists(target, LinkOption.NOFOLLOW_LINKS);
         if (expectedHash.isEmpty() && exists) throw new IOException("Arena draft exists; open it before saving");
         if (!expectedHash.isEmpty() && !exists) throw new IOException("Arena draft was removed; reopen it before saving");
-        if (exists && !read(target).metadata().hash().equals(expectedHash))
+        if (!exists) return null;
+        ArenaRuleset current = read(target);
+        if (!target.equals(path(current.metadata().author(), current.metadata().id())))
+            throw new IOException("Arena draft identity does not match its storage path");
+        if (!current.metadata().hash().equals(expectedHash))
             throw new IOException("Arena draft changed since it was opened; reopen it before saving");
+        return current;
     }
 
     private Path findDraftAuthor(DesignId id) throws IOException {
