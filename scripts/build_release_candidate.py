@@ -103,20 +103,18 @@ def test_totals(root: Path) -> dict[str, int]:
     return {"reports": len(reports), **totals}
 
 
-def run_build(build_root: Path, java: Path, log: Path) -> None:
+def run_build(build_root: Path, java: Path, log: Path, fork_count: int) -> list[str]:
     wrapper = build_root / ("mvnw.cmd" if os.name == "nt" else "mvnw")
-    command = [str(wrapper), "-B", "-ntp", "clean", "verify"]
+    command = [str(wrapper), "-B", "-ntp", f"-DforkCount={fork_count}", "clean", "verify"]
     environment = os.environ.copy()
     environment["JAVA_HOME"] = str(java.parent.parent)
     environment["PATH"] = str(java.parent) + os.pathsep + environment.get("PATH", "")
-    output = subprocess.run(command, cwd=build_root, env=environment, text=True,
-                            encoding="utf-8", errors="replace", capture_output=True)
-    log.write_text(output.stdout + output.stderr, encoding="utf-8")
     print("$ " + subprocess.list2cmdline(command), flush=True)
-    print(output.stdout, end="", flush=True)
+    with log.open("w", encoding="utf-8", newline="\n") as stream:
+        output = subprocess.run(command, cwd=build_root, env=environment, stdout=stream, stderr=subprocess.STDOUT)
     if output.returncode != 0:
-        print(output.stderr, file=sys.stderr, end="", flush=True)
-        raise RuntimeError(f"Release candidate clean verify failed with exit code {output.returncode}")
+        raise RuntimeError(f"Release candidate clean verify failed with exit code {output.returncode}; see {log}")
+    return command
 
 
 def main() -> None:
@@ -129,7 +127,9 @@ def main() -> None:
     parser.add_argument("--output-directory", type=Path,
                         help="Output directory, defaulting to .work/releases/<version>")
     parser.add_argument("--evidence-file", type=Path,
-                        help="Evidence JSON, defaulting to docs/evidence/p11/release-candidate.json")
+                        help="New evidence JSON, defaulting to docs/evidence/p11/release-candidate-<version>.json")
+    parser.add_argument("--fork-count", type=int, choices=(0, 1), default=1,
+                        help="Surefire JVM forks: 1 normally, 0 for memory-constrained verification; tests always run")
     args = parser.parse_args()
 
     if not VERSION_PATTERN.fullmatch(args.version) or "SNAPSHOT" in args.version.upper():
@@ -143,12 +143,14 @@ def main() -> None:
     build_root = root / ".work" / f"release-build-{args.version}-{stamp}"
     output = args.output_directory or Path(".work") / "releases" / args.version
     output = (root / output).resolve() if not output.is_absolute() else output.resolve()
-    evidence = args.evidence_file or Path("docs/evidence/p11/release-candidate.json")
+    evidence = args.evidence_file or Path("docs/evidence/p11") / f"release-candidate-{args.version}.json"
     evidence = (root / evidence).resolve() if not evidence.is_absolute() else evidence.resolve()
     if output.exists():
         parser.error(f"Release output directory already exists: {output}")
     if build_root.exists():
         parser.error(f"Release build directory already exists: {build_root}")
+    if evidence.exists():
+        parser.error(f"Release evidence already exists: {evidence}")
 
     copy_build_inputs(root, build_root)
     source_version = project_version(build_root / "pom.xml")
@@ -158,7 +160,7 @@ def main() -> None:
         set_reactor_version(build_root / module / "pom.xml", args.version, False, source_version)
 
     build_log = build_root / "release-verify.log"
-    run_build(build_root, java, build_log)
+    build_command = run_build(build_root, java, build_log, args.fork_count)
     tests = test_totals(build_root)
     sbom_source = build_root / "target" / "sbom.json"
     jar_source = build_root / "stargenesis-paper" / "target" / f"stargenesis-paper-{args.version}.jar"
@@ -182,7 +184,12 @@ def main() -> None:
     evidence_document = {
         "version": args.version,
         "builtAt": datetime.now(timezone.utc).isoformat(),
-        "buildCommand": "mvnw.cmd -B -ntp clean verify" if os.name == "nt" else "./mvnw -B -ntp clean verify",
+        "buildCommand": subprocess.list2cmdline([Path(build_command[0]).name, *build_command[1:]]),
+        "buildArguments": [Path(build_command[0]).name, *build_command[1:]],
+        "forkCount": args.fork_count,
+        "javaVersion": subprocess.run([str(java), "-Xmx32m", "-XX:+UseSerialGC", "-version"],
+                                      check=True, capture_output=True, text=True, timeout=30).stderr.strip(),
+        "mavenOpts": os.environ.get("MAVEN_OPTS", ""),
         "isolatedSourceCopy": True,
         "sourceVersion": source_version,
         "sourceTreeSha256": source_tree_hash,
@@ -202,9 +209,11 @@ def main() -> None:
         "signed": False,
         "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
         "buildLog": path_label(log_output, root),
+        "buildLogSha256": sha256(log_output),
     }
     evidence.parent.mkdir(parents=True, exist_ok=True)
-    evidence.write_text(json.dumps(evidence_document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    with evidence.open("x", encoding="utf-8", newline="\n") as stream:
+        stream.write(json.dumps(evidence_document, indent=2, ensure_ascii=False) + "\n")
     print(json.dumps(evidence_document, indent=2, ensure_ascii=False))
 
 

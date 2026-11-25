@@ -19,7 +19,13 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/check_boundaries.py
+      - run: python -m unittest discover -s scripts -p "test_release_candidate_builder.py"
       - run: sh mvnw -B -ntp verify
+      - run: >-
+          python scripts/test_settlement_process_lock.py
+          --java-home "$JAVA_HOME"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --output target/settlement-process-lock.json
       - run: >-
           python scripts/test_release_artifact_signer.py
           --java "$(command -v java)"
@@ -34,10 +40,13 @@ jobs:
           --design stargenesis-design/src/main/resources/examples/blueprint.json
           --output target/signed-design-signer-smoke.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: stargenesis-java-${{ matrix.java }}
           path: |
             stargenesis-paper/target/stargenesis-paper-*.jar
             target/release-signer-smoke.json
             target/signed-design-signer-smoke.json
+            target/settlement-process-lock.json
+            target/sbom.json
             **/target/surefire-reports/*
