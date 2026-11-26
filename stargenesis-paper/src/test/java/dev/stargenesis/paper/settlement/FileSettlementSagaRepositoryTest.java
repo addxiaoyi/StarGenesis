@@ -9,6 +9,7 @@ import dev.stargenesis.integrations.SettlementSagaRepository;
 import dev.stargenesis.integrations.SettlementAuthorizer;
 import dev.stargenesis.integrations.IdempotentSettlementPort;
 import dev.stargenesis.integrations.SettlementOperation;
+import dev.stargenesis.integrations.SettlementAuthorityBinding;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -26,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileSettlementSagaRepositoryTest {
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
     @Test void sagaStateAndRevisionSurviveRepositoryRestart(@TempDir Path directory) throws Exception {
         UUID sagaId = new UUID(0, 901);
         UUID buyer = new UUID(0, 902);
@@ -161,6 +165,7 @@ class FileSettlementSagaRepositoryTest {
         }
 
         @Override public Capability capability() { return new Capability(true, true, "fixture:p9-idempotent"); }
+        @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
         @Override public Observation inspect(SettlementOperation operation) {
             return applied.containsKey(operation.idempotencyKey()) ? Observation.APPLIED : Observation.NOT_APPLIED;
         }

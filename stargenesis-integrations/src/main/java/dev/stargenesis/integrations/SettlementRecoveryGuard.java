@@ -1,25 +1,26 @@
 package dev.stargenesis.integrations;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /** Rejects a withdrawn or replaced capability before consuming provider results or writing state. */
 final class SettlementRecoveryGuard {
     private final IdempotentSettlementPort port;
-    private final IdempotentSettlementPort.Capability expected;
+    private final IdempotentSettlementPort.RecoveryDescriptor expected;
 
-    SettlementRecoveryGuard(IdempotentSettlementPort port, IdempotentSettlementPort.Capability expected) {
+    SettlementRecoveryGuard(IdempotentSettlementPort port, IdempotentSettlementPort.RecoveryDescriptor expected) {
         this.port = Objects.requireNonNull(port, "port");
         this.expected = Objects.requireNonNull(expected, "expected");
     }
 
-    static IdempotentSettlementPort.Capability available(IdempotentSettlementPort port) {
-        IdempotentSettlementPort.Capability current;
+    static IdempotentSettlementPort.RecoveryDescriptor available(IdempotentSettlementPort port) {
+        IdempotentSettlementPort.RecoveryDescriptor current;
         try {
-            current = port.capability();
+            current = port.recoveryDescriptor();
         } catch (RuntimeException | LinkageError unavailable) {
             throw new IllegalStateException("Settlement provider recovery capability unavailable", unavailable);
         }
-        if (current == null || !current.supportsRecovery())
+        if (current == null || !current.capability().supportsRecovery())
             throw new IllegalStateException("Settlement provider recovery capability unavailable");
         return current;
     }
@@ -27,6 +28,19 @@ final class SettlementRecoveryGuard {
     void requireCurrent() {
         if (!expected.equals(available(port)))
             throw new IllegalStateException("Settlement provider recovery evidence changed");
+    }
+
+    SettlementAuthorityBinding authorityBinding() {
+        return expected.authorityBinding();
+    }
+
+    /** Never infer a legacy saga's authority from whichever provider happens to be online now. */
+    void requireBinding(SettlementSagaRepository repository, UUID sagaId) {
+        requireCurrent();
+        var stored = repository.authorityBinding(sagaId)
+                .orElseThrow(() -> new IllegalStateException("Settlement has no persisted asset-authority binding"));
+        if (!expected.authorityBinding().equals(stored))
+            throw new IllegalStateException("Settlement asset authority or idempotency history changed");
     }
 
     IdempotentSettlementPort.Observation inspect(SettlementOperation operation) {

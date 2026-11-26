@@ -1,0 +1,66 @@
+{
+  "java21": {
+    "StarGenesis-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java21/StarGenesis-4.0.0-SNAPSHOT.jar",
+      "sha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+      "bytes": 3115801,
+      "copiedIntoArchive": false
+    },
+    "sbom.json": {
+      "localPath": ".work/settlement-authority/java21/sbom.json",
+      "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+      "bytes": 173820,
+      "copiedIntoArchive": true
+    },
+    "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java21/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+      "sha256": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+      "bytes": 24354,
+      "copiedIntoArchive": false
+    },
+    "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java21/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+      "sha256": "52cbde8ce37218e58e375209cf44ef7c628368c809f1afdb83cd233782e9101a",
+      "bytes": 12815,
+      "copiedIntoArchive": false
+    },
+    "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java21/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+      "sha256": "9b20d771da4d930031612e6e5d91e54dd54a83ddc5572bd9fea977db31c14a44",
+      "bytes": 17599,
+      "copiedIntoArchive": false
+    }
+  },
+  "java25": {
+    "StarGenesis-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java25/StarGenesis-4.0.0-SNAPSHOT.jar",
+      "sha256": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+      "bytes": 3115735,
+      "copiedIntoArchive": false
+    },
+    "sbom.json": {
+      "localPath": ".work/settlement-authority/java25/sbom.json",
+      "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+      "bytes": 173820,
+      "copiedIntoArchive": true
+    },
+    "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java25/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+      "sha256": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+      "bytes": 24344,
+      "copiedIntoArchive": false
+    },
+    "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java25/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+      "sha256": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+      "bytes": 12806,
+      "copiedIntoArchive": false
+    },
+    "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+      "localPath": ".work/settlement-authority/java25/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+      "sha256": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642",
+      "bytes": 17630,
+      "copiedIntoArchive": false
+    }
+  }
+}

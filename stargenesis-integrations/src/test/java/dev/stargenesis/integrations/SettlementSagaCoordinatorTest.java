@@ -12,6 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class SettlementSagaCoordinatorTest {
     private static final UUID BUYER = new UUID(0, 1);
     private static final UUID SELLER = new UUID(0, 2);
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
 
     @Test void exchangeCompletesCreditAndItemLegsWithStableOperationKeys() {
         Fixture fixture = new Fixture();
@@ -84,7 +87,7 @@ class SettlementSagaCoordinatorTest {
 
         assertEquals(SettlementSaga.State.FAILED, fixture.coordinator.advance(created.request().sagaId(), 2).state());
         assertTrue(fixture.gateway.appliedKeys().isEmpty());
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> new SettlementSagaCoordinator(fixture.authorizer,
                         new FakeGateway(false, false), fixture.repository));
     }
@@ -216,11 +219,19 @@ class SettlementSagaCoordinatorTest {
 
     private static final class MemoryRepository implements SettlementSagaRepository {
         private final Map<UUID, SettlementSaga> sagas = new HashMap<>();
+        private final Map<UUID, SettlementAuthorityBinding> bindings = new HashMap<>();
         private boolean failNextReplace;
         @Override public synchronized <T> T withExclusiveSaga(UUID sagaId, java.util.function.Supplier<T> action) {
             return action.get();
         }
         @Override public synchronized Optional<SettlementSaga> load(UUID id) { return Optional.ofNullable(sagas.get(id)); }
+        @Override public synchronized Optional<SettlementAuthorityBinding> authorityBinding(UUID id) { return Optional.ofNullable(bindings.get(id)); }
+        @Override public synchronized SettlementSaga createBound(SettlementSaga saga, SettlementAuthorityBinding binding) {
+            java.util.Objects.requireNonNull(binding);
+            create(saga);
+            bindings.put(saga.request().sagaId(), binding);
+            return saga;
+        }
         @Override public synchronized SettlementSaga create(SettlementSaga saga) {
             saga.requireInitial();
             if (sagas.putIfAbsent(saga.request().sagaId(), saga) != null)
@@ -253,6 +264,7 @@ class SettlementSagaCoordinatorTest {
         private FakeGateway(boolean durableKeys, boolean lookup) { this.durableKeys = durableKeys; this.lookup = lookup; }
 
         @Override public Capability capability() { return new Capability(durableKeys, lookup, "fixture:durable-ledger"); }
+        @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
 
         @Override public Observation inspect(SettlementOperation operation) {
             if (unknownLookup) return Observation.UNKNOWN;

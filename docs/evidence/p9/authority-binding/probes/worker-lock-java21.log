@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "pluginSha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+  "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+  "cases": [
+    {
+      "shutdownTimedOut": false,
+      "holderTerminated": false,
+      "sameJvmAndReloadClassloaderRejected": true,
+      "otherProcessRejectedWhileHeld": true,
+      "acquiredAfterRelease": true,
+      "holderExitCode": 0
+    },
+    {
+      "shutdownTimedOut": true,
+      "holderTerminated": false,
+      "sameJvmAndReloadClassloaderRejected": true,
+      "otherProcessRejectedWhileHeld": true,
+      "acquiredAfterRelease": true,
+      "holderExitCode": 0
+    },
+    {
+      "shutdownTimedOut": true,
+      "holderTerminated": true,
+      "sameJvmAndReloadClassloaderRejected": true,
+      "otherProcessRejectedWhileHeld": true,
+      "acquiredAfterRelease": true,
+      "holderExitCode": 1
+    }
+  ],
+  "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+}

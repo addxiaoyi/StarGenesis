@@ -1,0 +1,204 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-api >-------------------
+[INFO] Building stargenesis-api 4.0.0-SNAPSHOT                            [2/6]
+[INFO]   from stargenesis-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-design >-----------------
+[INFO] Building stargenesis-design 4.0.0-SNAPSHOT                         [3/6]
+[INFO]   from stargenesis-design\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-design ---
+[INFO] Copying 12 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-design ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-design ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-design\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-design ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-design ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] ------------------< dev.stargenesis:stargenesis-sim >-------------------
+[INFO] Building stargenesis-sim 4.0.0-SNAPSHOT                            [4/6]
+[INFO]   from stargenesis-sim\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-sim ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-sim ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-sim\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-sim ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-sim ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] --------------< dev.stargenesis:stargenesis-integrations >--------------
+[INFO] Building StarGenesis Integration Contracts 4.0.0-SNAPSHOT          [5/6]
+[INFO]   from stargenesis-integrations\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-integrations ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-integrations ---
+[INFO] Copying 3 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 11 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-integrations ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.integrations.SettlementAuthorityBindingTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.099 s -- in dev.stargenesis.integrations.SettlementAuthorityBindingTest
+[INFO] Running dev.stargenesis.integrations.SettlementAuthorityCoordinatorTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 s -- in dev.stargenesis.integrations.SettlementAuthorityCoordinatorTest
+[INFO] Running dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+[INFO] Running dev.stargenesis.integrations.SettlementReviewContractTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.integrations.SettlementReviewContractTest
+[INFO] Running dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 47, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-paper >------------------
+[INFO] Building stargenesis-paper 4.0.0-SNAPSHOT                          [6/6]
+[INFO]   from stargenesis-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-paper ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-paper ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-paper ---
+[INFO] Copying 13 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-paper ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 57 source files with javac [debug release 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-paper ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.824 s -- in dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+[INFO] Running dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest
+[ERROR] Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.519 s <<< FAILURE! -- in dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest
+[ERROR] dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest.malformedSchemaBindingTypesAndReviewCountsRejectWithoutRewrite(Path) -- Time elapsed: 0.095 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Corruption 7: {"schemaVersion":3,"saga":{"schemaVersion":1,"request":{"sagaId":"00000000-0000-0000-0000-0000000017d5","actor":"00000000-0000-0000-0000-0000000017d6","buyer":"00000000-0000-0000-0000-0000000017d6","seller":"00000000-0000-0000-0000-0000000017d7","credits":25,"itemId":"test:ore","itemCount":2,"expiresAtTick":100},"permit":{"policyId":"fixture:authority","evidenceId":"fixture:authority","actor":"00000000-0000-0000-0000-0000000017d6","buyer":"00000000-0000-0000-0000-0000000017d6","seller":"00000000-0000-0000-0000-0000000017d7","requestHash":"29fbf0347a4cf6fffaa5675ecaeb6541664fd3b5a3b362dfb2d771bc003a0c92","issuedAtTick":0,"expiresAtTick":100},"state":"PREPARED","revision":0,"reason":""},"authorityBinding":{"credits":{"assetAuthorityId":"credits:primary","idempotencyHistoryId":"credits-history:primary"},"item":{"assetAuthorityId":7,"idempotencyHistoryId":"item-history:primary"}},"reviewCount":0,"reviews":[]} ==> Expected dev.stargenesis.paper.settlement.FileSettlementSagaRepository.SagaStorageException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
+	at dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest.malformedSchemaBindingTypesAndReviewCountsRejectWithoutRewrite(SettlementAuthorityRepositoryTest.java:226)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.128 s -- in dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+[INFO] Running dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.097 s -- in dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+[INFO] Running dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest
+[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.659 s -- in dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   SettlementAuthorityRepositoryTest.malformedSchemaBindingTypesAndReviewCountsRejectWithoutRewrite:226 Corruption 7: {"schemaVersion":3,"saga":{"schemaVersion":1,"request":{"sagaId":"00000000-0000-0000-0000-0000000017d5","actor":"00000000-0000-0000-0000-0000000017d6","buyer":"00000000-0000-0000-0000-0000000017d6","seller":"00000000-0000-0000-0000-0000000017d7","credits":25,"itemId":"test:ore","itemCount":2,"expiresAtTick":100},"permit":{"policyId":"fixture:authority","evidenceId":"fixture:authority","actor":"00000000-0000-0000-0000-0000000017d6","buyer":"00000000-0000-0000-0000-0000000017d6","seller":"00000000-0000-0000-0000-0000000017d7","requestHash":"29fbf0347a4cf6fffaa5675ecaeb6541664fd3b5a3b362dfb2d771bc003a0c92","issuedAtTick":0,"expiresAtTick":100},"state":"PREPARED","revision":0,"reason":""},"authorityBinding":{"credits":{"assetAuthorityId":"credits:primary","idempotencyHistoryId":"credits-history:primary"},"item":{"assetAuthorityId":7,"idempotencyHistoryId":"item-history:primary"}},"reviewCount":0,"reviews":[]} ==> Expected dev.stargenesis.paper.settlement.FileSettlementSagaRepository.SagaStorageException to be thrown, but nothing was thrown.
+[INFO] 
+[ERROR] Tests run: 49, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [  0.002 s]
+[INFO] stargenesis-api .................................... SUCCESS [  0.744 s]
+[INFO] stargenesis-design ................................. SUCCESS [  0.134 s]
+[INFO] stargenesis-sim .................................... SUCCESS [  0.055 s]
+[INFO] StarGenesis Integration Contracts .................. SUCCESS [  2.482 s]
+[INFO] stargenesis-paper .................................. FAILURE [  8.193 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.780 s
+[INFO] Finished at: 2026-11-26T21:30:52+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.3:test (default-test) on project stargenesis-paper: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-paper\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :stargenesis-paper

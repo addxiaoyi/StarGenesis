@@ -14,10 +14,7 @@ public final class SettlementSagaCoordinator {
         this.authorizer = Objects.requireNonNull(authorizer, "authorizer");
         Objects.requireNonNull(port, "port");
         this.repository = Objects.requireNonNull(repository, "repository");
-        IdempotentSettlementPort.Capability capability = Objects.requireNonNull(port.capability(), "port capability");
-        if (!capability.supportsRecovery())
-            throw new IllegalArgumentException("Settlement port must provide durable idempotency and lookup evidence");
-        recovery = new SettlementRecoveryGuard(port, capability);
+        recovery = new SettlementRecoveryGuard(port, SettlementRecoveryGuard.available(port));
     }
 
     public SettlementSaga begin(SettlementRequest request, long logicalTick) {
@@ -38,7 +35,8 @@ public final class SettlementSagaCoordinator {
             recovery.requireCurrent();
             if (!verified)
                 throw new SecurityException("Settlement permit did not authorize the request");
-            return repository.create(new SettlementSaga(1, request, permit, SettlementSaga.State.PREPARED, 0, ""));
+            return repository.createBound(new SettlementSaga(1, request, permit, SettlementSaga.State.PREPARED, 0, ""),
+                    recovery.authorityBinding());
         });
     }
 
@@ -48,7 +46,7 @@ public final class SettlementSagaCoordinator {
             SettlementSaga saga = repository.load(sagaId)
                     .orElseThrow(() -> new IllegalArgumentException("Settlement saga does not exist"));
             if (saga.terminal()) return saga;
-            recovery.requireCurrent();
+            recovery.requireBinding(repository, sagaId);
             if (saga.state() == SettlementSaga.State.PREPARED) return applyPayment(saga, logicalTick);
             if (saga.state() == SettlementSaga.State.PAYMENT_APPLIED) return applyDelivery(saga, logicalTick);
             if (saga.state() == SettlementSaga.State.COMPENSATION_REQUIRED) return compensate(saga);
@@ -104,7 +102,7 @@ public final class SettlementSagaCoordinator {
     }
 
     private SettlementSaga replace(SettlementSaga previous, SettlementSaga.State state, String reason) {
-        recovery.requireCurrent();
+        recovery.requireBinding(repository, previous.request().sagaId());
         SettlementSaga updated = new SettlementSaga(previous.schemaVersion(), previous.request(), previous.permit(),
                 state, Math.addExact(previous.revision(), 1), reason);
         return repository.replace(updated, previous.revision());

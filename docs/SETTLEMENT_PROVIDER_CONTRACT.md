@@ -21,15 +21,27 @@ Capability的两个布尔值和evidenceId只是adapter声明，不能替代上�
 
 ## 运行期间能力失效
 
-`SettlementSagaCoordinator`固定构造时的完整Capability值。新建交易在授权前后复查，非终局推进在查询、调用provider及状态保存边界复查；能力撤销、null、查询能力本身异常/LinkageError或evidence变化均抛出`IllegalStateException`，不保存新的saga状态。相同请求的幂等begin与终局读取不依赖provider在线。
+`SettlementSagaCoordinator`固定构造时的完整`RecoveryDescriptor`值，包括Capability与资产权威/幂等历史域。`recoveryDescriptor()`必须从同一个provider快照返回这些声明；不能把分别读取的版本拼接成快照。`capability()`单独返回的旧声明不足以取得恢复资格，未实现新快照合同的旧adapter默认拒绝。新建交易在授权前后复查，非终局推进在查询、调用provider及状态保存边界复查；能力撤销、null、查询能力本身异常/LinkageError或快照任一字段变化均抛出`IllegalStateException`，不保存新的saga状态。相同请求的幂等begin与终局读取不依赖provider在线。
 
 如果外部操作已提交，而返回时能力失效，本地仍保留原状态；原能力恢复后先按完整原操作查询，查到APPLIED才推进，不能再扣款/交付/退款。能力仍有效时，原有查询UNKNOWN、调用INDETERMINATE和授权过期语义保持。返回NO_EFFECT也须在能力仍有效时才能进入失败或补偿分支。
 
 显式复核在一次reconcile内固定声明，三项查询各自前后和原子提交前复查，期间失效或更换证据不能保存混合记录。已有同一review请求在重新核对审核权限后仍可读取原记录，不要求provider在线；新复核可以在能力恢复后重试。
 
-这些前后检查不是上游原子lease，不能检测两个检查之间发生且完全恢复的变化。真实adapter必须在`inspect/apply`内部持有正确操作lease，并保证停用、替换和在途调用满足前述合同。evidenceId没有持久绑定资产权威域，协调器重新构造不会证明新provider拥有旧幂等历史；正式接入仍须另外证明历史连续性，不能用相同字符串冒充。
+这些前后检查不是上游原子lease，不能检测两个检查之间发生且完全恢复的变化。真实adapter必须在`inspect/apply`内部持有正确操作lease，并保证停用、替换和在途调用满足前述合同。evidenceId是本次能力审计声明，不是资产权威域；正式接入仍须另外证明历史连续性，不能用相同字符串冒充。
 
 单元回归覆盖五类能力失效、三个结算阶段、授权回调、查询/提交回调撤销或替换、NO_EFFECT、复核混合结果与恢复。真实文件仓库验证复核中断及付款已提交后能力撤销的原字节保留、重开仓库后只查不重复付款；外部资产提供方仍为测试替身。原始失败回归和最终结果见`evidence/p9/provider-capability/summary.json`。
+
+## 原始资产权威与幂等历史绑定
+
+`SettlementAuthorityBinding`分别保留credits与item的`assetAuthorityId`和`idempotencyHistoryId`。它们是精确、区分大小写的1–128字符ASCII标识，首字符为字母或数字，其余允许字母、数字及`._:/-`；不修剪、改大小写或按部署版本自动替换。相同经济系统丢失原幂等历史，也必须使用不同history域。声明相等不是provider身份认证、逐笔资产证明或历史仍存在的证明。
+
+新建交易通过`createBound`把PREPARED/revision=0与原始绑定原子写入同一个schema-v3 envelope；后续普通状态替换和复核必须保留它。文件同时存储`reviewCount`与完整reviews，保持16条/64 KiB上限；部分写入、缺失字段、错误类型或不一致计数拒绝读取。不能先保存未绑定交易再补第二个文件。旧仓库默认拒绝新合同，不回退到`create`。
+
+非终局自动推进和每次新复核，在外部查询前及保存前检查持久绑定与当前快照完全相等。协调器重建后即使接受了新的evidenceId，仍必须核对原始credits/item两个权威与历史域；替换任一域均不能继续旧交易。旧schema-v1/v2文件仍可按原结构读取与校验，但没有绑定；新coordinator拒绝对它们执行自动推进或新复核，不按当前provider补认绑定。现有幂等begin、终局读取及重新授权后的同一review重试仅返回已有记录，不接触外部资产。自动迁移或更换权威不是本次功能，需另行具备可信迁移证据与协议。
+
+这些持久声明仅增加恢复前提，不使生产交易具备启用条件。真实资产provider、操作lease、原子幂等历史、独立审核授权与实际故障证据仍须分别通过验收。
+
+绑定合同、真实文件失败/重开、运行期间替换和严格JSON类型拒绝的原始回归及构建证据见`evidence/p9/authority-binding/summary.json`。数字不能经字符串强制转换成为权威标识；schema-v3解析在record构造前检查四个ID的原始JSON类型。
 
 ## 仓库和线程范围
 
@@ -43,7 +55,7 @@ Paper使用JVM分片锁和文件锁；异常和进程退出释放锁。相同sag
 
 `SettlementReviewCoordinator.reconcile`提供可测试的复核协议，当前没有注册玩家/OP命令或生产授权adapter。调用方提交review UUID、saga UUID、独立审核员UUID、预期revision和1–256字符case reference，不提交想要的资产结果。买方、卖方和原actor不能审核本交易；独立的`SettlementReviewAuthorizer`必须按实际部署策略授权，并返回绑定本次审核的policy/evidence ID。交易原permit保持不变，旧交易授权过期不阻止查询历史事实。
 
-整个复核在相同saga的JVM/OS排他锁内完成。先核对身份、revision、历史预算与审核授权，再以原有完整payload和幂等key查询付款、交付、退款。复核不调用`apply`。只有以下一致组合能够离开MANUAL_REVIEW：
+整个复核在相同saga的JVM/OS排他锁内完成。先核对身份、revision、历史预算及原始绑定，再核对审核授权，并以原有完整payload和幂等key查询付款、交付、退款。复核不调用`apply`。只有以下一致组合能够离开MANUAL_REVIEW：
 
 | 付款 | 交付 | 退款 | 保存后的状态 |
 |---|---|---|---|
@@ -52,9 +64,9 @@ Paper使用JVM分片锁和文件锁；异常和进程退出释放锁。相同sag
 | APPLIED | NOT_APPLIED | APPLIED | COMPENSATED |
 | APPLIED | NOT_APPLIED | NOT_APPLIED | COMPENSATION_REQUIRED，后续由原coordinator执行幂等退款 |
 
-任一UNKNOWN、异常/null结果或矛盾组合继续保持MANUAL_REVIEW并保存此次未解决的复核记录。此前已确认APPLIED的操作不能因后来的NOT_APPLIED而被抹除。旧v1停止状态仅接纳原coordinator可能产生的三个来源：revision 1/2的EXTERNAL_OUTCOME_UNKNOWN，以及revision 3的COMPENSATION_OUTCOME_UNKNOWN或COMPENSATION_REJECTED；后两条路径都已经确认付款。来源不明的旧文件拒绝自动对账，不能仅凭人工填写“成功”或“失败”放行。
+任一UNKNOWN、异常/null结果或矛盾组合继续保持MANUAL_REVIEW并保存此次未解决的复核记录。此前已确认APPLIED的操作不能因后来的NOT_APPLIED而被抹除。历史结构校验仍只承认原coordinator可能产生的旧v1停止来源：revision 1/2的EXTERNAL_OUTCOME_UNKNOWN，以及revision 3的COMPENSATION_OUTCOME_UNKNOWN或COMPENSATION_REJECTED；后两条路径都已经确认付款。符合旧结构也不会赋予未绑定记录新复核资格；来源不明的旧文件同样拒绝，不能仅凭人工填写“成功”或“失败”放行。
 
-每条记录保留前后完整snapshot、审核请求/授权、provider capability evidence、逻辑tick、之前确认的操作与三项新查询结果。状态与有序记录写入同一个schema-v2 envelope，一次原子替换发布；后续普通退款恢复必须保留记录。最多16条复核且总文件仍限64 KiB，合法旧permit较大时可能更早达到字节上限，失败不截断历史。相同review ID/相同请求重试重新检查审核权限，然后返回原记录，不重复查询或改写；复用ID修改请求或过期revision拒绝。
+每条记录保留前后完整snapshot、审核请求/授权、provider capability evidence、逻辑tick、之前确认的操作与三项新查询结果。新绑定交易的状态、原始绑定与有序记录写入同一个schema-v3 envelope，一次原子替换发布；旧schema-v2复核文件保持读兼容及未绑定身份。后续普通退款恢复必须保留记录。最多16条复核且总文件仍限64 KiB，合法旧permit较大时可能更早达到字节上限，失败不截断历史。相同review ID/相同请求重试重新检查审核权限，然后返回原记录，不重复查询或改写；复用ID修改请求或过期revision拒绝。
 
 记录中的provider evidence是adapter的能力声明，审核授权证据由部署策略提供；它们都不是provider签署的逐笔收据，也不独立证明真实资产变化。磁盘历史进行结构、身份、状态和顺序校验，不是对恶意文件重写的数字签名证明。生产启用仍需要实际provider审计、审核权限接入、操作入口及运营流程验收。
 

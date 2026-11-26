@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.stargenesis.integrations.SettlementSaga;
 import dev.stargenesis.integrations.SettlementSagaRepository;
 import dev.stargenesis.integrations.SettlementReview;
+import dev.stargenesis.integrations.SettlementAuthorityBinding;
 
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -31,6 +33,7 @@ import java.util.function.Supplier;
 public final class FileSettlementSagaRepository implements SettlementSagaRepository {
     public static final int SCHEMA_VERSION = 1;
     public static final int REVIEW_SCHEMA_VERSION = 2;
+    public static final int AUTHORITY_SCHEMA_VERSION = 3;
     public static final long MAX_FILE_BYTES = 64 * 1024;
     private static final Object[] JVM_LOCKS = new Object[64];
     private static final ThreadLocal<Path> ACTIVE_LOCK = new ThreadLocal<>();
@@ -66,6 +69,10 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         return loadStored(sagaId).map(StoredState::reviews).orElse(List.of());
     }
 
+    @Override public Optional<SettlementAuthorityBinding> authorityBinding(UUID sagaId) {
+        return loadStored(sagaId).map(StoredState::authorityBinding);
+    }
+
     private Optional<StoredState> loadStored(UUID sagaId) {
         Path file = path(sagaId);
         if (!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) return Optional.empty();
@@ -81,11 +88,16 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
             StoredState stored;
             if (json.path("schemaVersion").intValue() == SCHEMA_VERSION) {
                 StoredSaga legacy = mapper.treeToValue(json, StoredSaga.class);
-                stored = new StoredState(legacy.saga(), List.of());
+                stored = new StoredState(legacy.saga(), List.of(), null);
             } else if (json.path("schemaVersion").intValue() == REVIEW_SCHEMA_VERSION) {
                 ReviewedSaga reviewed = mapper.treeToValue(json, ReviewedSaga.class);
                 if (reviewed.reviews() == null || reviewed.reviews().isEmpty()) throw new IOException("Missing settlement review history");
-                stored = new StoredState(reviewed.saga(), reviewed.reviews());
+                stored = new StoredState(reviewed.saga(), reviewed.reviews(), null);
+            } else if (json.path("schemaVersion").intValue() == AUTHORITY_SCHEMA_VERSION) {
+                requireAuthorityBindingTypes(json.path("authorityBinding"));
+                BoundSaga bound = mapper.treeToValue(json, BoundSaga.class);
+                if (bound.authorityBinding() == null) throw new IOException("Missing settlement authority binding");
+                stored = new StoredState(bound.saga(), bound.reviews(), bound.authorityBinding());
             } else throw new IOException("Unsupported settlement schema");
             if (!sagaId.equals(stored.saga().request().sagaId())) throw new IOException("Saga file identity mismatch");
             return Optional.of(stored);
@@ -94,12 +106,36 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         }
     }
 
+    private static void requireAuthorityBindingTypes(JsonNode binding) throws IOException {
+        if (!binding.isObject()) throw new IOException("Invalid settlement authority binding");
+        for (String asset : List.of("credits", "item")) {
+            JsonNode domain = binding.path(asset);
+            // Jackson can coerce numeric tokens to strings even with scalar coercion disabled.
+            // An exact authority identifier must have been stored as a JSON string originally.
+            if (!domain.isObject() || !domain.path("assetAuthorityId").isTextual()
+                    || !domain.path("idempotencyHistoryId").isTextual())
+                throw new IOException("Settlement authority identifiers must be JSON strings");
+        }
+    }
+
     @Override public SettlementSaga create(SettlementSaga saga) {
         saga.requireInitial();
         UUID sagaId = saga.request().sagaId();
         return withExclusiveSaga(sagaId, () -> {
             if (load(sagaId).isPresent()) throw new SagaStorageException("Settlement saga already exists");
-            write(new StoredState(saga, List.of()));
+            write(new StoredState(saga, List.of(), null));
+            return saga;
+        });
+    }
+
+    @Override public SettlementSaga createBound(SettlementSaga saga, SettlementAuthorityBinding authorityBinding) {
+        Objects.requireNonNull(authorityBinding, "authorityBinding");
+        saga.requireInitial();
+        UUID sagaId = saga.request().sagaId();
+        return withExclusiveSaga(sagaId, () -> {
+            // Never adopt a binding for an old record or replace a different original binding.
+            if (loadStored(sagaId).isPresent()) throw new SagaStorageException("Settlement saga already exists");
+            write(new StoredState(saga, List.of(), authorityBinding));
             return saga;
         });
     }
@@ -113,7 +149,7 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
             if (previous.revision() != expectedRevision || updated.revision() != Math.addExact(expectedRevision, 1))
                 throw new SagaStorageException("Settlement saga revision conflict");
             updated.requireSuccessorOf(previous);
-            write(new StoredState(updated, stored.reviews()));
+            write(new StoredState(updated, stored.reviews(), stored.authorityBinding()));
             return updated;
         });
     }
@@ -131,7 +167,7 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
             if (!stored.saga().equals(review.before())) throw new SagaStorageException("Settlement review snapshot conflict");
             var history = new ArrayList<>(stored.reviews());
             history.add(review);
-            write(new StoredState(review.after(), history));
+            write(new StoredState(review.after(), history, stored.authorityBinding()));
             return review;
         });
     }
@@ -167,8 +203,11 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
         Path file = path(saga.request().sagaId());
         Path temporary = file.resolveSibling(file.getFileName() + ".tmp");
         try {
-            byte[] data = mapper.writeValueAsBytes(stored.reviews().isEmpty()
-                    ? new StoredSaga(SCHEMA_VERSION, saga) : new ReviewedSaga(REVIEW_SCHEMA_VERSION, saga, stored.reviews()));
+            Object envelope = stored.authorityBinding() != null
+                    ? new BoundSaga(AUTHORITY_SCHEMA_VERSION, saga, stored.authorityBinding(), stored.reviews().size(), stored.reviews())
+                    : stored.reviews().isEmpty() ? new StoredSaga(SCHEMA_VERSION, saga)
+                    : new ReviewedSaga(REVIEW_SCHEMA_VERSION, saga, stored.reviews());
+            byte[] data = mapper.writeValueAsBytes(envelope);
             if (data.length > MAX_FILE_BYTES) throw new IOException("Settlement saga exceeds 64 KiB");
             if (Files.isSymbolicLink(file) || Files.isSymbolicLink(temporary))
                 throw new IOException("Settlement saga symlink path rejected");
@@ -194,8 +233,21 @@ public final class FileSettlementSagaRepository implements SettlementSagaReposit
 
     public record StoredSaga(int schemaVersion, SettlementSaga saga) { }
     public record ReviewedSaga(int schemaVersion, SettlementSaga saga, List<SettlementReview> reviews) { }
+    public record BoundSaga(int schemaVersion, SettlementSaga saga, SettlementAuthorityBinding authorityBinding,
+                            int reviewCount, List<SettlementReview> reviews) {
+        public BoundSaga {
+            Objects.requireNonNull(saga, "saga");
+            Objects.requireNonNull(authorityBinding, "authorityBinding");
+            reviews = List.copyOf(reviews);
+            if (schemaVersion != AUTHORITY_SCHEMA_VERSION || reviewCount < 0 || reviewCount > SettlementReview.MAX_REVIEWS
+                    || reviewCount != reviews.size() || reviewCount == 0
+                    && (saga.reason().equals("REVIEW_UNRESOLVED") || saga.reason().equals("RECONCILED_BY_REVIEW")))
+                throw new IllegalArgumentException("Bound settlement review history is incomplete");
+        }
+    }
 
-    private record StoredState(SettlementSaga saga, List<SettlementReview> reviews) {
+    private record StoredState(SettlementSaga saga, List<SettlementReview> reviews,
+                               SettlementAuthorityBinding authorityBinding) {
         private StoredState {
             Objects.requireNonNull(saga, "saga");
             reviews = List.copyOf(reviews);

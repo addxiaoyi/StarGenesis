@@ -21,6 +21,24 @@ public interface SettlementSagaRepository {
 
     SettlementSaga create(SettlementSaga initial);
 
+    /**
+     * Returns the original persisted binding; never infer one from the currently installed provider.
+     * Supporting repositories use an empty result for absent or legacy unbound records.
+     * Older implementations reject this stronger continuity contract.
+     */
+    default Optional<SettlementAuthorityBinding> authorityBinding(UUID sagaId) {
+        throw new UnsupportedOperationException("Repository does not retain settlement authority bindings");
+    }
+
+    /**
+     * Atomically creates the initial prepared saga and its immutable authority/history binding.
+     * This must not fall back to an unbound create or adopt a binding for an existing legacy record.
+     * Subsequent replacements and reviews must preserve the original binding.
+     */
+    default SettlementSaga createBound(SettlementSaga initial, SettlementAuthorityBinding authorityBinding) {
+        throw new UnsupportedOperationException("Repository does not support atomic bound settlement creation");
+    }
+
     SettlementSaga replace(SettlementSaga updated, long expectedRevision);
 
     /** Older repositories reject reconciliation until they can retain its audit evidence atomically. */

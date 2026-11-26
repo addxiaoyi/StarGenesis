@@ -20,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class SettlementConcurrencyTest {
     private static final UUID BUYER = new UUID(0, 1001);
     private static final UUID SELLER = new UUID(0, 1002);
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
     private static final SettlementAuthorizer AUTHORIZER = new SettlementAuthorizer() {
         @Override public SettlementPermit authorize(SettlementRequest request, long tick) {
             return new SettlementPermit("fixture", "fixture:concurrency", request.actor(), request.buyer(), request.seller(),
@@ -202,6 +205,7 @@ class SettlementConcurrencyTest {
         boolean rejectItems;
 
         @Override public Capability capability() { return new Capability(true, true, "fixture:concurrent-port"); }
+        @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
         @Override public Observation inspect(SettlementOperation operation) {
             return operations.containsKey(operation.idempotencyKey()) ? Observation.APPLIED : Observation.NOT_APPLIED;
         }

@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /** A mutable test provider exercises withdrawal during real coordinator callbacks. */
 class SettlementRecoveryLifecycleTest {
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
     @Test void withdrawnRecoveryRejectsNewBeginsBeforeAuthorizationOrPersistence() {
         for (int failure = 1; failure <= 5; failure++) {
             var fixture = new Fixture();
@@ -204,6 +207,7 @@ class SettlementRecoveryLifecycleTest {
         Runnable afterRead = () -> {};
         Runnable afterApply = () -> {};
         void withdraw(boolean replace) { if (replace) evidence = "test:provider-2"; else failure = 1; }
+        @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
         @Override public Capability capability() {
             return switch (failure) {
                 case 1 -> new Capability(false, true, evidence);
@@ -234,9 +238,17 @@ class SettlementRecoveryLifecycleTest {
 
     private static final class Repository implements SettlementSagaRepository {
         final Map<UUID, SettlementSaga> sagas = new HashMap<>();
+        final Map<UUID, SettlementAuthorityBinding> bindings = new HashMap<>();
         final List<SettlementReview> history = new ArrayList<>();
         @Override public synchronized <T> T withExclusiveSaga(UUID id, java.util.function.Supplier<T> action) { return action.get(); }
         @Override public Optional<SettlementSaga> load(UUID id) { return Optional.ofNullable(sagas.get(id)); }
+        @Override public Optional<SettlementAuthorityBinding> authorityBinding(UUID id) { return Optional.ofNullable(bindings.get(id)); }
+        @Override public SettlementSaga createBound(SettlementSaga saga, SettlementAuthorityBinding binding) {
+            java.util.Objects.requireNonNull(binding);
+            create(saga);
+            bindings.put(saga.request().sagaId(), binding);
+            return saga;
+        }
         @Override public List<SettlementReview> reviews(UUID id) { return List.copyOf(history); }
         @Override public SettlementSaga create(SettlementSaga saga) {
             saga.requireInitial();

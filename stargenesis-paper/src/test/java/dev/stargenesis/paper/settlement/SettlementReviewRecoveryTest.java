@@ -28,6 +28,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SettlementReviewRecoveryTest {
     private static final UUID BUYER = new UUID(0, 1501), SELLER = new UUID(0, 1502), REVIEWER = new UUID(0, 1504);
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
 
     @Test void deliveredTradeReconcilesAfterExpiryAndRetryRetainsOriginalEvidence(@TempDir Path directory) throws Exception {
         var fixture = new Fixture(directory);
@@ -213,11 +216,11 @@ class SettlementReviewRecoveryTest {
         assertTrue(fixture.port.queries.isEmpty());
     }
 
-    @Test void failedFileWritePreservesLegacyBytesAndRetryCommitsStateAndAuditTogether(@TempDir Path directory) throws Exception {
+    @Test void failedFileWritePreservesBoundBytesAndRetryCommitsStateAndAuditTogether(@TempDir Path directory) throws Exception {
         var fixture = new Fixture(directory);
         var pending = fixture.pending(DELIVERY);
         byte[] original = Files.readAllBytes(fixture.file());
-        assertEquals(1, new ObjectMapper().readTree(original).path("schemaVersion").intValue());
+        assertEquals(3, new ObjectMapper().readTree(original).path("schemaVersion").intValue());
         Path temporary = fixture.file().resolveSibling(fixture.file().getFileName() + ".tmp");
         Files.createDirectory(temporary);
         var request = reviewRequest(pending, 1);
@@ -226,7 +229,7 @@ class SettlementReviewRecoveryTest {
         assertTrue(fixture.repository.reviews(pending.request().sagaId()).isEmpty());
         Files.delete(temporary);
         var review = fixture.review().reconcile(request, 201);
-        assertEquals(2, new ObjectMapper().readTree(Files.readAllBytes(fixture.file())).path("schemaVersion").intValue());
+        assertEquals(3, new ObjectMapper().readTree(Files.readAllBytes(fixture.file())).path("schemaVersion").intValue());
         assertEquals(review.after(), fixture.repository.load(request.sagaId()).orElseThrow());
         assertEquals(List.of(review), fixture.repository.reviews(request.sagaId()));
         assertEquals(1, fixture.port.effects);
@@ -330,7 +333,7 @@ class SettlementReviewRecoveryTest {
                 root -> ((com.fasterxml.jackson.databind.node.ArrayNode) root.path("reviews")).remove(0),
                 root -> ((com.fasterxml.jackson.databind.node.ArrayNode) root.path("reviews")).add(root.path("reviews").get(0).deepCopy()),
                 root -> ((com.fasterxml.jackson.databind.node.ArrayNode) root.path("reviews")).removeAll(),
-                root -> root.put("schemaVersion", "2"),
+                root -> root.put("schemaVersion", "3"),
                 root -> root.put("schemaVersion", 99),
                 root -> root.put("unrecognized", true));
         for (var corruption : corruptions) {
@@ -425,7 +428,7 @@ class SettlementReviewRecoveryTest {
         assertEquals(0, fixture.port.effects);
     }
 
-    @Test void legacyManualReviewFixtureLoadsUnchangedAndReconcilesWithTheOriginalPermit(@TempDir Path directory) throws Exception {
+    @Test void legacyManualReviewFixtureLoadsUnchangedButCannotAdoptTheCurrentProvider(@TempDir Path directory) throws Exception {
         byte[] fixture;
         try (var input = getClass().getResourceAsStream("/settlement-v1-manual.json")) {
             assertNotNull(input);
@@ -447,12 +450,13 @@ class SettlementReviewRecoveryTest {
         port.apply(SettlementOperation.forPhase(stopped.request(), PAYMENT));
         var coordinator = new SettlementReviewCoordinator((saga, request, tick) ->
                 new SettlementReviewAuthorizer.Authorization("fixture:legacy-review", "fixture:legacy-case"), port, repository);
-        var review = coordinator.reconcile(reviewRequest(stopped, 1), 200);
-        assertEquals(SettlementSaga.State.COMPENSATION_REQUIRED, review.after().state());
-        assertEquals(stopped.request(), review.after().request());
-        assertEquals(stopped.permit(), review.after().permit());
+        assertTrue(repository.authorityBinding(id).isEmpty());
+        assertThrows(IllegalStateException.class, () -> coordinator.reconcile(reviewRequest(stopped, 1), 200));
+        assertEquals(stopped, repository.load(id).orElseThrow());
         assertEquals(1, port.effects);
-        assertEquals(List.of(review), new FileSettlementSagaRepository(directory).reviews(id));
+        assertTrue(port.queries.isEmpty());
+        assertTrue(new FileSettlementSagaRepository(directory).reviews(id).isEmpty());
+        assertArrayEquals(fixture, Files.readAllBytes(file));
     }
 
     @Test void capabilityWithdrawalDuringReviewPreservesExactStoredBytesAndCanRetry(@TempDir Path directory) throws Exception {
@@ -553,6 +557,7 @@ class SettlementReviewRecoveryTest {
         private Runnable afterApply = () -> { };
 
         @Override public Capability capability() { return new Capability(supported, supported, "fixture:authoritative-operations"); }
+        @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
         @Override public Observation inspect(SettlementOperation operation) {
             beforeQuery.run();
             var phase = phase(operation);
@@ -596,6 +601,8 @@ class SettlementReviewRecoveryTest {
         @Override public <T> T withExclusiveSaga(UUID id, Supplier<T> action) { return delegate.withExclusiveSaga(id, action); }
         @Override public Optional<SettlementSaga> load(UUID id) { return delegate.load(id); }
         @Override public SettlementSaga create(SettlementSaga saga) { return delegate.create(saga); }
+        @Override public Optional<SettlementAuthorityBinding> authorityBinding(UUID id) { return delegate.authorityBinding(id); }
+        @Override public SettlementSaga createBound(SettlementSaga saga, SettlementAuthorityBinding binding) { return delegate.createBound(saga, binding); }
         @Override public SettlementSaga replace(SettlementSaga saga, long revision) { return delegate.replace(saga, revision); }
         @Override public List<SettlementReview> reviews(UUID id) { return delegate.reviews(id); }
         @Override public SettlementReview commitReview(SettlementReview review) { return delegate.commitReview(review); }

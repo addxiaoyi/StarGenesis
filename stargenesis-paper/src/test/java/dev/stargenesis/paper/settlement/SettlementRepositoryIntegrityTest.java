@@ -15,6 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SettlementRepositoryIntegrityTest {
+    private static final SettlementAuthorityBinding BINDING = new SettlementAuthorityBinding(
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:credits", "fixture:credit-history"),
+            new SettlementAuthorityBinding.AuthorityDomain("fixture:items", "fixture:item-history"));
     @Test void createOnlyAcceptsAnInitialPreparedSaga(@TempDir Path directory) throws Exception {
         var repository = new FileSettlementSagaRepository(directory);
         var initial = initial();
@@ -82,7 +85,7 @@ class SettlementRepositoryIntegrityTest {
         assertEquals(initial, second.withExclusiveSaga(id, () -> second.load(id).orElseThrow()));
     }
 
-    @Test void legacyPaidSagaPreservesBytesAndCompensatesAfterExpiry(@TempDir Path directory) throws Exception {
+    @Test void legacyPaidSagaPreservesBytesAndCannotAdoptTheCurrentProviderAfterExpiry(@TempDir Path directory) throws Exception {
         byte[] fixture;
         try (var input = getClass().getResourceAsStream("/settlement-v1-paid.json")) {
             assertNotNull(input);
@@ -99,9 +102,11 @@ class SettlementRepositoryIntegrityTest {
         assertEquals(1, loaded.revision());
         assertArrayEquals(fixture, Files.readAllBytes(file));
         AtomicInteger refunds = new AtomicInteger();
+        AtomicInteger queries = new AtomicInteger();
         var port = new IdempotentSettlementPort() {
             @Override public Capability capability() { return new Capability(true, true, "fixture:legacy-refund"); }
-            @Override public Observation inspect(SettlementOperation operation) { return Observation.NOT_APPLIED; }
+            @Override public RecoveryDescriptor recoveryDescriptor() { return new RecoveryDescriptor(capability(), BINDING); }
+            @Override public Observation inspect(SettlementOperation operation) { queries.incrementAndGet(); return Observation.NOT_APPLIED; }
             @Override public Outcome apply(SettlementOperation operation) {
                 assertEquals(loaded.request().seller(), operation.source());
                 assertEquals(loaded.request().buyer(), operation.target());
@@ -115,10 +120,14 @@ class SettlementRepositoryIntegrityTest {
             @Override public boolean verify(SettlementRequest request, SettlementPermit permit, long tick) { return false; }
         };
         var coordinator = new SettlementSagaCoordinator(authorizer, port, repository);
-        assertEquals(SettlementSaga.State.COMPENSATION_REQUIRED, coordinator.advance(id, 100).state());
-        assertEquals(SettlementSaga.State.COMPENSATED, coordinator.advance(id, 101).state());
-        assertEquals(SettlementSaga.State.COMPENSATED, coordinator.advance(id, 102).state());
-        assertEquals(1, refunds.get());
+        assertTrue(repository.authorityBinding(id).isEmpty());
+        assertEquals(loaded, coordinator.begin(loaded.request(), 100));
+        assertThrows(IllegalStateException.class, () -> coordinator.advance(id, 100));
+        assertThrows(IllegalStateException.class, () -> coordinator.advance(id, 101));
+        assertEquals(0, queries.get());
+        assertEquals(0, refunds.get());
+        assertEquals(loaded, repository.load(id).orElseThrow());
+        assertArrayEquals(fixture, Files.readAllBytes(file));
         assertEquals(loaded.request(), repository.load(id).orElseThrow().request());
         assertEquals(loaded.permit(), repository.load(id).orElseThrow().permit());
     }

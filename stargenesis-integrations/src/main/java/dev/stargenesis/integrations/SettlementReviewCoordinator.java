@@ -36,17 +36,19 @@ public final class SettlementReviewCoordinator {
             if (!history.isEmpty() && logicalTick < history.getLast().logicalTick())
                 throw new IllegalArgumentException("Settlement review clock moved backwards");
             var previouslyApplied = SettlementReview.previouslyApplied(saga, history);
+            var descriptor = SettlementRecoveryGuard.available(port);
+            var recovery = new SettlementRecoveryGuard(port, descriptor);
+            recovery.requireBinding(repository, request.sagaId());
             var authorization = Objects.requireNonNull(authorizer.authorize(saga, request, logicalTick), "review authorization");
-            var capability = SettlementRecoveryGuard.available(port);
-            var recovery = new SettlementRecoveryGuard(port, capability);
+            recovery.requireBinding(repository, request.sagaId());
             var observations = new EnumMap<SettlementOperation.Phase, IdempotentSettlementPort.Observation>(SettlementOperation.Phase.class);
             for (var phase : SettlementOperation.Phase.values())
                 observations.put(phase, recovery.inspect(SettlementOperation.forPhase(saga.request(), phase)));
             var state = SettlementReview.resolution(observations, previouslyApplied);
             var after = new SettlementSaga(saga.schemaVersion(), saga.request(), saga.permit(), state,
                     Math.addExact(saga.revision(), 1), SettlementReview.reasonFor(state));
-            var review = new SettlementReview(1, request, authorization, capability.evidenceId(), logicalTick, saga, previouslyApplied, observations, after);
-            recovery.requireCurrent();
+            var review = new SettlementReview(1, request, authorization, descriptor.capability().evidenceId(), logicalTick, saga, previouslyApplied, observations, after);
+            recovery.requireBinding(repository, request.sagaId());
             return repository.commitReview(review);
         });
     }

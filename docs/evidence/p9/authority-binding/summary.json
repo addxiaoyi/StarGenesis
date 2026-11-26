@@ -1,0 +1,550 @@
+{
+  "date": "2026-11-26",
+  "passed": true,
+  "phaseGatePassed": false,
+  "repositoryHeadAtArchive": "21315b7d624c543776d08cbf26f482ffee466d09",
+  "scope": "Persist immutable currency/item authority and idempotency-history domains atomically in a schema-v3 saga envelope; reject unbound or changed domains before new external operations.",
+  "newJavaTests": 35,
+  "newSuites": {
+    "SettlementAuthorityBindingTest": 10,
+    "SettlementAuthorityCoordinatorTest": 14,
+    "SettlementAuthorityRepositoryTest": 11
+  },
+  "focusedTests": 97,
+  "builds": {
+    "java21": {
+      "passed": true,
+      "java": "java21",
+      "tests": {
+        "tests": 687,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 90,
+      "artifacts": {
+        "StarGenesis-4.0.0-SNAPSHOT.jar": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+        "sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+        "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": "52cbde8ce37218e58e375209cf44ef7c628368c809f1afdb83cd233782e9101a",
+        "stargenesis-cookery-4.0.0-SNAPSHOT.jar": "9b20d771da4d930031612e6e5d91e54dd54a83ddc5572bd9fea977db31c14a44"
+      },
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "logSha256": "e9792b6628bd2f448cae93938f1009048c4c70d3500c78423fb661ed4813529c",
+      "sourceHashesSha256": "f9c2e65aef3426cfdfb346cad39a2f30e824690678f81b3c7ed0876ff6880240",
+      "scope": "Full three-profile clean verify using previously prepared exact API dependencies; no real settlement provider or production entry enabled."
+    },
+    "java25": {
+      "passed": true,
+      "java": "java25",
+      "tests": {
+        "tests": 687,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 90,
+      "artifacts": {
+        "StarGenesis-4.0.0-SNAPSHOT.jar": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+        "sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+        "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+        "stargenesis-cookery-4.0.0-SNAPSHOT.jar": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642"
+      },
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "logSha256": "14ce6475fe12b86150d937cb4949b3482892e02059525e161964bf6cfea07875",
+      "sourceHashesSha256": "f9c2e65aef3426cfdfb346cad39a2f30e824690678f81b3c7ed0876ff6880240",
+      "scope": "Full three-profile clean verify using previously prepared exact API dependencies; no real settlement provider or production entry enabled."
+    }
+  },
+  "validatedReports": {
+    "java21": {
+      "suites": 90,
+      "totals": {
+        "tests": 687,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "newSuites": {
+        "SettlementAuthorityBindingTest": 10,
+        "SettlementAuthorityCoordinatorTest": 14,
+        "SettlementAuthorityRepositoryTest": 11
+      }
+    },
+    "java25": {
+      "suites": 90,
+      "totals": {
+        "tests": 687,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "newSuites": {
+        "SettlementAuthorityBindingTest": 10,
+        "SettlementAuthorityCoordinatorTest": 14,
+        "SettlementAuthorityRepositoryTest": 11
+      }
+    }
+  },
+  "probes": {
+    "java21": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+        "sourceSbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+        "sourceSbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "pythonRegressionTests": 64,
+  "nodeRegressionTests": 6,
+  "boundaryScanPassed": true,
+  "regressionCommands": {
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "python": [
+      ".work/python-3.12.10/python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_*.py"
+    ],
+    "node": [
+      "node",
+      "--test",
+      "scripts/test_offline_client_lifecycle_smoke.cjs",
+      "scripts/test_offline_client_radio_lifecycle_smoke.cjs",
+      "scripts/test_offline_client_match_admin_smoke.cjs"
+    ],
+    "boundary": [
+      ".work/python-3.12.10/python.exe",
+      "scripts/check_boundaries.py"
+    ]
+  },
+  "sourceSnapshotScope": "Root/module POMs and every file under each module src; snapshot checked unchanged before/after both builds and again during archive.",
+  "sourceHashesSha256": "f9c2e65aef3426cfdfb346cad39a2f30e824690678f81b3c7ed0876ff6880240",
+  "sourceSnapshots": {
+    "docs/PRODUCT_CONTRACT.md": {
+      "sha256": "d843d3dfd7931c7f79fce909c0650ac6e4623dd136e9562f754e1e605c8edd42",
+      "bytes": 18035
+    },
+    "docs/SETTLEMENT_PROVIDER_CONTRACT.md": {
+      "sha256": "8295c8390dafab3d945eccb7af26b3c9362564eeb14550d27da6dc84ae463aee",
+      "bytes": 10774
+    },
+    "scripts/ReleaseArtifactSigner.java": {
+      "sha256": "ab853167f25fdb896da91e27b00fee8e767b3153684d8e1785182f6df2cdf3af",
+      "bytes": 15809
+    },
+    "scripts/SettlementLockProbe.java": {
+      "sha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+      "bytes": 1773
+    },
+    "scripts/SignedDesignPackageSigner.java": {
+      "sha256": "48023050ed5d5f5c9eb9f39e9070bd38ed09fda39ef38e983637903a266f0f1e",
+      "bytes": 8027
+    },
+    "scripts/test_release_artifact_signer.py": {
+      "sha256": "72da18f9d5a82a35cebb27a04961b25ffc45889ba9c3c30c01f015954eac381d",
+      "bytes": 4069
+    },
+    "scripts/test_settlement_process_lock.py": {
+      "sha256": "4085381cf5558ccb403560de11d4aa75db3bf07bdab452b58a3f6fb9e36515b8",
+      "bytes": 5112
+    },
+    "scripts/test_signed_design_package_signer.py": {
+      "sha256": "3254998c8a63400d0e968c140030dc2251585402f0d915abb30a4238869a4b01",
+      "bytes": 4384
+    },
+    "scripts/test_worker_directory_lock.py": {
+      "sha256": "1ba8b292cf9def1477311efa5acb0f2bd7d0f7d755885f8fb4f073d5d5acb379",
+      "bytes": 5134
+    },
+    "scripts/WorkerDirectoryLockProbe.java": {
+      "sha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+      "bytes": 4592
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/IdempotentSettlementPort.java": {
+      "sha256": "5549f89e38384512b4e6d472d125659aaf7f277b8de995028569fe8ed71084ee",
+      "bytes": 2117
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementAuthorityBinding.java": {
+      "sha256": "69d6e2b20cf83e8e16860a03c173cefc2f2a3248a48c043476d9380b8bcb64de",
+      "bytes": 1478
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementAuthorizer.java": {
+      "sha256": "1d7ed4e4f1e5b0fb29801438d423416a1cd458772289cb15109179b4d6992b61",
+      "bytes": 351
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementOperation.java": {
+      "sha256": "96128f0bbe5fa20b13c1b7fa43b8d14165ef643d8f5572fef8f8529a84d28bdb",
+      "bytes": 2609
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementPermit.java": {
+      "sha256": "e711c46c7543d17db7075d0d779359656a11289b3f59b9729f53f05f81d5b67c",
+      "bytes": 976
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementRecoveryGuard.java": {
+      "sha256": "f53be0131aa3cdfce8c617576198dd79e609adef8935cc37e4d96a5e2eb44ffa",
+      "bytes": 3181
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementRequest.java": {
+      "sha256": "fa1acc2e6305527257ffa02327dcbf0667b2fd94c043d4881987f3c37578528b",
+      "bytes": 1059
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementRequestCodec.java": {
+      "sha256": "f686767c48b0d40b64145922cd01d5e7fc536482bf547a929df673f45c31154e",
+      "bytes": 909
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementReview.java": {
+      "sha256": "e4be1a3cf183eb6c5ddb044c5bff511218c6826fb84598a563ac74778fe4673b",
+      "bytes": 5264
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementReviewAuthorizer.java": {
+      "sha256": "103b7ff757bfc3dbdfde23196197e2facdfca3c125d4c7de8c12b23422cc6163",
+      "bytes": 731
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementReviewCoordinator.java": {
+      "sha256": "8f0a7f469d25c69b8bfcf42a43d1f5025b421b6ebff5982716e5964b1b8fb4a6",
+      "bytes": 3802
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementReviewRequest.java": {
+      "sha256": "e47aee534bc31cb745629ebf1db70ec641ffca58842179627d78d63142c7ddd1",
+      "bytes": 1394
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSaga.java": {
+      "sha256": "d27437917d82cebbe0474110a0d069e01a0ab5b8f377cd71d80ccdc4a6800128",
+      "bytes": 2608
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSagaCoordinator.java": {
+      "sha256": "9bcb5a4462ca40e9a96ac7cadec84d85da276e97977014be5619f1ecbe503d8d",
+      "bytes": 6679
+    },
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSagaRepository.java": {
+      "sha256": "897f9f224af765735c2bcb49d5cac809e19f2200922c5cf3e70941f41a33b2bc",
+      "bytes": 2673
+    },
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementAuthorityBindingTest.java": {
+      "sha256": "8d208d7c6a4a911bea594c0da76e61467cdf34071f630b3d9f7f0eea1bf9f1f8",
+      "bytes": 6983
+    },
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementAuthorityCoordinatorTest.java": {
+      "sha256": "b253545aabc231ad2e0092c53984377a541fe55911b1b84c54670cb847452e08",
+      "bytes": 19136
+    },
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementRecoveryLifecycleTest.java": {
+      "sha256": "ea1ddc24ce62a8f8156b14842ab91a14913d91c31fa4a3e1661e0e86be7571a9",
+      "bytes": 14536
+    },
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementReviewContractTest.java": {
+      "sha256": "90e41b9d090587849926597a7359f19a8eae94e6738b10840808c4ad3b1aa4ab",
+      "bytes": 2826
+    },
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementSagaCoordinatorTest.java": {
+      "sha256": "95fb135d9a06999b4ffc16a79a1e0522e4a6d54b3702937642ee67c4ff1eae85",
+      "bytes": 17946
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/settlement/FileSettlementSagaRepository.java": {
+      "sha256": "0c4a455d5044cf919b509d779d5c1cb7306d37137841c80fd061b0c39e8c8174",
+      "bytes": 15879
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/FileSettlementSagaRepositoryTest.java": {
+      "sha256": "c2e67f800b63348a48d8dba414bec65ad57cc014b6139f8d6aca1e5d74e105ee",
+      "bytes": 10673
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/SettlementAuthorityRepositoryTest.java": {
+      "sha256": "f764f616b8572a5c6c50dc2adee0f07318069b64d2d1721c424a5f81a458bf42",
+      "bytes": 25222
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/SettlementConcurrencyTest.java": {
+      "sha256": "6693613237f9034751b56ca3f879cdde1fc6fbbbd73d12e864ee1a8c3a2a07c7",
+      "bytes": 13046
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/SettlementRepositoryIntegrityTest.java": {
+      "sha256": "65c03d4212835fde34dc22a1afa27c01d5820c8516d15c7d2ddb3fc81a00a67f",
+      "bytes": 9018
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/SettlementReviewRecoveryTest.java": {
+      "sha256": "6720846edc32225972f4effb8f6f322be4f06dfbfd481eaa086ab5ea08f8858b",
+      "bytes": 38961
+    }
+  },
+  "artifacts": {
+    "java21": {
+      "StarGenesis-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java21/StarGenesis-4.0.0-SNAPSHOT.jar",
+        "sha256": "065d958c3a55b697b34ec8b859bbc2d13aebccc9e9b76ed79e0c21260b7291a9",
+        "bytes": 3115801,
+        "copiedIntoArchive": false
+      },
+      "sbom.json": {
+        "localPath": ".work/settlement-authority/java21/sbom.json",
+        "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "bytes": 173820,
+        "copiedIntoArchive": true
+      },
+      "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java21/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+        "sha256": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+        "bytes": 24354,
+        "copiedIntoArchive": false
+      },
+      "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java21/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+        "sha256": "52cbde8ce37218e58e375209cf44ef7c628368c809f1afdb83cd233782e9101a",
+        "bytes": 12815,
+        "copiedIntoArchive": false
+      },
+      "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java21/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+        "sha256": "9b20d771da4d930031612e6e5d91e54dd54a83ddc5572bd9fea977db31c14a44",
+        "bytes": 17599,
+        "copiedIntoArchive": false
+      }
+    },
+    "java25": {
+      "StarGenesis-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java25/StarGenesis-4.0.0-SNAPSHOT.jar",
+        "sha256": "6c0bf95feb006b70632a6ef33553469d886b83ce5ebe5b53b24e71f21d40a99f",
+        "bytes": 3115735,
+        "copiedIntoArchive": false
+      },
+      "sbom.json": {
+        "localPath": ".work/settlement-authority/java25/sbom.json",
+        "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "bytes": 173820,
+        "copiedIntoArchive": true
+      },
+      "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java25/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+        "sha256": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+        "bytes": 24344,
+        "copiedIntoArchive": false
+      },
+      "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java25/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+        "sha256": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+        "bytes": 12806,
+        "copiedIntoArchive": false
+      },
+      "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/settlement-authority/java25/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+        "sha256": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642",
+        "bytes": 17630,
+        "copiedIntoArchive": false
+      }
+    }
+  },
+  "artifactStorage": "Exact JAR binaries remain under .work/settlement-authority/{java21,java25}; this archive records their raw lengths/hashes and copies SBOMs, all XML reports and complete logs. No binary is represented as archived when only its digest is retained.",
+  "failureNotes": {
+    "focused-initial.log": "PowerShell split the unquoted surefire property into an unknown lifecycle phase; no tests executed in this attempt.",
+    "focused-retry.log": "Genuine regression: malformedSchemaBindingTypesAndReviewCountsRejectWithoutRewrite accepted one invalid authority type; original diagnostic had no case label.",
+    "focused-diagnostic.log": "Test fixture compilation failed on unqualified Asset symbols; this attempt cannot establish a test pass.",
+    "focused-before-type-fix.log": "Labeled corruption 7 reproduced numeric item.assetAuthorityId=7 being accepted by Jackson String coercion despite ALLOW_COERCION_OF_SCALARS being disabled.",
+    "focused-fixed.log": "Final focused run passed 47 integration and 50 file-repository tests after explicit schema-v3 JsonNode object/text type validation; final tests include 20 four-position malformed-ID type combinations."
+  },
+  "persistence": {
+    "boundEnvelopeSchema": 3,
+    "legacyReadableSchemas": [
+      1,
+      2
+    ],
+    "legacyBindingsInferred": false,
+    "legacyUnboundAutomaticAdvanceAllowed": false,
+    "legacyUnboundFreshReviewAllowed": false,
+    "productionEntryEnabled": false
+  },
+  "limits": [
+    "Provider identities are exact bounded declarations, not authenticated asset ownership or signed receipts.",
+    "Provider tests use in-memory operation histories; real files, repository reopen, byte preservation and local process locks are exercised, not real economy/inventory durability.",
+    "Before/after descriptor checks do not replace an internal provider operation lease or prove history continuity when an adapter falsely reuses identifiers.",
+    "Legacy unbound records remain readable but cannot acquire the currently installed provider's binding implicitly; no migration or production review adapter is enabled.",
+    "Signing probes use removed ephemeral keys, not issuer/publisher production keys; these are SNAPSHOT test artifacts, not a formal release.",
+    "No new Paper/Folia runtime, real third-party fault audit, human acceptance, production capacity or operations approval evidence; P9 phase gate remains unpassed."
+  ]
+}
