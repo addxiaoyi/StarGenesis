@@ -121,6 +121,8 @@ final class RadioService implements AutoCloseable {
                 changed |= applied || acked;
             } catch (IllegalArgumentException | IllegalStateException | SecurityException invalid) {
                 output.add("Contract message retained for review · " + invalid.getMessage());
+                output.add("确认丢弃此消息（不执行契约）：/genesis radio ack " + message.sender()
+                        + " " + message.tick() + " " + message.sequence() + " " + message.protocol().value());
             }
         }
         if (changed || dirty) commit(candidate);
