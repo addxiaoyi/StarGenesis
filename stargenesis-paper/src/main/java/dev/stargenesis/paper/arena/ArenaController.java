@@ -23,8 +23,6 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
@@ -35,8 +33,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private final ArenaRulesetStore store;
     private final ArenaMatchPersistence matches;
     private final ArenaDraftSessions drafts;
-    private final ConcurrentMap<UUID, Invitation> invitations = new ConcurrentHashMap<>();
-    private final Object invitationLock = new Object();
+    private final ArenaInvitations invitations = new ArenaInvitations();
     private final ArenaMatchService matchService;
     private final PersistentWorker worker;
     private final AtomicBoolean closed = new AtomicBoolean();
@@ -88,8 +85,8 @@ public final class ArenaController implements Listener, AutoCloseable {
     public void close() {
         closed.set(true);
         drafts.close();
+        invitations.close();
         worker.shutdown(plugin.getLogger(), "Arena");
-        synchronized (invitationLock) { invitations.clear(); }
     }
 
     public boolean isStopped() { return worker.isStopped(); }
@@ -105,10 +102,7 @@ public final class ArenaController implements Listener, AutoCloseable {
         drafts.disconnected(leaving);
         try { worker.execute(() -> matchService.disconnected(leaving)); }
         catch (RejectedExecutionException ignored) { }
-        synchronized (invitationLock) {
-            invitations.remove(leaving);
-            invitations.entrySet().removeIf(entry -> entry.getValue().inviter().equals(leaving));
-        }
+        invitations.cancel(leaving);
     }
 
     private boolean match(Player player, String[] args) {
@@ -151,16 +145,9 @@ public final class ArenaController implements Listener, AutoCloseable {
         if (invited == null || invited.equals(inviter) || matchService.roster().containsKey(invited.getUniqueId())) {
             send(owner, inviter, List.of("需要指定一位在线且尚未加入 roster 的其他玩家。")); return;
         }
-        Invitation invitation = new Invitation(owner, args[2]);
-        boolean added;
-        synchronized (invitationLock) {
-            boolean inviterHasPending = invitations.values().stream()
-                    .anyMatch(existing -> existing.inviter().equals(owner));
-            added = !invitations.containsKey(invited.getUniqueId()) && !inviterHasPending;
-            if (added) invitations.put(invited.getUniqueId(), invitation);
-        }
-        if (!added) {
-            send(owner, inviter, List.of("你或受邀玩家已有待处理的 Arena 邀请。"));
+        try { invitations.invite(owner, invited.getUniqueId(), args[2]); }
+        catch (IllegalArgumentException | IllegalStateException denied) {
+            send(owner, inviter, List.of(denied.getMessage()));
             return;
         }
         send(owner, inviter, List.of("已邀请 " + invited.getName() + " 加入队伍 " + args[2] + "。"));
@@ -176,13 +163,10 @@ public final class ArenaController implements Listener, AutoCloseable {
     }
 
     private void acceptInvitation(UUID owner, String name, Player player) {
-        Invitation invitation;
-        synchronized (invitationLock) { invitation = invitations.remove(owner); }
-        if (invitation == null) { send(owner, player, List.of("没有可接受的有效 Arena 邀请。")); return; }
+        ArenaInvitations.Invitation invitation;
         try {
-            matchService.joinTeam(invitation.inviter(), owner, invitation.team());
+            invitation = invitations.accept(owner, matchService::joinTeam);
         } catch (IOException failure) {
-            synchronized (invitationLock) { invitations.putIfAbsent(owner, invitation); }
             plugin.getLogger().log(Level.SEVERE, "Arena team roster persistence failed for " + owner, failure);
             send(owner, player, List.of("Arena 组织状态未能持久保存；请重试接受邀请。"));
             return;
@@ -255,10 +239,7 @@ public final class ArenaController implements Listener, AutoCloseable {
             case "leave" -> {
                 requireLength(args, 1);
                 boolean left = matchService.leaveTeam(owner);
-                synchronized (invitationLock) {
-                    invitations.remove(owner);
-                    invitations.entrySet().removeIf(entry -> entry.getValue().inviter().equals(owner));
-                }
+                invitations.cancel(owner);
                 yield List.of(left ? "已退出赛前队伍，可以重新接受邀请。" : "当前没有加入赛前队伍；待处理邀请已取消。");
             }
             case "prune" -> {
@@ -598,5 +579,4 @@ public final class ArenaController implements Listener, AutoCloseable {
         if (args.length != expected) throw new IllegalArgumentException("参数数量不正确；使用 /genesis arena 查看用法");
     }
 
-    private record Invitation(UUID inviter, String team) { }
 }

@@ -1,0 +1,54 @@
+package dev.stargenesis.paper.arena;
+
+import dev.stargenesis.paper.runtime.WorkspaceRace;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ArenaInvitationsTest {
+    private static final UUID ALICE = new UUID(0, 401), BOB = new UUID(0, 402), CAROL = new UUID(0, 403);
+    @TempDir Path directory;
+
+    @Test void invitationCapacityIsBoundedBeforeAnyTeamWrite() {
+        var invitations = new ArenaInvitations();
+        for (int index = 0; index < 64; index++)
+            invitations.invite(new UUID(1, 2L * index), new UUID(1, 2L * index + 1), "cedar");
+        assertThrows(IllegalStateException.class, () -> invitations.invite(ALICE, BOB, "cedar"));
+    }
+
+    @Test void aPlayerCannotTakeBothInvitationRolesOrJoinAnInvitationChain() {
+        var invitations = new ArenaInvitations();
+        invitations.invite(ALICE, BOB, "cedar");
+        assertThrows(IllegalStateException.class, () -> invitations.invite(BOB, CAROL, "cedar"));
+        assertThrows(IllegalStateException.class, () -> invitations.invite(CAROL, ALICE, "cedar"));
+    }
+
+    @Test void disconnectedInviterIsNotRestoredByAnAlreadyAdmittedFailedSave() throws Exception {
+        cancelledFailedSave(false);
+    }
+
+    @Test void closedInvitationsAreNotRestoredByAnAlreadyAdmittedFailedSave() throws Exception {
+        cancelledFailedSave(true);
+    }
+
+    private void cancelledFailedSave(boolean close) throws Exception {
+        var persistence = new ArenaMatchPersistence(directory.resolve("matches"));
+        var service = new ArenaMatchService(new ArenaRulesetStore(directory.resolve("rulesets")), persistence);
+        var invitations = new ArenaInvitations();
+        invitations.invite(ALICE, BOB, "cedar");
+        Files.createDirectory(directory.resolve("matches/teams.json.tmp"));
+        WorkspaceRace.duringStoreCall(persistence, () -> {
+            assertThrows(IOException.class, () -> invitations.accept(BOB, service::joinTeam));
+            return null;
+        }, invitations, () -> { if (close) invitations.close(); else invitations.cancel(ALICE); });
+        assertTrue(service.roster().isEmpty());
+        assertFalse(Files.exists(directory.resolve("matches/teams.json")));
+        assertThrows(IllegalStateException.class, () -> invitations.accept(BOB, service::joinTeam));
+    }
+}

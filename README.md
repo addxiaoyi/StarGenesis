@@ -229,6 +229,8 @@ Arena草稿工作区最多同时打开64个，每位玩家一个；共享编辑�
 
 P8 已把公开 ArenaRuleset 接入双队领地比赛。两队各邀请至少两位、最多四位玩家，已接受的 team roster 原子保存在 `plugins/StarGenesis/arena-matches/teams.json`。全部 roster 同时在线后按已发布规则创建比赛。每一逻辑回合必须由所有参赛玩家各提交一次 `pass` 或 `claim`，服务端收齐后同时解析冲突、消耗单位并按领地数量补给：
 
+临时邀请最多64条，每位玩家只能参与一条；接受写盘时保留双方名额，写盘失败可重试，断线/退队或服务关闭后不再恢复旧邀请。已准入的成功队伍写入仍可完成，具体规则见[Arena邀请生命周期](docs/ARENA_INVITATIONS.md)。
+
 ```text
 /genesis arena match invite <player> cedar
 /genesis arena match accept

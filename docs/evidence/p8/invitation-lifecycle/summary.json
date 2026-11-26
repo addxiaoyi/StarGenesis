@@ -1,0 +1,297 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "f712d0e1a284df6abdd2602cde1c9ca3e8ef50c4",
+  "scope": "Bound transient Arena invitations and prevent a failed admission from resurrecting cancelled or closed invitations.",
+  "baseline": {
+    "kind": "Mechanical extraction of the original invitation map behavior; not a live-server failure.",
+    "tests": 4,
+    "failures": 4,
+    "errors": 0,
+    "cases": [
+      {
+        "test": "disconnectedInviterIsNotRestoredByAnAlreadyAdmittedFailedSave",
+        "message": "Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <java.nio.file.AccessDeniedException>"
+      },
+      {
+        "test": "closedInvitationsAreNotRestoredByAnAlreadyAdmittedFailedSave",
+        "message": "Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <java.nio.file.AccessDeniedException>"
+      },
+      {
+        "test": "invitationCapacityIsBoundedBeforeAnyTeamWrite",
+        "message": "Expected java.lang.IllegalStateException to be thrown, but nothing was thrown."
+      },
+      {
+        "test": "aPlayerCannotTakeBothInvitationRolesOrJoinAnInvitationChain",
+        "message": "Expected java.lang.IllegalStateException to be thrown, but nothing was thrown."
+      }
+    ]
+  },
+  "newJavaTests": 11,
+  "focusedJavaTests": 36,
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 69,
+      "tests": 523,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-invitations-verify-java21.log",
+      "logSha256": "3df514aa3008db266888e015984864f7978fe4ec38a19b49d226c927aa7bc5be",
+      "pluginSha256": "4b85db9f2f9befac7c8e079c71578a26529b2373ed137f94a6112306cb811ba2",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 69,
+      "tests": 523,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-invitations-verify-java25.log",
+      "logSha256": "845fa117fa47cc502761a213a332b6d02152ed1e26061c3fc70bf6c11b79ccfe",
+      "pluginSha256": "818b9286119cb01cc6d0bff4b634d91c43fed2bb8e5d632d1787f7951e527bb8",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "toolChecks": {
+    "java21": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "4b85db9f2f9befac7c8e079c71578a26529b2373ed137f94a6112306cb811ba2",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "4b85db9f2f9befac7c8e079c71578a26529b2373ed137f94a6112306cb811ba2",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "4b85db9f2f9befac7c8e079c71578a26529b2373ed137f94a6112306cb811ba2",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "818b9286119cb01cc6d0bff4b634d91c43fed2bb8e5d632d1787f7951e527bb8",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "818b9286119cb01cc6d0bff4b634d91c43fed2bb8e5d632d1787f7951e527bb8",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "818b9286119cb01cc6d0bff4b634d91c43fed2bb8e5d632d1787f7951e527bb8",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "scriptTests": {
+    "python": 9,
+    "node": 3,
+    "failures": 0
+  },
+  "rules": {
+    "maxPendingInvitations": 64,
+    "oneInvitationPerPlayerAcrossBothRoles": true,
+    "acceptance": "Retain original slot/parties while team save is admitted; concurrent duplicate accepts are rejected.",
+    "saveFailure": "Only the same still-pending admission can become retryable; no reinsertion after cancellation or close.",
+    "olderCompletion": "Identity check prevents both successful and failed old operations from replacing/removing a new invitation.",
+    "disconnectOrLeave": "Cancel invitations involving either party; no persistent invitation state.",
+    "shutdown": "Close invitation admission before worker drain. Already-admitted successful team writes can still commit.",
+    "format": "No changes to schema v1 team files, public rules, match replays or simulation semantics."
+  },
+  "limitations": [
+    "No new actual Paper/Folia, load, region concurrency, hot reload or human acceptance evidence in this batch.",
+    "Store-blocking races use real monitors and files; callback-only tests cover in-flight reservations and replacement identity.",
+    "Disconnect/close cancellation does not roll back a team save already admitted to the worker.",
+    "Post-disconnect dashboard-selection cleanup still relies on worker admission; this change only protects invitation state.",
+    "Terminal pruning/reorganization live acceptance, other phase gates, real providers and final signatures remain incomplete."
+  ],
+  "sourceSha256": {
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaController.java": "874a2dad5d5ddd7caf3e34f4c6bc3a645eafc2d9bd686cb05ca49810ae68d984",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaInvitations.java": "df354bf6cbb92accee38af841a9d11b9a7abd22da742a6ff1045d1470cdd9bde",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaMatchService.java": "71d5751ca0478c66bac8f060dbeb0e279ef2daa0e7a29d524591cbf0c8349ee2",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaMatchPersistence.java": "2bdd887d22e613e082e2b6dd3a83ac8767d8949193c96de611b29c53b6e2af6e",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/arena/ArenaInvitationsTest.java": "88022fcf85da13d7ffea52901400dcd4cf274390cae9fc07b3e4cbad43f4b58d",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/arena/ArenaMatchServiceTest.java": "6ce1dbc52e7befdc36b01254d60875f78a882ca1c8d942b329bc5304ec3bb5aa",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/runtime/WorkspaceRace.java": "84eb4a403fd1965ae2d11fb572113df89c41d8317442226025b22be63f57a4e5"
+  },
+  "artifactSha256": {
+    "arena-invitations-build-java21.json": "564d03d4ed5fb26fea5f510d2fc87710f0c8694cd0dbadcc82deab079c1c6802",
+    "arena-invitations-build-java25.json": "4864f8bef867361a5b2e8265b0ad7f6308ebcfaa628f4ac0531c17af7e07989a",
+    "arena-invitations-builder-tests.log": "b845ea3cece8467ccb439a741ed53a34961bd98d42a0f6668446c9269258c493",
+    "arena-invitations-client-tests.log": "9e62efed8c276a9e7abf9f53a34f75bd631ebab5402a61997f4b18886fdadf38",
+    "arena-invitations-design-signer-java21.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-invitations-design-signer-java21.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-invitations-design-signer-java25.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-invitations-design-signer-java25.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-invitations-focused-tests.log": "7d9486f051e1076cf525e21c88b48c41968f0eff45ef99b2204fe7c2fabe5e35",
+    "arena-invitations-lifecycle-tests.log": "5436912b86d27e0e35f390d04bf1a9e6c7e748bb0f9c5ab9abd59f277a1d99f6",
+    "arena-invitations-release-signer-java21.json": "b2dfe82da1116103e90e1c3078dc1a784038ffc728992b1d1740859aa5f9a679",
+    "arena-invitations-release-signer-java21.log": "b2dfe82da1116103e90e1c3078dc1a784038ffc728992b1d1740859aa5f9a679",
+    "arena-invitations-release-signer-java25.json": "d3086c4bc98d35c4dd7a45010571d6b9412c9c2de978e11d0c927f7430da1ef3",
+    "arena-invitations-release-signer-java25.log": "d3086c4bc98d35c4dd7a45010571d6b9412c9c2de978e11d0c927f7430da1ef3",
+    "arena-invitations-settlement-lock-java21.json": "fd378dde07bf8afcbae7053243b24a0e3972d374008a0025886427db391e1873",
+    "arena-invitations-settlement-lock-java21.log": "ba8c1b86462b9b24e0e404e654432fb6070436988814974c36c7a01ba05cc4c6",
+    "arena-invitations-settlement-lock-java25.json": "bb3f6d0f26a995718a13cda965aaa928697ded1d3c7aec7ac598c454ed4a5d3f",
+    "arena-invitations-settlement-lock-java25.log": "e851042586baa481bd9ae4a6b46310197da8bda1ffbf2d6db91d5000e1cb8cae",
+    "arena-invitations-verify-java21.log": "3df514aa3008db266888e015984864f7978fe4ec38a19b49d226c927aa7bc5be",
+    "arena-invitations-verify-java25.log": "845fa117fa47cc502761a213a332b6d02152ed1e26061c3fc70bf6c11b79ccfe",
+    "arena-invitations-worker-lock-java21.json": "19107b6e247e6db93252860c276758e478f3f030081ec9e69fa0f4f6f00d571e",
+    "arena-invitations-worker-lock-java21.log": "f8667ba92b297dea80e704beb6331c43fbf880a84f9c2a51add29bcde62a1a96",
+    "arena-invitations-worker-lock-java25.json": "0ffee9e47e462d43b34973857c4a00f1fd6394d3f374f368a99f33bc3745cece",
+    "arena-invitations-worker-lock-java25.log": "8137d08780857e310b47386b1d66f9d5a435f250b5e5d85a177d832fa889f6b8",
+    "baseline/ArenaController.java.txt": "f2e749384b1ed27d2212a909735d84070727203be1baa45f61bd1f029ae4e7b5",
+    "baseline/ArenaInvitations.java.txt": "944bd2ecb5bf2ade3e6f4a373f83648bd4c5398da342c09f6262ad4756d95c1a",
+    "baseline/ArenaInvitationsTest.java.txt": "89ad8ae6e0273a042180d292cf804a6d206ea31a7d4227688c28062b33954c5b",
+    "baseline/TEST-dev.stargenesis.paper.arena.ArenaInvitationsTest.xml": "5cdeba48cdad0c7e1fffa744ca0ec2390b1a3ca340c7d9076fd46e616e95b3a5",
+    "baseline/tests.log": "c53d33779d4092eedb0f72f30351c1567309768512e3e8cf94dc1ad7ace1e824"
+  }
+}
