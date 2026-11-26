@@ -1,0 +1,15 @@
+test_existing_evidence_is_preserved_before_any_build (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_existing_evidence_is_preserved_before_any_build) ... ok
+test_failed_empty_or_skipped_reports_cannot_be_packaged (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_failed_empty_or_skipped_reports_cannot_be_packaged) ... ok
+test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched) ... ok
+test_missing_wrong_version_and_bundled_provider_jars_are_refused (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_missing_wrong_version_and_bundled_provider_jars_are_refused) ... ok
+test_optional_module_with_missing_reports_cannot_hide_behind_base_tests (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_optional_module_with_missing_reports_cannot_hide_behind_base_tests) ... ok
+$ sh C:\Users\ADMINI~1\AppData\Local\Temp\tmpwoynvchn\mvnw -B -ntp -DforkCount=0 -Pcookery-bridge clean verify
+test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile) ... ok
+Preparing actual craftengine API from locked inputs
+test_preparation_with_wrong_lock_cannot_authorize_optional_build (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_preparation_with_wrong_lock_cannot_authorize_optional_build) ... ok
+test_selected_optional_modules_and_their_locked_build_inputs_are_isolated (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_selected_optional_modules_and_their_locked_build_inputs_are_isolated) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.363s
+
+OK

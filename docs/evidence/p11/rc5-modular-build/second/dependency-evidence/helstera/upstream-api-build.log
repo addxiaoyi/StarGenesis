@@ -1,0 +1,135 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ helstera-api ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\helstera\source-f6x86r6q\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 87 source files with javac [debug target 21] to target\classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/behavior/BehaviorContext.java:[512,32] org.bukkit.entity.Damageable中的getMaxHealth()已过时
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/behavior/BehaviorContext.java:[561,32] org.bukkit.entity.Damageable中的getMaxHealth()已过时
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/behavior/Targeters.java:[619,37] org.bukkit.entity.Damageable中的getMaxHealth()已过时
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/behavior/Targeters.java:[620,56] org.bukkit.entity.Damageable中的getMaxHealth()已过时
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/instance/ModelCreationException.java:[14,33] 可序列化类的非瞬时实例字段是用不可序列化的类型声明的
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[289,39] org.bukkit.Nameable中的getCustomName()已过时
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[366,30] org.bukkit.util 中的 org.bukkit.util.OldEnum 已过时, 且标记为待删除
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[366,64] org.bukkit.util.OldEnum 中的 name() 已过时, 且标记为待删除
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/helstera/source-f6x86r6q/helstera-api/src/main/java/dev/helstera/api/util/MythicGeneratedLootSpec.java:[36,29] org.bukkit中的org.bukkit.ChatColor已过时
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\helstera\source-f6x86r6q\helstera-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 35 source files with javac [debug target 21] to target\test-classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[WARNING] 没有处理程序要使用以下任何批注: /org.junit.jupiter.api.DisplayName,/org.junit.jupiter.api.Test,/org.junit.jupiter.api.io.TempDir
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.api.behavior.BehaviorContextLocationTargetTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.372 s -- in dev.helstera.api.behavior.BehaviorContextLocationTargetTest
+[INFO] Running dev.helstera.api.behavior.BehaviorContextPowerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.behavior.BehaviorContextPowerTest
+[INFO] Running dev.helstera.api.behavior.ExecutionAudienceDataTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.helstera.api.behavior.ExecutionAudienceDataTest
+[INFO] Running dev.helstera.api.behavior.MobRelationsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in dev.helstera.api.behavior.MobRelationsTest
+[INFO] Running dev.helstera.api.behavior.ScopedVariableSnapshotStoreTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.322 s -- in dev.helstera.api.behavior.ScopedVariableSnapshotStoreTest
+[INFO] Running dev.helstera.api.behavior.SkillTreeContextTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.122 s -- in dev.helstera.api.behavior.SkillTreeContextTest
+[INFO] Running dev.helstera.api.behavior.TargeterOrderingTest
+[INFO] Tests run: 53, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.797 s -- in dev.helstera.api.behavior.TargeterOrderingTest
+[INFO] Running dev.helstera.api.behavior.TargeterThreatAuditTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in dev.helstera.api.behavior.TargeterThreatAuditTest
+[INFO] Running dev.helstera.api.behavior.VariableExpiryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s -- in dev.helstera.api.behavior.VariableExpiryTest
+[INFO] Running dev.helstera.api.behavior.VariableLocationsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in dev.helstera.api.behavior.VariableLocationsTest
+[INFO] Running dev.helstera.api.instance.SpawnOptionsTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.helstera.api.instance.SpawnOptionsTest
+[INFO] Running dev.helstera.api.integration.IntegrationContractTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.integration.IntegrationContractTest
+[INFO] Running dev.helstera.api.util.ComparisonRangeTemplateTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.ComparisonRangeTemplateTest
+[INFO] Running dev.helstera.api.util.ConditionListParserTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.ConditionListParserTest
+[INFO] Running dev.helstera.api.util.DisplayTransformationSpecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in dev.helstera.api.util.DisplayTransformationSpecTest
+[INFO] Running dev.helstera.api.util.EntityInteractionSpecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.helstera.api.util.EntityInteractionSpecTest
+[INFO] Running dev.helstera.api.util.EntitySetterSpecTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in dev.helstera.api.util.EntitySetterSpecTest
+[INFO] Running dev.helstera.api.util.EntityTypeSelectorTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.171 s -- in dev.helstera.api.util.EntityTypeSelectorTest
+[INFO] Running dev.helstera.api.util.MerchantTradeSpecTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.util.MerchantTradeSpecTest
+[INFO] Running dev.helstera.api.util.MythicConditionActionTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in dev.helstera.api.util.MythicConditionActionTest
+[INFO] Running dev.helstera.api.util.MythicGeneratedLootSpecTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in dev.helstera.api.util.MythicGeneratedLootSpecTest
+[INFO] Running dev.helstera.api.util.MythicItemCopySpecTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.MythicItemCopySpecTest
+[INFO] Running dev.helstera.api.util.MythicJsonMessageSpecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.util.MythicJsonMessageSpecTest
+[INFO] Running dev.helstera.api.util.MythicPathfindingMalusTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in dev.helstera.api.util.MythicPathfindingMalusTest
+[INFO] Running dev.helstera.api.util.MythicScoreboardSpecTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in dev.helstera.api.util.MythicScoreboardSpecTest
+[INFO] Running dev.helstera.api.util.MythicVariableArithmeticTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.util.MythicVariableArithmeticTest
+[INFO] Running dev.helstera.api.util.MythicVariableLocationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.MythicVariableLocationTest
+[INFO] Running dev.helstera.api.util.MythicVariableMathTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in dev.helstera.api.util.MythicVariableMathTest
+[INFO] Running dev.helstera.api.util.NumericExpressionTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in dev.helstera.api.util.NumericExpressionTest
+[INFO] Running dev.helstera.api.util.NumericMechanicSpecTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.NumericMechanicSpecTest
+[INFO] Running dev.helstera.api.util.PercentHealthSpecTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.helstera.api.util.PercentHealthSpecTest
+[INFO] Running dev.helstera.api.util.PlaceholderSyntaxTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.helstera.api.util.PlaceholderSyntaxTest
+[INFO] Running dev.helstera.api.util.PotionSpecTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.helstera.api.util.PotionSpecTest
+[INFO] Running dev.helstera.api.util.SetSpeedSpecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.helstera.api.util.SetSpeedSpecTest
+[INFO] Running dev.helstera.api.util.ShieldBreakSpecTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in dev.helstera.api.util.ShieldBreakSpecTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 224, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-api ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\helstera\source-f6x86r6q\helstera-api\target\helstera-api-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.087 s
+[INFO] Finished at: 2026-11-26T16:57:44+08:00
+[INFO] ------------------------------------------------------------------------

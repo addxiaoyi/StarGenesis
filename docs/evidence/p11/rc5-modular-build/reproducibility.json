@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "version": "4.0.0-rc.5",
+  "tests": {
+    "reports": 85,
+    "tests": 634,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "profiles": [
+    "helstera-bridge",
+    "craftengine-bridge",
+    "cookery-bridge"
+  ],
+  "sourceTreeSha256": "e7cf0628eb9f095a5878876b4171e9b0a2394f0509467be9346b95fb84093360",
+  "sbomSha256": "4092e029bb0b1ad27b9e88a9d4e319c0d3bffb6f7c85ef1199e5b3c3d9472980",
+  "artifacts": {
+    "stargenesis-paper": "7614748f35be8ded22da0bf07bf45bf97b2732de4341ba3ea493de1c8b165053",
+    "stargenesis-helstera": "2ad6cf48ba57d830ee2418e6f10bfe91764cc3879a9858437b71fb281f512f5d",
+    "stargenesis-craftengine": "adc117e0c96c985a42bf8403025970e39123255bfd77bb1aee22d4f4480fef89",
+    "stargenesis-cookery": "eefa11b1b49f20425107db899d7ef32a1b96fb8e604049bf85fdff5a2f0fff7c"
+  },
+  "scope": "Two independent local Java21 source copies and actual API preparations; all four plugin JARs and SBOM match. Not a production signature or cross-platform reproducibility claim."
+}

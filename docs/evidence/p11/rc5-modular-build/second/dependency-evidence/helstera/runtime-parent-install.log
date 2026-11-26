@@ -1,0 +1,27 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-parent >--------------------
+[INFO] Building helsteraMobs Parent 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] >>> spotbugs:4.10.4.1:check (spotbugs-check) > :spotbugs @ helstera-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:spotbugs (spotbugs) @ helstera-parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.4.1:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.10.4.1:check (spotbugs-check) < :spotbugs @ helstera-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:check (spotbugs-check) @ helstera-parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ helstera-parent ---
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\helstera\source-f6x86r6q\pom.xml to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-parent\1.0.0\helstera-parent-1.0.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.650 s
+[INFO] Finished at: 2026-11-26T16:57:53+08:00
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,188 @@
+{
+  "version": "4.0.0-rc.5",
+  "builtAt": "2026-11-26T09:04:21.031339+00:00",
+  "buildCommand": "mvnw.cmd -B -ntp -DforkCount=0 -Phelstera-bridge,craftengine-bridge,cookery-bridge clean verify",
+  "buildArguments": [
+    "mvnw.cmd",
+    "-B",
+    "-ntp",
+    "-DforkCount=0",
+    "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+    "clean",
+    "verify"
+  ],
+  "profiles": [
+    "helstera-bridge",
+    "craftengine-bridge",
+    "cookery-bridge"
+  ],
+  "modules": [
+    "stargenesis-api",
+    "stargenesis-design",
+    "stargenesis-sim",
+    "stargenesis-integrations",
+    "stargenesis-paper",
+    "stargenesis-helstera",
+    "stargenesis-craftengine",
+    "stargenesis-cookery"
+  ],
+  "dependencyPreparation": {
+    "helstera": {
+      "preparation": {
+        "revision": "9298292538dc9d7c5ee800ff7e03f4c10e34ba97",
+        "patchSha256": "a2319f4cb9cdfa79e72d42f9e97f58da6a54a94987f4ad60bdded16d25499ee3",
+        "artifactVersion": "1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd",
+        "lockedFiles": 124,
+        "tests": {
+          "tests": 224,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "artifactSha256": "2cbdd098d6271108f0f7e497aac91b82cff9985b0126f9c51792c496e8fbcf44",
+        "sourceLockSha256": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f",
+        "runtimeTests": {
+          "helstera-core": {
+            "tests": 47,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "helstera-runtime": {
+            "tests": 45,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "helstera-render-paper": {
+            "tests": 14,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      },
+      "directory": ".work\\rc5-build\\second\\dependency-evidence\\helstera",
+      "files": {
+        "helstera-core-build.log": "a45d1b58e68b4b17257cdf2b212e6379e2eca82eb1e40a1db1db3426df87b418",
+        "helstera-render-paper-build.log": "97a62a1a0bc0d6c41a0768587cdf7b4d1c18a19af5add096d6117ccb40eeb18b",
+        "helstera-runtime-build.log": "e2f4f1c40abcd869eba75c6c6a3b5c9cf3f35489da80d6de4f01421f1bedf45a",
+        "install.log": "d0981f96e5901ebb8fc651c68dcc3919d3f9503c7299dddabd04a1e060edb246",
+        "preparation-launch.log": "0a4ceffe37d655272ec9f1e41506bd4a7f0e030caf0c35a649981ccd0c2868b6",
+        "preparation.json": "2ef231a8d5362e5e814f3ee65ac68c3503022e9ef13583f1b29c83e13324c0da",
+        "runtime-api-install.log": "9539be775902725005f32a7dea8a70f079f78a10abefc0565dab85a7e4e05077",
+        "runtime-parent-install.log": "292323dc857dbd1a3ab42f4257a6a40845c456ce87551f8d0fd746a84e3fa902",
+        "upstream-api-build.log": "9a5a16751cd1c600bd3b1f11ee2ba665c16a4176e86bea25faca2d90f8cbfb65",
+        "source-lock.json": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f"
+      }
+    },
+    "craftengine": {
+      "preparation": {
+        "version": "26.9.1",
+        "artifactVersions": {
+          "core": "26.9.1-sg3db3473986ae",
+          "bukkit": "26.9.1-sg011afd3b1cfc"
+        },
+        "sourceLockSha256": "62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d",
+        "files": {
+          "craft-engine-core-26.9.1.pom": "b63b023aea34a5155469a26d140eed8d6f5038f209d3aed6d030ce45edd6a33e",
+          "craft-engine-core-26.9.1-sources.jar": "680db25e3c6bde661e02b353e50988afefdbbc6b750ccee534eb84831b712d80",
+          "craft-engine-core-26.9.1.jar": "3db3473986aefe52936aa807a0b5858355775fa16927eba96b701e84431a0d2b",
+          "craft-engine-bukkit-26.9.1.pom": "3ca095869bebb47a0f15701e9a00ecd51645cad9c5a63674a7bcbb7fbed4acbc",
+          "craft-engine-bukkit-26.9.1-sources.jar": "f53afe676bb5f14a8cd35380c1b741e69f67416bbb943cffd82d0a32a68076e6",
+          "craft-engine-bukkit-26.9.1.jar": "011afd3b1cfcaf5fc4b4af4757843e5479e1be4a9763c1a97bde04dcb1c0795d"
+        },
+        "scope": "Actual published API JARs, sources and POMs; no API stubs or runtime-plugin verification"
+      },
+      "directory": ".work\\rc5-build\\second\\dependency-evidence\\craftengine",
+      "files": {
+        "bukkit-install.log": "988b8a7d39ffbd231b4b422a129ddc7fb77894335c3167f6c108593e6c1e1fd9",
+        "core-install.log": "4ccb9a61763f0229408c5e3beac900c0c186b47e7459bfcbd41d7b47fc2af458",
+        "preparation-launch.log": "c7b86d070ba1692d298db3d8849e873680acbbbef0ac1b9a9a189035ada7e929",
+        "preparation.json": "235bf5f4cd03e837daf5658a026e89e94be4f40bfe290605dd22c338c7f51b86",
+        "source-lock.json": "62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d"
+      }
+    },
+    "cookery": {
+      "preparation": {
+        "revision": "7aca215fca067314d1593dd287621f96fb8913e4",
+        "lockedFiles": 558,
+        "tests": {
+          "tests": 28,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "artifactVersion": "1.3.0-sg7aca215fca06",
+        "artifactSha256": "67c354b090a65c2e1dfb64b4ee6e59ececf2e093d4f48a1b6309d2a508507e65",
+        "sourceLockSha256": "5f645bae99fd45eb6d2a38be87e4822d831a34a605a41eaedc2b3a260858737a",
+        "scope": "Unchanged upstream main/compat API classes and 28 upstream recipe tests; no runtime or NMS verification"
+      },
+      "directory": ".work\\rc5-build\\second\\dependency-evidence\\cookery",
+      "files": {
+        "dependencies.json": "589f68d3b3b2c6e876b5f5ac16ba7a5e894f6d2defda39e6d1283eb62a8e9c7b",
+        "install.log": "bee0f8fe5ef467c02352b4fa26a8243058719fb25d9a14c4680d8ea6122b7f59",
+        "preparation-launch.log": "88790199b9caaf4ce6ccb041e11d1e91525cd032414866e346d5f8e6cd334a50",
+        "preparation.json": "c1e6f960dd41f6e685a87dc716fbb98dfd41984f1207de04a245c024e0cf7c79",
+        "TEST-net.kaleidoscope.cookery.recipe.BambooTrayIndexTest.xml": "73e1f7ccbc6be9a1b9346785a40dec48ee98a4045d03976d4f45bd3a60ab01b1",
+        "TEST-net.kaleidoscope.cookery.recipe.BambooTrayRecipeTest.xml": "813c0ed4b8d974b38cafa702091a129d264681311f115446627051a8ea1985a8",
+        "TEST-net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest.xml": "0bcf468f1f2b2730234abd7689028a0c0b872ae75585fe3122db0f0804f81969",
+        "TEST-net.kaleidoscope.cookery.recipe.PotRecipeTest.xml": "a9a788c5fa63eca726627228e84b3c098eafbb6a29d9d649d332f1fa4f33405d",
+        "TEST-net.kaleidoscope.cookery.recipe.StockpotRecipeTest.xml": "cd62bbde431565aad3faaf19d63b709231d6274890ddf38006089e38ab9d08b0",
+        "upstream-api-build.log": "60dfaa1f050cf5075dc6fa7c13fd6c3904b730ff3e83f30b123181cfa7aa4f12",
+        "source-lock.json": "5f645bae99fd45eb6d2a38be87e4822d831a34a605a41eaedc2b3a260858737a"
+      }
+    }
+  },
+  "forkCount": 0,
+  "javaVersion": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "isolatedSourceCopy": true,
+  "sourceVersion": "4.0.0-SNAPSHOT",
+  "sourceTreeSha256": "e7cf0628eb9f095a5878876b4171e9b0a2394f0509467be9346b95fb84093360",
+  "tests": {
+    "reports": 85,
+    "tests": 634,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "file": ".work\\rc5-build\\second\\StarGenesis-4.0.0-rc.5.jar",
+    "sizeBytes": 3107360,
+    "sha256": "7614748f35be8ded22da0bf07bf45bf97b2732de4341ba3ea493de1c8b165053"
+  },
+  "artifacts": {
+    "stargenesis-paper": {
+      "file": ".work\\rc5-build\\second\\StarGenesis-4.0.0-rc.5.jar",
+      "sizeBytes": 3107360,
+      "sha256": "7614748f35be8ded22da0bf07bf45bf97b2732de4341ba3ea493de1c8b165053"
+    },
+    "stargenesis-helstera": {
+      "file": ".work\\rc5-build\\second\\StarGenesisHelstera-4.0.0-rc.5.jar",
+      "sizeBytes": 24343,
+      "sha256": "2ad6cf48ba57d830ee2418e6f10bfe91764cc3879a9858437b71fb281f512f5d"
+    },
+    "stargenesis-craftengine": {
+      "file": ".work\\rc5-build\\second\\StarGenesisCraftEngine-4.0.0-rc.5.jar",
+      "sizeBytes": 12803,
+      "sha256": "adc117e0c96c985a42bf8403025970e39123255bfd77bb1aee22d4f4480fef89"
+    },
+    "stargenesis-cookery": {
+      "file": ".work\\rc5-build\\second\\StarGenesisCookery-4.0.0-rc.5.jar",
+      "sizeBytes": 17587,
+      "sha256": "eefa11b1b49f20425107db899d7ef32a1b96fb8e604049bf85fdff5a2f0fff7c"
+    }
+  },
+  "sbom": {
+    "format": "CycloneDX",
+    "specVersion": "1.6",
+    "components": 68,
+    "file": ".work\\rc5-build\\second\\sbom.json",
+    "sha256": "4092e029bb0b1ad27b9e88a9d4e319c0d3bffb6f7c85ef1199e5b3c3d9472980"
+  },
+  "signed": false,
+  "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
+  "buildLog": ".work\\rc5-build\\second\\release-verify.log",
+  "buildLogSha256": "78a30268f4d26dec604937a5410b0252240d47f51fbcc166b7f33e68e26b8534"
+}

@@ -1,0 +1,33 @@
+* text=auto
+*.java text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.py text eol=lf
+*.patch text eol=lf -whitespace
+*.cjs text eol=lf
+*.pub text eol=lf
+mvnw text eol=lf
+*.cmd text eol=crlf
+# Raw evidence must preserve bytes and hashes across Windows/Linux checkout.
+docs/evidence/**/*.log -text -diff
+docs/evidence/**/sbom.json -text -diff
+docs/evidence/**/*.java.txt text eol=lf
+docs/evidence/p11/server-lifecycle/** -text -whitespace
+docs/evidence/p7/draft-lifecycle/** -text -whitespace
+docs/evidence/p11/editor-lifecycle/** -text -whitespace
+docs/evidence/p4/mailbox-retention/** -text -whitespace
+docs/evidence/p4/server-lifecycle/** -text -whitespace
+docs/evidence/p8/invitation-lifecycle/** -text -whitespace
+docs/evidence/p11/player-command-lifecycle/** -text -whitespace
+docs/evidence/p11/match-admin-lifecycle/** -text -whitespace
+docs/evidence/p11/rc4-recovery/** -text -whitespace
+docs/evidence/p4/acknowledgement-identity/** -text -whitespace
+docs/evidence/p10/model-catalog/** -text -whitespace
+docs/evidence/p10/lab-projection/** -text -whitespace
+docs/evidence/p10/item-bridge/** -text -whitespace
+docs/evidence/p10/recipe-catalog/** -text -whitespace
+stargenesis-integrations/src/test/resources/craftengine/*.bin -text -diff
+# This lock's complete byte hash is embedded in the published integration descriptor.
+scripts/craftengine-api-lock.json -text -eol whitespace=cr-at-eol

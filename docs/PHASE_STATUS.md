@@ -215,6 +215,14 @@ RC3使用两个独立源码副本和Microsoft JDK21分别clean verify，各415�
 
 实际运行时入口和配方共80个相关类与Java21 API字节一致，另两个非配方类由上游shade重定位；实际CraftEngine与官方API差异沿用物品桥接的公开记录。首轮精简配置缺器具、代理sender不能直接进入原生命令分发；后续修正Windows长路径复制、补实际状态映射包和分页探针。所有失败保留。完整工件/源码/内容输入哈希和验证边界见 `docs/evidence/p10/recipe-catalog/summary.json`，接口见 `COOKERY_RECIPE_CATALOG.md`。相同基础插件另通过Folia1.21.11-14的22项控制台启停检查，仅覆盖基础插件，不声明料理Folia兼容。未执行实际制作、背包交付、资源包渲染或真人验收；P10阶段门保持未通过。
 
+## RC5 模块化候选
+
+2026-11-26 未签署候选更新为 `4.0.0-rc.5`，汇入RC4之后的P4确认歧义修复以及三个可选桥接。构建器显式选择profile，隔离复制所选模块和真实API准备输入，每次重新校验/构建依赖；所选模块无测试、源码锁失配、错误插件版本或混入提供方class均拒绝产出。新增5项构建器回归，合计8项，相关Python子集29项通过。CI配置新增Linux Java21实际三扩展候选构建，不以SNAPSHOT构建替代候选证据。
+
+Windows Microsoft JDK21两份独立源码副本各通过634项测试、85份Surefire报告，真实Helstera依赖每轮330项、Cookery每轮28项通过。源码输入、四个JAR和68组件CycloneDX1.6 SBOM哈希一致；309份原始输入均核对，归档阶段新增的`.gitattributes`证据保护规则单独披露。与来源提交`db15f37`的Java21 SNAPSHOT比较全部1408个class无变化，版本/构建资源变化。
+
+同一RC5基础JAR在Java21/25各通过目录/结算锁和双签名自检，四个JAR+SBOM联合测试清单逐文件篡改拒绝。实际Paper料理两次启动40/42检查、481条配置配方恢复一致；物品两次各46检查及完整NBT跨进程恢复通过；Helstera合成实验室帧的实际实体生命周期47检查通过。Folia基础插件22项控制台启停通过。提供方版本、工件哈希、警告、合成sender与无实际玩家的边界见`RELEASE_CANDIDATE_RC5.md`及`docs/evidence/p11/rc5-modular-build/summary.json`。没有新增正式签署或生产/真人验收，全阶段门保持原状态。
+
 ## 未闭合阶段门
 
 P1–P8 仍需真人玩家验收、留存和公平性研究。P5 candidate 已有双平台八 seed 实服覆盖，更广 seed/参数空间、长期研究与参数稳健性验收仍未完成。P9 需要指定真实 provider 的持久外部幂等副作用、授权和补偿故障审计。P10仍需运营方trust-root、模型/物品资源包外观、授权交付及完整系列插件验收；Helstera目录/被动投影和CraftEngine完整物品状态桥接已有实际Paper生命周期证据，投影依赖固定清理补丁。P11 需要生产规模/跨硬件容量研究和正式发行方签名。2026-11-25 已清理包管理器缓存并使用本机已安装的 JDK 21/25 恢复整仓构建，Paper/Folia 八 seed 客户端扫描已完成。

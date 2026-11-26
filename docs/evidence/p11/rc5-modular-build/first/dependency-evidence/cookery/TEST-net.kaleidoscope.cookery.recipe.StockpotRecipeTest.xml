@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-26T08:52:14.738Z" hostname="HCSS-ECS-06FD" time="0.017">
+  <properties/>
+  <testcase name="exactCountsBeatDistinctAndLegacyCosine()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.005"/>
+  <testcase name="distinctMeansConcreteItemsNotCollapsedTags()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.001"/>
+  <testcase name="overlappingAlternativesUseOneInputPerSlot()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.001"/>
+  <testcase name="liquidHeightFollowsOfficialRemainingFraction()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.001"/>
+  <testcase name="frozenVisualsAndOutputSurviveReloadAndSave()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.002"/>
+  <testcase name="versionOnePlansKeepTheirOriginalRules()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.001"/>
+  <testcase name="strictConfigRejectsUnknownFieldsAndCoercedNumbers()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.003"/>
+  <testcase name="failedReloadKeepsThePreviousGenerationAndWhitelist()" classname="net.kaleidoscope.cookery.recipe.StockpotRecipeTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

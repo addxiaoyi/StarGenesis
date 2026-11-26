@@ -1,0 +1,20 @@
+{
+  "input": "minecraft:wheat",
+  "results": [
+    {
+      "key": "minecraft:bread",
+      "weight": 13
+    },
+    {
+      "key": "minecraft:cookie",
+      "weight": 7
+    }
+  ],
+  "cook": "MILLSTONE",
+  "rotations": 3,
+  "resultCount": 2,
+  "lore": [
+    "Recipe metadata fixture"
+  ],
+  "cookingTime": 0
+}

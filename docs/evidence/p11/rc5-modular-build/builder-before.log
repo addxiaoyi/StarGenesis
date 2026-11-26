@@ -1,0 +1,37 @@
+test_existing_evidence_is_preserved_before_any_build (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_existing_evidence_is_preserved_before_any_build) ... ok
+test_failed_empty_or_skipped_reports_cannot_be_packaged (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_failed_empty_or_skipped_reports_cannot_be_packaged) ... ok
+test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched) ... ok
+test_optional_module_with_missing_reports_cannot_hide_behind_base_tests (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_optional_module_with_missing_reports_cannot_hide_behind_base_tests) ... ERROR
+test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile) ... ERROR
+test_selected_optional_modules_and_their_locked_build_inputs_are_isolated (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_selected_optional_modules_and_their_locked_build_inputs_are_isolated) ... ERROR
+
+======================================================================
+ERROR: test_optional_module_with_missing_reports_cannot_hide_behind_base_tests (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_optional_module_with_missing_reports_cannot_hide_behind_base_tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\scripts\test_release_candidate_builder.py", line 39, in test_optional_module_with_missing_reports_cannot_hide_behind_base_tests
+    with self.assertRaises(RuntimeError):builder.test_totals(root,('stargenesis-paper','stargenesis-cookery'))
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: test_totals() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\scripts\test_release_candidate_builder.py", line 46, in test_posix_build_uses_shell_for_nonexecutable_wrapper_and_records_profile
+    command=builder.run_build(root,java,root/'build.log',0,('cookery-bridge',))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_build() takes 4 positional arguments but 5 were given
+
+======================================================================
+ERROR: test_selected_optional_modules_and_their_locked_build_inputs_are_isolated (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_selected_optional_modules_and_their_locked_build_inputs_are_isolated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\scripts\test_release_candidate_builder.py", line 26, in test_selected_optional_modules_and_their_locked_build_inputs_are_isolated
+    builder.copy_build_inputs(root,destination,('cookery-bridge',))
+TypeError: copy_build_inputs() takes 2 positional arguments but 3 were given
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.275s
+
+FAILED (errors=3)

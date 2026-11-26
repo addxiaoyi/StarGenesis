@@ -1,0 +1,45 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\helstera\source-w6mbv_li\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\helstera\source-w6mbv_li\helstera-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-api ---
+[INFO] 
+[INFO] >>> spotbugs:4.10.4.1:check (spotbugs-check) > :spotbugs @ helstera-api >>>
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:spotbugs (spotbugs) @ helstera-api ---
+[INFO] Spotbugs plugin skipped
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.4.1:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.10.4.1:check (spotbugs-check) < :spotbugs @ helstera-api <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:check (spotbugs-check) @ helstera-api ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ helstera-api ---
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\helstera\source-w6mbv_li\helstera-api\pom.xml to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-api\1.0.0\helstera-api-1.0.0.pom
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\helstera\source-w6mbv_li\helstera-api\target\helstera-api-1.0.0.jar to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-api\1.0.0\helstera-api-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.840 s
+[INFO] Finished at: 2026-11-26T16:50:04+08:00
+[INFO] ------------------------------------------------------------------------

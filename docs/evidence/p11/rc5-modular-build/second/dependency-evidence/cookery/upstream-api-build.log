@@ -1,0 +1,41 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+
+> Task :processResources
+> Task :classes
+> Task :sgApiJar
+> Task :compileModernCompatJava
+
+> Task :compileTestJava
+C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\cookery\source-a3jz2woc\src\test\java\net\kaleidoscope\cookery\effect\CookeryEffectsTest.java:95: 警告: [removal] PlayerQuitEvent 中的 PlayerQuitEvent(Player,Component) 已过时, 且标记为待删除
+            service.onQuit(new PlayerQuitEvent(player, (net.kyori.adventure.text.Component) null));
+                           ^
+注: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-m3abc1vi\cookery\source-a3jz2woc\src\test\java\net\kaleidoscope\cookery\effect\FarmerOutfitTest.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+1 个警告
+
+> Task :processModernCompatResources NO-SOURCE
+> Task :modernCompatClasses
+> Task :processTestResources
+> Task :testClasses
+> Task :sgRecipeTests
+> Task :sgDependencyManifest
+
+[Incubating] Problems report is available at: file:///C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/rc-deps-m3abc1vi/cookery/source-a3jz2woc/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.4.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 54s
+8 actionable tasks: 8 executed

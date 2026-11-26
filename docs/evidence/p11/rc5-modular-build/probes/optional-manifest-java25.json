@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "testKeyEphemeral": true,
+  "privateTestKeyRemoved": true,
+  "version": "4.0.0-rc.5",
+  "files": {
+    "StarGenesis-4.0.0-rc.5.jar": "7614748f35be8ded22da0bf07bf45bf97b2732de4341ba3ea493de1c8b165053",
+    "StarGenesisCookery-4.0.0-rc.5.jar": "eefa11b1b49f20425107db899d7ef32a1b96fb8e604049bf85fdff5a2f0fff7c",
+    "StarGenesisCraftEngine-4.0.0-rc.5.jar": "adc117e0c96c985a42bf8403025970e39123255bfd77bb1aee22d4f4480fef89",
+    "StarGenesisHelstera-4.0.0-rc.5.jar": "2ad6cf48ba57d830ee2418e6f10bfe91764cc3879a9858437b71fb281f512f5d",
+    "sbom.json": "4092e029bb0b1ad27b9e88a9d4e319c0d3bffb6f7c85ef1199e5b3c3d9472980"
+  },
+  "checks": [
+    "StarGenesis-4.0.0-rc.5.jar tamper rejected",
+    "StarGenesisCookery-4.0.0-rc.5.jar tamper rejected",
+    "StarGenesisCraftEngine-4.0.0-rc.5.jar tamper rejected",
+    "StarGenesisHelstera-4.0.0-rc.5.jar tamper rejected",
+    "sbom.json tamper rejected"
+  ],
+  "scope": "Temporary copies of all four candidate JARs and SBOM signed and individually tampered with a disposable test key. No official release signature."
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "sourceSnapshotCommit": "db15f3741637be688eaecf6f12071ee2c017cd09",
+  "result": {
+    "stargenesis-paper": {
+      "classes": 1393,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "stargenesis-helstera": {
+      "classes": 5,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "stargenesis-craftengine": {
+      "classes": 4,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "stargenesis-cookery": {
+      "classes": 6,
+      "added": [],
+      "removed": [],
+      "changed": []
+    }
+  }
+}

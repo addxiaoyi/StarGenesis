@@ -58,6 +58,14 @@ jobs:
           --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
           --design stargenesis-design/src/main/resources/examples/blueprint.json
           --output target/signed-design-signer-smoke.json
+      - name: Build isolated optional release candidate
+        if: matrix.java == '21'
+        run: |
+          mkdir -p .work/rc-inputs/craftengine
+          cp .work/helstera-api/source.zip .work/rc-inputs/helstera.zip
+          cp .work/cookery-api/source.zip .work/rc-inputs/cookery.zip
+          cp .work/craftengine-api/craft-engine-* .work/rc-inputs/craftengine/
+          python scripts/build_release_candidate.py --version 4.0.0-rc.5 --java "$JAVA_HOME/bin/java" --profile helstera-bridge --profile craftengine-bridge --profile cookery-bridge --dependency-inputs .work/rc-inputs --output-directory .work/ci-release --evidence-file target/rc-evidence.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -81,4 +89,6 @@ jobs:
             target/settlement-process-lock.json
             target/worker-directory-lock.json
             target/sbom.json
+            target/rc-evidence.json
+            .work/ci-release/**
             **/target/surefire-reports/*

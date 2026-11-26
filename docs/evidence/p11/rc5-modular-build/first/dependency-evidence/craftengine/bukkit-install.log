@@ -1,0 +1,34 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-rc.5                                    [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- install:3.1.4:install-file (default-cli) @ stargenesis-parent ---
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\craftengine\craft-engine-bukkit-26.9.1.jar to C:\Users\Administrator\.m2\repository\net\momirealms\craft-engine-bukkit\26.9.1-sg011afd3b1cfc\craft-engine-bukkit-26.9.1-sg011afd3b1cfc.jar
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\rc-deps-onsyjcpo\craftengine\bukkit-locked.pom to C:\Users\Administrator\.m2\repository\net\momirealms\craft-engine-bukkit\26.9.1-sg011afd3b1cfc\craft-engine-bukkit-26.9.1-sg011afd3b1cfc.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-rc.5:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [  0.262 s]
+[INFO] stargenesis-api .................................... SKIPPED
+[INFO] stargenesis-design ................................. SKIPPED
+[INFO] stargenesis-sim .................................... SKIPPED
+[INFO] StarGenesis Integration Contracts .................. SKIPPED
+[INFO] stargenesis-paper .................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.490 s
+[INFO] Finished at: 2026-11-26T16:50:47+08:00
+[INFO] ------------------------------------------------------------------------
