@@ -331,7 +331,7 @@ def main() -> None:
         "p9_real_settlement_inactive": "P9 durable saga contract=available, real gateway=inactive" in joined,
         "p10_signed_design_import": "P10 signed Ed25519 design import=available" in joined,
         "help_command": "/genesis help - this help" in joined,
-        "capabilities_command": "StarGenesis capabilities (startup snapshot" in joined,
+        "capabilities_command": "StarGenesis capabilities (" in joined,
         "missing_dependency_report": "NOT_INSTALLED" in joined,
         "budget_command": "StarGenesis budgets:" in joined,
         "plugin_disabled": "StarGenesis stopped cleanly" in joined,

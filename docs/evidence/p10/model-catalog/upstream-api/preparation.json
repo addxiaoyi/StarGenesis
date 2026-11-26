@@ -1,0 +1,12 @@
+{
+  "revision": "a2969dfaf83cd35e642147f4bd7743ae04d34e7a",
+  "lockedFiles": 122,
+  "tests": {
+    "tests": 222,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifactSha256": "16c872514b12509a5272a50dc3719229df642ca51b8dce95fe987ee16f1ab7ee",
+  "sourceLockSha256": "fd6a414c9560ad2d896ef7ec0eafc9da22121207c0c74f96ede3bfd9a10bccae"
+}

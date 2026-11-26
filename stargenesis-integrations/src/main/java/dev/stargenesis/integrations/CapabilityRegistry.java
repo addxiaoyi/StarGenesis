@@ -38,7 +38,7 @@ public final class CapabilityRegistry implements AutoCloseable {
         descriptors.add(new IntegrationDescriptor("starcore", "StarCore", Set.of("1.0.0"),
                 starcore, Set.of("nation.read", "territory.authorize", "technology.read", "economy.settle")));
         descriptors.add(new IntegrationDescriptor("helstera", "helsteraMobs", Set.of("1.0.0"),
-                "bb6d662c17c713691e40278f5fd7d7db0155512c", Set.of("entity.project", "behavior.register", "event.subscribe")));
+                "a2969dfaf83cd35e642147f4bd7743ae04d34e7a", Set.of("model.inspect", "entity.project", "behavior.register", "event.subscribe")));
         // Declared dependency version in audited SenLuo source, not a CraftEngine runtime test.
         descriptors.add(new IntegrationDescriptor("craftengine", "CraftEngine", Set.of("26.9.1"),
                 senluo, Set.of("items.resolve", "items.create")));

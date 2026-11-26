@@ -23,3 +23,4 @@ docs/evidence/p11/player-command-lifecycle/** -text -whitespace
 docs/evidence/p11/match-admin-lifecycle/** -text -whitespace
 docs/evidence/p11/rc4-recovery/** -text -whitespace
 docs/evidence/p4/acknowledgement-identity/** -text -whitespace
+docs/evidence/p10/model-catalog/** -text -whitespace

@@ -1,0 +1,7 @@
+name: StarGenesisHelstera
+version: '${project.version}'
+main: dev.stargenesis.helstera.HelsteraCatalogPlugin
+api-version: '1.21.11'
+description: Read-only Helstera model inspection for StarGenesis
+depend: [StarGenesis, helsteraMobs]
+# Helstera itself does not support Folia. This plugin must never opt in on its behalf.

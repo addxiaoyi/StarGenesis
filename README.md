@@ -17,6 +17,8 @@ python scripts/check_boundaries.py
 
 Windows 使用 `mvnw.cmd -B verify`。产物：`stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar` 与 reactor aggregate CycloneDX 1.6 SBOM `target/sbom.json`；安装此 shaded JAR，不要安装 `original-*` 或 api/sim 等独立库 JAR。Paper API 固定 `1.21.11-R0.1-20260511.115010-91`；未把 Bukkit/Paper 或第三方插件打入发布物。
 
+可选 `StarGenesisHelstera` 扩展提供 Paper 1.21.11 只读模型查询：先运行 `python scripts/prepare_helstera_api.py`，再以 `-Phelstera-bridge` 构建；用 `/genesis model status`、`/genesis model inspect <id>` 检查已加载模型。模型加载/卸载/服务停用已有实际提供方验证，实体投影仍关闭。构建、命令和边界见 [模型查询桥接](docs/HELSTERA_MODEL_CATALOG.md)。
+
 ## Release Signing
 
 发行者可使用 JDK 21 对最终版本插件 JAR 与 SBOM 生成 Ed25519 签名清单。签名私钥保存在仓库之外，发行产物与 manifest 放在同一目录：

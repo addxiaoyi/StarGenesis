@@ -5,7 +5,7 @@
 | 仓库 | 本次实际读取提交 | 详细证据 |
 |---|---|---|
 | addxiaoyi/starcore | f769e62799e769a18fe51305b545869a17f80cd1 | [audits/STARCORE.md](audits/STARCORE.md) |
-| addxiaoyi/helsteraMobs | bb6d662c17c713691e40278f5fd7d7db0155512c | [audits/HELSTERA.md](audits/HELSTERA.md) |
+| addxiaoyi/helsteraMobs | a2969dfaf83cd35e642147f4bd7743ae04d34e7a（2026-11-26复核） | [audits/HELSTERA.md](audits/HELSTERA.md)、[只读桥接](HELSTERA_MODEL_CATALOG.md) |
 | addxiaoyi/SenLuo_Plugin | 6a432fe54097a3ebf22ba5757e016b602c711f28 | [audits/SENLUO.md](audits/SENLUO.md) |
 
 StarCore 经机器现有 Git 认证只读取得；匿名 HTTP 404 不代表不存在。SenLuo 使用独立 main 克隆，没有改动旁边用户已有其他分支和未提交修改。
@@ -36,6 +36,6 @@ Cookery 导出 ID 使用 `kaleidoscopecookery:*`，不能与源模型 `kaleidosc
 
 ## P0 能力策略和下一步
 
-CapabilityRegistry 只读启动时安装清单，独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。当前没有真实第三方 adapter，全部功能 inactive；预期缺失依赖返回 NOT_INSTALLED，已安装但无验证为 ADAPTER_NOT_VERIFIED，不反射猜方法。
+CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展仅激活`model.inspect`，其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
 
-后续顺序：固定依赖构建与哈希→目标服加载/关闭→服务生命周期→只读契约→模型/库存/权限实际操作→故障注入与恢复→独立 Folia 证据。Paper 证据不能代替 Folia flavor/version 的验证。当前第三方联调均未执行。
+2026-11-26首次执行真实Helstera只读目录桥接：固定源码、实际API编译、Paper1.21.11-132模型解析/注册/卸载/重载、提供方停用与旧引用拒绝通过。其范围不包含显示实体、资源包、动画或Folia；上游实例创建失败未回滚已用实际运行时复现。下一步须解决该失败契约并取得实体投影证据；StarCore真实结算和SenLuo物品桥接仍未验收。

@@ -1,0 +1,18 @@
+{
+  "tests": {
+    "tests": 564,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": 75,
+  "javaHome": "C:/Users/Administrator/Documents/luoseng/.toolchains/jdk-25.0.5.0.2+1",
+  "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=24m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "command": "mvnw.cmd -B -ntp -Phelstera-bridge -DforkCount=0 clean verify",
+  "sha256": {
+    "stargenesis-paper-4.0.0-SNAPSHOT.jar": "ff857a9df99d1a801109d8ac4381c574293c814ccff753bc8d872458a477ba29",
+    "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "51ec41586a1e71fe7d1f5bfaecf1e7aea180dfcdabc9efbfaacda36685a6449c",
+    "sbom.json": "cfde32bce763d051690a2fc51387abd7c96ecaac5355a1dd0b8432da3653248c",
+    "verify-java25.log": "1b98d21b0e16ac3d954406d4cec6b4a46ca48d94fea78511871e7e408c0720f3"
+  }
+}

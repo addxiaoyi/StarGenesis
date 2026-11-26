@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-26",
+  "parentCommit": "ec943b1a8584549d85abd4fa72fcca4bb792b8f7",
+  "change": "Optional Paper-only real Helstera model catalog and live provider discovery; no projection",
+  "upstream": {
+    "repository": "addxiaoyi/helsteraMobs",
+    "revision": "a2969dfaf83cd35e642147f4bd7743ae04d34e7a",
+    "sourceFilesVerified": 2589,
+    "apiFilesLocked": 122,
+    "apiTests": 222,
+    "fullPluginCommand": "mvnw.cmd -B -ntp -f <upstream>/pom.xml -Dmaven.test.skip=true -Dproject.build.outputTimestamp=2026-11-26T03:57:00Z package",
+    "fullPluginTestsExecuted": false,
+    "providerSha256": "bf38546117d9098f2df72818a8ef037c9365d3765e8949f364ceffca84b23968",
+    "initialApiAttempt": "4 source-relative test errors with forkCount=0 from repository root; unchanged upstream passed all222 from API module cwd"
+  },
+  "validation": {
+    "java21": {
+      "tests": {
+        "tests": 564,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": 75,
+      "javaHome": "C:/Users/Administrator/Documents/luoseng/.toolchains/jdk-21.0.13.0.2+1",
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "command": "mvnw.cmd -B -ntp -Phelstera-bridge -DforkCount=0 clean verify",
+      "sha256": {
+        "stargenesis-paper-4.0.0-SNAPSHOT.jar": "7287928489d7ccaa546235599dd1202dc20c8f291d08da669ddb12f4e25a14a0",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "4b95601b69ff4a93d2611edf37502ef9d27445b52872cd4c8a68870ccf3a5ac4",
+        "sbom.json": "cfde32bce763d051690a2fc51387abd7c96ecaac5355a1dd0b8432da3653248c",
+        "verify-java21.log": "71ddc0ceae001b34c813a1ff676f4d8e449d1544b2900611983962e8e9e1136c"
+      }
+    },
+    "java25": {
+      "tests": {
+        "tests": 564,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": 75,
+      "javaHome": "C:/Users/Administrator/Documents/luoseng/.toolchains/jdk-25.0.5.0.2+1",
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=24m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "command": "mvnw.cmd -B -ntp -Phelstera-bridge -DforkCount=0 clean verify",
+      "sha256": {
+        "stargenesis-paper-4.0.0-SNAPSHOT.jar": "ff857a9df99d1a801109d8ac4381c574293c814ccff753bc8d872458a477ba29",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "51ec41586a1e71fe7d1f5bfaecf1e7aea180dfcdabc9efbfaacda36685a6449c",
+        "sbom.json": "cfde32bce763d051690a2fc51387abd7c96ecaac5355a1dd0b8432da3653248c",
+        "verify-java25.log": "1b98d21b0e16ac3d954406d4cec6b4a46ca48d94fea78511871e7e408c0720f3"
+      }
+    },
+    "java21Retry": "24 MiB CodeCache exhausted at final optional module (3 errors); full clean verify repeated with64 MiB, failure log preserved",
+    "focusedJavaTests": 31,
+    "newJavaTests": 16,
+    "pythonTests": 13,
+    "nodeTests": 6,
+    "crossProcessAndSignerProbes": 8,
+    "paper": {
+      "passed": true,
+      "fixture": {
+        "passed": true,
+        "actualProvider": true,
+        "modelLoadUnloadReload": true,
+        "providerDisable": true,
+        "staleReferenceRejected": true,
+        "instancesCreated": 0,
+        "scope": "Paper console/API only; no entity projection or visual acceptance"
+      },
+      "exitCode": 0,
+      "seconds": 39.52,
+      "sha256": {
+        "server": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+        "provider": "bf38546117d9098f2df72818a8ef037c9365d3765e8949f364ceffca84b23968",
+        "plugin": "7287928489d7ccaa546235599dd1202dc20c8f291d08da669ddb12f4e25a14a0",
+        "bridge": "4b95601b69ff4a93d2611edf37502ef9d27445b52872cd4c8a68870ccf3a5ac4"
+      },
+      "fixtureSourceSha256": "ec3e05984e5f7e96735ecb71a6c882ebfaaa3289fb26dccc186c714c46cb5445",
+      "logSha256": "9ce61225d2956ab968db3ed67b021dd7646daf5ec9189e2c4ecb8811f80e0922",
+      "scope": "Actual Paper/provider read-only catalog lifecycle; no clients, entity rendering or Folia support"
+    },
+    "foliaBaseWithoutProvider": {
+      "kind": "folia",
+      "checks": {
+        "server_ready": true,
+        "plugin_enabled": true,
+        "design_examples_verified": true,
+        "status_command": true,
+        "p3_program_workspace": true,
+        "p3_replayable_simulation": true,
+        "p4_virtual_radio": true,
+        "p4_radio_protocol_pinned": true,
+        "p4_service_contract_pinned": true,
+        "p5_closed_ecology": true,
+        "p6_four_player_factory": true,
+        "p7_arena_catalog": true,
+        "p8_territory_match": true,
+        "p9_real_settlement_inactive": true,
+        "p10_signed_design_import": true,
+        "help_command": true,
+        "capabilities_command": true,
+        "missing_dependency_report": true,
+        "budget_command": true,
+        "plugin_disabled": true,
+        "clean_exit": true,
+        "no_plugin_startup_error": true
+      },
+      "passed": true,
+      "seconds": 41.62,
+      "server_sha256": "6bfd94ffd8649cf416d247e849214667ac91759699a4c3536eef2307277c4e33",
+      "plugin_sha256": "7287928489d7ccaa546235599dd1202dc20c8f291d08da669ddb12f4e25a14a0",
+      "log_sha256": "1074b6e866663e8a91d5217df572c693f0509615573277c462956d2e7c8a5ebb",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "launch_mode": "extracted-server-classpath",
+      "heap_mb": 512,
+      "jvm_args": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "scope": "actual-server console lifecycle only; no human clients or integration plugins"
+    },
+    "spawnFailure": {
+      "reproduced": true,
+      "retainedInstances": 1,
+      "retainedValid": true,
+      "scope": "actual upstream runtime with injected renderer; no server entity claim",
+      "providerSha256": "bf38546117d9098f2df72818a8ef037c9365d3765e8949f364ceffca84b23968",
+      "sourceSha256": "82de874974d3265ba62f8062a30db4f4cfaef629843f91742ec8ee3fba801a05",
+      "serverSha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+      "librarySha256": {
+        "libraries\\at\\yawk\\lz4\\lz4-java\\1.8.1\\lz4-java-1.8.1.jar": "1de8ff91b90fba9d4896b8617ed3594c2e4390d321d5a92c34f80e62e406c1b0",
+        "libraries\\ca\\spottedleaf\\concurrentutil\\0.0.8\\concurrentutil-0.0.8.jar": "55f29eea95c35058360a048076cb7b2a36937cfa49769ef6de17424ddd915b9d",
+        "libraries\\com\\azure\\azure-json\\1.4.0\\azure-json-1.4.0.jar": "c50bc998cd1a6c689f8644b51c206217bf2da09d5b949e777490a60290cc3a0d",
+        "libraries\\com\\github\\oshi\\oshi-core\\6.9.0\\oshi-core-6.9.0.jar": "b29ba9bce041e6ea822203d5b5a692660c87551241510ebc76eedffe684844c7",
+        "libraries\\com\\google\\code\\gson\\gson\\2.13.2\\gson-2.13.2.jar": "dd0ce1b55a3ed2080cb70f9c655850cda86c206862310009dcb5e5c95265a5e0",
+        "libraries\\com\\google\\errorprone\\error_prone_annotations\\2.41.0\\error_prone_annotations-2.41.0.jar": "a56e782b5b50811ac204073a355a21d915a2107fce13ec711331ad036f660fcc",
+        "libraries\\com\\google\\guava\\failureaccess\\1.0.3\\failureaccess-1.0.3.jar": "cbfc3906b19b8f55dd7cfd6dfe0aa4532e834250d7f080bd8d211a3e246b59cb",
+        "libraries\\com\\google\\guava\\guava\\33.5.0-jre\\guava-33.5.0-jre.jar": "1e301f0c52ac248b0b14fdc3d12283c77252d4d6f48521d572e7d8c4c2cc4ac7",
+        "libraries\\com\\google\\guava\\listenablefuture\\9999.0-empty-to-avoid-conflict-with-guava\\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar": "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99",
+        "libraries\\com\\google\\j2objc\\j2objc-annotations\\3.1\\j2objc-annotations-3.1.jar": "84d3a150518485f8140ea99b8a985656749629f6433c92b80c75b36aba3b099b",
+        "libraries\\com\\google\\protobuf\\protobuf-java\\4.29.0\\protobuf-java-4.29.0.jar": "16901851ebe5e89fe88aaad3c26866373695bc2e30627bb8932847e2f5fc2e76",
+        "libraries\\com\\googlecode\\json-simple\\json-simple\\1.1.1\\json-simple-1.1.1.jar": "4e69696892b88b41c55d49ab2fdcc21eead92bf54acc588c0050596c3b75199c",
+        "libraries\\com\\lmax\\disruptor\\3.4.4\\disruptor-3.4.4.jar": "1524ed31f13bcabee1b6146e67be30c6317cb94fcd0c7c2f7c7a1f3e82087c51",
+        "libraries\\com\\microsoft\\azure\\msal4j\\1.23.1\\msal4j-1.23.1.jar": "414d4fe3c66c7bb1a741014f352e5f0a8329172703e7fbb0020d232a8c8385b1",
+        "libraries\\com\\mojang\\authlib\\7.0.61\\authlib-7.0.61.jar": "09a152617bd23c86bf59db1f9ba82ede23ec8f691a824d6c5dec4f0175f82aa4",
+        "libraries\\com\\mojang\\brigadier\\1.3.10\\brigadier-1.3.10.jar": "c8ee4136e474ac7723ca2b432ec8d1a2bc88ef7d1ec57c314ba9e33cdc83dd75",
+        "libraries\\com\\mojang\\datafixerupper\\9.0.19\\datafixerupper-9.0.19.jar": "9653a39cf5c4853cc98628d902dcb23ffeb2755122ecc563bde38c8f60c0b61e",
+        "libraries\\com\\mojang\\jtracy\\1.0.37\\jtracy-1.0.37.jar": "8bb68d0b65e8eceb92de2bd1d9e1443a8c9a9dd1b5818a5e54870b0f8253672a",
+        "libraries\\com\\mojang\\logging\\1.6.11\\logging-1.6.11.jar": "5d803eb7348a27468c6172daef2f0d77260dd63cde377ebfa73e36789ae8fcee",
+        "libraries\\com\\mysql\\mysql-connector-j\\9.2.0\\mysql-connector-j-9.2.0.jar": "7e9941bbdcca244d878ea95bfff788fd9ba6a65af757f24be6c632930d61c7ed",
+        "libraries\\com\\velocitypowered\\velocity-native\\3.4.0-SNAPSHOT\\velocity-native-3.4.0-SNAPSHOT.jar": "acdf025b5782d252a82708d998f7856b1bf9db67a8757f2e6ec5cbf7b0373636",
+        "libraries\\commons-codec\\commons-codec\\1.16.0\\commons-codec-1.16.0.jar": "56595fb20b0b85bc91d0d503dad50bb7f1b9afc0eed5dffa6cbb25929000484d",
+        "libraries\\commons-io\\commons-io\\2.20.0\\commons-io-2.20.0.jar": "df90bba0fe3cb586b7f164e78fe8f8f4da3f2dd5c27fa645f888100ccc25dd72",
+        "libraries\\commons-lang\\commons-lang\\2.6\\commons-lang-2.6.jar": "50f11b09f877c294d56f24463f47d28f929cf5044f648661c0f0cfbae9a2f49c",
+        "libraries\\dev\\folia\\folia-api\\1.21.11-R0.1-SNAPSHOT\\folia-api-1.21.11-R0.1-SNAPSHOT.jar": "b0f47989fc11e62a25d3cceb1f6c647e701e6224e17fbecfa10267ec4a9194a7",
+        "libraries\\io\\leangen\\geantyref\\geantyref\\1.3.16\\geantyref-1.3.16.jar": "7f1d591092d5142b6aaa7cf59f94c4c74d57dbeef03b2f8262949f8f36bac6e3",
+        "libraries\\io\\netty\\netty-buffer\\4.2.7.Final\\netty-buffer-4.2.7.Final.jar": "b81613c8ed22b1cc39eccf2a28bd0c1d4561fb2e5e542061617ef4ce1d228bf5",
+        "libraries\\io\\netty\\netty-codec-base\\4.2.7.Final\\netty-codec-base-4.2.7.Final.jar": "6360415b7c87160afcde5e7d4946c35539b9f043e8166c91a7fff95cc6067d9f",
+        "libraries\\io\\netty\\netty-codec-compression\\4.2.7.Final\\netty-codec-compression-4.2.7.Final.jar": "edd53ad34991804301a46571113d8ffb4d6f67e6d874674dafbb915724275cb3",
+        "libraries\\io\\netty\\netty-codec-haproxy\\4.2.7.Final\\netty-codec-haproxy-4.2.7.Final.jar": "6f09d537914aa465891384c8a4cf0db977dd9009a0b73a81a050f0a6cbfa95f7",
+        "libraries\\io\\netty\\netty-codec-http\\4.2.7.Final\\netty-codec-http-4.2.7.Final.jar": "2984dd38420a61c4dd68fcacc51ffc528eb46f73f7795cdafdb3a4d6fcb76862",
+        "libraries\\io\\netty\\netty-common\\4.2.7.Final\\netty-common-4.2.7.Final.jar": "2345bc0ed5843fa57aa49eba67529485c3a1d420fcf0429324c8220c7a80e9a6",
+        "libraries\\io\\netty\\netty-handler\\4.2.7.Final\\netty-handler-4.2.7.Final.jar": "21d063409c12dbcec46d380c8856a0f7b6a5b68bb5f1d005eb065b4d64146cb3",
+        "libraries\\io\\netty\\netty-resolver\\4.2.7.Final\\netty-resolver-4.2.7.Final.jar": "7e4d569867e6c08437fb21a220ea01c294b0e38f01149b683c895a1bcd928438",
+        "libraries\\io\\netty\\netty-transport\\4.2.7.Final\\netty-transport-4.2.7.Final.jar": "aadc6fb05c14fb789368ca3f854721549c72f6c0d81798bbccf9de1bb716892b",
+        "libraries\\io\\netty\\netty-transport-classes-epoll\\4.2.7.Final\\netty-transport-classes-epoll-4.2.7.Final.jar": "4492948e6a7694398e5197cf15ed2e21d6662a739d010ae666fa276e7222853c",
+        "libraries\\io\\netty\\netty-transport-classes-kqueue\\4.2.7.Final\\netty-transport-classes-kqueue-4.2.7.Final.jar": "a3eb1c94ae1a6be9e1d1ec52c3f5c510a75b04b8ef1ea86b7e77b3f1287ae3cc",
+        "libraries\\io\\netty\\netty-transport-native-epoll\\4.2.7.Final\\netty-transport-native-epoll-4.2.7.Final-linux-aarch_64.jar": "2f0c7309d7df48a88fb374c02cfb446e1a1e5fb597fb02d773c70ac07da2c268",
+        "libraries\\io\\netty\\netty-transport-native-epoll\\4.2.7.Final\\netty-transport-native-epoll-4.2.7.Final-linux-x86_64.jar": "7f395c8fdbe6990f7664408b57d919042401b893178fcba48bebf1a61bf78618",
+        "libraries\\io\\netty\\netty-transport-native-kqueue\\4.2.7.Final\\netty-transport-native-kqueue-4.2.7.Final-osx-aarch_64.jar": "7647a69558e3d49a352781c2ae81a97e16b442d7c6565a06b4ae0f15298489d5",
+        "libraries\\io\\netty\\netty-transport-native-kqueue\\4.2.7.Final\\netty-transport-native-kqueue-4.2.7.Final-osx-x86_64.jar": "a29c08b6895746aaca796e72a429bc705f40267feb35f75cd8fbbcd4de6de99f",
+        "libraries\\io\\netty\\netty-transport-native-unix-common\\4.2.7.Final\\netty-transport-native-unix-common-4.2.7.Final.jar": "736703b3f6d127e182f5be888b6e15732b0c08d6634e00725352a6a9d19974b2",
+        "libraries\\io\\papermc\\asm-utils\\0.0.3\\asm-utils-0.0.3.jar": "0e0b9b519ef36f86b44067ea1ed559751b18bb7b5ee8844bc243375961728f11",
+        "libraries\\io\\papermc\\paper\\paper-api\\1.21.11-R0.1-SNAPSHOT\\paper-api-1.21.11-R0.1-SNAPSHOT.jar": "c577b181c11a8674310e56c92a91e31c010b7f04c9bd10b91c3be18374401070",
+        "libraries\\io\\papermc\\parchment\\data\\parchment\\1.21.11-pre3+build.2\\parchment-1.21.11-pre3+build.2.jar": "e2059481eebc6a99b790d0cb87fa033548ee2125250c1892c83193093e8e8d1f",
+        "libraries\\io\\papermc\\reflection-rewriter\\0.0.3\\reflection-rewriter-0.0.3.jar": "dc7dca499eb485d47abe179176d63efc7121d7249d3d9625f8bd2e7a1642a4d9",
+        "libraries\\io\\papermc\\reflection-rewriter-proxy-generator\\0.0.3\\reflection-rewriter-proxy-generator-0.0.3.jar": "c972ba1ae0669702b5795fb4bc79ac8741702b315c1c200ab546e470973a9690",
+        "libraries\\io\\papermc\\reflection-rewriter-runtime\\0.0.3\\reflection-rewriter-runtime-0.0.3.jar": "61e066c3eb6f164ef65a73af4dcd95d3a0caeefea261606be6f9034a715ee8e5",
+        "libraries\\it\\unimi\\dsi\\fastutil\\8.5.18\\fastutil-8.5.18.jar": "9094ae67d01d0ad246f886f11ad557fc2e79c72cbf3feed83e1512a8ae90a74a",
+        "libraries\\javax\\inject\\javax.inject\\1\\javax.inject-1.jar": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff",
+        "libraries\\me\\lucko\\spark-api\\0.1-20240720.200737-2\\spark-api-0.1-20240720.200737-2.jar": "f99a3ba0cd3df1aee7b8f285fe7967a28d9c0cea37fa6621b643da919dcfb819",
+        "libraries\\me\\lucko\\spark-paper\\1.10.152\\spark-paper-1.10.152.jar": "e440e9d75fa50f456e10959f9ebc0962b3bf5da9ef10f784a4ca3f98612b018b",
+        "libraries\\net\\java\\dev\\jna\\jna\\5.17.0\\jna-5.17.0.jar": "b3a9408e7c51e08ef0e3bfcc08f443f6ec0f6191ba8cd7c18d53d2b22e5bdbc0",
+        "libraries\\net\\java\\dev\\jna\\jna-platform\\5.17.0\\jna-platform-5.17.0.jar": "b7e3d46c87bad2eb409b0e704916bcd81206168e357312dfddd0e253679cd9e0",
+        "libraries\\net\\kyori\\adventure-api\\4.26.1\\adventure-api-4.26.1.jar": "551e536b9ea868f30e72c7900a309b35124ee7d4889fa3b3aed0910299751a26",
+        "libraries\\net\\kyori\\adventure-key\\4.26.1\\adventure-key-4.26.1.jar": "eec172d63db77b40eb7abeeb25f65eedea89bd30264d057b68b12fecb731be5e",
+        "libraries\\net\\kyori\\adventure-text-logger-slf4j\\4.26.1\\adventure-text-logger-slf4j-4.26.1.jar": "009a99518d9b4f0ec54665f209724813bf98a2c1ff020aeabcf34a3699fd1dfa",
+        "libraries\\net\\kyori\\adventure-text-minimessage\\4.26.1\\adventure-text-minimessage-4.26.1.jar": "1d43451e9af473252dc8af3e8084238d5ce68ad43af0e3b7383eb3d4b63fff9f",
+        "libraries\\net\\kyori\\adventure-text-serializer-ansi\\4.26.1\\adventure-text-serializer-ansi-4.26.1.jar": "79507c36685932166689423be279ea796db42b95d96da2a794cf9624280cb145",
+        "libraries\\net\\kyori\\adventure-text-serializer-commons\\4.26.1\\adventure-text-serializer-commons-4.26.1.jar": "66527fef559da4d91cda692491034f903d5b01e835de1b091edfbb6b51cee5a2",
+        "libraries\\net\\kyori\\adventure-text-serializer-gson\\4.26.1\\adventure-text-serializer-gson-4.26.1.jar": "e4a908dedc4acb4305083d916d362ddc2b21ecf452d577a0be665280bddae9fc",
+        "libraries\\net\\kyori\\adventure-text-serializer-json\\4.26.1\\adventure-text-serializer-json-4.26.1.jar": "55c64b4333d5d2968a0125b8f29dae7cfba15392d5f99f78dbaea711cb0d4dc2",
+        "libraries\\net\\kyori\\adventure-text-serializer-legacy\\4.26.1\\adventure-text-serializer-legacy-4.26.1.jar": "721107bc213572454df1bfbe438dba630e30457550c750b7a154b35dc3264aa8",
+        "libraries\\net\\kyori\\adventure-text-serializer-plain\\4.26.1\\adventure-text-serializer-plain-4.26.1.jar": "39b9bfe5790f645605ff5464382c0e062476f48f9bfb2548801f275f12faf405",
+        "libraries\\net\\kyori\\ansi\\1.1.1\\ansi-1.1.1.jar": "b6c569e1a0925b9eeb349e12db35e2237556107e3336657e0b2ebde261d8afd7",
+        "libraries\\net\\kyori\\examination-api\\1.3.0\\examination-api-1.3.0.jar": "c9237ffecb05428f6eff86216246ac70ce0b47b04c08ea7ca35020fde57f8492",
+        "libraries\\net\\kyori\\examination-string\\1.3.0\\examination-string-1.3.0.jar": "7d01fc25a4bb3af0e1662685455f4541fbf4626216ea5846e455c1491e156b8c",
+        "libraries\\net\\kyori\\option\\1.1.0\\option-1.1.0.jar": "97b69b4b17dfe02217c9131ad342564cbc9aebd04c75eb689639b5f78fd4b11c",
+        "libraries\\net\\md-5\\bungeecord-chat\\1.21-R0.2-deprecated+build.21\\bungeecord-chat-1.21-R0.2-deprecated+build.21.jar": "ce930b3ee048520a0ab538eb8d1627b301367fc1b300837235387aded6d89ba1",
+        "libraries\\net\\minecrell\\terminalconsoleappender\\1.3.0\\terminalconsoleappender-1.3.0.jar": "1afea1bca095068f7f4483f061feed94753be34233ddb0df9ec380fc14d5a985",
+        "libraries\\net\\neoforged\\AutoRenamingTool\\2.0.3\\AutoRenamingTool-2.0.3.jar": "d27484a148dc5ab6fcd4d2f9465d4ce68f7459c724df570ddc45e760cdcb788e",
+        "libraries\\net\\neoforged\\installertools\\cli-utils\\2.1.4\\cli-utils-2.1.4.jar": "4b488975fd59a833b0239c2adf8996ab8f77e8d76a2e6ae9919692df3125dd37",
+        "libraries\\net\\neoforged\\javadoctor\\gson-io\\2.0.17\\gson-io-2.0.17.jar": "de40a10adb58105e84864dff41e3ef490d87411afa390d86a940c74a6bf69821",
+        "libraries\\net\\neoforged\\javadoctor\\spec\\2.0.17\\spec-2.0.17.jar": "67d6fdde98770e91e82303fde1ce5560f12081b733da07bfa7bac71968a93dff",
+        "libraries\\net\\neoforged\\srgutils\\1.0.9\\srgutils-1.0.9.jar": "d46c7bf9939b47d13a9b34e236869898cd27eefb7dab7bb830787b32793e8575",
+        "libraries\\net\\sf\\jopt-simple\\jopt-simple\\6.0-alpha-3\\jopt-simple-6.0-alpha-3.jar": "d440ceb839d6adb5cfa81aa321813d60255e68a3e9ca564c91126599310abde5",
+        "libraries\\org\\apache\\commons\\commons-lang3\\3.19.0\\commons-lang3-3.19.0.jar": "32733ab4bc90b45b63eb72677d886961003fd4ed113e07b1028f9877cb2ac735",
+        "libraries\\org\\apache\\httpcomponents\\httpclient\\4.5.14\\httpclient-4.5.14.jar": "c8bc7e1c51a6d4ce72f40d2ebbabf1c4b68bfe76e732104b04381b493478e9d6",
+        "libraries\\org\\apache\\httpcomponents\\httpcore\\4.4.16\\httpcore-4.4.16.jar": "6c9b3dd142a09dc468e23ad39aad6f75a0f2b85125104469f026e52a474e464f",
+        "libraries\\org\\apache\\logging\\log4j\\log4j-api\\2.25.2\\log4j-api-2.25.2.jar": "9fd66c9fe0bea06fa9666c147989a46cafaa92b4a88753697d3945cc43338cbb",
+        "libraries\\org\\apache\\logging\\log4j\\log4j-core\\2.25.2\\log4j-core-2.25.2.jar": "e50db7701430ff907981850ef527a41d51a53dd0017f53a0860afcbab8570277",
+        "libraries\\org\\apache\\logging\\log4j\\log4j-iostreams\\2.24.1\\log4j-iostreams-2.24.1.jar": "a0f5efdb33166aaaef12cd54f9b5ca940d7fa17575d770550f828f32702ef87e",
+        "libraries\\org\\apache\\logging\\log4j\\log4j-slf4j2-impl\\2.25.2\\log4j-slf4j2-impl-2.25.2.jar": "faffe8c867d59f813fb4bd1edf5354bfe86125811a7c9b305e5d225da8e7ea54",
+        "libraries\\org\\apache\\maven\\maven-artifact\\3.9.6\\maven-artifact-3.9.6.jar": "ad7a0fb408f8e47585ccc0d0011e0b501d93bfc9888d369bbd4a043d19475073",
+        "libraries\\org\\apache\\maven\\maven-builder-support\\3.9.6\\maven-builder-support-3.9.6.jar": "e1f4d2784459ce8a34b9dae1829a1999b569e483e21ee9faa7368691e729296e",
+        "libraries\\org\\apache\\maven\\maven-model\\3.9.6\\maven-model-3.9.6.jar": "4f8f07fdb6b8701fa89a23a2edf830808fd65892d90cce40c0e6df7c8f2fcb62",
+        "libraries\\org\\apache\\maven\\maven-model-builder\\3.9.6\\maven-model-builder-3.9.6.jar": "5f96dafbc411ee4b1e8426368d0d31d05ab5a4dace69808143142a0017598721",
+        "libraries\\org\\apache\\maven\\maven-repository-metadata\\3.9.6\\maven-repository-metadata-3.9.6.jar": "e047a67b204c434994253e2ab5bdff5fe8cb7ada9316ac3e754c39f900ea847b",
+        "libraries\\org\\apache\\maven\\maven-resolver-provider\\3.9.6\\maven-resolver-provider-3.9.6.jar": "73b00b244b7b9e285654a45e765892bf5d369da77d42b5b4b5429122ed198a33",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-api\\1.9.18\\maven-resolver-api-1.9.18.jar": "ebfb9e1dfeea3c2017905184581e007874b4eaac9d28bfffcfe5133d70ac6339",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-connector-basic\\1.9.18\\maven-resolver-connector-basic-1.9.18.jar": "f88d97d0f18571a675e73b45d6a9384b00322c9fae514ad6761d65b729a4e82a",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-impl\\1.9.18\\maven-resolver-impl-1.9.18.jar": "6bb9c90d007098004749c867da2eaf5785fc1139907718749c1097bdb2929bf8",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-named-locks\\1.9.18\\maven-resolver-named-locks-1.9.18.jar": "098de7bbc5b0b26c3eff74ac30ffba6680fdab9bf4aebab95c3f5e2fe9eaeea8",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-spi\\1.9.18\\maven-resolver-spi-1.9.18.jar": "d364fce9a17b0e0b073c26efa92af95b29c00c42943dced4a1168a7923fd3fe1",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-transport-http\\1.9.18\\maven-resolver-transport-http-1.9.18.jar": "1fa02272da7a604718f22e2bc9775f14350487548ffc30a2ffaae1c2d1d1a58a",
+        "libraries\\org\\apache\\maven\\resolver\\maven-resolver-util\\1.9.18\\maven-resolver-util-1.9.18.jar": "2eb0ea667bc489384478231dda7516407d4b5b22a138077229871de9362a7ae2",
+        "libraries\\org\\codehaus\\plexus\\plexus-interpolation\\1.26\\plexus-interpolation-1.26.jar": "b3b5412ce17889103ea564bcdfcf9fb3dfa540344ffeac6b538a73c9d7182662",
+        "libraries\\org\\codehaus\\plexus\\plexus-utils\\3.5.1\\plexus-utils-3.5.1.jar": "86e0255d4c879c61b4833ed7f13124e8bb679df47debb127326e7db7dd49a07b",
+        "libraries\\org\\eclipse\\sisu\\org.eclipse.sisu.inject\\0.9.0.M2\\org.eclipse.sisu.inject-0.9.0.M2.jar": "9b62bcfc352a2ec87da8b01e37c952a54d358bbb1af3f212648aeafe7ab2dbb5",
+        "libraries\\org\\jline\\jline-native\\3.27.1\\jline-native-3.27.1.jar": "636646da40413e74963b3f4b40c9c5dcfb42f3d0ecf1b93d6ddf5c895effe422",
+        "libraries\\org\\jline\\jline-reader\\3.20.0\\jline-reader-3.20.0.jar": "acd1c94d1e228aa7b7962f69b21ed3a9fd828eb3a63e4baf9086954e626af1f0",
+        "libraries\\org\\jline\\jline-terminal\\3.27.1\\jline-terminal-3.27.1.jar": "42b7b756506bca98b505938426a35c99082f7819c333ed25bd4114bfb0e3b5f2",
+        "libraries\\org\\jline\\jline-terminal-ffm\\3.27.1\\jline-terminal-ffm-3.27.1.jar": "61b88b9d2ba22175ae5a69801da4d126eb0bdb4bb81538efa3d107c242c956f4",
+        "libraries\\org\\jline\\jline-terminal-jni\\3.27.1\\jline-terminal-jni-3.27.1.jar": "e4bc64f1e68e9fb25d80517338e76abca1e0145b82e389b5c2b2c7d71d150f82",
+        "libraries\\org\\joml\\joml\\1.10.8\\joml-1.10.8.jar": "bf19510145178df82cd3bd37edd514c13f411531ec5545299fd3abcbc98fe7c2",
+        "libraries\\org\\jspecify\\jspecify\\1.0.0\\jspecify-1.0.0.jar": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+        "libraries\\org\\ow2\\asm\\asm\\9.8\\asm-9.8.jar": "876eab6a83daecad5ca67eb9fcabb063c97b5aeb8cf1fca7a989ecde17522051",
+        "libraries\\org\\ow2\\asm\\asm\\9.9.1\\asm-9.9.1.jar": "6f3828a215c920059a5efa2fb55c233d6c54ec5cadca99ce1b1bdd10077c7ddd",
+        "libraries\\org\\ow2\\asm\\asm-commons\\9.8\\asm-commons-9.8.jar": "3301a1c1cb4c59fcc5292648dac1d7c5aed4c0f067dfbe88873b8cdfe77404f4",
+        "libraries\\org\\ow2\\asm\\asm-commons\\9.9.1\\asm-commons-9.9.1.jar": "c2319e014ce7199f2b7f7d56d6bb991863168c3f4b6cd6c9f542a4937ef7ef88",
+        "libraries\\org\\ow2\\asm\\asm-tree\\9.8\\asm-tree-9.8.jar": "14b7880cb7c85eed101e2710432fc3ffb83275532a6a894dc4c4095d49ad59f1",
+        "libraries\\org\\ow2\\asm\\asm-tree\\9.9.1\\asm-tree-9.9.1.jar": "0f3555096b720b820bbacab0b515589bee0200bee099bda14c561738ae837ba1",
+        "libraries\\org\\slf4j\\jcl-over-slf4j\\1.7.36\\jcl-over-slf4j-1.7.36.jar": "ab57ca8fd223772c17365d121f59e94ecbf0ae59d08c03a3cb5b81071c019195",
+        "libraries\\org\\slf4j\\slf4j-api\\2.0.17\\slf4j-api-2.0.17.jar": "7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832",
+        "libraries\\org\\spongepowered\\configurate-core\\4.2.0\\configurate-core-4.2.0.jar": "06c1e9f7789a189af0c0156ebe9f469da7cc674233f43e8133c83131edd9f7e0",
+        "libraries\\org\\spongepowered\\configurate-yaml\\4.2.0\\configurate-yaml-4.2.0.jar": "6294f085316188bffb71bb05ef36bf8755a288ed925c791952e1e8d7bfc8ba4c",
+        "libraries\\org\\xerial\\sqlite-jdbc\\3.49.1.0\\sqlite-jdbc-3.49.1.0.jar": "5c8609d2ca341deb8c6f71778974b5ba4995c7d32d7c7c89d9392a3e72c39291",
+        "libraries\\org\\yaml\\snakeyaml\\2.2\\snakeyaml-2.2.jar": "1467931448a0817696ae2805b7b8b20bfb082652bf9c4efaed528930dc49389b"
+      }
+    }
+  },
+  "scope": [
+    "Models are read-only copied metadata; only model.inspect activates.",
+    "Actual upstream API for compilation, real provider on Paper1.21.11-132 for lifecycle.",
+    "No entity projection, resource-pack rendering, animation, clients, Folia provider, real settlement, operator keys or stage acceptance.",
+    "Injected renderer reproduces a retained instance in actual upstream runtime; not an actual server entity-leak test.",
+    "Version checks do not cryptographically pin arbitrary installed same-version provider binaries."
+  ],
+  "artifacts": {
+    "source-verification.json": {
+      "sha256": "8cae14505dfe540bf42bf0bbe2549e8c2d283696d69a5bdd4adec269c95df235",
+      "bytes": 174
+    },
+    "provider-package.log": {
+      "sha256": "dd4320bcbfae2aac73b1db847fa76981585ce337120d5a95ce6fc3b0abed80cc",
+      "bytes": 85432
+    },
+    "provider-package-result.json": {
+      "sha256": "09ca0ba2eb82174c04c56f9dbca8141cbe9db79c8a584cdff793f17e96e7d50e",
+      "bytes": 76
+    },
+    "api-build.log": {
+      "sha256": "ef713216f2620b840d9d0b43ef4271324117efc99efe464437a32aaad2e1711c",
+      "bytes": 19817
+    },
+    "api-build-module-cwd.log": {
+      "sha256": "39946b3c8292fc22212c8dfd79fce692c3347691713c4de4f8af20d512a0b910",
+      "bytes": 12594
+    },
+    "focused-tests.log": {
+      "sha256": "81111c70c6ded1d81b316f2c4440b7ada702417e9e8d7f5999c9804b750e9c5c",
+      "bytes": 14949
+    },
+    "spawn-failure.json": {
+      "sha256": "c37fe0f6c2378138cbe20fcf7f658b18d0df75ab234050ad5cd132bdf3a46d58",
+      "bytes": 19342
+    },
+    "spawn-failure.log": {
+      "sha256": "7332a5edeb7ae1e70ade17cee11418bf442c80ccd9471998a14fd932caf030c4",
+      "bytes": 19379
+    },
+    "verify-java21.log": {
+      "sha256": "71ddc0ceae001b34c813a1ff676f4d8e449d1544b2900611983962e8e9e1136c",
+      "bytes": 39786
+    },
+    "verify-java21-codecache-exhausted.log": {
+      "sha256": "ecf29a60eb599d497070cf5e5b7839fc6c6f7048eb1b77b5061e3d158f83df32",
+      "bytes": 46154
+    },
+    "verify-java25.log": {
+      "sha256": "1b98d21b0e16ac3d954406d4cec6b4a46ca48d94fea78511871e7e408c0720f3",
+      "bytes": 37686
+    },
+    "build-java21.json": {
+      "sha256": "5f2c11c1fc6f703fa94314349c1ad814f627fd4be5266fb56e22d0ebcb887793",
+      "bytes": 916
+    },
+    "build-java25.json": {
+      "sha256": "54f87983399f10531b60f5e1e7b4386491b1501ab678c5cfa6c8254002eee6f1",
+      "bytes": 915
+    },
+    "python-release-tests.log": {
+      "sha256": "5c5601fee54aa673f4186f61511e88292905b1bfa443f5bdd08e412eb5307314",
+      "bytes": 106
+    },
+    "python-lifecycle-tests.log": {
+      "sha256": "893281f5471c9c7a670407e2435e175d1feae0768aae2a41f7c32666bcd7fad8",
+      "bytes": 109
+    },
+    "python-match-tests.log": {
+      "sha256": "354c3d828acda6a2a7353175af6f47b9a6ade35a84756ca5433e46f76b8d8b55",
+      "bytes": 105
+    },
+    "python-helstera-tests.log": {
+      "sha256": "9bb74f54e736619a78f1b56485ce5f99f9ea0a6a947c1889839cbc1c556ad5f4",
+      "bytes": 105
+    },
+    "node-tests.log": {
+      "sha256": "6eda3b6cb3ac35899b8b4dcbf3f2dd6b83fc70ec0aea9ee353fa49689e310419",
+      "bytes": 1489
+    },
+    "boundary.log": {
+      "sha256": "1d0a7abad03e46ffa81335eb61048d1a02a0afa0f7906a72a6613e1ac8a1ea6c",
+      "bytes": 90
+    },
+    "payload.json": {
+      "sha256": "c6c4a5053a91555b1abb8bb2c94698b3594415292224ae442bc18eca501fd58e",
+      "bytes": 458
+    },
+    "worker-lock-java21.json": {
+      "sha256": "d24c0796c2a6dc65326e9360190c439234d4728222524c0c3a9bc345d3755f64",
+      "bytes": 1331
+    },
+    "worker-lock-java21.log": {
+      "sha256": "914ab932f2c133583aef410d89058112a88d3da5126edbcaf6570f037db62324",
+      "bytes": 1364
+    },
+    "settlement-lock-java21.json": {
+      "sha256": "b43a314790d966c24035c3ea0cee84ad248b066020a751368614fa9409fd9b90",
+      "bytes": 962
+    },
+    "settlement-lock-java21.log": {
+      "sha256": "af6e71ff925847b4dd19b24c384df31dc81a7a11f1a2d872505fcc308279bf75",
+      "bytes": 985
+    },
+    "release-signer-java21.json": {
+      "sha256": "5d77df0138fcd8c1fe6024343d148d9fc6ce7c5140eb5a4892d18519d6157aca",
+      "bytes": 569
+    },
+    "release-signer-java21.log": {
+      "sha256": "5d77df0138fcd8c1fe6024343d148d9fc6ce7c5140eb5a4892d18519d6157aca",
+      "bytes": 569
+    },
+    "design-signer-java21.json": {
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+      "bytes": 482
+    },
+    "design-signer-java21.log": {
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+      "bytes": 482
+    },
+    "worker-lock-java25.json": {
+      "sha256": "33e4a299daa6f6dd096a210733a2bb22723741b4a454b9d22044414a79b97d37",
+      "bytes": 1328
+    },
+    "worker-lock-java25.log": {
+      "sha256": "90e6aaf7d78d569c0226d484b1ae3f3b1b0dc566541e1cd454775ac5c4cc8500",
+      "bytes": 1361
+    },
+    "settlement-lock-java25.json": {
+      "sha256": "181ba94f5d92c71cbf1b00ac9da217b0ca86e2bd43d8bb8731ffbd41a06467a8",
+      "bytes": 959
+    },
+    "settlement-lock-java25.log": {
+      "sha256": "6071a405dd5771ed1cf1e0cd512feafbabc26cb17d146f1e4c7619d84710983c",
+      "bytes": 982
+    },
+    "release-signer-java25.json": {
+      "sha256": "63476d1bd8c4aba6f058c3f6b93a129defbc627789d54afdb8d01cf195d8a516",
+      "bytes": 569
+    },
+    "release-signer-java25.log": {
+      "sha256": "63476d1bd8c4aba6f058c3f6b93a129defbc627789d54afdb8d01cf195d8a516",
+      "bytes": 569
+    },
+    "design-signer-java25.json": {
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+      "bytes": 482
+    },
+    "design-signer-java25.log": {
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+      "bytes": 482
+    },
+    "upstream-api/preparation.json": {
+      "sha256": "f555e046e71f487fc257057bc8b7505cfcd68d6a6271a8ce863bb82163128b81",
+      "bytes": 362
+    },
+    "upstream-api/upstream-api-build.log": {
+      "sha256": "e7af69fa89bef3a753cc29b113e0b0595d5445e9c7c3c446a6ac9e19dccc9562",
+      "bytes": 11765
+    },
+    "upstream-api/install.log": {
+      "sha256": "df59e8a285b576b43b49b2ba038d87ab79c114d8bfaf4d3edfb7b40395cb84aa",
+      "bytes": 2467
+    },
+    "paper/result.json": {
+      "sha256": "93c9feb7d2ca8b4eb923156f8ce44e118525576f4fcd5a2d2a3100ca641f6a29",
+      "bytes": 992
+    },
+    "paper/console.log": {
+      "sha256": "9ce61225d2956ab968db3ed67b021dd7646daf5ec9189e2c4ecb8811f80e0922",
+      "bytes": 23621
+    },
+    "paper/fixture-compile.log": {
+      "sha256": "29317323151ee927931aaa9fd6e6834caf91d2a3a2ef563f1e1e4b0d9b5877ea",
+      "bytes": 455
+    },
+    "paper/fixture-result.json": {
+      "sha256": "ab1de1179647509d73255bc4fd2d3cd642feb76d4476a77fe4c708f9078dd2eb",
+      "bytes": 217
+    },
+    "folia-base/smoke-result.json": {
+      "sha256": "0dd1262d2294d435f4fefee94a214bf27b6ee5d3a6a2cb9af49631dc9d4b89d3",
+      "bytes": 1632
+    },
+    "folia-base/smoke-console.log": {
+      "sha256": "1074b6e866663e8a91d5217df572c693f0509615573277c462956d2e7c8a5ebb",
+      "bytes": 20032
+    },
+    "sbom.json": {
+      "sha256": "cfde32bce763d051690a2fc51387abd7c96ecaac5355a1dd0b8432da3653248c",
+      "bytes": 165334
+    }
+  },
+  "sourceSha256": {
+    ".github/workflows/verify.yml": "7b3fb60447844a1046a7d93754d791d5b38ffe215d14990d1751726af0067b75",
+    "pom.xml": "e9861fd1183b846937fc668ffec33c92830fc00af840fa87c37673838571344f",
+    "scripts/HelsteraCatalogServerProbe.java": "ec3e05984e5f7e96735ecb71a6c882ebfaaa3289fb26dccc186c714c46cb5445",
+    "scripts/HelsteraSpawnFailureProbe.java": "82de874974d3265ba62f8062a30db4f4cfaef629843f91742ec8ee3fba801a05",
+    "scripts/helstera-api-lock.json": "fd6a414c9560ad2d896ef7ec0eafc9da22121207c0c74f96ede3bfd9a10bccae",
+    "scripts/prepare_helstera_api.py": "6fa90fe0b88cea0805887f81784ee2205296c831a569e9ce88d330ed3dffc90c",
+    "scripts/server_helstera_catalog_smoke.py": "f0449f169ae7bc6f3adb94e3b8530bc10f95fc87c19a425cca8f794d1c5228d1",
+    "scripts/server_smoke.py": "63e7d0b02100ca7a16eee89800f1186e9de2e6581480e0ccd62f8a4c4296f18c",
+    "scripts/test_helstera_spawn_failure.py": "629525e102f9bd180ecfef026e8bddcd5c81b562b785f0332f92f8fddebfe561",
+    "scripts/test_prepare_helstera_api.py": "6988e38f27820e5a12a668ab40ab0bdc70d59ac6193cff73cef19fcb3a64598d",
+    "stargenesis-helstera/pom.xml": "e81d1bdadc8e09e711de0529107bca59ef698887383dbd3a79e5d9d80358daae",
+    "stargenesis-helstera/src/main/java/dev/stargenesis/helstera/HelsteraCatalogPlugin.java": "c214d95839c354c07f422199d9965246cc5e9109756115aa3131a4f66647b907",
+    "stargenesis-helstera/src/main/java/dev/stargenesis/helstera/HelsteraModelCatalog.java": "1d658baf63cc6474bdae2c4d5890f162dfb3d76a40a4eaf85a4436cc9d572b05",
+    "stargenesis-helstera/src/main/resources/plugin.yml": "d81400c71b2dd0b840e536fc43567a9e9655a809240e49888084760ca452c6f0",
+    "stargenesis-helstera/src/test/java/dev/stargenesis/helstera/HelsteraModelCatalogTest.java": "8443e48266c348e546d3e2943de61a429dd3a60b6abcb2cb0afb5d9b9d847fff",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/CapabilityRegistry.java": "64d61c24961c9950a8627d6e14ef6825461e1fee1fc276ee1c52c5fe920e1d8b",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/ModelCatalog.java": "dada55df1b48c64988173652ec788d327816cbf0d9dc61bec14e3ab7dfe0c35c",
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/ModelCatalogTest.java": "96df6215b431aedae7e4f91a293b9050091de9c955ad162440dc4610d7be07fe",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/StarGenesisPlugin.java": "e47bd652b58809c7a99a09a0bdf89117ab4badaeb0ec752f2254b9e5f2f9416f",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/integration/ModelCatalogController.java": "cae99ff10f7897e824995d42498b5d7de8e39bc7c24674d8fba9154c7e8087e1",
+    "stargenesis-paper/src/main/resources/plugin.yml": "402b38fb0600f992e96a389f5cbb8074ea641f685b59e4f5ba1b0a9bb14821ee",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/integration/ModelCatalogControllerTest.java": "be415d6097b5d9ddab9074e83d244a74a326a3124f743ac51484bf7888cc1c7d"
+  }
+}

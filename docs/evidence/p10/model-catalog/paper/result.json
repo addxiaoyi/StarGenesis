@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fixture": {
+    "passed": true,
+    "actualProvider": true,
+    "modelLoadUnloadReload": true,
+    "providerDisable": true,
+    "staleReferenceRejected": true,
+    "instancesCreated": 0,
+    "scope": "Paper console/API only; no entity projection or visual acceptance"
+  },
+  "exitCode": 0,
+  "seconds": 39.52,
+  "sha256": {
+    "server": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "provider": "bf38546117d9098f2df72818a8ef037c9365d3765e8949f364ceffca84b23968",
+    "plugin": "7287928489d7ccaa546235599dd1202dc20c8f291d08da669ddb12f4e25a14a0",
+    "bridge": "4b95601b69ff4a93d2611edf37502ef9d27445b52872cd4c8a68870ccf3a5ac4"
+  },
+  "fixtureSourceSha256": "ec3e05984e5f7e96735ecb71a6c882ebfaaa3289fb26dccc186c714c46cb5445",
+  "logSha256": "9ce61225d2956ab968db3ed67b021dd7646daf5ec9189e2c4ecb8811f80e0922",
+  "scope": "Actual Paper/provider read-only catalog lifecycle; no clients, entity rendering or Folia support"
+}

@@ -21,6 +21,8 @@ import dev.stargenesis.paper.design.PublisherTrustController;
 import dev.stargenesis.paper.communication.RadioProtocol;
 import dev.stargenesis.paper.communication.RadioProtocol;
 import dev.stargenesis.integrations.CapabilityRegistry;
+import dev.stargenesis.integrations.ModelCatalog;
+import dev.stargenesis.paper.integration.ModelCatalogController;
 import dev.stargenesis.integrations.InstalledPlugin;
 import dev.stargenesis.integrations.IntegrationStatus;
 import org.bukkit.command.Command;
@@ -54,6 +56,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
     private ArenaController arenas;
     private DesignImportController designImports;
     private PublisherTrustController publisherTrust;
+    private ModelCatalogController modelCatalog;
 
     @Override public void onEnable() {
         try {
@@ -67,10 +70,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
             stepDuration = getConfig().getLong("simulation.step-duration-millis");
             if (stepDuration < 50 || stepDuration > 1000) throw new IllegalArgumentException("step-duration-millis must be 50..1000");
             verifyBundledDesigns();
-            Map<String, InstalledPlugin> inventory = Arrays.stream(getServer().getPluginManager().getPlugins())
-                    .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
-                    .collect(Collectors.toUnmodifiableMap(InstalledPlugin::name, Function.identity()));
-            statuses = CapabilityRegistry.auditedDefaults().inspect(name -> Optional.ofNullable(inventory.get(name)));
+            statuses = inspectCapabilities();
+            modelCatalog = new ModelCatalogController(this::currentModelCatalog);
             labs = new LabController(this, budget, stepDuration, getDataFolder().toPath().resolve("labs"));
             blueprints = new BlueprintController(this,
                     new BlueprintStore(getDataFolder().toPath().resolve("blueprints"), new DesignCodec()));
@@ -90,7 +91,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
             PluginCommand command = Objects.requireNonNull(getCommand("genesis"), "Missing genesis command");
             command.setExecutor(this::execute);
             command.setTabCompleter((sender, cmd, alias, args) -> {
-                List<String> options = args.length == 1 ? List.of("help", "status", "debug", "lab", "blueprint", "program", "radio", "ecology", "factory", "arena", "design")
+                List<String> options = args.length == 1 ? List.of("help", "status", "debug", "lab", "blueprint", "program", "radio", "ecology", "factory", "arena", "design", "model")
+                        : args.length == 2 && args[0].equalsIgnoreCase("model") ? List.of("status", "inspect")
                         : args.length == 2 && args[0].equalsIgnoreCase("design") ? List.of("list", "install", "inspect", "publishers")
                         : args.length == 3 && args[0].equalsIgnoreCase("design") && args[1].equalsIgnoreCase("publishers")
                         ? List.of("list", "add", "revoke")
@@ -178,6 +180,24 @@ public final class StarGenesisPlugin extends JavaPlugin {
         }
     }
 
+    private ModelCatalog currentModelCatalog() {
+        var registration = getServer().getServicesManager().getRegistration(ModelCatalog.class);
+        return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
+    }
+
+    private List<IntegrationStatus> inspectCapabilities() {
+        Map<String, InstalledPlugin> inventory = Arrays.stream(getServer().getPluginManager().getPlugins())
+                .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
+                .collect(Collectors.toUnmodifiableMap(InstalledPlugin::name, Function.identity()));
+        try (CapabilityRegistry registry = CapabilityRegistry.auditedDefaults()) {
+            ModelCatalog catalog = currentModelCatalog();
+            if (catalog != null && catalog.integrationId().equals("helstera"))
+                // The supplying plugin owns closure; this inspection only borrows verification.
+                registry.registerAdapter("helstera", catalog::verify);
+            return registry.inspect(name -> Optional.ofNullable(inventory.get(name)));
+        }
+    }
+
     private void verifyBundledDesigns() {
         DesignCodec codec = new DesignCodec();
         for (DesignKind kind : DesignKind.values()) {
@@ -194,6 +214,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
 
     private boolean execute(CommandSender sender, Command command, String label, String[] args) {
         String sub = args.length == 0 ? "help" : args[0].toLowerCase(Locale.ROOT);
+        if (sub.equals("model")) return modelCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
         if (sub.equals("lab")) {
             if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis lab requires a player; use /genesis status for server diagnostics."); return true; }
             return labs.handle(player, Arrays.copyOfRange(args, 1, args.length));
@@ -245,8 +266,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
             sender.sendMessage("P9 durable saga contract=available, real gateway=inactive");
             sender.sendMessage("P10 signed Ed25519 design import=available | /genesis design list");
         } else if (sub.equals("debug") && args.length == 2 && args[1].equalsIgnoreCase("capabilities")) {
-            sender.sendMessage("StarGenesis capabilities (startup snapshot; installed != active):");
-            statuses.forEach(s -> sender.sendMessage(s.toString()));
+            sender.sendMessage("StarGenesis capabilities (current providers; installed != active):");
+            inspectCapabilities().forEach(s -> sender.sendMessage(s.toString()));
         } else if (sub.equals("debug") && args.length == 2 && args[1].equalsIgnoreCase("budgets")) {
             sender.sendMessage("StarGenesis budgets: stepMillis=" + stepDuration + " " + budget);
         } else {
@@ -261,6 +282,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
             sender.sendMessage("/genesis arena - create, license, submit for review, and play approved ArenaRulesets");
             sender.sendMessage("/genesis design - install and inspect administrator-staged signed design packages");
             sender.sendMessage("/genesis design publishers - operator-managed publisher trust roots and key rotation");
+            sender.sendMessage("/genesis model status | inspect <id> - optional read-only model catalog");
             sender.sendMessage("/genesis debug capabilities | /genesis debug budgets - operator diagnostics");
             sender.sendMessage("/genesis help - this help. Laboratory score cannot create real inventory or money.");
         }
@@ -269,6 +291,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
 
     @Override public void onDisable() {
         boolean clean = true;
+        modelCatalog = null;
         if (publisherTrust != null) { publisherTrust = null; }
         if (designImports != null) { designImports = null; }
         if (arenas != null) { clean &= stop("Arena", arenas::close, arenas::isStopped); arenas = null; }

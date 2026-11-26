@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "baseHasNoHelsteraClasses": true,
+  "bridgeClasses": [
+    "dev/stargenesis/helstera/HelsteraCatalogPlugin.class",
+    "dev/stargenesis/helstera/HelsteraModelCatalog.class"
+  ],
+  "sha256": {
+    "stargenesis-paper-4.0.0-SNAPSHOT.jar": "7287928489d7ccaa546235599dd1202dc20c8f291d08da669ddb12f4e25a14a0",
+    "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "4b95601b69ff4a93d2611edf37502ef9d27445b52872cd4c8a68870ccf3a5ac4"
+  }
+}
