@@ -1,0 +1,69 @@
+from datetime import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+
+root = Path(__file__).resolve().parents[2]
+work = Path(__file__).resolve().parent
+batch = work / ('runs-' + datetime.now().strftime('%Y%m%dT%H%M%S'))
+batch.mkdir()
+java = root.parent / '.toolchains/jdk-21.0.13.0.2+1/bin/java.exe'
+plugin = root / '.work/radio-journal/java21/StarGenesis-4.0.0-SNAPSHOT.jar'
+expected = json.loads((root / '.work/radio-journal/build-java21.json').read_text())
+assert hashlib.sha256(plugin.read_bytes()).hexdigest() == expected['artifacts'][plugin.name]
+environment = os.environ.copy()
+environment['NODE_OPTIONS'] = '--max-old-space-size=128'
+environment['JAVA_TOOL_OPTIONS'] = (
+    '-Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m '
+    '-XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m '
+    '-XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2 '
+    '-XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -Djdk.nio.maxCachedBufferSize=262144'
+)
+result = {'passed': False, 'batch': str(batch.relative_to(root)), 'runs': [],
+          'javaToolOptions': environment['JAVA_TOOL_OPTIONS'], 'nodeOptions': environment['NODE_OPTIONS']}
+source_paths = [Path(__file__).resolve(), *(root / 'scripts' / name for name in (
+    'server_radio_rotation_smoke.py', 'offline_client_radio_rotation_smoke.cjs',
+    'server_smoke.py', 'offline_client_workflow_smoke.cjs',
+    'test_server_radio_rotation_smoke.py', 'test_offline_client_radio_rotation_smoke.cjs'))]
+source_bytes = {path.relative_to(root).as_posix(): path.read_bytes() for path in source_paths}
+for name, data in source_bytes.items():
+    destination = batch / 'sources' / (name + '.txt')
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(data)
+result['sourceHashes'] = {name: hashlib.sha256(data).hexdigest() for name, data in source_bytes.items()}
+(work / 'latest.json').write_text(json.dumps(result, indent=2) + '\n')
+try:
+    for kind, port in [('paper', 25679), ('folia', 25680)]:
+        target = batch / kind
+        target.mkdir()
+        previous = root / '.work/radio-lifecycle-live' / kind
+        shutil.copyfile(previous / 'eula.txt', target / 'eula.txt')
+        command = [sys.executable, str(root / 'scripts/server_radio_rotation_smoke.py'),
+                   '--java', str(java), '--node', 'C:/Program Files/nodejs/node.exe',
+                   '--server-jar', str(previous / f'versions/1.21.11/{kind}-1.21.11.jar'),
+                   '--libraries-from', str(previous), '--plugin-jar', str(plugin),
+                   '--node-modules', str(root.parent / 'SenLuo_Plugin-continue/build/network-client/node_modules'),
+                   '--directory', str(target), '--kind', kind, '--port', str(port),
+                   '--heap-mb', '384', '--timeout', '300', '--client-timeout', '180', '--with-observer']
+        print('Starting', kind, str(target), flush=True)
+        with (batch / f'{kind}-harness.log').open('x', encoding='utf-8') as output:
+            process = subprocess.run(command, cwd=root, env=environment, stdout=output,
+                                     stderr=subprocess.STDOUT, timeout=1500)
+        result['runs'].append({'kind': kind, 'exitCode': process.returncode, 'command': command})
+        assert all((root / name).read_bytes() == data for name, data in source_bytes.items()), 'Runtime sources changed during the test'
+        (work / 'latest.json').write_text(json.dumps(result, indent=2) + '\n')
+        if process.returncode:
+            raise RuntimeError(f'{kind} failed; inspect {batch / (kind + "-harness.log")}')
+        print('Passed', kind, flush=True)
+    result['passed'] = True
+except Exception as failure:
+    result['error'] = f'{type(failure).__name__}: {failure}'
+    raise
+finally:
+    for destination in (batch / 'batch.json', work / 'latest.json'):
+        destination.write_text(json.dumps(result, indent=2) + '\n')

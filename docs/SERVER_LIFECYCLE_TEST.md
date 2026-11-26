@@ -13,7 +13,7 @@ python scripts/server_lifecycle_smoke.py \
   --directory .work/lifecycle-paper --port 25671 --heap-mb 1024
 ```
 
-Folia使用`--kind folia`和对应官方JAR。可用`--libraries-from`复用已提取服务端的依赖，或在隔离目录准备bootstrap所需的官方缓存。`--heap-mb`允许512–8192；较小堆仅用于资源受限的功能测试，不代表推荐生产配置。两个平台顺序运行。测试服务端设8个登录名额，实际只连接4个客户端；Folia 1.21.11-14在4名额配置下曾拒绝第四个登录。新隔离目录的Folia线程配置写入实际读取的`config/paper-global.yml`，设置两个线程；已有该文件时保留配置。
+Folia使用`--kind folia`和对应官方JAR。可用`--libraries-from`复用已提取服务端的依赖，或在隔离目录准备bootstrap所需的官方缓存。`--heap-mb`允许256–8192；低于512 MiB仅用于资源受限的启动诊断，不保证服务端可以启动，也不代表推荐生产配置。两个平台顺序运行。测试服务端设8个登录名额，实际只连接4个客户端；Folia 1.21.11-14在4名额配置下曾拒绝第四个登录。新隔离目录的Folia线程配置写入实际读取的`config/paper-global.yml`，设置两个线程；已有该文件时保留配置。
 
 可重复传入`--jvm-arg=-XX:...`，参数作为独立进程参数传递并写入结果。资源受限的Windows复测使用`-XX:+UseSerialGC`、`-XX:TieredStopAtLevel=1`、`-XX:ReservedCodeCacheSize=64m`和`-XX:ActiveProcessorCount=2`，降低编译器及GC的原生内存开销。此前两次JVM原生内存分配失败保留为失败记录；原目录恢复后六份已提交文件保持原字节、四项回放通过。该偶发崩溃发生在只读回放/启动期间，不代表已覆盖写盘中途强制崩溃。
 

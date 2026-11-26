@@ -1,0 +1,7 @@
+..............$ sh C:\Users\ADMINI~1\AppData\Local\Temp\tmpwfaoh16u\mvnw -B -ntp -DforkCount=0 -Pcookery-bridge clean verify
+.Preparing actual craftengine API from locked inputs
+.........................................................
+----------------------------------------------------------------------
+Ran 72 tests in 1.764s
+
+OK

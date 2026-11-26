@@ -32,7 +32,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_run_ecology_robustness_study.py"
       - run: python -m unittest discover -s scripts -p "test_server_*lifecycle_smoke.py"
       - run: python -m unittest discover -s scripts -p "test_server_match_admin_smoke.py"
-      - run: node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs
+      - run: python -m unittest discover -s scripts -p "test_server_radio_rotation_smoke.py"
+      - run: node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs scripts/test_offline_client_radio_rotation_smoke.cjs
       - run: python scripts/prepare_helstera_api.py --verify-runtime
       - run: python scripts/prepare_craftengine_api.py
       - run: python scripts/prepare_cookery_api.py

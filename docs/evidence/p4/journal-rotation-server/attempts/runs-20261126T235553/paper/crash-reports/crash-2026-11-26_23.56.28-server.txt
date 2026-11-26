@@ -1,0 +1,87 @@
+---- Minecraft Crash Report ----
+// Why did you do that?
+
+Time: 2026-11-26 23:56:28
+Description: Exception in server tick loop
+
+java.lang.OutOfMemoryError: Compressed class space
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:255)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1253)
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388)
+	at net.minecraft.server.MinecraftServer$$Lambda/0x0000022e29fe2c60.run(Unknown Source)
+	at java.base/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.11
+	Minecraft Version ID: 1.21.11
+	Operating System: Windows Server 2022 (amd64) version 10.0
+	Java Version: 21.0.13.0.2, Microsoft
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, emulated-client, sharing), Microsoft
+	Memory: 146780392 bytes (139 MiB) / 384962560 bytes (367 MiB) up to 389283840 bytes (371 MiB)
+	CPUs: 4
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Xeon(R) Gold 6278C CPU @ 2.60GHz
+	Identifier: Intel64 Family 6 Model 85 Stepping 7
+	Microarchitecture: Cascade Lake
+	Frequency (GHz): 2.60
+	Number of physical packages: 1
+	Number of physical CPUs: 2
+	Number of logical CPUs: 4
+	Graphics card #0 name: Microsoft Basic Display Adapter
+	Graphics card #0 vendor: Microsoft
+	Graphics card #0 VRAM (MiB): 0.00
+	Graphics card #0 deviceId: VideoController1
+	Graphics card #0 versionInfo: 10.0.20348.1
+	Memory slot #0 capacity (MiB): 8192.00
+	Memory slot #0 clockSpeed (GHz): 0.00
+	Memory slot #0 type: RAM
+	Virtual memory max (MiB): 12287.11
+	Virtual memory used (MiB): 12145.11
+	Swap memory total (MiB): 4096.00
+	Swap memory used (MiB): 4095.99
+	Space in storage for jna.tmpdir (MiB): <path not set>
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): <path not set>
+	Space in storage for io.netty.native.workdir (MiB): <path not set>
+	Space in storage for java.io.tmpdir (MiB): available: 13181.81, total: 184218.00
+	Space in storage for workdir (MiB): available: 13181.81, total: 184218.00
+	JVM Flags: 13 total; -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -Xms128M -Xmx384M -XX:ActiveProcessorCount=4
+	Debug Flags: 0 total; 
+	CraftBukkit Information: 
+   BrandInfo: Paper (papermc:paper) version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z)
+   Running: 
+   Failed to handle CraftCrashReport:
+java.lang.NullPointerException: Cannot invoke "org.bukkit.Server.getName()" because "org.bukkit.Bukkit.server" is null
+	at org.bukkit.Bukkit.getName(Bukkit.java:138)
+	at org.bukkit.craftbukkit.CraftCrashReport.get(CraftCrashReport.java:25)
+	at org.bukkit.craftbukkit.CraftCrashReport.get(CraftCrashReport.java:17)
+	at net.minecraft.SystemReport.setDetail(SystemReport.java:78)
+	at net.minecraft.CrashReport.<init>(CrashReport.java:37)
+	at net.minecraft.server.MinecraftServer.constructOrExtractCrashReport(MinecraftServer.java:1420)
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1358)
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+	Server Running: true
+	Active Data Packs: vanilla, file/bukkit, paper
+	Available Data Packs: file/bukkit, minecart_improvements, paper, redstone_experiments, trade_rebalance, vanilla
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Experimental
+	World Seed: 8851071491051073566
+	Suppressed Exceptions: ~~NONE~~
+	Is Modded: Definitely; Server brand changed to 'Paper'
+	Type: Dedicated Server (map_server.txt)

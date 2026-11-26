@@ -1,0 +1,40 @@
+[23:53:20] [main/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[23:53:20] [main/INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[23:53:20] [main/INFO]: [PluginInitializerManager] Initializing plugins...
+[23:53:22] [Paper Plugin Remapper Thread - 0/INFO]: [ReobfServer] Remapping server...
+[23:53:32] [Paper Plugin Remapper Thread - 0/INFO]: [ReobfServer] Done remapping server in 9444ms.
+[23:53:32] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[23:53:33] [Paper Plugin Remapper Thread - 2/INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1232ms.
+[23:53:33] [main/INFO]: [PluginInitializerManager] Initialized 1 plugin
+[23:53:33] [main/INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[23:53:41] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[23:53:41] [main/ERROR]: Failed to start the minecraft server
+java.lang.OutOfMemoryError: Unable to allocate 2131520 bytes
+	at java.base/jdk.internal.misc.Unsafe.allocateMemory(Unsafe.java:632) ~[?:?]
+	at java.base/java.nio.DirectByteBuffer.<init>(DirectByteBuffer.java:115) ~[?:?]
+	at java.base/java.nio.ByteBuffer.allocateDirect(ByteBuffer.java:360) ~[?:?]
+	at java.base/sun.nio.ch.Util.getTemporaryDirectBuffer(Util.java:227) ~[?:?]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:303) ~[?:?]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:283) ~[?:?]
+	at java.base/sun.nio.ch.FileChannelImpl.readInternal(FileChannelImpl.java:982) ~[?:?]
+	at java.base/sun.nio.ch.FileChannelImpl.read(FileChannelImpl.java:962) ~[?:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystem.readAt(ZipFileSystem.java:1255) ~[jdk.zipfs:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystem.readNBytesAt(ZipFileSystem.java:1243) ~[jdk.zipfs:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystem.initCEN(ZipFileSystem.java:1585) ~[jdk.zipfs:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystem.<init>(ZipFileSystem.java:182) ~[jdk.zipfs:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystemProvider.getZipFileSystem(ZipFileSystemProvider.java:125) ~[jdk.zipfs:?]
+	at jdk.zipfs/jdk.nio.zipfs.ZipFileSystemProvider.newFileSystem(ZipFileSystemProvider.java:106) ~[jdk.zipfs:?]
+	at java.base/java.nio.file.FileSystems.newFileSystem(FileSystems.java:339) ~[?:?]
+	at java.base/java.nio.file.FileSystems.newFileSystem(FileSystems.java:288) ~[?:?]
+	at net.minecraft.util.FileSystemUtil.safeGetPath(FileSystemUtil.java:26) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.VanillaPackResourcesBuilder.lambda$static$1(VanillaPackResourcesBuilder.java:48) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.util.Util.make(Util.java:597) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.VanillaPackResourcesBuilder.<clinit>(VanillaPackResourcesBuilder.java:31) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.repository.ServerPacksSource.createVanillaPackSource(ServerPacksSource.java:49) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.repository.ServerPacksSource.<init>(ServerPacksSource.java:40) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.repository.ServerPacksSource.createPackRepository(ServerPacksSource.java:84) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.packs.repository.ServerPacksSource.createPackRepository(ServerPacksSource.java:92) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.Main.main(Main.java:229) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:21) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]

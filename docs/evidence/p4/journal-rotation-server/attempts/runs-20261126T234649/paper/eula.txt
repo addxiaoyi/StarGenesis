@@ -1,0 +1,2 @@
+# Accepted explicitly by the server operator.
+eula=true

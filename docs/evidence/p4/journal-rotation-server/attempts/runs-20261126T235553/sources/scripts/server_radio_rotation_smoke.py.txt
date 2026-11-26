@@ -1,0 +1,301 @@
+"""Run three isolated Paper/Folia boots to verify bounded P4 journal rotation.
+
+Requires an already accepted EULA and a directory containing only eula.txt.
+Records raw client and shutdown journals, archive byte lengths and SHA-256 pins.
+"""
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+import uuid
+
+
+def helper_directory() -> Path:
+    location = Path(__file__).resolve()
+    if location.with_name('server_smoke.py').is_file():
+        return location.parent
+    for parent in location.parents:
+        candidate = parent / 'scripts'
+        if (candidate / 'server_smoke.py').is_file():
+            return candidate
+    raise RuntimeError('Cannot locate scripts/server_smoke.py')
+
+
+HELPERS = helper_directory()
+sys.path.insert(0, str(HELPERS))
+from server_smoke import sha256
+
+
+NAMES = {'requester': 'SGReview', 'provider': 'SGRotatePeer', 'observer': 'SGRotateWatch'}
+PINS = ('schemaVersion', 'radioProtocolId', 'radioProtocolHash', 'serviceProtocolId',
+        'serviceProtocolHash', 'contractId', 'contractHash')
+
+
+def active(journal: dict) -> dict:
+    document = journal['document']
+    return document if document['schemaVersion'] == 1 else document['active']
+
+
+def archive_name(generation: int) -> str:
+    return f'radio-state.json.archives/segment-{generation:04d}.json'
+
+
+def same_snapshot(actual: dict, expected: dict) -> None:
+    assert isinstance(actual['radio']['tick'], int) and actual['radio']['tick'] >= expected['radio']['tick'], 'Radio clock moved backwards'
+    assert actual['radio']['tick'] == actual['contracts']['tick'], 'Radio and contract clocks diverged'
+    values = []
+    for snapshot in (actual, expected):
+        value = copy.deepcopy(snapshot)
+        value['radio']['tick'] = value['contracts']['tick'] = 0
+        values.append(value)
+    assert values[0] == values[1], 'Committed history or design pins changed'
+
+
+def validate_journal(journal: dict) -> dict:
+    document = journal['document']
+    assert document['schemaVersion'] in (1, 2), 'Unexpected journal version'
+    assert set(document) == (set(PINS) | {'radio', 'contracts'} if document['schemaVersion'] == 1 else {'schemaVersion', 'active', 'archives'})
+    references = [] if document['schemaVersion'] == 1 else document['archives']
+    assert isinstance(references, list) and len(references) <= 16
+    assert document['schemaVersion'] == 1 or references
+    expected_files = {'radio-state.json'}
+    lower_tick = 0
+    for generation, reference in enumerate(references, 1):
+        assert reference['generation'] == generation
+        name = archive_name(generation)
+        expected_files.add(name)
+        assert journal['files'][name] == {'bytes': reference['bytes'], 'sha256': reference['sha256']}, 'Manifest archive pin differs from committed bytes'
+        snapshot = journal['archives'][name]
+        assert snapshot['schemaVersion'] == 1
+        assert snapshot['radio']['tick'] == snapshot['contracts']['tick'] >= lower_tick
+        assert snapshot['radio']['evidence'] and not snapshot['radio']['pending']
+        assert all(state['state'] in ('COMPLETED', 'REJECTED', 'CANCELLED', 'EXPIRED') for state in snapshot['contracts']['states'])
+        lower_tick = snapshot['radio']['tick']
+    assert set(journal['files']) == expected_files, 'Committed journal file inventory changed'
+    assert set(journal['archives']) == expected_files - {'radio-state.json'}
+    snapshot = active(journal)
+    assert snapshot['schemaVersion'] == 1
+    assert snapshot['radio']['tick'] == snapshot['contracts']['tick'] >= lower_tick
+    return snapshot
+
+
+def read_journal(directory: Path) -> dict:
+    state = directory / 'radio-state.json'
+    assert state.is_file() and not state.is_symlink(), 'Active journal is missing or symlinked'
+    paths = [state]
+    archives = directory / 'radio-state.json.archives'
+    if archives.exists():
+        assert archives.is_dir() and not archives.is_symlink()
+        for path in sorted(archives.iterdir()):
+            assert path.is_file() and not path.is_symlink() and path.name.startswith('segment-') and path.suffix == '.json', 'Unexpected archive entry after a successful phase'
+            paths.append(path)
+    journal = {'document': json.loads(state.read_text(encoding='utf-8')), 'files': {}, 'archives': {}}
+    for path in paths:
+        name = path.relative_to(directory).as_posix()
+        journal['files'][name] = {'bytes': path.stat().st_size, 'sha256': sha256(path)}
+        if path != state:
+            journal['archives'][name] = json.loads(path.read_text(encoding='utf-8'))
+    validate_journal(journal)
+    return journal
+
+
+def same_committed_journal(actual: dict, expected: dict) -> None:
+    validate_journal(actual)
+    validate_journal(expected)
+    assert actual['document']['schemaVersion'] == expected['document']['schemaVersion']
+    assert actual['document'].get('archives') == expected['document'].get('archives'), 'Restart changed committed archive references'
+    assert actual['archives'] == expected['archives'], 'Restart rewrote archived history'
+    for name in expected['archives']:
+        assert actual['files'][name] == expected['files'][name], 'Restart changed archive bytes'
+    same_snapshot(active(actual), active(expected))
+
+
+def validate_phase_journal(journal: dict, phase: str, identities: dict, previous: dict | None) -> None:
+    snapshot = validate_journal(journal)
+    expected_archives = {'prepare': 0, 'rotate': 1, 'verify': 2}[phase]
+    assert len(journal['document'].get('archives', [])) == expected_archives
+    assert journal['document']['schemaVersion'] == (1 if phase == 'prepare' else 2)
+    radio, contracts = snapshot['radio'], snapshot['contracts']
+    assert not radio['pending']
+    assert len(radio['acknowledged']) == len(radio['evidence'])
+    assert len(radio['events']) == len(radio['evidence']) * 2
+    message_ids = sorted((message['sender'], message['sequence']) for message in radio['evidence'])
+    if phase == 'prepare':
+        assert message_ids == [(identities['requester'], sequence) for sequence in (1001, 1002, 1003)]
+        assert len(contracts['states']) == 1
+        contract = contracts['states'][0]
+        assert (contract['id'], contract['state'], contract['requester'], contract['provider'],
+                contract['requestedUnits'], contract['fulfilledUnits']) == (
+                    'rotation_order', 'CANCELLED', identities['requester'], identities['provider'], 3, 0)
+        assert len(contracts['received']) == len(contracts['events']) == 2
+    else:
+        assert previous is not None, 'Rotation needs previous shutdown evidence'
+        validate_journal(previous)
+        for name in previous['archives']:
+            assert journal['files'][name] == previous['files'][name], 'Previously archived bytes changed'
+            assert journal['archives'][name] == previous['archives'][name]
+        appended = journal['archives'][archive_name(expected_archives)]
+        same_snapshot(appended, active(previous))
+        assert all(snapshot[pin] == appended[pin] for pin in PINS)
+        role, sequence = ('provider', 2001) if phase == 'rotate' else ('requester', 3001)
+        assert message_ids == [(identities[role], sequence)]
+        assert not contracts['states'] and not contracts['received'] and not contracts['events']
+
+
+def offline_identity(name: str) -> str:
+    return str(uuid.UUID(bytes=hashlib.md5(f'OfflinePlayer:{name}'.encode('utf-8')).digest(), version=3))
+
+
+def copy_journal(directory: Path, destination: Path) -> dict:
+    destination.mkdir()
+    state = directory / 'radio-state.json'
+    archives = directory / 'radio-state.json.archives'
+    if state.is_file() and not state.is_symlink():
+        shutil.copy2(state, destination / state.name)
+    if archives.is_dir() and not archives.is_symlink():
+        shutil.copytree(archives, destination / archives.name, symlinks=True)
+    copied = read_journal(destination)
+    assert copied == read_journal(directory), 'Journal changed while collecting shutdown evidence'
+    return copied
+
+
+def validate_workflow(workflow: dict, phase: str, with_observer: bool) -> None:
+    assert workflow['passed'] is True and workflow['phase'] == phase
+    expected_roles = {'requester', 'provider', 'observer'} if with_observer else {'requester', 'provider'}
+    assert set(workflow['identities']) == expected_roles and workflow['players'] == len(expected_roles)
+    assert workflow['identities'] == {role: offline_identity(NAMES[role]) for role in expected_roles}
+    required = {'non_operator_rotation_denied_without_history_changes'}
+    if phase == 'prepare':
+        required |= {'pending_message_blocks_operator_rotation_without_history_changes',
+                     'active_contract_blocks_operator_rotation_after_offer_acknowledgement',
+                     'all_messages_acknowledged_and_terminal_contract_saved_before_first_restart'}
+    else:
+        required |= {'restart_preserves_committed_bytes_history_and_fixed_identities_without_online_endpoints',
+                     'operator_rotation_atomically_archives_quiescent_history_and_preserves_online_endpoints',
+                     'archived_duplicate_conflict_and_contract_identity_reuse_keep_history_unchanged',
+                     'new_segment_delivery_and_acknowledgement_work_without_rejoining'}
+        if with_observer:
+            required.add('third_party_cannot_query_archived_contract_or_rotate')
+        if phase == 'verify':
+            required.add('first_archive_contract_survives_restart_and_second_rotation_preserves_second_segment_identity')
+    assert required <= set(workflow['checks']), 'Required rotation checks are missing'
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--java', default='java')
+    parser.add_argument('--node', default='node')
+    parser.add_argument('--server-jar', type=Path, required=True)
+    parser.add_argument('--plugin-jar', type=Path, required=True)
+    parser.add_argument('--libraries-from', type=Path)
+    parser.add_argument('--node-modules', type=Path, required=True)
+    parser.add_argument('--directory', type=Path, required=True)
+    parser.add_argument('--kind', choices=['paper', 'folia'], required=True)
+    parser.add_argument('--port', type=int, required=True)
+    parser.add_argument('--heap-mb', type=int, default=512)
+    parser.add_argument('--jvm-arg', action='append', default=[])
+    parser.add_argument('--timeout', type=int, default=300)
+    parser.add_argument('--client-timeout', type=int, default=240)
+    parser.add_argument('--with-observer', action='store_true')
+    args = parser.parse_args()
+    target = args.directory.resolve()
+    eula = target / 'eula.txt'
+    if not eula.is_file() or 'eula=true' not in {line.strip().lower() for line in eula.read_text(encoding='utf-8').splitlines()}:
+        parser.error('An already accepted eula.txt is required')
+    if target.is_symlink() or set(path.name for path in target.iterdir()) != {'eula.txt'}:
+        parser.error('Use a fresh isolated directory containing only the accepted eula.txt')
+    if not 1 <= args.port <= 65535 or not 256 <= args.heap_mb <= 8192:
+        parser.error('Require a fixed port in 1..65535 and heap in 256..8192 MiB')
+    for file in (args.server_jar, args.plugin_jar):
+        if not file.is_file():
+            parser.error(f'Artifact does not exist: {file}')
+    if not (args.node_modules / 'mineflayer').is_dir():
+        parser.error('--node-modules must contain mineflayer')
+    data = target / 'plugins/StarGenesis'
+    (target / 'plugins').mkdir()
+    evidence = target / 'radio-rotation-evidence'
+    evidence.mkdir()
+    operators = [{'uuid': offline_identity(NAMES['requester']), 'name': NAMES['requester'], 'level': 4, 'bypassesPlayerLimit': False}]
+    (target / 'ops.json').write_text(json.dumps(operators, indent=2) + '\n', encoding='utf-8')
+    result = {'passed': False, 'kind': args.kind, 'runs': [], 'withObserver': args.with_observer,
+              'inputs': {'serverSha256': sha256(args.server_jar), 'pluginSha256': sha256(args.plugin_jar)},
+              'scope': 'Three normal boots, two fixed offline clients and optional third-party permissions; bounded rotation, archived identities and byte-preserved recovery. No forced crash, saturation, cross-region, human or performance acceptance.'}
+    previous = None
+    previous_directory = None
+    started = time.monotonic()
+    try:
+        for phase in ('prepare', 'rotate', 'verify'):
+            destination = evidence / phase
+            destination.mkdir()
+            request = {'phase': phase, 'withObserver': args.with_observer,
+                       'previousDirectory': str(previous_directory) if previous_directory else None,
+                       'clientEvidenceDirectory': str(destination / 'client-journal')}
+            (target / 'plugins/radio-rotation-input.json').write_text(json.dumps(request) + '\n', encoding='utf-8')
+            for name in ('smoke-console.log', 'smoke-result.json', 'player-workflow.log', 'player-workflow-result.json'):
+                (target / name).unlink(missing_ok=True)
+            command = [sys.executable, str(HELPERS / 'server_smoke.py'), '--java', args.java,
+                       '--node', args.node, '--server-jar', str(args.server_jar.resolve()),
+                       '--plugin-jar', str(args.plugin_jar.resolve()), '--directory', str(target),
+                       '--kind', args.kind, '--port', str(args.port), '--heap-mb', str(args.heap_mb),
+                       '--max-players', '4', '--timeout', str(args.timeout), '--player-workflow',
+                       '--node-modules', str(args.node_modules.resolve()), '--player-client-timeout', str(args.client_timeout),
+                       '--client-script', str(Path(__file__).with_name('offline_client_radio_rotation_smoke.cjs'))]
+            command.extend(f'--jvm-arg={value}' for value in args.jvm_arg)
+            if args.libraries_from:
+                command.extend(['--libraries-from', str(args.libraries_from.resolve())])
+            print(f'Starting {args.kind} radio rotation {phase}', flush=True)
+            with (destination / 'harness.log').open('w', encoding='utf-8') as log:
+                completed = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
+            for name in ('smoke-console.log', 'smoke-result.json', 'player-workflow.log', 'player-workflow-result.json'):
+                if (target / name).is_file():
+                    shutil.copy2(target / name, destination / name)
+            for source, name in ((target / 'plugins/radio-rotation-client-state.json', 'client-state.json'),
+                                 (target / 'ops.json', 'ops.json')):
+                if source.is_file():
+                    shutil.copy2(source, destination / name)
+            smoke = json.loads((destination / 'smoke-result.json').read_text(encoding='utf-8'))
+            result['runs'].append({'phase': phase, 'exitCode': completed.returncode, 'server': smoke})
+            saved = copy_journal(data, destination / 'shutdown-journal')
+            result['runs'][-1]['shutdownJournal'] = saved
+            assert completed.returncode == 0 and smoke['passed'] is True, f'{phase} server/client failed'
+            assert smoke['kind'] == args.kind
+            assert all(value is True for value in smoke['checks'].values())
+            assert {'plugin_disabled', 'clean_exit', 'player_workflow'} <= set(smoke['checks'])
+            workflow = smoke['player_workflow']
+            validate_workflow(workflow, phase, args.with_observer)
+            assert json.loads((target / 'ops.json').read_text(encoding='utf-8')) == operators, 'Unexpected operator privilege change'
+            client = read_journal(destination / 'client-journal')
+            assert client == workflow['journalAtFinish'], 'Client-reported journal differs from raw evidence'
+            same_committed_journal(saved, client)
+            validate_phase_journal(saved, phase, workflow['identities'], previous)
+            assert smoke['server_sha256'] == result['inputs']['serverSha256']
+            assert smoke['plugin_sha256'] == result['inputs']['pluginSha256']
+            assert sha256(args.server_jar) == result['inputs']['serverSha256']
+            assert sha256(args.plugin_jar) == result['inputs']['pluginSha256']
+            result['runs'][-1]['validatedShutdownJournal'] = True
+            previous = saved
+            previous_directory = destination / 'shutdown-journal'
+            print(f'Passed {args.kind} radio rotation {phase}', flush=True)
+        result['passed'] = True
+    except (OSError, AssertionError, KeyError, TypeError, ValueError) as failure:
+        result['error'] = f'{type(failure).__name__}: {failure}'
+    finally:
+        result['seconds'] = round(time.monotonic() - started, 2)
+        result['artifacts'] = {file.relative_to(evidence).as_posix(): {'bytes': file.stat().st_size, 'sha256': sha256(file)}
+                               for file in sorted(evidence.rglob('*')) if file.is_file()}
+        (evidence / 'result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        print(json.dumps({key: result[key] for key in ('kind', 'passed', 'seconds')}), flush=True)
+    if not result['passed']:
+        print(result.get('error', 'Failed radio rotation'), flush=True)
+        raise SystemExit(1)
+
+
+if __name__ == '__main__':
+    main()

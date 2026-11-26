@@ -1,0 +1,291 @@
+{
+  "algorithm": "SHA-256",
+  "rawByteHashes": true,
+  "manifestSelfExcluded": true,
+  "files": {
+    "archive_servers.py": {
+      "bytes": 26484,
+      "sha256": "29f172315b517ad4f04affd0240c101f22eaee3b2aff2f65d0b46534d701fac4"
+    },
+    "attempts/runs-20261126T234649/batch.json": {
+      "bytes": 2009,
+      "sha256": "28abf2e1695d60439ca4b497d80920e87223c96f62db2aa39f0d48e6d5413729"
+    },
+    "attempts/runs-20261126T234649/paper-harness.log": {
+      "bytes": 150,
+      "sha256": "35dd24469a9d5ca897e8b55ff96c3921e43701b183208101f69ec177a75c3d20"
+    },
+    "attempts/runs-20261126T234649/paper/crash-reports/crash-2026-11-26_23.48.51-server.txt": {
+      "bytes": 19265,
+      "sha256": "3f36385fde3db4be908ba6b4a16eb8e9712663c51d2f2a62f999be1725d236c8"
+    },
+    "attempts/runs-20261126T234649/paper/eula.txt": {
+      "bytes": 58,
+      "sha256": "0231b7013d020aac6f4dc793d954c913284780ef371d4048442b32d837eb953a"
+    },
+    "attempts/runs-20261126T234649/paper/logs/latest.log": {
+      "bytes": 13046,
+      "sha256": "4013229e56319e29b76aeb91cc13b388d3bb9b67e581c1c6feed827da25ba9eb"
+    },
+    "attempts/runs-20261126T234649/paper/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T234649/paper/plugins/radio-rotation-input.json": {
+      "bytes": 272,
+      "sha256": "68f2ccab82b1f2ad7e46d412c67752bd9dda07fbca095079b2ae57cfa226fdd2"
+    },
+    "attempts/runs-20261126T234649/paper/radio-rotation-evidence/prepare/harness.log": {
+      "bytes": 7588,
+      "sha256": "765871044aa28d6864485c4d4882847c103e1b3332269ce83185e4c65de81d3e"
+    },
+    "attempts/runs-20261126T234649/paper/radio-rotation-evidence/prepare/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T234649/paper/radio-rotation-evidence/prepare/smoke-console.log": {
+      "bytes": 12956,
+      "sha256": "ca11232e0f8d4e886fd7169bbe6caa4aded1e7cbba6f6c5fa54473129aec5557"
+    },
+    "attempts/runs-20261126T234649/paper/radio-rotation-evidence/prepare/smoke-result.json": {
+      "bytes": 1888,
+      "sha256": "bab836395a25efee1aa465c20102e430e4c8f017fb6c37895e0827eb6d0714a4"
+    },
+    "attempts/runs-20261126T234649/paper/radio-rotation-evidence/result.json": {
+      "bytes": 1226,
+      "sha256": "1034da2eab29947da5ad44b79440073f35ef4492f55af08d7c39e6a8b108b359"
+    },
+    "attempts/runs-20261126T234649/paper/server.properties": {
+      "bytes": 1847,
+      "sha256": "0394be33b9296cace950f4fdda97bda7f718e15b95c8caea36e1b7b86df25547"
+    },
+    "attempts/runs-20261126T234649/paper/smoke-console.log": {
+      "bytes": 12956,
+      "sha256": "ca11232e0f8d4e886fd7169bbe6caa4aded1e7cbba6f6c5fa54473129aec5557"
+    },
+    "attempts/runs-20261126T234649/paper/smoke-result.json": {
+      "bytes": 1888,
+      "sha256": "bab836395a25efee1aa465c20102e430e4c8f017fb6c37895e0827eb6d0714a4"
+    },
+    "attempts/runs-20261126T235317/batch.json": {
+      "bytes": 2891,
+      "sha256": "64ece8e27572f862d008d7df8ce63f327516f8c4a2168ad03f2afd738ca1c99a"
+    },
+    "attempts/runs-20261126T235317/paper-harness.log": {
+      "bytes": 149,
+      "sha256": "28d849b8336c2ad21e02f8a47ee5cff6adb869e656ca9ade9079ec29b8998851"
+    },
+    "attempts/runs-20261126T235317/paper/eula.txt": {
+      "bytes": 58,
+      "sha256": "0231b7013d020aac6f4dc793d954c913284780ef371d4048442b32d837eb953a"
+    },
+    "attempts/runs-20261126T235317/paper/logs/latest.log": {
+      "bytes": 4053,
+      "sha256": "553a7297c7bac5b392a979d11f1d2d58cfe08f40a2b910f2a10abe16269781ce"
+    },
+    "attempts/runs-20261126T235317/paper/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T235317/paper/plugins/radio-rotation-input.json": {
+      "bytes": 271,
+      "sha256": "f9550c90821b4616b6276efc4afa389112404610ece1719f00bf998b31daddbf"
+    },
+    "attempts/runs-20261126T235317/paper/radio-rotation-evidence/prepare/harness.log": {
+      "bytes": 6276,
+      "sha256": "2efdcf5c595e5de1bf02ffc45fc0c16c85439474b235bafc670314d2dda446cc"
+    },
+    "attempts/runs-20261126T235317/paper/radio-rotation-evidence/prepare/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T235317/paper/radio-rotation-evidence/prepare/smoke-console.log": {
+      "bytes": 4388,
+      "sha256": "a488540acef8b9cc9a4592cc4d3358b648c18f9772d421379869179ee8f8e9ec"
+    },
+    "attempts/runs-20261126T235317/paper/radio-rotation-evidence/prepare/smoke-result.json": {
+      "bytes": 1886,
+      "sha256": "a1a5b056ad9d7da2dae377ca7aff97f8844de02c677d8fe11a1709ea1bcb9259"
+    },
+    "attempts/runs-20261126T235317/paper/radio-rotation-evidence/result.json": {
+      "bytes": 3438,
+      "sha256": "96c9fbd1c41a570fae1f0f812f39252d8ffa841e8c7323e3cc941071dfce5949"
+    },
+    "attempts/runs-20261126T235317/paper/server.properties": {
+      "bytes": 1847,
+      "sha256": "30fb48c29ff8f448dddaa8ae5de422ca0d146bb46d2dfabbaaccd901e5a1953f"
+    },
+    "attempts/runs-20261126T235317/paper/smoke-console.log": {
+      "bytes": 4388,
+      "sha256": "a488540acef8b9cc9a4592cc4d3358b648c18f9772d421379869179ee8f8e9ec"
+    },
+    "attempts/runs-20261126T235317/paper/smoke-result.json": {
+      "bytes": 1886,
+      "sha256": "a1a5b056ad9d7da2dae377ca7aff97f8844de02c677d8fe11a1709ea1bcb9259"
+    },
+    "attempts/runs-20261126T235317/sources/.work/radio-rotation-lifecycle/run_servers.py.txt": {
+      "bytes": 3881,
+      "sha256": "3a3e57621f460eed574f7752fb6fcaba722139fb54a442cd9cf184dc71adb308"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 17156,
+      "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/offline_client_workflow_smoke.cjs.txt": {
+      "bytes": 42146,
+      "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/server_radio_rotation_smoke.py.txt": {
+      "bytes": 17510,
+      "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/server_smoke.py.txt": {
+      "bytes": 20640,
+      "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/test_offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 5556,
+      "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+    },
+    "attempts/runs-20261126T235317/sources/scripts/test_server_radio_rotation_smoke.py.txt": {
+      "bytes": 8900,
+      "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+    },
+    "attempts/runs-20261126T235553/batch.json": {
+      "bytes": 2976,
+      "sha256": "c7d67d7cbd7fedf5d93e894f51db4d22b86a26e08de5d2aa0806d2f798026626"
+    },
+    "attempts/runs-20261126T235553/paper-harness.log": {
+      "bytes": 150,
+      "sha256": "962d10cd3bebe833a56ead09803cf150e460cc400e3a3d17062bc3241b2b6b2e"
+    },
+    "attempts/runs-20261126T235553/paper/crash-reports/crash-2026-11-26_23.56.28-server.txt": {
+      "bytes": 4776,
+      "sha256": "89ad7955bad3cce0ab8612bfb2c99743690d3e81b7b637cccb1838d83bdf362e"
+    },
+    "attempts/runs-20261126T235553/paper/eula.txt": {
+      "bytes": 58,
+      "sha256": "0231b7013d020aac6f4dc793d954c913284780ef371d4048442b32d837eb953a"
+    },
+    "attempts/runs-20261126T235553/paper/logs/latest.log": {
+      "bytes": 7463,
+      "sha256": "167c5492cbe994eff5e9c715e7687ead2b3a4fe2f28f73c4f8187da16e5bb4fc"
+    },
+    "attempts/runs-20261126T235553/paper/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T235553/paper/plugins/radio-rotation-input.json": {
+      "bytes": 271,
+      "sha256": "6d6d7eabdfa2ae271435ef9ea497066a337469ce63228d11c1c79c945d7f8ecb"
+    },
+    "attempts/runs-20261126T235553/paper/radio-rotation-evidence/prepare/harness.log": {
+      "bytes": 7430,
+      "sha256": "a3721897421ea16a6b15cf3f4ceedb07dd9db33d75fb025a236533a0a07d30e4"
+    },
+    "attempts/runs-20261126T235553/paper/radio-rotation-evidence/prepare/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "attempts/runs-20261126T235553/paper/radio-rotation-evidence/prepare/smoke-console.log": {
+      "bytes": 7376,
+      "sha256": "22d43ecd4db8fd5e6a72ea420086cd4bc06f603b9cde5756fbabd121016e0879"
+    },
+    "attempts/runs-20261126T235553/paper/radio-rotation-evidence/prepare/smoke-result.json": {
+      "bytes": 1973,
+      "sha256": "70fa18e0db8967992fb1d162730e25e05aefb5c73c01fa5ffecdc1de2dd89ebb"
+    },
+    "attempts/runs-20261126T235553/paper/radio-rotation-evidence/result.json": {
+      "bytes": 3526,
+      "sha256": "78ed80978278d3d0987358457848580b2ce9853122705f9400c904977dd3c46f"
+    },
+    "attempts/runs-20261126T235553/paper/server.properties": {
+      "bytes": 1847,
+      "sha256": "8cff443f8cc02998d93f8e4763e5ade53ddd9224537bac2f4aef6ca62f1e8f4c"
+    },
+    "attempts/runs-20261126T235553/paper/smoke-console.log": {
+      "bytes": 7376,
+      "sha256": "22d43ecd4db8fd5e6a72ea420086cd4bc06f603b9cde5756fbabd121016e0879"
+    },
+    "attempts/runs-20261126T235553/paper/smoke-result.json": {
+      "bytes": 1973,
+      "sha256": "70fa18e0db8967992fb1d162730e25e05aefb5c73c01fa5ffecdc1de2dd89ebb"
+    },
+    "attempts/runs-20261126T235553/sources/.work/radio-rotation-lifecycle/run_servers.py.txt": {
+      "bytes": 3973,
+      "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 17156,
+      "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/offline_client_workflow_smoke.cjs.txt": {
+      "bytes": 42146,
+      "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/server_radio_rotation_smoke.py.txt": {
+      "bytes": 17510,
+      "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/server_smoke.py.txt": {
+      "bytes": 20640,
+      "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/test_offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 5556,
+      "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+    },
+    "attempts/runs-20261126T235553/sources/scripts/test_server_radio_rotation_smoke.py.txt": {
+      "bytes": 8900,
+      "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+    },
+    "ci-87abf9c.json": {
+      "bytes": 9940,
+      "sha256": "bfe8dc927fa28952e94375b94928cb1de81e751e07cf0e1249bb975b83ea3234"
+    },
+    "current-sources/.work/radio-rotation-lifecycle/run_servers.py.txt": {
+      "bytes": 3973,
+      "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+    },
+    "current-sources/scripts/offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 25280,
+      "sha256": "da34776d7c89444d49c8053468a4b7cc42ce7e3ee4b59655b881088e0d04a275"
+    },
+    "current-sources/scripts/offline_client_workflow_smoke.cjs.txt": {
+      "bytes": 42146,
+      "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+    },
+    "current-sources/scripts/server_radio_rotation_smoke.py.txt": {
+      "bytes": 26409,
+      "sha256": "a4991c8fa7fb6c1a0ab34aeed1b1c579779fce19e707d255d0d10296ccc18724"
+    },
+    "current-sources/scripts/server_smoke.py.txt": {
+      "bytes": 20640,
+      "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+    },
+    "current-sources/scripts/test_offline_client_radio_rotation_smoke.cjs.txt": {
+      "bytes": 7387,
+      "sha256": "3e72a4badb98e26a001fe2dcb88b8e29f469ae341c9d7f84efb9d23300934ed8"
+    },
+    "current-sources/scripts/test_server_radio_rotation_smoke.py.txt": {
+      "bytes": 14003,
+      "sha256": "f58043cdbfea15370ea9e7674f45b71702eddf37172c4e539d7d2949fd55709d"
+    },
+    "node-regression.log": {
+      "bytes": 2361,
+      "sha256": "2d2bcd47722fe66d724b2fe7274234cc694b52b8bf74e830f3ed15adbfa009e3"
+    },
+    "python-regression.log": {
+      "bytes": 341,
+      "sha256": "91177950df64bd8aa8f5ae2bbadd24d5e5a501045ea81e90df541be54fce8bc5"
+    },
+    "references/java-build-manifest.json": {
+      "bytes": 53029,
+      "sha256": "e7585b7028ba7a23af6b340b99dde342df855ace3e85379cee25bcf2e96b4d14"
+    },
+    "summary.json": {
+      "bytes": 27271,
+      "sha256": "465187106d02868830af49a61fc7f52b0690cca293b8643727a8e21357081e01"
+    }
+  }
+}

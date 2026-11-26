@@ -1,0 +1,41 @@
+{
+  "passed": false,
+  "batch": ".work\\radio-rotation-lifecycle\\runs-20261126T234649",
+  "runs": [
+    {
+      "kind": "paper",
+      "exitCode": 1,
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\server_radio_rotation_smoke.py",
+        "--java",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+        "--node",
+        "C:/Program Files/nodejs/node.exe",
+        "--server-jar",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+        "--libraries-from",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper",
+        "--plugin-jar",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+        "--node-modules",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules",
+        "--directory",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T234649\\paper",
+        "--kind",
+        "paper",
+        "--port",
+        "25679",
+        "--heap-mb",
+        "256",
+        "--timeout",
+        "300",
+        "--client-timeout",
+        "180"
+      ]
+    }
+  ],
+  "javaToolOptions": "-Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2",
+  "nodeOptions": "--max-old-space-size=128",
+  "error": "RuntimeError: paper failed; inspect C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T234649\\paper-harness.log"
+}

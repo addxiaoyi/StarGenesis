@@ -1,0 +1,3 @@
+Starting paper radio rotation prepare
+{"kind": "paper", "passed": false, "seconds": 362.73}
+AssertionError: Active journal is missing or symlinked

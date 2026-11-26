@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: a startup cannot silently change, drop, or add saved evidence
+ok 1 - a startup cannot silently change, drop, or add saved evidence
+  ---
+  duration_ms: 74.9457
+  type: 'test'
+  ...
+# Subtest: compensation reads the organization balance row even when the auction also names its winner
+ok 2 - compensation reads the organization balance row even when the auction also names its winner
+  ---
+  duration_ms: 7.291
+  type: 'test'
+  ...
+# Subtest: match restart evidence rejects resurrection, lost files and modified published rules
+ok 3 - match restart evidence rejects resurrection, lost files and modified published rules
+  ---
+  duration_ms: 48.1703
+  type: 'test'
+  ...
+# Subtest: reorganized rosters must contain exactly the new pairs and teams
+ok 4 - reorganized rosters must contain exactly the new pairs and teams
+  ---
+  duration_ms: 8.2197
+  type: 'test'
+  ...
+# Subtest: restart evidence allows clock progress and only the exact due expiration
+ok 5 - restart evidence allows clock progress and only the exact due expiration
+  ---
+  duration_ms: 9.2221
+  type: 'test'
+  ...
+# Subtest: restart evidence rejects pending loss, altered acknowledgements and rewritten history
+ok 6 - restart evidence rejects pending loss, altered acknowledgements and rewritten history
+  ---
+  duration_ms: 2.8539
+  type: 'test'
+  ...
+# Subtest: three phase validator requires complete immutable prefixes and the next active identity
+ok 7 - three phase validator requires complete immutable prefixes and the next active identity
+  ---
+  duration_ms: 100.5741
+  type: 'test'
+  ...
+# Subtest: shutdown permits synchronized clock progress and rejects all other history changes
+ok 8 - shutdown permits synchronized clock progress and rejects all other history changes
+  ---
+  duration_ms: 9.2298
+  type: 'test'
+  ...
+# Subtest: manifest validation rejects missing files, changed hashes, generation gaps and extra files
+ok 9 - manifest validation rejects missing files, changed hashes, generation gaps and extra files
+  ---
+  duration_ms: 4.6217
+  type: 'test'
+  ...
+# Subtest: file reader compares manifest pins to real archived bytes
+ok 10 - file reader compares manifest pins to real archived bytes
+  ---
+  duration_ms: 13.0571
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 463.8582

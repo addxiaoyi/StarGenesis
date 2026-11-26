@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-26T23:54:07.0291916+08:00",
+  "timeZone": "Asia/Shanghai",
+  "repository": "addxiaoyi/StarGenesis",
+  "branch": "codex/stargenesis-rc2-recovery",
+  "headSha": "87abf9cfe4505b0cb5f71992a81f9743493a720d",
+  "run": {
+    "id": 45851802173,
+    "name": "verify",
+    "url": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45851802173",
+    "event": "push",
+    "runAttempt": 1,
+    "headSha": "87abf9cfe4505b0cb5f71992a81f9743493a720d",
+    "headBranch": "codex/stargenesis-rc2-recovery",
+    "createdAt": "2026-11-26T15:42:45Z",
+    "initialObservedStatus": "in_progress",
+    "initialObservedConclusion": null,
+    "finalRunResourceStatus": null,
+    "finalRunResourceConclusion": null,
+    "finalRunResourceRead": false
+  },
+  "verification": {
+    "allReturnedJobsCompletedSuccessfully": true,
+    "returnedJobCount": 2,
+    "failedStepsObserved": [],
+    "scope": "The latest jobs response confirms both Java matrix jobs completed successfully. The run-level resource was read while in progress and was not fetched again after job completion; no unobserved final run-level fields are asserted.",
+    "queryDate": "2026-11-26",
+    "exactQueryTimestampsAvailable": false,
+    "queryTimeNote": "Connector responses did not expose exact retrieval timestamps. Queries occurred on the stated date before recordedAt; recordedAt is the collection-record timestamp, not a substituted query timestamp."
+  },
+  "jobs": [
+    {
+      "id": 140019794825,
+      "name": "java (21)",
+      "run_id": 45851802173,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {"number": 6, "name": "Run python scripts/check_boundaries.py", "status": "completed", "conclusion": "success"},
+        {"number": 15, "name": "Run python -m unittest discover -s scripts -p \"test_server_*lifecycle_smoke.py\"", "status": "completed", "conclusion": "success"},
+        {"number": 17, "name": "Run node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs", "status": "completed", "conclusion": "success"},
+        {"number": 18, "name": "Run python scripts/prepare_helstera_api.py --verify-runtime", "status": "completed", "conclusion": "success"},
+        {"number": 19, "name": "Run python scripts/prepare_craftengine_api.py", "status": "completed", "conclusion": "success"},
+        {"number": 20, "name": "Run python scripts/prepare_cookery_api.py", "status": "completed", "conclusion": "success"},
+        {"number": 21, "name": "Run sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify", "status": "completed", "conclusion": "success"},
+        {"number": 22, "name": "Run python scripts/test_settlement_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 23, "name": "Run python scripts/test_worker_directory_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 24, "name": "Run python scripts/test_radio_journal_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/radio-journal-process-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 25, "name": "Run python scripts/test_release_artifact_signer.py --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json", "status": "completed", "conclusion": "success"},
+        {"number": 26, "name": "Run python scripts/test_signed_design_package_signer.py --java-home \"$JAVA_HOME\" --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json", "status": "completed", "conclusion": "success"},
+        {"number": 27, "name": "Build isolated optional release candidate", "status": "completed", "conclusion": "success"},
+        {"number": 28, "name": "Run actions/upload-artifact@v4", "status": "completed", "conclusion": "success"},
+        {"number": 57, "name": "Complete job", "status": "completed", "conclusion": "success"}
+      ]
+    },
+    {
+      "id": 140019794460,
+      "name": "java (25)",
+      "run_id": 45851802173,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {"number": 6, "name": "Run python scripts/check_boundaries.py", "status": "completed", "conclusion": "success"},
+        {"number": 15, "name": "Run python -m unittest discover -s scripts -p \"test_server_*lifecycle_smoke.py\"", "status": "completed", "conclusion": "success"},
+        {"number": 17, "name": "Run node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs", "status": "completed", "conclusion": "success"},
+        {"number": 18, "name": "Run python scripts/prepare_helstera_api.py --verify-runtime", "status": "completed", "conclusion": "success"},
+        {"number": 19, "name": "Run python scripts/prepare_craftengine_api.py", "status": "completed", "conclusion": "success"},
+        {"number": 20, "name": "Run python scripts/prepare_cookery_api.py", "status": "completed", "conclusion": "success"},
+        {"number": 21, "name": "Run sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify", "status": "completed", "conclusion": "success"},
+        {"number": 22, "name": "Run python scripts/test_settlement_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 23, "name": "Run python scripts/test_worker_directory_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 24, "name": "Run python scripts/test_radio_journal_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/radio-journal-process-lock.json", "status": "completed", "conclusion": "success"},
+        {"number": 25, "name": "Run python scripts/test_release_artifact_signer.py --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json", "status": "completed", "conclusion": "success"},
+        {"number": 26, "name": "Run python scripts/test_signed_design_package_signer.py --java-home \"$JAVA_HOME\" --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json", "status": "completed", "conclusion": "success"},
+        {"number": 27, "name": "Build isolated optional release candidate", "status": "completed", "conclusion": "skipped"},
+        {"number": 28, "name": "Run actions/upload-artifact@v4", "status": "completed", "conclusion": "success"},
+        {"number": 57, "name": "Complete job", "status": "completed", "conclusion": "success"}
+      ]
+    }
+  ],
+  "querySources": [
+    {
+      "tool": "mcp__codex_apps__github___fetch_commit",
+      "params": {"repo_full_name": "addxiaoyi/StarGenesis", "commit_sha": "87abf9c"},
+      "verifiedFields": ["commit.sha", "commit.message"],
+      "returnedCommitSha": "87abf9cfe4505b0cb5f71992a81f9743493a720d"
+    },
+    {
+      "tool": "mcp__codex_apps__github___fetch",
+      "params": {"url": "https://api.github.com/repos/addxiaoyi/StarGenesis/actions/runs?head_sha=87abf9cfe4505b0cb5f71992a81f9743493a720d&per_page=5"},
+      "verifiedFields": ["total_count", "workflow_runs[0].id", "workflow_runs[0].head_sha", "workflow_runs[0].head_branch", "workflow_runs[0].event", "workflow_runs[0].run_attempt", "workflow_runs[0].created_at", "workflow_runs[0].html_url"],
+      "returnedTotalCount": 1
+    },
+    {
+      "tool": "mcp__codex_apps__github___fetch_workflow_run_jobs",
+      "params": {"repo_full_name": "addxiaoyi/StarGenesis", "run_id": 45851802173},
+      "responseUsed": "Last of three jobs queries in this delegated check; both jobs completed/success in this response.",
+      "verifiedFields": ["jobs[].id", "jobs[].name", "jobs[].run_id", "jobs[].status", "jobs[].conclusion", "jobs[].steps[].number", "jobs[].steps[].name", "jobs[].steps[].status", "jobs[].steps[].conclusion"],
+      "returnedJobIds": [140019794460, 140019794825]
+    },
+    {
+      "tool": "mcp__codex_apps__github___fetch_workflow_job_steps",
+      "params": {"repo_full_name": "addxiaoyi/StarGenesis", "job_id": 140019794825},
+      "verifiedFields": ["steps[?number=27].conclusion", "steps[?number=28].conclusion", "steps[?number=57].conclusion"],
+      "note": "Corroborating Java21 final-step query before the final jobs query."
+    }
+  ],
+  "collectionNotes": [
+    "This file records selected verification fields from responses already observed by the agent; it is not a complete raw API response archive.",
+    "Unauthenticated direct PowerShell API access hit GitHub's rate limit. The authenticated GitHub connector supplied the recorded successful queries.",
+    "No unconfirmed test counts, run completion timestamps, artifact hashes or run-level final conclusion are inferred."
+  ]
+}

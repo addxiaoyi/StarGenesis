@@ -160,8 +160,8 @@ def main() -> None:
         parser.error("--port must be between 0 and 65535")
     if not 1 <= args.max_players <= 100:
         parser.error("--max-players must be between 1 and 100")
-    if not 512 <= args.heap_mb <= 8192:
-        parser.error("--heap-mb must be between 512 and 8192")
+    if not 256 <= args.heap_mb <= 8192:
+        parser.error("--heap-mb must be between 256 and 8192")
     if args.lifecycle_phase and not args.player_workflow:
         parser.error("--lifecycle-phase requires --player-workflow")
     if args.client_script and (not args.player_workflow or args.lifecycle_phase or not args.client_script.is_file()):

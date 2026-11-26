@@ -1,0 +1,31 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "runs": [],
+  "withObserver": false,
+  "inputs": {
+    "serverSha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e"
+  },
+  "scope": "Three normal boots, two fixed offline clients and optional third-party permissions; bounded rotation, archived identities and byte-preserved recovery. No forced crash, saturation, cross-region, human or performance acceptance.",
+  "error": "AssertionError: Active journal is missing or symlinked",
+  "seconds": 362.73,
+  "artifacts": {
+    "prepare/harness.log": {
+      "bytes": 7588,
+      "sha256": "765871044aa28d6864485c4d4882847c103e1b3332269ce83185e4c65de81d3e"
+    },
+    "prepare/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "prepare/smoke-console.log": {
+      "bytes": 12956,
+      "sha256": "ca11232e0f8d4e886fd7169bbe6caa4aded1e7cbba6f6c5fa54473129aec5557"
+    },
+    "prepare/smoke-result.json": {
+      "bytes": 1888,
+      "sha256": "bab836395a25efee1aa465c20102e430e4c8f017fb6c37895e0827eb6d0714a4"
+    }
+  }
+}

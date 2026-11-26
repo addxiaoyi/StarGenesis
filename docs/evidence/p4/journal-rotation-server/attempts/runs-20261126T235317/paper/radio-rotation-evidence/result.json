@@ -1,0 +1,78 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "runs": [
+    {
+      "phase": "prepare",
+      "exitCode": 1,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": false,
+          "plugin_enabled": false,
+          "design_examples_verified": false,
+          "status_command": false,
+          "p3_program_workspace": false,
+          "p3_replayable_simulation": false,
+          "p4_virtual_radio": false,
+          "p4_radio_protocol_pinned": false,
+          "p4_service_contract_pinned": false,
+          "p5_closed_ecology": false,
+          "p6_four_player_factory": false,
+          "p7_arena_catalog": false,
+          "p8_territory_match": false,
+          "p9_real_settlement_inactive": false,
+          "p10_signed_design_import": false,
+          "help_command": false,
+          "capabilities_command": false,
+          "missing_dependency_report": false,
+          "budget_command": false,
+          "plugin_disabled": false,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": false
+        },
+        "passed": false,
+        "seconds": 23.56,
+        "server_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+        "plugin_sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "log_sha256": "a488540acef8b9cc9a4592cc4d3358b648c18f9772d421379869179ee8f8e9ec",
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "launch_mode": "extracted-server-classpath",
+        "heap_mb": 512,
+        "jvm_args": [],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": false,
+          "error": "workflow did not run"
+        }
+      }
+    }
+  ],
+  "withObserver": true,
+  "inputs": {
+    "serverSha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e"
+  },
+  "scope": "Three normal boots, two fixed offline clients and optional third-party permissions; bounded rotation, archived identities and byte-preserved recovery. No forced crash, saturation, cross-region, human or performance acceptance.",
+  "error": "AssertionError: Active journal is missing or symlinked",
+  "seconds": 24.25,
+  "artifacts": {
+    "prepare/harness.log": {
+      "bytes": 6276,
+      "sha256": "2efdcf5c595e5de1bf02ffc45fc0c16c85439474b235bafc670314d2dda446cc"
+    },
+    "prepare/ops.json": {
+      "bytes": 145,
+      "sha256": "71a52ce5f69542b50fe514c520276d1c68888788d755524b9594159615390517"
+    },
+    "prepare/smoke-console.log": {
+      "bytes": 4388,
+      "sha256": "a488540acef8b9cc9a4592cc4d3358b648c18f9772d421379869179ee8f8e9ec"
+    },
+    "prepare/smoke-result.json": {
+      "bytes": 1886,
+      "sha256": "a1a5b056ad9d7da2dae377ca7aff97f8844de02c677d8fe11a1709ea1bcb9259"
+    }
+  }
+}

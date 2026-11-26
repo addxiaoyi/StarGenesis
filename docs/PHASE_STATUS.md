@@ -99,6 +99,8 @@ P5 续开发保留默认500步，新增 `ecology start <seed> <ticks>` 的1–15
 
 新增17项轮换和16项持久化回归，87项通信针对性测试通过；Java21/25各720项测试（92个类），失败/错误/跳过均为0。双JDK各通过radio/worker/settlement跨进程锁及两项临时密钥签名自检，64项Python、6项Node和模块边界检查通过。早期宿主原生内存不足与实际失败日志保留；最终限制子JVM内存并避免大文件NIO临时直接缓冲后完成全量构建。证据见`docs/evidence/p4/journal-rotation/summary.json`，合同见`RADIO_JOURNAL_ROTATION.md`。同步保存仍随历史增长检查全部归档；这批未新增Paper/Folia新命令、长期负载或真人证据，P4阶段门不变。
 
+2026-11-27 新增三阶段轮换客户端/停机日志验证器及轻量Python/Node CI回归。尝试在本机对Paper进行三次真实服务启动，分别在remapping/数据包加载/插件启动期因Java堆、原生分配/线程及Compressed Class Space内存不足失败；三次均未进入轮换客户端工作流，Folia未启动。最后一批的孤立JVM在宿主内存压力下由测试操作者停止。该结果只说明本机启动资源不足，不是产品轮换流程的通过或失败证据；新命令仍无新增Paper/Folia实服验证。批次原始日志、启动源码快照和与最终验证器源码的差异记录在`docs/evidence/p4/journal-rotation-server/summary.json`；远端CI只验证轻量测试及代码，不等同于服务器运行验收。
+
 ## P6–P8
 
 P6 由四名不同 UUID 玩家组成两个组织、竞价并下单。额外实服流程使用 roster 派生的确定 fault seed 触发部分生产失败，断言 `FAILED_RECOVERED`、recovered order、credits/ore 退回至预期余额、parts escrow 释放和 replay。结果见 `paper-factory-compensation-retest-workflow-result.json` 与 Folia 对应文件。这仍是五自动客户端，不替代真人比赛。

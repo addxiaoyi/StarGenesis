@@ -1,0 +1,579 @@
+{
+  "schemaVersion": 1,
+  "taskDate": "2026-11-26",
+  "timeZone": "Asia/Shanghai",
+  "passed": false,
+  "phaseGatePassed": false,
+  "finalBatch": "runs-20261126T235553",
+  "validationErrors": [
+    "ValueError: Final batch recorded failure; no complete dual-server pass is inferred"
+  ],
+  "repositoryHeadAtArchive": "87abf9cfe4505b0cb5f71992a81f9743493a720d",
+  "servers": {},
+  "attempts": {
+    "runs-20261126T234649": {
+      "reportedPassed": false,
+      "record": {
+        "passed": false,
+        "batch": ".work\\radio-rotation-lifecycle\\runs-20261126T234649",
+        "runs": [
+          {
+            "kind": "paper",
+            "exitCode": 1,
+            "command": [
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\server_radio_rotation_smoke.py",
+              "--java",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+              "--node",
+              "C:/Program Files/nodejs/node.exe",
+              "--server-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+              "--libraries-from",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper",
+              "--plugin-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+              "--node-modules",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules",
+              "--directory",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T234649\\paper",
+              "--kind",
+              "paper",
+              "--port",
+              "25679",
+              "--heap-mb",
+              "256",
+              "--timeout",
+              "300",
+              "--client-timeout",
+              "180"
+            ]
+          }
+        ],
+        "javaToolOptions": "-Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2",
+        "nodeOptions": "--max-old-space-size=128",
+        "error": "RuntimeError: paper failed; inspect C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T234649\\paper-harness.log"
+      },
+      "isFinalAttempt": false,
+      "sourceStartupSnapshotPresent": false,
+      "artifactRecords": {
+        "paper": {
+          "server": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+            "bytes": 29560892,
+            "sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          },
+          "plugin": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+            "bytes": 3130252,
+            "sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          }
+        }
+      },
+      "rawArtifactInventories": {
+        "paper": {
+          "files": 4,
+          "passed": true,
+          "reportedServerAttemptPassed": false
+        }
+      },
+      "sourceComparison": {
+        "startupSnapshotAvailable": false,
+        "files": {},
+        "scope": "Attempt-time startup source bytes were not captured; differences cannot be determined."
+      }
+    },
+    "runs-20261126T235317": {
+      "reportedPassed": false,
+      "record": {
+        "passed": false,
+        "batch": ".work\\radio-rotation-lifecycle\\runs-20261126T235317",
+        "runs": [
+          {
+            "kind": "paper",
+            "exitCode": 1,
+            "command": [
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\server_radio_rotation_smoke.py",
+              "--java",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+              "--node",
+              "C:/Program Files/nodejs/node.exe",
+              "--server-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+              "--libraries-from",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper",
+              "--plugin-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+              "--node-modules",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules",
+              "--directory",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T235317\\paper",
+              "--kind",
+              "paper",
+              "--port",
+              "25679",
+              "--heap-mb",
+              "512",
+              "--timeout",
+              "300",
+              "--client-timeout",
+              "180",
+              "--with-observer"
+            ]
+          }
+        ],
+        "javaToolOptions": "-Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2",
+        "nodeOptions": "--max-old-space-size=128",
+        "sourceHashes": {
+          ".work/radio-rotation-lifecycle/run_servers.py": "3a3e57621f460eed574f7752fb6fcaba722139fb54a442cd9cf184dc71adb308",
+          "scripts/server_radio_rotation_smoke.py": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659",
+          "scripts/offline_client_radio_rotation_smoke.cjs": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1",
+          "scripts/server_smoke.py": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385",
+          "scripts/offline_client_workflow_smoke.cjs": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d",
+          "scripts/test_server_radio_rotation_smoke.py": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80",
+          "scripts/test_offline_client_radio_rotation_smoke.cjs": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+        },
+        "error": "RuntimeError: paper failed; inspect C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T235317\\paper-harness.log"
+      },
+      "isFinalAttempt": false,
+      "sourceStartupSnapshotPresent": true,
+      "artifactRecords": {
+        "paper": {
+          "server": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+            "bytes": 29560892,
+            "sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          },
+          "plugin": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+            "bytes": 3130252,
+            "sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          }
+        }
+      },
+      "rawArtifactInventories": {
+        "paper": {
+          "files": 4,
+          "passed": true,
+          "reportedServerAttemptPassed": false
+        }
+      },
+      "sourceSnapshots": {
+        ".work/radio-rotation-lifecycle/run_servers.py": {
+          "bytes": 3881,
+          "sha256": "3a3e57621f460eed574f7752fb6fcaba722139fb54a442cd9cf184dc71adb308"
+        },
+        "scripts/server_radio_rotation_smoke.py": {
+          "bytes": 17510,
+          "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+        },
+        "scripts/offline_client_radio_rotation_smoke.cjs": {
+          "bytes": 17156,
+          "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+        },
+        "scripts/server_smoke.py": {
+          "bytes": 20640,
+          "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+        },
+        "scripts/offline_client_workflow_smoke.cjs": {
+          "bytes": 42146,
+          "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+        },
+        "scripts/test_server_radio_rotation_smoke.py": {
+          "bytes": 8900,
+          "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+        },
+        "scripts/test_offline_client_radio_rotation_smoke.cjs": {
+          "bytes": 5556,
+          "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+        }
+      },
+      "sourceComparison": {
+        "startupSnapshotAvailable": true,
+        "files": {
+          ".work/radio-rotation-lifecycle/run_servers.py": {
+            "startup": {
+              "bytes": 3881,
+              "sha256": "3a3e57621f460eed574f7752fb6fcaba722139fb54a442cd9cf184dc71adb308"
+            },
+            "currentAtArchive": {
+              "bytes": 3973,
+              "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+            },
+            "matches": false
+          },
+          "scripts/offline_client_radio_rotation_smoke.cjs": {
+            "startup": {
+              "bytes": 17156,
+              "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+            },
+            "currentAtArchive": {
+              "bytes": 25280,
+              "sha256": "da34776d7c89444d49c8053468a4b7cc42ce7e3ee4b59655b881088e0d04a275"
+            },
+            "matches": false
+          },
+          "scripts/offline_client_workflow_smoke.cjs": {
+            "startup": {
+              "bytes": 42146,
+              "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+            },
+            "currentAtArchive": {
+              "bytes": 42146,
+              "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+            },
+            "matches": true
+          },
+          "scripts/server_radio_rotation_smoke.py": {
+            "startup": {
+              "bytes": 17510,
+              "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+            },
+            "currentAtArchive": {
+              "bytes": 26409,
+              "sha256": "a4991c8fa7fb6c1a0ab34aeed1b1c579779fce19e707d255d0d10296ccc18724"
+            },
+            "matches": false
+          },
+          "scripts/server_smoke.py": {
+            "startup": {
+              "bytes": 20640,
+              "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+            },
+            "currentAtArchive": {
+              "bytes": 20640,
+              "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+            },
+            "matches": true
+          },
+          "scripts/test_offline_client_radio_rotation_smoke.cjs": {
+            "startup": {
+              "bytes": 5556,
+              "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+            },
+            "currentAtArchive": {
+              "bytes": 7387,
+              "sha256": "3e72a4badb98e26a001fe2dcb88b8e29f469ae341c9d7f84efb9d23300934ed8"
+            },
+            "matches": false
+          },
+          "scripts/test_server_radio_rotation_smoke.py": {
+            "startup": {
+              "bytes": 8900,
+              "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+            },
+            "currentAtArchive": {
+              "bytes": 14003,
+              "sha256": "f58043cdbfea15370ea9e7674f45b71702eddf37172c4e539d7d2949fd55709d"
+            },
+            "matches": false
+          }
+        },
+        "differentFiles": [
+          ".work/radio-rotation-lifecycle/run_servers.py",
+          "scripts/offline_client_radio_rotation_smoke.cjs",
+          "scripts/server_radio_rotation_smoke.py",
+          "scripts/test_offline_client_radio_rotation_smoke.cjs",
+          "scripts/test_server_radio_rotation_smoke.py"
+        ]
+      }
+    },
+    "runs-20261126T235553": {
+      "reportedPassed": false,
+      "record": {
+        "passed": false,
+        "batch": ".work\\radio-rotation-lifecycle\\runs-20261126T235553",
+        "runs": [
+          {
+            "kind": "paper",
+            "exitCode": 1,
+            "command": [
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\server_radio_rotation_smoke.py",
+              "--java",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+              "--node",
+              "C:/Program Files/nodejs/node.exe",
+              "--server-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+              "--libraries-from",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper",
+              "--plugin-jar",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+              "--node-modules",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules",
+              "--directory",
+              "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T235553\\paper",
+              "--kind",
+              "paper",
+              "--port",
+              "25679",
+              "--heap-mb",
+              "384",
+              "--timeout",
+              "300",
+              "--client-timeout",
+              "180",
+              "--with-observer"
+            ]
+          }
+        ],
+        "javaToolOptions": "-Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -Djdk.nio.maxCachedBufferSize=262144",
+        "nodeOptions": "--max-old-space-size=128",
+        "sourceHashes": {
+          ".work/radio-rotation-lifecycle/run_servers.py": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584",
+          "scripts/server_radio_rotation_smoke.py": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659",
+          "scripts/offline_client_radio_rotation_smoke.cjs": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1",
+          "scripts/server_smoke.py": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385",
+          "scripts/offline_client_workflow_smoke.cjs": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d",
+          "scripts/test_server_radio_rotation_smoke.py": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80",
+          "scripts/test_offline_client_radio_rotation_smoke.cjs": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+        },
+        "error": "RuntimeError: paper failed; inspect C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-rotation-lifecycle\\runs-20261126T235553\\paper-harness.log"
+      },
+      "isFinalAttempt": true,
+      "sourceStartupSnapshotPresent": true,
+      "artifactRecords": {
+        "paper": {
+          "server": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-lifecycle-live\\paper\\versions\\1.21.11\\paper-1.21.11.jar",
+            "bytes": 29560892,
+            "sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          },
+          "plugin": {
+            "localPath": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\radio-journal\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+            "bytes": 3130252,
+            "sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+            "binaryArchived": false,
+            "hashCheckedAtArchive": true
+          }
+        }
+      },
+      "rawArtifactInventories": {
+        "paper": {
+          "files": 4,
+          "passed": true,
+          "reportedServerAttemptPassed": false
+        }
+      },
+      "sourceSnapshots": {
+        ".work/radio-rotation-lifecycle/run_servers.py": {
+          "bytes": 3973,
+          "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+        },
+        "scripts/server_radio_rotation_smoke.py": {
+          "bytes": 17510,
+          "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+        },
+        "scripts/offline_client_radio_rotation_smoke.cjs": {
+          "bytes": 17156,
+          "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+        },
+        "scripts/server_smoke.py": {
+          "bytes": 20640,
+          "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+        },
+        "scripts/offline_client_workflow_smoke.cjs": {
+          "bytes": 42146,
+          "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+        },
+        "scripts/test_server_radio_rotation_smoke.py": {
+          "bytes": 8900,
+          "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+        },
+        "scripts/test_offline_client_radio_rotation_smoke.cjs": {
+          "bytes": 5556,
+          "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+        }
+      },
+      "sourceComparison": {
+        "startupSnapshotAvailable": true,
+        "files": {
+          ".work/radio-rotation-lifecycle/run_servers.py": {
+            "startup": {
+              "bytes": 3973,
+              "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+            },
+            "currentAtArchive": {
+              "bytes": 3973,
+              "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+            },
+            "matches": true
+          },
+          "scripts/offline_client_radio_rotation_smoke.cjs": {
+            "startup": {
+              "bytes": 17156,
+              "sha256": "689950ae58c514c58abcafd5eaf575916696e7aa9be883fdc4f551731180aeb1"
+            },
+            "currentAtArchive": {
+              "bytes": 25280,
+              "sha256": "da34776d7c89444d49c8053468a4b7cc42ce7e3ee4b59655b881088e0d04a275"
+            },
+            "matches": false
+          },
+          "scripts/offline_client_workflow_smoke.cjs": {
+            "startup": {
+              "bytes": 42146,
+              "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+            },
+            "currentAtArchive": {
+              "bytes": 42146,
+              "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+            },
+            "matches": true
+          },
+          "scripts/server_radio_rotation_smoke.py": {
+            "startup": {
+              "bytes": 17510,
+              "sha256": "5bff5c6be92e8b97432aff91366674568a69cec91bc251aa192e26ecc4745659"
+            },
+            "currentAtArchive": {
+              "bytes": 26409,
+              "sha256": "a4991c8fa7fb6c1a0ab34aeed1b1c579779fce19e707d255d0d10296ccc18724"
+            },
+            "matches": false
+          },
+          "scripts/server_smoke.py": {
+            "startup": {
+              "bytes": 20640,
+              "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+            },
+            "currentAtArchive": {
+              "bytes": 20640,
+              "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+            },
+            "matches": true
+          },
+          "scripts/test_offline_client_radio_rotation_smoke.cjs": {
+            "startup": {
+              "bytes": 5556,
+              "sha256": "e82a9d1650081ac60a41dca63d683bf3ab638626d26ea96c3b7da6c0405fe817"
+            },
+            "currentAtArchive": {
+              "bytes": 7387,
+              "sha256": "3e72a4badb98e26a001fe2dcb88b8e29f469ae341c9d7f84efb9d23300934ed8"
+            },
+            "matches": false
+          },
+          "scripts/test_server_radio_rotation_smoke.py": {
+            "startup": {
+              "bytes": 8900,
+              "sha256": "a27d2e000c51aa53d2db866cee658cbc84a5eb90d8e93a24b0fb4bbaa2d6ef80"
+            },
+            "currentAtArchive": {
+              "bytes": 14003,
+              "sha256": "f58043cdbfea15370ea9e7674f45b71702eddf37172c4e539d7d2949fd55709d"
+            },
+            "matches": false
+          }
+        },
+        "differentFiles": [
+          "scripts/offline_client_radio_rotation_smoke.cjs",
+          "scripts/server_radio_rotation_smoke.py",
+          "scripts/test_offline_client_radio_rotation_smoke.cjs",
+          "scripts/test_server_radio_rotation_smoke.py"
+        ]
+      }
+    }
+  },
+  "javaBuildEvidence": {
+    "archive": "docs/evidence/p4/journal-rotation",
+    "manifest": {
+      "bytes": 53029,
+      "sha256": "e7585b7028ba7a23af6b340b99dde342df855ace3e85379cee25bcf2e96b4d14"
+    },
+    "summary": {
+      "bytes": 31457,
+      "sha256": "ccbabd655214ef1fb512a7c5726177ee2bfb8085791599391e70aca8f8a7a4bb"
+    },
+    "allRawManifestEntriesReverified": 283,
+    "productInputsStillMatchBuildSnapshot": true,
+    "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+    "scope": "Reference to existing Java21/25 720-test archive; XML reports and binary JARs are not recopied."
+  },
+  "ci": {
+    "headSha": "87abf9cfe4505b0cb5f71992a81f9743493a720d",
+    "runId": 45851802173,
+    "jobs": [
+      {
+        "id": 140019794825,
+        "name": "java (21)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 140019794460,
+        "name": "java (25)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "runLevelFinalConclusionAsserted": false,
+    "record": {
+      "localPath": ".work/radio-rotation-lifecycle/ci-87abf9c.json",
+      "bytes": 9940,
+      "sha256": "bfe8dc927fa28952e94375b94928cb1de81e751e07cf0e1249bb975b83ea3234"
+    },
+    "scope": "Selected connector-observed fields confirm both jobs completed successfully; this is not a raw API response or a freshly verified run-level final conclusion."
+  },
+  "serverAcceptance": "pending",
+  "currentSources": {
+    "files": {
+      ".work/radio-rotation-lifecycle/run_servers.py": {
+        "bytes": 3973,
+        "sha256": "8651a27c610418b2cfc79d45df0ad5bb25eaaadb3edf58258fb2dc5d6ebce584"
+      },
+      "scripts/offline_client_radio_rotation_smoke.cjs": {
+        "bytes": 25280,
+        "sha256": "da34776d7c89444d49c8053468a4b7cc42ce7e3ee4b59655b881088e0d04a275"
+      },
+      "scripts/offline_client_workflow_smoke.cjs": {
+        "bytes": 42146,
+        "sha256": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d"
+      },
+      "scripts/server_radio_rotation_smoke.py": {
+        "bytes": 26409,
+        "sha256": "a4991c8fa7fb6c1a0ab34aeed1b1c579779fce19e707d255d0d10296ccc18724"
+      },
+      "scripts/server_smoke.py": {
+        "bytes": 20640,
+        "sha256": "a773f3bab436c17f9832aa7f6afb658334ff312306fd02c7f41665a876092385"
+      },
+      "scripts/test_offline_client_radio_rotation_smoke.cjs": {
+        "bytes": 7387,
+        "sha256": "3e72a4badb98e26a001fe2dcb88b8e29f469ae341c9d7f84efb9d23300934ed8"
+      },
+      "scripts/test_server_radio_rotation_smoke.py": {
+        "bytes": 14003,
+        "sha256": "f58043cdbfea15370ea9e7674f45b71702eddf37172c4e539d7d2949fd55709d"
+      }
+    },
+    "scope": "Exact seven current runtime and validator source files captured at archive preflight; each attempt's startup snapshots are validated and compared separately."
+  },
+  "finalSourcesMatchCurrentAtArchive": false,
+  "pythonRegressionTests": 72,
+  "nodeRegressionTests": 10,
+  "diagnosticNotes": {
+    "runs-20261126T234649": "256 MiB heap exhausted during server remapping/world startup. Root stopped only this isolated JVM at 2026-11-26 23:52:51 Asia/Shanghai to end the failed attempt; exit 1, no clients. Initial runner bytes were not snapshotted at startup and changed during the attempt; no source-bound success is claimed.",
+    "runs-20261126T235317": "512 MiB attempt remapped successfully but failed loading server datapacks with native allocation failure (2131520 bytes), under host commit pressure. No product/client acceptance is inferred. Startup source snapshots are preserved separately from later attempts.",
+    "runs-20261126T235553": "384 MiB attempt first recorded OutOfMemoryError: Compressed class space in crash-2026-11-26_23.56.28-server.txt at 2026-11-26 23:56:28 Asia/Shanghai. Root subsequently terminated only isolated test JVM PID2356 to restore host memory; harness exited 1. No client workflow or Folia run occurred."
+  },
+  "storage": "All attempt harness/evidence/server logs, crash reports, results, relevant runtime config/journals and recorded source snapshots are copied. World data, server library JARs and plugin/server binaries are not copied; available attempt binary paths, lengths and SHA-256 values checked at archive are recorded in attempts/artifactRecords, with successful workflow bindings only in servers. Existing Java test XML stays in the referenced source-bound archive.",
+  "limits": [
+    "Three ordinary isolated boots per completed server, three offline automated clients. No forced-crash, network filesystem, cross-region, long-load, production capacity or human acceptance.",
+    "A failed or incomplete final attempt sets passed false; success requires both servers and all six ordered phases with strict server/client results and clean shutdown.",
+    "Archive SHA-256 pins demonstrate byte integrity, not publisher signatures or authenticated backup provenance. Real settlement remains disabled and the P4 phase gate remains unpassed.",
+    "CI confirms both recorded Java matrix jobs completed successfully for 87abf9c. The run-level resource final conclusion was not observed and is not asserted."
+  ]
+}

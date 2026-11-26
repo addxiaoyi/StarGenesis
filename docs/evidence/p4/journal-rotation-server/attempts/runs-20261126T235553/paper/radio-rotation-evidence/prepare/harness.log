@@ -1,0 +1,102 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": false,
+    "plugin_enabled": false,
+    "design_examples_verified": false,
+    "status_command": false,
+    "p3_program_workspace": false,
+    "p3_replayable_simulation": false,
+    "p4_virtual_radio": false,
+    "p4_radio_protocol_pinned": false,
+    "p4_service_contract_pinned": false,
+    "p5_closed_ecology": false,
+    "p6_four_player_factory": false,
+    "p7_arena_catalog": false,
+    "p8_territory_match": false,
+    "p9_real_settlement_inactive": false,
+    "p10_signed_design_import": false,
+    "help_command": false,
+    "capabilities_command": false,
+    "missing_dependency_report": false,
+    "budget_command": false,
+    "plugin_disabled": false,
+    "clean_exit": false,
+    "no_plugin_startup_error": true,
+    "player_workflow": false
+  },
+  "passed": false,
+  "seconds": 125.23,
+  "server_sha256": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+  "plugin_sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+  "log_sha256": "22d43ecd4db8fd5e6a72ea420086cd4bc06f603b9cde5756fbabd121016e0879",
+  "java": "Picked up JAVA_TOOL_OPTIONS: -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=160m -XX:CompressedClassSpaceSize=16m -XX:MaxDirectMemorySize=16m -XX:ActiveProcessorCount=2 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -Djdk.nio.maxCachedBufferSize=262144\nopenjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+  "launch_mode": "extracted-server-classpath",
+  "heap_mb": 384,
+  "jvm_args": [],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": false,
+    "error": "workflow did not run"
+  }
+}
+[33;1m[23:56:27 WARN]: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+[m[33;1m[23:56:27 WARN]: ****************************
+[m[33;1m[23:56:27 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[23:56:27 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[23:56:27 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[23:56:27 WARN]: ****************************
+[m[23:56:27 INFO]: Loading properties
+[31;1m[23:56:28 ERROR]: Encountered an unexpected exception
+java.lang.OutOfMemoryError: Compressed class space
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639) ~[?:?]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:255) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1253) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer$$Lambda/0x0000022e29fe2c60.run(Unknown Source) ~[?:?]
+	at java.base/java.lang.Thread.runWith(Thread.java:1596) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m[31;1m[23:56:28 ERROR]: This crash report has been saved to: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\radio-rotation-lifecycle\runs-20261126T235553\paper\crash-reports\crash-2026-11-26_23.56.28-server.txt
+[m[23:56:28 INFO]: Stopping server
+[23:56:28 INFO]: Saving worlds
+[23:56:28 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[23:56:28 INFO]: Waiting for all RegionFile I/O tasks to complete...
+[23:56:28 INFO]: All RegionFile I/O tasks to complete
+[31;1m[23:56:29 ERROR]: Exception stopping the server
+java.lang.OutOfMemoryError: Compressed class space
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639) ~[?:?]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681) ~[?:?]
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639) ~[?:?]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at ca.spottedleaf.concurrentutil.executor.thread.BalancedPrioritisedThreadPool.<init>(BalancedPrioritisedThreadPool.java:25) ~[concurrentutil-0.0.8.jar:?]
+	at ca.spottedleaf.moonrise.common.util.MoonriseCommon.<clinit>(MoonriseCommon.java:17) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.stopServer(MinecraftServer.java:1084) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.dedicated.DedicatedServer.stopServer(DedicatedServer.java:908) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1371) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer$$Lambda/0x0000022e29fe2c60.run(Unknown Source) ~[?:?]
+	at java.base/java.lang.Thread.runWith(Thread.java:1596) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m
