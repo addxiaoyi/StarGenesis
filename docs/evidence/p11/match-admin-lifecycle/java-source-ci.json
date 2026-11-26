@@ -1,0 +1,57 @@
+{
+  "commit": "1fc638b0b5c434c704901a73802e7dd600d39634",
+  "runId": 45745274767,
+  "url": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45745274767",
+  "jobs": [
+    {
+      "jobId": 139659684456,
+      "name": "java (21)",
+      "conclusion": "success",
+      "tests": 539,
+      "failures": 0,
+      "summaries": [
+        "2026-11-26T02:52:42.5794199Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:45.0767277Z [INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:54.7870282Z [INFO] Tests run: 92, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:55.5589408Z [INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:53:13.5727395Z [INFO] Tests run: 339, Failures: 0, Errors: 0, Skipped: 0"
+      ],
+      "scripts": [
+        "2026-11-26T02:52:32.3380351Z Ran 3 tests in 0.038s",
+        "2026-11-26T02:52:32.4020066Z Ran 6 tests in 0.005s",
+        "2026-11-26T02:52:32.4891559Z # tests 3",
+        "2026-11-26T02:52:32.4892278Z # pass 3",
+        "2026-11-26T02:52:32.4892450Z # fail 0",
+        "2026-11-26T02:53:16.8572449Z   \"passed\": true,",
+        "2026-11-26T02:53:17.8353694Z   \"passed\": true,",
+        "2026-11-26T02:53:20.1578065Z   \"passed\": true,",
+        "2026-11-26T02:53:21.8666669Z   \"passed\": true,"
+      ]
+    },
+    {
+      "jobId": 139659684809,
+      "name": "java (25)",
+      "conclusion": "success",
+      "tests": 539,
+      "failures": 0,
+      "summaries": [
+        "2026-11-26T02:52:42.5861576Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:46.0000376Z [INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:56.6525214Z [INFO] Tests run: 92, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:52:57.6350947Z [INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0",
+        "2026-11-26T02:53:18.4267472Z [INFO] Tests run: 339, Failures: 0, Errors: 0, Skipped: 0"
+      ],
+      "scripts": [
+        "2026-11-26T02:52:32.9358091Z Ran 3 tests in 0.052s",
+        "2026-11-26T02:52:33.0183893Z Ran 6 tests in 0.006s",
+        "2026-11-26T02:52:33.1212576Z # tests 3",
+        "2026-11-26T02:52:33.1213624Z # pass 3",
+        "2026-11-26T02:52:33.1213890Z # fail 0",
+        "2026-11-26T02:53:22.0578237Z   \"passed\": true,",
+        "2026-11-26T02:53:23.1989329Z   \"passed\": true,",
+        "2026-11-26T02:53:25.9988455Z   \"passed\": true,",
+        "2026-11-26T02:53:27.8531598Z   \"passed\": true,"
+      ]
+    }
+  ]
+}

@@ -131,6 +131,10 @@ P8 的公开规则固定 ID/version/hash，match 只接收 roster UUID，每轮�
 
 最小适配原控制器路由后先复现三项失败，原控制器及适配器/测试保留，不称为实服故障。新增16项单元测试（队列10、工厂3、Arena比赛2、Arena邀请1），相关62项通过；包含10,000身份进出、双人连接准入、异常后清理、超时目录隔离、工厂失败写盘后取消/重试、已准入成功提交重启恢复，以及观察者重连优先恢复活跃比赛且pending/观战存档不变。Java21/25各539项（70个类）通过，失败/错误/跳过为0；双JDK四类锁/临时签名探针、9项Python与3项Node回归通过。证据见`docs/evidence/p11/player-command-lifecycle/summary.json`，合同见`PLAYER_COMMAND_LIFECYCLE.md`。本批没有新增实服/跨区域/热重载/生产负载证据，连接快照随同时在线人数变化；真实provider、信任根、第三方和真人验收阶段门保持未通过。
 
+2026-11-26 P6/P8补齐管理员终局清理和重组的实际命令验证。Paper1.21.11-132与Folia1.21.11-14各用四名普通玩家和独立OP完成三次启动：先验证硬断线取消工厂/Arena邀请、重连后重新邀请，发布两轮Arena规则并完成比赛；工厂故障订单补偿后推进至100步终局。活跃比赛连管理员也不能清理，终局历史普通成员不能清理。第二次启动后四人退出并交换配对，创建独立新场次；选择旧历史再硬断线后优先恢复活跃场次且保留pending。管理员仅删除两份旧终局文件，新roster/比赛原字节保持；第三次启动验证已删历史未复活、新队伍/组织与pending恢复，回放通过。六次成功服务器退出均干净，四类worker目录锁均释放。
+
+本批运行同一`1fc638b`源码的Java25构建工件`b5875dc47e9ae419e1d1e5efc53c284c6efd5edc3236bc256bef39fe70328d12`，服务运行时为Microsoft Java21、512MiB测试堆；Java生产源码与双JDK各539项通过的上一批相同。新增2项Python与3项Node证据回归，当前脚本共11/6项通过并接入CI。前置失败分别为脚本错误传参、JVM元空间原生内存分配失败、脚本误取含组织名的拍卖行；全部保留原始证据，不计作通过。修正检查器并在宿主内存恢复后用新隔离目录、相同JVM参数重跑成功。证据见`docs/evidence/p11/match-admin-lifecycle/summary.json`，复现见`MATCH_ADMIN_LIFECYCLE_TEST.md`。固定五自动客户端不能替代真人、跨区域、饱和队列、写盘中途崩溃或生产容量验收，阶段门不变。
+
 ## P9–P10
 
 P9 coordinator 要求 adapter 声明 durable idempotency 和按 key lookup，包含付款、交付、补偿与不确定状态转人工复核。StarCore `main` 当前固定 SHA 为 `f769e62799e769a18fe51305b545869a17f80cd1`。现有 `TransactionFabric` 持久协调 transaction record，但公开 EconomyService 转账没有外部幂等键，且账本不原子执行钱包和背包副作用。因此真实 settlement adapter 和入口未注册，真实资产交易继续禁用。文件仓库的 create/replace 当前使用按 saga ID 的 JVM 与文件锁，并有跨仓库实例 revision 竞争回归用例；跨仓库 revision 竞争测试已在 Java 21 与 Java 25 通过。恢复时先查询外部幂等结果，再决定是否允许新的副作用，覆盖扣款或交付成功但持久化失败后授权过期、查询结果不确定等分支。

@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "phase": "prepare",
+  "kind": "paper",
+  "players": 5,
+  "checks": [],
+  "identities": {
+    "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+    "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+    "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+    "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+    "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+  },
+  "error": "TypeError: Cannot read properties of undefined (reading 'player')\n    at organizationForPair (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:406:27)\n    at main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_match_admin_smoke.cjs:128:45)"
+}

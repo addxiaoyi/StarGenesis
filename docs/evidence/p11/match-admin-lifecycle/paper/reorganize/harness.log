@@ -1,0 +1,106 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 53.3,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "b5875dc47e9ae419e1d1e5efc53c284c6efd5edc3236bc256bef39fe70328d12",
+  "log_sha256": "f528d1cf50c157d09a0573a157ba1a739b0cea0ace9f89c7467716cbc73cf4e4",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "phase": "reorganize",
+    "kind": "paper",
+    "players": 5,
+    "checks": [
+      "restart_and_joins_preserve_all_match_and_design_bytes",
+      "terminal_members_leave_and_form_new_pairs_and_teams",
+      "new_runs_preserve_old_history",
+      "hard_reconnect_prefers_active_matches_and_retains_pending",
+      "admin_prunes_only_terminal_history",
+      "deleted_history_and_observer_selection_unavailable",
+      "active_matches_and_new_rosters_unchanged_by_prune"
+    ],
+    "identities": {
+      "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+      "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+      "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+      "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+      "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+    },
+    "factory": [
+      "垢皆 0/100 ， match=factory-1e6fb2422b43a0891b03cdc0d97ff2ad ， auction=OPEN ， winner=pending",
+      "org_cedar members=[870f713d-0aa4-36e6-8b07-b62e9aee269f, 8d5799fa-0ce7-3772-afd4-cb97be803582] ， credits=100 ， ore=0 ， parts=0",
+      "org_ember members=[bdb4b76b-1a87-3f62-b409-42a8c4679e64, f985f557-96a8-3744-b221-aeea6f92d932] ， credits=100 ， ore=0 ， parts=0",
+      "orders=0 ， completed=0 ， recovered=0 ， producedParts=0",
+      "state=ea74bed19aca ， RUNNING"
+    ],
+    "arena": [
+      "Arena arena-8e398f4ba1e95bdd2b6b0be4ab8adaf1 ， test:match_lifecycle v1.0.0 ， round=0/2",
+      "Territory={cedar=1, ember=1} ， units={cedar=8, ember=8}",
+      "Leaderboard={cedar=1, ember=1}",
+      "state=cd4b2b0738ec ， RUNNING"
+    ],
+    "state": {
+      "identities": {
+        "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+        "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+        "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+        "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+        "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+      },
+      "seed": 1,
+      "old": {
+        "factory": "factory-e073bec63a477a620df5c4243ddfcb7e",
+        "arena": "arena-f51383e6937dc1306f328e82cc65dd9e"
+      },
+      "active": {
+        "factory": "factory-1e6fb2422b43a0891b03cdc0d97ff2ad",
+        "arena": "arena-8e398f4ba1e95bdd2b6b0be4ab8adaf1"
+      }
+    },
+    "manifest": {
+      "arena-matches/arena-8e398f4ba1e95bdd2b6b0be4ab8adaf1.match.json": "74341b261a0ac4e5876b8d66278e0849406bfe7ae5805599529684b637a74435",
+      "arena-matches/teams.json": "22503dd10a3b0541e9e3e6de2d6779881e2f6e72e008155d04ed3efb0aee67e4",
+      "arenas/drafts/f985f557-96a8-3744-b221-aeea6f92d932/e42f464a81c4e5c90988a27a5fcb05c594603727e88d5078d2e531055dfb4243.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+      "arenas/published/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+      "arenas/reviews/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "a06d9d7e1cff88febd94f6d2d2439364cd68ff14452e445ef39930e169300d5f",
+      "factory/factory-1e6fb2422b43a0891b03cdc0d97ff2ad.factory.json": "e21846bc463b01be1a3464bd0c74ec7c114e066d085a3d4771c6d4548d31737c",
+      "factory/organizations.json": "84716f95490cebca35cc1540abd6bbdc68f9ca07570ff1024c0faa14d08171fa"
+    },
+    "log": "player-workflow.log"
+  }
+}

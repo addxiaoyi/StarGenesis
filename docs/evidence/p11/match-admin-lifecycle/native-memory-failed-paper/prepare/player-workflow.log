@@ -1,0 +1,39 @@
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+{
+  "passed": false,
+  "phase": "prepare",
+  "kind": "paper",
+  "players": 5,
+  "checks": [],
+  "identities": {
+    "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+    "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+    "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+    "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+    "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+  },
+  "error": "Error: SGMatchBob timed out waiting for \"没有可接受\". Connection error=socketClosed. Recent messages:\n\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_match_admin_smoke.cjs:114:7)"
+}

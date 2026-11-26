@@ -1,0 +1,109 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 104.23,
+  "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_sha256": "b5875dc47e9ae419e1d1e5efc53c284c6efd5edc3236bc256bef39fe70328d12",
+  "log_sha256": "4180bbe4d7cec7051b22b014bc98bdb22c74be7507af49a2eed62803dd54873f",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "phase": "prepare",
+    "kind": "folia",
+    "players": 5,
+    "checks": [
+      "hard_disconnect_cancels_both_invitations",
+      "new_connection_can_invite_and_join",
+      "active_admin_prune_rejected_without_changes",
+      "compensated_factory_and_short_arena_reach_terminal",
+      "non_operator_cannot_prune_terminal_shared_matches"
+    ],
+    "identities": {
+      "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+      "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+      "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+      "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+      "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+    },
+    "refundDashboard": [
+      "垢皆 8/100 ， match=factory-392df83269e6fe2c756b859272362a0e ， auction=SETTLED ， winner=org_ember",
+      "org_cedar members=[870f713d-0aa4-36e6-8b07-b62e9aee269f, bdb4b76b-1a87-3f62-b409-42a8c4679e64] ， credits=100 ， ore=0 ， parts=0",
+      "org_ember members=[8d5799fa-0ce7-3772-afd4-cb97be803582, f985f557-96a8-3744-b221-aeea6f92d932] ， credits=85 ， ore=16 ， parts=0",
+      "orders=1 ， completed=0 ， recovered=1 ， producedParts=0",
+      "org_ember:terminal_fault FAILED_RECOVERED ， due=7 ， DETERMINISTIC_FACTORY_FAULT",
+      "state=06d250e7bf3d ， RUNNING"
+    ],
+    "factory": [
+      "垢皆 100/100 ， match=factory-392df83269e6fe2c756b859272362a0e ， auction=SETTLED ， winner=org_ember",
+      "org_cedar members=[870f713d-0aa4-36e6-8b07-b62e9aee269f, bdb4b76b-1a87-3f62-b409-42a8c4679e64] ， credits=100 ， ore=0 ， parts=0",
+      "org_ember members=[8d5799fa-0ce7-3772-afd4-cb97be803582, f985f557-96a8-3744-b221-aeea6f92d932] ， credits=85 ， ore=16 ， parts=0",
+      "orders=1 ， completed=0 ， recovered=1 ， producedParts=0",
+      "org_ember:terminal_fault FAILED_RECOVERED ， due=7 ， DETERMINISTIC_FACTORY_FAULT",
+      "state=956ecae154e9 ， MATCH_DURATION_BUDGET"
+    ],
+    "arena": [
+      "Arena arena-49e8373fb1ee45f8b632c0a542d3e8dc ， test:match_lifecycle v1.0.0 ， round=2/2",
+      "Territory={cedar=1, ember=1} ， units={cedar=10, ember=10}",
+      "Leaderboard={cedar=1, ember=1}",
+      "state=c55f6ce9e1a5 ， TERRITORY_TIE"
+    ],
+    "state": {
+      "identities": {
+        "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+        "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+        "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+        "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+        "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+      },
+      "seed": 1,
+      "old": {
+        "factory": "factory-392df83269e6fe2c756b859272362a0e",
+        "arena": "arena-49e8373fb1ee45f8b632c0a542d3e8dc"
+      }
+    },
+    "manifest": {
+      "arena-matches/arena-49e8373fb1ee45f8b632c0a542d3e8dc.match.json": "068ef5a6186e15ab5e0bd50c1f5330a497ba31b302d45dd959bbfd29c3ac6929",
+      "arena-matches/teams.json": "c0cda30efd1a93d727a8dc03eb50d14f163251ac82d491b3c29cc671f834ceb2",
+      "arenas/drafts/f985f557-96a8-3744-b221-aeea6f92d932/e42f464a81c4e5c90988a27a5fcb05c594603727e88d5078d2e531055dfb4243.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+      "arenas/published/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+      "arenas/reviews/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "014ece6d7615a49c59260e3dfafcdd4558ef90a1753f02378cdea89b63b6de17",
+      "factory/factory-392df83269e6fe2c756b859272362a0e.factory.json": "fe8d793d76602b5b9d3edc35669fbdc2730d4686e20022e30f0c66e46377e829",
+      "factory/organizations.json": "5718c360bd13201ecab9cddb61ec1ecdda220cfd743ec72dd3d4f514a3206e8e"
+    },
+    "log": "player-workflow.log"
+  }
+}

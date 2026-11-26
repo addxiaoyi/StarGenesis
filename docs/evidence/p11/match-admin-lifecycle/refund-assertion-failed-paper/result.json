@@ -1,0 +1,86 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "runs": [
+    {
+      "phase": "prepare",
+      "exitCode": 1,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": false
+        },
+        "passed": false,
+        "seconds": 80.95,
+        "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "plugin_sha256": "b5875dc47e9ae419e1d1e5efc53c284c6efd5edc3236bc256bef39fe70328d12",
+        "log_sha256": "821b4a9d02ba3ba30822ee217e8d278338f24f74b776804e56b1a1cd4df2a386",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "jvm_args": [
+          "-XX:+UseSerialGC",
+          "-XX:TieredStopAtLevel=1",
+          "-XX:ReservedCodeCacheSize=64m",
+          "-XX:ActiveProcessorCount=2"
+        ],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": false,
+          "phase": "prepare",
+          "kind": "paper",
+          "players": 5,
+          "checks": [],
+          "identities": {
+            "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+            "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+            "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+            "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+            "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(refunded?.includes(\"credits=85\") && refunded.includes(\"ore=16\") && refunded.includes(\"parts=0\"))\n\n    at main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_match_admin_smoke.cjs:139:14)\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processTimers (node:internal/timers:518:9)",
+          "log": "player-workflow.log"
+        }
+      }
+    }
+  ],
+  "scope": "Five automatic clients, three normal boots, terminal pruning and reorganization; no saturation, crash, cross-region, human or performance claim.",
+  "error": "AssertionError: prepare server/client failed",
+  "seconds": 87.7,
+  "artifacts": {
+    "prepare/data/arena-matches/arena-419faded43723526eec04181a6bda914.match.json": "89612771979f4ddb74b51cc51806bdcc6b10dc5450470c353bbc5db0b9bc2ba5",
+    "prepare/data/arena-matches/teams.json": "a16a4cfd7022553e0b4beef459b6862a2e314a8bd94da0b6333a37cdbfbd090d",
+    "prepare/data/arenas/drafts/f985f557-96a8-3744-b221-aeea6f92d932/e42f464a81c4e5c90988a27a5fcb05c594603727e88d5078d2e531055dfb4243.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+    "prepare/data/arenas/published/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "4187976259b386269ced7fa2ac7a8c207f5aa54dd7272f4652587e44d61588c5",
+    "prepare/data/arenas/reviews/32972f7488afeaa17da76b755e28b5a29ddd24319f73967d3b0e36b1bdcabc13.json": "0119ef5e6ecd4d9ba90ed4ae2064b4b9b3e7098993dcce3e5564a634d90a7299",
+    "prepare/data/factory/factory-14a15bf52d21b9a9f9c6c05533430019.factory.json": "bee81f4bd45ba1abbe1461a58b0e116df576b47cccee56560f55e5c3b958c0a5",
+    "prepare/data/factory/organizations.json": "5718c360bd13201ecab9cddb61ec1ecdda220cfd743ec72dd3d4f514a3206e8e",
+    "prepare/harness.log": "cd6b1a097c485ba8ccae6d80e2cf07a1ea1d825e34a1c3b2967e62af12602daf",
+    "prepare/player-workflow-result.json": "c3b3922421e95db35454bc7d2b1e9fd1a8a8326a2bf3a70be71a4f4a19883cf3",
+    "prepare/player-workflow.log": "58bf927af41a727aa4a6f59a0a6916fa6c36c42a39d4905b79701287540177ca",
+    "prepare/smoke-console.log": "821b4a9d02ba3ba30822ee217e8d278338f24f74b776804e56b1a1cd4df2a386",
+    "prepare/smoke-result.json": "005dc53abac2df87ab2a4131a3c54b722eb83a99b7584ab67ded0e414a995550"
+  }
+}

@@ -298,6 +298,8 @@ python scripts/server_smoke.py --server-jar /path/folia.jar --plugin-jar stargen
 
 `scripts/server_lifecycle_smoke.py`使用四个固定客户端、三次服务端启动验证生态v2的768→1536步续跑、工厂待完成订单补偿、Arena待结算动作恢复和实验室运行中关服保存。每次启动前后逐字节核对存档，每次退出检查后台目录锁释放。环境准备、运行命令和验证边界见[重启续跑测试](docs/SERVER_LIFECYCLE_TEST.md)。
 
+`scripts/server_match_admin_smoke.py`用四名普通玩家和独立管理员验证工厂/Arena终局清理：跨重启退出重组、创建新场次、断线恢复活跃比赛、删除旧终局历史，并确认再次重启不会恢复已删记录。每次清理检查新roster、pending和活跃存档不受影响；运行方式与范围见[终局管理测试](docs/MATCH_ADMIN_LIFECYCLE_TEST.md)。
+
 ## 工程结构与后续开发
 
 五个有实现模块：api（稳定契约）、design（格式/安全校验/迁移/蓝图物理评估和撤销工作区）、sim（时钟/守恒账本/生态/replay）、integrations（能力发现合同）、paper（插件宿主和玩家工作区/replay 存储）。JSON Schema 和哈希示例在 design 模块资源目录；SHA-256 为完整性校验，不是作者签名。

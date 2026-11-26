@@ -1,0 +1,79 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "runs": [
+    {
+      "phase": "prepare",
+      "exitCode": 1,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": false,
+          "clean_exit": false,
+          "no_plugin_startup_error": true,
+          "player_workflow": false
+        },
+        "passed": false,
+        "seconds": 75.64,
+        "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "plugin_sha256": "b5875dc47e9ae419e1d1e5efc53c284c6efd5edc3236bc256bef39fe70328d12",
+        "log_sha256": "56edf36ba5c3c246c65250da51ee078519cc317546723cccc8becff09ff56bf2",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "jvm_args": [
+          "-XX:+UseSerialGC",
+          "-XX:TieredStopAtLevel=1",
+          "-XX:ReservedCodeCacheSize=64m",
+          "-XX:ActiveProcessorCount=2"
+        ],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": false,
+          "phase": "prepare",
+          "kind": "paper",
+          "players": 5,
+          "checks": [],
+          "identities": {
+            "alice": "f985f557-96a8-3744-b221-aeea6f92d932",
+            "bob": "8d5799fa-0ce7-3772-afd4-cb97be803582",
+            "carol": "bdb4b76b-1a87-3f62-b409-42a8c4679e64",
+            "dave": "870f713d-0aa4-36e6-8b07-b62e9aee269f",
+            "admin": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+          },
+          "error": "Error: SGMatchBob timed out waiting for \"没有可接受\". Connection error=socketClosed. Recent messages:\n\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_match_admin_smoke.cjs:114:7)",
+          "log": "player-workflow.log"
+        }
+      }
+    }
+  ],
+  "scope": "Five automatic clients, three normal boots, terminal pruning and reorganization; no saturation, crash, cross-region, human or performance claim.",
+  "error": "AssertionError: prepare server/client failed",
+  "seconds": 76.8,
+  "artifacts": {
+    "prepare/harness.log": "446e2c632b08c1261e0e2c80b2151544433cc4680f62b2103da90f754187c737",
+    "prepare/player-workflow-result.json": "dac3b9e7656e63ab71aa8dbfc5b6b8fdd759c9c7a9a448180c2980115126a98b",
+    "prepare/player-workflow.log": "7e1ab8d072c7b5b5af99f380858cbd1924f5052bdc3a27694f1609e06d6e67ef",
+    "prepare/smoke-console.log": "56edf36ba5c3c246c65250da51ee078519cc317546723cccc8becff09ff56bf2",
+    "prepare/smoke-result.json": "2c06db29b654dc80665c529a686328393d41c5f4f34ec2137a4ae789a2d3a559"
+  }
+}
