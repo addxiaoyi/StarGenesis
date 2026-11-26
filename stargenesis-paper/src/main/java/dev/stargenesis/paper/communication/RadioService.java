@@ -89,6 +89,12 @@ final class RadioService implements AutoCloseable {
         return acknowledged;
     }
 
+    synchronized boolean acknowledge(UUID recipient, RadioAcknowledgement command) throws IOException {
+        requireOpen();
+        var message = command.select(state.bus.poll(recipient, VirtualMessageBus.MAX_UNACKNOWLEDGED_PER_RECIPIENT));
+        return acknowledge(recipient, message);
+    }
+
     synchronized List<String> inbox(UUID recipient, int limit) throws IOException {
         requireOpen();
         var messages = state.bus.poll(recipient, limit);

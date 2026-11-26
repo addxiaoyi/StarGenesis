@@ -36,4 +36,6 @@ CI 构建的是同来源提交的 SNAPSHOT。其日志不能替代上述 RC4 工
 
 ## 验收边界
 
+RC4之后的代码审查发现 `radio ack` 在多个协议共享发送者/tick/sequence时会选择第一条消息。后续SNAPSHOT已增加歧义拒绝和显式协议参数，见`RADIO_ACKNOWLEDGEMENT.md`；本页哈希对应的RC4仍保留旧行为，不作为此修复的交付包。
+
 候选未创建 GitHub release/tag，未部署生产环境，也未正式签署。P9 真实结算继续关闭；真实 provider、生产审核授权、运营 trust root、第三方 bridge、真人玩法/公平性/留存和生产容量等阶段门仍需相应证据。单元测试、自动客户端和临时密钥不替代这些验收。

@@ -1,0 +1,14 @@
+package dev.stargenesis.paper.communication;
+
+import dev.stargenesis.design.ProtocolMessageCodec;
+import java.util.List;
+import java.util.UUID;
+
+/** Mechanical extraction of the RC4 controller's acknowledgement selection. */
+record RadioAcknowledgement(UUID sender, long tick, int sequence, VirtualMessageBus.ProtocolKey protocol) {
+    ProtocolMessageCodec.Message select(List<ProtocolMessageCodec.Message> messages) {
+        return messages.stream().filter(candidate -> candidate.sender().equals(sender) && candidate.tick() == tick
+                        && candidate.sequence() == sequence).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("找不到已投递的消息，请先 inbox"));
+    }
+}

@@ -91,6 +91,10 @@ P5 续开发保留默认500步，新增 `ecology start <seed> <ticks>` 的1–15
 
 该批新增13项引擎和2项服务测试，另扩展旧v1字节/哈希与版本拒绝回归，覆盖年龄边界、编辑/重启不清空繁殖间隔、降低储量阈值、空位竞争、世界改名物理轨迹等价及真实写盘失败重试。Java21/25各453项测试（59个类）全部通过，失败/错误/跳过为0；边界、双JVM跨进程锁和临时密钥签名自检通过。原始研究、全部失败样本、原型来源、构建日志及哈希见`docs/evidence/p5/lifecycle-v2/summary.json`，规则见`ECOLOGY_ENGINE_V2.md`。两个32组处理共享seed，不是64个独立seed；有限窗口、代数和出生预算仍不能证明无限或全参数共存。没有新增v2实服、真人或性能验收，P5阶段门保持未通过。
 
+2026-11-26 RC4之后的P4确认命令修复跨协议歧义。原控制器按sender/tick/sequence取第一条消息；机械提取后一条失败回归复现两个固定协议合法共享这三项时仍会确认其中一条。现在短格式要求当前已安装协议下唯一匹配，可追加`genesis:radio`或`genesis:service`（`contract`别名）明确协议ID/hash。选择与候选原子保存处于同一服务同步范围，歧义拒绝和写盘失败保留原状态；普通确认不执行契约动作，合法消息仍由inbox处理。
+
+新增9项Java回归，针对性45项通过；Java21/25各完整548项测试（72个类）全部通过，失败/错误/跳过为0，双JDK跨进程锁与临时签名自检通过，模块边界检查通过。证据见`docs/evidence/p4/acknowledgement-identity/summary.json`（27份工件、9份源码hash），说明见`RADIO_ACKNOWLEDGEMENT.md`。schema v1和协议hash不变。本批无新增实服/真人证据；已归档RC4保留旧确认行为，该修复只在后续SNAPSHOT中，原阶段门不变。
+
 ## P6–P8
 
 P6 由四名不同 UUID 玩家组成两个组织、竞价并下单。额外实服流程使用 roster 派生的确定 fault seed 触发部分生产失败，断言 `FAILED_RECOVERED`、recovered order、credits/ore 退回至预期余额、parts escrow 释放和 replay。结果见 `paper-factory-compensation-retest-workflow-result.json` 与 Folia 对应文件。这仍是五自动客户端，不替代真人比赛。

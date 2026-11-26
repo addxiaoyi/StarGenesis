@@ -1,6 +1,5 @@
 package dev.stargenesis.paper.communication;
 
-import dev.stargenesis.design.ProtocolMessageCodec;
 import dev.stargenesis.design.Protocol;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import net.kyori.adventure.text.Component;
@@ -17,7 +16,6 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 
@@ -180,15 +178,7 @@ public final class RadioController implements Listener, AutoCloseable {
     }
 
     private void acknowledge(Player player, String[] args) throws java.io.IOException {
-        requireLength(args, 4);
-        UUID sender = uuid(args[1]);
-        long tick = Long.parseLong(args[2]);
-        int sequence = integer(args[3]);
-        ProtocolMessageCodec.Message message = service.poll(player.getUniqueId(), VirtualMessageBus.MAX_UNACKNOWLEDGED_PER_RECIPIENT)
-                .stream().filter(candidate -> candidate.sender().equals(sender) && candidate.tick() == tick
-                        && candidate.sequence() == sequence).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("找不到已投递的消息，请先 inbox"));
-        boolean acknowledged = service.acknowledge(player.getUniqueId(), message);
+        boolean acknowledged = service.acknowledge(player.getUniqueId(), RadioAcknowledgement.parse(args));
         player.sendMessage(acknowledged ? "消息已确认。" : "消息此前已确认。");
     }
 
@@ -214,7 +204,7 @@ public final class RadioController implements Listener, AutoCloseable {
         player.sendMessage("/genesis radio chip [genesis:radio|genesis:service] | join <network> <x> <y> <z> <range> | leave | status");
         player.sendMessage("/genesis radio send <recipient UUID> <sequence> <channel> <value>");
         player.sendMessage("/genesis radio send contract <recipient UUID> <sequence> <contract> <offer|accept|fulfill|reject|cancel> <units>");
-        player.sendMessage("/genesis radio inbox [limit] | ack <sender UUID> <message tick> <sequence> | contract <contract ID>");
+        player.sendMessage("/genesis radio inbox [limit] | ack <sender UUID> <message tick> <sequence> [genesis:radio|genesis:service] | contract <contract ID>");
         player.sendMessage("虚拟无线使用 schema 校验与 tick 投递，不调用 Minecraft 聊天、世界或玩家库存。");
     }
 
@@ -234,12 +224,6 @@ public final class RadioController implements Listener, AutoCloseable {
     }
 
     private record ProtocolSelection(dev.stargenesis.api.design.DesignId id, Protocol protocol) { }
-
-    private UUID uuid(String value) {
-        UUID parsed = UUID.fromString(value);
-        if (!parsed.toString().equals(value)) throw new IllegalArgumentException("UUID 必须为规范小写格式");
-        return parsed;
-    }
 
     private void requireLength(String[] args, int expected) {
         if (args.length != expected) throw new IllegalArgumentException("参数数量不正确；使用 /genesis radio 查看用法");
