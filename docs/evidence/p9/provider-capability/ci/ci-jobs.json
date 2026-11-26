@@ -1,0 +1,382 @@
+[
+  {
+    "id": 139909482535,
+    "name": "java (25)",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 45819994176,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-java@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Run python scripts/check_boundaries.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_helstera_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_verify_helstera_provider.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_craftengine_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_cookery_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_craftengine_item_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_release_candidate_builder.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_*lifecycle_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_match_admin_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Run node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Run python scripts/prepare_helstera_api.py --verify-runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Run python scripts/prepare_craftengine_api.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Run python scripts/prepare_cookery_api.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Run sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Run python scripts/test_settlement_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Run python scripts/test_worker_directory_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21
+      },
+      {
+        "name": "Run python scripts/test_release_artifact_signer.py --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Run python scripts/test_signed_design_package_signer.py --java-home \"$JAVA_HOME\" --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      },
+      {
+        "name": "Build isolated optional release candidate",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 24
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 47
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 48
+      },
+      {
+        "name": "Post Run actions/setup-java@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 49
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 51
+      }
+    ]
+  },
+  {
+    "id": 139909482936,
+    "name": "java (21)",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 45819994176,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-java@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Run python scripts/check_boundaries.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_helstera_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_verify_helstera_provider.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_craftengine_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_prepare_cookery_api.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_craftengine_item_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_release_candidate_builder.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_*lifecycle_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Run python -m unittest discover -s scripts -p \"test_server_match_admin_smoke.py\"",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Run node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Run python scripts/prepare_helstera_api.py --verify-runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Run python scripts/prepare_craftengine_api.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Run python scripts/prepare_cookery_api.py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Run sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Run python scripts/test_settlement_process_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Run python scripts/test_worker_directory_lock.py --java-home \"$JAVA_HOME\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21
+      },
+      {
+        "name": "Run python scripts/test_release_artifact_signer.py --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22
+      },
+      {
+        "name": "Run python scripts/test_signed_design_package_signer.py --java-home \"$JAVA_HOME\" --java \"$(command -v java)\" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23
+      },
+      {
+        "name": "Build isolated optional release candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 47
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 48
+      },
+      {
+        "name": "Post Run actions/setup-java@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 49
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 50
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 51
+      }
+    ]
+  }
+]

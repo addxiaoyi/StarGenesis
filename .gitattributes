@@ -30,6 +30,7 @@ docs/evidence/p10/item-bridge/** -text -whitespace
 docs/evidence/p10/recipe-catalog/** -text -whitespace
 docs/evidence/p11/rc5-modular-build/** -text -whitespace
 docs/evidence/p9/provider-capability/** -text -whitespace
+docs/evidence/p5/dynamic-lifecycle/** -text -whitespace
 stargenesis-integrations/src/test/resources/craftengine/*.bin -text -diff
 # This lock's complete byte hash is embedded in the published integration descriptor.
 scripts/craftengine-api-lock.json -text -eol whitespace=cr-at-eol

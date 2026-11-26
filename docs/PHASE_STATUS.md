@@ -229,6 +229,12 @@ Windows Microsoft JDK21两份独立源码副本各通过634项测试、85份Sure
 
 对应提交`f13bf7a`的Linux CI `45793130651`已通过：Java21/25各634项Java、29项Python、6项Node和四项探针；Java21另从隔离副本实际构建四包RC5，再通过634项测试。原始日志、不同于Windows候选的Linux工件哈希及同步记录独立归档于`docs/evidence/p11/rc5-modular-build/ci/`。
 
+## 后续单元验证
+
+P9恢复能力修复对应提交 b3ea852 的 Linux CI 45819994176 已通过：Java21/25各646项Java、86份报告、29项Python、6项Node和四项锁/签名探针；Java21另实际构建未签署四包候选 4.0.0-ci.35，再通过646项测试。日志、候选输入/工件哈希与非强制同步记录见 docs/evidence/p9/provider-capability/ci/，它不更改原Windows RC5身份。
+
+P5新增6项动态生命周期单测，在Java21/25各通过。固定编辑时间表覆盖突变后的逐物种参数编辑、成熟/间隔变化、缩短寿命立即死亡、延长寿命不重置年龄、多次检查点重建、跨world ID物理量/事件语义相等，以及七种资源/人口/出生/代数/最低账本预算配置。生产默认参数、物理规则和旧引擎均未改变。新增独立研究证据校验器的18项Python测试通过；原始定向日志及源码身份见 docs/evidence/p5/dynamic-lifecycle/summary.json。64个新增默认seed和17项配对扰动的608场研究方法已预先固定，见 ECOLOGY_ROBUSTNESS_STUDY.md；研究结果另行归档，不由这些单测推出平衡或玩家验收结论。
+
 ## 未闭合阶段门
 
 P1–P8 仍需真人玩家验收、留存和公平性研究。P5 candidate 已有双平台八 seed 实服覆盖，更广 seed/参数空间、长期研究与参数稳健性验收仍未完成。P9 需要指定真实 provider 的持久外部幂等副作用、授权和补偿故障审计。P10仍需运营方trust-root、模型/物品资源包外观、授权交付及完整系列插件验收；Helstera目录/被动投影和CraftEngine完整物品状态桥接已有实际Paper生命周期证据，投影依赖固定清理补丁。P11 需要生产规模/跨硬件容量研究和正式发行方签名。2026-11-25 已清理包管理器缓存并使用本机已安装的 JDK 21/25 恢复整仓构建，Paper/Folia 八 seed 客户端扫描已完成。

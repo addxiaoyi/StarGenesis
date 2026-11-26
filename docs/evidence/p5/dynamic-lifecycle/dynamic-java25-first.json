@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "java": "java25",
+  "tests": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "command": [
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+    "-B",
+    "-ntp",
+    "-pl",
+    "stargenesis-sim",
+    "-am",
+    "-DforkCount=0",
+    "-Dtest=EcologyDynamicLifecycleV2Test",
+    "-Dsurefire.failIfNoSpecifiedTests=false",
+    "test"
+  ]
+}
