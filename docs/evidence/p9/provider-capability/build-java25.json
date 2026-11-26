@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "java": "java25",
+  "tests": {
+    "tests": 646,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reports": 86,
+  "jarSha256": "8e3c9ab067999af9eb460166f857eddb9bf96ed8c94c73688cee6558daf70961",
+  "sbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+  "command": [
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+    "-B",
+    "-ntp",
+    "-DforkCount=0",
+    "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+    "clean",
+    "verify"
+  ],
+  "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "logSha256": "1951d349f3ca8d72a34f3b6e46dc2db9255c6e8d791162f41df4a8722c7200fd",
+  "scope": "Full three-profile clean verify; cached exact API dependencies from the prior verified RC5 preparation. No provider capability enabled."
+}

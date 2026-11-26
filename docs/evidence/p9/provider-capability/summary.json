@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "f13bf7af4bf7ec51cd8b79f6b699a0af4650f995",
+  "scope": "Check current recovery capability around settlement authorization, provider calls and local commits; preserve prior state when capability is withdrawn or audit evidence changes",
+  "newJavaTests": 12,
+  "focusedTests": 62,
+  "builds": {
+    "java21": {
+      "passed": true,
+      "java": "java21",
+      "tests": {
+        "tests": 646,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 86,
+      "jarSha256": "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+      "sbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "logSha256": "35b70b590b4e37510b4920f9a204a014c2d8a906a5ea2826221dfbd7c8e0f44f",
+      "scope": "Full three-profile clean verify; cached exact API dependencies from the prior verified RC5 preparation. No provider capability enabled."
+    },
+    "java25": {
+      "passed": true,
+      "java": "java25",
+      "tests": {
+        "tests": 646,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 86,
+      "jarSha256": "8e3c9ab067999af9eb460166f857eddb9bf96ed8c94c73688cee6558daf70961",
+      "sbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "logSha256": "1951d349f3ca8d72a34f3b6e46dc2db9255c6e8d791162f41df4a8722c7200fd",
+      "scope": "Full three-profile clean verify; cached exact API dependencies from the prior verified RC5 preparation. No provider capability enabled."
+    }
+  },
+  "sourceHashes": {
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/IdempotentSettlementPort.java": "11fb7cd061766c539feea62094412c1128ce17869927c6f4f56cb4e40f04c8b0",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementRecoveryGuard.java": "f715314b1ca42ff1130fa44887c636f9358c0425b5fe22b6ef59a8edc8aa9c6f",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementSagaCoordinator.java": "634fb3312acbcb36af2fb36896b18f30e76f0708a2e8959a1d497ef40d51dd6e",
+    "stargenesis-integrations/src/main/java/dev/stargenesis/integrations/SettlementReviewCoordinator.java": "4c6d33d28ec1ca0bb911298ef2d4819f27c96d56e26f6c7fe21f2b6af17b32ea",
+    "stargenesis-integrations/src/test/java/dev/stargenesis/integrations/SettlementRecoveryLifecycleTest.java": "915a70d54090fb100c49effab737217ac40c6e1209378fc746076dfb186d60d9",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/settlement/SettlementReviewRecoveryTest.java": "ce3115aee21f925e868ed8d75ab688d408374ad2ea28f4cacdea2b3f34f3aafb",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/settlement/FileSettlementSagaRepository.java": "272ff4a0da3b909f6dcf801475f7cf845d08d97efdb6db679f3ce2d836ac3cb9",
+    ".github/workflows/verify.yml": "062a5a0d92d5dc37349c768c9a061c928ba902ab53c8640db05054b524deb736"
+  },
+  "evidenceHashes": {
+    "build-java21.json": "c218bf34d5e318548230a0eec7734218c24637c6f0866a52cde0cd0f94b60142",
+    "verify-java21.log": "35b70b590b4e37510b4920f9a204a014c2d8a906a5ea2826221dfbd7c8e0f44f",
+    "java21/TEST-dev.stargenesis.integrations.SettlementRecoveryLifecycleTest.xml": "23eba14c46355ffa991279cb430570098b2e49d49fadc1021e69955dfd9a7d6f",
+    "java21/TEST-dev.stargenesis.integrations.SettlementReviewContractTest.xml": "957aaab746c72444615bcb1881c492ff6b7cec6b4f50d54677da653e89be0b6f",
+    "java21/TEST-dev.stargenesis.integrations.SettlementSagaCoordinatorTest.xml": "1bb1d7a131692b582db979b8690f209659547e0b4d450d2c5c02d36632dff0ed",
+    "java21/TEST-dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest.xml": "554bb8255c6a2e95cc990d33e68b9b2cdf2d3cb734e96ea1fb1b6f88230fb252",
+    "java21/TEST-dev.stargenesis.paper.settlement.SettlementConcurrencyTest.xml": "cf3f5fbce8e023b74dbe4b09ef81aa84eebb3ea3c27fda820f1655a44a556fd1",
+    "java21/TEST-dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest.xml": "da9e3b02ff83a62a1b5642fc558e5c82a837848d54f9b72cf253ddaf1504605f",
+    "java21/TEST-dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest.xml": "4b602ce8e29eb147edc6516387942aac69e17a0a602997170cd86feeb921c37d",
+    "java21/sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+    "probes/worker-lock-java21.json": "d0a4acc6378a131118666bd8c2ff225d8518cd119adb085d633b72d2544907cf",
+    "probes/worker-lock-java21.log": "240971a5d68e81816b1ce296f2066b6f93228d9860e23823dd85aafd8ba5e9a8",
+    "probes/settlement-lock-java21.json": "42bd61f9f61da9af50b81edc1bfe144dab4b3cf13bf7c0485b578b9673f6883e",
+    "probes/settlement-lock-java21.log": "60e952faae29da2e25b607f81d4176ed512b4aa0669e178fec08437bcaeadd22",
+    "probes/release-signer-java21.json": "73cf72b7ecff8fe46f791fe635c24a5299dce56828745fe775edf498ee630e52",
+    "probes/release-signer-java21.log": "73cf72b7ecff8fe46f791fe635c24a5299dce56828745fe775edf498ee630e52",
+    "probes/design-signer-java21.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/design-signer-java21.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "build-java25.json": "f4294eef114559eaa47e08e1f23a77b6120414f8509ac36cfa2c8acc407d1040",
+    "verify-java25.log": "1951d349f3ca8d72a34f3b6e46dc2db9255c6e8d791162f41df4a8722c7200fd",
+    "java25/TEST-dev.stargenesis.integrations.SettlementRecoveryLifecycleTest.xml": "9a3ceed4855dd2073c19d4f69641900fbb2624f2b385c7d0bacd948b7d24f5a4",
+    "java25/TEST-dev.stargenesis.integrations.SettlementReviewContractTest.xml": "b8de1c8720d429c47c539d0cbc088d3dde0245eff1cdd10b1c8c0d3dae311640",
+    "java25/TEST-dev.stargenesis.integrations.SettlementSagaCoordinatorTest.xml": "f72cbfb899962a0dceefbb60bef1441ded8485c039d9219b1622b16faaeb7bf6",
+    "java25/TEST-dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest.xml": "45feb07cd85828e48a67316266dbfab4c4b30203ab0586dea10286cbffb705a0",
+    "java25/TEST-dev.stargenesis.paper.settlement.SettlementConcurrencyTest.xml": "b2240b27ab725c8553a9ad11cad7100680de959519c5096e3b9e6c106409cd91",
+    "java25/TEST-dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest.xml": "f5fadcecc17e4bda4ad6f13f0a6e752f73a388a5d012b27db9e83b4ade9dc05b",
+    "java25/TEST-dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest.xml": "6ef822d89d97ad1c5e73cfd513f77c8464164a08df3721676d04517881612297",
+    "java25/sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+    "probes/worker-lock-java25.json": "2be87ee2cf3979e236be2610d0de80b3ab59a8da2acd8946422c0b795dbe1c3d",
+    "probes/worker-lock-java25.log": "1b4163f6e6617a3c4956cc068ddbaf23033176239dd6e71005cb32cf8f913020",
+    "probes/settlement-lock-java25.json": "4040a7a9f543a7bccd46aff984303bad292603bca7bb2d4058c536a60ad0aadc",
+    "probes/settlement-lock-java25.log": "8592954227efa2f7326ab989add43e0dfe97c40782917380c37e60a4ce2ab145",
+    "probes/release-signer-java25.json": "907c72aefc6bb14b8ec60ebe78efee851d5d88dc8df1dfe04339627286e6b440",
+    "probes/release-signer-java25.log": "907c72aefc6bb14b8ec60ebe78efee851d5d88dc8df1dfe04339627286e6b440",
+    "probes/design-signer-java25.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/design-signer-java25.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "before.log": "7b6876cdba929c6c0ee75e03295000e8a6c61b02bd38ca4d0cddbeb55c782978",
+    "before-regression.log": "183d0cb299ed531b208cd67bfa4ae234d458be4fde938a18bd740d201a100adf",
+    "focused.log": "caaedb3453cb25355f2fe62c8facad8b221dbdaa716efc9d90a20bdd88232aab",
+    "settlement-tests.log": "2bc77ed402a6875fbb17890f978bea9c1e5da876253aaf0cb55d2a4bd26c8174",
+    "settlement-final.log": "0ce0a8031238ad1da0c74f9c9fa08637a1e4ff7d329cc83fc747835d5d45fa69",
+    "builder-regression.log": "353e03017eba6091a948f84930281e4808fcbe17ce98fe9790144941a047fc61",
+    "verify_all.py": "3ea72b334d927547e603271b0b021e8c7c337f2bc60a07c20e8037a87624431a",
+    "archive_evidence.py": "5697d87dd8ca5f404ad7befef75049c8125c6fc3de7dff00904e85d0da646922",
+    "check_evidence.py": "e2438271691f6d0f29edce2635285699e48b6cd6dc0c7e4c4b4f15e9de2c575c",
+    "save_starcore_audit.py": "344379fceb86c88fec6cfc13a54f4e90bdab41610ecc2c5ae29ed734b881c6f7",
+    "starcore-audit/EconomyService.java.txt": "25d5a9f3c9e6ad8b2493020e951fc0a3e45466293c5f0c8c39e0c415c8dc4ec3",
+    "starcore-audit/NationResourceTransactionService.java.txt": "e212207c0830ec8ce05cd41e58594cd52d0632b7b6c75786b57c13f3487a9473",
+    "starcore-audit/StarCoreApi.java.txt": "f11cecbf7dfea8b2a24e16df8950448016bf7f38baf1d4b748f900c946795ca6",
+    "starcore-audit/summary.json": "889d19dba7f3f8acbc87e807c6460dea6d3d4e0ad2be58c74c2e01e8d9bb3b10",
+    "starcore-audit/TradeSettlementCoordinator.java.txt": "70d2aa71e5f93d94c916d547e6908ff05ad2d6249fdbd54c2432d17ae2d6eaeb",
+    "starcore-audit/TradeSettlementIntent.java.txt": "8b20f260927359b4d92fd779eb9d549d2e416459c6d0b6858fe36ca5e35ba131"
+  },
+  "before": {
+    "tests": 9,
+    "failures": 7,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failureNotes": {
+    "before.log": "Initial test fixture referenced nonexistent operation.phase(); fixture corrected before reproduction",
+    "before-regression.log": "Seven genuine assertion failures in nine new tests against unchanged production coordinators",
+    "settlement-tests.log": "PowerShell split unquoted -Dsurefire.failIfNoSpecifiedTests=false; no tests executed; quoted rerun passed"
+  },
+  "limits": [
+    "Provider is a mutable in-memory unit fixture; real repository byte preservation and reopen are tested",
+    "Capability evidence is not a persistent authority binding; new coordinator creation does not validate another ledger history",
+    "Before/after checks do not replace provider operation leases or detect all concurrent ABA changes",
+    "No real payment, inventory transfer, runtime provider or server acceptance; P9 production entry remains disabled",
+    "Published local RC5 hashes do not contain this later SNAPSHOT fix",
+    "CI candidate versions now use workflow run numbers instead of reusing RC5"
+  ]
+}

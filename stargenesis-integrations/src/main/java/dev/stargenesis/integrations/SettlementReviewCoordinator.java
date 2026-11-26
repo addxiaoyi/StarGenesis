@@ -37,20 +37,18 @@ public final class SettlementReviewCoordinator {
                 throw new IllegalArgumentException("Settlement review clock moved backwards");
             var previouslyApplied = SettlementReview.previouslyApplied(saga, history);
             var authorization = Objects.requireNonNull(authorizer.authorize(saga, request, logicalTick), "review authorization");
-            var capability = Objects.requireNonNull(port.capability(), "settlement capability");
-            if (!capability.supportsRecovery()) throw new IllegalStateException("Settlement provider recovery capability unavailable");
+            var capability = SettlementRecoveryGuard.available(port);
+            var recovery = new SettlementRecoveryGuard(port, capability);
             var observations = new EnumMap<SettlementOperation.Phase, IdempotentSettlementPort.Observation>(SettlementOperation.Phase.class);
-            for (var phase : SettlementOperation.Phase.values()) observations.put(phase, inspect(SettlementOperation.forPhase(saga.request(), phase)));
+            for (var phase : SettlementOperation.Phase.values())
+                observations.put(phase, recovery.inspect(SettlementOperation.forPhase(saga.request(), phase)));
             var state = SettlementReview.resolution(observations, previouslyApplied);
             var after = new SettlementSaga(saga.schemaVersion(), saga.request(), saga.permit(), state,
                     Math.addExact(saga.revision(), 1), SettlementReview.reasonFor(state));
             var review = new SettlementReview(1, request, authorization, capability.evidenceId(), logicalTick, saga, previouslyApplied, observations, after);
+            recovery.requireCurrent();
             return repository.commitReview(review);
         });
     }
 
-    private IdempotentSettlementPort.Observation inspect(SettlementOperation operation) {
-        try { return Objects.requireNonNull(port.inspect(operation), "settlement observation"); }
-        catch (RuntimeException | LinkageError unavailable) { return IdempotentSettlementPort.Observation.UNKNOWN; }
-    }
 }

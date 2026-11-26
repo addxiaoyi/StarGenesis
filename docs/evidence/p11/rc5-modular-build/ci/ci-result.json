@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "commit": "f13bf7af4bf7ec51cd8b79f6b699a0af4650f995",
+  "runId": 45793130651,
+  "url": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45793130651",
+  "jobs": [
+    {
+      "java": "java21",
+      "javaTests": 634,
+      "suites": 85,
+      "pythonTests": 29,
+      "nodeTests": 6,
+      "lockAndSigningProbes": 4,
+      "logSha256": "5dc485c8679d9e61b420126b05eb3b2a05ba1136320e21ea5f058cee5f770cbe",
+      "isolatedCandidate": {
+        "version": "4.0.0-rc.5",
+        "tests": {
+          "reports": 85,
+          "tests": 634,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "artifacts": {
+          "stargenesis-paper": {
+            "file": ".work/ci-release/StarGenesis-4.0.0-rc.5.jar",
+            "sizeBytes": 3107329,
+            "sha256": "1ff247109dd73530eaea8063392b5e10f0112f4465cbcbca4c2b949deb7408db"
+          },
+          "stargenesis-helstera": {
+            "file": ".work/ci-release/StarGenesisHelstera-4.0.0-rc.5.jar",
+            "sizeBytes": 24335,
+            "sha256": "176918f5aea1a6583ee5d2cc49935ed67bdd2a4f2b613b5692bfca3e7c1497fb"
+          },
+          "stargenesis-craftengine": {
+            "file": ".work/ci-release/StarGenesisCraftEngine-4.0.0-rc.5.jar",
+            "sizeBytes": 12796,
+            "sha256": "e96e104acc3f70e1af14e1af5284d402070250dd2275e8f908a536761a4f0e69"
+          },
+          "stargenesis-cookery": {
+            "file": ".work/ci-release/StarGenesisCookery-4.0.0-rc.5.jar",
+            "sizeBytes": 17579,
+            "sha256": "8884cfdacacd986130991660e5686461157973f0ffab5038ce0d3ea301250a28"
+          }
+        },
+        "sbom": {
+          "format": "CycloneDX",
+          "specVersion": "1.6",
+          "components": 68,
+          "file": ".work/ci-release/sbom.json",
+          "sha256": "c3af98339dde9d7a1dde3d3e16d31bd002c34b8813174d9c8281741a9afc6cc1"
+        },
+        "sourceTreeSha256": "2b80ca5d0e981a2aca56f76e3050affa558e92aeb43132e0625eb89c41f8bd00"
+      }
+    },
+    {
+      "java": "java25",
+      "javaTests": 634,
+      "suites": 85,
+      "pythonTests": 29,
+      "nodeTests": 6,
+      "lockAndSigningProbes": 4,
+      "logSha256": "632a1f4c389876ef8cd4141ee8c53a5b0a42ebd31c571267dd9f4b579f6fe8ba"
+    }
+  ]
+}

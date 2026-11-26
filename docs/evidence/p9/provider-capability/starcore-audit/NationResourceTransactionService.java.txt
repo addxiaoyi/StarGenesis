@@ -1,0 +1,268 @@
+package dev.starcore.starcore.module.resource;
+
+import dev.starcore.starcore.module.nation.model.NationId;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.TreeMap;
+import java.util.UUID;
+
+/** Atomic and idempotent national resource transaction boundary. */
+public interface NationResourceTransactionService {
+
+  // audit B-NEW: 限制 description 最大长度，防止任意长字符串塞进 TransactionReceipt
+  //   进而进入内存 map + 持久化存储 + 事件广播，造成内存/IO 膨胀。
+  int MAX_DESCRIPTION_LENGTH = 200;
+
+  enum Operation {
+    CONSUME,
+    GRANT
+  }
+
+  enum Category {
+    RESEARCH,
+    COMPENSATION_REFUND,
+    OTHER
+  }
+
+  enum Status {
+    APPLIED,
+    ALREADY_APPLIED,
+    INSUFFICIENT_RESOURCES,
+    /** May include an unconfirmed persistence result; recover and inspect the original ID. */
+    REJECTED
+  }
+
+  record TransactionRequest(
+      String transactionId,
+      NationId nationId,
+      Map<String, Long> resources,
+      Category category,
+      String description) {
+    public TransactionRequest {
+      transactionId = requireTransactionId(transactionId);
+      nationId = Objects.requireNonNull(nationId, "nationId");
+      resources = normalizeResources(resources);
+      category = Objects.requireNonNull(category, "category");
+      description = normalizeDescription(description);
+    }
+  }
+
+  record TransactionReceipt(
+      String transactionId,
+      NationId nationId,
+      Map<String, Long> resources,
+      Operation operation,
+      Category category,
+      String description,
+      Instant appliedAt) {
+    public TransactionReceipt {
+      transactionId = requireTransactionId(transactionId);
+      nationId = Objects.requireNonNull(nationId, "nationId");
+      resources = normalizeResources(resources);
+      operation = Objects.requireNonNull(operation, "operation");
+      category = Objects.requireNonNull(category, "category");
+      description = normalizeDescription(description);
+      appliedAt = Objects.requireNonNull(appliedAt, "appliedAt");
+    }
+
+    boolean matches(TransactionRequest request, Operation expectedOperation) {
+      return nationId.equals(request.nationId())
+          && resources.equals(request.resources())
+          && operation == expectedOperation
+          && category == request.category();
+    }
+  }
+
+  record TransactionResult(Status status, String transactionId, Map<String, Long> stockpileAfter) {
+    public TransactionResult {
+      status = Objects.requireNonNull(status, "status");
+      transactionId = requireTransactionId(transactionId);
+      stockpileAfter = stockpileAfter == null ? Map.of() : Map.copyOf(stockpileAfter);
+    }
+
+    public boolean applied() {
+      return status == Status.APPLIED || status == Status.ALREADY_APPLIED;
+    }
+  }
+
+  record TransferRequest(
+      String transactionId,
+      NationId payerNationId,
+      NationId receiverNationId,
+      Map<String, Long> resources,
+      Category category,
+      String description) {
+    public TransferRequest {
+      transactionId = requireTransactionId(transactionId);
+      payerNationId = Objects.requireNonNull(payerNationId, "payerNationId");
+      receiverNationId = Objects.requireNonNull(receiverNationId, "receiverNationId");
+      if (payerNationId.equals(receiverNationId)) {
+        throw new IllegalArgumentException("payer and receiver must be different nations");
+      }
+      resources = normalizeResources(resources);
+      category = Objects.requireNonNull(category, "category");
+      description = normalizeDescription(description);
+    }
+  }
+
+  record TransferReceipt(
+      String transactionId,
+      String authorityDomainId,
+      long sequence,
+      NationId payerNationId,
+      NationId receiverNationId,
+      Map<String, Long> resources,
+      Category category,
+      String description,
+      Instant appliedAt) {
+    public TransferReceipt {
+      transactionId = requireTransactionId(transactionId);
+      authorityDomainId = requireAuthorityDomainId(authorityDomainId);
+      if (sequence < 1L) throw new IllegalArgumentException("sequence must be positive");
+      payerNationId = Objects.requireNonNull(payerNationId, "payerNationId");
+      receiverNationId = Objects.requireNonNull(receiverNationId, "receiverNationId");
+      if (payerNationId.equals(receiverNationId)) {
+        throw new IllegalArgumentException("payer and receiver must be different nations");
+      }
+      resources = normalizeResources(resources);
+      category = Objects.requireNonNull(category, "category");
+      description = normalizeDescription(description);
+      appliedAt = Objects.requireNonNull(appliedAt, "appliedAt");
+    }
+
+    boolean matches(TransferRequest request) {
+      return transactionId.equals(request.transactionId())
+          && payerNationId.equals(request.payerNationId())
+          && receiverNationId.equals(request.receiverNationId())
+          && resources.equals(request.resources())
+          && category == request.category()
+          && description.equals(request.description());
+    }
+  }
+
+  enum TransferStatus {
+    APPLIED,
+    ALREADY_APPLIED,
+    INSUFFICIENT_RESOURCES,
+    REJECTED,
+    UNKNOWN,
+    UNAVAILABLE
+  }
+
+  record TransferResult(
+      TransferStatus status,
+      String transactionId,
+      Map<String, Long> payerStockpileAfter,
+      Map<String, Long> receiverStockpileAfter) {
+    public TransferResult {
+      status = Objects.requireNonNull(status, "status");
+      transactionId = requireTransactionId(transactionId);
+      payerStockpileAfter =
+          payerStockpileAfter == null ? Map.of() : Map.copyOf(payerStockpileAfter);
+      receiverStockpileAfter =
+          receiverStockpileAfter == null ? Map.of() : Map.copyOf(receiverStockpileAfter);
+    }
+  }
+
+  TransactionResult consume(TransactionRequest request);
+
+  TransactionResult grant(TransactionRequest request);
+
+  /** Atomically move resources and persist a receipt under the same native state write. */
+  default TransferResult transfer(TransferRequest request) {
+    Objects.requireNonNull(request, "request");
+    return new TransferResult(
+        TransferStatus.UNAVAILABLE, request.transactionId(), Map.of(), Map.of());
+  }
+
+  default String authorityDomainId() {
+    return "";
+  }
+
+  /**
+   * Query a committed transfer after establishing that the provider supports a durable authority.
+   * The native provider waits for in-flight writes and reconciliation; an unavailable authority
+   * throws instead of returning absence. Retain the original ID until the authority recovers.
+   */
+  default Optional<TransferReceipt> transferReceipt(String transactionId) {
+    return Optional.empty();
+  }
+
+  /**
+   * Read committed transfer receipts after a durable sequence for crash-safe consumers. The native
+   * provider applies the same commit and availability boundary as {@link #transferReceipt}.
+   */
+  default java.util.List<TransferReceipt> transferReceiptsAfter(long sequence, int limit) {
+    if (sequence < 0L || limit < 1 || limit > 1000) {
+      throw new IllegalArgumentException("sequence must be non-negative and limit must be 1..1000");
+    }
+    return java.util.List.of();
+  }
+
+  /**
+   * Read a committed receipt. An unavailable authority must throw rather than report absence.
+   * Callers must retain the original transaction ID across persistence failures and restarts.
+   */
+  Optional<TransactionReceipt> transactionReceipt(String transactionId);
+
+  default boolean hasTransactionReceipt(String transactionId) {
+    return transactionReceipt(transactionId).isPresent();
+  }
+
+  private static String requireTransactionId(String transactionId) {
+    if (transactionId == null || transactionId.isBlank()) {
+      throw new IllegalArgumentException("transactionId must not be blank");
+    }
+    return transactionId;
+  }
+
+  private static String requireAuthorityDomainId(String authorityDomainId) {
+    try {
+      UUID parsed = UUID.fromString(authorityDomainId);
+      if (!parsed.toString().equals(authorityDomainId)) throw new IllegalArgumentException();
+      return authorityDomainId;
+    } catch (RuntimeException error) {
+      throw new IllegalArgumentException("authorityDomainId must be a canonical UUID", error);
+    }
+  }
+
+  /**
+   * audit B-NEW: 规范化 description —— null → ""，超长字符串截断到 {@link #MAX_DESCRIPTION_LENGTH}。
+   * 不抛异常以便业务方继续传递；只是把无界输入收敛成有界输入。
+   */
+  private static String normalizeDescription(String description) {
+    if (description == null) {
+      return "";
+    }
+    if (description.length() > MAX_DESCRIPTION_LENGTH) {
+      return description.substring(0, MAX_DESCRIPTION_LENGTH);
+    }
+    return description;
+  }
+
+  private static Map<String, Long> normalizeResources(Map<String, Long> resources) {
+    if (resources == null || resources.isEmpty()) {
+      throw new IllegalArgumentException("resources must not be empty");
+    }
+    Map<String, Long> normalized = new TreeMap<>();
+    resources.forEach(
+        (rawType, amount) -> {
+          String type = rawType == null ? "" : rawType.trim().toLowerCase(Locale.ROOT);
+          if (type.isBlank()) {
+            throw new IllegalArgumentException("resource type must not be blank");
+          }
+          if (amount == null || amount <= 0L) {
+            throw new IllegalArgumentException("resource amount must be positive: " + type);
+          }
+          if (normalized.put(type, amount) != null) {
+            throw new IllegalArgumentException("duplicate resource type: " + type);
+          }
+        });
+    return Collections.unmodifiableMap(new LinkedHashMap<>(normalized));
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "commit": "f13bf7af4bf7ec51cd8b79f6b699a0af4650f995",
+  "runId": 45793130651,
+  "evidenceHashes": {
+    "ci-java21.log": "5dc485c8679d9e61b420126b05eb3b2a05ba1136320e21ea5f058cee5f770cbe",
+    "ci-java25.log": "632a1f4c389876ef8cd4141ee8c53a5b0a42ebd31c571267dd9f4b579f6fe8ba",
+    "ci-result.json": "f7fc8198a1be2f9ec4cf1dd49efc131b5aac85f19f93480277c266d312a6ef29",
+    "ci-candidate-build.json": "a472fe2409d23626956d676827e9fd9e084fce7a8851dffbf582d58927cfd40a",
+    "ci-jobs.json": "774bc88cde5e97b38f376b9a33255067e4a3844005b811514225c13884a6d07d",
+    "sync-result.json": "5ad01af7ce6c00c79e9fdc5ec453893be01dbd184e44b2fed0897d50b2772961",
+    "verify_ci.py": "194e48b07dc99c4a9133d2c517a5fab907eb26423fa6682bb72bc5ba809a816e"
+  },
+  "scope": "Exact-commit Linux Temurin21/25 CI logs; Java21 additionally built the actual isolated RC5 with all optional bridges. CI artifact hashes differ from local Windows artifacts; actual server runs use the locally recorded candidate bytes."
+}

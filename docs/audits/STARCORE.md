@@ -66,3 +66,11 @@ P9 需要受测试的经济 adapter、明确来源/收款方、持久化 saga/ou
 5. 单独取得目标 Folia build，进行跨区域真实检查；未通过则 capability 明确拒绝，不能靠标记 folia-supported 绕过。
 
 本审计完成的是源码证据与边界识别；实际 StarCore 功能 adapter、Paper 集成与 Folia 验收均未完成。
+
+## 2026-11-26 结算接口复查
+
+GitHub分支列表确认main仍为上述`f769e62799e769a18fe51305b545869a17f80cd1`。另只读核对开发分支`codex/plugin-all-stages-20261125`的固定提交`7850efac96ce0721979c370d0ca8d4f4765c0935`，不将它当作main。两者`StarCoreApi.java`的Git blob均为`9715acefc7ff6dfffbac7f66a1ec3b080f5b6284`，`foundation/economy/EconomyService.java`均为`85e3b8fb17ab5fa204f63a38e30b01dfd39020f1`，玩家存取款/转账仍没有外部幂等键。
+
+该开发提交的`module/resource/TradeSettlementCoordinator.java`明确只恢复持久收据，不执行扣款、退款或资产交付；`TradeSettlementIntent`也声明准备记录不是资产成功证明。新增`NationResourceTransactionService`具有国家资源原子转移、authorityDomainId和receipt查询合同，但其资产域是国家资源库，不能映射为玩家货币或真实背包物品。默认transfer仍可返回UNAVAILABLE，默认receipt为空；接入前必须检查具体native provider、持久权威、在途和故障语义。
+
+本次通过GitHub固定提交和本机其他checkout的Git对象读取，未修改其工作树，未运行StarCore或启用StarGenesis真实结算。五份原始源码及Git blob/SHA-256见`../evidence/p9/provider-capability/starcore-audit/summary.json`。它更新接口证据，不构成P9 provider验收通过。

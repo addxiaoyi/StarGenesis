@@ -1,0 +1,178 @@
+package dev.starcore.starcore.module.resource;
+
+import dev.starcore.starcore.foundation.economy.transaction.EconomyTransactionState;
+import dev.starcore.starcore.foundation.economy.transaction.RefundOwner;
+import dev.starcore.starcore.foundation.economy.transaction.TransactionFabric;
+import dev.starcore.starcore.foundation.economy.transaction.TransactionRecord;
+import dev.starcore.starcore.foundation.economy.transaction.TransactionRequest;
+import dev.starcore.starcore.foundation.economy.transaction.TransactionType;
+import dev.starcore.starcore.module.resource.model.TradeRecord;
+import dev.starcore.starcore.module.resource.model.TradeSettlementIntent;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+import java.util.logging.Logger;
+
+/** Recovery only copies durable receipts; this class never debits, refunds, or delivers assets. */
+public final class TradeSettlementCoordinator {
+  private final TradeHistoryService history;
+  private final TransactionFabric fabric;
+  private final Logger logger;
+  private UUID sweepCursor;
+
+  public TradeSettlementCoordinator(
+      TradeHistoryService history, TransactionFabric fabric, Logger logger) {
+    this.history = Objects.requireNonNull(history, "history");
+    this.fabric = Objects.requireNonNull(fabric, "fabric");
+    this.logger = Objects.requireNonNull(logger, "logger");
+  }
+
+  public TransactionRecord prepare(
+      UUID operationId, UUID accountId, BigDecimal amount, String reason, TradeRecord planned) {
+    return prepare(operationId, accountId, amount, reason, planned, Map.of());
+  }
+
+  public TransactionRecord prepare(
+      UUID operationId,
+      UUID accountId,
+      BigDecimal amount,
+      String reason,
+      TradeRecord planned,
+      Map<String, String> context) {
+    UUID domain = history.tradeHistoryAuthorityDomainId();
+    TradeSettlementIntent intent =
+        new TradeSettlementIntent(operationId, accountId, amount, reason, planned, context, 0);
+    // Inserting the operation is a one-shot claim. Even an interrupted CREATED/RESERVED plan
+    // cannot authorize another execution of non-idempotent external operations.
+    history.prepareSettlement(intent);
+    TransactionRecord transaction =
+        fabric.begin(
+            new TransactionRequest(
+                accountId,
+                amount,
+                RefundOwner.TRADE,
+                TransactionType.TRADE,
+                reason,
+                intent.idempotencyKey(),
+                metadata(domain, intent)));
+    requireMatchingTransaction(domain, intent, transaction);
+    if (transaction.state() != EconomyTransactionState.CREATED) {
+      throw new IllegalStateException("Existing trade transaction requires reconciliation");
+    }
+    return fabric.transition(
+        transaction.transactionId(),
+        EconomyTransactionState.RESERVED,
+        "trade plan durably reserved");
+  }
+
+  public TransactionRecord debited(TransactionRecord transaction, String message) {
+    return fabric.transition(transaction.transactionId(), EconomyTransactionState.DEBITED, message);
+  }
+
+  public void requireReview(TransactionRecord transaction, String reason) {
+    try {
+      TransactionRecord current = fabric.find(transaction.transactionId()).orElseThrow();
+      if (current.state().canTransitionTo(EconomyTransactionState.MANUAL_REVIEW)) {
+        fabric.transition(current.transactionId(), EconomyTransactionState.MANUAL_REVIEW, reason);
+      }
+    } catch (RuntimeException failure) {
+      logger.severe(
+          "[Trade] prepared transaction remains unresolved: "
+              + transaction.transactionId()
+              + ", error="
+              + failure.getMessage());
+    }
+  }
+
+  public TradeRecord commit(TransactionRecord transaction) {
+    TransactionRecord delivered =
+        fabric.transition(
+            transaction.transactionId(),
+            EconomyTransactionState.DELIVERED,
+            "trade assets and taxes settled");
+    TransactionRecord committed =
+        fabric.transition(
+            delivered.transactionId(), EconomyTransactionState.COMMITTED, "trade committed");
+    UUID operation = UUID.fromString(committed.metadata().get("trade.operation"));
+    TradeRecord completed =
+        TradeRecordCodec.executedAt(
+            TradeRecordCodec.decode(committed.metadata().get("trade.plan")), committed.updatedAt());
+    try {
+      return history.reconcileSettlement(operation, committed).orElseThrow();
+    } catch (RuntimeException failure) {
+      // SQL preparation and the COMMITTED file receipt already exist. A bounded later scan can
+      // replay history only. Returning the actual receipt must not invite a second asset transfer.
+      logger.severe(
+          "[Trade] committed settlement awaits history reconciliation: operation="
+              + operation
+              + ", transaction="
+              + committed.transactionId()
+              + ", error="
+              + failure.getMessage());
+      return completed;
+    }
+  }
+
+  /** One bounded sweep page; repeated calls cycle through all plans, including later refunds. */
+  public synchronized RecoveryReport reconcileNextPage() {
+    List<TradeSettlementIntent> intents = history.settlementIntentsAfter(sweepCursor, 128);
+    int applied = 0;
+    int unresolved = 0;
+    int failures = 0;
+    for (TradeSettlementIntent intent : intents) {
+      try {
+        TransactionRecord transaction =
+            fabric.findByIdempotencyKey(intent.idempotencyKey()).orElse(null);
+        if (transaction == null) {
+          unresolved++;
+          continue;
+        }
+        history.reconcileSettlement(intent.operationId(), transaction);
+        if (intent.appliedEvents() < transaction.events().size()) applied++;
+        if (transaction.state() != EconomyTransactionState.COMMITTED
+            && transaction.state() != EconomyTransactionState.REFUNDED
+            && transaction.state() != EconomyTransactionState.CANCELLED) unresolved++;
+      } catch (RuntimeException failure) {
+        failures++;
+        logger.severe(
+            "[Trade] reconciliation requires review: operation="
+                + intent.operationId()
+                + ", error="
+                + failure.getMessage());
+      }
+    }
+    sweepCursor = intents.size() < 128 ? null : intents.getLast().operationId();
+    return new RecoveryReport(intents.size(), applied, unresolved, failures);
+  }
+
+  static Map<String, String> metadata(UUID domain, TradeSettlementIntent intent) {
+    return Map.of(
+        "trade.protocol",
+        "1",
+        "trade.domain",
+        domain.toString(),
+        "trade.operation",
+        intent.operationId().toString(),
+        "trade.plan",
+        TradeRecordCodec.encode(intent.plannedRecord()),
+        "trade.context",
+        TradeRecordCodec.context(intent.context()));
+  }
+
+  static void requireMatchingTransaction(
+      UUID domain, TradeSettlementIntent intent, TransactionRecord transaction) {
+    if (transaction.owner() != RefundOwner.TRADE
+        || transaction.type() != TransactionType.TRADE
+        || !transaction.accountId().equals(intent.accountId())
+        || transaction.amount().compareTo(intent.amount()) != 0
+        || !transaction.reason().equals(intent.reason())
+        || !transaction.idempotencyKey().equals(intent.idempotencyKey())
+        || !transaction.metadata().equals(metadata(domain, intent))) {
+      throw new IllegalStateException("Trade transaction does not match its durable preparation");
+    }
+  }
+
+  public record RecoveryReport(int scanned, int applied, int unresolved, int failures) {}
+}

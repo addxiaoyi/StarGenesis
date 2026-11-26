@@ -19,6 +19,18 @@ coordinator把查询异常/null当作UNKNOWN，把调用异常/null当作INDETER
 
 Capability的两个布尔值和evidenceId只是adapter声明，不能替代上述行为的真实故障验收。不能把最终一致的“暂时查不到”映射为NOT_APPLIED。
 
+## 运行期间能力失效
+
+`SettlementSagaCoordinator`固定构造时的完整Capability值。新建交易在授权前后复查，非终局推进在查询、调用provider及状态保存边界复查；能力撤销、null、查询能力本身异常/LinkageError或evidence变化均抛出`IllegalStateException`，不保存新的saga状态。相同请求的幂等begin与终局读取不依赖provider在线。
+
+如果外部操作已提交，而返回时能力失效，本地仍保留原状态；原能力恢复后先按完整原操作查询，查到APPLIED才推进，不能再扣款/交付/退款。能力仍有效时，原有查询UNKNOWN、调用INDETERMINATE和授权过期语义保持。返回NO_EFFECT也须在能力仍有效时才能进入失败或补偿分支。
+
+显式复核在一次reconcile内固定声明，三项查询各自前后和原子提交前复查，期间失效或更换证据不能保存混合记录。已有同一review请求在重新核对审核权限后仍可读取原记录，不要求provider在线；新复核可以在能力恢复后重试。
+
+这些前后检查不是上游原子lease，不能检测两个检查之间发生且完全恢复的变化。真实adapter必须在`inspect/apply`内部持有正确操作lease，并保证停用、替换和在途调用满足前述合同。evidenceId没有持久绑定资产权威域，协调器重新构造不会证明新provider拥有旧幂等历史；正式接入仍须另外证明历史连续性，不能用相同字符串冒充。
+
+单元回归覆盖五类能力失效、三个结算阶段、授权回调、查询/提交回调撤销或替换、NO_EFFECT、复核混合结果与恢复。真实文件仓库验证复核中断及付款已提交后能力撤销的原字节保留、重开仓库后只查不重复付款；外部资产提供方仍为测试替身。原始失败回归和最终结果见`evidence/p9/provider-capability/summary.json`。
+
 ## 仓库和线程范围
 
 `SettlementSagaRepository.withExclusiveSaga`同步执行整个begin/advance。在同一范围内读取当前状态、查询外部结果、检查授权、调用provider并提交新revision。实现必须协调所有共享同一存储的实例与进程；只在最终replace时做CAS无法阻止并发过期分支抢先提交。

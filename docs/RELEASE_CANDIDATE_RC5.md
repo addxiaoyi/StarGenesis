@@ -26,6 +26,10 @@
 
 构建器用法和输入校验见 [隔离候选构建](RELEASE_CANDIDATE_BUILD.md)。CI 新增 Linux Java21 的实际三扩展候选构建，并归档独立 JAR、SBOM 与依赖证据；具体运行结果单独记录，不将本地成功视为 CI 成功。
 
+提交 `f13bf7af4bf7ec51cd8b79f6b699a0af4650f995` 的 [CI 45793130651](https://github.com/addxiaoyi/StarGenesis/actions/runs/45793130651) 已通过。Linux Temurin21/25各634项Java、85个测试类、29项Python、6项Node及四项锁/签名探针通过。Java21额外重新准备真实依赖并从隔离副本构建三扩展RC5，再通过634项测试；四包和SBOM随CI工件归档。该Linux候选哈希与本地Windows候选不同，原始日志和CI候选证据见 [CI摘要](evidence/p11/rc5-modular-build/ci/summary.json)。
+
+同步时Git HTTPS三次连接重置，改由GitHub连接器快进分支。远端与原本地提交`5dae10c`具有相同文件树`9b6b27ed71e181d8aaf8c3f477f1499621f9b4de`及父提交；本地原提交保留在`refs/backup/rc5-local-5dae10c`，没有强制推送。
+
 ## 实际服务端
 
 以下均使用上述第一轮 RC5 的实际 JAR 字节，Microsoft JDK21 下顺序运行，提供方哈希记录于各结果文件。
@@ -44,5 +48,7 @@ Paper 为 1.21.11-132，Folia 为 1.21.11-14；CraftEngine26.9.1、固定补丁 
 完整摘要见 [RC5 证据](evidence/p11/rc5-modular-build/summary.json)，保留两份构建/依赖准备、锁与签名、实服日志、最初失败回归、原始构建属性以及 309 份源码输入的逐文件哈希。
 
 ## 验收边界
+
+RC5之后的SNAPSHOT进一步修复P9运行期间恢复能力失效：授权、查询、调用和状态保存边界复查，复核不能混用能力证据，见`SETTLEMENT_PROVIDER_CONTRACT.md`。本页四包哈希仍对应先前RC5，不包含该后续修复。
 
 本候选尚未正式签署、创建发行 tag/release 或部署生产。P9 真实结算保持关闭。真实提供方持久副作用和审核授权、运营 trust root、资源包外观、真人玩法/公平性/留存及生产容量仍需各自证据。单元测试、自动服务端探针和临时密钥不替代这些阶段门。

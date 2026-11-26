@@ -1,0 +1,54 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< dev.stargenesis:stargenesis-integrations >--------------
+[INFO] Building StarGenesis Integration Contracts 4.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\stargenesis-integrations\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 28 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-integrations ---
+[INFO] Copying 3 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-integrations ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 9 source files with javac [debug release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-integrations ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 s -- in dev.stargenesis.integrations.CapabilityRegistryTest
+[INFO] Running dev.stargenesis.integrations.ItemCatalogTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.stargenesis.integrations.ItemCatalogTest
+[INFO] Running dev.stargenesis.integrations.ItemPayloadTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in dev.stargenesis.integrations.ItemPayloadTest
+[INFO] Running dev.stargenesis.integrations.LabProjectionSourceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in dev.stargenesis.integrations.LabProjectionSourceTest
+[INFO] Running dev.stargenesis.integrations.ModelCatalogTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.integrations.ModelCatalogTest
+[INFO] Running dev.stargenesis.integrations.RecipeCatalogTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.stargenesis.integrations.RecipeCatalogTest
+[INFO] Running dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+[INFO] Running dev.stargenesis.integrations.SettlementReviewContractTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.integrations.SettlementReviewContractTest
+[INFO] Running dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 65, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.503 s
+[INFO] Finished at: 2026-11-26T17:47:23+08:00
+[INFO] ------------------------------------------------------------------------

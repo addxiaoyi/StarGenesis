@@ -151,6 +151,10 @@ P9 并发稳定性批次先复现两条过期恢复竞态：另一请求可能�
 
 状态与复核历史以同一外层schema-v2文件原子发布，16条/64 KiB预算，普通未复核文件继续写v1。新增23项单测覆盖27种查询组合、参与者自审/授权撤销、过期与重试、并发审核与退款排他、提交前/提交后故障、退款已生效后写盘失败、历史篡改、容量上限与从RC3导出的旧v1停止样本。Java21/25各438项测试（58个类）全部通过，失败/错误/跳过为0，模块边界、双JVM跨进程锁与临时密钥签名自检通过；3项Python构建器回归也通过。证据见`docs/evidence/p9/manual-reconciliation/summary.json`。这些代码尚未纳入旧RC3，当前为后续SNAPSHOT；没有生产审核授权adapter/命令、真实provider收据、实服或真人运营验收，真实结算仍关闭。
 
+2026-11-26 P9恢复能力生命周期回归先在未改生产实现上复现9项测试中的7项断言失败。协调器现固定当前恢复能力，在授权、查询、外部调用及本地提交边界检查撤销、null、异常与证据替换；显式复核拒绝混合能力声明下的三项结果。外部操作已生效后失效仍保留旧本地状态，恢复后先查原幂等键；相同begin与终局读取保持离线可用。新增12项Java测试，定向结算子集62项通过；真实文件仓库补充原字节保留、重开后只查询付款且交付一次的回归。
+
+Windows Java21/25完整三profile clean verify各通过646项测试、86份报告，失败/错误/跳过均为0；两个JDK各四项目录锁/结算锁/临时签名探针和8项构建器回归通过。原始失败、最终日志、源码与工件哈希见`docs/evidence/p9/provider-capability/summary.json`。固定StarCore main及较新开发提交的只读复查仍未发现玩家钱包外部幂等操作；国家资源转移属于不同资产域。前后检查不能替代provider原子lease或证明跨重启资产权威历史连续性，真实结算继续关闭；已发布本地RC5哈希不包含本次后续SNAPSHOT修复。
+
 P10 signed design envelope 使用 domain-separated Ed25519。OP 可从 `publisher-inbox` 加入 X.509 PEM key，列出指纹、添加新 key 和记录撤销原因；撤销状态跨重启保持且旧 key ID 不可复用。玩家导入仅写入个人目录并在读取时按当前 trust root 再验签。重复导入同样复验已保存内容，load/list 核对 schema v1 与设计 ID 派生路径，拒绝未知版本、错路径和损坏签名。自动流程使用临时测试 key，不构成运营信任根。第三方只读模型桥接的新增证据见下文。
 
 2026-11-26新增独立Paper扩展`StarGenesisHelstera`，编译依赖固定上游实际API；基础插件保持无Helstera类型依赖。OP可查询已加载模型，debug每次重新检查服务。真实Paper1.21.11-132与上游a2969dfa构建物已通过模型未加载/解析/主线程注册/卸载/重载、provider停用、服务注销和旧引用拒绝。仅model.inspect激活，未创建实体或执行客户端验证。实际上游运行时注入renderer失败后保留1个有效实例，投影继续关闭。说明与原始证据见`HELSTERA_MODEL_CATALOG.md`和`docs/evidence/p10/model-catalog/summary.json`。
@@ -222,6 +226,8 @@ RC3使用两个独立源码副本和Microsoft JDK21分别clean verify，各415�
 Windows Microsoft JDK21两份独立源码副本各通过634项测试、85份Surefire报告，真实Helstera依赖每轮330项、Cookery每轮28项通过。源码输入、四个JAR和68组件CycloneDX1.6 SBOM哈希一致；309份原始输入均核对，归档阶段新增的`.gitattributes`证据保护规则单独披露。与来源提交`db15f37`的Java21 SNAPSHOT比较全部1408个class无变化，版本/构建资源变化。
 
 同一RC5基础JAR在Java21/25各通过目录/结算锁和双签名自检，四个JAR+SBOM联合测试清单逐文件篡改拒绝。实际Paper料理两次启动40/42检查、481条配置配方恢复一致；物品两次各46检查及完整NBT跨进程恢复通过；Helstera合成实验室帧的实际实体生命周期47检查通过。Folia基础插件22项控制台启停通过。提供方版本、工件哈希、警告、合成sender与无实际玩家的边界见`RELEASE_CANDIDATE_RC5.md`及`docs/evidence/p11/rc5-modular-build/summary.json`。没有新增正式签署或生产/真人验收，全阶段门保持原状态。
+
+对应提交`f13bf7a`的Linux CI `45793130651`已通过：Java21/25各634项Java、29项Python、6项Node和四项探针；Java21另从隔离副本实际构建四包RC5，再通过634项测试。原始日志、不同于Windows候选的Linux工件哈希及同步记录独立归档于`docs/evidence/p11/rc5-modular-build/ci/`。
 
 ## 未闭合阶段门
 

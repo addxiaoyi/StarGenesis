@@ -455,6 +455,48 @@ class SettlementReviewRecoveryTest {
         assertEquals(List.of(review), new FileSettlementSagaRepository(directory).reviews(id));
     }
 
+    @Test void capabilityWithdrawalDuringReviewPreservesExactStoredBytesAndCanRetry(@TempDir Path directory) throws Exception {
+        var fixture = new Fixture(directory);
+        var before = fixture.pending(PAYMENT);
+        byte[] original = Files.readAllBytes(fixture.file());
+        fixture.port.beforeQuery = () -> { if (fixture.port.queries.size() == 1) fixture.port.supported = false; };
+        var request = reviewRequest(before, 91);
+        assertThrows(IllegalStateException.class, () -> fixture.review().reconcile(request, 200));
+        assertArrayEquals(original, Files.readAllBytes(fixture.file()));
+        var restarted = new FileSettlementSagaRepository(directory);
+        assertEquals(before, restarted.load(before.request().sagaId()).orElseThrow());
+        assertTrue(restarted.reviews(before.request().sagaId()).isEmpty());
+        assertEquals(2, fixture.port.queries.size());
+        fixture.port.supported = true;
+        fixture.port.beforeQuery = () -> {};
+        var review = new SettlementReviewCoordinator(fixture.authorizer, fixture.port, restarted).reconcile(request, 201);
+        assertEquals(SettlementSaga.State.FAILED, review.after().state());
+        assertEquals(List.of(review), new FileSettlementSagaRepository(directory).reviews(request.sagaId()));
+        assertEquals(0, fixture.port.effects);
+    }
+
+    @Test void capabilityWithdrawalAfterPaymentPreservesFileAndRestartOnlyLooksUpThePayment(@TempDir Path directory) throws Exception {
+        var fixture = new Fixture(directory);
+        var request = new SettlementRequest(new UUID(0, 1591), BUYER, BUYER, SELLER, 10, "test:ore", 2, 100);
+        fixture.port.request = request;
+        var before = fixture.automatic.begin(request, 0);
+        byte[] original = Files.readAllBytes(fixture.file());
+        fixture.port.afterApply = () -> fixture.port.supported = false;
+        assertThrows(IllegalStateException.class, () -> fixture.automatic.advance(request.sagaId(), 1));
+        assertEquals(1, fixture.port.effects);
+        assertArrayEquals(original, Files.readAllBytes(fixture.file()));
+        var restarted = new FileSettlementSagaRepository(directory);
+        assertEquals(before, restarted.load(request.sagaId()).orElseThrow());
+        fixture.port.supported = true;
+        fixture.port.afterApply = () -> {};
+        var recovery = new SettlementSagaCoordinator(fixture.tradeAuthorizer, fixture.port, restarted);
+        assertEquals(SettlementSaga.State.PAYMENT_APPLIED, recovery.advance(request.sagaId(), 2).state());
+        assertEquals(1, fixture.port.effects);
+        assertEquals(SettlementSaga.State.COMPLETED, recovery.advance(request.sagaId(), 3).state());
+        assertEquals(2, fixture.port.effects);
+        assertEquals(1, fixture.port.itemDeliveries);
+    }
+
     private static SettlementReviewRequest reviewRequest(SettlementSaga saga, long id) {
         return new SettlementReviewRequest(new UUID(0, 1600 + id), saga.request().sagaId(), REVIEWER, saga.revision(), "case-" + id);
     }
@@ -508,6 +550,7 @@ class SettlementReviewRecoveryTest {
         private int effects, itemDeliveries;
         private boolean rejectDelivery, rejectRefund, supported = true;
         private Runnable beforeQuery = () -> { };
+        private Runnable afterApply = () -> { };
 
         @Override public Capability capability() { return new Capability(supported, supported, "fixture:authoritative-operations"); }
         @Override public Observation inspect(SettlementOperation operation) {
@@ -536,6 +579,7 @@ class SettlementReviewRecoveryTest {
             var previous = applied.putIfAbsent(operation.idempotencyKey(), operation);
             if (previous != null) assertEquals(previous, operation);
             else { effects++; if (phase == DELIVERY) itemDeliveries++; }
+            afterApply.run();
             return Outcome.APPLIED;
         }
 

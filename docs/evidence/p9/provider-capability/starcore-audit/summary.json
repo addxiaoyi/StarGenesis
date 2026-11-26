@@ -1,0 +1,33 @@
+{
+  "main": "f769e62799e769a18fe51305b545869a17f80cd1",
+  "development": "7850efac96ce0721979c370d0ca8d4f4765c0935",
+  "source": "Read-only exact Git objects; GitHub API verified branch heads and source tree",
+  "files": {
+    "src/main/java/dev/starcore/starcore/api/StarCoreApi.java": {
+      "file": "StarCoreApi.java.txt",
+      "gitBlob": "9715acefc7ff6dfffbac7f66a1ec3b080f5b6284",
+      "sha256": "f11cecbf7dfea8b2a24e16df8950448016bf7f38baf1d4b748f900c946795ca6"
+    },
+    "src/main/java/dev/starcore/starcore/foundation/economy/EconomyService.java": {
+      "file": "EconomyService.java.txt",
+      "gitBlob": "85e3b8fb17ab5fa204f63a38e30b01dfd39020f1",
+      "sha256": "25d5a9f3c9e6ad8b2493020e951fc0a3e45466293c5f0c8c39e0c415c8dc4ec3"
+    },
+    "src/main/java/dev/starcore/starcore/module/resource/NationResourceTransactionService.java": {
+      "file": "NationResourceTransactionService.java.txt",
+      "gitBlob": "516147f4e20f22b54b5bfada4000212510f7eecc",
+      "sha256": "e212207c0830ec8ce05cd41e58594cd52d0632b7b6c75786b57c13f3487a9473"
+    },
+    "src/main/java/dev/starcore/starcore/module/resource/TradeSettlementCoordinator.java": {
+      "file": "TradeSettlementCoordinator.java.txt",
+      "gitBlob": "27c4a47ced38e2bf811045ea5cb63d89ff62c1c7",
+      "sha256": "70d2aa71e5f93d94c916d547e6908ff05ad2d6249fdbd54c2432d17ae2d6eaeb"
+    },
+    "src/main/java/dev/starcore/starcore/module/resource/model/TradeSettlementIntent.java": {
+      "file": "TradeSettlementIntent.java.txt",
+      "gitBlob": "46d8a4db30108e61cfbf242b7d07a2860061535e",
+      "sha256": "8b20f260927359b4d92fd779eb9d549d2e416459c6d0b6858fe36ca5e35ba131"
+    }
+  },
+  "scope": "No upstream checkout modified. Source audit only, no runtime or external settlement proof."
+}

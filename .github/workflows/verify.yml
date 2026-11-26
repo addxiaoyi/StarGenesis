@@ -65,7 +65,7 @@ jobs:
           cp .work/helstera-api/source.zip .work/rc-inputs/helstera.zip
           cp .work/cookery-api/source.zip .work/rc-inputs/cookery.zip
           cp .work/craftengine-api/craft-engine-* .work/rc-inputs/craftengine/
-          python scripts/build_release_candidate.py --version 4.0.0-rc.5 --java "$JAVA_HOME/bin/java" --profile helstera-bridge --profile craftengine-bridge --profile cookery-bridge --dependency-inputs .work/rc-inputs --output-directory .work/ci-release --evidence-file target/rc-evidence.json
+          python scripts/build_release_candidate.py --version "4.0.0-ci.${GITHUB_RUN_NUMBER}" --java "$JAVA_HOME/bin/java" --profile helstera-bridge --profile craftengine-bridge --profile cookery-bridge --dependency-inputs .work/rc-inputs --output-directory .work/ci-release --evidence-file target/rc-evidence.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

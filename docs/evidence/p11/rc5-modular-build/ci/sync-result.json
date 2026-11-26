@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "5dae10c8b432d27c28814261f1bb8e759fb9a12d",
+  "syncedCommit": "f13bf7af4bf7ec51cd8b79f6b699a0af4650f995",
+  "sameTree": "9b6b27ed71e181d8aaf8c3f477f1499621f9b4de",
+  "parent": "db15f3741637be688eaecf6f12071ee2c017cd09",
+  "backupRef": "refs/backup/rc5-local-5dae10c",
+  "force": false,
+  "reason": "Git HTTPS connection reset; GitHub connector fast-forwarded an identical tree and parent"
+}

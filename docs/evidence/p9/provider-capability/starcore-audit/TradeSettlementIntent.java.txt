@@ -1,0 +1,44 @@
+package dev.starcore.starcore.module.resource.model;
+
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+
+/** A durable plan, not evidence that any payment or resource transfer succeeded. */
+public record TradeSettlementIntent(
+    UUID operationId,
+    UUID accountId,
+    BigDecimal amount,
+    String reason,
+    TradeRecord plannedRecord,
+    Map<String, String> context,
+    int appliedEvents) {
+  public TradeSettlementIntent {
+    Objects.requireNonNull(operationId, "operationId");
+    Objects.requireNonNull(accountId, "accountId");
+    Objects.requireNonNull(amount, "amount");
+    Objects.requireNonNull(reason, "reason");
+    Objects.requireNonNull(plannedRecord, "plannedRecord");
+    context = Map.copyOf(context);
+    if (amount.signum() <= 0
+        || appliedEvents < 0
+        || plannedRecord.status() != TradeRecord.TradeRecordStatus.COMPLETED) {
+      throw new IllegalArgumentException("Invalid trade settlement plan");
+    }
+  }
+
+  public TradeSettlementIntent(
+      UUID operationId,
+      UUID accountId,
+      BigDecimal amount,
+      String reason,
+      TradeRecord plannedRecord,
+      int appliedEvents) {
+    this(operationId, accountId, amount, reason, plannedRecord, Map.of(), appliedEvents);
+  }
+
+  public String idempotencyKey() {
+    return "trade-offer:" + operationId;
+  }
+}
