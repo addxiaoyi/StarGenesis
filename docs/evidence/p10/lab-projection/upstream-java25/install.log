@@ -1,0 +1,38 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Users/Administrator/.m2/wrapper/dists/apache-maven-3.9.11/03d7e36a140982eea48e22c1dcac01d8862b2550b2939e09a0809bbc5182a5bc/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] StarGenesis                                                        [pom]
+[INFO] stargenesis-api                                                    [jar]
+[INFO] stargenesis-design                                                 [jar]
+[INFO] stargenesis-sim                                                    [jar]
+[INFO] StarGenesis Integration Contracts                                  [jar]
+[INFO] stargenesis-paper                                                  [jar]
+[INFO] 
+[INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+[INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- install:3.1.4:install-file (default-cli) @ stargenesis-parent ---
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\helstera-api.jar to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-api\1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd\helstera-api-1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd.jar
+[INFO] Installing C:\Users\ADMINI~1\AppData\Local\Temp\mvninstall2559812410699921344.pom to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-api\1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd\helstera-api-1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+[INFO] 
+[INFO] StarGenesis ........................................ SUCCESS [  0.242 s]
+[INFO] stargenesis-api .................................... SKIPPED
+[INFO] stargenesis-design ................................. SKIPPED
+[INFO] stargenesis-sim .................................... SKIPPED
+[INFO] StarGenesis Integration Contracts .................. SKIPPED
+[INFO] stargenesis-paper .................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.447 s
+[INFO] Finished at: 2026-11-26T14:24:34+08:00
+[INFO] ------------------------------------------------------------------------

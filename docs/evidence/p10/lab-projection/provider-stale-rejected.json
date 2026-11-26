@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "oldProviderRejected": true,
+  "reason": "Provider contains stale/different bytecode: helstera-api/dev/helstera/api/behavior/BehaviorContext.class",
+  "historical": {
+    "jarSha256": "414be332c4a2a4fc69c5671935411389cffd4cea5394a26ed928562fc6fff7c5",
+    "rendererSha256": "65ec20ed64177e2e601f782575b8408a79d1f1f81f4d43bb7ade4098bcc15216",
+    "hasCreationReentryGuard": false
+  },
+  "final": {
+    "jarSha256": "ac99637deb3a7c29731a674b52cb77ef1a9648063732369353996657f120f56e",
+    "rendererSha256": "03d28f6942fe47725b24e1c7a98495ea805069f563a50f624178ad4ba8cb66c1",
+    "hasCreationReentryGuard": true
+  }
+}

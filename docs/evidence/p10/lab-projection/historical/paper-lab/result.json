@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "fixture": {
+    "passed": false,
+    "activeSamples": 0,
+    "matchingLabSamples": 0,
+    "cleanSamples": 0,
+    "sessions": 0,
+    "scope": "Actual lab worker and fixed offline client commands; no rendered visual acceptance"
+  },
+  "exitCode": 0,
+  "seconds": 59.22,
+  "sha256": {
+    "server": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "provider": "414be332c4a2a4fc69c5671935411389cffd4cea5394a26ed928562fc6fff7c5",
+    "plugin": "14e1f80f61294dd6d398ddce6c6ca7aa88787dbccd4a141d415dbc52847d884a",
+    "bridge": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65"
+  },
+  "fixtureSourceSha256": "a4a325579493a4618e3bfa032dd972f8be0d9ec466bdd5a4258a00bf8d74d4d7",
+  "logSha256": "61415de11f4d4f387a67379618539f0f9faaa365b3714816a6e2ba5f8b7e0798",
+  "scope": "Actual Paper lab worker, model entities and two fixed offline clients; no rendered visual or human acceptance",
+  "client": {
+    "passed": false,
+    "checks": [],
+    "humanAcceptance": false,
+    "error": "Error: SGProjectBob timed out waiting for \"permission\". Connection error=none. Recent messages:\nUnknown or incomplete command. See below for error\ngenesisprojection start stargenesis/catalog_probe<--[HERE]\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_projection_smoke.cjs:33:5)"
+  },
+  "clientExitCode": 1
+}

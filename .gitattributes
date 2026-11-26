@@ -5,6 +5,7 @@
 *.xml text eol=lf
 *.yml text eol=lf
 *.py text eol=lf
+*.patch text eol=lf -whitespace
 *.cjs text eol=lf
 *.pub text eol=lf
 mvnw text eol=lf
@@ -24,3 +25,4 @@ docs/evidence/p11/match-admin-lifecycle/** -text -whitespace
 docs/evidence/p11/rc4-recovery/** -text -whitespace
 docs/evidence/p4/acknowledgement-identity/** -text -whitespace
 docs/evidence/p10/model-catalog/** -text -whitespace
+docs/evidence/p10/lab-projection/** -text -whitespace

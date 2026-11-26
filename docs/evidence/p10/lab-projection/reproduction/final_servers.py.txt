@@ -1,0 +1,45 @@
+from pathlib import Path
+import json
+import shutil
+import subprocess
+import sys
+
+work = Path(__file__).resolve().parent
+root = work.parents[1]
+python = str(root/'.work/python-3.12.10/python.exe')
+jdk = root.parent/'.toolchains/jdk-21.0.13.0.2+1'
+base = root/'stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar'
+bridge = root/'stargenesis-helstera/target/stargenesis-helstera-4.0.0-SNAPSHOT.jar'
+provider = work/'upstream/helstera-plugin/target/helsteraMobs-1.0.0-full.jar'
+texture = root/'.work/helstera-bridge/paper-final/plugins/HelsteraCatalogServerProbe/model/texture.png'
+
+for mode in sys.argv[1:] or ['projection', 'lab-projection', 'old-catalog', 'folia']:
+    target = work/('final-'+mode)
+    if target.exists(): raise ValueError('Refusing to overwrite '+str(target))
+    target.mkdir()
+    kind = 'folia' if mode == 'folia' else 'paper'
+    shutil.copyfile(root/f'.work/rc4-live/{kind}/eula.txt', target/'eula.txt')
+    if mode == 'folia':
+        command = [python, str(root/'scripts/server_smoke.py'), '--java', str(jdk/'bin/java.exe'),
+                   '--server-jar', str(root.parent/'SenLuo_Plugin-continue/build/acceptance/runtime/folia-1.21.11-14.jar'),
+                   '--plugin-jar', str(base), '--libraries-from', str(root/'.work/rc4-live/folia'),
+                   '--directory', str(target), '--kind', 'folia', '--port', '25684', '--heap-mb', '512',
+                   '--jvm-arg=-XX:+UseSerialGC', '--jvm-arg=-XX:TieredStopAtLevel=1',
+                   '--jvm-arg=-XX:ReservedCodeCacheSize=64m', '--jvm-arg=-XX:ActiveProcessorCount=2', '--timeout', '180']
+        result_path = target/'smoke-result.json'
+    else:
+        selected_provider = root/'.work/helstera-bridge/upstream/helstera-plugin/target/helsteraMobs-1.0.0-full.jar' if mode == 'old-catalog' else provider
+        command = [python, str(root/'scripts/server_helstera_catalog_smoke.py'), '--probe', 'catalog' if mode == 'old-catalog' else mode,
+                   '--java-home', str(jdk), '--server-jar', str(root/'.work/rc4-live/paper/versions/1.21.11/paper-1.21.11.jar'),
+                   '--provider-jar', str(selected_provider), '--plugin-jar', str(base), '--bridge-jar', str(bridge),
+                   '--libraries-from', str(root/'.work/rc4-live/paper'), '--directory', str(target), '--texture', str(texture)]
+        if mode == 'lab-projection':
+            command += ['--node', r'C:\Program Files\nodejs\node.exe', '--node-modules',
+                        str(root.parent/'SenLuo_Plugin-continue/build/network-client/node_modules')]
+        result_path = target/'result.json'
+    with (work/f'final-{mode}-launch.log').open('w',encoding='utf-8') as log:
+        run = subprocess.run(command,cwd=root,stdout=log,stderr=subprocess.STDOUT)
+    if run.returncode: raise RuntimeError(f'{mode} failed with exit {run.returncode}')
+    result = json.loads(result_path.read_text(encoding='utf-8'))
+    assert result['passed'], result
+    print(mode, 'passed', flush=True)

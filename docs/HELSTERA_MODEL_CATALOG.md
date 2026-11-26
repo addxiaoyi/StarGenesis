@@ -1,5 +1,7 @@
 # Helstera 只读模型桥接
 
+后续已增加[有界实验室投影](HELSTERA_LAB_PROJECTION.md)，要求固定上游92982925加清理补丁。当前构建使用 `prepare_helstera_api.py --verify-runtime`。下文保留a2969dfa只读批次的历史证据及当时的投影阻断原因，不能把这些旧证据当作新投影验收。ModelCatalog接口本身继续只读。
+
 基础插件新增 `/genesis model status` 与 `/genesis model inspect <model ID>`，权限 `stargenesis.models` 默认 OP。单独安装 `StarGenesisHelstera` 才提供模型查询；基础 StarGenesis JAR 不包含 Helstera 类型，也不要求安装该扩展。查询只复制已加载模型的 ID、scale、骨骼数量、碰撞盒尺寸和至多256个动画名，命令最多显示16个动画名。没有模型加载、生成、行为注册、库存或结算操作。
 
 扩展仅允许 Paper 1.21.11，`plugin.yml` 没有 Folia 支持声明。提供方名必须为 `helsteraMobs`、插件/API 版本必须为 `1.0.0`。每次请求在主线程重新获取提供方、根 API 和 ModelRegistry，不跨请求缓存服务或模型对象；API 未就绪、提供方停用/升级、模型未加载和非法元数据不会返回旧结果。提供方或 StarGenesis 停用时注销服务、关闭旧引用。`/genesis debug capabilities` 现在查询当前提供方状态；唯一可激活的新能力为 `model.inspect`。

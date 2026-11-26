@@ -1,0 +1,46 @@
+from pathlib import Path
+import hashlib
+import json
+import subprocess
+import sys
+
+root = Path(__file__).resolve().parents[2]
+directory = root / 'docs/evidence/p10/lab-projection'
+summary = json.loads((directory / 'summary.json').read_text(encoding='utf-8'))
+sha = lambda data: hashlib.sha256(data).hexdigest()
+checked = 0
+
+for relative, expected in summary['sourceSha256'].items():
+    raw = (root / relative).read_bytes()
+    assert sha(raw) == expected, relative
+    if '--staged' in sys.argv:
+        staged = subprocess.check_output(['git', 'show', ':' + relative], cwd=root)
+        assert staged == raw, 'Changed source bytes differ in index: ' + relative
+    checked += 1
+
+for relative, expected in summary['evidenceSha256'].items():
+    path = directory / relative
+    raw = path.read_bytes()
+    assert sha(raw) == expected, relative
+    if '--staged' in sys.argv:
+        staged = subprocess.check_output(['git', 'show', ':' + path.relative_to(root).as_posix()], cwd=root)
+        assert staged == raw, 'Evidence bytes differ in index: ' + relative
+    checked += 1
+
+inputs = json.loads((directory / 'build-inputs.json').read_text(encoding='utf-8'))
+normalized = []
+for relative, expected in inputs.items():
+    raw = (root / relative).read_bytes()
+    assert sha(raw) == expected, 'Build input changed: ' + relative
+    if '--staged' in sys.argv:
+        staged = subprocess.check_output(['git', 'show', ':' + relative], cwd=root)
+        if staged != raw:
+            assert staged == raw.replace(b'\r\n', b'\n'), 'Build input content differs in index: ' + relative
+            normalized.append(relative)
+    checked += 1
+
+if '--staged' in sys.argv:
+    relative = (directory / 'summary.json').relative_to(root).as_posix()
+    assert subprocess.check_output(['git', 'show', ':' + relative], cwd=root) == (directory / 'summary.json').read_bytes()
+print(json.dumps({'passed': True, 'hashesChecked': checked, 'staged': '--staged' in sys.argv,
+                  'buildInputsWithOnlyIndexLineEndingNormalization': normalized}))

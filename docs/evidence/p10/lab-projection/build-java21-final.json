@@ -1,0 +1,18 @@
+{
+  "tests": {
+    "tests": 584,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": 78,
+  "javaHome": "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1",
+  "mavenOpts": "-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "command": "mvnw.cmd -B -ntp -Phelstera-bridge -DforkCount=0 clean verify",
+  "sha256": {
+    "stargenesis-paper\\target\\stargenesis-paper-4.0.0-SNAPSHOT.jar": "80df0a3888d01deea19bab5c7b89f93d0cc33398b60dd9f4a0d0ffe7bdafbd23",
+    "stargenesis-helstera\\target\\stargenesis-helstera-4.0.0-SNAPSHOT.jar": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+    "target\\sbom.json": "01c1a2be7dd009ae8f98539aedbe4a4f0fb6accb54fbe0ef8f626d6a82b47981",
+    ".work\\helstera-projection\\build-java21-final.log": "9e2b5ba3d3f25c9a92fbf989561561df39473efced52e1f9ace8e83448ecb87f"
+  }
+}

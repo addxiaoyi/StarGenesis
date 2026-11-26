@@ -17,7 +17,7 @@ python scripts/check_boundaries.py
 
 Windows 使用 `mvnw.cmd -B verify`。产物：`stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar` 与 reactor aggregate CycloneDX 1.6 SBOM `target/sbom.json`；安装此 shaded JAR，不要安装 `original-*` 或 api/sim 等独立库 JAR。Paper API 固定 `1.21.11-R0.1-20260511.115010-91`；未把 Bukkit/Paper 或第三方插件打入发布物。
 
-可选 `StarGenesisHelstera` 扩展提供 Paper 1.21.11 只读模型查询：先运行 `python scripts/prepare_helstera_api.py`，再以 `-Phelstera-bridge` 构建；用 `/genesis model status`、`/genesis model inspect <id>` 检查已加载模型。模型加载/卸载/服务停用已有实际提供方验证，实体投影仍关闭。构建、命令和边界见 [模型查询桥接](docs/HELSTERA_MODEL_CATALOG.md)。
+可选 `StarGenesisHelstera` 扩展提供 Paper 1.21.11 模型查询与有界实验室投影：先运行 `python scripts/prepare_helstera_api.py --verify-runtime`，再以 `-Phelstera-bridge` 构建。投影要求固定提交加清理补丁的实际提供方，普通旧版仍仅查询。使用 `/genesis lab start 42 2 commands` 后，OP可执行 `/genesisprojection start <已加载模型ID>`。构建、预算和验收范围见 [模型投影](docs/HELSTERA_LAB_PROJECTION.md)，目录接口见 [模型查询](docs/HELSTERA_MODEL_CATALOG.md)。
 
 ## Release Signing
 
@@ -55,11 +55,12 @@ Java 21/25 CI同时运行模块边界、Java完整测试、候选构建脚本的
 | `/genesis status` | stargenesis.status | 所有人 |
 | `/genesis debug capabilities` | stargenesis.debug | OP |
 | `/genesis debug budgets` | stargenesis.debug | OP |
-| `/genesis lab start [seed] [agents]` | stargenesis.lab | 所有人 |
+| `/genesis lab start [seed] [agents] [menu\|commands]` | stargenesis.lab | 所有人 |
+| `/genesisprojection start <model> \| stop \| status`（可选Paper扩展） | stargenesis.projection | OP |
 | `/genesis blueprint` | stargenesis.blueprint | 所有人 |
 | `/genesis program` | stargenesis.program | 所有人 |
 
-能力报告分别显示插件安装/启用、审计版本、API验证、Paper证据及逐项能力。安装插件不会自动激活未验证桥接；报告是启动时快照，配置/依赖更改后重启。StarCore、helsteraMobs 与 SenLuo/CraftEngine 的具体限制见 [docs/INTEGRATION_AUDIT.md](docs/INTEGRATION_AUDIT.md)。
+能力报告分别显示插件安装/启用、审计版本、API验证、Paper证据及逐项能力。安装插件不会自动激活未验证桥接；debug每次检查当前服务，失败清理未完成时不报告投影可用。StarCore、helsteraMobs 与 SenLuo/CraftEngine 的具体限制见 [docs/INTEGRATION_AUDIT.md](docs/INTEGRATION_AUDIT.md)。
 
 P1 实验室还提供 `/genesis lab stop`、`replay`、`resume` 和 `status`。Paper 菜单只显示虚拟模拟状态，不会更改真实世界或发放物品；关闭菜单会停止本局。Folia 使用相同的模拟、检查点和回放，通过命令查看状态并控制实验，不打开玩家背包。P1 尚未通过真人客户端验收。
 

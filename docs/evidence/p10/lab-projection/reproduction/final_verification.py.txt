@@ -1,0 +1,30 @@
+from pathlib import Path
+import os
+import shutil
+import subprocess
+
+work = Path(__file__).resolve().parent
+root = work.parents[1]
+python = str(root / '.work/python-3.12.10/python.exe')
+
+def preserve(label):
+    target = work / ('artifacts-' + label)
+    target.mkdir()
+    for module in ('stargenesis-paper', 'stargenesis-helstera'):
+        shutil.copyfile(root / module / 'target' / (module + '-4.0.0-SNAPSHOT.jar'), target / (module + '.jar'))
+    shutil.copyfile(root / 'target/sbom.json', target / 'sbom.json')
+
+preserve('java21-final')
+os.environ['JAVA_HOME'] = str(root.parent / '.toolchains/jdk-25.0.5.0.2+1')
+os.environ['MAVEN_OPTS'] = ('-Xms16m -Xmx160m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 '
+                          '-XX:ReservedCodeCacheSize=64m -XX:MaxMetaspaceSize=128m '
+                          '-XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2')
+subprocess.run([python, str(root / 'scripts/prepare_helstera_api.py'), '--verify-runtime',
+                '--archive', str(work / 'api-source.zip'), '--work-dir', str(work / 'api-verified-java25')],
+               cwd=root, check=True)
+with (work / 'build-java25-verified.log').open('w', encoding='utf-8') as log:
+    subprocess.run([str(root / 'mvnw.cmd'), '-B', '-ntp', '-Phelstera-bridge', '-DforkCount=0', 'clean', 'verify'],
+                   cwd=root, stdout=log, stderr=subprocess.STDOUT, check=True)
+subprocess.run([python, str(work / 'record_build.py'), 'java25-verified'], cwd=root, check=True)
+preserve('java25-verified')
+subprocess.run([python, str(root / '.work/helstera-bridge/probes.py'), 'projection-java25-verified'], cwd=root, check=True)

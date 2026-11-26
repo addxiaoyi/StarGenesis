@@ -6,6 +6,7 @@ import dev.stargenesis.paper.lab.LabExperiment.Phase;
 import dev.stargenesis.paper.runtime.PersistentWorker;
 import dev.stargenesis.sim.SandboxConfig;
 import dev.stargenesis.sim.SandboxView;
+import dev.stargenesis.integrations.LabProjectionSource;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -73,6 +74,18 @@ public final class LabController implements Listener, AutoCloseable {
     }
 
     public boolean isAvailable() { return !closed.get(); }
+
+    /** Reads copied worker output only; no Bukkit entity or simulation mutation crosses this service. */
+    public java.util.Optional<LabProjectionSource.Frame> projectionSnapshot(UUID owner) {
+        if (closed.get()) return java.util.Optional.empty();
+        Session session = sessions.get(owner);
+        if (session == null || !session.active() || session.stopRequested.get()) return java.util.Optional.empty();
+        SandboxView view = session.view;
+        if (view == null || view.terminal()) return java.util.Optional.empty();
+        return java.util.Optional.of(new LabProjectionSource.Frame(session.worldId, view.worldId(), view.tick(),
+                view.width(), view.height(), view.agents().stream().map(agent ->
+                new LabProjectionSource.Agent(agent.id().value(), agent.position().x(), agent.position().y())).toList()));
+    }
     public String availabilityReason() {
         if (closed.get()) return "STOPPED";
         return folia ? "FOLIA_COMMAND_LAB" : "PAPER_VIRTUAL_INVENTORY_LAB";
@@ -91,14 +104,14 @@ public final class LabController implements Listener, AutoCloseable {
         UUID owner = player.getUniqueId();
         switch (action) {
             case "start" -> {
-                if (args.length > 3) { help(player); break; }
+                if (args.length > 4) { help(player); break; }
                 try {
                     long seed = args.length > 1 ? Long.parseLong(args[1]) : 20_261_119L;
                     int count = args.length > 2 ? Integer.parseInt(args[2]) : Math.min(2, budget.maxAgents());
                     if (count < 1 || count > 4 || count > budget.maxAgents()) throw new IllegalArgumentException();
-                    start(player, seed, count, Mode.NEW);
+                    start(player, seed, count, Mode.NEW, LabDisplayMode.commands(args, 3, folia));
                 } catch (IllegalArgumentException invalid) {
-                    player.sendMessage("参数无效：/genesis lab start [整数种子] [1–4造物，受配置上限限制]");
+                    player.sendMessage("参数无效：/genesis lab start [整数种子] [1–4造物] [menu|commands]");
                 }
             }
             case "stop" -> {
@@ -106,15 +119,18 @@ public final class LabController implements Listener, AutoCloseable {
                 if (current == null || !current.active()) player.sendMessage("当前没有正在运行的实验。");
                 else { current.stopRequested.set(true); player.sendMessage("实验将在下一个逻辑步安全停止，并保留本次回放。"); }
             }
-            case "replay" -> start(player, 0, 1, Mode.REPLAY);
-            case "resume" -> start(player, 0, 1, Mode.RESUME);
+            case "replay", "resume" -> {
+                try { start(player, 0, 1, action.equals("replay") ? Mode.REPLAY : Mode.RESUME,
+                        LabDisplayMode.commands(args, 1, folia)); }
+                catch (IllegalArgumentException invalid) { help(player); }
+            }
             case "status" -> {
                 Session current = sessions.get(owner);
                 if (current == null) { player.sendMessage("尚未开始实验；/genesis lab start"); break; }
                 SandboxView view = current.view;
                 player.sendMessage("试验箱 " + current.phase + " | " + current.message
                         + (view == null ? "" : " | step=" + view.tick() + " score=" + view.score() + " hash=" + view.stateHash()));
-                if (!folia) open(player, current);
+                if (!current.commandOnly) open(player, current);
             }
             default -> help(player);
         }
@@ -122,7 +138,8 @@ public final class LabController implements Listener, AutoCloseable {
     }
 
     private void help(Player player) {
-        player.sendMessage("/genesis lab start [种子] [1–4造物] · stop · replay · resume · status");
+        player.sendMessage("/genesis lab start [种子] [1–4造物] [menu|commands] · stop · replay [menu|commands] · resume [menu|commands] · status");
+        if (!folia) player.sendMessage("commands 模式无需打开菜单，适合在世界中观察可选模型预览。");
         player.sendMessage(folia
                 ? "Folia 实验通过 status、stop、replay 和 resume 控制，不打开玩家背包。"
                 : "虚拟资源试验箱：观察造物寻找、移动、采集、投递。菜单内全部是不可领取的投影。");
@@ -131,7 +148,7 @@ public final class LabController implements Listener, AutoCloseable {
                 : "默认约4分钟；只计模拟分，不生成真实物品或货币。关闭菜单会停止实验。");
     }
 
-    private void start(Player player, long seed, int count, Mode mode) {
+    private void start(Player player, long seed, int count, Mode mode, boolean commandOnly) {
         UUID owner = player.getUniqueId();
         Session session;
         synchronized (reservationLock) {
@@ -152,11 +169,13 @@ public final class LabController implements Listener, AutoCloseable {
                     Math.min(defaults.durationSteps(), budget.maxSteps()), defaults.energyPerAgent(), defaults.nodeStock(),
                     defaults.carryCapacity(), budget);
             session = new Session(owner, "lab-" + UUID.randomUUID(), seed, config, mode);
+            session.commandOnly = commandOnly;
             sessions.put(owner, session);
         }
-        if (!folia) open(player, session);
+        if (!commandOnly) open(player, session);
         String started = switch (mode) {
             case NEW -> folia ? "Folia 实验已启动：种子=" + seed + "；使用 status 查看进度。"
+                    : commandOnly ? "命令模式实验已启动：种子=" + seed + "；使用 status 查看进度，stop 停止。"
                     : "实验开始：种子=" + seed + "；菜单每个位置对应模拟格，灰色不可通行。";
             case RESUME -> "正在受控线程读取并验证最近检查点；最多每100步保存一次。";
             case REPLAY -> "回放开始：逐步重算并核对每步状态哈希和事件，不领取奖励。";
@@ -280,6 +299,7 @@ public final class LabController implements Listener, AutoCloseable {
         volatile long seed;
         volatile SandboxConfig config;
         final Mode mode;
+        boolean commandOnly;
         final AtomicBoolean stopRequested = new AtomicBoolean();
         final AtomicBoolean terminalMessageSent = new AtomicBoolean();
         volatile Phase phase = Phase.STARTING;

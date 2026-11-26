@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 /** Uses the compiled upstream API; retains no engine, registry, model or listener across calls. */
 public final class HelsteraModelCatalog implements ModelCatalog {
-    public static final String SOURCE_REVISION = "a2969dfaf83cd35e642147f4bd7743ae04d34e7a";
+    public static final String SOURCE_REVISION = "9298292538dc9d7c5ee800ff7e03f4c10e34ba97";
     private final BooleanSupplier primaryThread;
     private final BooleanSupplier supportedServer;
     private final Supplier<InstalledPlugin> inventory;

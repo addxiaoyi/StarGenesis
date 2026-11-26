@@ -1,0 +1,1015 @@
+diff --git a/helstera-api/src/main/java/dev/helstera/api/instance/InstanceManager.java b/helstera-api/src/main/java/dev/helstera/api/instance/InstanceManager.java
+index ff7f356..cb40662 100644
+--- a/helstera-api/src/main/java/dev/helstera/api/instance/InstanceManager.java
++++ b/helstera-api/src/main/java/dev/helstera/api/instance/InstanceManager.java
+@@ -12,6 +12,15 @@ import java.util.Optional;
+  */
+ public interface InstanceManager {
+ 
++    /**
++     * True only when failed creation removes the instance from the active registry,
++     * runtime creation failures expose a {@link ModelCreationException} cleanup handle,
++     * and owned visuals remain retryable after a failed despawn. Fatal VM/process
++     * failures and rollback of caller-owned bound entity properties are excluded.
++     * Older/alternative renderers opt out by default.
++     */
++    default boolean supportsOwnedVisualCleanup() { return false; }
++
+     /** 在指定位置生成独立模型实体（隐形载体 + 模型显示）。 */
+     ModelInstance spawn(String modelId, Location location, SpawnOptions options);
+ 
+diff --git a/helstera-api/src/main/java/dev/helstera/api/instance/ModelCreationException.java b/helstera-api/src/main/java/dev/helstera/api/instance/ModelCreationException.java
+new file mode 100644
+index 0000000..68c3e2e
+--- /dev/null
++++ b/helstera-api/src/main/java/dev/helstera/api/instance/ModelCreationException.java
+@@ -0,0 +1,22 @@
++package dev.helstera.api.instance;
++
++import java.util.Objects;
++
++/**
++ * Creation failed after allocating an instance. The instance is invalid and is not
++ * published in the active registry. Its cleanup handle must be retained until
++ * {@link ModelInstance#despawn()} returns normally; failed cleanup can be retried
++ * on the main thread. The original failure is the cause, with rollback failures
++ * suppressed on it. This does not roll back changes to a caller-owned bound entity.
++ */
++public final class ModelCreationException extends IllegalStateException {
++    private static final long serialVersionUID = 1L;
++    private final ModelInstance cleanupHandle;
++
++    public ModelCreationException(ModelInstance cleanupHandle, RuntimeException cause) {
++        super("Model creation failed: " + cleanupHandle.instanceId(), Objects.requireNonNull(cause));
++        this.cleanupHandle = Objects.requireNonNull(cleanupHandle);
++    }
++
++    public ModelInstance cleanupHandle() { return cleanupHandle; }
++}
+diff --git a/helstera-api/src/main/java/dev/helstera/api/instance/ModelInstance.java b/helstera-api/src/main/java/dev/helstera/api/instance/ModelInstance.java
+index 284583e..5e258c3 100644
+--- a/helstera-api/src/main/java/dev/helstera/api/instance/ModelInstance.java
++++ b/helstera-api/src/main/java/dev/helstera/api/instance/ModelInstance.java
+@@ -67,7 +67,9 @@ public interface ModelInstance {
+      */
+     void attachItem(String bone, String point, ItemStack item);
+ 
+-    /** 销毁实例并清理所有实体。 */
++    /** Destroy owned visuals, never the caller-owned bound entity. With an
++     * InstanceManager supporting owned visual cleanup, failure leaves this instance
++     * invalid but retryable; a normal return completes cleanup idempotently. */
+     void despawn();
+ 
+     /** 实例是否仍然有效（未销毁）。 */
+diff --git a/helstera-api/src/main/java/dev/helstera/api/instance/SpawnOptions.java b/helstera-api/src/main/java/dev/helstera/api/instance/SpawnOptions.java
+index 04e5a5a..8862d97 100644
+--- a/helstera-api/src/main/java/dev/helstera/api/instance/SpawnOptions.java
++++ b/helstera-api/src/main/java/dev/helstera/api/instance/SpawnOptions.java
+@@ -11,6 +11,7 @@ public final class SpawnOptions {
+     private boolean showName = false;
+     private boolean showHealthBar = false;
+     private boolean spawnHitbox = true;
++    private boolean automaticAnimation = true;
+     private double scale = 1.0;
+     private boolean persistent = true;
+     private String aiProfile = null;
+@@ -91,6 +92,10 @@ public final class SpawnOptions {
+ 
+     public SpawnOptions spawnHitbox(boolean v) { this.spawnHitbox = v; return this; }
+ 
++    /** Disable default/locomotion animations for passive projections. Explicit animation calls remain available. */
++    public boolean automaticAnimation() { return automaticAnimation; }
++    public SpawnOptions automaticAnimation(boolean value) { automaticAnimation = value; return this; }
++
+     public double scale() { return scale; }
+ 
+     public SpawnOptions scale(double v) { this.scale = v; return this; }
+diff --git a/helstera-render-paper/src/main/java/dev/helstera/render/display/DisplayRenderer.java b/helstera-render-paper/src/main/java/dev/helstera/render/display/DisplayRenderer.java
+index 30a6b4c..fad7ed8 100644
+--- a/helstera-render-paper/src/main/java/dev/helstera/render/display/DisplayRenderer.java
++++ b/helstera-render-paper/src/main/java/dev/helstera/render/display/DisplayRenderer.java
+@@ -39,6 +39,8 @@ public final class DisplayRenderer implements InstanceRenderer {
+ 
+     /** 单实例的全部显示实体。 */
+     static final class Visuals {
++        boolean creating;
++        boolean cleanupRequested;
+         ArmorStand carrier;
+         final List<ItemDisplay> boneDisplays = new ArrayList<>();
+         Interaction hitbox;
+@@ -69,6 +71,8 @@ public final class DisplayRenderer implements InstanceRenderer {
+         this.cmdMapping = cmdMapping;
+     }
+ 
++    @Override public boolean supportsOwnedVisualCleanup() { return true; }
++
+     public void setInterpolationTicks(int t) {
+         this.interpolationTicks = Math.max(1, t);
+     }
+@@ -99,6 +103,10 @@ public final class DisplayRenderer implements InstanceRenderer {
+         Visuals v = new Visuals();
+         World world = location.getWorld();
+         ModelDefinitionImpl model = inst.modelImpl();
++        if (visuals.putIfAbsent(inst.instanceId(), v) != null)
++            throw new IllegalStateException("Visuals already owned by instance " + inst.instanceId());
++        v.creating = true;
++        try {
+         // Bound visuals are recreated on reattachment or removed with their base entity.
+         // Saving them separately can resurrect orphaned displays after chunk unloading.
+         boolean persistVisuals = options.persistent() && inst.baseEntity().isEmpty();
+@@ -106,19 +114,22 @@ public final class DisplayRenderer implements InstanceRenderer {
+         // 隐形载体（位置锚点 + 可攻击碰撞载体）
+         // 仅在“纯展示”模型（未绑定真实实体）时创建；绑定实体时以该实体为锚点，避免多出冗余实体。
+         if (inst.baseEntity().isEmpty()) {
+-            ArmorStand carrier = world.spawn(location, ArmorStand.class, as -> {
++            world.spawn(location, ArmorStand.class, as -> {
++                v.carrier = as;
++                track(v, as, inst.instanceId());
+                 as.setInvisible(true);
+-                as.setMarker(false); // 非 marker：保留可攻击的实体碰撞盒（整体碰撞盒方案）
++                as.setMarker(!options.spawnHitbox() && !options.collidable());
+                 as.setSmall(true);
+                 as.setGravity(false);
++                as.setInvulnerable(options.invulnerable());
++                as.setCollidable(options.collidable());
++                as.setSilent(options.silent());
+                 as.setPersistent(persistVisuals);
+                 as.setCustomNameVisible(false);
+                 as.setCanPickupItems(false);
+                 as.getPersistentDataContainer().set(key(), PersistentDataType.INTEGER, inst.instanceId());
+             });
+-            v.carrier = carrier;
+-            v.allEntityIds.add(carrier.getUniqueId());
+-            entityIndex.put(carrier.getUniqueId(), inst.instanceId());
++            requireCreationActive(v);
+         }
+ 
+         // 每骨骼一个 ItemDisplay
+@@ -126,7 +137,9 @@ public final class DisplayRenderer implements InstanceRenderer {
+             Location boneLoc = location.clone();
+             int cmd = cmdMapping.commandData(model.id(), bone.name());
+             ItemStack item = cmdMapping.itemFor(model.id(), bone.name(), cmd);
+-            ItemDisplay disp = world.spawn(boneLoc, ItemDisplay.class, d -> {
++            world.spawn(boneLoc, ItemDisplay.class, d -> {
++                v.boneDisplays.add(d);
++                track(v, d, inst.instanceId());
+                 d.setItemStack(item);
+                 d.setTransformation(new Transformation(
+                         new org.joml.Vector3f(), new Quaternionf(), new Vector3f(1, 1, 1), new Quaternionf()));
+@@ -146,40 +159,49 @@ public final class DisplayRenderer implements InstanceRenderer {
+                 d.setBillboard(Display.Billboard.FIXED);
+                 d.getPersistentDataContainer().set(key(), PersistentDataType.INTEGER, inst.instanceId());
+             });
+-            v.boneDisplays.add(disp);
+-            v.allEntityIds.add(disp.getUniqueId());
+-            entityIndex.put(disp.getUniqueId(), inst.instanceId());
++            requireCreationActive(v);
+         }
+ 
+         // 碰撞盒（Interaction：点击/投射物）
+         if (options.spawnHitbox()) {
+             var hb = model.hitbox();
+             double s = inst.getScale();
+-            Interaction interaction = world.spawn(location, Interaction.class, i -> {
++            world.spawn(location, Interaction.class, i -> {
++                v.hitbox = i;
++                track(v, i, inst.instanceId());
+                 i.setInteractionWidth((float) Math.max(0.1, hb.width() * s));
+                 i.setInteractionHeight((float) Math.max(0.1, hb.height() * s));
+                 i.setResponsive(true);
+                 i.setPersistent(persistVisuals);
+                 i.getPersistentDataContainer().set(key(), PersistentDataType.INTEGER, inst.instanceId());
+             });
+-            v.hitbox = interaction;
+-            v.allEntityIds.add(interaction.getUniqueId());
+-            entityIndex.put(interaction.getUniqueId(), inst.instanceId());
++            requireCreationActive(v);
+         }
+ 
+         // 名称牌
+         if (options.showName() && options.displayName() != null) {
+-            TextDisplay tag = world.spawn(location, TextDisplay.class, t -> {
++            world.spawn(location, TextDisplay.class, t -> {
++                v.nameTag = t;
++                track(v, t, inst.instanceId());
+                 t.text(LegacyText.parse(options.displayName()));
+                 t.setBillboard(Display.Billboard.CENTER);
+                 t.setPersistent(persistVisuals);
+                 t.setShadowed(true);
+             });
+-            v.nameTag = tag;
+-            v.allEntityIds.add(tag.getUniqueId());
++            requireCreationActive(v);
+         }
+ 
+-        visuals.put(inst.instanceId(), v);
++        } finally { v.creating = false; }
++    }
++
++    private static void requireCreationActive(Visuals visuals) {
++        if (visuals.cleanupRequested) throw new IllegalStateException("Visual creation was cancelled by cleanup");
++    }
++
++    private void track(Visuals visuals, Entity entity, int instanceId) {
++        UUID id = entity.getUniqueId();
++        visuals.allEntityIds.add(id);
++        entityIndex.put(id, instanceId);
+     }
+ 
+     private org.bukkit.NamespacedKey key() {
+@@ -196,6 +218,8 @@ public final class DisplayRenderer implements InstanceRenderer {
+         if (v == null || !inst.isValid()) return;
+         Location base = inst.location();
+         if (base == null || base.getWorld() == null) return;
++        boolean standalone = inst.baseEntity().isEmpty();
++        if (v.carrier != null) move(v.carrier, base, standalone);
+         computeWorldMatrices(inst, base, v);
+ 
+         List<ItemDisplay> displays = v.boneDisplays;
+@@ -203,13 +227,16 @@ public final class DisplayRenderer implements InstanceRenderer {
+         boolean matrix = VersionAdapter.canSetTransformationMatrix();
+         for (int i = 0; i < displays.size() && i < v.worldMatrices.size(); i++) {
+             ItemDisplay d = displays.get(i);
+-            if (!d.isValid()) continue;
++            if (!d.isValid()) {
++                if (standalone) throw new IllegalStateException("Owned display is no longer valid");
++                continue;
++            }
+             Location p = v.bonePositions.get(i);
+             // teleportAsync 在旧版本不存在；缺失时同步传送，行为一致但阻塞主线程更久。
+-            if (async) {
++            if (async && !standalone) {
+                 d.teleportAsync(p);
+             } else {
+-                d.teleport(p);
++                move(d, p, standalone);
+             }
+             d.setInterpolationDelay(0);
+             d.setInterpolationDuration(interpolationTicks);
+@@ -223,16 +250,21 @@ public final class DisplayRenderer implements InstanceRenderer {
+             Location hbLoc = base.clone();
+             hbLoc.setYaw(0);
+             hbLoc.setPitch(0);
+-            v.hitbox.teleport(hbLoc);
++            move(v.hitbox, hbLoc, standalone);
+         }
+         // 名称牌跟随（头顶）
+         if (v.nameTag != null && v.nameTag.isValid()) {
+             var hb = inst.modelImpl().hitbox();
+             Location tagLoc = base.clone().add(0, hb.height() * inst.getScale() + 0.3, 0);
+-            v.nameTag.teleport(tagLoc);
++            move(v.nameTag, tagLoc, standalone);
+         }
+     }
+ 
++    private static void move(Entity entity, Location location, boolean requireSuccess) {
++        boolean moved = entity.teleport(location);
++        if (requireSuccess && !moved) throw new IllegalStateException("Owned display teleport was rejected");
++    }
++
+     /**
+      * 计算每骨骼世界矩阵：
+      * W_bone = R_yaw · W_parent · T(pivot)·R(anim)·S(anim)·T(-pivot)
+@@ -314,6 +346,7 @@ public final class DisplayRenderer implements InstanceRenderer {
+         List<Entity> created = new ArrayList<>();
+         Location base = inst.location();
+         if (base == null || base.getWorld() == null) return;
++        attachDisplays.put(inst.instanceId(), created);
+         for (var e : inst.attachments.entrySet()) {
+             var bone = inst.modelImpl().bone(e.getKey());
+             if (bone == null) continue;
+@@ -323,40 +356,80 @@ public final class DisplayRenderer implements InstanceRenderer {
+                 double gs = inst.getScale() / 16.0;
+                 Location loc = base.clone().add(
+                         offset.x() * gs, (offset.y() + bone.pivot().y()) * gs, offset.z() * gs);
+-                ItemDisplay d = base.getWorld().spawn(loc, ItemDisplay.class, dd -> {
++                base.getWorld().spawn(loc, ItemDisplay.class, dd -> {
++                    created.add(dd);
++                    entityIndex.put(dd.getUniqueId(), inst.instanceId());
+                     dd.setItemStack(p.getValue());
+                     dd.setTeleportDuration(interpolationTicks);
+                     dd.setPersistent(false);
+                 });
+-                created.add(d);
+-                entityIndex.put(d.getUniqueId(), inst.instanceId());
+             }
+         }
+-        attachDisplays.put(inst.instanceId(), created);
+     }
+ 
+     private final Map<Integer, List<Entity>> attachDisplays = new ConcurrentHashMap<>();
+ 
+     @Override
+     public void destroyVisuals(ModelInstanceImpl inst) {
+-        Visuals v = visuals.remove(inst.instanceId());
++        destroyVisuals(inst.instanceId());
++    }
++
++    private void destroyVisuals(int instanceId) {
++        RuntimeException failure = null;
++        Visuals v = visuals.get(instanceId);
+         if (v != null) {
++            if (v.creating) {
++                // A spawn callback may disable the provider. Keep ownership until
++                // World.spawn returns/throws, then creation rollback can safely retry.
++                v.cleanupRequested = true;
++                throw new IllegalStateException("Visual cleanup deferred while creation is in progress");
++            }
+             // UUID lookup can already be empty during unload, while Paper still
+             // retains the entity object for a quick reload of the same chunk.
+             // Remove the owned object itself so those visuals cannot reappear.
+-            v.entities().forEach(Entity::remove);
+-            v.allEntityIds.forEach(entityIndex::remove);
++            for (Entity entity : v.entities()) {
++                try {
++                    UUID id = entity.getUniqueId();
++                    entity.remove();
++                    entityIndex.remove(id);
++                    v.allEntityIds.remove(id);
++                    v.boneDisplays.remove(entity);
++                    if (v.carrier == entity) v.carrier = null;
++                    if (v.hitbox == entity) v.hitbox = null;
++                    if (v.nameTag == entity) v.nameTag = null;
++                } catch (RuntimeException next) { failure = append(failure, next); }
++            }
++            if (v.entities().isEmpty()) visuals.remove(instanceId, v);
+         }
+-        removeAttachments(inst.instanceId());
++        try { removeAttachments(instanceId); }
++        catch (RuntimeException next) { failure = append(failure, next); }
++        if (failure != null) throw failure;
+     }
+ 
+     private void removeAttachments(int instanceId) {
+-        List<Entity> owned = attachDisplays.remove(instanceId);
++        List<Entity> owned = attachDisplays.get(instanceId);
+         if (owned == null) return;
++        List<Entity> failed = new ArrayList<>();
++        RuntimeException failure = null;
+         for (Entity entity : owned) {
+-            entity.remove();
+-            entityIndex.remove(entity.getUniqueId());
++            try {
++                UUID id = entity.getUniqueId();
++                entity.remove();
++                entityIndex.remove(id);
++            } catch (RuntimeException next) {
++                failed.add(entity);
++                failure = append(failure, next);
++            }
+         }
++        if (failed.isEmpty()) attachDisplays.remove(instanceId);
++        else attachDisplays.put(instanceId, failed);
++        if (failure != null) throw failure;
++    }
++
++    private static RuntimeException append(RuntimeException first, RuntimeException next) {
++        if (first == null) return next;
++        if (first != next) first.addSuppressed(next);
++        return first;
+     }
+ 
+     @Override
+@@ -397,11 +470,14 @@ public final class DisplayRenderer implements InstanceRenderer {
+     }
+ 
+     public void shutdown() {
+-        for (Visuals v : visuals.values()) v.entities().forEach(Entity::remove);
+-        for (int id : List.copyOf(attachDisplays.keySet())) removeAttachments(id);
+-        visuals.clear();
+-        entityIndex.clear();
+-        attachDisplays.clear();
++        RuntimeException failure = null;
++        var ids = new java.util.HashSet<>(visuals.keySet());
++        ids.addAll(attachDisplays.keySet());
++        for (int id : ids) {
++            try { destroyVisuals(id); }
++            catch (RuntimeException next) { failure = append(failure, next); }
++        }
++        if (failure != null) throw failure;
+     }
+ 
+     /** 名称/血条文本更新（伤害反馈时调用）。 */
+diff --git a/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererFailureTest.java b/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererFailureTest.java
+new file mode 100644
+index 0000000..7fb9899
+--- /dev/null
++++ b/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererFailureTest.java
+@@ -0,0 +1,225 @@
++package dev.helstera.render.display;
++
++import dev.helstera.api.Vec3;
++import dev.helstera.api.instance.SpawnOptions;
++import dev.helstera.core.model.ModelDefinitionImpl;
++import dev.helstera.runtime.instance.ModelInstanceImpl;
++import org.bukkit.Location;
++import org.bukkit.World;
++import org.bukkit.entity.*;
++import org.bukkit.persistence.PersistentDataContainer;
++import org.bukkit.plugin.Plugin;
++import org.junit.jupiter.api.Test;
++
++import java.util.*;
++import java.util.function.Consumer;
++
++import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.ArgumentMatchers.*;
++import static org.mockito.Mockito.*;
++
++class DisplayRendererFailureTest {
++    private final Plugin plugin = mock(Plugin.class);
++    private final World world = mock(World.class);
++    private final BoneCommandMapping mapping = mock(BoneCommandMapping.class);
++    private final DisplayRenderer renderer = new DisplayRenderer(plugin, mapping);
++    private final ModelInstanceImpl instance = mock(ModelInstanceImpl.class);
++    private final ModelDefinitionImpl model = mock(ModelDefinitionImpl.class);
++    private final Location at = new Location(world, 1, 2, 3);
++    private final List<Entity> spawned = new ArrayList<>();
++    private Runnable duringSpawn = () -> {};
++
++    @SuppressWarnings("unchecked")
++    private void setup(int failAt, boolean failAfterCallback) {
++        when(plugin.getName()).thenReturn("helsteraMobs");
++        when(instance.instanceId()).thenReturn(17);
++        when(instance.modelImpl()).thenReturn(model);
++        when(instance.location()).thenReturn(at);
++        when(instance.baseEntity()).thenReturn(Optional.empty());
++        when(instance.getScale()).thenReturn(1d);
++        when(model.id()).thenReturn("probe");
++        when(model.hitbox()).thenReturn(new dev.helstera.api.model.ModelHitbox(1, 1));
++        var bone = new ModelDefinitionImpl.BoneImpl("body", null, Vec3.ZERO, Vec3.ZERO, List.of(), Map.of(), null, null);
++        when(model.allBones()).thenReturn(List.of(bone));
++        when(model.bone("body")).thenReturn(bone);
++        when(world.spawn(any(Location.class), any(Class.class), any(Consumer.class))).thenAnswer(call -> {
++            Entity entity = mock((Class<? extends Entity>) call.getArgument(1));
++            when(entity.getUniqueId()).thenReturn(UUID.randomUUID());
++            when(entity.getPersistentDataContainer()).thenReturn(mock(PersistentDataContainer.class));
++            spawned.add(entity);
++            if (spawned.size() == failAt && !failAfterCallback) {
++                if (entity instanceof ArmorStand stand) doThrow(new IllegalStateException("initializer")).when(stand).setInvisible(true);
++                else if (entity instanceof ItemDisplay display) doThrow(new IllegalStateException("initializer")).when(display).setItemStack(any());
++                else if (entity instanceof Interaction hitbox) doThrow(new IllegalStateException("initializer")).when(hitbox).setInteractionWidth(anyFloat());
++                else if (entity instanceof TextDisplay tag) doThrow(new IllegalStateException("initializer")).when(tag).text(any());
++            }
++            ((Consumer<Entity>) call.getArgument(2)).accept(entity);
++            duringSpawn.run();
++            if (spawned.size() == failAt && failAfterCallback) throw new IllegalStateException("after initializer");
++            return entity;
++        });
++    }
++    private SpawnOptions options() { return SpawnOptions.defaults().showName(true).displayName("Probe"); }
++
++    @Test void everyInitializerFailureRetainsAllCreatedObjectsForCleanup() {
++        // Separate renderer per injection keeps partial ownership checks independent.
++        for (int index = 1; index <= 4; index++) {
++            var fixture = new DisplayRendererFailureTest();
++            fixture.setup(index, false);
++            assertThrows(IllegalStateException.class, () -> fixture.renderer.createVisuals(fixture.instance, fixture.at, fixture.options()));
++            fixture.renderer.destroyVisuals(fixture.instance);
++            fixture.renderer.destroyVisuals(fixture.instance);
++            for (Entity entity : fixture.spawned) verify(entity).remove();
++            assertEquals(0, fixture.renderer.renderedEntityCount(17));
++        }
++    }
++
++    @Test void failuresAfterSpawnCallbackStillRetainOwnership() {
++        setup(2, true);
++        assertThrows(IllegalStateException.class, () -> renderer.createVisuals(instance, at, options()));
++        renderer.destroyVisuals(instance);
++        for (Entity entity : spawned) verify(entity).remove();
++    }
++
++    @Test void failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry() {
++        setup(0, false);
++        renderer.createVisuals(instance, at, options());
++        doThrow(new IllegalStateException("remove")).doNothing().when(spawned.get(1)).remove();
++        assertThrows(IllegalStateException.class, () -> renderer.destroyVisuals(instance));
++        for (Entity entity : spawned) verify(entity).remove();
++        assertEquals(1, renderer.renderedEntityCount(17));
++        assertEquals(17, renderer.instanceOf(spawned.get(1)));
++        renderer.destroyVisuals(instance);
++        renderer.destroyVisuals(instance);
++        for (int index = 0; index < spawned.size(); index++) verify(spawned.get(index), times(index == 1 ? 2 : 1)).remove();
++        for (Entity entity : spawned) assertNull(renderer.instanceOf(entity));
++        assertEquals(0, renderer.renderedEntityCount(17));
++    }
++
++    @Test void duplicateCreateCannotOverwriteOwnedVisuals() {
++        setup(0, false);
++        renderer.createVisuals(instance, at, options());
++        assertThrows(IllegalStateException.class, () -> renderer.createVisuals(instance, at, options()));
++        assertEquals(4, spawned.size());
++        renderer.destroyVisuals(instance);
++        for (Entity entity : spawned) verify(entity).remove();
++    }
++
++    @Test void shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried() {
++        setup(0, false);
++        renderer.createVisuals(instance, at, options());
++        doThrow(new IllegalStateException("remove")).doNothing().when(spawned.getFirst()).remove();
++        assertThrows(IllegalStateException.class, renderer::shutdown);
++        for (Entity entity : spawned) verify(entity).remove();
++        renderer.shutdown();
++        renderer.shutdown();
++        verify(spawned.getFirst(), times(2)).remove();
++        assertEquals(0, renderer.renderedEntityCount(17));
++    }
++
++    @Test void displayOnlyCarrierHonorsPassiveOptionsAndDoesNotCreateHitbox() {
++        setup(0, false);
++        renderer.createVisuals(instance, at, SpawnOptions.defaults().persistent(false).spawnHitbox(false)
++                .collidable(false).invulnerable(true).silent(true));
++        assertTrue(renderer.supportsOwnedVisualCleanup());
++        assertEquals(2, spawned.size());
++        var carrier = (ArmorStand) spawned.getFirst();
++        verify(carrier).setMarker(true);
++        verify(carrier).setInvulnerable(true);
++        verify(carrier).setCollidable(false);
++        verify(carrier).setPersistent(false);
++        verify(carrier).setGravity(false);
++        verify(carrier).setCanPickupItems(false);
++        renderer.destroyVisuals(instance);
++    }
++
++    @Test void failedBoundCreationNeverRemovesTheCallerOwnedBase() {
++        setup(1, false);
++        var base = mock(Entity.class);
++        when(instance.baseEntity()).thenReturn(Optional.of(base));
++        assertThrows(IllegalStateException.class, () -> renderer.createVisuals(instance, at, options()));
++        renderer.destroyVisuals(instance);
++        verify(base, never()).remove();
++        verify(spawned.getFirst()).remove();
++    }
++
++    @Test void failedAttachmentCleanupDoesNotBlockOtherOwnedObjects() throws Exception {
++        setup(0, false);
++        renderer.createVisuals(instance, at, options());
++        var field = DisplayRenderer.class.getDeclaredField("attachDisplays");
++        field.setAccessible(true);
++        @SuppressWarnings("unchecked") var attachments = (Map<Integer, List<Entity>>) field.get(renderer);
++        var first = mock(ItemDisplay.class);
++        var second = mock(ItemDisplay.class);
++        when(first.getUniqueId()).thenReturn(UUID.randomUUID());
++        when(second.getUniqueId()).thenReturn(UUID.randomUUID());
++        attachments.put(17, List.of(first, second));
++        doThrow(new IllegalStateException("attachment remove")).doNothing().when(first).remove();
++        assertThrows(IllegalStateException.class, () -> renderer.destroyVisuals(instance));
++        for (Entity entity : spawned) verify(entity).remove();
++        verify(second).remove();
++        assertEquals(List.of(first), attachments.get(17));
++        renderer.destroyVisuals(instance);
++        verify(first, times(2)).remove();
++        verify(second).remove();
++        assertTrue(attachments.isEmpty());
++    }
++
++    private ModelInstanceImpl realInstance() {
++        var bone = new ModelDefinitionImpl.BoneImpl("body", null, Vec3.ZERO, Vec3.ZERO, List.of(), Map.of(), null, null);
++        var definition = new ModelDefinitionImpl("probe", "Probe", "1", "test", 1, null, List.of(bone),
++                new dev.helstera.api.model.ModelHitbox(1, 1), java.nio.file.Path.of("."), "fixture", Map.of(), List.of());
++        var actual = new ModelInstanceImpl(17, definition, renderer, null, SpawnOptions.defaults().spawnHitbox(false));
++        actual.lastLocationSet(at);
++        return actual;
++    }
++
++    @Test void attachmentInitializerFailureRetainsItsObjectForDespawn() {
++        setup(3, false);
++        var actual = realInstance();
++        renderer.createVisuals(actual, at, actual.options());
++        actual.attachments.put("body", Map.of("default", mock(org.bukkit.inventory.ItemStack.class)));
++        assertThrows(IllegalStateException.class, () -> renderer.updateAttachments(actual));
++        assertEquals(3, spawned.size());
++        actual.despawn();
++        for (Entity entity : spawned) verify(entity).remove();
++    }
++
++    @Test void standaloneMovementMovesCarrierAndBonesSynchronously() {
++        setup(0, false);
++        var actual = realInstance();
++        renderer.createVisuals(actual, at, actual.options());
++        for (Entity entity : spawned) {
++            when(entity.isValid()).thenReturn(true);
++            when(entity.teleport(any(Location.class))).thenReturn(true);
++        }
++        var destination = at.clone().add(2, 0, 3);
++        actual.teleport(destination);
++        for (Entity entity : spawned) {
++            verify(entity).teleport(destination);
++            verify(entity, never()).teleportAsync(any(Location.class));
++        }
++        actual.despawn();
++        assertThrows(IllegalStateException.class, () -> actual.teleport(at));
++    }
++
++    @Test void rejectedTeleportIsReportedAndOwnedObjectsCanStillBeCleaned() {
++        setup(0, false);
++        var actual = realInstance();
++        renderer.createVisuals(actual, at, actual.options());
++        assertThrows(IllegalStateException.class, () -> actual.teleport(at));
++        actual.despawn();
++        for (Entity entity : spawned) verify(entity).remove();
++    }
++
++    @Test void teardownReenteredFromSpawnCallbackCannotLoseInFlightOwnership() {
++        setup(0, false);
++        duringSpawn = () -> assertThrows(IllegalStateException.class, () -> renderer.destroyVisuals(instance));
++        assertThrows(IllegalStateException.class, () -> renderer.createVisuals(instance, at, options()));
++        assertEquals(1, spawned.size());
++        renderer.destroyVisuals(instance);
++        renderer.destroyVisuals(instance);
++        verify(spawned.getFirst()).remove();
++        assertEquals(0, renderer.renderedEntityCount(17));
++    }
++}
+diff --git a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceManagerImpl.java b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceManagerImpl.java
+index c4bc1d3..2f9bba8 100644
+--- a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceManagerImpl.java
++++ b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceManagerImpl.java
+@@ -6,6 +6,7 @@ import dev.helstera.api.event.ModelRemoveEvent;
+ import dev.helstera.api.instance.InstanceManager;
+ import dev.helstera.api.instance.ManagedMobOptions;
+ import dev.helstera.api.instance.ModelInstance;
++import dev.helstera.api.instance.ModelCreationException;
+ import dev.helstera.api.instance.SpawnOptions;
+ import dev.helstera.api.model.ModelDefinition;
+ import dev.helstera.api.model.ModelHitbox;
+@@ -35,6 +36,8 @@ public final class InstanceManagerImpl implements InstanceManager {
+     private final HelsteraEventBus bus;
+     private final InstanceRenderer renderer;
+     private final Map<Integer, ModelInstanceImpl> instances = new ConcurrentHashMap<>();
++    // Invalid cleanup handles are deliberately separate from active, tickable instances.
++    private final Map<Integer, ModelInstanceImpl> pendingVisualCleanup = new ConcurrentHashMap<>();
+     private static final Logger LOGGER = Logger.getLogger(InstanceManagerImpl.class.getName());
+     private final AtomicInteger idGen = new AtomicInteger(1);
+     private final ConfigurationSection animMappingCfg;
+@@ -56,12 +59,21 @@ public final class InstanceManagerImpl implements InstanceManager {
+     @Override
+     public ModelInstance spawn(String modelId, Location location, SpawnOptions options) {
+         ModelDefinition def = requireModel(modelId);
++        Location loc = java.util.Objects.requireNonNull(location, "location").clone();
+         ModelInstanceImpl inst = createInstance((ModelDefinitionImpl) def, null, options);
+-        Location loc = location.clone();
+-        inst.lastLocationSet(loc);
+-        inst.spawnLocationSet(loc);
+-        renderer.createVisuals(inst, loc, options);
+-        renderer.updateTransforms(inst);
++        try {
++            inst.lastLocationSet(loc);
++            inst.spawnLocationSet(loc);
++            renderer.createVisuals(inst, loc, inst.options());
++            renderer.updateTransforms(inst);
++            instances.put(inst.instanceId(), inst);
++        } catch (RuntimeException failure) {
++            rollbackCreation(inst, failure);
++            throw new ModelCreationException(inst, failure);
++        } catch (Error failure) {
++            rollbackCreation(inst, failure);
++            throw failure;
++        }
+         // 不在这里 post ModelSpawnEvent：spawnMobCore 会在 ai().attach() 之后统一派发，
+         // 确保 boundProfiles 已经绑定。此处只负责创建实例和视觉效果。
+         return inst;
+@@ -70,12 +82,23 @@ public final class InstanceManagerImpl implements InstanceManager {
+     @Override
+     public ModelInstance bind(String modelId, Entity entity, SpawnOptions options) {
+         ModelDefinition def = requireModel(modelId);
++        java.util.Objects.requireNonNull(entity, "entity");
+         ModelInstanceImpl inst = createInstance((ModelDefinitionImpl) def, entity, options);
+-        ManagedMobOptions.apply(entity, inst.options());
+-        inst.lastLocationSet(entity.getLocation());
+-        inst.spawnLocationSet(entity.getLocation());
+-        renderer.createVisuals(inst, entity.getLocation(), options);
+-        renderer.updateTransforms(inst);
++        try {
++            ManagedMobOptions.apply(entity, inst.options());
++            Location loc = entity.getLocation();
++            inst.lastLocationSet(loc);
++            inst.spawnLocationSet(loc);
++            renderer.createVisuals(inst, loc, inst.options());
++            renderer.updateTransforms(inst);
++            instances.put(inst.instanceId(), inst);
++        } catch (RuntimeException failure) {
++            rollbackCreation(inst, failure);
++            throw new ModelCreationException(inst, failure);
++        } catch (Error failure) {
++            rollbackCreation(inst, failure);
++            throw failure;
++        }
+         // 同上：不在这里 post ModelSpawnEvent
+         return inst;
+     }
+@@ -90,8 +113,8 @@ public final class InstanceManagerImpl implements InstanceManager {
+         ModelInstanceImpl inst = new ModelInstanceImpl(idGen.getAndIncrement(), def, renderer, base, opts);
+         AnimationControllerImpl controller = new AnimationControllerImpl(inst, def, bus);
+         inst.initAnimation(controller);
++        if (!opts.automaticAnimation()) return inst;
+         inst.stateMachine = new EntityAnimationStateMachine(def, controller, animMappingCfg);
+-        instances.put(inst.instanceId(), inst);
+         // 默认播放待机动画
+         if (def.defaultAnimation() != null && controller.hasAnimation(def.defaultAnimation())) {
+             controller.play(def.defaultAnimation(), AnimationOptions.defaults().loop(true));
+@@ -101,6 +124,35 @@ public final class InstanceManagerImpl implements InstanceManager {
+         return inst;
+     }
+ 
++    @Override public boolean supportsOwnedVisualCleanup() { return renderer.supportsOwnedVisualCleanup(); }
++
++    private void rollbackCreation(ModelInstanceImpl inst, Throwable failure) {
++        instances.remove(inst.instanceId(), inst);
++        try { destroyRetainingFailure(inst); }
++        catch (RuntimeException | Error cleanup) { if (cleanup != failure) failure.addSuppressed(cleanup); }
++    }
++
++    private void destroyRetainingFailure(ModelInstanceImpl inst) {
++        pendingVisualCleanup.put(inst.instanceId(), inst);
++        inst.despawn();
++        pendingVisualCleanup.remove(inst.instanceId(), inst);
++    }
++
++    /** Retry only visual teardown; removal events and caller-owned entities are not replayed. */
++    public void retryPendingVisualCleanup() {
++        RuntimeException failure = null;
++        for (ModelInstanceImpl inst : java.util.List.copyOf(pendingVisualCleanup.values())) {
++            try { destroyRetainingFailure(inst); }
++            catch (RuntimeException next) {
++                if (failure == null) failure = next;
++                else if (failure != next) failure.addSuppressed(next);
++            }
++        }
++        if (failure != null) throw failure;
++    }
++
++    public int pendingVisualCleanupCount() { return pendingVisualCleanup.size(); }
++
+     @Override
+     public Optional<ModelInstance> getInstance(int instanceId) {
+         ModelInstanceImpl i = instances.get(instanceId);
+@@ -132,7 +184,12 @@ public final class InstanceManagerImpl implements InstanceManager {
+     @Override
+     public boolean despawn(int instanceId) {
+         ModelInstanceImpl inst = instances.remove(instanceId);
+-        if (inst == null) return false;
++        if (inst == null) {
++            inst = pendingVisualCleanup.get(instanceId);
++            if (inst == null) return false;
++            destroyRetainingFailure(inst);
++            return true;
++        }
+         finishRemoval(inst, "manual", false);
+         return true;
+     }
+@@ -171,7 +228,7 @@ public final class InstanceManagerImpl implements InstanceManager {
+         // The instance stays valid until callbacks have read its AI profile and caster state.
+         bus.post(new ModelRemoveEvent(inst, cause));
+         ManagedMobOptions.clear(inst.entity());
+-        inst.despawn();
++        destroyRetainingFailure(inst);
+         if (removeBase && inst.entity() != null) inst.entity().remove();
+         logRemoval(inst, cause);
+     }
+@@ -193,7 +250,7 @@ public final class InstanceManagerImpl implements InstanceManager {
+         if (!instances.remove(instanceId, inst)) return false;
+         beforePersistentUnload.accept(inst, cause);
+         ManagedMobOptions.clear(inst.entity());
+-        inst.despawn();
++        destroyRetainingFailure(inst);
+         logRemoval(inst, cause);
+         bus.post(new ModelRemoveEvent(inst, "persistent_" + cause));
+         return true;
+@@ -234,6 +291,7 @@ public final class InstanceManagerImpl implements InstanceManager {
+ 
+     /** 清理无效实例（基础实体死亡/被移除）。由调度器调用。 */
+     public void cleanupInvalid() {
++        retryPendingVisualCleanup();
+         for (Iterator<Map.Entry<Integer, ModelInstanceImpl>> it = instances.entrySet().iterator(); it.hasNext(); ) {
+             ModelInstanceImpl inst = it.next().getValue();
+             boolean baseGone = inst.entity() != null && !inst.entity().isValid();
+@@ -248,7 +306,7 @@ public final class InstanceManagerImpl implements InstanceManager {
+                 if (!(inst.entity() instanceof org.bukkit.entity.Slime slime && slime.isDead())) {
+                     ManagedMobOptions.clear(inst.entity());
+                 }
+-                if (inst.isValid()) inst.despawn();
++                destroyRetainingFailure(inst);
+                 logRemoval(inst, baseGone ? "base_entity_removed" : "invalid");
+                 bus.post(new ModelRemoveEvent(inst, baseGone ? "base_entity_removed" : "invalid"));
+             }
+diff --git a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceRenderer.java b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceRenderer.java
+index 57c67ea..792b0af 100644
+--- a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceRenderer.java
++++ b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/InstanceRenderer.java
+@@ -9,6 +9,10 @@ import org.bukkit.Location;
+  */
+ public interface InstanceRenderer {
+ 
++    /** Creation callbacks retain ownership immediately; failed destruction retains
++     * only failed objects for retry and never removes a caller-owned bound entity. */
++    default boolean supportsOwnedVisualCleanup() { return false; }
++
+     /** 生成显示实体（骨骼 ItemDisplay 层级 + 碰撞盒 + 名称牌）。 */
+     void createVisuals(ModelInstanceImpl inst, Location location, SpawnOptions options);
+ 
+diff --git a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/ModelInstanceImpl.java b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/ModelInstanceImpl.java
+index e20f836..a921178 100644
+--- a/helstera-runtime/src/main/java/dev/helstera/runtime/instance/ModelInstanceImpl.java
++++ b/helstera-runtime/src/main/java/dev/helstera/runtime/instance/ModelInstanceImpl.java
+@@ -35,6 +35,7 @@ public final class ModelInstanceImpl implements ModelInstance {
+     private AnimationControllerImpl animation;
+     private final SpawnOptions options;
+     private volatile boolean valid = true;
++    private boolean visualsDestroyed;
+     private Location lastLocation;
+     private Location spawnLocation;
+     private volatile Set<UUID> executionAudience;
+@@ -258,6 +259,7 @@ public final class ModelInstanceImpl implements ModelInstance {
+ 
+     @Override
+     public void teleport(Location location) {
++        if (!valid) throw new IllegalStateException("Model instance is no longer valid");
+         if (baseEntity != null && baseEntity.isValid()) {
+             baseEntity.teleport(location);
+         }
+@@ -311,9 +313,10 @@ public final class ModelInstanceImpl implements ModelInstance {
+ 
+     @Override
+     public void despawn() {
+-        if (!valid) return;
+         valid = false;
++        if (visualsDestroyed) return;
+         renderer.destroyVisuals(this);
++        visualsDestroyed = true;
+     }
+ 
+     @Override
+diff --git a/helstera-runtime/src/test/java/dev/helstera/runtime/instance/InstanceCreationRollbackTest.java b/helstera-runtime/src/test/java/dev/helstera/runtime/instance/InstanceCreationRollbackTest.java
+new file mode 100644
+index 0000000..69da6ef
+--- /dev/null
++++ b/helstera-runtime/src/test/java/dev/helstera/runtime/instance/InstanceCreationRollbackTest.java
+@@ -0,0 +1,167 @@
++package dev.helstera.runtime.instance;
++
++import dev.helstera.api.event.HelsteraEventBus;
++import dev.helstera.api.event.ModelRemoveEvent;
++import dev.helstera.api.instance.SpawnOptions;
++import dev.helstera.api.instance.ModelCreationException;
++import dev.helstera.api.model.ModelHitbox;
++import dev.helstera.api.model.ModelRegistry;
++import dev.helstera.core.model.ModelDefinitionImpl;
++import org.bukkit.Location;
++import org.bukkit.entity.Player;
++import org.junit.jupiter.api.Test;
++
++import java.lang.reflect.Proxy;
++import java.nio.file.Path;
++import java.util.Collection;
++import java.util.List;
++import java.util.Map;
++import java.util.Optional;
++import java.util.concurrent.atomic.AtomicInteger;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class InstanceCreationRollbackTest {
++    private static final class Renderer implements InstanceRenderer {
++        ModelInstanceImpl observed;
++        Runnable duringCreate = () -> {};
++        boolean failCreate, failTransform;
++        int destroyFailures, destroys;
++        SpawnOptions options;
++        public void createVisuals(ModelInstanceImpl inst, Location at, SpawnOptions options) {
++            observed = inst;
++            this.options = options;
++            duringCreate.run();
++            if (failCreate) throw new IllegalStateException("create");
++        }
++        public void updateTransforms(ModelInstanceImpl inst) {
++            if (failTransform) throw new IllegalStateException("transform");
++        }
++        public void updateLocation(ModelInstanceImpl inst) {}
++        public void updateAttachments(ModelInstanceImpl inst) {}
++        public void destroyVisuals(ModelInstanceImpl inst) {
++            destroys++;
++            if (destroyFailures-- > 0) throw new IllegalStateException("destroy");
++        }
++        public void applyVisibility(ModelInstanceImpl inst, Collection<Player> visible, Collection<Player> hidden) {}
++    }
++    private final Renderer renderer = new Renderer();
++    private final HelsteraEventBus bus = new HelsteraEventBus();
++    private final ModelDefinitionImpl model = new ModelDefinitionImpl("probe", "Probe", "1", "test", 1,
++            null, List.of(), new ModelHitbox(1, 1), Path.of("."), "fixture", Map.of(), List.of());
++    private final ModelRegistry registry = (ModelRegistry) Proxy.newProxyInstance(ModelRegistry.class.getClassLoader(),
++            new Class<?>[]{ModelRegistry.class}, (proxy, method, args) -> {
++                if (method.getName().equals("get")) return Optional.of(model);
++                throw new AssertionError(method.getName());
++            });
++    private final InstanceManagerImpl manager = new InstanceManagerImpl(registry, bus, renderer, null);
++
++    @Test void partialCreationIsNeverPublished() {
++        renderer.duringCreate = () -> {
++            assertEquals(0, manager.activeCount());
++            assertTrue(manager.getInstance(renderer.observed.instanceId()).isEmpty());
++        };
++        var result = manager.spawn("probe", new Location(null, 1, 2, 3), SpawnOptions.defaults());
++        assertSame(result, manager.getInstance(result.instanceId()).orElseThrow());
++    }
++
++    @Test void createFailureInvalidatesAndCleansWithoutRemoveEvent() {
++        AtomicInteger events = new AtomicInteger();
++        bus.register(ModelRemoveEvent.class, ignored -> events.incrementAndGet());
++        renderer.failCreate = true;
++        assertThrows(RuntimeException.class, () -> manager.spawn("probe", new Location(null, 0, 0, 0), null));
++        assertEquals(0, manager.activeCount());
++        assertFalse(renderer.observed.isValid());
++        assertEquals(1, renderer.destroys);
++        assertEquals(0, events.get());
++    }
++
++    @Test void transformFailureRollsBackAlreadyCreatedVisuals() {
++        renderer.failTransform = true;
++        assertThrows(RuntimeException.class, () -> manager.spawn("probe", new Location(null, 0, 0, 0), null));
++        assertEquals(0, manager.activeCount());
++        assertFalse(renderer.observed.isValid());
++        assertEquals(1, renderer.destroys);
++    }
++
++    @Test void nullOptionsAreNormalizedBeforeCallingRenderer() {
++        var instance = manager.spawn("probe", new Location(null, 0, 0, 0), null);
++        assertSame(((ModelInstanceImpl) instance).options(), renderer.options);
++        assertNotNull(renderer.options);
++    }
++
++    @Test void despawnCanRetryAfterFailureAndIsIdempotentAfterSuccess() {
++        var instance = manager.spawn("probe", new Location(null, 0, 0, 0), null);
++        renderer.destroyFailures = 1;
++        assertThrows(IllegalStateException.class, instance::despawn);
++        assertFalse(instance.isValid());
++        instance.despawn();
++        instance.despawn();
++        assertEquals(2, renderer.destroys);
++    }
++
++    @Test void invalidCleanupRetriesRatherThanLosingRendererOwnership() {
++        var instance = manager.spawn("probe", new Location(null, 0, 0, 0), null);
++        renderer.destroyFailures = 1;
++        assertThrows(IllegalStateException.class, instance::despawn);
++        manager.cleanupInvalid();
++        assertEquals(2, renderer.destroys);
++        assertEquals(0, manager.activeCount());
++    }
++
++    @Test void invalidLocationDoesNotPublishAnInstance() {
++        assertThrows(RuntimeException.class, () -> manager.spawn("probe", null, null));
++        assertEquals(0, manager.activeCount());
++    }
++
++    @Test void creationFailureExposesInvalidRetryableHandleAndPreservesBothFailures() {
++        renderer.failCreate = true;
++        renderer.destroyFailures = 2;
++        var failure = assertThrows(ModelCreationException.class,
++                () -> manager.spawn("probe", new Location(null, 0, 0, 0), null));
++        assertSame(renderer.observed, failure.cleanupHandle());
++        assertEquals("create", failure.getCause().getMessage());
++        assertEquals("destroy", failure.getCause().getSuppressed()[0].getMessage());
++        assertEquals(0, manager.activeCount());
++        assertFalse(failure.cleanupHandle().isValid());
++        assertEquals(1, manager.pendingVisualCleanupCount());
++        assertThrows(IllegalStateException.class, failure.cleanupHandle()::despawn);
++        failure.cleanupHandle().despawn();
++        manager.retryPendingVisualCleanup();
++        assertEquals(0, manager.pendingVisualCleanupCount());
++        assertEquals(3, renderer.destroys);
++    }
++
++    @Test void managerRemovalCanBeRetriedByIdWithoutRepeatingEvents() {
++        AtomicInteger events = new AtomicInteger();
++        bus.register(ModelRemoveEvent.class, ignored -> events.incrementAndGet());
++        var instance = manager.spawn("probe", new Location(null, 0, 0, 0), null);
++        renderer.destroyFailures = 1;
++        assertThrows(IllegalStateException.class, () -> manager.despawn(instance.instanceId()));
++        assertEquals(0, manager.activeCount());
++        assertTrue(manager.despawn(instance.instanceId()));
++        assertFalse(manager.despawn(instance.instanceId()));
++        assertEquals(1, events.get());
++        assertEquals(2, renderer.destroys);
++    }
++
++    @Test void alternativeRendererDoesNotImplicitlyAdvertiseCleanupGuarantees() {
++        assertFalse(manager.supportsOwnedVisualCleanup());
++    }
++
++    @Test void passiveProjectionDoesNotStartIdleOrInstallAutomaticAnimationStateMachine() {
++        var animated = new ModelDefinitionImpl("probe", "Probe", "1", "test", 1,
++                "idle", List.of(), new ModelHitbox(1, 1), Path.of("."), "fixture",
++                Map.of("idle", new dev.helstera.core.animation.AnimationClip("idle", true, 1, Map.of(), List.of())), List.of());
++        var models = (ModelRegistry) Proxy.newProxyInstance(ModelRegistry.class.getClassLoader(),
++                new Class<?>[]{ModelRegistry.class}, (proxy, method, args) -> Optional.of(animated));
++        var instances = new InstanceManagerImpl(models, bus, renderer, null);
++        var ordinary = (ModelInstanceImpl) instances.spawn("probe", new Location(null, 0, 0, 0), null);
++        assertEquals(Optional.of("idle"), ordinary.animation().currentAnimation());
++        assertNotNull(ordinary.stateMachine);
++        var passive = (ModelInstanceImpl) instances.spawn("probe", new Location(null, 0, 0, 0),
++                SpawnOptions.defaults().automaticAnimation(false));
++        assertTrue(passive.animation().currentAnimation().isEmpty());
++        assertNull(passive.stateMachine);
++    }
++}

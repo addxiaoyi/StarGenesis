@@ -1,0 +1,34 @@
+{
+  "revision": "9298292538dc9d7c5ee800ff7e03f4c10e34ba97",
+  "patchSha256": "a2319f4cb9cdfa79e72d42f9e97f58da6a54a94987f4ad60bdded16d25499ee3",
+  "artifactVersion": "1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd",
+  "lockedFiles": 124,
+  "tests": {
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifactSha256": "31183f05aeea0ce67b9c32c87d55d8b6795ace1c2212b24269851568521510c1",
+  "sourceLockSha256": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f",
+  "runtimeTests": {
+    "helstera-core": {
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "helstera-runtime": {
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "helstera-render-paper": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

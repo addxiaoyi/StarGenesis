@@ -1,0 +1,420 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] helsteraMobs Parent                                                [pom]
+[INFO] helstera-api                                                       [jar]
+[INFO] helstera-core                                                      [jar]
+[INFO] helstera-runtime                                                   [jar]
+[INFO] helstera-render-paper                                              [jar]
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-parent >--------------------
+[INFO] Building helsteraMobs Parent 1.0.0                                 [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0                                        [2/5]
+[INFO]   from helstera-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-core >---------------------
+[INFO] Building helstera-core 1.0.0                                       [3/5]
+[INFO]   from helstera-core\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-core ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] -------------------< dev.helstera:helstera-runtime >--------------------
+[INFO] Building helstera-runtime 1.0.0                                    [4/5]
+[INFO]   from helstera-runtime\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-runtime ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-runtime ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-runtime ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-render-paper >-----------------
+[INFO] Building helstera-render-paper 1.0.0                               [5/5]
+[INFO]   from helstera-render-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.bukkit.event.EventHandler
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.Test
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[41,18] ��������Ӧ�� try �������������ÿ��Զ���������Դbukkit
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[54,18] ��������Ӧ�� try �������������ÿ��Զ���������Դbukkit
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-render-paper ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.render.display.DisplayRendererFailureTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Administrator\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[ERROR] Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 3.334 s <<< FAILURE! -- in dev.helstera.render.display.DisplayRendererFailureTest
+[ERROR] dev.helstera.render.display.DisplayRendererFailureTest.failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry -- Time elapsed: 0.764 s <<< FAILURE!
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry(DisplayRendererFailureTest.java:87)
+
+However, there were exactly 10 interactions with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+armorStand.setMarker(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:111)
+
+armorStand.setSmall(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:112)
+
+armorStand.setGravity(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:113)
+
+armorStand.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:114)
+
+armorStand.setCustomNameVisible(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:115)
+
+armorStand.setCanPickupItems(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:116)
+
+armorStand.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:117)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:120)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:121)
+
+
+	at dev.helstera.render.display.DisplayRendererFailureTest.failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry(DisplayRendererFailureTest.java:87)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.render.display.DisplayRendererFailureTest.duplicateCreateCannotOverwriteOwnedVisuals -- Time elapsed: 0.023 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at dev.helstera.render.display.DisplayRendererFailureTest.duplicateCreateCannotOverwriteOwnedVisuals(DisplayRendererFailureTest.java:100)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.render.display.DisplayRendererFailureTest.shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried -- Time elapsed: 0.014 s <<< FAILURE!
+Wanted but not invoked:
+interaction.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried(DisplayRendererFailureTest.java:111)
+
+However, there were exactly 7 interactions with this mock:
+interaction.setInteractionWidth(1.0f);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:159)
+
+interaction.setInteractionHeight(1.0f);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:160)
+
+interaction.setResponsive(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:161)
+
+interaction.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:162)
+
+interaction.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:163)
+
+interaction.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:166)
+
+interaction.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:167)
+
+
+	at dev.helstera.render.display.DisplayRendererFailureTest.shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried(DisplayRendererFailureTest.java:111)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.render.display.DisplayRendererFailureTest.failuresAfterSpawnCallbackStillRetainOwnership -- Time elapsed: 0.006 s <<< FAILURE!
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.failuresAfterSpawnCallbackStillRetainOwnership(DisplayRendererFailureTest.java:79)
+
+However, there were exactly 10 interactions with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+armorStand.setMarker(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:111)
+
+armorStand.setSmall(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:112)
+
+armorStand.setGravity(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:113)
+
+armorStand.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:114)
+
+armorStand.setCustomNameVisible(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:115)
+
+armorStand.setCanPickupItems(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:116)
+
+armorStand.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:117)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:120)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:121)
+
+
+	at dev.helstera.render.display.DisplayRendererFailureTest.failuresAfterSpawnCallbackStillRetainOwnership(DisplayRendererFailureTest.java:79)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.render.display.DisplayRendererFailureTest.everyInitializerFailureRetainsAllCreatedObjectsForCleanup -- Time elapsed: 0.007 s <<< FAILURE!
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.everyInitializerFailureRetainsAllCreatedObjectsForCleanup(DisplayRendererFailureTest.java:70)
+
+However, there was exactly 1 interaction with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+
+	at dev.helstera.render.display.DisplayRendererFailureTest.everyInitializerFailureRetainsAllCreatedObjectsForCleanup(DisplayRendererFailureTest.java:70)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.140 s -- in dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   DisplayRendererFailureTest.duplicateCreateCannotOverwriteOwnedVisuals:100 Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+[ERROR]   DisplayRendererFailureTest.everyInitializerFailureRetainsAllCreatedObjectsForCleanup:70 
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.everyInitializerFailureRetainsAllCreatedObjectsForCleanup(DisplayRendererFailureTest.java:70)
+
+However, there was exactly 1 interaction with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+
+[ERROR]   DisplayRendererFailureTest.failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry:87 
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.failedRemovalAttemptsEveryObjectAndRetainsOnlyFailuresForRetry(DisplayRendererFailureTest.java:87)
+
+However, there were exactly 10 interactions with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+armorStand.setMarker(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:111)
+
+armorStand.setSmall(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:112)
+
+armorStand.setGravity(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:113)
+
+armorStand.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:114)
+
+armorStand.setCustomNameVisible(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:115)
+
+armorStand.setCanPickupItems(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:116)
+
+armorStand.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:117)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:120)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:121)
+
+
+[ERROR]   DisplayRendererFailureTest.failuresAfterSpawnCallbackStillRetainOwnership:79 
+Wanted but not invoked:
+armorStand.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.failuresAfterSpawnCallbackStillRetainOwnership(DisplayRendererFailureTest.java:79)
+
+However, there were exactly 10 interactions with this mock:
+armorStand.setInvisible(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:110)
+
+armorStand.setMarker(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:111)
+
+armorStand.setSmall(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:112)
+
+armorStand.setGravity(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:113)
+
+armorStand.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:114)
+
+armorStand.setCustomNameVisible(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:115)
+
+armorStand.setCanPickupItems(false);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:116)
+
+armorStand.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$0(DisplayRenderer.java:117)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:120)
+
+armorStand.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:121)
+
+
+[ERROR]   DisplayRendererFailureTest.shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried:111 
+Wanted but not invoked:
+interaction.remove();
+-> at dev.helstera.render.display.DisplayRendererFailureTest.shutdownFailureStillAttemptsOtherEntitiesAndCanBeRetried(DisplayRendererFailureTest.java:111)
+
+However, there were exactly 7 interactions with this mock:
+interaction.setInteractionWidth(1.0f);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:159)
+
+interaction.setInteractionHeight(1.0f);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:160)
+
+interaction.setResponsive(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:161)
+
+interaction.setPersistent(true);
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:162)
+
+interaction.getPersistentDataContainer();
+-> at dev.helstera.render.display.DisplayRenderer.lambda$createVisuals$2(DisplayRenderer.java:163)
+
+interaction.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:166)
+
+interaction.getUniqueId();
+-> at dev.helstera.render.display.DisplayRenderer.createVisuals(DisplayRenderer.java:167)
+
+
+[INFO] 
+[ERROR] Tests run: 7, Failures: 5, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for helsteraMobs Parent 1.0.0:
+[INFO] 
+[INFO] helsteraMobs Parent ................................ SUCCESS [  0.003 s]
+[INFO] helstera-api ....................................... SUCCESS [  1.008 s]
+[INFO] helstera-core ...................................... SUCCESS [  0.131 s]
+[INFO] helstera-runtime ................................... SUCCESS [  0.125 s]
+[INFO] helstera-render-paper .............................. FAILURE [  6.564 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.025 s
+[INFO] Finished at: 2026-11-26T13:21:41+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project helstera-render-paper: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :helstera-render-paper

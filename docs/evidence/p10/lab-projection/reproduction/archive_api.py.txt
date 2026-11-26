@@ -1,0 +1,23 @@
+from pathlib import Path
+import json
+import subprocess
+import zipfile
+
+work = Path(__file__).resolve().parent
+repo = work.parents[1]
+lock = json.loads((repo/'scripts/helstera-api-lock.json').read_text())
+locked_files = {**lock['files'], **lock.get('runtimeFiles', {})}
+paths = list(locked_files)
+data = subprocess.check_output(['git', 'cat-file', '--batch'], cwd=work/'upstream',
+                               input=''.join(f"{lock['revision']}:{path}\n" for path in paths).encode())
+position = 0
+with zipfile.ZipFile(work/'api-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+    for path in paths:
+        end = data.index(b'\n', position)
+        sha, kind, size = data[position:end].decode().split()
+        assert sha == locked_files[path] and kind == 'blob'
+        position = end + 1
+        content = data[position:position+int(size)]
+        position += int(size) + 1
+        archive.writestr(f"helsteraMobs-{lock['revision']}/{path}", content)
+print('Exported locked original Git blobs, before patch application')

@@ -1,0 +1,175 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] helsteraMobs Parent                                                [pom]
+[INFO] helstera-api                                                       [jar]
+[INFO] helstera-core                                                      [jar]
+[INFO] helstera-runtime                                                   [jar]
+[INFO] helstera-render-paper                                              [jar]
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-parent >--------------------
+[INFO] Building helsteraMobs Parent 1.0.0                                 [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0                                        [2/5]
+[INFO]   from helstera-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-core >---------------------
+[INFO] Building helstera-core 1.0.0                                       [3/5]
+[INFO]   from helstera-core\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-core ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] -------------------< dev.helstera:helstera-runtime >--------------------
+[INFO] Building helstera-runtime 1.0.0                                    [4/5]
+[INFO]   from helstera-runtime\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-runtime ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 11 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-runtime ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 5 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.DisplayName,/org.junit.jupiter.api.Test
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-runtime ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.runtime.instance.InstanceCreationRollbackTest
+11�� 26, 2026 1:25:48 ���� dev.helstera.runtime.instance.InstanceManagerImpl logRemoval
+��Ϣ: instance-remove reason=invalid instance=1 model=probe entity=null type=null valid=false dead=false
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s -- in dev.helstera.runtime.instance.InstanceCreationRollbackTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-render-paper >-----------------
+[INFO] Building helstera-render-paper 1.0.0                               [5/5]
+[INFO]   from helstera-render-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.bukkit.event.EventHandler
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.Test
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[41,18] ��������Ӧ�� try �������������ÿ��Զ���������Դbukkit
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[54,18] ��������Ӧ�� try �������������ÿ��Զ���������Դbukkit
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-render-paper ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.render.display.DisplayRendererFailureTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Administrator\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.439 s -- in dev.helstera.render.display.DisplayRendererFailureTest
+[INFO] Running dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.122 s -- in dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for helsteraMobs Parent 1.0.0:
+[INFO] 
+[INFO] helsteraMobs Parent ................................ SUCCESS [  0.003 s]
+[INFO] helstera-api ....................................... SUCCESS [  1.004 s]
+[INFO] helstera-core ...................................... SUCCESS [  0.115 s]
+[INFO] helstera-runtime ................................... SUCCESS [  2.930 s]
+[INFO] helstera-render-paper .............................. SUCCESS [  5.430 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.666 s
+[INFO] Finished at: 2026-11-26T13:25:53+08:00
+[INFO] ------------------------------------------------------------------------

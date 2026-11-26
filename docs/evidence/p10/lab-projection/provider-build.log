@@ -1,0 +1,1513 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] helsteraMobs Parent                                                [pom]
+[INFO] helstera-api                                                       [jar]
+[INFO] helstera-core                                                      [jar]
+[INFO] helstera-runtime                                                   [jar]
+[INFO] helstera-render-paper                                              [jar]
+[INFO] helstera-resourcepack                                              [jar]
+[INFO] helstera-ai                                                        [jar]
+[INFO] helstera-integrations                                              [jar]
+[INFO] helstera-web                                                       [jar]
+[INFO] helstera-migration                                                 [jar]
+[INFO] helstera-platform                                                  [jar]
+[INFO] helstera-plugin                                                    [jar]
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-parent >--------------------
+[INFO] Building helsteraMobs Parent 1.0.0                                [1/12]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0                                       [2/12]
+[INFO]   from helstera-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-api ---
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-core >---------------------
+[INFO] Building helstera-core 1.0.0                                      [3/12]
+[INFO]   from helstera-core\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-core ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-core ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-core ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-core ---
+[INFO] 
+[INFO] -------------------< dev.helstera:helstera-runtime >--------------------
+[INFO] Building helstera-runtime 1.0.0                                   [4/12]
+[INFO]   from helstera-runtime\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-runtime ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-runtime ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-runtime ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-runtime ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-runtime ---
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-render-paper >-----------------
+[INFO] Building helstera-render-paper 1.0.0                              [5/12]
+[INFO]   from helstera-render-paper\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-render-paper\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-render-paper ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-render-paper ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-render-paper ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-render-paper ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-render-paper ---
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-resourcepack >-----------------
+[INFO] Building helstera-resourcepack 1.0.0                              [6/12]
+[INFO]   from helstera-resourcepack\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-resourcepack ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-resourcepack\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-resourcepack ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-resourcepack/src/main/java/dev/helstera/resourcepack/ResourcePackServiceImpl.java:[260,15] org.bukkit.entity.Player�е�setResourcePack(java.lang.String,byte[])�ѹ�ʱ
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-resourcepack ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-resourcepack ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-resourcepack ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-resourcepack ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-resourcepack\target\helstera-resourcepack-1.0.0.jar
+[INFO] 
+[INFO] ----------------------< dev.helstera:helstera-ai >----------------------
+[INFO] Building helstera-ai 1.0.0                                        [7/12]
+[INFO]   from helstera-ai\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-ai ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-ai\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-ai ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 94 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.bukkit.event.EventHandler
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiController.java:[279,50] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiController.java:[280,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiController.java:[480,60] org.bukkit.entity.LivingEntity�е�setSwimming(boolean)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiController.java:[832,30] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiController.java:[832,79] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/ThreatTable.java:[227,40] δ������ת��
+  ��Ҫ: P
+  �ҵ�:    capture#1, �� ?
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[713,35] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[756,29] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[762,26] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[785,35] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[846,57] org.bukkit.event.entity �е� org.bukkit.event.entity.EntityRemoveEvent �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[846,57] org.bukkit.event.entity �е� org.bukkit.event.entity.EntityRemoveEvent �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[846,57] org.bukkit.event.entity �е� org.bukkit.event.entity.EntityRemoveEvent �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/AiManager.java:[847,56] org.bukkit.event.entity �е� org.bukkit.event.entity.EntityRemoveEvent �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2045,43] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2046,58] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2609,30] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2609,79] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2694,25] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2694,74] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillService.java:[2716,34] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[471,54] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[472,50] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[564,80] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[565,50] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[680,80] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[681,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1131,86] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1178,34] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1312,33] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1312,76] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1325,54] org.bukkit.potion.PotionEffectType�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1663,84] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1664,50] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1856,45] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillTriggers.java:[1872,26] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillCatalog.java:[910,48] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillCatalog.java:[1027,44] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillCatalog.java:[1581,54] org.bukkit.potion.PotionEffectType�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/ShowHealthMessage.java:[47,16] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/immunity/ImmunityListener.java:[121,28] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/immunity/ImmunityListener.java:[159,68] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/immunity/ImmunityListener.java:[160,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/loot/LootService.java:[862,21] org.bukkit.inventory.meta.ItemMeta�е�setDisplayName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/loot/LootService.java:[874,63] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/GeneratedLootActions.java:[95,58] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/JsonMessageActions.java:[21,30] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/JsonMessageActions.java:[35,34] net.md_5.bungee.chat�е�net.md_5.bungee.chat.ComponentSerializer�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/JsonMessageActions.java:[35,53] net.md_5.bungee.chat.ComponentSerializer�е�parse(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/JsonMessageActions.java:[38,32] org.bukkit.entity.Player.Spigot�е�sendMessage(net.md_5.bungee.api.chat.BaseComponent...)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/PercentHealthAction.java:[19,36] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[170,57] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[179,77] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[212,55] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[248,25] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[248,109] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[250,102] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[253,97] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[295,36] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[303,61] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[307,94] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[541,35] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/Placeholders.java:[584,43] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/PotionAction.java:[22,44] org.bukkit.potion.PotionEffectType�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/ScoreboardActions.java:[70,63] org.bukkit.scoreboard.Scoreboard�е�registerNewObjective(java.lang.String,java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1406,35] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1421,68] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1607,46] org.bukkit.Registry�е�STRUCTURE�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1608,43] org.bukkit.generator.structure.Structure�е�getKey()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1865,52] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[1868,55] org.bukkit.enchantments.Enchantment�е�getByKey(org.bukkit.NamespacedKey)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2768,74] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2769,77] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2904,53] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2907,57] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2921,53] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2924,55] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2937,53] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[2940,55] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3000,37] ��������ĵ�int��ת��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3280,40] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3281,65] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3287,40] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3288,65] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3298,40] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[3299,65] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[4456,95] org.bukkit.event.entity.EntityDamageEvent�е�org.bukkit.event.entity.EntityDamageEvent.DamageModifier�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[4460,78] org.bukkit.event.entity.EntityDamageEvent�е�org.bukkit.event.entity.EntityDamageEvent.DamageModifier�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6212,42] ��������ĵ�long��ת��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6473,65] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6484,81] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6554,47] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6567,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6577,44] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6578,51] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6591,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6776,37] org.bukkit.entity.LivingEntity�е�setSwimming(boolean)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[6783,37] org.bukkit.entity.LivingEntity�е�setSwimming(boolean)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java:[7045,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[INFO] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-ai/src/main/java/dev/helstera/ai/skill/SkillExtras.java: ĳЩ�����ļ���ʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-ai ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-ai ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-ai ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-ai ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-ai\target\helstera-ai-1.0.0.jar
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-integrations >-----------------
+[INFO] Building helstera-integrations 1.0.0                              [8/12]
+[INFO]   from helstera-integrations\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-integrations ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-integrations\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-integrations ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 12 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/BlockedExternalAdapter.java:[55,61] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/IntegrationRegistryImpl.java:[78,47] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/items/CraftEngineAdapter.java:[54,41] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/items/ItemAdderAdapter.java:[53,39] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/mythicmobs/MythicMobsAdapter.java:[104,28] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/mythicmobs/MythicMobsModelMechanics.java:[66,48] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/mythicmobs/MythicMobsModelMechanics.java:[248,77] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/region/GriefPreventionAdapter.java:[75,36] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/region/LandsAdapter.java:[67,36] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-integrations/src/main/java/dev/helstera/integrations/region/WorldGuardAdapter.java:[54,36] org.bukkit.plugin.Plugin�е�getDescription()�ѹ�ʱ
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-integrations ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-integrations ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-integrations ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-integrations ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-integrations\target\helstera-integrations-1.0.0.jar
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-web >----------------------
+[INFO] Building helstera-web 1.0.0                                       [9/12]
+[INFO]   from helstera-web\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-web ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-web ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 4 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-web ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-web ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-web ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-web ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-web\target\helstera-web-1.0.0.jar
+[INFO] 
+[INFO] ------------------< dev.helstera:helstera-migration >-------------------
+[INFO] Building helstera-migration 1.0.0                                [10/12]
+[INFO]   from helstera-migration\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-migration ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-migration\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-migration ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 13 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-migration ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-migration ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-migration ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-migration ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-migration\target\helstera-migration-1.0.0.jar
+[INFO] 
+[INFO] -------------------< dev.helstera:helstera-platform >-------------------
+[INFO] Building helstera-platform 1.0.0                                 [11/12]
+[INFO]   from helstera-platform\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-platform ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-platform\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-platform ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-platform ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-platform ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-platform ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-platform ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-platform\target\helstera-platform-1.0.0.jar
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-plugin >--------------------
+[INFO] Building helstera-plugin 1.0.0                                   [12/12]
+[INFO]   from helstera-plugin\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-plugin ---
+[INFO] Copying 22 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-plugin ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 24 source files with javac [debug target 21] to target\classes
+������ (21.0.13.0.2) �г����쳣��������� Bug Database (https://bugs.java.com) ��û���ҵ��йظô���� Java ������ Bug����ͨ�� Java Bug ����ҳ (https://bugreport.java.com) �ύ Java ������ Bug�����ڱ����и������ĳ������������Ϣ�Լ����ݵ� Java �������Ĳ�����лл��
+java.lang.StackOverflowError
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBinary(Attr.java:4041)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.visitTree(ArgumentAttr.java:208)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$Visitor.visitBinary(JCTree.java:3575)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBinary.accept(JCTree.java:2175)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.attribArg(ArgumentAttr.java:198)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:660)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribArgs(Attr.java:763)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitApply(Attr.java:2617)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCMethodInvocation.accept(JCTree.java:1816)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitExec(Attr.java:2335)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCExpressionStatement.accept(JCTree.java:1603)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStats(Attr.java:755)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBlock(Attr.java:1448)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBlock.accept(JCTree.java:1092)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitTry(Attr.java:1972)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCTry.accept(JCTree.java:1465)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStats(Attr.java:755)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBlock(Attr.java:1448)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBlock.accept(JCTree.java:1092)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStats(Attr.java:755)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBlock(Attr.java:1448)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBlock.accept(JCTree.java:1092)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.visitTree(ArgumentAttr.java:208)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$Visitor.visitBlock(JCTree.java:3546)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBlock.accept(JCTree.java:1092)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.attribArg(ArgumentAttr.java:198)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:660)
+	at jdk.compiler/com.sun.tools.javac.comp.DeferredAttr.attribSpeculative(DeferredAttr.java:515)
+	at jdk.compiler/com.sun.tools.javac.comp.DeferredAttr.attribSpeculative(DeferredAttr.java:495)
+	at jdk.compiler/com.sun.tools.javac.comp.DeferredAttr.attribSpeculative(DeferredAttr.java:466)
+	at jdk.compiler/com.sun.tools.javac.comp.DeferredAttr.attribSpeculativeLambda(DeferredAttr.java:438)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.lambda$visitLambda$4(ArgumentAttr.java:302)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.processArg(ArgumentAttr.java:243)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.visitLambda(ArgumentAttr.java:300)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCLambda.accept(JCTree.java:1993)
+	at jdk.compiler/com.sun.tools.javac.comp.ArgumentAttr.attribArg(ArgumentAttr.java:198)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:660)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribArgs(Attr.java:763)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitApply(Attr.java:2617)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCMethodInvocation.accept(JCTree.java:1816)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribExpr(Attr.java:715)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitExec(Attr.java:2335)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCExpressionStatement.accept(JCTree.java:1603)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStats(Attr.java:755)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitBlock(Attr.java:1448)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCBlock.accept(JCTree.java:1092)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.visitMethodDef(Attr.java:1231)
+	at jdk.compiler/com.sun.tools.javac.tree.JCTree$JCMethodDecl.accept(JCTree.java:916)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribTree(Attr.java:662)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribStat(Attr.java:736)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribClassBody(Attr.java:5664)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribClass(Attr.java:5552)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attribClass(Attr.java:5376)
+	at jdk.compiler/com.sun.tools.javac.comp.Attr.attrib(Attr.java:5315)
+	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.attribute(JavaCompiler.java:1359)
+	at jdk.compiler/com.sun.tools.javac.main.JavaCompiler.compile(JavaCompiler.java:976)
+	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.lambda$doCall$0(JavacTaskImpl.java:104)
+	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.invocationHelper(JavacTaskImpl.java:152)
+	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.doCall(JavacTaskImpl.java:100)
+	at jdk.compiler/com.sun.tools.javac.api.JavacTaskImpl.call(JavacTaskImpl.java:94)
+	at org.codehaus.plexus.compiler.javac.JavaxToolsCompiler.compileInProcess(JavaxToolsCompiler.java:126)
+	at org.codehaus.plexus.compiler.javac.JavacCompiler.performCompile(JavacCompiler.java:214)
+	at org.apache.maven.plugin.compiler.AbstractCompilerMojo.execute(AbstractCompilerMojo.java:1228)
+	at org.apache.maven.plugin.compiler.CompilerMojo.execute(CompilerMojo.java:215)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
+	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
+	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.bukkit.event.EventHandler
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[276,37] org.bukkit.Bukkit�е�createInventory(org.bukkit.inventory.InventoryHolder,int,java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[390,17] org.bukkit.inventory.meta.ItemMeta�е�setDisplayName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[392,21] org.bukkit.inventory.meta.ItemMeta�е�setLore(java.util.List<java.lang.String>)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[404,62] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[601,45] org.bukkit.event.inventory.InventoryAction�е�HOTBAR_MOVE_AND_READD�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[618,55] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[697,42] org.bukkit.inventory.meta.ItemMeta�е�setDisplayName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[701,25] org.bukkit.inventory.meta.ItemMeta�е�setLore(java.util.List<java.lang.String>)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[708,25] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraCommand.java:[70,56] org.bukkit.plugin.java.JavaPlugin�е�getDescription()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[1159,53] �ҵ�ԭʼ����: java.util.concurrent.CompletableFuture
+  ȱ�ٷ�����java.util.concurrent.CompletableFuture<T>�����Ͳ���
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2334,44] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2456,43] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2459,44] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2490,41] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2515,72] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2516,68] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2522,83] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2940,22] org.bukkit.entity.Shearable �е� setSheared(boolean) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2957,48] org.bukkit.entity.Zombie�е�isBaby()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2967,80] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3022,36] org.bukkit.World�е�spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3140,77] org.bukkit.attribute.AttributeModifier �е� getUniqueId() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3274,96] org.bukkit.attribute.AttributeModifier �е� getUniqueId() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3537,66] org.bukkit.inventory.meta.ItemMeta�е�getDisplayName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3538,66] org.bukkit.inventory.meta.ItemMeta�е�getItemName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3539,87] org.bukkit.inventory.meta.ItemMeta�е�getLore()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3551,28] org.bukkit.inventory.meta.ItemMeta �е� getCanPlaceOn() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3552,28] org.bukkit.inventory.meta.ItemMeta �е� getCanDestroy() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3564,48] org.bukkit.inventory.meta.SkullMeta�е�getOwner()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4933,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4934,36] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4935,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4936,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5299,34] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5300,32] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5301,32] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5657,30] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5659,35] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5661,33] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5663,32] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5957,16] org.bukkit.event.entity.EntityDamageEvent �е� EntityDamageEvent(org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6753,39] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6755,37] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6759,80] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6761,82] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7048,19] org.bukkit.entity.Damageable�е�setMaxHealth(double)�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7049,36] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7116,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7117,52] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7253,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7889,97] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7892,99] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8195,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8197,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8199,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8491,96] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8492,100] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8497,98] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8498,102] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8660,52] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8661,54] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8691,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8692,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[INFO] 65 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for helsteraMobs Parent 1.0.0:
+[INFO] 
+[INFO] helsteraMobs Parent ................................ SUCCESS [  0.002 s]
+[INFO] helstera-api ....................................... SUCCESS [  1.389 s]
+[INFO] helstera-core ...................................... SUCCESS [  0.097 s]
+[INFO] helstera-runtime ................................... SUCCESS [  0.111 s]
+[INFO] helstera-render-paper .............................. SUCCESS [  0.105 s]
+[INFO] helstera-resourcepack .............................. SUCCESS [  1.633 s]
+[INFO] helstera-ai ........................................ SUCCESS [01:33 min]
+[INFO] helstera-integrations .............................. SUCCESS [  1.107 s]
+[INFO] helstera-web ....................................... SUCCESS [  3.150 s]
+[INFO] helstera-migration ................................. SUCCESS [ 18.704 s]
+[INFO] helstera-platform .................................. SUCCESS [  0.401 s]
+[INFO] helstera-plugin .................................... FAILURE [  3.776 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:04 min
+[INFO] Finished at: 2026-11-26T13:43:44+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project helstera-plugin: Compilation failure: Compilation failure: 
+[ERROR] û�д�������Ҫʹ�������κ���ע: /org.bukkit.event.EventHandler
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[276,37] org.bukkit.Bukkit�е�createInventory(org.bukkit.inventory.InventoryHolder,int,java.lang.String)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[390,17] org.bukkit.inventory.meta.ItemMeta�е�setDisplayName(java.lang.String)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[392,21] org.bukkit.inventory.meta.ItemMeta�е�setLore(java.util.List<java.lang.String>)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[404,62] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[601,45] org.bukkit.event.inventory.InventoryAction�е�HOTBAR_MOVE_AND_READD�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[618,55] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[697,42] org.bukkit.inventory.meta.ItemMeta�е�setDisplayName(java.lang.String)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[701,25] org.bukkit.inventory.meta.ItemMeta�е�setLore(java.util.List<java.lang.String>)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/CustomMenuService.java:[708,25] org.bukkit.enchantments.Enchantment�е�getByName(java.lang.String)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraCommand.java:[70,56] org.bukkit.plugin.java.JavaPlugin�е�getDescription()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[1159,53] �ҵ�ԭʼ����: java.util.concurrent.CompletableFuture
+[ERROR]   ȱ�ٷ�����java.util.concurrent.CompletableFuture<T>�����Ͳ���
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2334,44] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2456,43] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2459,44] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2490,41] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2515,72] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2516,68] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2522,83] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2940,22] org.bukkit.entity.Shearable �е� setSheared(boolean) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2957,48] org.bukkit.entity.Zombie�е�isBaby()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[2967,80] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3022,36] org.bukkit.World�е�spawnFallingBlock(org.bukkit.Location,org.bukkit.block.data.BlockData)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3140,77] org.bukkit.attribute.AttributeModifier �е� getUniqueId() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3274,96] org.bukkit.attribute.AttributeModifier �е� getUniqueId() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3537,66] org.bukkit.inventory.meta.ItemMeta�е�getDisplayName()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3538,66] org.bukkit.inventory.meta.ItemMeta�е�getItemName()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3539,87] org.bukkit.inventory.meta.ItemMeta�е�getLore()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3551,28] org.bukkit.inventory.meta.ItemMeta �е� getCanPlaceOn() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3552,28] org.bukkit.inventory.meta.ItemMeta �е� getCanDestroy() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[3564,48] org.bukkit.inventory.meta.SkullMeta�е�getOwner()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4933,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4934,36] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4935,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[4936,34] org.bukkit.event.entity.EntityCombustEvent�е�EntityCombustEvent(org.bukkit.entity.Entity,int)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5299,34] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5300,32] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5301,32] org.bukkit.event.entity.PlayerLeashEntityEvent�е�PlayerLeashEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.entity.Player)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5657,30] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5659,35] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5661,33] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5663,32] org.bukkit.event.entity.EntityDamageByEntityEvent �е� EntityDamageByEntityEvent(org.bukkit.entity.Entity,org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[5957,16] org.bukkit.event.entity.EntityDamageEvent �е� EntityDamageEvent(org.bukkit.entity.Entity,org.bukkit.event.entity.EntityDamageEvent.DamageCause,double) �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6753,39] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6755,37] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6759,80] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[6761,82] org.bukkit.entity.Shearable �е� isSheared() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7048,19] org.bukkit.entity.Damageable�е�setMaxHealth(double)�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7049,36] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7116,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7117,52] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7253,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7889,97] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[7892,99] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8195,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8197,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8199,40] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8491,96] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8492,100] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8497,98] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8498,102] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8660,52] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8661,54] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8691,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-plugin/src/main/java/dev/helstera/plugin/HelsteraPlugin.java:[8692,46] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :helstera-plugin

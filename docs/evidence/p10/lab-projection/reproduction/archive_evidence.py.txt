@@ -1,0 +1,155 @@
+from pathlib import Path
+import hashlib
+import json
+import shutil
+import subprocess
+
+work = Path(__file__).resolve().parent
+root = work.parents[1]
+target = root / 'docs/evidence/p10/lab-projection'
+target.mkdir(parents=True, exist_ok=False)
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8'))
+
+def copy(source, name=None):
+    destination = target / (name or source.name)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, destination)
+    assert sha(source) == sha(destination)
+
+for label in ('java21-final', 'java25-verified'):
+    for extension in ('json', 'log'):
+        copy(work / f'build-{label}.{extension}')
+    copy(work / f'artifacts-{label}/sbom.json', f'{label}/sbom.json')
+    build = read(work / f'build-{label}.json')
+    for module in ('stargenesis-paper', 'stargenesis-helstera'):
+        key = str(Path(module) / 'target' / (module + '-4.0.0-SNAPSHOT.jar'))
+        assert sha(work / f'artifacts-{label}' / (module + '.jar')) == build['sha256'][key]
+
+for source_name, destination_name in (('api-final-java21', 'upstream-java21'), ('api-verified-java25', 'upstream-java25')):
+    directory = work / source_name
+    for path in directory.iterdir():
+        if path.suffix in ('.json', '.log'):
+            copy(path, destination_name + '/' + path.name)
+    preparation = read(directory / 'preparation.json')
+    assert sha(root / 'scripts/helstera-api-lock.json') == preparation['sourceLockSha256']
+    counts = [preparation['tests'], *preparation['runtimeTests'].values()]
+    assert sum(c['tests'] for c in counts) == 330
+    assert not any(c[k] for c in counts for k in ('failures', 'errors', 'skipped'))
+
+for path in ('regression-before.log', 'renderer-before.log', 'regression-after.log', 'regression-complete.log',
+             'regression-before-argument.log', 'bridge-focused.log', 'bridge-focused-fixed.log',
+             'provider-build.log', 'provider-build-retry.log', 'provider-build-final.log',
+             'provider-clean-build-final.log', 'provider-bytecode.json', 'provider-stale-rejected.json',
+             'python-tests.log', 'node-tests.log', 'boundaries.log'):
+    copy(work / path)
+
+for label in ('projection-java21', 'projection-java25-verified'):
+    for name in ('worker-lock', 'settlement-lock', 'release-signer', 'design-signer'):
+        for extension in ('log', 'json'):
+            copy(root / '.work/helstera-bridge' / f'{name}-{label}.{extension}', f'probes/{name}-{label}.{extension}')
+
+server_results = {}
+for mode in ('projection', 'lab-projection', 'old-catalog', 'folia'):
+    directory = work / ('final-' + mode)
+    result_name = 'smoke-result.json' if mode == 'folia' else 'result.json'
+    result = read(directory / result_name)
+    assert result['passed'], mode
+    server_results[mode] = result
+    for path in directory.iterdir():
+        if path.name in ('result.json', 'smoke-result.json', 'console.log', 'smoke-console.log',
+                         'fixture-compile.log', 'client.log', 'client-result.json', 'server.properties'):
+            copy(path, f'servers/{mode}/{path.name}')
+    if mode == 'lab-projection':
+        copy(directory / 'plugins/HelsteraLabProjectionServerProbe/observed.json', 'servers/lab-projection/observed.json')
+    copy(work / f'final-{mode}-launch.log', f'servers/{mode}/launch.log')
+
+for historical in ('paper-api', 'paper-lab', 'paper-lab-retry'):
+    directory = work / historical
+    for path in directory.iterdir():
+        if path.name in ('result.json', 'console.log', 'fixture-compile.log', 'client.log', 'client-result.json'):
+            copy(path, f'historical/{historical}/{path.name}')
+    copy(work / (historical + '-launch.log'), f'historical/{historical}/launch.log')
+
+for path in ('final_servers.py', 'final_verification.py', 'record_build.py', 'archive_api.py', 'verify_evidence.py', 'archive_evidence.py'):
+    copy(work / path, f'reproduction/{path}.txt')
+
+files = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=root).decode().split('\0')
+build_inputs = {}
+for name in sorted(set(files)):
+    if not name or not (root / name).is_file():
+        continue
+    if (name == 'pom.xml' or name.startswith('.mvn/') or name in ('mvnw', 'mvnw.cmd')
+            or (name.startswith('stargenesis-') and ('/src/' in name or name.endswith('/pom.xml')))
+            or name.startswith('scripts/patches/') or name == 'scripts/helstera-api-lock.json'):
+        build_inputs[name] = sha(root / name)
+(target / 'build-inputs.json').write_text(json.dumps(build_inputs, indent=2) + '\n', encoding='utf-8')
+
+changed = subprocess.check_output(['git', 'ls-files', '-m', '--others', '--exclude-standard', '-z'], cwd=root).decode().split('\0')
+source_hashes = {name: sha(root / name) for name in sorted(set(changed))
+                 if name and (root / name).is_file() and not name.startswith('docs/evidence/')}
+source_hashes.update({name: sha(root / name) for name in (
+    'scripts/HelsteraCatalogServerProbe.java', 'scripts/offline_client_workflow_smoke.cjs',
+    'scripts/test_worker_directory_lock.py', 'scripts/test_settlement_process_lock.py',
+    'scripts/test_release_artifact_signer.py', 'scripts/test_signed_design_package_signer.py',
+    'scripts/server_smoke.py')})
+
+java21 = read(work / 'build-java21-final.json')
+java25 = read(work / 'build-java25-verified.json')
+provider = read(work / 'provider-bytecode.json')
+assert sha(work / 'upstream/helstera-plugin/target/helsteraMobs-1.0.0-full.jar') == provider['providerSha256']
+assert provider['compiledClasses'] == 161
+for mode in ('projection', 'lab-projection', 'old-catalog'):
+    result = server_results[mode]
+    for report_key, module in (('plugin', 'stargenesis-paper'), ('bridge', 'stargenesis-helstera')):
+        key = str(Path(module) / 'target' / (module + '-4.0.0-SNAPSHOT.jar'))
+        assert result['sha256'][report_key] == java21['sha256'][key]
+    if mode != 'old-catalog':
+        assert result['sha256']['provider'] == provider['providerSha256']
+
+artifact_hashes = {p.relative_to(target).as_posix(): sha(p) for p in sorted(target.rglob('*')) if p.is_file()}
+summary = {
+    'scope': 'Bounded Paper 1.21.11 passive Helstera lab projection and owned-visual cleanup; no P10 stage acceptance',
+    'sourceBaseCommit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
+    'sourceState': 'Implementation and tests captured by build-inputs.json and sourceSha256; precommit worktree evidence. build-inputs.json hashes raw local bytes; tracked script line endings may be normalized by Git.',
+    'versions': {'main': '4.0.0-SNAPSHOT', 'providerBase': '9298292538dc9d7c5ee800ff7e03f4c10e34ba97',
+                 'patchSha256': sha(root / 'scripts/patches/helstera-owned-visuals.patch'),
+                 'sourceLockSha256': sha(root / 'scripts/helstera-api-lock.json'),
+                 'providerJarSha256': provider['providerSha256']},
+    'java': {'21': java21, '25': java25},
+    'upstream': {'21': read(work / 'api-final-java21/preparation.json'),
+                 '25': read(work / 'api-verified-java25/preparation.json'),
+                 'scope': '330 tests in actual API/core/runtime/renderer; full provider clean package skips tests and is not a full upstream static-analysis claim'},
+    'scriptTests': {'python': 16, 'node': 6, 'moduleBoundaries': True},
+    'probes': {'java21': 4, 'java25': 4, 'scope': 'Separate-process directory/settlement locks and ephemeral release/design signing keys'},
+    'servers': server_results,
+    'providerBytecode': {'matchingClasses': 161, 'explicitRelocationExceptions': 3, 'detail': 'provider-bytecode.json'},
+    'failuresAndHistoricalRuns': [
+        'Before patch: 7 runtime and 5 renderer lifecycle regressions failed; original logs retained.',
+        'regression-before-argument.log is a PowerShell Maven argument failure, not behavioral evidence.',
+        'bridge-focused.log records an initial test-fixture compilation failure (uninitialized id); bridge-focused-fixed.log records the correction.',
+        'Initial full provider package failed with javac StackOverflowError at Xss256k; Xss1m retry passed.',
+        'Incremental provider package retained stale renderer bytecode despite success. Clean package and byte comparison are required.',
+        'Historical paper-api and initial paper-lab used provider 414be332c4a2a4fc69c5671935411389cffd4cea5394a26ed928562fc6fff7c5, lacking the final reentry fix; neither validates the final provider.',
+        'Initial paper-lab stopped before active gameplay because the test expected a permission message; Paper hides the denied command. Corrected the client expectation and reran in fresh directories.',
+        'Historical paper-lab-retry used the final provider with an earlier Java25 base JAR. Final servers use the recorded final Java21 artifacts.',
+        'Earlier Java25 preparation used CRLF lock bytes with equivalent JSON. Final Java25 preparation uses the checked-in LF lock hash; only this final preparation supports current-source claims.'
+    ],
+    'limitations': [
+        'No resource-pack appearance, animations, human acceptance, production-scale or long-duration capacity evidence.',
+        'No Folia Helstera compatibility; Folia test contains only the base StarGenesis plugin and console checks.',
+        'No bound-entity property rollback guarantee, fatal VM/process cleanup guarantee, or complete upstream lifecycle refactor.',
+        'No production settlement provider, reviewer authorization, operational trust roots, official release signing or production deployment.',
+        'Patch is maintained in StarGenesis, not represented as merged into the upstream repository.',
+        'JDK21 and JDK25 outputs are independently verified; hashes across JDK versions need not match.'
+    ],
+    'sourceSha256': source_hashes,
+    'evidenceSha256': artifact_hashes,
+}
+(target / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(json.dumps({'evidenceFiles': len(artifact_hashes), 'changedSourceFiles': len(source_hashes),
+                  'buildInputs': len(build_inputs), 'bytes': sum(p.stat().st_size for p in target.rglob('*') if p.is_file())}))

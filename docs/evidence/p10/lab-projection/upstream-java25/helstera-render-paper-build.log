@@ -1,0 +1,79 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Users/Administrator/.m2/wrapper/dists/apache-maven-3.9.11/03d7e36a140982eea48e22c1dcac01d8862b2550b2939e09a0809bbc5182a5bc/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< dev.helstera:helstera-render-paper >-----------------
+[INFO] Building helstera-render-paper 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ helstera-render-paper ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\source-eehp6xyb\helstera-render-paper\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [debug target 21] to target\classes
+[WARNING] 未与 -source 21 一起设置系统模块的位置
+  不设置系统模块的位置可能会导致类文件无法在 JDK 21 上运行
+    建议使用 --release 21 而不是 -source 21 -target 21，因为它会自动设置系统模块的位置
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-render-paper ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\source-eehp6xyb\helstera-render-paper\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-render-paper ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug target 21] to target\test-classes
+[WARNING] 未与 -source 21 一起设置系统模块的位置
+  不设置系统模块的位置可能会导致类文件无法在 JDK 21 上运行
+    建议使用 --release 21 而不是 -source 21 -target 21，因为它会自动设置系统模块的位置
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/api-verified-java25/source-eehp6xyb/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[41,18] 不能在相应的 try 语句的正文中引用可自动结束的资源bukkit
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/api-verified-java25/source-eehp6xyb/helstera-render-paper/src/test/java/dev/helstera/render/display/DisplayRendererUnloadTest.java:[54,18] 不能在相应的 try 语句的正文中引用可自动结束的资源bukkit
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-render-paper ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.render.display.DisplayRendererFailureTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Administrator\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.593 s -- in dev.helstera.render.display.DisplayRendererFailureTest
+[INFO] Running dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.133 s -- in dev.helstera.render.display.DisplayRendererUnloadTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ helstera-render-paper ---
+[INFO] Building jar: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\source-eehp6xyb\helstera-render-paper\target\helstera-render-paper-1.0.0.jar
+[INFO] 
+[INFO] >>> spotbugs:4.10.4.1:check (spotbugs-check) > :spotbugs @ helstera-render-paper >>>
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:spotbugs (spotbugs) @ helstera-render-paper ---
+[INFO] Spotbugs plugin skipped
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.4.1:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.10.4.1:check (spotbugs-check) < :spotbugs @ helstera-render-paper <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.10.4.1:check (spotbugs-check) @ helstera-render-paper ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ helstera-render-paper ---
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\source-eehp6xyb\helstera-render-paper\pom.xml to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-render-paper\1.0.0\helstera-render-paper-1.0.0.pom
+[INFO] Installing C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\api-verified-java25\source-eehp6xyb\helstera-render-paper\target\helstera-render-paper-1.0.0.jar to C:\Users\Administrator\.m2\repository\dev\helstera\helstera-render-paper\1.0.0\helstera-render-paper-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.156 s
+[INFO] Finished at: 2026-11-26T14:25:09+08:00
+[INFO] ------------------------------------------------------------------------

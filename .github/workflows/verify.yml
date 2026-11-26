@@ -23,11 +23,12 @@ jobs:
           node-version: '22'
       - run: python scripts/check_boundaries.py
       - run: python -m unittest discover -s scripts -p "test_prepare_helstera_api.py"
+      - run: python -m unittest discover -s scripts -p "test_verify_helstera_provider.py"
       - run: python -m unittest discover -s scripts -p "test_release_candidate_builder.py"
       - run: python -m unittest discover -s scripts -p "test_server_*lifecycle_smoke.py"
       - run: python -m unittest discover -s scripts -p "test_server_match_admin_smoke.py"
       - run: node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs
-      - run: python scripts/prepare_helstera_api.py
+      - run: python scripts/prepare_helstera_api.py --verify-runtime
       - run: sh mvnw -B -ntp -Phelstera-bridge verify
       - run: >-
           python scripts/test_settlement_process_lock.py
@@ -61,6 +62,7 @@ jobs:
             stargenesis-paper/target/stargenesis-paper-*.jar
             stargenesis-helstera/target/stargenesis-helstera-*.jar
             .work/helstera-api/preparation.json
+            .work/helstera-api/*-build.log
             target/release-signer-smoke.json
             target/signed-design-signer-smoke.json
             target/settlement-process-lock.json

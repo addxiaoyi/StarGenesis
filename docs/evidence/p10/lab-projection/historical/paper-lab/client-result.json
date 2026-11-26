@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "checks": [],
+  "humanAcceptance": false,
+  "error": "Error: SGProjectBob timed out waiting for \"permission\". Connection error=none. Recent messages:\nUnknown or incomplete command. See below for error\ngenesisprojection start stargenesis/catalog_probe<--[HERE]\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_projection_smoke.cjs:33:5)"
+}

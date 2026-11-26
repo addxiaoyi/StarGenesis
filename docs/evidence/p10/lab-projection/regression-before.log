@@ -1,0 +1,277 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] helsteraMobs Parent                                                [pom]
+[INFO] helstera-api                                                       [jar]
+[INFO] helstera-core                                                      [jar]
+[INFO] helstera-runtime                                                   [jar]
+[INFO] helstera-render-paper                                              [jar]
+[INFO] 
+[INFO] --------------------< dev.helstera:helstera-parent >--------------------
+[INFO] Building helsteraMobs Parent 1.0.0                                 [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-api >----------------------
+[INFO] Building helstera-api 1.0.0                                        [2/5]
+[INFO]   from helstera-api\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 86 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/behavior/BehaviorContext.java:[512,32] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/behavior/BehaviorContext.java:[561,32] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/behavior/Targeters.java:[619,37] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/behavior/Targeters.java:[620,56] org.bukkit.entity.Damageable�е�getMaxHealth()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[289,39] org.bukkit.Nameable�е�getCustomName()�ѹ�ʱ
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[366,30] org.bukkit.util �е� org.bukkit.util.OldEnum �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/util/EntityTypeSelector.java:[366,64] org.bukkit.util.OldEnum �е� name() �ѹ�ʱ, �ұ��Ϊ��ɾ��
+[WARNING] /C:/Users/Administrator/Documents/luoseng/StarGenesis/.work/helstera-projection/upstream/helstera-api/src/main/java/dev/helstera/api/util/MythicGeneratedLootSpec.java:[36,29] org.bukkit�е�org.bukkit.ChatColor�ѹ�ʱ
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-api ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 35 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.DisplayName,/org.junit.jupiter.api.Test,/org.junit.jupiter.api.io.TempDir
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-api ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] ---------------------< dev.helstera:helstera-core >---------------------
+[INFO] Building helstera-core 1.0.0                                       [3/5]
+[INFO]   from helstera-core\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-core ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-core\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 5 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.DisplayName,/org.junit.jupiter.api.io.TempDir,/org.junit.jupiter.api.Test
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-core ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] 
+[INFO] -------------------< dev.helstera:helstera-runtime >--------------------
+[INFO] Building helstera-runtime 1.0.0                                    [4/5]
+[INFO]   from helstera-runtime\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ helstera-runtime ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug target 21] to target\classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ helstera-runtime ---
+[INFO] skip non existing resourceDirectory C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ helstera-runtime ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 5 source files with javac [debug target 21] to target\test-classes
+[INFO] ��������·���з�����һ�����������������������
+  ��ע������δ�����а�� javac ���ܻ������ע������
+  �������ٰ�����ָ����һ���������� (-processor)��
+  ��ָ��������·�� (--processor-path, --processor-module-path)��
+  ����ʽ��������ע���� (-proc:only, -proc:full)��
+  ��ʹ�� -Xlint:-options ���ش���Ϣ��
+  ��ʹ�� -proc:none ������ע������
+[WARNING] û�д�������Ҫʹ�������κ���ע: /org.junit.jupiter.api.DisplayName,/org.junit.jupiter.api.Test
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ helstera-runtime ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Running dev.helstera.runtime.instance.InstanceCreationRollbackTest
+11�� 26, 2026 1:20:52 ���� dev.helstera.runtime.instance.InstanceManagerImpl logRemoval
+��Ϣ: instance-remove reason=invalid instance=1 model=probe entity=null type=null valid=false dead=false
+[ERROR] Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.159 s <<< FAILURE! -- in dev.helstera.runtime.instance.InstanceCreationRollbackTest
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.transformFailureRollsBackAlreadyCreatedVisuals -- Time elapsed: 0.075 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.transformFailureRollsBackAlreadyCreatedVisuals(InstanceCreationRollbackTest.java:81)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.despawnCanRetryAfterFailureAndIsIdempotentAfterSuccess -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.despawnCanRetryAfterFailureAndIsIdempotentAfterSuccess(InstanceCreationRollbackTest.java:99)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.createFailureInvalidatesAndCleansWithoutRemoveEvent -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.createFailureInvalidatesAndCleansWithoutRemoveEvent(InstanceCreationRollbackTest.java:72)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.invalidLocationDoesNotPublishAnInstance -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.invalidLocationDoesNotPublishAnInstance(InstanceCreationRollbackTest.java:113)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.invalidCleanupRetriesRatherThanLosingRendererOwnership -- Time elapsed: 0.041 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.invalidCleanupRetriesRatherThanLosingRendererOwnership(InstanceCreationRollbackTest.java:107)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.nullOptionsAreNormalizedBeforeCallingRenderer -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <dev.helstera.api.instance.SpawnOptions@35595527> but was: <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertSame.failNotSame(AssertSame.java:50)
+	at org.junit.jupiter.api.AssertSame.assertSame(AssertSame.java:35)
+	at org.junit.jupiter.api.AssertSame.assertSame(AssertSame.java:30)
+	at org.junit.jupiter.api.Assertions.assertSame(Assertions.java:2860)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.nullOptionsAreNormalizedBeforeCallingRenderer(InstanceCreationRollbackTest.java:88)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] dev.helstera.runtime.instance.InstanceCreationRollbackTest.partialCreationIsNeverPublished -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.lambda$partialCreationIsNeverPublished$1(InstanceCreationRollbackTest.java:60)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest$Renderer.createVisuals(InstanceCreationRollbackTest.java:33)
+	at dev.helstera.runtime.instance.InstanceManagerImpl.spawn(InstanceManagerImpl.java:63)
+	at dev.helstera.runtime.instance.InstanceCreationRollbackTest.partialCreationIsNeverPublished(InstanceCreationRollbackTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   InstanceCreationRollbackTest.createFailureInvalidatesAndCleansWithoutRemoveEvent:72 expected: <0> but was: <1>
+[ERROR]   InstanceCreationRollbackTest.despawnCanRetryAfterFailureAndIsIdempotentAfterSuccess:99 expected: <2> but was: <1>
+[ERROR]   InstanceCreationRollbackTest.invalidCleanupRetriesRatherThanLosingRendererOwnership:107 expected: <2> but was: <1>
+[ERROR]   InstanceCreationRollbackTest.invalidLocationDoesNotPublishAnInstance:113 expected: <0> but was: <1>
+[ERROR]   InstanceCreationRollbackTest.nullOptionsAreNormalizedBeforeCallingRenderer:88 expected: <dev.helstera.api.instance.SpawnOptions@35595527> but was: <null>
+[ERROR]   InstanceCreationRollbackTest.partialCreationIsNeverPublished:63->lambda$partialCreationIsNeverPublished$1:60 expected: <0> but was: <1>
+[ERROR]   InstanceCreationRollbackTest.transformFailureRollsBackAlreadyCreatedVisuals:81 expected: <0> but was: <1>
+[INFO] 
+[ERROR] Tests run: 7, Failures: 7, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for helsteraMobs Parent 1.0.0:
+[INFO] 
+[INFO] helsteraMobs Parent ................................ SUCCESS [  0.002 s]
+[INFO] helstera-api ....................................... SUCCESS [ 10.610 s]
+[INFO] helstera-core ...................................... SUCCESS [  1.485 s]
+[INFO] helstera-runtime ................................... FAILURE [  2.252 s]
+[INFO] helstera-render-paper .............................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.535 s
+[INFO] Finished at: 2026-11-26T13:20:52+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project helstera-runtime: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\helstera-projection\upstream\helstera-runtime\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :helstera-runtime

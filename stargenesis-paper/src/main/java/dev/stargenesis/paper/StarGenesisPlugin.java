@@ -22,6 +22,8 @@ import dev.stargenesis.paper.communication.RadioProtocol;
 import dev.stargenesis.paper.communication.RadioProtocol;
 import dev.stargenesis.integrations.CapabilityRegistry;
 import dev.stargenesis.integrations.ModelCatalog;
+import dev.stargenesis.integrations.EntityProjection;
+import dev.stargenesis.integrations.LabProjectionSource;
 import dev.stargenesis.paper.integration.ModelCatalogController;
 import dev.stargenesis.integrations.InstalledPlugin;
 import dev.stargenesis.integrations.IntegrationStatus;
@@ -73,6 +75,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
             statuses = inspectCapabilities();
             modelCatalog = new ModelCatalogController(this::currentModelCatalog);
             labs = new LabController(this, budget, stepDuration, getDataFolder().toPath().resolve("labs"));
+            getServer().getServicesManager().register(LabProjectionSource.class, labs::projectionSnapshot,
+                    this, org.bukkit.plugin.ServicePriority.Normal);
             blueprints = new BlueprintController(this,
                     new BlueprintStore(getDataFolder().toPath().resolve("blueprints"), new DesignCodec()));
             programs = new ProgramController(this,
@@ -185,6 +189,11 @@ public final class StarGenesisPlugin extends JavaPlugin {
         return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
     }
 
+    private EntityProjection currentProjection() {
+        var registration = getServer().getServicesManager().getRegistration(EntityProjection.class);
+        return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
+    }
+
     private List<IntegrationStatus> inspectCapabilities() {
         Map<String, InstalledPlugin> inventory = Arrays.stream(getServer().getPluginManager().getPlugins())
                 .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
@@ -193,7 +202,15 @@ public final class StarGenesisPlugin extends JavaPlugin {
             ModelCatalog catalog = currentModelCatalog();
             if (catalog != null && catalog.integrationId().equals("helstera"))
                 // The supplying plugin owns closure; this inspection only borrows verification.
-                registry.registerAdapter("helstera", catalog::verify);
+                registry.registerAdapter("helstera", plugin -> {
+                    var inspection = catalog.verify(plugin);
+                    EntityProjection projection = currentProjection();
+                    if (projection != null) {
+                        try { return projection.verify(plugin); }
+                        catch (RuntimeException | LinkageError unavailable) { /* Inspection remains available. */ }
+                    }
+                    return inspection;
+                });
             return registry.inspect(name -> Optional.ofNullable(inventory.get(name)));
         }
     }
@@ -291,6 +308,9 @@ public final class StarGenesisPlugin extends JavaPlugin {
 
     @Override public void onDisable() {
         boolean clean = true;
+        EntityProjection projection = currentProjection();
+        if (projection != null) clean &= stop("Model projection", projection::close, () -> projection.reservedEntities() == 0);
+        getServer().getServicesManager().unregisterAll(this);
         modelCatalog = null;
         if (publisherTrust != null) { publisherTrust = null; }
         if (designImports != null) { designImports = null; }
@@ -302,13 +322,13 @@ public final class StarGenesisPlugin extends JavaPlugin {
         if (blueprints != null) { clean &= stop("Blueprint", blueprints::close, () -> true); blueprints = null; }
         if (labs != null) { clean &= stop("Lab", labs::close, labs::isStopped); labs = null; }
         statuses = List.of();
-        if (clean) getLogger().info("StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.");
+        if (clean) getLogger().info("StarGenesis stopped cleanly; owned workers and registered services stopped; real settlement remains disabled.");
         else getLogger().severe("StarGenesis shutdown incomplete; inspect service failures. Active workers retain their storage directory locks until they exit.");
     }
 
     private boolean stop(String service, Runnable action, java.util.function.BooleanSupplier stopped) {
         try { action.run(); return stopped.getAsBoolean(); }
-        catch (RuntimeException failure) {
+        catch (RuntimeException | LinkageError failure) {
             getLogger().log(java.util.logging.Level.SEVERE, service + " shutdown failed; continuing other service cleanup", failure);
             return false;
         }

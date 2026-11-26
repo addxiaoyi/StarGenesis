@@ -5,7 +5,7 @@
 | 仓库 | 本次实际读取提交 | 详细证据 |
 |---|---|---|
 | addxiaoyi/starcore | f769e62799e769a18fe51305b545869a17f80cd1 | [audits/STARCORE.md](audits/STARCORE.md) |
-| addxiaoyi/helsteraMobs | a2969dfaf83cd35e642147f4bd7743ae04d34e7a（2026-11-26复核） | [audits/HELSTERA.md](audits/HELSTERA.md)、[只读桥接](HELSTERA_MODEL_CATALOG.md) |
+| addxiaoyi/helsteraMobs | 9298292538dc9d7c5ee800ff7e03f4c10e34ba97 + 锁定清理补丁（2026-11-26） | [audits/HELSTERA.md](audits/HELSTERA.md)、[只读桥接](HELSTERA_MODEL_CATALOG.md) |
 | addxiaoyi/SenLuo_Plugin | 6a432fe54097a3ebf22ba5757e016b602c711f28 | [audits/SENLUO.md](audits/SENLUO.md) |
 
 StarCore 经机器现有 Git 认证只读取得；匿名 HTTP 404 不代表不存在。SenLuo 使用独立 main 克隆，没有改动旁边用户已有其他分支和未提交修改。
@@ -19,6 +19,8 @@ StarCore 经机器现有 Git 认证只读取得；匿名 HTTP 404 不代表不�
 事件总线、事件历史服务和两套领土服务语义不同。`StarCoreApi` 没有 typed eventBus getter；文档提到的 WarDeclarationExtensionPoint/WarConclusionExtensionPoint 在本次源代码未实现。内部 service 可取得不等于稳定 ABI，不能直接依赖数据库或推测方法。
 
 ## helsteraMobs
+
+已增加Paper限定的被动实验室投影，要求实际提供方包含固定清理补丁，见[当前投影合同](HELSTERA_LAB_PROJECTION.md)。模型目录与实体投影分别验证；下面旧API行号/风险描述保留其审计语境，不能据此宣称资源包外观、动画或Folia已验收。
 
 `helstera-api/.../HelsteraApi.java:14–32` 已有 get/isAvailable；`Helstera.java:18–43` 暴露模型/实例/行为/事件等服务。API ready 不等于指定模型已加载。`InstanceManager.java:10–40` 要求全部方法主线程，spawn/bind/despawn 实际访问 Bukkit/render；`BehaviorRegistry` 注册允许任意线程，但动作/条件执行主线程，且缺通用注销能力。
 
@@ -36,6 +38,6 @@ Cookery 导出 ID 使用 `kaleidoscopecookery:*`，不能与源模型 `kaleidosc
 
 ## P0 能力策略和下一步
 
-CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展仅激活`model.inspect`，其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
+CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展验证`model.inspect`与`entity.project`；投影只对支持固定清理契约的提供方激活，清理未完成时降级为查询。其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
 
-2026-11-26首次执行真实Helstera只读目录桥接：固定源码、实际API编译、Paper1.21.11-132模型解析/注册/卸载/重载、提供方停用与旧引用拒绝通过。其范围不包含显示实体、资源包、动画或Folia；上游实例创建失败未回滚已用实际运行时复现。下一步须解决该失败契约并取得实体投影证据；StarCore真实结算和SenLuo物品桥接仍未验收。
+2026-11-26首次执行真实Helstera只读目录桥接：固定源码、实际API编译、Paper1.21.11-132模型解析/注册/卸载/重载、提供方停用与旧引用拒绝通过。该历史批次不包含显示实体、资源包、动画或Folia；上游实例创建失败未回滚已用实际运行时复现。后续投影批次以固定依赖补丁修复创建与清理契约，证据见`docs/evidence/p10/lab-projection/summary.json`。StarCore真实结算和SenLuo物品桥接仍未验收。

@@ -1,8 +1,12 @@
 ﻿# helsteraMobs 源码审计（P0）
 
+## 2026-11-26 后续实体投影
+
+基于 `9298292538dc9d7c5ee800ff7e03f4c10e34ba97` 加固定SHA-256的清理补丁，新增有界被动模型投影。创建回滚、回调归属、失败清理重试与重入处理见[投影合同](../HELSTERA_LAB_PROJECTION.md)。补丁未声称已合并上游；资源包外观、动画、真人和Folia兼容仍待验收。以下保留各历史提交的独立结论。
+
 ## 2026-11-26 复核与只读桥接
 
-最新复核提交为`a2969dfaf83cd35e642147f4bd7743ae04d34e7a`。固定源码归档2589个文件逐项通过Git blob校验；API模块222项测试通过，完整插件仅执行跳过测试的package。Paper1.21.11-132已验证独立`StarGenesisHelstera`模型目录查询、未加载模型、真实解析/主线程注册/卸载/重新加载，以及提供方停用后的服务注销和旧引用拒绝。能力仅`model.inspect`，详见[实现说明](../HELSTERA_MODEL_CATALOG.md)和`docs/evidence/p10/model-catalog/summary.json`。
+该只读批次复核提交为`a2969dfaf83cd35e642147f4bd7743ae04d34e7a`。固定源码归档2589个文件逐项通过Git blob校验；API模块222项测试通过，完整插件仅执行跳过测试的package。Paper1.21.11-132已验证独立`StarGenesisHelstera`模型目录查询、未加载模型、真实解析/主线程注册/卸载/重新加载，以及提供方停用后的服务注销和旧引用拒绝。能力仅`model.inspect`，详见[实现说明](../HELSTERA_MODEL_CATALOG.md)和`docs/evidence/p10/model-catalog/summary.json`。
 
 复核新增两个具体限制：`ModelRegistryImpl.load`只解析并返回结果，不执行接口注释所述的自动注册；`InstanceManagerImpl.spawn`先登记再调用renderer，注入renderer失败后实际管理器仍保留1个有效实例。`DisplayRenderer.createVisuals`在所有实体生成后才登记Visuals，公共API不能保证清理中途残留。故障探针没有实际创建服务器实体，不能将其称为已实测实体泄漏。主线程、行为无注销、Folia未支持、1.21.11上游仍exploratory的限制不变。以下保留原P0固定提交审计，原行号仅对应原提交。
 

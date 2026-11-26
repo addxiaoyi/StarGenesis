@@ -4,7 +4,8 @@ import tempfile
 import unittest
 import zipfile
 
-from prepare_helstera_api import extract_locked
+from prepare_helstera_api import extract_locked, verified_patch
+import json
 
 
 class SourceLockTest(unittest.TestCase):
@@ -33,6 +34,16 @@ class SourceLockTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Unsafe'):
                 extract_locked(root / 'source.zip', root / 'source',
                                {'revision': 'fixed', 'files': {'../escape.java': '0' * 40}})
+
+    def test_checked_in_lifecycle_patch_is_pinned_and_tampering_is_rejected(self):
+        lock = json.loads(Path(__file__).with_name('helstera-api-lock.json').read_text())
+        self.assertTrue(verified_patch(lock).is_file())
+        lock['patch']['sha256'] = '0' * 64
+        with self.assertRaisesRegex(ValueError, 'patch hash/path mismatch'):
+            verified_patch(lock)
+        lock['patch']['file'] = '../../pom.xml'
+        with self.assertRaisesRegex(ValueError, 'patch hash/path mismatch'):
+            verified_patch(lock)
 
 
 if __name__ == '__main__':

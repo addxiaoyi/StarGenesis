@@ -2,6 +2,15 @@ name: StarGenesisHelstera
 version: '${project.version}'
 main: dev.stargenesis.helstera.HelsteraCatalogPlugin
 api-version: '1.21.11'
-description: Read-only Helstera model inspection for StarGenesis
+description: Helstera model inspection and bounded passive lab projection for StarGenesis
 depend: [StarGenesis, helsteraMobs]
 # Helstera itself does not support Folia. This plugin must never opt in on its behalf.
+commands:
+  genesisprojection:
+    description: Preview your running lab with disposable model entities
+    usage: /genesisprojection start <model> | stop | status
+    permission: stargenesis.projection
+permissions:
+  stargenesis.projection:
+    description: Preview the player's own running lab using a loaded model
+    default: op
