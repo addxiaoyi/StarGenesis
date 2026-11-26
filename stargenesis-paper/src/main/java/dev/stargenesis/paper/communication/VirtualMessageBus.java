@@ -29,8 +29,8 @@ public final class VirtualMessageBus {
     private final Map<EnvelopeKey, ProtocolMessageCodec.Message> evidence = new HashMap<>();
     private final Set<EnvelopeKey> acknowledged = new HashSet<>();
     private final List<RadioEvent> events = new ArrayList<>();
+    // Only recipients with pending deliveries are retained; idle endpoint churn cannot grow this map.
     private final Map<UUID, List<Delivery>> mailboxes = new HashMap<>();
-    private final Map<UUID, Integer> unacknowledged = new HashMap<>();
     private long tick;
     private int messagesThisTick;
 
@@ -51,8 +51,6 @@ public final class VirtualMessageBus {
         if (!endpoints.containsKey(player) && endpoints.size() >= MAX_PARTICIPANTS)
             throw new IllegalStateException("Radio participant budget exhausted");
         endpoints.put(player, new EndpointState(endpoint, protocols));
-        mailboxes.computeIfAbsent(player, ignored -> new ArrayList<>());
-        unacknowledged.putIfAbsent(player, 0);
     }
 
     /** Returns false for an identical retry, and rejects reuse of the same protocol sequence with different content. */
@@ -99,13 +97,13 @@ public final class VirtualMessageBus {
         if (messagesThisTick >= maxMessagesPerTick) throw new IllegalStateException("Messages-per-tick budget exhausted");
         if (evidence.size() >= MAX_RETAINED_EVIDENCE) throw new IllegalStateException("Message evidence budget exhausted");
         if (events.size() >= MAX_RETAINED_EVENTS) throw new IllegalStateException("Radio event log budget exhausted");
-        if (unacknowledged.get(message.recipient()) >= MAX_UNACKNOWLEDGED_PER_RECIPIENT)
+        if (pendingCount(message.recipient()) >= MAX_UNACKNOWLEDGED_PER_RECIPIENT)
             throw new IllegalStateException("Recipient mailbox budget exhausted");
 
         long availableAt = Math.addExact(tick, 1);
         evidence.put(key, message);
-        mailboxes.get(message.recipient()).add(new Delivery(key, message, availableAt));
-        unacknowledged.merge(message.recipient(), 1, Integer::sum);
+        mailboxes.computeIfAbsent(message.recipient(), ignored -> new ArrayList<>())
+                .add(new Delivery(key, message, availableAt));
         messagesThisTick++;
         events.add(new RadioEvent(tick, "radio.sent", message.protocol(), message.protocolHash(),
                 message.sender(), message.recipient(), message.sequence()));
@@ -151,8 +149,8 @@ public final class VirtualMessageBus {
         if (delivery.availableAt > tick) throw new IllegalArgumentException("Cannot acknowledge an undelivered message");
         if (events.size() >= MAX_RETAINED_EVENTS) throw new IllegalStateException("Radio event log budget exhausted");
         mailbox.remove(delivery);
+        if (mailbox.isEmpty()) mailboxes.remove(recipient);
         acknowledged.add(key);
-        unacknowledged.merge(recipient, -1, Integer::sum);
         events.add(new RadioEvent(tick, "radio.acknowledged", message.protocol(), message.protocolHash(),
                 recipient, message.sender(), message.sequence()));
         return true;
@@ -160,9 +158,13 @@ public final class VirtualMessageBus {
 
     public synchronized long tick() { return tick; }
     public synchronized int participantCount() { return endpoints.size(); }
+    synchronized int retainedMailboxCount() { return mailboxes.size(); }
     public synchronized int retainedEvidenceCount() { return evidence.size(); }
     public synchronized List<RadioEvent> events() { return List.copyOf(events); }
-    public synchronized int pendingCount(UUID recipient) { return unacknowledged.getOrDefault(recipient, 0); }
+    public synchronized int pendingCount(UUID recipient) {
+        List<Delivery> mailbox = mailboxes.get(recipient);
+        return mailbox == null ? 0 : mailbox.size();
+    }
 
     /** Transaction candidate; messages and endpoint values are immutable, mailbox lists are not shared. */
     synchronized VirtualMessageBus copy() {
@@ -172,7 +174,6 @@ public final class VirtualMessageBus {
         copy.acknowledged.addAll(acknowledged);
         copy.events.addAll(events);
         mailboxes.forEach((recipient, deliveries) -> copy.mailboxes.put(recipient, new ArrayList<>(deliveries)));
-        copy.unacknowledged.putAll(unacknowledged);
         copy.messagesThisTick = messagesThisTick;
         return copy;
     }
@@ -222,7 +223,6 @@ public final class VirtualMessageBus {
         }
 
         Map<UUID, List<Delivery>> restoredMailboxes = new HashMap<>();
-        Map<UUID, Integer> restoredPendingCounts = new HashMap<>();
         Set<EnvelopeKey> pendingKeys = new HashSet<>();
         for (PendingDelivery saved : snapshot.pending()) {
             EnvelopeKey key = key(saved.message());
@@ -236,7 +236,6 @@ public final class VirtualMessageBus {
             if (mailbox.size() >= MAX_UNACKNOWLEDGED_PER_RECIPIENT)
                 throw new IllegalArgumentException("Radio snapshot exceeds a recipient mailbox budget");
             mailbox.add(new Delivery(key, saved.message(), saved.availableAt()));
-            restoredPendingCounts.merge(saved.recipient(), 1, Integer::sum);
         }
         if (pendingKeys.size() + restoredAcknowledgements.size() != restoredEvidence.size())
             throw new IllegalArgumentException("Radio snapshot has unaccounted message evidence");
@@ -277,7 +276,6 @@ public final class VirtualMessageBus {
                     .thenComparing(delivery -> delivery.message.protocol()));
             mailboxes.put(recipient, mailbox);
         });
-        unacknowledged.putAll(restoredPendingCounts);
         events.addAll(snapshot.events());
         messagesThisTick = (int) restoredEvidence.values().stream().filter(message -> message.tick() == tick).count();
     }
@@ -311,10 +309,8 @@ public final class VirtualMessageBus {
     }
 
     private List<Delivery> mailbox(UUID recipient) {
-        if (!endpoints.containsKey(recipient)) throw new IllegalArgumentException("Participant is not registered");
-        List<Delivery> mailbox = mailboxes.get(recipient);
-        if (mailbox == null) throw new IllegalArgumentException("Participant is not registered");
-        return mailbox;
+        requireEndpoint(recipient);
+        return mailboxes.getOrDefault(recipient, List.of());
     }
 
     private long distance(Endpoint first, Endpoint second) {

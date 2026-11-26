@@ -1,0 +1,14 @@
+{
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+  "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+  "suites": 67,
+  "tests": 507,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "radio-retention-verify-java21.log",
+  "logSha256": "70ee81248c7d11bc86c9dff9f479f0f712b897407ef1606b6b82d2885f2681ad",
+  "pluginSha256": "2fc731bdd75bfdfe1e76626293f937ade3cd9e5cef81826ae7f025bb0b5a112b",
+  "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+}

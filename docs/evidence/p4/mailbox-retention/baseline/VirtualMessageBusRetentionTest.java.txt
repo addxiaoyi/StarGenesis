@@ -1,0 +1,57 @@
+package dev.stargenesis.paper.communication;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class VirtualMessageBusRetentionTest {
+    private static final UUID SENDER = new UUID(0, 91), RECIPIENT = new UUID(0, 92);
+    private static final VirtualMessageBus.Endpoint ENDPOINT = new VirtualMessageBus.Endpoint("retention", 0, 0, 0, 16);
+    private static final Set<VirtualMessageBus.ProtocolKey> INSTALLED = Set.of(RadioProtocol.key());
+
+    @Test void idleParticipantChurnDoesNotRetainMailboxesOrChangeDurableState() {
+        var bus = new VirtualMessageBus(0, 8);
+        var before = bus.snapshot();
+        for (int index = 0; index < 10_000; index++) {
+            UUID player = new UUID(1, index);
+            bus.register(player, ENDPOINT, INSTALLED);
+            assertTrue(bus.poll(player, 1).isEmpty());
+            assertEquals(0, bus.pendingCount(player));
+            if (index % 2 == 0) bus.unregister(player);
+            else assertTrue(bus.unregisterIfRegistered(player));
+        }
+        assertEquals(before, bus.snapshot());
+        assertEquals(0, bus.participantCount());
+        assertEquals(0, bus.retainedMailboxCount(), "Empty mailboxes must not accumulate across player identities");
+    }
+
+    @Test void lastAcknowledgementReleasesMailboxWithoutReleasingSequenceEvidence() {
+        var bus = bus(8);
+        assertTrue(bus.sendNow(SENDER, RadioProtocol.protocol(), RECIPIENT, 1, payload(1)).queued());
+        bus.advance(1);
+        var message = bus.poll(RECIPIENT, 1).getFirst();
+        assertTrue(bus.acknowledge(RECIPIENT, message));
+        assertFalse(bus.acknowledge(RECIPIENT, message));
+        assertFalse(bus.sendNow(SENDER, RadioProtocol.protocol(), RECIPIENT, 1, payload(1)).queued());
+        assertEquals(1, bus.retainedEvidenceCount());
+        assertEquals(2, bus.events().size());
+        assertTrue(bus.poll(RECIPIENT, 1).isEmpty());
+        assertEquals(0, bus.pendingCount(RECIPIENT));
+        assertEquals(0, bus.retainedMailboxCount(), "Acknowledged deliveries must not leave empty recipient state");
+    }
+
+    private VirtualMessageBus bus(int budget) {
+        var bus = new VirtualMessageBus(0, budget);
+        bus.register(SENDER, ENDPOINT, INSTALLED);
+        bus.register(RECIPIENT, ENDPOINT, INSTALLED);
+        return bus;
+    }
+
+    private Map<String, String> payload(int sequence) {
+        return Map.of("sequence", Integer.toString(sequence), "channel", "test", "value", "ready");
+    }
+}
