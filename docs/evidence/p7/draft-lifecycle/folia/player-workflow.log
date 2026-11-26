@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "kind": "folia",
+  "players": 3,
+  "humanAcceptance": false,
+  "checks": [
+    "conflicting_save_preserves_author_bytes_and_editor_unsaved_work",
+    "hard_disconnect_releases_workspace_and_rejoin_loads_saved_document",
+    "revoked_editor_cannot_save_or_reopen_but_has_a_free_workspace_slot",
+    "author_rejoin_discards_only_unsaved_changes_and_publishes_saved_hash",
+    "cloned_draft_reopens_after_explicit_close"
+  ],
+  "identities": {
+    "author": "d2fa76a2-f974-37c8-a02c-86a7068703e1",
+    "editor": "34082ec3-f26e-3477-a643-bb0b310a72f0",
+    "reviewer": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+  },
+  "finalDraftFileSha256": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+  "finalDraftDesignHash": "ff532a8614554c8d1ae9bf509291858df3b8bf5f7077652f61f5299ff7b2d233"
+}

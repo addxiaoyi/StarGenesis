@@ -1,0 +1,73 @@
+package dev.stargenesis.paper.arena;
+
+import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.design.ArenaRuleset;
+import dev.stargenesis.design.ArenaRulesetWorkspace;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Path;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ArenaDraftSessionsTest {
+    private static final UUID AUTHOR = new UUID(0, 701);
+    private static final DesignId ID = new DesignId("player:session-lifecycle");
+    @TempDir Path directory;
+
+    @Test void disconnectDiscardsOnlyUnsavedWorkspaceAndRejoinLoadsSavedBytes() throws Exception {
+        var store = new ArenaRulesetStore(directory);
+        var sessions = new ArenaDraftSessions(store);
+        ArenaRuleset saved = sessions.create(AUTHOR, ID);
+        var old = sessions.require(AUTHOR);
+        old.workspace.resize(24, 24);
+        assertTrue(old.dirty());
+        sessions.disconnected(AUTHOR);
+        assertEquals(0, sessions.size());
+        assertThrows(IllegalArgumentException.class, () -> sessions.require(AUTHOR));
+        assertEquals(saved, sessions.open(AUTHOR, ID));
+        assertNotSame(old, sessions.require(AUTHOR));
+        assertFalse(sessions.require(AUTHOR).dirty());
+        assertEquals(0, sessions.require(AUTHOR).workspace.undoDepth());
+        assertEquals(saved, new ArenaRulesetStore(directory).loadDraft(AUTHOR, ID).orElseThrow());
+    }
+
+    @Test void closedServiceCannotReopenOrCreatePersistentDrafts() throws Exception {
+        var store = new ArenaRulesetStore(directory);
+        var sessions = new ArenaDraftSessions(store);
+        ArenaRuleset saved = sessions.create(AUTHOR, ID);
+        sessions.close();
+        sessions.close();
+        assertThrows(IllegalArgumentException.class, () -> sessions.open(AUTHOR, ID));
+        assertThrows(IllegalArgumentException.class, () -> sessions.create(AUTHOR, new DesignId("player:after-close")));
+        assertThrows(IllegalArgumentException.class, () -> sessions.clonePublished(AUTHOR,
+                new DesignId("genesis:arena_ruleset"), new DesignId("player:closed-copy")));
+        assertThrows(IllegalArgumentException.class, () -> sessions.save(AUTHOR));
+        assertThrows(IllegalArgumentException.class, () -> sessions.submit(AUTHOR));
+        assertEquals(0, sessions.size());
+        assertEquals(java.util.List.of(saved), store.listDrafts(AUTHOR));
+    }
+
+    @Test void sharedDraftCannotExceedServerWorkspaceBudget() throws Exception {
+        var store = new ArenaRulesetStore(directory);
+        ArenaRuleset initial = store.create(AUTHOR, ID);
+        var edit = new ArenaRulesetWorkspace(initial);
+        for (int i = 0; i < 64; i++) edit.editor(editor(i), true);
+        ArenaRuleset shared = store.saveDraft(AUTHOR, edit.current(), initial.metadata().hash());
+        var sessions = new ArenaDraftSessions(store);
+        sessions.open(AUTHOR, ID);
+        for (int i = 0; i < 63; i++) sessions.open(editor(i), ID);
+        assertEquals(ArenaDraftSessions.MAX_OPEN_WORKSPACES, sessions.size());
+        assertThrows(IllegalArgumentException.class, () -> sessions.open(editor(63), ID));
+        assertThrows(IllegalArgumentException.class, () -> sessions.create(editor(63), new DesignId("player:no-capacity")));
+        assertThrows(IllegalArgumentException.class, () -> sessions.clonePublished(editor(63),
+                new DesignId("genesis:arena_ruleset"), new DesignId("player:no-copy-capacity")));
+        assertTrue(store.listDrafts(editor(63)).isEmpty());
+        sessions.disconnected(editor(0));
+        assertEquals(shared, sessions.open(editor(63), ID));
+        assertEquals(ArenaDraftSessions.MAX_OPEN_WORKSPACES, sessions.size());
+    }
+
+    private static UUID editor(int index) { return new UUID(1, 700 + index); }
+}

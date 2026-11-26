@@ -1,0 +1,64 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 61.7,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+  "log_sha256": "95f66e75c794b49f5a0432b2444713539e23bbae5265d3dbaa76ceaaa0c68e48",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "kind": "paper",
+    "players": 3,
+    "humanAcceptance": false,
+    "checks": [
+      "conflicting_save_preserves_author_bytes_and_editor_unsaved_work",
+      "hard_disconnect_releases_workspace_and_rejoin_loads_saved_document",
+      "revoked_editor_cannot_save_or_reopen_but_has_a_free_workspace_slot",
+      "author_rejoin_discards_only_unsaved_changes_and_publishes_saved_hash",
+      "cloned_draft_reopens_after_explicit_close"
+    ],
+    "identities": {
+      "author": "d2fa76a2-f974-37c8-a02c-86a7068703e1",
+      "editor": "34082ec3-f26e-3477-a643-bb0b310a72f0",
+      "reviewer": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+    },
+    "finalDraftFileSha256": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+    "finalDraftDesignHash": "ff532a8614554c8d1ae9bf509291858df3b8bf5f7077652f61f5299ff7b2d233",
+    "log": "player-workflow.log"
+  }
+}

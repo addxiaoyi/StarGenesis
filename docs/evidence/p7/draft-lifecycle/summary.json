@@ -1,0 +1,428 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "90bdce72f73b041c5e1ac4f349a152c9a27a6737",
+  "scope": "Bounded P7 draft sessions, disconnect cleanup, and serialized persistence/lifecycle boundaries.",
+  "baseline": {
+    "kind": "Mechanical extraction of the original ArenaController session-map behavior; not a live-server failure.",
+    "tests": 3,
+    "failures": 3,
+    "cases": [
+      {
+        "test": "disconnectDiscardsOnlyUnsavedWorkspaceAndRejoinLoadsSavedBytes",
+        "message": "expected: <0> but was: <1>"
+      },
+      {
+        "test": "closedServiceCannotReopenOrCreatePersistentDrafts",
+        "message": "Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+      },
+      {
+        "test": "sharedDraftCannotExceedServerWorkspaceBudget",
+        "message": "Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+      }
+    ]
+  },
+  "newJavaTests": 13,
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 63,
+      "tests": 478,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-draft-verify-java21.log",
+      "logSha256": "a8a9775c61f38fbfa08274e89d1277e3044ae7d04cb250acfa89ab4fffc5bde7",
+      "pluginSha256": "cd04251628a2820be22f6423af4169c645a0fe268736893fe9719d68ffd3684e",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 63,
+      "tests": 478,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "arena-draft-verify-java25.log",
+      "logSha256": "2105f6da9ed2578cf4a80b6aa5dc6c405a8a6ac3bd81413a67b123a9fed2309d",
+      "pluginSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "toolChecks": {
+    "java21": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "cd04251628a2820be22f6423af4169c645a0fe268736893fe9719d68ffd3684e",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "cd04251628a2820be22f6423af4169c645a0fe268736893fe9719d68ffd3684e",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "cd04251628a2820be22f6423af4169c645a0fe268736893fe9719d68ffd3684e",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "initialFailure": {
+    "kind": "Paper client process exhausted native memory before any player connected; server shut down cleanly.",
+    "result": {
+      "kind": "paper",
+      "checks": {
+        "server_ready": true,
+        "plugin_enabled": true,
+        "design_examples_verified": true,
+        "status_command": true,
+        "p3_program_workspace": true,
+        "p3_replayable_simulation": true,
+        "p4_virtual_radio": true,
+        "p4_radio_protocol_pinned": true,
+        "p4_service_contract_pinned": true,
+        "p5_closed_ecology": true,
+        "p6_four_player_factory": true,
+        "p7_arena_catalog": true,
+        "p8_territory_match": true,
+        "p9_real_settlement_inactive": true,
+        "p10_signed_design_import": true,
+        "help_command": true,
+        "capabilities_command": true,
+        "missing_dependency_report": true,
+        "budget_command": true,
+        "plugin_disabled": true,
+        "clean_exit": true,
+        "no_plugin_startup_error": true,
+        "player_workflow": false
+      },
+      "passed": false,
+      "seconds": 46.5,
+      "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+      "plugin_sha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+      "log_sha256": "ed15fd9de36bef16125744c48e4e24527da5f21e5bc9b8f98aa055d14e3370ca",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "launch_mode": "paperclip-bootstrap",
+      "heap_mb": 512,
+      "jvm_args": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+      "player_workflow": {
+        "passed": false,
+        "error": "workflow did not complete",
+        "log": "player-workflow.log"
+      }
+    },
+    "retry": "Same isolated directory and JVM options; retried after host memory became available."
+  },
+  "rules": {
+    "maxOpenWorkspaces": 64,
+    "onePerPlayer": true,
+    "includesSharedEditors": true,
+    "admission": "Check closed/duplicate/capacity before file read/create/clone; serialize check and store operation.",
+    "disconnect": "Remove workspace and undo history; retain last committed file; reopen rechecks current permissions.",
+    "close": "Reject further admission/save/submit; admitted synchronous store call finishes before clearing sessions.",
+    "failedSave": "Keep base hash, saved document, edited workspace and undo; publish new session only after commit.",
+    "format": "No schema, simulation, published rule hash or persistence layout changes."
+  },
+  "servers": {
+    "paper": {
+      "passed": true,
+      "serverSha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+      "pluginSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "heapMiB": 512,
+      "jvmArgs": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "seconds": 61.7,
+      "workflow": {
+        "passed": true,
+        "kind": "paper",
+        "players": 3,
+        "humanAcceptance": false,
+        "checks": [
+          "conflicting_save_preserves_author_bytes_and_editor_unsaved_work",
+          "hard_disconnect_releases_workspace_and_rejoin_loads_saved_document",
+          "revoked_editor_cannot_save_or_reopen_but_has_a_free_workspace_slot",
+          "author_rejoin_discards_only_unsaved_changes_and_publishes_saved_hash",
+          "cloned_draft_reopens_after_explicit_close"
+        ],
+        "identities": {
+          "author": "d2fa76a2-f974-37c8-a02c-86a7068703e1",
+          "editor": "34082ec3-f26e-3477-a643-bb0b310a72f0",
+          "reviewer": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+        },
+        "finalDraftFileSha256": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+        "finalDraftDesignHash": "ff532a8614554c8d1ae9bf509291858df3b8bf5f7077652f61f5299ff7b2d233",
+        "log": "player-workflow.log"
+      }
+    },
+    "folia": {
+      "passed": true,
+      "serverSha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+      "pluginSha256": "b9335a4802999ec41cc75b905a4a9658151479da109f1afbd3e03a30adc3afa1",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "heapMiB": 512,
+      "jvmArgs": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "seconds": 79.22,
+      "workflow": {
+        "passed": true,
+        "kind": "folia",
+        "players": 3,
+        "humanAcceptance": false,
+        "checks": [
+          "conflicting_save_preserves_author_bytes_and_editor_unsaved_work",
+          "hard_disconnect_releases_workspace_and_rejoin_loads_saved_document",
+          "revoked_editor_cannot_save_or_reopen_but_has_a_free_workspace_slot",
+          "author_rejoin_discards_only_unsaved_changes_and_publishes_saved_hash",
+          "cloned_draft_reopens_after_explicit_close"
+        ],
+        "identities": {
+          "author": "d2fa76a2-f974-37c8-a02c-86a7068703e1",
+          "editor": "34082ec3-f26e-3477-a643-bb0b310a72f0",
+          "reviewer": "f1b041fd-32c0-37d1-8a14-d04bce2f870d"
+        },
+        "finalDraftFileSha256": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+        "finalDraftDesignHash": "ff532a8614554c8d1ae9bf509291858df3b8bf5f7077652f61f5299ff7b2d233",
+        "log": "player-workflow.log"
+      }
+    }
+  },
+  "limitations": [
+    "Three real offline clients per server, no human creative workflow or governance acceptance.",
+    "Capacity and lifecycle races are unit tests; live flow does not spawn65 clients or cross distinct Folia regions.",
+    "Live flow reconnects players but does not restart the server; reopening a new store/service is covered in unit tests.",
+    "Synchronous filesystem calls can delay region commands/close; no production throughput or timing claim.",
+    "Does not add cross-store/process exclusion to rule drafts or change Blueprint/Program lifecycles.",
+    "Worker locks, real settlement provider, trust-root ownership and release gates retain their existing scope."
+  ],
+  "sourceSha256": {
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaController.java": "f2e749384b1ed27d2212a909735d84070727203be1baa45f61bd1f029ae4e7b5",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/arena/ArenaDraftSessions.java": "6d06ebc2eb23ab2f9a720891cad1ec105a800eb6559f319e1ce2ae9328bf3e3e",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/arena/ArenaDraftSessionsTest.java": "b8fe3f4b9e974bb6b592443deca032e26b1be01e0f72eabdc92955d6760901ee",
+    "scripts/server_smoke.py": "c8f86355525a42344482125704cf228685fe40fd92b456d406cb9efd46f4943d",
+    "scripts/offline_client_workflow_smoke.cjs": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d",
+    "scripts/offline_client_arena_draft_smoke.cjs": "5a9f5753c3ea13e5a81d6b17e5659ed5d1b11edbb90bb83a98f39b55e04a9a08"
+  },
+  "artifactSha256": {
+    "arena-draft-build-java21.json": "87076384ff55832bfd6e81a1786c50c9fe5de26c0e1e29d6e532697e18527d68",
+    "arena-draft-build-java25.json": "0c12a8a428a85b374f3ed9b61557228471fa56de7c650cc70a8af477bc76b953",
+    "arena-draft-design-signer-java21.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-draft-design-signer-java21.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-draft-design-signer-java25.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-draft-design-signer-java25.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "arena-draft-release-signer-java21.json": "ca9b02b65eafc8ec2bb12481b9fb65cf15c45576b4a7c57a6c8524b7ddb7e0c6",
+    "arena-draft-release-signer-java21.log": "ca9b02b65eafc8ec2bb12481b9fb65cf15c45576b4a7c57a6c8524b7ddb7e0c6",
+    "arena-draft-release-signer-java25.json": "4fb87a354f8081f0bf1bd92e417ce1acf6beee5bd84b4b77e5936a2ba31d5da7",
+    "arena-draft-release-signer-java25.log": "4fb87a354f8081f0bf1bd92e417ce1acf6beee5bd84b4b77e5936a2ba31d5da7",
+    "arena-draft-settlement-lock-java21.json": "8d2f99dc5434799849c698de776950a03d2c665716ae877043d38152819dccc9",
+    "arena-draft-settlement-lock-java21.log": "c9d13f26166392a1a4cdb34212d58ee01c4adc4c66f00ed59a0c69a0ec838c7e",
+    "arena-draft-settlement-lock-java25.json": "146359f371cc49492af003cd8a777ac671924b3dc765081fb756d24f404579e8",
+    "arena-draft-settlement-lock-java25.log": "b68776e1ee1f981bf3c2bc8ccb8d6d1b15c81c95ba89fe297e85ac5fe616b30e",
+    "arena-draft-verify-java21.log": "a8a9775c61f38fbfa08274e89d1277e3044ae7d04cb250acfa89ab4fffc5bde7",
+    "arena-draft-verify-java25.log": "2105f6da9ed2578cf4a80b6aa5dc6c405a8a6ac3bd81413a67b123a9fed2309d",
+    "arena-draft-worker-lock-java21.json": "ad89bb460dcb66392b1a79b8872f1664434bf0f4e60dacac770f3a4fc9664034",
+    "arena-draft-worker-lock-java21.log": "62c270a4bf3bf5015e5e75cbd5a3ce58c376f3aa117648d012ac9fd3715c0c3a",
+    "arena-draft-worker-lock-java25.json": "be41b1b259660a2941f72edfa5c26489cbfc0445f3d1da5846f660e10b4f0671",
+    "arena-draft-worker-lock-java25.log": "1349b251ba0ba69b0ea11a525325c3e0d8f604319e9b50f5a8409385769d946c",
+    "baseline/ArenaController.java.txt": "e9ff0b04ec8eb426e0f04ab5955191286cf45bffd022ec25281e3b8a3ff4b6d7",
+    "baseline/ArenaDraftSessions.java.txt": "f9d00130eb996c9713a3390018af72d147a457790076c5ac3634aeca24ad20e9",
+    "baseline/ArenaDraftSessionsTest.java.txt": "8daabdedcc4a0e0b0fe228b8818bd0c96539f91490518b0ad5ff4104967f8826",
+    "baseline/tests.log": "b027d5ecfc5a07939227f64b38671417aec1668ecd8833b16d81bdeeab5d8acf",
+    "failed-paper-client-memory/paper-harness.log": "500b6612c8036bef1e51756b5d29c7c84100510066e9e3595afaf05ee232774d",
+    "failed-paper-client-memory/player-workflow-result.json": "3bcbc433df79516cef1e6ba8e635e990f112ff77bc275cfac7f12d6815fba2a5",
+    "failed-paper-client-memory/player-workflow.log": "637614193a3ccef599b447cbc956a9de884c61dbf426443556252bb170520d36",
+    "failed-paper-client-memory/smoke-console.log": "ed15fd9de36bef16125744c48e4e24527da5f21e5bc9b8f98aa055d14e3370ca",
+    "failed-paper-client-memory/smoke-result.json": "4c64c5dbed030d56a14bbf4758514969b01cbdcd4832355d0222f96b6a9686ff",
+    "folia/arenas/drafts/34082ec3-f26e-3477-a643-bb0b310a72f0/6a667869152e22bfbdc747ca2e130692469f75a6db8181e371c600102d93f1ad.json": "613a6baedacb11a31edb68a544d9505aebc2403e01042d31a949486d8831a6ef",
+    "folia/arenas/drafts/d2fa76a2-f974-37c8-a02c-86a7068703e1/478ba1a5a67df1bebc8e29c64e30093b193229b4c88c0956db2a36df579f006a.json": "43ce671c95b037b0db75806a6ad099c0d04dce744fe34329b7d3fef01f565f43",
+    "folia/arenas/drafts/d2fa76a2-f974-37c8-a02c-86a7068703e1/9cd81adbf7da2c43ea6f92d5968c03c1ba95e65669b47ae3b36e696453c05d9e.json": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+    "folia/arenas/published/0053124e695aa09befc8bbe487033ca19fc896c8788c53cfe4975202a6467e98.json": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+    "folia/arenas/reviews/0053124e695aa09befc8bbe487033ca19fc896c8788c53cfe4975202a6467e98.json": "50ce880cd46eaf620bec793ea11632d72a6d7a59961a05c4de962fff765513b8",
+    "folia/player-workflow-result.json": "3e0e06d68c981409020a57e58655df22f5151513fed8a81d3384d889dcb49384",
+    "folia/player-workflow.log": "afb816828e54ae7c7f41780288f23f14e615155d07d30e20576c5c5d7c60a31d",
+    "folia/smoke-console.log": "6e9412445e068626b8e027e439c1c8e85e76a7115e0c4a74cf6d0f11e97e6561",
+    "folia/smoke-result.json": "924d1d23214200b60e507d47af6b4391d166e5cf8bd4cb22da0b3bef52e83972",
+    "paper/arenas/drafts/34082ec3-f26e-3477-a643-bb0b310a72f0/6a667869152e22bfbdc747ca2e130692469f75a6db8181e371c600102d93f1ad.json": "613a6baedacb11a31edb68a544d9505aebc2403e01042d31a949486d8831a6ef",
+    "paper/arenas/drafts/d2fa76a2-f974-37c8-a02c-86a7068703e1/478ba1a5a67df1bebc8e29c64e30093b193229b4c88c0956db2a36df579f006a.json": "43ce671c95b037b0db75806a6ad099c0d04dce744fe34329b7d3fef01f565f43",
+    "paper/arenas/drafts/d2fa76a2-f974-37c8-a02c-86a7068703e1/9cd81adbf7da2c43ea6f92d5968c03c1ba95e65669b47ae3b36e696453c05d9e.json": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+    "paper/arenas/published/0053124e695aa09befc8bbe487033ca19fc896c8788c53cfe4975202a6467e98.json": "247dec53d65ee1ff2a0244c68c3c556c321a415fe4e1444499181eeaf34f01e9",
+    "paper/arenas/reviews/0053124e695aa09befc8bbe487033ca19fc896c8788c53cfe4975202a6467e98.json": "c283dff7312fbb63d378fc2baf8fad117f83637237d7f4792a8bec13675e748b",
+    "paper/player-workflow-result.json": "7bcba4f6962e168fc0cab220579148eba6d644a1ebbd8ecb3e2e212246ea2c61",
+    "paper/player-workflow.log": "4cacd1ee95c46fc0534b7f4d47956bab484780159f441d98a787dffc55d07ff3",
+    "paper/smoke-console.log": "95f66e75c794b49f5a0432b2444713539e23bbae5265d3dbaa76ceaaa0c68e48",
+    "paper/smoke-result.json": "dee5a858ec582d82fd7baa4d74061365f74e453ce261479fb27cc584efa39a32"
+  }
+}

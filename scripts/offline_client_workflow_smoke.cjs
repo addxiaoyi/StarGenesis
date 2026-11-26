@@ -822,7 +822,7 @@ async function main() {
 }
 
 module.exports = { pause, waitForMessage, connect, command, commandUntil, disconnect,
-  organizationForPair, faultSeedForFactoryOrder };
+  dropConnection, organizationForPair, faultSeedForFactoryOrder };
 
 if (require.main === module) main().catch((error) => {
   console.error(error);

@@ -8,6 +8,7 @@ import dev.stargenesis.sim.ArenaAction;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchView;
 import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.arena.ArenaDraftSessions.Session;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -33,7 +34,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private final JavaPlugin plugin;
     private final ArenaRulesetStore store;
     private final ArenaMatchPersistence matches;
-    private final ConcurrentMap<UUID, Session> sessions = new ConcurrentHashMap<>();
+    private final ArenaDraftSessions drafts;
     private final ConcurrentMap<UUID, Invitation> invitations = new ConcurrentHashMap<>();
     private final Object invitationLock = new Object();
     private final ArenaMatchService matchService;
@@ -43,6 +44,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     public ArenaController(JavaPlugin plugin, ArenaRulesetStore store, java.nio.file.Path dataDirectory) throws IOException {
         this.plugin = plugin;
         this.store = store;
+        drafts = new ArenaDraftSessions(store);
         worker = PersistentWorker.commands("StarGenesis-Arena", dataDirectory, 128);
         try {
             matches = new ArenaMatchPersistence(dataDirectory);
@@ -85,8 +87,8 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     public void close() {
         closed.set(true);
+        drafts.close();
         worker.shutdown(plugin.getLogger(), "Arena");
-        sessions.clear();
         synchronized (invitationLock) { invitations.clear(); }
     }
 
@@ -100,6 +102,7 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         UUID leaving = event.getPlayer().getUniqueId();
+        drafts.disconnected(leaving);
         try { worker.execute(() -> matchService.disconnected(leaving)); }
         catch (RejectedExecutionException ignored) { }
         synchronized (invitationLock) {
@@ -381,9 +384,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private void create(Player player, String[] args) throws IOException {
         requireLength(args, 2);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(owner);
-        ArenaRuleset draft = store.create(owner, new DesignId(args[1]));
-        putSession(owner, draft);
+        ArenaRuleset draft = drafts.create(owner, new DesignId(args[1]));
         player.sendMessage("已创建私有 ArenaRuleset 草稿 " + draft.metadata().id().value() + "。编辑后 save，再 publish。hash="
                 + draft.metadata().hash().substring(0, 12));
     }
@@ -391,9 +392,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private void clone(Player player, String[] args) throws IOException {
         requireLength(args, 3);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(owner);
-        ArenaRuleset draft = store.clonePublished(owner, new DesignId(args[1]), new DesignId(args[2]));
-        putSession(owner, draft);
+        ArenaRuleset draft = drafts.clonePublished(owner, new DesignId(args[1]), new DesignId(args[2]));
         player.sendMessage("已克隆可复用规则为私有草稿 " + draft.metadata().id().value() + "。hash="
                 + draft.metadata().hash().substring(0, 12));
     }
@@ -419,10 +418,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private void open(Player player, String[] args) throws IOException {
         requireLength(args, 2);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(owner);
-        ArenaRuleset draft = store.loadDraft(owner, new DesignId(args[1]))
-                .orElseThrow(() -> new IllegalArgumentException("找不到可编辑的 ArenaRuleset 草稿 " + args[1]));
-        putSession(owner, draft);
+        ArenaRuleset draft = drafts.open(owner, new DesignId(args[1]));
         player.sendMessage("已打开 " + draft.metadata().id().value() + " v" + draft.metadata().version()
                 + " · hash=" + draft.metadata().hash().substring(0, 12));
     }
@@ -431,10 +427,8 @@ public final class ArenaController implements Listener, AutoCloseable {
         if (args.length > 2 || args.length == 2 && !args[1].equalsIgnoreCase("discard"))
             throw new IllegalArgumentException("用法：/genesis arena close [discard]");
         UUID owner = player.getUniqueId();
-        Session session = requireSession(owner);
-        if (session.dirty() && args.length == 1) throw new IllegalArgumentException("草稿尚未保存；先 save 或 close discard。");
-        sessions.remove(owner, session);
-        player.sendMessage(session.dirty() ? "未保存的 arena 修改已丢弃。" : "已关闭 ArenaRuleset 草稿。");
+        boolean dirty = drafts.closeSession(owner, args.length == 2);
+        player.sendMessage(dirty ? "未保存的 arena 修改已丢弃。" : "已关闭 ArenaRuleset 草稿。");
     }
 
     private void set(Player player, String[] args) {
@@ -511,18 +505,13 @@ public final class ArenaController implements Listener, AutoCloseable {
     private void save(Player player, String[] args) throws IOException {
         requireLength(args, 1);
         UUID owner = player.getUniqueId();
-        Session session = requireSession(owner);
-        ArenaRuleset saved = store.saveDraft(owner, session.workspace.current(), session.baseHash);
-        putSession(owner, saved);
+        ArenaRuleset saved = drafts.save(owner);
         player.sendMessage("ArenaRuleset 草稿已原子保存 · hash=" + saved.metadata().hash().substring(0, 12));
     }
 
     private void publish(Player player, String[] args) throws IOException {
         requireLength(args, 1);
-        Session session = requireSession(player.getUniqueId());
-        if (session.dirty()) throw new IllegalArgumentException("先保存草稿再发布。");
-        ArenaRulesetStore.ReviewRecord submission = store.submitForReview(player.getUniqueId(),
-                session.workspace.current().metadata().id(), session.baseHash);
+        ArenaRulesetStore.ReviewRecord submission = drafts.submit(player.getUniqueId());
         player.sendMessage("ArenaRuleset 已提交审核 " + submission.id().value() + " v" + submission.version()
                 + " · hash=" + submission.contentHash());
     }
@@ -578,18 +567,8 @@ public final class ArenaController implements Listener, AutoCloseable {
         player.sendMessage("/genesis arena review pending | status <id> <version> | show <id> <version> | approve <id> <version> | reject <id> <version> <reason>");
     }
 
-    private void putSession(UUID owner, ArenaRuleset document) {
-        sessions.put(owner, new Session(document, document.metadata().hash()));
-    }
-
-    private void requireNoOpenSession(UUID owner) {
-        if (sessions.containsKey(owner)) throw new IllegalArgumentException("先关闭当前 ArenaRuleset 草稿。");
-    }
-
     private Session requireSession(UUID owner) {
-        Session session = sessions.get(owner);
-        if (session == null) throw new IllegalArgumentException("没有打开的 ArenaRuleset 草稿");
-        return session;
+        return drafts.require(owner);
     }
 
     private void help(Player player) {
@@ -617,20 +596,6 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     private void requireLength(String[] args, int expected) {
         if (args.length != expected) throw new IllegalArgumentException("参数数量不正确；使用 /genesis arena 查看用法");
-    }
-
-    private static final class Session {
-        private final ArenaRulesetWorkspace workspace;
-        private final String baseHash;
-        private final ArenaRuleset saved;
-
-        private Session(ArenaRuleset saved, String baseHash) {
-            this.saved = saved;
-            this.baseHash = baseHash;
-            workspace = new ArenaRulesetWorkspace(saved);
-        }
-
-        private boolean dirty() { return !workspace.current().equals(saved); }
     }
 
     private record Invitation(UUID inviter, String team) { }

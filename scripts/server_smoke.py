@@ -34,8 +34,9 @@ def run_player_workflow(args: argparse.Namespace, target: Path, stop_server) -> 
     result_path = target / "player-workflow-result.json"
     log_path = target / "player-workflow.log"
     result_path.write_text('{"passed":false,"error":"workflow did not complete"}\n', encoding="utf-8")
-    script = "offline_client_lifecycle_smoke.cjs" if args.lifecycle_phase else "offline_client_workflow_smoke.cjs"
-    command = [node, str(Path(__file__).resolve().with_name(script)),
+    script = args.client_script.resolve() if args.client_script else Path(__file__).resolve().with_name(
+        "offline_client_lifecycle_smoke.cjs" if args.lifecycle_phase else "offline_client_workflow_smoke.cjs")
+    command = [node, str(script),
                "--host", "127.0.0.1", "--port", str(args.port),
                "--kind", args.kind,
                "--module-root", str(args.node_modules.resolve()),
@@ -139,6 +140,7 @@ def main() -> None:
     parser.add_argument("--heap-mb", type=int, default=1024, help="Maximum Java heap for this isolated server")
     parser.add_argument("--jvm-arg", action="append", default=[], help="Additional Java option; repeat as --jvm-arg=-XX:...")
     parser.add_argument("--player-workflow", action="store_true", help="Run automated offline-client P1-P10 workflows")
+    parser.add_argument("--client-script", type=Path, help="Use a focused offline-client script with --player-workflow")
     parser.add_argument("--node", default="node", help="Node.js executable for --player-workflow")
     parser.add_argument("--node-modules", type=Path, help="Directory containing the installed mineflayer package")
     parser.add_argument("--libraries-from", type=Path,
@@ -162,6 +164,8 @@ def main() -> None:
         parser.error("--heap-mb must be between 512 and 8192")
     if args.lifecycle_phase and not args.player_workflow:
         parser.error("--lifecycle-phase requires --player-workflow")
+    if args.client_script and (not args.player_workflow or args.lifecycle_phase or not args.client_script.is_file()):
+        parser.error("--client-script requires --player-workflow, an existing script and no --lifecycle-phase")
     if args.lifecycle_phase in {"resume", "verify"} and args.lifecycle_manifest is None:
         parser.error("Restart phases require --lifecycle-manifest")
     if args.lifecycle_phase and (args.region_travel or args.test_shutdown_menu
