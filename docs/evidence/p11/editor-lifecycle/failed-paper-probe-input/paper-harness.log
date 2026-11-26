@@ -1,0 +1,121 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": false
+  },
+  "passed": false,
+  "seconds": 89.03,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "288aa3774e6eb8b29956bbbf3878f6c2fb137fe6f1acb92e363ecb4a1756258c",
+  "log_sha256": "aedddd5e44ce02bfb1fb75a418663bdf17edad2d9938057faf9eb0a27d5df6a5",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": false,
+    "kind": "paper",
+    "players": 3,
+    "humanAcceptance": false,
+    "checks": [
+      "blueprint_conflict_preserves_both_edits_and_reconnect_loads_saved_author_state",
+      "public_reader_cannot_edit_and_permitted_clone_is_private_with_pinned_source",
+      "revoked_collaborator_cannot_overwrite_or_reopen_and_failed_open_releases_admission"
+    ],
+    "identities": {
+      "author": "9aa94e6c-5241-3602-8ab0-35b6638e0427",
+      "editor": "c65b26af-9ca7-310e-98ef-bbcb4f2ca732",
+      "reader": "33626e11-900c-35a6-b9d6-0d8514fadac8"
+    },
+    "error": "Error: SGEditAuthor timed out waiting for \"组件位置已更新\". Connection error=none. Recent messages:\n蓝图操作未完成：x outside -16..16\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processTimers (node:internal/timers:518:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_editor_smoke.cjs:81:5)",
+    "log": "player-workflow.log"
+  }
+}
+  
+[09:00:04 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[09:00:04 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[09:00:04 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[09:00:04 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[09:00:04 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[09:00:04 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[09:00:04 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[09:00:04 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[09:00:04 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[09:00:04 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[09:00:04 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

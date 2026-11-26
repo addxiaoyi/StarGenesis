@@ -23,18 +23,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /** In-game typed program editing, persistence and isolated debugger commands. */
 public final class ProgramController implements Listener {
-    private static final int MAX_OPEN_WORKSPACES = 64;
-    private static final int MAX_INSTRUCTIONS_PER_STEP = 256;
     private static final int CATALOG_PAGE_SIZE = 8;
     private final ProgramStore store;
     private final SimulationBudget budget;
-    private final ConcurrentMap<UUID, ProgramSession> sessions = new ConcurrentHashMap<>();
-    private final Object sessionLock = new Object();
+    private final ProgramSessions sessions;
 
     public ProgramController(JavaPlugin plugin, ProgramStore store) {
         this(plugin, store, SimulationBudget.defaults());
@@ -43,6 +38,7 @@ public final class ProgramController implements Listener {
     public ProgramController(JavaPlugin plugin, ProgramStore store, SimulationBudget budget) {
         this.store = store;
         this.budget = java.util.Objects.requireNonNull(budget);
+        sessions = new ProgramSessions(store, budget);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -51,6 +47,7 @@ public final class ProgramController implements Listener {
             player.sendMessage("StarGenesis: permission denied (stargenesis.program)");
             return true;
         }
+        if (sessions.isClosed()) { player.sendMessage("程序工作区服务已停止。"); return true; }
         if (args.length == 0) { help(player); return true; }
         try {
             switch (args[0].toLowerCase(Locale.ROOT)) {
@@ -83,28 +80,17 @@ public final class ProgramController implements Listener {
         return true;
     }
 
-    public void close() { sessions.clear(); }
+    public void close() { sessions.close(); }
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
-        sessions.remove(event.getPlayer().getUniqueId());
+        sessions.disconnected(event.getPlayer().getUniqueId());
     }
 
     private void create(Player player, String[] args) throws IOException {
         requireLength(args, 2);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(owner);
         DesignId id = new DesignId(args[1]);
-        if (store.exists(owner, id)) throw new IllegalArgumentException("程序已存在，请使用 open");
-        ProgramWorkspace workspace = new ProgramWorkspace(MAX_INSTRUCTIONS_PER_STEP);
-        workspace.append("start", PrimitiveCatalog.Operation.WAIT, List.of(), Map.of());
-        ProgramSession session = new ProgramSession(owner, id, workspace, null, budget);
-        putSession(owner, session);
-        try {
-            session.save(store);
-        } catch (IOException | RuntimeException failure) {
-            sessions.remove(owner, session);
-            throw failure;
-        }
+        sessions.create(owner, id);
         player.sendMessage("已创建并打开 " + id.value() + "，初始指令为 WAIT。");
     }
 
@@ -120,22 +106,16 @@ public final class ProgramController implements Listener {
     private void open(Player player, String[] args) throws IOException {
         requireLength(args, 2);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(owner);
-        TypedProgramDocument document = store.load(owner, new DesignId(args[1]))
-                .orElseThrow(() -> new IllegalArgumentException("找不到个人程序 " + args[1]));
-        putSession(owner, new ProgramSession(owner, document.id(), new ProgramWorkspace(document.program()), document, budget));
-        player.sendMessage("已打开 " + document.id().value() + "，使用 catalog 查看原语，show 查看指令。");
+        ProgramSession session = sessions.open(owner, new DesignId(args[1]));
+        player.sendMessage("已打开 " + session.id.value() + "，使用 catalog 查看原语，show 查看指令。");
     }
 
     private void close(Player player, String[] args) {
         if (args.length > 2 || args.length == 2 && !args[1].equalsIgnoreCase("discard"))
             throw new IllegalArgumentException("用法：/genesis program close [discard]");
         UUID owner = player.getUniqueId();
-        ProgramSession session = requireSession(owner);
-        if (session.dirty && args.length == 1)
-            throw new IllegalArgumentException("有未保存修改；先 save，或使用 close discard 丢弃。");
-        sessions.remove(owner, session);
-        player.sendMessage(session.dirty ? "未保存的程序修改已丢弃。" : "已关闭程序工作区。");
+        boolean dirty = sessions.closeSession(owner, args.length == 2);
+        player.sendMessage(dirty ? "未保存的程序修改已丢弃。" : "已关闭程序工作区。");
     }
 
     private void add(Player player, String[] args) {
@@ -175,8 +155,7 @@ public final class ProgramController implements Listener {
     private void save(Player player, String[] args) throws IOException {
         requireLength(args, 1);
         UUID owner = player.getUniqueId();
-        ProgramSession session = requireSession(owner);
-        session.save(store);
+        ProgramSession session = sessions.save(owner);
         player.sendMessage("程序已原子保存 · hash=" + session.baseHash.substring(0, 12));
     }
 
@@ -375,21 +354,7 @@ public final class ProgramController implements Listener {
     }
 
     private ProgramSession requireSession(UUID owner) {
-        ProgramSession session = sessions.get(owner);
-        if (session == null) throw new IllegalArgumentException("先 create 或 open 一个程序");
-        return session;
-    }
-
-    private void requireNoOpenSession(UUID owner) {
-        if (sessions.containsKey(owner)) throw new IllegalArgumentException("请先保存并 close 当前程序工作区");
-    }
-
-    private void putSession(UUID owner, ProgramSession session) {
-        synchronized (sessionLock) {
-            if (sessions.size() >= MAX_OPEN_WORKSPACES && !sessions.containsKey(owner))
-                throw new IllegalArgumentException("当前打开的程序工作区已达服务器上限");
-            if (sessions.putIfAbsent(owner, session) != null) throw new IllegalArgumentException("已有程序工作区打开");
-        }
+        return sessions.require(owner);
     }
 
 }

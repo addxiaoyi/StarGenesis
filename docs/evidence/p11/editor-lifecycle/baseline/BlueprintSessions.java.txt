@@ -1,0 +1,126 @@
+package dev.stargenesis.paper.blueprint;
+
+import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.design.Blueprint;
+import dev.stargenesis.design.BlueprintWorkspace;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
+/** Player blueprint workspaces, separate from command parsing and server objects. */
+final class BlueprintSessions implements AutoCloseable {
+    static final int MAX_OPEN_WORKSPACES = 64;
+    private final BlueprintStore store;
+    private final Map<UUID, EditSession> sessions = new ConcurrentHashMap<>();
+    private final Object sessionLock = new Object();
+
+    BlueprintSessions(BlueprintStore store) { this.store = Objects.requireNonNull(store); }
+
+    Blueprint create(UUID owner, DesignId id) throws IOException {
+        requireNoOpenSession(owner);
+        if (store.exists(owner, id)) throw new IllegalArgumentException("蓝图已存在，请使用 open");
+        Blueprint initial = store.newBlueprint(owner, id);
+        EditSession session = new EditSession(initial, "", true);
+        put(owner, session);
+        try {
+            Blueprint saved = store.save(owner, initial, "");
+            session.commit(saved);
+            return saved;
+        } catch (IOException | RuntimeException failure) {
+            sessions.remove(owner, session);
+            throw failure;
+        }
+    }
+
+    Blueprint open(UUID reader, UUID author, DesignId id) throws IOException {
+        requireNoOpenSession(reader);
+        Blueprint blueprint = store.loadFor(reader, author, id)
+                .orElseThrow(() -> new IllegalArgumentException("找不到蓝图 " + id.value()));
+        put(reader, new EditSession(blueprint, blueprint.metadata().hash(), false));
+        return blueprint;
+    }
+
+    Blueprint cloneBlueprint(UUID actor, UUID author, DesignId source, DesignId target) throws IOException {
+        requireNoOpenSession(actor);
+        EditSession session = new EditSession(store.newBlueprint(actor, target), "", false);
+        put(actor, session);
+        try {
+            Blueprint copy = store.cloneBlueprint(actor, author, source, target);
+            session.commit(copy);
+            return copy;
+        } catch (IOException | RuntimeException failure) {
+            sessions.remove(actor, session);
+            throw failure;
+        }
+    }
+
+    Blueprint save(UUID actor) throws IOException {
+        EditSession session = require(actor);
+        Blueprint saved = store.save(actor, session.workspace.current(), session.baseHash);
+        session.commit(saved);
+        return saved;
+    }
+
+    boolean closeSession(UUID owner, boolean discard) {
+        EditSession session = require(owner);
+        if (session.dirty && !discard)
+            throw new IllegalArgumentException("有未保存修改；先 save，或使用 close discard 丢弃。");
+        sessions.remove(owner);
+        return session.dirty;
+    }
+
+    void disconnected(UUID owner) { sessions.remove(owner); }
+    @Override public void close() { sessions.clear(); }
+
+    EditSession require(UUID owner) {
+        EditSession session = sessions.get(owner);
+        if (session == null) throw new IllegalArgumentException("先 create 或 open 一个蓝图");
+        return session;
+    }
+
+    EditSession requireEditable(UUID actor) {
+        EditSession session = require(actor);
+        Blueprint saved = session.saved;
+        if (!saved.metadata().permissions().mayEdit(actor, saved.metadata().author()))
+            throw new SecurityException("此蓝图仅可查看；需要原作者授权编辑或允许克隆。");
+        return session;
+    }
+
+    int size() { return sessions.size(); }
+
+    private void requireNoOpenSession(UUID owner) {
+        if (sessions.containsKey(owner)) throw new IllegalArgumentException("请先保存并 close 当前蓝图工作区");
+    }
+
+    private void put(UUID owner, EditSession session) {
+        synchronized (sessionLock) {
+            if (!sessions.containsKey(owner) && sessions.size() >= MAX_OPEN_WORKSPACES)
+                throw new IllegalArgumentException("当前打开的蓝图工作区已达服务器上限");
+            if (sessions.putIfAbsent(owner, session) != null) throw new IllegalArgumentException("已有蓝图工作区打开");
+        }
+    }
+
+    static final class EditSession {
+        BlueprintWorkspace workspace;
+        Blueprint saved;
+        String baseHash;
+        boolean dirty;
+
+        EditSession(Blueprint document, String baseHash, boolean dirty) {
+            workspace = new BlueprintWorkspace(document);
+            saved = document;
+            this.baseHash = baseHash;
+            this.dirty = dirty;
+        }
+
+        private void commit(Blueprint document) {
+            workspace = new BlueprintWorkspace(document);
+            saved = document;
+            baseHash = document.metadata().hash();
+            dirty = false;
+        }
+    }
+}

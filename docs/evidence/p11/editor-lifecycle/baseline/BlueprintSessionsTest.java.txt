@@ -1,0 +1,36 @@
+package dev.stargenesis.paper.blueprint;
+
+import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.design.DesignCodec;
+import dev.stargenesis.paper.runtime.WorkspaceRace;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Path;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class BlueprintSessionsTest {
+    private static final UUID OWNER = new UUID(0, 810);
+    private static final DesignId ID = new DesignId("player:blueprint-lifecycle");
+    @TempDir Path directory;
+
+    @Test void closedServiceCannotCreateAnotherPersistentBlueprint() throws Exception {
+        var store = new BlueprintStore(directory, new DesignCodec());
+        var sessions = new BlueprintSessions(store);
+        sessions.close();
+        assertThrows(IllegalArgumentException.class, () -> sessions.create(OWNER, ID));
+        assertTrue(store.list(OWNER).isEmpty());
+    }
+
+    @Test void admittedOpenFinishesBeforeCloseAndCannotRestoreARetiredWorkspace() throws Exception {
+        var store = new BlueprintStore(directory, new DesignCodec());
+        var sessions = new BlueprintSessions(store);
+        var saved = sessions.create(OWNER, ID);
+        sessions.closeSession(OWNER, false);
+        assertEquals(saved, WorkspaceRace.duringStoreCall(store, () -> sessions.open(OWNER, OWNER, ID), sessions, sessions::close));
+        assertEquals(0, sessions.size());
+        assertEquals(saved, store.load(OWNER, ID).orElseThrow());
+    }
+}

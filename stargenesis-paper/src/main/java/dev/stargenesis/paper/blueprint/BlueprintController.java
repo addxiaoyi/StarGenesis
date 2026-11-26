@@ -5,6 +5,7 @@ import dev.stargenesis.api.design.DesignPermissions;
 import dev.stargenesis.design.Blueprint;
 import dev.stargenesis.design.BlueprintEvaluator;
 import dev.stargenesis.design.BlueprintWorkspace;
+import dev.stargenesis.paper.blueprint.BlueprintSessions.EditSession;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.entity.Player;
@@ -15,20 +16,17 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 /** In-game command workflow for creating, editing, previewing and saving a private blueprint. */
 public final class BlueprintController implements Listener {
-    private static final int MAX_OPEN_WORKSPACES = 64;
     private final BlueprintStore store;
     private final BlueprintEvaluator evaluator = BlueprintEvaluator.standard();
-    private final Map<UUID, EditSession> sessions = new ConcurrentHashMap<>();
-    private final Object sessionLock = new Object();
+    private final BlueprintSessions sessions;
 
     public BlueprintController(JavaPlugin plugin, BlueprintStore store) {
         this.store = store;
+        sessions = new BlueprintSessions(store);
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -37,6 +35,7 @@ public final class BlueprintController implements Listener {
             player.sendMessage("StarGenesis: permission denied (stargenesis.blueprint)");
             return true;
         }
+        if (sessions.isClosed()) { player.sendMessage("蓝图工作区服务已停止。"); return true; }
         if (args.length == 0) { help(player); return true; }
         try {
             switch (args[0].toLowerCase(Locale.ROOT)) {
@@ -64,31 +63,17 @@ public final class BlueprintController implements Listener {
         return true;
     }
 
-    public void close() { sessions.clear(); }
+    public void close() { sessions.close(); }
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
-        sessions.remove(event.getPlayer().getUniqueId());
+        sessions.disconnected(event.getPlayer().getUniqueId());
     }
 
     private void create(Player player, String[] args) throws IOException {
         requireLength(args, 2);
         UUID owner = player.getUniqueId();
-        requireNoOpenSession(player);
         DesignId id = new DesignId(args[1]);
-        if (store.exists(owner, id)) throw new IllegalArgumentException("蓝图已存在，请使用 open");
-        Blueprint initial = store.newBlueprint(owner, id);
-        EditSession session = new EditSession(new BlueprintWorkspace(initial), "", true);
-        putSession(owner, session);
-        try {
-            Blueprint saved = store.save(owner, initial, "");
-            session.workspace = new BlueprintWorkspace(saved);
-            session.saved = saved;
-            session.baseHash = saved.metadata().hash();
-            session.dirty = false;
-        } catch (IOException | RuntimeException failure) {
-            sessions.remove(owner, session);
-            throw failure;
-        }
+        sessions.create(owner, id);
         player.sendMessage("已创建并打开 " + id.value() + "，初始造物核已保存。");
     }
 
@@ -105,13 +90,9 @@ public final class BlueprintController implements Listener {
     private void open(Player player, String[] args) throws IOException {
         if (args.length < 2 || args.length > 3)
             throw new IllegalArgumentException("用法：/genesis blueprint open <id> [author UUID]");
-        requireNoOpenSession(player);
         DesignId id = new DesignId(args[1]);
         UUID author = args.length == 3 ? UUID.fromString(args[2]) : player.getUniqueId();
-        Blueprint blueprint = store.loadFor(player.getUniqueId(), author, id)
-                .orElseThrow(() -> new IllegalArgumentException("找不到蓝图 " + id.value()));
-        putSession(player.getUniqueId(), new EditSession(new BlueprintWorkspace(blueprint),
-                blueprint.metadata().hash(), false));
+        Blueprint blueprint = sessions.open(player.getUniqueId(), author, id);
         player.sendMessage("已打开 " + id.value() + " · author=" + author
                 + (blueprint.metadata().permissions().mayEdit(player.getUniqueId(), author) ? " · 可编辑" : " · 只读")
                 + "。使用 /genesis blueprint preview 查看结构评估。");
@@ -120,22 +101,11 @@ public final class BlueprintController implements Listener {
     private void cloneBlueprint(Player player, String[] args) throws IOException {
         if (args.length != 4)
             throw new IllegalArgumentException("用法：/genesis blueprint clone <author UUID> <sourceId> <newId>");
-        requireNoOpenSession(player);
         UUID actor = player.getUniqueId();
         UUID author = UUID.fromString(args[1]);
         DesignId source = new DesignId(args[2]);
         DesignId target = new DesignId(args[3]);
-        EditSession session = new EditSession(new BlueprintWorkspace(store.newBlueprint(actor, target)), "", false);
-        putSession(actor, session);
-        try {
-            Blueprint copy = store.cloneBlueprint(actor, author, source, target);
-            session.workspace = new BlueprintWorkspace(copy);
-            session.saved = copy;
-            session.baseHash = copy.metadata().hash();
-        } catch (IOException | RuntimeException failure) {
-            sessions.remove(actor, session);
-            throw failure;
-        }
+        sessions.cloneBlueprint(actor, author, source, target);
         player.sendMessage("已克隆并打开 " + target.value() + "；副本默认私有并记录原作者、版本与哈希。");
     }
 
@@ -184,10 +154,8 @@ public final class BlueprintController implements Listener {
     private void close(Player player, String[] args) {
         if (args.length > 2 || args.length == 2 && !args[1].equalsIgnoreCase("discard"))
             throw new IllegalArgumentException("用法：/genesis blueprint close [discard]");
-        EditSession session = requireSession(player);
-        if (session.dirty && args.length == 1) throw new IllegalArgumentException("有未保存修改；先 save，或使用 close discard 丢弃。");
-        sessions.remove(player.getUniqueId());
-        player.sendMessage(session.dirty ? "未保存的蓝图修改已丢弃。" : "已关闭蓝图工作区。");
+        boolean dirty = sessions.closeSession(player.getUniqueId(), args.length == 2);
+        player.sendMessage(dirty ? "未保存的蓝图修改已丢弃。" : "已关闭蓝图工作区。");
     }
 
     private void add(Player player, String[] args) {
@@ -273,13 +241,8 @@ public final class BlueprintController implements Listener {
 
     private void save(Player player, String[] args) throws IOException {
         requireLength(args, 1);
-        EditSession session = requireSession(player);
-        Blueprint saved = store.save(player.getUniqueId(), session.workspace.current(), session.baseHash);
-        session.saved = saved;
-        session.workspace = new BlueprintWorkspace(saved);
-        session.baseHash = saved.metadata().hash();
-        session.dirty = false;
-        player.sendMessage("蓝图已原子保存 · hash=" + session.baseHash.substring(0, 12));
+        Blueprint saved = sessions.save(player.getUniqueId());
+        player.sendMessage("蓝图已原子保存 · hash=" + saved.metadata().hash().substring(0, 12));
     }
 
     private void help(Player player) {
@@ -295,31 +258,11 @@ public final class BlueprintController implements Listener {
     }
 
     private EditSession requireSession(Player player) {
-        EditSession session = sessions.get(player.getUniqueId());
-        if (session == null) throw new IllegalArgumentException("先 create 或 open 一个蓝图");
-        return session;
+        return sessions.require(player.getUniqueId());
     }
 
     private EditSession requireEditableSession(Player player) {
-        EditSession session = requireSession(player);
-        Blueprint saved = session.saved;
-        if (!saved.metadata().permissions().mayEdit(player.getUniqueId(), saved.metadata().author()))
-            throw new SecurityException("此蓝图仅可查看；需要原作者授权编辑或允许克隆。");
-        return session;
-    }
-
-    private void requireNoOpenSession(Player player) {
-        if (sessions.containsKey(player.getUniqueId()))
-            throw new IllegalArgumentException("请先保存并 close 当前蓝图工作区");
-    }
-
-    private void putSession(UUID owner, EditSession session) {
-        synchronized (sessionLock) {
-            if (!sessions.containsKey(owner) && sessions.size() >= MAX_OPEN_WORKSPACES)
-                throw new IllegalArgumentException("当前打开的蓝图工作区已达服务器上限");
-            if (sessions.putIfAbsent(owner, session) != null)
-                throw new IllegalArgumentException("已有蓝图工作区打开");
-        }
+        return sessions.requireEditable(player.getUniqueId());
     }
 
     private int integer(String value) { return Integer.parseInt(value); }
@@ -332,17 +275,4 @@ public final class BlueprintController implements Listener {
         if (!before.equals(session.workspace.current())) session.dirty = !session.workspace.current().equals(session.saved);
     }
 
-    private static final class EditSession {
-        private BlueprintWorkspace workspace;
-        private Blueprint saved;
-        private String baseHash;
-        private boolean dirty;
-
-        private EditSession(BlueprintWorkspace workspace, String baseHash, boolean dirty) {
-            this.workspace = workspace;
-            this.saved = workspace.current();
-            this.baseHash = baseHash;
-            this.dirty = dirty;
-        }
-    }
 }

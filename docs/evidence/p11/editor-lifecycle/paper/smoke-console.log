@@ -1,0 +1,647 @@
+Starting org.bukkit.craftbukkit.Main
+[09:00:58 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[09:00:58 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[09:00:59 INFO]: [PluginInitializerManager] Initializing plugins...
+[09:01:01 INFO]: [ReobfServer] Remapping server...
+[09:01:11 INFO]: [ReobfServer] Done remapping server in 10023ms.
+[09:01:11 INFO]: [PluginRemapper] Remapping plugin 'plugins\StarGenesis.jar'...
+[09:01:12 INFO]: [PluginRemapper] Done remapping plugin 'plugins\StarGenesis.jar' in 1237ms.
+[09:01:12 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[09:01:12 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[09:01:20 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[09:01:21 INFO]: Found new data pack file/bukkit, loading it automatically
+[09:01:21 INFO]: Found new data pack paper, loading it automatically
+[09:01:22 INFO]: No existing world data, creating new world
+[09:01:23 INFO]: Loaded 1470 recipes
+[09:01:23 INFO]: Loaded 1584 advancements
+[09:01:23 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[09:01:24 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 553.6ms
+[09:01:24 INFO]: Starting minecraft server version 1.21.11
+[33;1m[09:01:24 WARN]: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+[m[33;1m[09:01:24 WARN]: ****************************
+[m[33;1m[09:01:24 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[09:01:24 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[09:01:24 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[09:01:24 WARN]: ****************************
+[m[09:01:24 INFO]: Loading properties
+[09:01:24 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[09:01:24 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[09:01:24 INFO]: Server Ping Player Sample Count: 12
+[09:01:24 INFO]: Using 4 threads for Netty based IO
+[09:01:26 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[09:01:26 INFO]: Default game type: SURVIVAL
+[09:01:26 INFO]: Generating keypair
+> 
+  
+[09:01:26 INFO]: Starting Minecraft server on 127.0.0.1:25675
+> 
+  
+[09:01:26 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[09:01:26 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[09:01:27 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[33;1m[09:01:27 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[09:01:27 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[09:01:27 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[09:01:27 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[09:01:27 INFO]: Preparing level "world"
+> 
+  
+[09:01:27 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[09:01:27 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[09:01:29 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[09:01:29 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[09:01:29 INFO]: Preparing spawn area: 100%
+> 
+  
+[09:01:29 INFO]: Prepared spawn area in 2298 ms
+> 
+  
+[09:01:29 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[09:01:29 INFO]: Preparing spawn area: 100%
+> 
+  
+[09:01:29 INFO]: Prepared spawn area in 1876 ms
+> 
+  
+[09:01:29 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[09:01:29 INFO]: Preparing spawn area: 100%
+> 
+  
+[09:01:29 INFO]: Prepared spawn area in 411 ms
+> 
+  
+[09:01:29 INFO]: Done preparing level "world" (2.684s)
+> 
+  
+[09:01:29 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[09:01:31 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[09:01:31 INFO]: [StarGenesis] P4 radio state ready | tick=0 | retained=0 | active contracts=0
+> 
+  
+[09:01:31 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[09:01:31 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[09:01:31 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=PAPER_VIRTUAL_INVENTORY_LAB
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[09:01:31 INFO]: [spark] Starting background profiler...
+> 
+  
+[09:01:31 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+> 
+  
+[09:01:31 INFO]: Running delayed init tasks
+> 
+  
+[09:01:31 INFO]: Done (34.354s)! For help, type "help"
+> 
+  
+[09:01:31 INFO]: *************************************************************************************
+> 
+  
+[09:01:31 INFO]: This is the first time you're starting this server.
+> genesis statu> 
+  
+[09:01:31 INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
+> 
+  
+[09:01:31 INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
+> 
+  
+[09:01:31 INFO]: *************************************************************************************
+> gen> > > > 
+  
+[09:01:31 INFO]: StarGenesis 4.0.0-SNAPSHOT | foundation accepted; automated workflows available, human acceptance pending | engine=genesis-sim/1
+> 
+  
+[09:01:31 INFO]: Design schema=1 | simulation-worker=scheduled | real-settlement=disabled | integrations=8
+> 
+  
+[09:01:31 INFO]: P1 resource lab=PAPER_VIRTUAL_INVENTORY_LAB | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[09:01:31 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[09:01:31 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[09:01:31 INFO]: P5 closed ecology=available | /genesis ecology dashboard
+> 
+  
+[09:01:31 INFO]: P6 four-seat simulated factory=available | /genesis factory dashboard
+> 
+  
+[09:01:31 INFO]: P7 licensed arena catalog=available | /genesis arena catalog
+> 
+  
+[09:01:31 INFO]: P8 simultaneous territory match=available | /genesis arena match matches
+> 
+  
+[09:01:31 INFO]: P9 durable saga contract=available, real gateway=inactive
+> 
+  
+[09:01:31 INFO]: P10 signed Ed25519 design import=available | /genesis design list
+> 
+  
+[09:01:31 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[09:01:31 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[09:01:31 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[09:01:31 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[09:01:31 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[09:01:31 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[09:01:31 INFO]: /genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it
+> 
+  
+[09:01:31 INFO]: /genesis factory - form a two-player organization, bid, place simulated orders, recover and replay
+> 
+  
+[09:01:31 INFO]: /genesis arena - create, license, submit for review, and play approved ArenaRulesets
+> 
+  
+[09:01:31 INFO]: /genesis design - install and inspect administrator-staged signed design packages
+> 
+  
+[09:01:31 INFO]: /genesis design publishers - operator-managed publisher trust roots and key rotation
+> 
+  
+[09:01:31 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[09:01:31 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[09:01:31 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[09:01:31 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[09:01:31 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> 
+  
+[09:01:32 INFO]: Made SGReview a server operator
+> 
+  
+[33;1m[09:01:33 WARN]: *************************************************************************************
+[m> 
+  
+[33;1m[09:01:33 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m> 
+  
+[33;1m[09:01:33 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m> 
+  
+[33;1m[09:01:33 WARN]: It is recommended that you update as soon as possible
+[m> 
+  
+[33;1m[09:01:33 WARN]: https://papermc.io/downloads/paper
+[m> 
+  
+[33;1m[09:01:33 WARN]: *************************************************************************************
+[m> 
+  
+[09:01:34 INFO]: UUID of player SGEditAuthor is 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:01:36 INFO]: [93mSGEditAuthor joined the game[0m
+> 
+  
+[09:01:36 INFO]: SGEditAuthor[/127.0.0.1:60533] logged in with entity id 1 at ([world]4.5, -63.0, 2.5)
+> 
+  
+[09:01:36 INFO]: UUID of player SGEditPartner is c65b26af-9ca7-310e-98ef-bbcb4f2ca732
+> 
+  
+[09:01:36 INFO]: [93mSGEditPartner joined the game[0m
+> 
+  
+[09:01:36 INFO]: SGEditPartner[/127.0.0.1:60542] logged in with entity id 2 at ([world]-1.5, -63.0, 10.5)
+> 
+  
+[09:01:36 INFO]: UUID of player SGEditReader is 33626e11-900c-35a6-b9d6-0d8514fadac8
+> 
+  
+[09:01:36 INFO]: [93mSGEditReader joined the game[0m
+> 
+  
+[09:01:36 INFO]: SGEditReader[/127.0.0.1:60543] logged in with entity id 3 at ([world]4.5, -63.0, -1.5)
+> 
+  
+[09:01:36 INFO]: SGEditAuthor issued server command: /genesis blueprint create smoke:editor-lifecycle
+> 
+  
+[09:01:38 INFO]: SGEditAuthor issued server command: /genesis blueprint access editor c65b26af-9ca7-310e-98ef-bbcb4f2ca732
+> 
+  
+[09:01:39 INFO]: SGEditAuthor issued server command: /genesis blueprint access public on
+> 
+  
+[09:01:40 INFO]: SGEditAuthor issued server command: /genesis blueprint access clone on
+> 
+  
+[09:01:41 INFO]: SGEditAuthor issued server command: /genesis blueprint save
+> 
+  
+[09:01:41 INFO]: SGEditPartner issued server command: /genesis blueprint open smoke:editor-lifecycle 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:01:42 INFO]: SGEditPartner issued server command: /genesis blueprint move core 8 0 0
+> 
+  
+[09:01:43 INFO]: SGEditAuthor issued server command: /genesis blueprint move core 4 0 0
+> 
+  
+[09:01:44 INFO]: SGEditAuthor issued server command: /genesis blueprint save
+> 
+  
+[09:01:44 INFO]: SGEditPartner issued server command: /genesis blueprint save
+> 
+  
+[09:01:45 INFO]: SGEditPartner issued server command: /genesis blueprint preview
+> 
+  
+[09:01:46 INFO]: SGEditPartner issued server command: /genesis blueprint close
+> 
+  
+[09:01:46 INFO]: SGEditPartner lost connection: Disconnected
+> 
+  
+[09:01:46 INFO]: [93mSGEditPartner left the game[0m
+> 
+  
+[09:01:47 INFO]: UUID of player SGEditPartner is c65b26af-9ca7-310e-98ef-bbcb4f2ca732
+> 
+  
+[09:01:47 INFO]: [93mSGEditPartner joined the game[0m
+> 
+  
+[09:01:47 INFO]: SGEditPartner[/127.0.0.1:60560] logged in with entity id 4 at ([world]-1.5, -63.0, 10.5)
+> 
+  
+[09:01:47 INFO]: SGEditPartner issued server command: /genesis blueprint open smoke:editor-lifecycle 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:01:48 INFO]: SGEditPartner issued server command: /genesis blueprint preview
+> 
+  
+[09:01:49 INFO]: SGEditReader issued server command: /genesis blueprint open smoke:editor-lifecycle 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:01:50 INFO]: SGEditReader issued server command: /genesis blueprint move core 10 0 0
+> 
+  
+[09:01:51 INFO]: SGEditReader issued server command: /genesis blueprint save
+> 
+  
+[09:01:52 INFO]: SGEditReader issued server command: /genesis blueprint close
+> 
+  
+[09:01:53 INFO]: SGEditReader issued server command: /genesis blueprint clone 9aa94e6c-5241-3602-8ab0-35b6638e0427 smoke:editor-lifecycle smoke:reader-copy
+> 
+  
+[09:01:54 INFO]: SGEditPartner issued server command: /genesis blueprint move core 6 0 0
+> 
+  
+[09:01:55 INFO]: SGEditPartner issued server command: /genesis blueprint save
+> 
+  
+[09:01:55 INFO]: SGEditAuthor issued server command: /genesis blueprint close
+> 
+  
+[09:01:56 INFO]: SGEditAuthor issued server command: /genesis blueprint open smoke:editor-lifecycle
+> 
+  
+[09:01:57 INFO]: SGEditAuthor issued server command: /genesis blueprint access revoke c65b26af-9ca7-310e-98ef-bbcb4f2ca732
+> 
+  
+[09:01:58 INFO]: SGEditAuthor issued server command: /genesis blueprint access public off
+> 
+  
+[09:02:00 INFO]: SGEditAuthor issued server command: /genesis blueprint save
+> 
+  
+[09:02:00 INFO]: SGEditPartner issued server command: /genesis blueprint move core 12 0 0
+> 
+  
+[09:02:01 INFO]: SGEditPartner issued server command: /genesis blueprint save
+> 
+  
+[09:02:01 INFO]: SGEditPartner lost connection: Disconnected
+> 
+  
+[09:02:01 INFO]: [93mSGEditPartner left the game[0m
+> 
+  
+[09:02:02 INFO]: UUID of player SGEditPartner is c65b26af-9ca7-310e-98ef-bbcb4f2ca732
+> 
+  
+[09:02:02 INFO]: [93mSGEditPartner joined the game[0m
+> 
+  
+[09:02:02 INFO]: SGEditPartner[/127.0.0.1:60572] logged in with entity id 5 at ([world]-1.5, -63.0, 10.5)
+> 
+  
+[09:02:02 INFO]: SGEditPartner issued server command: /genesis blueprint open smoke:editor-lifecycle 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:02:03 INFO]: SGEditPartner issued server command: /genesis blueprint create smoke:editor-own
+> 
+  
+[09:02:03 INFO]: SGEditAuthor issued server command: /genesis blueprint move core 14 0 0
+> 
+  
+[09:02:04 INFO]: SGEditAuthor issued server command: /genesis program create smoke:debugger-lifecycle
+> 
+  
+[09:02:06 INFO]: SGEditAuthor issued server command: /genesis program replace start CONSTANT_INTEGER - value=5
+> 
+  
+[09:02:07 INFO]: SGEditAuthor issued server command: /genesis program add result COMPARE_THRESHOLD_INTEGER start operator=gt,value=4
+> 
+  
+[09:02:08 INFO]: SGEditAuthor issued server command: /genesis program save
+> 
+  
+[09:02:09 INFO]: SGEditAuthor issued server command: /genesis program replace start CONSTANT_INTEGER - value=9
+> 
+  
+[09:02:10 INFO]: SGEditAuthor issued server command: /genesis program sensor energy integer 7
+> 
+  
+[09:02:12 INFO]: SGEditAuthor issued server command: /genesis program resource ore 8
+> 
+  
+[09:02:13 INFO]: SGEditAuthor issued server command: /genesis program signal ready 1
+> 
+  
+[09:02:14 INFO]: SGEditAuthor issued server command: /genesis program context 123 40
+> 
+  
+[09:02:15 INFO]: SGEditAuthor issued server command: /genesis program breakpoint result on
+> 
+  
+[09:02:16 INFO]: SGEditAuthor issued server command: /genesis program run
+> 
+  
+[09:02:18 INFO]: SGEditAuthor issued server command: /genesis program close
+> 
+  
+[09:02:18 INFO]: SGEditAuthor lost connection: Disconnected
+> 
+  
+[09:02:18 INFO]: [93mSGEditAuthor left the game[0m
+> 
+  
+[09:02:19 INFO]: UUID of player SGEditAuthor is 9aa94e6c-5241-3602-8ab0-35b6638e0427
+> 
+  
+[09:02:19 INFO]: [93mSGEditAuthor joined the game[0m
+> 
+  
+[09:02:19 INFO]: SGEditAuthor[/127.0.0.1:60611] logged in with entity id 6 at ([world]4.5, -63.0, 2.5)
+> 
+  
+[09:02:19 INFO]: SGEditAuthor issued server command: /genesis blueprint preview
+> 
+  
+[09:02:20 INFO]: SGEditAuthor issued server command: /genesis blueprint open smoke:editor-lifecycle
+> 
+  
+[09:02:21 INFO]: SGEditAuthor issued server command: /genesis blueprint preview
+> 
+  
+[09:02:22 INFO]: SGEditAuthor issued server command: /genesis program status
+> 
+  
+[09:02:23 INFO]: SGEditAuthor issued server command: /genesis program open smoke:debugger-lifecycle
+> 
+  
+[09:02:25 INFO]: SGEditAuthor issued server command: /genesis program status
+> 
+  
+[09:02:26 INFO]: SGEditAuthor issued server command: /genesis program status
+> 
+  
+[09:02:27 INFO]: SGEditAuthor issued server command: /genesis program show
+> 
+  
+[09:02:28 INFO]: SGEditAuthor issued server command: /genesis program run
+> 
+  
+[09:02:30 INFO]: SGEditAuthor issued server command: /genesis program simulate 42 3
+> 
+  
+[09:02:30 INFO]: SGEditReader lost connection: Disconnected
+> > 
+  
+[09:02:30 INFO]: [93mSGEditReader left the game[0m
+> 
+  
+[09:02:30 INFO]: SGEditPartner lost connection: Disconnected
+> 
+  
+[09:02:30 INFO]: [93mSGEditPartner left the game[0m
+> 
+  
+[09:02:30 INFO]: SGEditAuthor lost connection: Disconnected
+> 
+  
+[09:02:30 INFO]: [93mSGEditAuthor left the game[0m
+> 
+  
+[09:02:30 INFO]: Stopping the server
+> 
+  
+[09:02:30 INFO]: Stopping server
+> 
+  
+[09:02:30 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[09:02:30 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[09:02:30 INFO]: Saving players
+> 
+  
+[09:02:30 INFO]: Saving worlds
+> 
+  
+[09:02:30 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+> 
+  
+[09:02:30 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[09:02:30 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[09:02:30 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Saved 1155 block chunks, 143 entity chunks, 0 poi chunks in world 'world' in 0.94s
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[09:02:31 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[09:02:31 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[09:02:31 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[09:02:31 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[09:02:31 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[09:02:31 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[09:02:31 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[09:02:31 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[09:02:31 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[09:02:31 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[09:02:31 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

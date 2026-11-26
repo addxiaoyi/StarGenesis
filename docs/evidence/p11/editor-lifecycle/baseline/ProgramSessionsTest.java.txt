@@ -1,0 +1,37 @@
+package dev.stargenesis.paper.program;
+
+import dev.stargenesis.api.design.DesignId;
+import dev.stargenesis.api.sim.SimulationBudget;
+import dev.stargenesis.design.TypedProgramCodec;
+import dev.stargenesis.paper.runtime.WorkspaceRace;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Path;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ProgramSessionsTest {
+    private static final UUID OWNER = new UUID(0, 820);
+    private static final DesignId ID = new DesignId("player:program-lifecycle");
+    @TempDir Path directory;
+
+    @Test void closedServiceCannotCreateAnotherPersistentProgram() throws Exception {
+        var store = new ProgramStore(directory, new TypedProgramCodec());
+        var sessions = new ProgramSessions(store, SimulationBudget.defaults());
+        sessions.close();
+        assertThrows(IllegalArgumentException.class, () -> sessions.create(OWNER, ID));
+        assertTrue(store.list(OWNER).isEmpty());
+    }
+
+    @Test void admittedOpenFinishesBeforeCloseAndCannotRestoreARetiredWorkspace() throws Exception {
+        var store = new ProgramStore(directory, new TypedProgramCodec());
+        var sessions = new ProgramSessions(store, SimulationBudget.defaults());
+        var saved = sessions.create(OWNER, ID).workspace.current();
+        sessions.closeSession(OWNER, false);
+        assertEquals(saved, WorkspaceRace.duringStoreCall(store, () -> sessions.open(OWNER, ID), sessions, sessions::close).workspace.current());
+        assertEquals(0, sessions.size());
+        assertEquals(saved, store.load(OWNER, ID).orElseThrow().program());
+    }
+}

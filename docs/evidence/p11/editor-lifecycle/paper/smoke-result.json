@@ -1,0 +1,67 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 98.23,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "288aa3774e6eb8b29956bbbf3878f6c2fb137fe6f1acb92e363ecb4a1756258c",
+  "log_sha256": "616b9061d9fff2cbd9c10b09fffdcecddcce7f3d6225ab38a1a8ffdc4e042444",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "kind": "paper",
+    "players": 3,
+    "humanAcceptance": false,
+    "checks": [
+      "blueprint_conflict_preserves_both_edits_and_reconnect_loads_saved_author_state",
+      "public_reader_cannot_edit_and_permitted_clone_is_private_with_pinned_source",
+      "revoked_collaborator_cannot_overwrite_or_reopen_and_failed_open_releases_admission",
+      "author_disconnect_discards_unsaved_blueprint_without_rewriting_saved_bytes",
+      "program_reconnect_loads_saved_code_resets_debug_context_and_replays_simulation"
+    ],
+    "identities": {
+      "author": "9aa94e6c-5241-3602-8ab0-35b6638e0427",
+      "editor": "c65b26af-9ca7-310e-98ef-bbcb4f2ca732",
+      "reader": "33626e11-900c-35a6-b9d6-0d8514fadac8"
+    },
+    "files": {
+      "blueprints/9aa94e6c-5241-3602-8ab0-35b6638e0427/b5ab3e3b8d9b298fc3601e61ea9d63263e581e2353242080f71b562df486d091.json": "02716eb25db27e1a8140dedf8320d034acbacc76e3c1644d7b04ea05828080f7",
+      "programs/9aa94e6c-5241-3602-8ab0-35b6638e0427/9cb0f2cd65fe78a00881b4c223f67b9ad3e32ff9ce7d199221dad266fff2c2a1.json": "e2a6e05feb372dc927e248aba0f3346ae1a1156ba4c8c14eb3472b285ce0a4a9",
+      "blueprints/33626e11-900c-35a6-b9d6-0d8514fadac8/58f712a13b328fe6c8f6aa1f5da656285b0a25c5d25f1db4a98c077b1b38c47e.json": "548b9419e4e8b48ada87c5cbfab01d4fb15258666d324d35a7394381ab25a002"
+    },
+    "log": "player-workflow.log"
+  }
+}

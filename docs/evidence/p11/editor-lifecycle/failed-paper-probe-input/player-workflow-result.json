@@ -1,0 +1,17 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "players": 3,
+  "humanAcceptance": false,
+  "checks": [
+    "blueprint_conflict_preserves_both_edits_and_reconnect_loads_saved_author_state",
+    "public_reader_cannot_edit_and_permitted_clone_is_private_with_pinned_source",
+    "revoked_collaborator_cannot_overwrite_or_reopen_and_failed_open_releases_admission"
+  ],
+  "identities": {
+    "author": "9aa94e6c-5241-3602-8ab0-35b6638e0427",
+    "editor": "c65b26af-9ca7-310e-98ef-bbcb4f2ca732",
+    "reader": "33626e11-900c-35a6-b9d6-0d8514fadac8"
+  },
+  "error": "Error: SGEditAuthor timed out waiting for \"组件位置已更新\". Connection error=none. Recent messages:\n蓝图操作未完成：x outside -16..16\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processTimers (node:internal/timers:518:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_editor_smoke.cjs:81:5)"
+}

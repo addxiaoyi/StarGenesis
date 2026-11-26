@@ -1,0 +1,122 @@
+"use strict";
+const assert = require("node:assert/strict");
+const crypto = require("node:crypto");
+const fs = require("node:fs");
+const path = require("node:path");
+const { pause, connect, command, disconnect, dropConnection } = require("./offline_client_workflow_smoke.cjs");
+const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
+
+async function main() {
+  const options = {};
+  for (let i = 2; i < process.argv.length; i += 2) options[process.argv[i].replace(/^--/, "")] = process.argv[i + 1];
+  const names = { author: "SGEditAuthor", editor: "SGEditPartner", reader: "SGEditReader" };
+  const bots = {};
+  const result = { passed: false, kind: options.kind, players: 3, humanAcceptance: false, checks: [] };
+  try {
+    const mineflayer = require(path.join(path.resolve(options["module-root"]), "mineflayer"));
+    const reconnect = async (role) => {
+      const uuid = bots[role].player.uuid;
+      await dropConnection(bots[role]);
+      await pause(800);
+      bots[role] = await connect(mineflayer, options.host, Number(options.port), names[role]);
+      assert.equal(bots[role].player.uuid, uuid);
+    };
+    for (const [role, name] of Object.entries(names))
+      bots[role] = await connect(mineflayer, options.host, Number(options.port), name);
+    result.identities = Object.fromEntries(Object.entries(bots).map(([role, bot]) => [role, bot.player.uuid]));
+    const { author, editor, reader } = result.identities;
+    const data = options["data-directory"];
+    const blueprintId = "smoke:editor-lifecycle";
+    const programId = "smoke:debugger-lifecycle";
+    const blueprintPath = path.join(data, "blueprints", author, `${sha(blueprintId)}.json`);
+    const programPath = path.join(data, "programs", author, `${sha(programId)}.json`);
+    await command(bots.author, `blueprint create ${blueprintId}`, "已创建并打开");
+    await command(bots.author, `blueprint access editor ${editor}`, "蓝图许可已修改");
+    await command(bots.author, "blueprint access public on", "蓝图许可已修改");
+    await command(bots.author, "blueprint access clone on", "蓝图许可已修改");
+    await command(bots.author, "blueprint save", "蓝图已原子保存");
+    await command(bots.editor, `blueprint open ${blueprintId} ${author}`, "可编辑");
+    await command(bots.editor, "blueprint move core 8 0 0", "组件位置已更新");
+    await command(bots.author, "blueprint move core 4 0 0", "组件位置已更新");
+    await command(bots.author, "blueprint save", "蓝图已原子保存");
+    const authorBytes = fs.readFileSync(blueprintPath);
+    await command(bots.editor, "blueprint save", "Saved blueprint changed since it was opened");
+    assert.deepEqual(fs.readFileSync(blueprintPath), authorBytes);
+    await command(bots.editor, "blueprint preview", "genesis:core @ 8,0,0");
+    await command(bots.editor, "blueprint close", "有未保存修改");
+    await reconnect("editor");
+    await command(bots.editor, `blueprint open ${blueprintId} ${author}`, "可编辑");
+    await command(bots.editor, "blueprint preview", "genesis:core @ 4,0,0");
+    result.checks.push("blueprint_conflict_preserves_both_edits_and_reconnect_loads_saved_author_state");
+
+    await command(bots.reader, `blueprint open ${blueprintId} ${author}`, "只读");
+    await command(bots.reader, "blueprint move core 10 0 0", "此蓝图仅可查看");
+    await command(bots.reader, "blueprint save", "Blueprint editing requires the author's current permission");
+    await command(bots.reader, "blueprint close", "已关闭蓝图工作区");
+    const copyId = "smoke:reader-copy";
+    await command(bots.reader, `blueprint clone ${author} ${blueprintId} ${copyId}`, "已克隆并打开");
+    const copyPath = path.join(data, "blueprints", reader, `${sha(copyId)}.json`);
+    const copy = JSON.parse(fs.readFileSync(copyPath, "utf8"));
+    const source = JSON.parse(authorBytes.toString("utf8"));
+    assert.equal(copy.metadata.source, `clone:${author}:${blueprintId}@1.0.0#${source.metadata.hash}`);
+    assert.deepEqual(copy.metadata.permissions, { publicRead: false, allowClone: false, editors: [] });
+    result.checks.push("public_reader_cannot_edit_and_permitted_clone_is_private_with_pinned_source");
+
+    await command(bots.editor, "blueprint move core 6 0 0", "组件位置已更新");
+    await command(bots.editor, "blueprint save", "蓝图已原子保存");
+    await command(bots.author, "blueprint close", "已关闭蓝图工作区");
+    await command(bots.author, `blueprint open ${blueprintId}`, "可编辑");
+    await command(bots.author, `blueprint access revoke ${editor}`, "蓝图许可已修改");
+    await command(bots.author, "blueprint access public off", "蓝图许可已修改");
+    await command(bots.author, "blueprint save", "蓝图已原子保存");
+    const finalBlueprint = fs.readFileSync(blueprintPath);
+    await command(bots.editor, "blueprint move core 12 0 0", "组件位置已更新");
+    await command(bots.editor, "blueprint save", "Saved blueprint changed since it was opened");
+    assert.deepEqual(fs.readFileSync(blueprintPath), finalBlueprint);
+    await reconnect("editor");
+    await command(bots.editor, `blueprint open ${blueprintId} ${author}`, "Blueprint is private");
+    await command(bots.editor, "blueprint create smoke:editor-own", "已创建并打开");
+    result.checks.push("revoked_collaborator_cannot_overwrite_or_reopen_and_failed_open_releases_admission");
+
+    await command(bots.author, "blueprint move core 14 0 0", "组件位置已更新");
+    await command(bots.author, `program create ${programId}`, "已创建并打开");
+    await command(bots.author, "program replace start CONSTANT_INTEGER - value=5", "已替换为 CONSTANT_INTEGER");
+    await command(bots.author, "program add result COMPARE_THRESHOLD_INTEGER start operator=gt,value=4", "已加入 result");
+    await command(bots.author, "program save", "程序已原子保存");
+    const finalProgram = fs.readFileSync(programPath);
+    await command(bots.author, "program replace start CONSTANT_INTEGER - value=9", "已替换为 CONSTANT_INTEGER");
+    await command(bots.author, "program sensor energy integer 7", "虚拟传感器已设置");
+    await command(bots.author, "program resource ore 8", "虚拟资源已设置");
+    await command(bots.author, "program signal ready 1", "虚拟信号已设置");
+    await command(bots.author, "program context 123 40", "虚拟上下文已设置");
+    await command(bots.author, "program breakpoint result on", "已启用");
+    await command(bots.author, "program run", "调试器 BREAKPOINT");
+    await command(bots.author, "program close", "有未保存修改");
+    await reconnect("author");
+    await command(bots.author, "blueprint preview", "先 create 或 open 一个蓝图");
+    await command(bots.author, `blueprint open ${blueprintId}`, "可编辑");
+    await command(bots.author, "blueprint preview", "genesis:core @ 6,0,0");
+    assert.deepEqual(fs.readFileSync(blueprintPath), finalBlueprint);
+    result.checks.push("author_disconnect_discards_unsaved_blueprint_without_rewriting_saved_bytes");
+    await command(bots.author, "program status", "先 create 或 open 一个程序");
+    await command(bots.author, `program open ${programId}`, "已打开");
+    await command(bots.author, "program status", "undo=0 · 已保存");
+    await command(bots.author, "program status", "传感器 0 · 资源 0 · 信号 0 · 断点 0 · seed=0 tick=0");
+    await command(bots.author, "program show", "params={value=5}");
+    await command(bots.author, "program run", "调试器 COMPLETE");
+    await command(bots.author, "program simulate 42 3", "replay=verified");
+    assert.deepEqual(fs.readFileSync(programPath), finalProgram);
+    result.checks.push("program_reconnect_loads_saved_code_resets_debug_context_and_replays_simulation");
+    result.files = Object.fromEntries([blueprintPath, programPath, copyPath].map(file => [
+      path.relative(data, file).replaceAll(path.sep, "/"), sha(fs.readFileSync(file))]));
+    result.passed = true;
+  } catch (error) { result.error = error.stack || String(error); }
+  finally {
+    await Promise.all(Object.values(bots).map(disconnect));
+    fs.writeFileSync(options.output, JSON.stringify(result, null, 2) + "\n", "utf8");
+  }
+  console.log(JSON.stringify(result, null, 2));
+  process.exit(result.passed ? 0 : 1);
+}
+
+main().catch(error => { console.error(error); process.exitCode = 1; });

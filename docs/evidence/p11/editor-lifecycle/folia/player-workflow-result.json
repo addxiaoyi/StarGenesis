@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "kind": "folia",
+  "players": 3,
+  "humanAcceptance": false,
+  "checks": [
+    "blueprint_conflict_preserves_both_edits_and_reconnect_loads_saved_author_state",
+    "public_reader_cannot_edit_and_permitted_clone_is_private_with_pinned_source",
+    "revoked_collaborator_cannot_overwrite_or_reopen_and_failed_open_releases_admission",
+    "author_disconnect_discards_unsaved_blueprint_without_rewriting_saved_bytes",
+    "program_reconnect_loads_saved_code_resets_debug_context_and_replays_simulation"
+  ],
+  "identities": {
+    "author": "9aa94e6c-5241-3602-8ab0-35b6638e0427",
+    "editor": "c65b26af-9ca7-310e-98ef-bbcb4f2ca732",
+    "reader": "33626e11-900c-35a6-b9d6-0d8514fadac8"
+  },
+  "files": {
+    "blueprints/9aa94e6c-5241-3602-8ab0-35b6638e0427/b5ab3e3b8d9b298fc3601e61ea9d63263e581e2353242080f71b562df486d091.json": "02716eb25db27e1a8140dedf8320d034acbacc76e3c1644d7b04ea05828080f7",
+    "programs/9aa94e6c-5241-3602-8ab0-35b6638e0427/9cb0f2cd65fe78a00881b4c223f67b9ad3e32ff9ce7d199221dad266fff2c2a1.json": "e2a6e05feb372dc927e248aba0f3346ae1a1156ba4c8c14eb3472b285ce0a4a9",
+    "blueprints/33626e11-900c-35a6-b9d6-0d8514fadac8/58f712a13b328fe6c8f6aa1f5da656285b0a25c5d25f1db4a98c077b1b38c47e.json": "548b9419e4e8b48ada87c5cbfab01d4fb15258666d324d35a7394381ab25a002"
+  }
+}
