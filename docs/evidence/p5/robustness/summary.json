@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-26",
+  "passed": true,
+  "scope": "Completed fixed finite pure-simulation study and evidence validation; stage gate remains unmet.",
+  "historicalJarSha256": "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+  "historicalJarBytes": 3108577,
+  "historicalWorkerSourceSha256": "c42bdc0945468132a8e116fb14c7971c1c633222873c877457516b647162e9a5",
+  "historicalLauncher": "historical/run_studies.py",
+  "historicalLauncherWasNewWrapper": false,
+  "primaryCases": 608,
+  "heldOutIndependentSeeds": 64,
+  "crossJdkRepeatedCases": 72,
+  "crossJdkAddsIndependentSeeds": false,
+  "defaultThreeSpeciesAt1536": 63,
+  "defaultCases": 64,
+  "totalExtinctionCasesAcrossPairedProfiles": 24,
+  "allCasesReplayVerified": true,
+  "newWrapperUnitTests": 17,
+  "independentVerifierUnitTests": 18,
+  "wrapperSmokeRepeatedCases": 18,
+  "defaultCounterexampleExactReplayPassed": true,
+  "commands": {
+    "test_run_ecology_robustness_study.py": {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_run_ecology_robustness_study.py"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+      "exitCode": 0,
+      "logSha256": "549836fe8a79c05d7f6b1b105381adda8671f2c6b388f270d6b23a1785044355"
+    },
+    "test_verify_ecology_robustness_study.py": {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_verify_ecology_robustness_study.py"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+      "exitCode": 0,
+      "logSha256": "ea70ab35cdd26c5e099deeb82b4b04c2129cdd135eb9d95c49e1d54d5c1167ec"
+    },
+    "independentValidator": {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\verify_ecology_robustness_study.py",
+        "--primary",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java21.json",
+        "--primary-plan",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java21.json.plan.json",
+        "--comparison",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java25.json",
+        "--comparison-plan",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java25.json.plan.json",
+        "--prior-validation",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\provenance\\prior-32-seed-validation.json",
+        "--output",
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\validation.json"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+      "exitCode": 0,
+      "logSha256": "c765c74e53129c29b23a4a3031f5014ad5b8f4336eb1fb6b100bce4595ee63c6"
+    },
+    "java21VersionObservedAtArchive": {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+        "-version"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+      "exitCode": 0,
+      "logSha256": "a29806548d5e4bdcf7074c7b8106cf7f7bea2a835007cf369415949a5fa224f5",
+      "javaExecutableSha256AtArchive": "65d23a3b6e1dfbfe2ae268899278bc1bdb63917c5ccd7094337ba8b242e4d77f"
+    },
+    "java25VersionObservedAtArchive": {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-25.0.5.0.2+1\\bin\\java.exe",
+        "-version"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+      "exitCode": 0,
+      "logSha256": "b2cc31f0eba7d43ce8c60d6f2ef060f7fa51dc0eda6ac3ab1df65e82277d404f",
+      "javaExecutableSha256AtArchive": "703e360683ea84a51cef49e1e987945aa6fccd15ab3018958ce6b3177938da1b"
+    }
+  },
+  "limits": [
+    "Original Java21 study used checkpoint resumes at 6, 23 and 96 cases; historical command snapshots include low-memory and normal JIT settings. JIT settings are not performance evidence.",
+    "Historical launcher's once-per-launch JAR check and retrospective source equality are weaker than the new wrapper's per-segment checks. No historical runtime manifest is invented.",
+    "The wrapper hashes the Java executable, worker and JAR before/after each segment and serializes cooperating wrappers. It does not hash the entire JDK, prevent transient input changes, authenticate files or lock direct Java invocations.",
+    "A crashed wrapper may leave a run lock. Verify the owning process has ended and inspect saved plan/report/runtime before explicitly removing that lock; never remove an active owner's lock.",
+    "Independent Python validation checks saved evidence, not every physics step. New wrapper smoke and one default counterexample were reexecuted; other historical cases were not all rerun during archiving.",
+    "Default survives in 63/64 new seeds; extinction is retained. Perturbations share 32 baseline seeds, so 608 cases are not 608 independent seeds.",
+    "Finite 1536-step pure-simulation data do not prove indefinite balance, arbitrary seeds/parameters, live-server behavior, human experience, production capacity or official release acceptance.",
+    "Only saved historical command snapshots survive; there is no complete immutable per-segment invocation record. Java versions/executable hashes captured during archiving describe the current installed launchers, not a historical attestation."
+  ],
+  "rawCompletionLogEntriesChecked": {
+    "java21": 608,
+    "java25": 72
+  }
+}

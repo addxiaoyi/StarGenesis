@@ -1,0 +1,50 @@
+{
+  "fresh": {
+    "command": [
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\run_ecology_robustness_study.py",
+      "--java",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+      "--plugin-jar",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\artifacts\\StarGenesis-4.0.0-SNAPSHOT.jar",
+      "--expected-jar-sha256",
+      "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+      "--output",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\wrapper-smoke\\java21.json",
+      "--baseline-seeds",
+      "1",
+      "--paired-seeds",
+      "1"
+    ],
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "exitCode": 0,
+    "logSha256": "f74b894d1cde0c9d41e204e91f0ab092dfbea07cd341586df84c31e0f3e3cd27"
+  },
+  "completedResume": {
+    "command": [
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\run_ecology_robustness_study.py",
+      "--java",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+      "--plugin-jar",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\artifacts\\StarGenesis-4.0.0-SNAPSHOT.jar",
+      "--expected-jar-sha256",
+      "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+      "--output",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\wrapper-smoke\\java21.json",
+      "--baseline-seeds",
+      "1",
+      "--paired-seeds",
+      "1",
+      "--resume"
+    ],
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "exitCode": 0,
+    "logSha256": "21a23ab82051bff3afb5649189a7e53ec06b93cf58c9d09b3d96c9dee04f3e5e"
+  },
+  "passed": true,
+  "casesReexecuted": 18,
+  "allCasesEqualHistoricalPrimary": true,
+  "completedResumeFilesUnchanged": true,
+  "scope": "Separate post-study wrapper smoke. Reuses 18 original cases; adds no independent seeds. Historical reports were not created by this wrapper."
+}

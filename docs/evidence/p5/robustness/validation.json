@@ -1,0 +1,621 @@
+{
+  "passed": true,
+  "engineVersion": "genesis-ecology/2",
+  "primaryCases": 608,
+  "heldOutIndependentSeeds": 64,
+  "overlapWithPriorSeeds": 0,
+  "profiles": {
+    "default": {
+      "cases": 64,
+      "threeSpeciesAt1536": 63,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 57,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        132
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "decomposer-intake-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "decomposer-intake-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "decomposer-reproductionMass-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "decomposer-reproductionMass-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "decomposer-lifespanSteps-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 25,
+      "extinctionCases": [
+        {
+          "seed": -5068950895295806940,
+          "worldId": "ecology-v2-robustness-1",
+          "firstSpeciesExtinction": {
+            "decomposer": 1438
+          }
+        },
+        {
+          "seed": -1434243818018414438,
+          "worldId": "ecology-v2-robustness-6",
+          "firstSpeciesExtinction": {
+            "decomposer": 1518
+          }
+        },
+        {
+          "seed": -8421811906615505650,
+          "worldId": "ecology-v2-robustness-7",
+          "firstSpeciesExtinction": {
+            "decomposer": 1504
+          }
+        },
+        {
+          "seed": 7377448878559225932,
+          "worldId": "ecology-v2-robustness-11",
+          "firstSpeciesExtinction": {
+            "decomposer": 1519
+          }
+        },
+        {
+          "seed": -3544427448764004551,
+          "worldId": "ecology-v2-robustness-12",
+          "firstSpeciesExtinction": {
+            "decomposer": 1520
+          }
+        },
+        {
+          "seed": 6425230205790684350,
+          "worldId": "ecology-v2-robustness-26",
+          "firstSpeciesExtinction": {
+            "decomposer": 1520
+          }
+        },
+        {
+          "seed": -7651630809996168911,
+          "worldId": "ecology-v2-robustness-31",
+          "firstSpeciesExtinction": {
+            "decomposer": 1521
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 32,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        134,
+        149
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 24,
+        "baselineOnlySurvives": 7,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    },
+    "decomposer-lifespanSteps-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 32,
+      "extinctionCases": [],
+      "minimumPopulationBySpecies": {
+        "decomposer": 2,
+        "grazer": 1,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 18,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        113,
+        128
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    },
+    "grazer-intake-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 32,
+      "extinctionCases": [],
+      "minimumPopulationBySpecies": {
+        "decomposer": 1,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        118,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    },
+    "grazer-intake-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "grazer-reproductionMass-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 29,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "grazer-reproductionMass-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "grazer-lifespanSteps-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 32,
+      "extinctionCases": [],
+      "minimumPopulationBySpecies": {
+        "decomposer": 2,
+        "grazer": 2,
+        "producer": 1
+      },
+      "generationBudgetReachedCases": 30,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        134,
+        140
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    },
+    "producer-intake-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "producer-intake-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "producer-reproductionMass-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 31,
+      "extinctionCases": [
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "decomposer": 1360
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 0,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        119,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "producer-reproductionMass-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 32,
+      "extinctionCases": [],
+      "minimumPopulationBySpecies": {
+        "decomposer": 1,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 28,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        118,
+        131
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    },
+    "producer-lifespanSteps-minus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 26,
+      "extinctionCases": [
+        {
+          "seed": 1648842534038410324,
+          "worldId": "ecology-v2-robustness-0",
+          "firstSpeciesExtinction": {
+            "producer": 1531
+          }
+        },
+        {
+          "seed": -5068950895295806940,
+          "worldId": "ecology-v2-robustness-1",
+          "firstSpeciesExtinction": {
+            "producer": 1490
+          }
+        },
+        {
+          "seed": 8108471355311695579,
+          "worldId": "ecology-v2-robustness-9",
+          "firstSpeciesExtinction": {
+            "producer": 1472
+          }
+        },
+        {
+          "seed": 7377448878559225932,
+          "worldId": "ecology-v2-robustness-11",
+          "firstSpeciesExtinction": {
+            "producer": 1410
+          }
+        },
+        {
+          "seed": -4750559390618728431,
+          "worldId": "ecology-v2-robustness-14",
+          "firstSpeciesExtinction": {
+            "producer": 1531
+          }
+        },
+        {
+          "seed": -1414241492882785877,
+          "worldId": "ecology-v2-robustness-20",
+          "firstSpeciesExtinction": {
+            "producer": 1531
+          }
+        }
+      ],
+      "minimumPopulationBySpecies": {
+        "decomposer": 2,
+        "grazer": 2,
+        "producer": 0
+      },
+      "generationBudgetReachedCases": 32,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        141,
+        156
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 26,
+        "baselineOnlySurvives": 5,
+        "perturbationOnlySurvives": 0,
+        "neitherSurvives": 1
+      }
+    },
+    "producer-lifespanSteps-plus": {
+      "cases": 32,
+      "threeSpeciesAt1536": 32,
+      "extinctionCases": [],
+      "minimumPopulationBySpecies": {
+        "decomposer": 2,
+        "grazer": 2,
+        "producer": 3
+      },
+      "generationBudgetReachedCases": 7,
+      "birthBudgetReachedCases": 0,
+      "birthsRange": [
+        111,
+        117
+      ],
+      "pairedBaselineCases": 32,
+      "pairedSurvivalOutcomes": {
+        "bothSurvive": 31,
+        "baselineOnlySurvives": 0,
+        "perturbationOnlySurvives": 1,
+        "neitherSurvives": 0
+      }
+    }
+  },
+  "crossJdkRepeatedCases": 72,
+  "crossJdkAddsIndependentSeeds": false,
+  "excludedProfiles": [
+    "grazer-lifespanSteps-plus: outside existing public parameter bounds; not clamped or substituted"
+  ],
+  "limits": [
+    "Validates saved evidence structure and declared finite invariants; does not rerun physics or independently prove every per-step assertion.",
+    "All perturbations share a fixed baseline seed subset; case totals are not independent seed counts.",
+    "Finite 1536-tick samples cannot prove all-seed/all-parameter or indefinite coexistence; no production, human or performance acceptance."
+  ],
+  "inputHashes": {
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java21.json": "c1632780e5fa15123f250a78fa9995cd5f74317f063682faf1b9ee8b39d4555e",
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java21.json.plan.json": "153d7e93f71406329c068f6fbd5dd2c832c8dcd9656c8625c371a3d8c37a1b14",
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java25.json": "db852fbbfb099476f4eeab9419174b0441e491f46e34cd06e6fdb9762b29526f",
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\historical\\java25.json.plan.json": "d2e4a1b17981edd2c36456a9a19772278184e2d75402148b0ee474095e52a466",
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\provenance\\prior-32-seed-validation.json": "d960113ace7eb66d60c8dfc5c62e5f70f382a89c81ee028405a0aa50c7e7155c"
+  }
+}

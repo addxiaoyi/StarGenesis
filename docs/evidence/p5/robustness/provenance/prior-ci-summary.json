@@ -1,0 +1,19 @@
+{
+  "commit": "b3ea8523a1366c5c600094b0f02091d932c921f7",
+  "runId": 45819994176,
+  "passed": true,
+  "evidenceHashes": {
+    "ci-java21.log": "4bdf411e152e9ca8ed9638471ea7e42c97de77872e574fd54bd1187772436ba0",
+    "ci-java25.log": "fdebf0626c2e5d5e278caf230aa176c94b30516b66826a59d0766bb1fa17de13",
+    "ci-jobs.json": "538f269235f4adc60e49e4ae9adcd40fe13a903bb70450df433390be06ce046e",
+    "ci-result.json": "6a8322c8a494913231bbd1fa0ae386e7ce2693169562b84fa37337b710ff4fa7",
+    "ci-candidate-build.json": "2ff6547c8a990fd2f511472f6c9b52b78fc829437d95165551ce9ff96898de89",
+    "verify_ci.py": "10c1a6cb0fbdadf893553e577273d68d962e74aa353c20264b389867fa37c0d6",
+    "sync-result.json": "99c8ec9897bf09e181fb473042c9891c6532594c3c87a748804e56bdaecea12b"
+  },
+  "scope": "Exact synchronized P9 recovery capability commit; Linux Java21/25 each 646 Java/86 suites, 29 Python, 6 Node, four lock/signing probes. Java21 also isolated all-profile unsigned candidate 4.0.0-ci.35 with 646 tests.",
+  "limits": [
+    "CI candidate is distinct from Windows RC5; hashes are not interchangeable.",
+    "No real settlement provider, production signing or human acceptance."
+  ]
+}

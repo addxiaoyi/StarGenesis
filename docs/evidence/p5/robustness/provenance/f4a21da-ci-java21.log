@@ -1,0 +1,1537 @@
+﻿2026-11-26T12:53:48.2014653Z Current runner version: '2.338.2'
+2026-11-26T12:53:48.2034647Z ##[group]Runner Image Provisioner
+2026-11-26T12:53:48.2035219Z Hosted Compute Agent
+2026-11-26T12:53:48.2035678Z Version: 20261111.635
+2026-11-26T12:53:48.2036208Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-26T12:53:48.2036707Z Build Date: 2026-11-11T01:49:01Z
+2026-11-26T12:53:48.2037126Z Worker ID: {c971723f-b898-446f-be37-ec05ececb65d}
+2026-11-26T12:53:48.2037549Z Region: centralus
+2026-11-26T12:53:48.2037928Z Cloud: Azure
+2026-11-26T12:53:48.2038257Z ##[endgroup]
+2026-11-26T12:53:48.2039095Z ##[group]Operating System
+2026-11-26T12:53:48.2039518Z Ubuntu
+2026-11-26T12:53:48.2039844Z 26.04.1
+2026-11-26T12:53:48.2040220Z LTS
+2026-11-26T12:53:48.2040537Z ##[endgroup]
+2026-11-26T12:53:48.2040897Z ##[group]Runner Image
+2026-11-26T12:53:48.2041315Z Image: ubuntu-26.04
+2026-11-26T12:53:48.2041668Z Version: 20261116.202.1
+2026-11-26T12:53:48.2042485Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-26T12:53:48.2043402Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+2026-11-26T12:53:48.2044016Z ##[endgroup]
+2026-11-26T12:53:48.2044685Z ##[group]GITHUB_TOKEN Permissions
+2026-11-26T12:53:48.2046248Z Contents: read
+2026-11-26T12:53:48.2046643Z Metadata: read
+2026-11-26T12:53:48.2047028Z ##[endgroup]
+2026-11-26T12:53:48.2048445Z Secret source: Actions
+2026-11-26T12:53:48.2049060Z Cache mode: write
+2026-11-26T12:53:48.2049743Z Prepare workflow directory
+2026-11-26T12:53:48.2269380Z Prepare all required actions
+2026-11-26T12:53:48.2317170Z Getting action download info
+2026-11-26T12:53:48.5321273Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-26T12:53:48.6144465Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-26T12:53:49.1368827Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-26T12:53:49.2078155Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-26T12:53:49.3066951Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-26T12:53:49.5078800Z Complete job name: java (21)
+2026-11-26T12:53:49.5874382Z ##[group]Run actions/checkout@v4
+2026-11-26T12:53:49.5875112Z with:
+2026-11-26T12:53:49.5875611Z   repository: addxiaoyi/StarGenesis
+2026-11-26T12:53:49.5880445Z   token: ***
+2026-11-26T12:53:49.5880912Z   ssh-strict: true
+2026-11-26T12:53:49.5881404Z   ssh-user: git
+2026-11-26T12:53:49.5881904Z   persist-credentials: true
+2026-11-26T12:53:49.5882438Z   clean: true
+2026-11-26T12:53:49.5882943Z   sparse-checkout-cone-mode: true
+2026-11-26T12:53:49.5883526Z   fetch-depth: 1
+2026-11-26T12:53:49.5884012Z   fetch-tags: false
+2026-11-26T12:53:49.5884516Z   show-progress: true
+2026-11-26T12:53:49.5885008Z   lfs: false
+2026-11-26T12:53:49.5885471Z   submodules: false
+2026-11-26T12:53:49.5886080Z   set-safe-directory: true
+2026-11-26T12:53:49.5886663Z   allow-unsafe-pr-checkout: false
+2026-11-26T12:53:49.5887349Z ##[endgroup]
+2026-11-26T12:53:49.8516082Z Syncing repository: addxiaoyi/StarGenesis
+2026-11-26T12:53:49.8518403Z ##[group]Getting Git version info
+2026-11-26T12:53:49.8519589Z Working directory is '/home/runner/work/StarGenesis/StarGenesis'
+2026-11-26T12:53:49.8521121Z [command]/usr/bin/git version
+2026-11-26T12:53:49.8523817Z git version 2.56.1
+2026-11-26T12:53:49.8536970Z ##[endgroup]
+2026-11-26T12:53:49.8548539Z Temporarily overriding HOME='/home/runner/work/_temp/b06e6db3-df94-4a95-bc06-40d2b9e54d98' before making global git config changes
+2026-11-26T12:53:49.8551254Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T12:53:49.8553503Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/StarGenesis/StarGenesis
+2026-11-26T12:53:49.8641852Z Deleting the contents of '/home/runner/work/StarGenesis/StarGenesis'
+2026-11-26T12:53:49.8645531Z ##[group]Initializing the repository
+2026-11-26T12:53:49.8651780Z [command]/usr/bin/git init /home/runner/work/StarGenesis/StarGenesis
+2026-11-26T12:53:49.8870314Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-26T12:53:49.8872855Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-26T12:53:49.8874754Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-26T12:53:49.8876335Z hint: call:
+2026-11-26T12:53:49.8877531Z hint:
+2026-11-26T12:53:49.8878520Z hint: 	git config --global init.defaultBranch <name>
+2026-11-26T12:53:49.8879702Z hint:
+2026-11-26T12:53:49.8880816Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-26T12:53:49.8882549Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-26T12:53:49.8883924Z hint:
+2026-11-26T12:53:49.8884690Z hint: 	git branch -m <name>
+2026-11-26T12:53:49.8886327Z hint:
+2026-11-26T12:53:49.8887818Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-26T12:53:49.8890257Z Initialized empty Git repository in /home/runner/work/StarGenesis/StarGenesis/.git/
+2026-11-26T12:53:49.8909510Z [command]/usr/bin/git remote add origin https://github.com/addxiaoyi/StarGenesis
+2026-11-26T12:53:49.9023101Z ##[endgroup]
+2026-11-26T12:53:49.9025048Z ##[group]Disabling automatic garbage collection
+2026-11-26T12:53:49.9027555Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-26T12:53:49.9087259Z ##[endgroup]
+2026-11-26T12:53:49.9089410Z ##[group]Setting up auth
+2026-11-26T12:53:49.9096791Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T12:53:49.9134043Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T12:53:49.9549429Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T12:53:49.9581059Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T12:53:49.9809436Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T12:53:49.9837917Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T12:53:50.0060157Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-26T12:53:50.0094008Z ##[endgroup]
+2026-11-26T12:53:50.0095496Z ##[group]Fetching the repository
+2026-11-26T12:53:50.0102856Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f4a21da2d5220a36dd9ae4301322b8a9403c5d24:refs/remotes/origin/codex/stargenesis-rc2-recovery
+2026-11-26T12:53:50.8636987Z From https://github.com/addxiaoyi/StarGenesis
+2026-11-26T12:53:50.8638158Z  * [new ref]         f4a21da2d5220a36dd9ae4301322b8a9403c5d24 -> origin/codex/stargenesis-rc2-recovery
+2026-11-26T12:53:50.8640134Z ##[endgroup]
+2026-11-26T12:53:50.8640571Z ##[group]Determining the checkout info
+2026-11-26T12:53:50.8646240Z ##[endgroup]
+2026-11-26T12:53:50.8647828Z [command]/usr/bin/git sparse-checkout disable
+2026-11-26T12:53:50.8692879Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-26T12:53:50.8718306Z ##[group]Checking out the ref
+2026-11-26T12:53:50.8721832Z [command]/usr/bin/git checkout --progress --force -B codex/stargenesis-rc2-recovery refs/remotes/origin/codex/stargenesis-rc2-recovery
+2026-11-26T12:53:50.9770332Z Switched to a new branch 'codex/stargenesis-rc2-recovery'
+2026-11-26T12:53:50.9774402Z branch 'codex/stargenesis-rc2-recovery' set up to track 'origin/codex/stargenesis-rc2-recovery'.
+2026-11-26T12:53:50.9805303Z ##[endgroup]
+2026-11-26T12:53:50.9835478Z [command]/usr/bin/git log -1 --format=%H
+2026-11-26T12:53:50.9857880Z f4a21da2d5220a36dd9ae4301322b8a9403c5d24
+2026-11-26T12:53:51.0091263Z ##[group]Run actions/setup-java@v4
+2026-11-26T12:53:51.0091533Z with:
+2026-11-26T12:53:51.0091744Z   distribution: temurin
+2026-11-26T12:53:51.0091967Z   java-version: 21
+2026-11-26T12:53:51.0092169Z   cache: maven
+2026-11-26T12:53:51.0092376Z   java-package: jdk
+2026-11-26T12:53:51.0092583Z   check-latest: false
+2026-11-26T12:53:51.0092795Z   server-id: github
+2026-11-26T12:53:51.0093013Z   server-username: GITHUB_ACTOR
+2026-11-26T12:53:51.0093256Z   server-password: GITHUB_TOKEN
+2026-11-26T12:53:51.0093491Z   overwrite-settings: true
+2026-11-26T12:53:51.0093719Z   job-status: success
+2026-11-26T12:53:51.0095191Z   token: ***
+2026-11-26T12:53:51.0095404Z ##[endgroup]
+2026-11-26T12:53:51.1518418Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-26T12:53:51.1523440Z ##[group]Installed distributions
+2026-11-26T12:53:51.1545218Z Resolved Java 21.0.13+9 from tool-cache
+2026-11-26T12:53:51.1545608Z Setting Java 21.0.13+9 as the default
+2026-11-26T12:53:51.1553014Z (node:2197) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:53:51.1553836Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:53:51.1555602Z Creating toolchains.xml for JDK version 21 from temurin
+2026-11-26T12:53:51.1686024Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-26T12:53:51.1687797Z 
+2026-11-26T12:53:51.1688015Z Java configuration:
+2026-11-26T12:53:51.1688635Z   Distribution: temurin
+2026-11-26T12:53:51.1690550Z   Version: 21.0.13+9
+2026-11-26T12:53:51.1691185Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:51.1691502Z 
+2026-11-26T12:53:51.1692313Z ##[endgroup]
+2026-11-26T12:53:51.1728453Z Creating settings.xml with server-id: github
+2026-11-26T12:53:51.1729496Z Writing to /home/runner/.m2/settings.xml
+2026-11-26T12:53:51.4960939Z Cache hit for: setup-java-Linux-x64-maven-929167f3d58d3c9848e0b3d27645a2cbd0306d62a0f5312075adb38bdf6d7044
+2026-11-26T12:53:51.5034187Z (node:2197) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-26T12:53:52.6733357Z Received 79691776 of 143314134 (55.6%), 75.9 MBs/sec
+2026-11-26T12:53:53.1037739Z Received 143314134 of 143314134 (100.0%), 95.6 MBs/sec
+2026-11-26T12:53:53.1066416Z Cache Size: ~137 MB (143314134 B)
+2026-11-26T12:53:53.1127300Z [command]/usr/bin/tar -xf /home/runner/work/_temp/20d61b34-e290-4d1f-96b0-70f154011248/cache.tzst -P -C /home/runner/work/StarGenesis/StarGenesis --use-compress-program unzstd
+2026-11-26T12:53:53.3315332Z Cache restored successfully
+2026-11-26T12:53:53.3381684Z Cache restored from key: setup-java-Linux-x64-maven-929167f3d58d3c9848e0b3d27645a2cbd0306d62a0f5312075adb38bdf6d7044
+2026-11-26T12:53:53.3576416Z ##[group]Run actions/setup-python@v5
+2026-11-26T12:53:53.3576618Z with:
+2026-11-26T12:53:53.3576754Z   python-version: 3.12
+2026-11-26T12:53:53.3576891Z   check-latest: false
+2026-11-26T12:53:53.3578171Z   token: ***
+2026-11-26T12:53:53.3578302Z   update-environment: true
+2026-11-26T12:53:53.3578459Z   allow-prereleases: false
+2026-11-26T12:53:53.3578625Z   freethreaded: false
+2026-11-26T12:53:53.3578750Z env:
+2026-11-26T12:53:53.3578929Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:53.3579208Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:53.3579431Z ##[endgroup]
+2026-11-26T12:53:53.4449956Z ##[group]Installed versions
+2026-11-26T12:53:53.4537493Z (node:2214) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:53:53.4538087Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:53:53.4538809Z Successfully set up CPython (3.12.16)
+2026-11-26T12:53:53.4539233Z ##[endgroup]
+2026-11-26T12:53:53.4768081Z ##[group]Run actions/setup-node@v4
+2026-11-26T12:53:53.4768372Z with:
+2026-11-26T12:53:53.4768568Z   node-version: 22
+2026-11-26T12:53:53.4768773Z   always-auth: false
+2026-11-26T12:53:53.4769004Z   check-latest: false
+2026-11-26T12:53:53.4770910Z   token: ***
+2026-11-26T12:53:53.4771065Z env:
+2026-11-26T12:53:53.4771338Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:53.4771662Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:53.4771965Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:53.4772334Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:53.4772570Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:53.4772840Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:53.4773189Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:53.4773581Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:53.4773898Z ##[endgroup]
+2026-11-26T12:53:53.5732368Z (node:2222) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:53:53.5732797Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:53:53.5733607Z Found in cache @ /opt/hostedtoolcache/node/22.23.5/x64
+2026-11-26T12:53:53.5734392Z ##[group]Environment details
+2026-11-26T12:53:53.9835395Z node: v22.23.5
+2026-11-26T12:53:53.9835998Z npm: 10.9.9
+2026-11-26T12:53:53.9836458Z yarn: 1.22.22
+2026-11-26T12:53:53.9837308Z ##[endgroup]
+2026-11-26T12:53:53.9961865Z ##[group]Run python scripts/check_boundaries.py
+2026-11-26T12:53:53.9962141Z [36;1mpython scripts/check_boundaries.py[0m
+2026-11-26T12:53:54.0006320Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.0006521Z env:
+2026-11-26T12:53:54.0006710Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.0006999Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.0007255Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0007498Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.0007738Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0007965Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0008185Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0008410Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.0008631Z ##[endgroup]
+2026-11-26T12:53:54.0720664Z PASS: public API, simulation, design and discovery are free of server/reflective imports; base plugin has no optional provider imports
+2026-11-26T12:53:54.0782173Z ##[group]Run python -m unittest discover -s scripts -p "test_prepare_helstera_api.py"
+2026-11-26T12:53:54.0782543Z [36;1mpython -m unittest discover -s scripts -p "test_prepare_helstera_api.py"[0m
+2026-11-26T12:53:54.0815311Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.0815463Z env:
+2026-11-26T12:53:54.0817365Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.0819440Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.0820131Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0820368Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.0820614Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0820855Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0821076Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.0821975Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.0822861Z ##[endgroup]
+2026-11-26T12:53:54.2641830Z ...
+2026-11-26T12:53:54.2642341Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.2642726Z Ran 3 tests in 0.003s
+2026-11-26T12:53:54.2642868Z 
+2026-11-26T12:53:54.2642957Z OK
+2026-11-26T12:53:54.2769780Z ##[group]Run python -m unittest discover -s scripts -p "test_verify_helstera_provider.py"
+2026-11-26T12:53:54.2770162Z [36;1mpython -m unittest discover -s scripts -p "test_verify_helstera_provider.py"[0m
+2026-11-26T12:53:54.2799900Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.2800053Z env:
+2026-11-26T12:53:54.2800237Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.2800516Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.2800772Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.2801014Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.2801286Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.2801508Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.2801724Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.2801980Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.2802170Z ##[endgroup]
+2026-11-26T12:53:54.3292191Z ..
+2026-11-26T12:53:54.3292624Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.3292875Z Ran 2 tests in 0.008s
+2026-11-26T12:53:54.3292968Z 
+2026-11-26T12:53:54.3293024Z OK
+2026-11-26T12:53:54.3375741Z ##[group]Run python -m unittest discover -s scripts -p "test_prepare_craftengine_api.py"
+2026-11-26T12:53:54.3376317Z [36;1mpython -m unittest discover -s scripts -p "test_prepare_craftengine_api.py"[0m
+2026-11-26T12:53:54.3405939Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.3406087Z env:
+2026-11-26T12:53:54.3406296Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.3406575Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.3406832Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.3407078Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.3407322Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.3407542Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.3407763Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.3408014Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.3408207Z ##[endgroup]
+2026-11-26T12:53:54.3991463Z ...
+2026-11-26T12:53:54.3991827Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.3992100Z Ran 3 tests in 0.001s
+2026-11-26T12:53:54.3992203Z 
+2026-11-26T12:53:54.3992271Z OK
+2026-11-26T12:53:54.4136880Z ##[group]Run python -m unittest discover -s scripts -p "test_prepare_cookery_api.py"
+2026-11-26T12:53:54.4137470Z [36;1mpython -m unittest discover -s scripts -p "test_prepare_cookery_api.py"[0m
+2026-11-26T12:53:54.4178311Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.4178562Z env:
+2026-11-26T12:53:54.4178858Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.4179300Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.4179705Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4180089Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.4180485Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4180842Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4181193Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4181583Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.4182112Z ##[endgroup]
+2026-11-26T12:53:54.4784276Z ...
+2026-11-26T12:53:54.4784738Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.4785119Z Ran 3 tests in 0.003s
+2026-11-26T12:53:54.4785255Z 
+2026-11-26T12:53:54.4785340Z OK
+2026-11-26T12:53:54.4910388Z ##[group]Run python -m unittest discover -s scripts -p "test_server_craftengine_item_smoke.py"
+2026-11-26T12:53:54.4910900Z [36;1mpython -m unittest discover -s scripts -p "test_server_craftengine_item_smoke.py"[0m
+2026-11-26T12:53:54.4940864Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.4941014Z env:
+2026-11-26T12:53:54.4941201Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.4941485Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.4941741Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4941981Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.4942242Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4942461Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4942679Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.4942926Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.4943119Z ##[endgroup]
+2026-11-26T12:53:54.5526784Z ..
+2026-11-26T12:53:54.5527201Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.5527488Z Ran 2 tests in 0.000s
+2026-11-26T12:53:54.5527592Z 
+2026-11-26T12:53:54.5527648Z OK
+2026-11-26T12:53:54.5655383Z ##[group]Run python -m unittest discover -s scripts -p "test_release_candidate_builder.py"
+2026-11-26T12:53:54.5655927Z [36;1mpython -m unittest discover -s scripts -p "test_release_candidate_builder.py"[0m
+2026-11-26T12:53:54.5686107Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.5686261Z env:
+2026-11-26T12:53:54.5686465Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.5686750Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.5687002Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.5687251Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.5687489Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.5687710Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.5687927Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.5688180Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.5688373Z ##[endgroup]
+2026-11-26T12:53:54.7919206Z $ sh /tmp/tmpea21_vzj/mvnw -B -ntp -DforkCount=0 -Pcookery-bridge clean verify
+2026-11-26T12:53:54.7925577Z Preparing actual craftengine API from locked inputs
+2026-11-26T12:53:54.7973975Z ........
+2026-11-26T12:53:54.7974672Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.7975395Z Ran 8 tests in 0.053s
+2026-11-26T12:53:54.7975716Z 
+2026-11-26T12:53:54.7975931Z OK
+2026-11-26T12:53:54.8133937Z ##[group]Run python -m unittest discover -s scripts -p "test_verify_ecology_robustness_study.py"
+2026-11-26T12:53:54.8134533Z [36;1mpython -m unittest discover -s scripts -p "test_verify_ecology_robustness_study.py"[0m
+2026-11-26T12:53:54.8163336Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.8163484Z env:
+2026-11-26T12:53:54.8163674Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.8163951Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.8164205Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.8164441Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.8164688Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.8165057Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.8165275Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.8165548Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.8165741Z ##[endgroup]
+2026-11-26T12:53:54.9173064Z ..................
+2026-11-26T12:53:54.9173411Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.9173659Z Ran 18 tests in 0.058s
+2026-11-26T12:53:54.9173754Z 
+2026-11-26T12:53:54.9173817Z OK
+2026-11-26T12:53:54.9270563Z ##[group]Run python -m unittest discover -s scripts -p "test_server_*lifecycle_smoke.py"
+2026-11-26T12:53:54.9270929Z [36;1mpython -m unittest discover -s scripts -p "test_server_*lifecycle_smoke.py"[0m
+2026-11-26T12:53:54.9299696Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.9299848Z env:
+2026-11-26T12:53:54.9300039Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.9300330Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.9300584Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9300824Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.9301065Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9301283Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9301505Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9301760Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.9301952Z ##[endgroup]
+2026-11-26T12:53:54.9840819Z ......
+2026-11-26T12:53:54.9841293Z ----------------------------------------------------------------------
+2026-11-26T12:53:54.9841654Z Ran 6 tests in 0.005s
+2026-11-26T12:53:54.9841789Z 
+2026-11-26T12:53:54.9841876Z OK
+2026-11-26T12:53:54.9956843Z ##[group]Run python -m unittest discover -s scripts -p "test_server_match_admin_smoke.py"
+2026-11-26T12:53:54.9957235Z [36;1mpython -m unittest discover -s scripts -p "test_server_match_admin_smoke.py"[0m
+2026-11-26T12:53:54.9986034Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:54.9986185Z env:
+2026-11-26T12:53:54.9986374Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.9986651Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:54.9986902Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9987139Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:54.9987401Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9987624Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9987852Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:54.9988095Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:54.9988296Z ##[endgroup]
+2026-11-26T12:53:55.0430598Z ..
+2026-11-26T12:53:55.0430925Z ----------------------------------------------------------------------
+2026-11-26T12:53:55.0431177Z Ran 2 tests in 0.001s
+2026-11-26T12:53:55.0431275Z 
+2026-11-26T12:53:55.0431477Z OK
+2026-11-26T12:53:55.0516033Z ##[group]Run node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs
+2026-11-26T12:53:55.0516695Z [36;1mnode --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs[0m
+2026-11-26T12:53:55.0544610Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:55.0544758Z env:
+2026-11-26T12:53:55.0544945Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:55.0545227Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:55.0545481Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.0545984Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:55.0546224Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.0546468Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.0546685Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.0546905Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:55.0547096Z ##[endgroup]
+2026-11-26T12:53:55.1023704Z TAP version 13
+2026-11-26T12:53:55.1394931Z # Subtest: a startup cannot silently change, drop, or add saved evidence
+2026-11-26T12:53:55.1397871Z ok 1 - a startup cannot silently change, drop, or add saved evidence
+2026-11-26T12:53:55.1398243Z   ---
+2026-11-26T12:53:55.1398489Z   duration_ms: 8.873214
+2026-11-26T12:53:55.1398755Z   type: 'test'
+2026-11-26T12:53:55.1399010Z   ...
+2026-11-26T12:53:55.1463956Z # Subtest: compensation reads the organization balance row even when the auction also names its winner
+2026-11-26T12:53:55.1465227Z ok 2 - compensation reads the organization balance row even when the auction also names its winner
+2026-11-26T12:53:55.1465748Z   ---
+2026-11-26T12:53:55.1472677Z   duration_ms: 1.436574
+2026-11-26T12:53:55.1472862Z   type: 'test'
+2026-11-26T12:53:55.1473006Z   ...
+2026-11-26T12:53:55.1473321Z # Subtest: match restart evidence rejects resurrection, lost files and modified published rules
+2026-11-26T12:53:55.1473770Z ok 3 - match restart evidence rejects resurrection, lost files and modified published rules
+2026-11-26T12:53:55.1474018Z   ---
+2026-11-26T12:53:55.1474143Z   duration_ms: 9.167052
+2026-11-26T12:53:55.1474316Z   type: 'test'
+2026-11-26T12:53:55.1474442Z   ...
+2026-11-26T12:53:55.1474699Z # Subtest: reorganized rosters must contain exactly the new pairs and teams
+2026-11-26T12:53:55.1475036Z ok 4 - reorganized rosters must contain exactly the new pairs and teams
+2026-11-26T12:53:55.1475260Z   ---
+2026-11-26T12:53:55.1475389Z   duration_ms: 1.446789
+2026-11-26T12:53:55.1475698Z   type: 'test'
+2026-11-26T12:53:55.1476036Z   ...
+2026-11-26T12:53:55.1536723Z # Subtest: restart evidence allows clock progress and only the exact due expiration
+2026-11-26T12:53:55.1537424Z ok 5 - restart evidence allows clock progress and only the exact due expiration
+2026-11-26T12:53:55.1537810Z   ---
+2026-11-26T12:53:55.1538022Z   duration_ms: 7.001991
+2026-11-26T12:53:55.1538260Z   type: 'test'
+2026-11-26T12:53:55.1538462Z   ...
+2026-11-26T12:53:55.1539131Z # Subtest: restart evidence rejects pending loss, altered acknowledgements and rewritten history
+2026-11-26T12:53:55.1539849Z ok 6 - restart evidence rejects pending loss, altered acknowledgements and rewritten history
+2026-11-26T12:53:55.1540240Z   ---
+2026-11-26T12:53:55.1540440Z   duration_ms: 2.130771
+2026-11-26T12:53:55.1540662Z   type: 'test'
+2026-11-26T12:53:55.1540847Z   ...
+2026-11-26T12:53:55.1541052Z 1..6
+2026-11-26T12:53:55.1541224Z # tests 6
+2026-11-26T12:53:55.1541416Z # suites 0
+2026-11-26T12:53:55.1541604Z # pass 6
+2026-11-26T12:53:55.1541782Z # fail 0
+2026-11-26T12:53:55.1541965Z # cancelled 0
+2026-11-26T12:53:55.1542160Z # skipped 0
+2026-11-26T12:53:55.1542350Z # todo 0
+2026-11-26T12:53:55.1542553Z # duration_ms 65.520514
+2026-11-26T12:53:55.1612559Z ##[group]Run python scripts/prepare_helstera_api.py --verify-runtime
+2026-11-26T12:53:55.1612914Z [36;1mpython scripts/prepare_helstera_api.py --verify-runtime[0m
+2026-11-26T12:53:55.1642144Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:53:55.1642303Z env:
+2026-11-26T12:53:55.1642488Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:55.1642771Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:53:55.1643025Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.1643266Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:53:55.1643515Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.1643882Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.1644100Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:53:55.1644356Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:53:55.1644550Z ##[endgroup]
+2026-11-26T12:54:28.6232636Z {"revision": "9298292538dc9d7c5ee800ff7e03f4c10e34ba97", "patchSha256": "a2319f4cb9cdfa79e72d42f9e97f58da6a54a94987f4ad60bdded16d25499ee3", "artifactVersion": "1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd", "lockedFiles": 124, "tests": {"tests": 224, "failures": 0, "errors": 0, "skipped": 0}, "artifactSha256": "09f3d9352da0a649939f696b6ab1593457ab6181c8cb2f625f9dc3c0bccf90db", "sourceLockSha256": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f", "runtimeTests": {"helstera-core": {"tests": 47, "failures": 0, "errors": 0, "skipped": 0}, "helstera-runtime": {"tests": 45, "failures": 0, "errors": 0, "skipped": 0}, "helstera-render-paper": {"tests": 14, "failures": 0, "errors": 0, "skipped": 0}}}
+2026-11-26T12:54:28.6353532Z ##[group]Run python scripts/prepare_craftengine_api.py
+2026-11-26T12:54:28.6353783Z [36;1mpython scripts/prepare_craftengine_api.py[0m
+2026-11-26T12:54:28.6381650Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:54:28.6381798Z env:
+2026-11-26T12:54:28.6381980Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:54:28.6382273Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:54:28.6382544Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:28.6382789Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:54:28.6383031Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:28.6383251Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:28.6383479Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:28.6383715Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:54:28.6383933Z ##[endgroup]
+2026-11-26T12:54:34.8817484Z {"version": "26.9.1", "artifactVersions": {"core": "26.9.1-sg3db3473986ae", "bukkit": "26.9.1-sg011afd3b1cfc"}, "sourceLockSha256": "62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d", "files": {"craft-engine-core-26.9.1.pom": "b63b023aea34a5155469a26d140eed8d6f5038f209d3aed6d030ce45edd6a33e", "craft-engine-core-26.9.1-sources.jar": "680db25e3c6bde661e02b353e50988afefdbbc6b750ccee534eb84831b712d80", "craft-engine-core-26.9.1.jar": "3db3473986aefe52936aa807a0b5858355775fa16927eba96b701e84431a0d2b", "craft-engine-bukkit-26.9.1.pom": "3ca095869bebb47a0f15701e9a00ecd51645cad9c5a63674a7bcbb7fbed4acbc", "craft-engine-bukkit-26.9.1-sources.jar": "f53afe676bb5f14a8cd35380c1b741e69f67416bbb943cffd82d0a32a68076e6", "craft-engine-bukkit-26.9.1.jar": "011afd3b1cfcaf5fc4b4af4757843e5479e1be4a9763c1a97bde04dcb1c0795d"}, "scope": "Actual published API JARs, sources and POMs; no API stubs or runtime-plugin verification"}
+2026-11-26T12:54:34.8942215Z ##[group]Run python scripts/prepare_cookery_api.py
+2026-11-26T12:54:34.8942457Z [36;1mpython scripts/prepare_cookery_api.py[0m
+2026-11-26T12:54:34.8971677Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:54:34.8971839Z env:
+2026-11-26T12:54:34.8972030Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:54:34.8972342Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:54:34.8972621Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:34.8972880Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:54:34.8973151Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:34.8973385Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:34.8973626Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:54:34.8973873Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:54:34.8974271Z ##[endgroup]
+2026-11-26T12:55:25.8649633Z {"revision": "7aca215fca067314d1593dd287621f96fb8913e4", "lockedFiles": 558, "tests": {"tests": 28, "failures": 0, "errors": 0, "skipped": 0}, "artifactVersion": "1.3.0-sg7aca215fca06", "artifactSha256": "67c354b090a65c2e1dfb64b4ee6e59ececf2e093d4f48a1b6309d2a508507e65", "sourceLockSha256": "5f645bae99fd45eb6d2a38be87e4822d831a34a605a41eaedc2b3a260858737a", "scope": "Unchanged upstream main/compat API classes and 28 upstream recipe tests; no runtime or NMS verification"}
+2026-11-26T12:55:25.8791580Z ##[group]Run sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify
+2026-11-26T12:55:25.8791967Z [36;1msh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify[0m
+2026-11-26T12:55:25.8820825Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:55:25.8821089Z env:
+2026-11-26T12:55:25.8821299Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:55:25.8821600Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:55:25.8821865Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:55:25.8822118Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:55:25.8822361Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:55:25.8822593Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:55:25.8822814Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:55:25.8823073Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:55:25.8823277Z ##[endgroup]
+2026-11-26T12:55:26.7968298Z [INFO] Scanning for projects...
+2026-11-26T12:55:26.8867752Z [INFO] ------------------------------------------------------------------------
+2026-11-26T12:55:26.8876301Z [INFO] Reactor Build Order:
+2026-11-26T12:55:26.8887394Z [INFO] 
+2026-11-26T12:55:26.8887822Z [INFO] StarGenesis                                                        [pom]
+2026-11-26T12:55:26.8888368Z [INFO] stargenesis-api                                                    [jar]
+2026-11-26T12:55:26.8888829Z [INFO] stargenesis-design                                                 [jar]
+2026-11-26T12:55:26.8889285Z [INFO] stargenesis-sim                                                    [jar]
+2026-11-26T12:55:26.8889766Z [INFO] StarGenesis Integration Contracts                                  [jar]
+2026-11-26T12:55:26.8890188Z [INFO] stargenesis-paper                                                  [jar]
+2026-11-26T12:55:26.8890504Z [INFO] stargenesis-helstera                                               [jar]
+2026-11-26T12:55:26.8890818Z [INFO] stargenesis-craftengine                                            [jar]
+2026-11-26T12:55:26.8891124Z [INFO] stargenesis-cookery                                                [jar]
+2026-11-26T12:55:26.8939723Z [INFO] 
+2026-11-26T12:55:26.8940379Z [INFO] -----------------< dev.stargenesis:stargenesis-parent >-----------------
+2026-11-26T12:55:26.8941031Z [INFO] Building StarGenesis 4.0.0-SNAPSHOT                                [1/9]
+2026-11-26T12:55:26.8941473Z [INFO]   from pom.xml
+2026-11-26T12:55:26.8941892Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-11-26T12:55:26.9187287Z [INFO] 
+2026-11-26T12:55:26.9188046Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-parent ---
+2026-11-26T12:55:27.1288173Z [INFO] CycloneDX: Resolving Aggregated Dependencies
+2026-11-26T12:55:28.7582927Z [INFO] CycloneDX: Creating BOM version 1.6 with 68 component(s)
+2026-11-26T12:55:28.8338276Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/target/sbom.json
+2026-11-26T12:55:28.9167837Z [WARNING] Unknown keyword meta:enum - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+2026-11-26T12:55:28.9168986Z [WARNING] Unknown keyword deprecated - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+2026-11-26T12:55:28.9715751Z [INFO]            attaching as stargenesis-parent-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:55:28.9722930Z [INFO] 
+2026-11-26T12:55:28.9758643Z [INFO] ------------------< dev.stargenesis:stargenesis-api >-------------------
+2026-11-26T12:55:28.9784767Z [INFO] Building stargenesis-api 4.0.0-SNAPSHOT                            [2/9]
+2026-11-26T12:55:28.9786122Z [INFO]   from stargenesis-api/pom.xml
+2026-11-26T12:55:28.9786585Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:55:29.0077961Z [INFO] 
+2026-11-26T12:55:29.0127259Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-api ---
+2026-11-26T12:55:29.0437694Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-api/src/main/resources
+2026-11-26T12:55:29.0447788Z [INFO] 
+2026-11-26T12:55:29.0448630Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-api ---
+2026-11-26T12:55:29.1018229Z [INFO] Recompiling the module because of changed source code.
+2026-11-26T12:55:29.1063581Z [INFO] Compiling 16 source files with javac [debug release 21] to target/classes
+2026-11-26T12:55:29.5825328Z [INFO] 
+2026-11-26T12:55:29.5837294Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-api ---
+2026-11-26T12:55:29.5862381Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-api/src/test/resources
+2026-11-26T12:55:29.5879193Z [INFO] 
+2026-11-26T12:55:29.5893401Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-api ---
+2026-11-26T12:55:29.5940175Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:29.5942625Z [INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+2026-11-26T12:55:29.7095559Z [INFO] 
+2026-11-26T12:55:29.7096488Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-api ---
+2026-11-26T12:55:29.7864872Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:55:29.8118533Z [INFO] 
+2026-11-26T12:55:29.8119357Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:29.8119843Z [INFO]  T E S T S
+2026-11-26T12:55:29.8120338Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:30.1772944Z [INFO] Running dev.stargenesis.api.ContractTest
+2026-11-26T12:55:30.2433198Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in dev.stargenesis.api.ContractTest
+2026-11-26T12:55:30.2554925Z [INFO] 
+2026-11-26T12:55:30.2555227Z [INFO] Results:
+2026-11-26T12:55:30.2555440Z [INFO] 
+2026-11-26T12:55:30.2556020Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:55:30.2556327Z [INFO] 
+2026-11-26T12:55:30.2581230Z [INFO] 
+2026-11-26T12:55:30.2581720Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-api ---
+2026-11-26T12:55:30.3954177Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-api/target/stargenesis-api-4.0.0-SNAPSHOT.jar
+2026-11-26T12:55:30.4177190Z [INFO] 
+2026-11-26T12:55:30.4201179Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-api ---
+2026-11-26T12:55:30.4201953Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:55:30.4887337Z [INFO] CycloneDX: Creating BOM version 1.6 with 0 component(s)
+2026-11-26T12:55:30.4947907Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-api/target/sbom.json
+2026-11-26T12:55:30.5047361Z [INFO]            attaching as stargenesis-api-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:55:30.5052925Z [INFO] 
+2026-11-26T12:55:30.5053587Z [INFO] -----------------< dev.stargenesis:stargenesis-design >-----------------
+2026-11-26T12:55:30.5054515Z [INFO] Building stargenesis-design 4.0.0-SNAPSHOT                         [3/9]
+2026-11-26T12:55:30.5055715Z [INFO]   from stargenesis-design/pom.xml
+2026-11-26T12:55:30.5056454Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:55:30.5086392Z [INFO] 
+2026-11-26T12:55:30.5108941Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-design ---
+2026-11-26T12:55:30.5136726Z [INFO] Copying 12 resources from src/main/resources to target/classes
+2026-11-26T12:55:30.5158847Z [INFO] 
+2026-11-26T12:55:30.5187445Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-design ---
+2026-11-26T12:55:30.5204423Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:30.5217011Z [INFO] Compiling 21 source files with javac [debug release 21] to target/classes
+2026-11-26T12:55:31.1051439Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: Some input files use or override a deprecated API.
+2026-11-26T12:55:31.1053423Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-design/src/main/java/dev/stargenesis/design/DesignCodec.java: Recompile with -Xlint:deprecation for details.
+2026-11-26T12:55:31.1054385Z [INFO] 
+2026-11-26T12:55:31.1055002Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-design ---
+2026-11-26T12:55:31.1073600Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-design/src/test/resources
+2026-11-26T12:55:31.1074344Z [INFO] 
+2026-11-26T12:55:31.1074981Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-design ---
+2026-11-26T12:55:31.1117203Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:31.1137207Z [INFO] Compiling 8 source files with javac [debug release 21] to target/test-classes
+2026-11-26T12:55:31.4594344Z [INFO] 
+2026-11-26T12:55:31.4616992Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-design ---
+2026-11-26T12:55:31.4627237Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:55:31.4668740Z [INFO] 
+2026-11-26T12:55:31.4669470Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:31.4670323Z [INFO]  T E S T S
+2026-11-26T12:55:31.4672350Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:31.8504448Z [INFO] Running dev.stargenesis.design.ProtocolMessageCodecTest
+2026-11-26T12:55:32.1457703Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.288 s -- in dev.stargenesis.design.ProtocolMessageCodecTest
+2026-11-26T12:55:32.1458180Z [INFO] Running dev.stargenesis.design.SignedDesignCodecTest
+2026-11-26T12:55:33.0319716Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.885 s -- in dev.stargenesis.design.SignedDesignCodecTest
+2026-11-26T12:55:33.0320982Z [INFO] Running dev.stargenesis.design.BlueprintEvaluatorTest
+2026-11-26T12:55:33.0807971Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in dev.stargenesis.design.BlueprintEvaluatorTest
+2026-11-26T12:55:33.0809251Z [INFO] Running dev.stargenesis.design.ArenaRulesetWorkspaceTest
+2026-11-26T12:55:33.1070981Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in dev.stargenesis.design.ArenaRulesetWorkspaceTest
+2026-11-26T12:55:33.1091490Z [INFO] Running dev.stargenesis.design.DesignCodecTest
+2026-11-26T12:55:33.3039545Z SLF4J(W): No SLF4J providers were found.
+2026-11-26T12:55:33.3040487Z SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+2026-11-26T12:55:33.3041313Z SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-11-26T12:55:33.4368111Z [INFO] Tests run: 44, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.327 s -- in dev.stargenesis.design.DesignCodecTest
+2026-11-26T12:55:33.4377089Z [INFO] Running dev.stargenesis.design.ProgramInterpreterTest
+2026-11-26T12:55:33.5121895Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in dev.stargenesis.design.ProgramInterpreterTest
+2026-11-26T12:55:33.5147272Z [INFO] Running dev.stargenesis.design.TypedProgramCodecTest
+2026-11-26T12:55:33.5437683Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in dev.stargenesis.design.TypedProgramCodecTest
+2026-11-26T12:55:33.5467014Z [INFO] Running dev.stargenesis.design.BlueprintWorkspaceTest
+2026-11-26T12:55:33.5467654Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in dev.stargenesis.design.BlueprintWorkspaceTest
+2026-11-26T12:55:33.5658679Z [INFO] 
+2026-11-26T12:55:33.5659018Z [INFO] Results:
+2026-11-26T12:55:33.5659183Z [INFO] 
+2026-11-26T12:55:33.5659443Z [INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:55:33.5659687Z [INFO] 
+2026-11-26T12:55:33.5666741Z [INFO] 
+2026-11-26T12:55:33.5667117Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-design ---
+2026-11-26T12:55:33.5767649Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-design/target/stargenesis-design-4.0.0-SNAPSHOT.jar
+2026-11-26T12:55:33.5954465Z [INFO] 
+2026-11-26T12:55:33.5967452Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-design ---
+2026-11-26T12:55:33.5974977Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:55:33.7497877Z [INFO] CycloneDX: Creating BOM version 1.6 with 4 component(s)
+2026-11-26T12:55:33.7575274Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-design/target/sbom.json
+2026-11-26T12:55:33.7698110Z [INFO]            attaching as stargenesis-design-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:55:33.7700783Z [INFO] 
+2026-11-26T12:55:33.7701371Z [INFO] ------------------< dev.stargenesis:stargenesis-sim >-------------------
+2026-11-26T12:55:33.7702049Z [INFO] Building stargenesis-sim 4.0.0-SNAPSHOT                            [4/9]
+2026-11-26T12:55:33.7702618Z [INFO]   from stargenesis-sim/pom.xml
+2026-11-26T12:55:33.7703149Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:55:33.7746807Z [INFO] 
+2026-11-26T12:55:33.7747620Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-sim ---
+2026-11-26T12:55:33.7751213Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-sim/src/main/resources
+2026-11-26T12:55:33.7751915Z [INFO] 
+2026-11-26T12:55:33.7752517Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-sim ---
+2026-11-26T12:55:33.7788380Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:33.7792515Z [INFO] Compiling 37 source files with javac [debug release 21] to target/classes
+2026-11-26T12:55:34.1129913Z [INFO] 
+2026-11-26T12:55:34.1130861Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-sim ---
+2026-11-26T12:55:34.1144982Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-sim/src/test/resources
+2026-11-26T12:55:34.1149157Z [INFO] 
+2026-11-26T12:55:34.1149917Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-sim ---
+2026-11-26T12:55:34.1172255Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:34.1174574Z [INFO] Compiling 10 source files with javac [debug release 21] to target/test-classes
+2026-11-26T12:55:34.4368076Z [INFO] 
+2026-11-26T12:55:34.4368982Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-sim ---
+2026-11-26T12:55:34.4405227Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:55:34.4433699Z [INFO] 
+2026-11-26T12:55:34.4434228Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:34.4435043Z [INFO]  T E S T S
+2026-11-26T12:55:34.4438086Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:34.7897363Z [INFO] Running dev.stargenesis.sim.EcologyLongRunTest
+2026-11-26T12:55:39.6527295Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.862 s -- in dev.stargenesis.sim.EcologyLongRunTest
+2026-11-26T12:55:39.6538527Z [INFO] Running dev.stargenesis.sim.EcologyLifecycleV2Test
+2026-11-26T12:55:41.9141272Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.260 s -- in dev.stargenesis.sim.EcologyLifecycleV2Test
+2026-11-26T12:55:41.9141940Z [INFO] Running dev.stargenesis.sim.FactoryMatchIdentityTest
+2026-11-26T12:55:41.9467863Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in dev.stargenesis.sim.FactoryMatchIdentityTest
+2026-11-26T12:55:41.9508069Z [INFO] Running dev.stargenesis.sim.FactoryWorldTest
+2026-11-26T12:55:41.9817566Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in dev.stargenesis.sim.FactoryWorldTest
+2026-11-26T12:55:41.9818327Z [INFO] Running dev.stargenesis.sim.EcologyDynamicLifecycleV2Test
+2026-11-26T12:55:43.1493939Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.164 s -- in dev.stargenesis.sim.EcologyDynamicLifecycleV2Test
+2026-11-26T12:55:43.1495094Z [INFO] Running dev.stargenesis.sim.ArenaMatchWorldTest
+2026-11-26T12:55:43.4119347Z P11_SCALE arena=128x128 players=8 rounds=128 elapsedMillis=234 finalHash=127c0a8e23f18e2bf34725de4dffc7049138432993b45eb815e216a7ecef42f6
+2026-11-26T12:55:43.4163388Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.269 s -- in dev.stargenesis.sim.ArenaMatchWorldTest
+2026-11-26T12:55:43.4163827Z [INFO] Running dev.stargenesis.sim.ResourceSandboxWorldTest
+2026-11-26T12:55:44.0623084Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.644 s -- in dev.stargenesis.sim.ResourceSandboxWorldTest
+2026-11-26T12:55:44.0628634Z [INFO] Running dev.stargenesis.sim.ArenaMatchIdentityTest
+2026-11-26T12:55:44.0698482Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.sim.ArenaMatchIdentityTest
+2026-11-26T12:55:44.0727016Z [INFO] Running dev.stargenesis.sim.EcologyWorldTest
+2026-11-26T12:55:44.1028716Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in dev.stargenesis.sim.EcologyWorldTest
+2026-11-26T12:55:44.1029468Z [INFO] Running dev.stargenesis.sim.SimulationContractsTest
+2026-11-26T12:55:44.2616399Z [INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.155 s -- in dev.stargenesis.sim.SimulationContractsTest
+2026-11-26T12:55:44.3219005Z [INFO] 
+2026-11-26T12:55:44.3219249Z [INFO] Results:
+2026-11-26T12:55:44.3219458Z [INFO] 
+2026-11-26T12:55:44.3219822Z [INFO] Tests run: 98, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:55:44.3220091Z [INFO] 
+2026-11-26T12:55:44.3230276Z [INFO] 
+2026-11-26T12:55:44.3230646Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-sim ---
+2026-11-26T12:55:44.3312619Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-sim/target/stargenesis-sim-4.0.0-SNAPSHOT.jar
+2026-11-26T12:55:44.3409615Z [INFO] 
+2026-11-26T12:55:44.3410483Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-sim ---
+2026-11-26T12:55:44.3421797Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:55:44.3908929Z [INFO] CycloneDX: Creating BOM version 1.6 with 1 component(s)
+2026-11-26T12:55:44.3990440Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-sim/target/sbom.json
+2026-11-26T12:55:44.4081044Z [INFO]            attaching as stargenesis-sim-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:55:44.4097154Z [INFO] 
+2026-11-26T12:55:44.4127360Z [INFO] --------------< dev.stargenesis:stargenesis-integrations >--------------
+2026-11-26T12:55:44.4158544Z [INFO] Building StarGenesis Integration Contracts 4.0.0-SNAPSHOT          [5/9]
+2026-11-26T12:55:44.4176972Z [INFO]   from stargenesis-integrations/pom.xml
+2026-11-26T12:55:44.4177629Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:55:44.4178203Z [INFO] 
+2026-11-26T12:55:44.4178766Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-integrations ---
+2026-11-26T12:55:44.4180063Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-integrations/src/main/resources
+2026-11-26T12:55:44.4180742Z [INFO] 
+2026-11-26T12:55:44.4181276Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-integrations ---
+2026-11-26T12:55:44.4181920Z [INFO] Recompiling the module because of changed source code.
+2026-11-26T12:55:44.4182550Z [INFO] Compiling 28 source files with javac [debug release 21] to target/classes
+2026-11-26T12:55:44.5791006Z [INFO] 
+2026-11-26T12:55:44.5795438Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-integrations ---
+2026-11-26T12:55:44.5809300Z [INFO] Copying 3 resources from src/test/resources to target/test-classes
+2026-11-26T12:55:44.5813842Z [INFO] 
+2026-11-26T12:55:44.5814444Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-integrations ---
+2026-11-26T12:55:44.5841682Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:44.5843866Z [INFO] Compiling 9 source files with javac [debug release 21] to target/test-classes
+2026-11-26T12:55:44.7898787Z [INFO] 
+2026-11-26T12:55:44.7899617Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-integrations ---
+2026-11-26T12:55:44.7947468Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:55:44.7973884Z [INFO] 
+2026-11-26T12:55:44.7974487Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:44.7975144Z [INFO]  T E S T S
+2026-11-26T12:55:44.7975678Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:45.1413328Z [INFO] Running dev.stargenesis.integrations.RecipeCatalogTest
+2026-11-26T12:55:45.1912176Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in dev.stargenesis.integrations.RecipeCatalogTest
+2026-11-26T12:55:45.1913821Z [INFO] Running dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+2026-11-26T12:55:45.2600147Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+2026-11-26T12:55:45.2670805Z [INFO] Running dev.stargenesis.integrations.CapabilityRegistryTest
+2026-11-26T12:55:45.3149300Z [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in dev.stargenesis.integrations.CapabilityRegistryTest
+2026-11-26T12:55:45.3166844Z [INFO] Running dev.stargenesis.integrations.SettlementReviewContractTest
+2026-11-26T12:55:45.3167734Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in dev.stargenesis.integrations.SettlementReviewContractTest
+2026-11-26T12:55:45.3196668Z [INFO] Running dev.stargenesis.integrations.ItemPayloadTest
+2026-11-26T12:55:45.3967788Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in dev.stargenesis.integrations.ItemPayloadTest
+2026-11-26T12:55:45.3996953Z [INFO] Running dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+2026-11-26T12:55:45.4267543Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in dev.stargenesis.integrations.SettlementRecoveryLifecycleTest
+2026-11-26T12:55:45.4268089Z [INFO] Running dev.stargenesis.integrations.LabProjectionSourceTest
+2026-11-26T12:55:45.4320452Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in dev.stargenesis.integrations.LabProjectionSourceTest
+2026-11-26T12:55:45.4346777Z [INFO] Running dev.stargenesis.integrations.ModelCatalogTest
+2026-11-26T12:55:45.4353328Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.stargenesis.integrations.ModelCatalogTest
+2026-11-26T12:55:45.4356777Z [INFO] Running dev.stargenesis.integrations.ItemCatalogTest
+2026-11-26T12:55:45.4417724Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in dev.stargenesis.integrations.ItemCatalogTest
+2026-11-26T12:55:45.4694739Z [INFO] 
+2026-11-26T12:55:45.4695479Z [INFO] Results:
+2026-11-26T12:55:45.4695694Z [INFO] 
+2026-11-26T12:55:45.4696205Z [INFO] Tests run: 66, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:55:45.4696492Z [INFO] 
+2026-11-26T12:55:45.4704056Z [INFO] 
+2026-11-26T12:55:45.4704409Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-integrations ---
+2026-11-26T12:55:45.4792657Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-integrations/target/stargenesis-integrations-4.0.0-SNAPSHOT.jar
+2026-11-26T12:55:45.4927001Z [INFO] 
+2026-11-26T12:55:45.4928014Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-integrations ---
+2026-11-26T12:55:45.4952345Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:55:45.5642980Z [INFO] CycloneDX: Creating BOM version 1.6 with 0 component(s)
+2026-11-26T12:55:45.5691548Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-integrations/target/sbom.json
+2026-11-26T12:55:45.5794507Z [INFO]            attaching as stargenesis-integrations-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:55:45.5795387Z [INFO] 
+2026-11-26T12:55:45.5796085Z [INFO] -----------------< dev.stargenesis:stargenesis-paper >------------------
+2026-11-26T12:55:45.5796912Z [INFO] Building stargenesis-paper 4.0.0-SNAPSHOT                          [6/9]
+2026-11-26T12:55:45.5797713Z [INFO]   from stargenesis-paper/pom.xml
+2026-11-26T12:55:45.5798492Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:55:45.5922382Z [INFO] 
+2026-11-26T12:55:45.5923114Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-paper ---
+2026-11-26T12:55:45.5961710Z [INFO] Copying 2 resources from src/main/resources to target/classes
+2026-11-26T12:55:45.6077716Z [INFO] 
+2026-11-26T12:55:45.6083244Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-paper ---
+2026-11-26T12:55:45.6121685Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:45.6146818Z [INFO] Compiling 51 source files with javac [debug release 21] to target/classes
+2026-11-26T12:55:46.5927095Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:55:46.5930162Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:55:46.5930717Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:55:46.5931230Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:55:46.5931750Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:55:46.5932134Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:55:46.5932490Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:55:46.5933373Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/src/main/java/dev/stargenesis/paper/design/PublisherKeyStore.java: Some input files use or override a deprecated API.
+2026-11-26T12:55:46.5934724Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/src/main/java/dev/stargenesis/paper/design/PublisherKeyStore.java: Recompile with -Xlint:deprecation for details.
+2026-11-26T12:55:46.5935614Z [INFO] 
+2026-11-26T12:55:46.5937401Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-paper ---
+2026-11-26T12:55:46.5951841Z [INFO] Copying 13 resources from src/test/resources to target/test-classes
+2026-11-26T12:55:46.5966528Z [INFO] 
+2026-11-26T12:55:46.5967151Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-paper ---
+2026-11-26T12:55:46.6031606Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:55:46.6032481Z [INFO] Compiling 56 source files with javac [debug release 21] to target/test-classes
+2026-11-26T12:55:47.6098152Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:55:47.6107005Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:55:47.6107746Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:55:47.6108998Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:55:47.6109721Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:55:47.6110278Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:55:47.6110800Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:55:47.6111306Z [INFO] 
+2026-11-26T12:55:47.6111783Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-paper ---
+2026-11-26T12:55:47.6171858Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:55:47.6206994Z [INFO] 
+2026-11-26T12:55:47.6207447Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:47.6207776Z [INFO]  T E S T S
+2026-11-26T12:55:47.6208079Z [INFO] -------------------------------------------------------
+2026-11-26T12:55:48.2617854Z [INFO] Running dev.stargenesis.paper.PluginDescriptorTest
+2026-11-26T12:55:48.3037890Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in dev.stargenesis.paper.PluginDescriptorTest
+2026-11-26T12:55:48.3039375Z [INFO] Running dev.stargenesis.paper.blueprint.BlueprintSessionsTest
+2026-11-26T12:55:48.8575599Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.554 s -- in dev.stargenesis.paper.blueprint.BlueprintSessionsTest
+2026-11-26T12:55:48.8607099Z [INFO] Running dev.stargenesis.paper.blueprint.BlueprintStoreTest
+2026-11-26T12:55:49.0103349Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.154 s -- in dev.stargenesis.paper.blueprint.BlueprintStoreTest
+2026-11-26T12:55:49.0116972Z [INFO] Running dev.stargenesis.paper.blueprint.BlueprintCollaborationTest
+2026-11-26T12:55:49.1408260Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 s -- in dev.stargenesis.paper.blueprint.BlueprintCollaborationTest
+2026-11-26T12:55:49.1409537Z [INFO] Running dev.stargenesis.paper.communication.ContractRuntimeTest
+2026-11-26T12:55:49.3007724Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.130 s -- in dev.stargenesis.paper.communication.ContractRuntimeTest
+2026-11-26T12:55:49.3036946Z [INFO] Running dev.stargenesis.paper.communication.ContractRecoveryTest
+2026-11-26T12:55:49.5383366Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.262 s -- in dev.stargenesis.paper.communication.ContractRecoveryTest
+2026-11-26T12:55:49.5407538Z [INFO] Running dev.stargenesis.paper.communication.RadioServiceTest
+2026-11-26T12:55:50.5997734Z [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.061 s -- in dev.stargenesis.paper.communication.RadioServiceTest
+2026-11-26T12:55:50.6016981Z [INFO] Running dev.stargenesis.paper.communication.RadioAcknowledgementTest
+2026-11-26T12:55:50.7870911Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.184 s -- in dev.stargenesis.paper.communication.RadioAcknowledgementTest
+2026-11-26T12:55:50.7905928Z [INFO] Running dev.stargenesis.paper.communication.VirtualMessageBusRetentionTest
+2026-11-26T12:55:50.8410243Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in dev.stargenesis.paper.communication.VirtualMessageBusRetentionTest
+2026-11-26T12:55:50.8412655Z [INFO] Running dev.stargenesis.paper.communication.RadioPersistenceTest
+2026-11-26T12:55:50.8821556Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in dev.stargenesis.paper.communication.RadioPersistenceTest
+2026-11-26T12:55:50.8823742Z [INFO] Running dev.stargenesis.paper.communication.RadioAcknowledgementRegressionTest
+2026-11-26T12:55:50.8973505Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in dev.stargenesis.paper.communication.RadioAcknowledgementRegressionTest
+2026-11-26T12:55:50.8975433Z [INFO] Running dev.stargenesis.paper.communication.RadioSendCommandTest
+2026-11-26T12:55:50.9553082Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in dev.stargenesis.paper.communication.RadioSendCommandTest
+2026-11-26T12:55:50.9558523Z [INFO] Running dev.stargenesis.paper.communication.RadioCapacityTest
+2026-11-26T12:55:53.9559646Z P4 capacity sample: messages=4096 contracts=256 contractEvents=4352 activeBytes=7073798 expiredBytes=7138312
+2026-11-26T12:55:54.7790224Z P4 capacity sample: messages=4096 recipients=4096 events=8192 pendingBytes=5382703 acknowledgedBytes=5046831
+2026-11-26T12:55:54.7826058Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.826 s -- in dev.stargenesis.paper.communication.RadioCapacityTest
+2026-11-26T12:55:54.7828399Z [INFO] Running dev.stargenesis.paper.communication.ContractRadioWorkflowTest
+2026-11-26T12:55:54.7909646Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in dev.stargenesis.paper.communication.ContractRadioWorkflowTest
+2026-11-26T12:55:54.7937522Z [INFO] Running dev.stargenesis.paper.communication.VirtualMessageBusTest
+2026-11-26T12:55:54.8188192Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in dev.stargenesis.paper.communication.VirtualMessageBusTest
+2026-11-26T12:55:54.8207765Z [INFO] Running dev.stargenesis.paper.design.PublisherKeyStoreTest
+2026-11-26T12:55:54.8917431Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in dev.stargenesis.paper.design.PublisherKeyStoreTest
+2026-11-26T12:55:54.8936744Z [INFO] Running dev.stargenesis.paper.design.SignedDesignPackageStoreTest
+2026-11-26T12:55:55.0957716Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.203 s -- in dev.stargenesis.paper.design.SignedDesignPackageStoreTest
+2026-11-26T12:55:55.0976998Z [INFO] Running dev.stargenesis.paper.design.PublisherTrustConcurrencyTest
+2026-11-26T12:55:55.7476932Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.655 s -- in dev.stargenesis.paper.design.PublisherTrustConcurrencyTest
+2026-11-26T12:55:55.7477965Z [INFO] Running dev.stargenesis.paper.design.PublisherTrustLifecycleTest
+2026-11-26T12:55:57.1575665Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.409 s -- in dev.stargenesis.paper.design.PublisherTrustLifecycleTest
+2026-11-26T12:55:57.1576696Z [INFO] Running dev.stargenesis.paper.runtime.PersistentWorkerTest
+2026-11-26T12:55:57.2285747Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in dev.stargenesis.paper.runtime.PersistentWorkerTest
+2026-11-26T12:55:57.2286715Z [INFO] Running dev.stargenesis.paper.runtime.PlayerCommandQueueTest
+2026-11-26T12:55:57.3321651Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.102 s -- in dev.stargenesis.paper.runtime.PlayerCommandQueueTest
+2026-11-26T12:55:57.3323464Z [INFO] Running dev.stargenesis.paper.factory.FactoryPersistenceTest
+2026-11-26T12:55:57.3757803Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s -- in dev.stargenesis.paper.factory.FactoryPersistenceTest
+2026-11-26T12:55:57.3774062Z [INFO] Running dev.stargenesis.paper.factory.FactoryCompatibilityTest
+2026-11-26T12:55:58.1348217Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.758 s -- in dev.stargenesis.paper.factory.FactoryCompatibilityTest
+2026-11-26T12:55:58.1349332Z [INFO] Running dev.stargenesis.paper.factory.FactoryServiceTest
+2026-11-26T12:55:59.5595424Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.424 s -- in dev.stargenesis.paper.factory.FactoryServiceTest
+2026-11-26T12:55:59.5601135Z [INFO] Running dev.stargenesis.paper.lab.LabWorkerLifecycleTest
+2026-11-26T12:55:59.6417567Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.080 s -- in dev.stargenesis.paper.lab.LabWorkerLifecycleTest
+2026-11-26T12:55:59.6421868Z [INFO] Running dev.stargenesis.paper.lab.LabExperimentTest
+2026-11-26T12:56:00.0263226Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.385 s -- in dev.stargenesis.paper.lab.LabExperimentTest
+2026-11-26T12:56:00.0264346Z [INFO] Running dev.stargenesis.paper.lab.LabDisplayModeTest
+2026-11-26T12:56:00.0344203Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in dev.stargenesis.paper.lab.LabDisplayModeTest
+2026-11-26T12:56:00.0345155Z [INFO] Running dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest
+2026-11-26T12:56:00.4460957Z [INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.414 s -- in dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest
+2026-11-26T12:56:00.4462549Z [INFO] Running dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+2026-11-26T12:56:00.4734725Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+2026-11-26T12:56:00.4735930Z [INFO] Running dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+2026-11-26T12:56:01.2839589Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.810 s -- in dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+2026-11-26T12:56:01.2840811Z [INFO] Running dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+2026-11-26T12:56:01.3084939Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+2026-11-26T12:56:01.3085464Z [INFO] Running dev.stargenesis.paper.ecology.EcologyServiceTest
+2026-11-26T12:56:01.7713362Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.462 s -- in dev.stargenesis.paper.ecology.EcologyServiceTest
+2026-11-26T12:56:01.7714551Z [INFO] Running dev.stargenesis.paper.ecology.EcologyWorkerLifecycleTest
+2026-11-26T12:56:01.8424517Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in dev.stargenesis.paper.ecology.EcologyWorkerLifecycleTest
+2026-11-26T12:56:01.8427278Z [INFO] Running dev.stargenesis.paper.ecology.EcologyPersistenceTest
+2026-11-26T12:56:01.8603582Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in dev.stargenesis.paper.ecology.EcologyPersistenceTest
+2026-11-26T12:56:01.8628693Z [INFO] Running dev.stargenesis.paper.LabPersistenceTest
+2026-11-26T12:56:02.5018161Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.643 s -- in dev.stargenesis.paper.LabPersistenceTest
+2026-11-26T12:56:02.5037522Z [INFO] Running dev.stargenesis.paper.arena.ArenaDependencyClosureTest
+2026-11-26T12:56:02.5226243Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in dev.stargenesis.paper.arena.ArenaDependencyClosureTest
+2026-11-26T12:56:02.5227275Z [INFO] Running dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest
+2026-11-26T12:56:02.7859122Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 s -- in dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest
+2026-11-26T12:56:02.7861977Z [INFO] Running dev.stargenesis.paper.arena.ArenaMatchServiceTest
+2026-11-26T12:56:04.0210871Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.235 s -- in dev.stargenesis.paper.arena.ArenaMatchServiceTest
+2026-11-26T12:56:04.0211790Z [INFO] Running dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest
+2026-11-26T12:56:04.0538870Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest
+2026-11-26T12:56:04.0540375Z [INFO] Running dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest
+2026-11-26T12:56:04.6017266Z P8_STORAGE rejectedDuration=6000 players=8 actualPassReplayBytes=16148334
+2026-11-26T12:56:04.6204421Z P8_STORAGE players=4 duration=1200 reservedBytes=4094757 maxAdmittedRounds=2460
+2026-11-26T12:56:04.6205314Z P8_STORAGE players=8 duration=1200 reservedBytes=6745173 maxAdmittedRounds=1492
+2026-11-26T12:56:04.6238159Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.567 s -- in dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest
+2026-11-26T12:56:04.6238914Z [INFO] Running dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest
+2026-11-26T12:56:04.8569853Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.233 s -- in dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest
+2026-11-26T12:56:04.8570973Z [INFO] Running dev.stargenesis.paper.arena.ArenaMatchPersistenceTest
+2026-11-26T12:56:04.8696457Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in dev.stargenesis.paper.arena.ArenaMatchPersistenceTest
+2026-11-26T12:56:04.8699605Z [INFO] Running dev.stargenesis.paper.arena.ArenaInvitationsTest
+2026-11-26T12:56:04.9380150Z [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in dev.stargenesis.paper.arena.ArenaInvitationsTest
+2026-11-26T12:56:04.9381296Z [INFO] Running dev.stargenesis.paper.arena.ArenaRulesetStoreTest
+2026-11-26T12:56:05.0749820Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in dev.stargenesis.paper.arena.ArenaRulesetStoreTest
+2026-11-26T12:56:05.0750581Z [INFO] Running dev.stargenesis.paper.arena.ArenaDraftSessionsTest
+2026-11-26T12:56:05.2698258Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.193 s -- in dev.stargenesis.paper.arena.ArenaDraftSessionsTest
+2026-11-26T12:56:05.2739460Z [INFO] Running dev.stargenesis.paper.arena.ArenaMatchRoundTest
+2026-11-26T12:56:05.3629114Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 s -- in dev.stargenesis.paper.arena.ArenaMatchRoundTest
+2026-11-26T12:56:05.3630138Z [INFO] Running dev.stargenesis.paper.program.ProgramSessionsTest
+2026-11-26T12:56:05.4877471Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.124 s -- in dev.stargenesis.paper.program.ProgramSessionsTest
+2026-11-26T12:56:05.4886618Z [INFO] Running dev.stargenesis.paper.program.ProgramSessionTest
+2026-11-26T12:56:05.5162534Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in dev.stargenesis.paper.program.ProgramSessionTest
+2026-11-26T12:56:05.5163360Z [INFO] Running dev.stargenesis.paper.program.ProgramStoreTest
+2026-11-26T12:56:05.6006564Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in dev.stargenesis.paper.program.ProgramStoreTest
+2026-11-26T12:56:05.6007247Z [INFO] Running dev.stargenesis.paper.program.ProgramSimulationTest
+2026-11-26T12:56:05.6116741Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.stargenesis.paper.program.ProgramSimulationTest
+2026-11-26T12:56:05.6117765Z [INFO] Running dev.stargenesis.paper.program.ProgramSandboxRunnerTest
+2026-11-26T12:56:05.6297711Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in dev.stargenesis.paper.program.ProgramSandboxRunnerTest
+2026-11-26T12:56:05.6316983Z [INFO] Running dev.stargenesis.paper.program.ProgramWorkflowTest
+2026-11-26T12:56:05.6467517Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.stargenesis.paper.program.ProgramWorkflowTest
+2026-11-26T12:56:05.6468313Z [INFO] Running dev.stargenesis.paper.integration.RecipeCatalogControllerTest
+2026-11-26T12:56:05.6718516Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in dev.stargenesis.paper.integration.RecipeCatalogControllerTest
+2026-11-26T12:56:05.6767165Z [INFO] Running dev.stargenesis.paper.integration.ItemCatalogControllerTest
+2026-11-26T12:56:05.6797356Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.paper.integration.ItemCatalogControllerTest
+2026-11-26T12:56:05.6812278Z [INFO] Running dev.stargenesis.paper.integration.ModelCatalogControllerTest
+2026-11-26T12:56:05.6816219Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.paper.integration.ModelCatalogControllerTest
+2026-11-26T12:56:05.7712962Z [INFO] 
+2026-11-26T12:56:05.7713226Z [INFO] Results:
+2026-11-26T12:56:05.7713439Z [INFO] 
+2026-11-26T12:56:05.7714236Z [INFO] Tests run: 364, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:56:05.7714518Z [INFO] 
+2026-11-26T12:56:05.7724083Z [INFO] 
+2026-11-26T12:56:05.7724436Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-paper ---
+2026-11-26T12:56:05.7868610Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+2026-11-26T12:56:05.8027276Z [INFO] 
+2026-11-26T12:56:05.8057462Z [INFO] --- shade:3.6.0:shade (default) @ stargenesis-paper ---
+2026-11-26T12:56:05.8292153Z [INFO] Including dev.stargenesis:stargenesis-api:jar:4.0.0-SNAPSHOT in the shaded jar.
+2026-11-26T12:56:05.8293229Z [INFO] Including dev.stargenesis:stargenesis-design:jar:4.0.0-SNAPSHOT in the shaded jar.
+2026-11-26T12:56:05.8294028Z [INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.18.3 in the shaded jar.
+2026-11-26T12:56:05.8294795Z [INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:2.18.3 in the shaded jar.
+2026-11-26T12:56:05.8295570Z [INFO] Including com.fasterxml.jackson.core:jackson-core:jar:2.18.3 in the shaded jar.
+2026-11-26T12:56:05.8296472Z [INFO] Including dev.stargenesis:stargenesis-sim:jar:4.0.0-SNAPSHOT in the shaded jar.
+2026-11-26T12:56:05.8297242Z [INFO] Including dev.stargenesis:stargenesis-integrations:jar:4.0.0-SNAPSHOT in the shaded jar.
+2026-11-26T12:56:06.8147612Z [WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar define 2 overlapping resources: 
+2026-11-26T12:56:06.8166965Z [WARNING]   - META-INF/LICENSE
+2026-11-26T12:56:06.8167382Z [WARNING]   - META-INF/NOTICE
+2026-11-26T12:56:06.8168925Z [WARNING] jackson-annotations-2.18.3.jar, jackson-core-2.18.3.jar, jackson-databind-2.18.3.jar, stargenesis-api-4.0.0-SNAPSHOT.jar, stargenesis-design-4.0.0-SNAPSHOT.jar, stargenesis-integrations-4.0.0-SNAPSHOT.jar, stargenesis-paper-4.0.0-SNAPSHOT.jar, stargenesis-sim-4.0.0-SNAPSHOT.jar define 1 overlapping resource: 
+2026-11-26T12:56:06.8170260Z [WARNING]   - META-INF/MANIFEST.MF
+2026-11-26T12:56:06.8170684Z [WARNING] maven-shade-plugin has detected that some files are
+2026-11-26T12:56:06.8171185Z [WARNING] present in two or more JARs. When this happens, only one
+2026-11-26T12:56:06.8171672Z [WARNING] single version of the file is copied to the uber jar.
+2026-11-26T12:56:06.8172171Z [WARNING] Usually this is not harmful and you can skip these warnings,
+2026-11-26T12:56:06.8172700Z [WARNING] otherwise try to manually exclude artifacts based on
+2026-11-26T12:56:06.8173247Z [WARNING] mvn dependency:tree -Ddetail=true and the above output.
+2026-11-26T12:56:06.8173831Z [WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+2026-11-26T12:56:06.8247624Z [INFO] Replacing original artifact with shaded artifact.
+2026-11-26T12:56:06.8268066Z [INFO] Replacing /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar with /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT-shaded.jar
+2026-11-26T12:56:06.8276801Z [INFO] 
+2026-11-26T12:56:06.8277436Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-paper ---
+2026-11-26T12:56:06.8278184Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:56:07.5692180Z [INFO] CycloneDX: Creating BOM version 1.6 with 60 component(s)
+2026-11-26T12:56:07.5820012Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-paper/target/sbom.json
+2026-11-26T12:56:07.6037488Z [INFO]            attaching as stargenesis-paper-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:56:07.6038591Z [INFO] 
+2026-11-26T12:56:07.6042518Z [INFO] ----------------< dev.stargenesis:stargenesis-helstera >----------------
+2026-11-26T12:56:07.6045754Z [INFO] Building stargenesis-helstera 4.0.0-SNAPSHOT                       [7/9]
+2026-11-26T12:56:07.6046550Z [INFO]   from stargenesis-helstera/pom.xml
+2026-11-26T12:56:07.6047109Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:56:07.6098034Z [INFO] 
+2026-11-26T12:56:07.6117364Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-helstera ---
+2026-11-26T12:56:07.6118222Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-11-26T12:56:07.6118785Z [INFO] 
+2026-11-26T12:56:07.6121214Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-helstera ---
+2026-11-26T12:56:07.6145987Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:07.6149593Z [INFO] Compiling 4 source files with javac [debug release 21] to target/classes
+2026-11-26T12:56:07.7689580Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:07.7696863Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:07.7727243Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:07.7728146Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:07.7728976Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:07.7729590Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:07.7730108Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:07.7730532Z [INFO] 
+2026-11-26T12:56:07.7731129Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-helstera ---
+2026-11-26T12:56:07.7732178Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-helstera/src/test/resources
+2026-11-26T12:56:07.7732841Z [INFO] 
+2026-11-26T12:56:07.7733407Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-helstera ---
+2026-11-26T12:56:07.7734065Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:07.7734751Z [INFO] Compiling 2 source files with javac [debug release 21] to target/test-classes
+2026-11-26T12:56:07.9397415Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:07.9398065Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:07.9398572Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:07.9399079Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:07.9399526Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:07.9399906Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:07.9400264Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:07.9400557Z [INFO] 
+2026-11-26T12:56:07.9400914Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-helstera ---
+2026-11-26T12:56:07.9431836Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:56:07.9473648Z [INFO] 
+2026-11-26T12:56:07.9480272Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:07.9480736Z [INFO]  T E S T S
+2026-11-26T12:56:07.9481162Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:08.3457343Z [INFO] Running dev.stargenesis.helstera.HelsteraModelCatalogTest
+2026-11-26T12:56:08.4056347Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in dev.stargenesis.helstera.HelsteraModelCatalogTest
+2026-11-26T12:56:08.4089069Z [INFO] Running dev.stargenesis.helstera.HelsteraProjectionTest
+2026-11-26T12:56:08.5317409Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.125 s -- in dev.stargenesis.helstera.HelsteraProjectionTest
+2026-11-26T12:56:08.5415069Z [INFO] 
+2026-11-26T12:56:08.5415386Z [INFO] Results:
+2026-11-26T12:56:08.5415597Z [INFO] 
+2026-11-26T12:56:08.5416053Z [INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:56:08.5416340Z [INFO] 
+2026-11-26T12:56:08.5424749Z [INFO] 
+2026-11-26T12:56:08.5425094Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-helstera ---
+2026-11-26T12:56:08.5463913Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-helstera/target/stargenesis-helstera-4.0.0-SNAPSHOT.jar
+2026-11-26T12:56:08.5503389Z [INFO] 
+2026-11-26T12:56:08.5504168Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-helstera ---
+2026-11-26T12:56:08.5515254Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:56:09.1687379Z [INFO] CycloneDX: Creating BOM version 1.6 with 55 component(s)
+2026-11-26T12:56:09.1777790Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-helstera/target/sbom.json
+2026-11-26T12:56:09.1968621Z [INFO]            attaching as stargenesis-helstera-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:56:09.1978071Z [INFO] 
+2026-11-26T12:56:09.1978850Z [INFO] --------------< dev.stargenesis:stargenesis-craftengine >---------------
+2026-11-26T12:56:09.1979688Z [INFO] Building stargenesis-craftengine 4.0.0-SNAPSHOT                    [8/9]
+2026-11-26T12:56:09.1981023Z [INFO]   from stargenesis-craftengine/pom.xml
+2026-11-26T12:56:09.1983359Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:56:09.2038967Z [INFO] 
+2026-11-26T12:56:09.2039799Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.2064495Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-11-26T12:56:09.2072034Z [INFO] 
+2026-11-26T12:56:09.2072828Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.2100672Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:09.2104157Z [INFO] Compiling 3 source files with javac [debug release 21] to target/classes
+2026-11-26T12:56:09.3347940Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:09.3361194Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:09.3362308Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:09.3363074Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:09.3363746Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:09.3364283Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:09.3364776Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:09.3366585Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/src/main/java/dev/stargenesis/craftengine/CraftEngineBridgePlugin.java: /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/src/main/java/dev/stargenesis/craftengine/CraftEngineBridgePlugin.java uses or overrides a deprecated API.
+2026-11-26T12:56:09.3370050Z [INFO] /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/src/main/java/dev/stargenesis/craftengine/CraftEngineBridgePlugin.java: Recompile with -Xlint:deprecation for details.
+2026-11-26T12:56:09.3370985Z [INFO] 
+2026-11-26T12:56:09.3371597Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.3372635Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/src/test/resources
+2026-11-26T12:56:09.3373296Z [INFO] 
+2026-11-26T12:56:09.3373915Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.3374622Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:09.3376261Z [INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+2026-11-26T12:56:09.4458041Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:09.4469764Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:09.4470903Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:09.4473325Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:09.4474433Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:09.4475007Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:09.4475521Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:09.4476122Z [INFO] 
+2026-11-26T12:56:09.4476644Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.4484392Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:56:09.4516757Z [INFO] 
+2026-11-26T12:56:09.4517869Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:09.4518846Z [INFO]  T E S T S
+2026-11-26T12:56:09.4521034Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:09.8227751Z [INFO] Running dev.stargenesis.craftengine.CraftEngineBridgeTest
+2026-11-26T12:56:09.8775174Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 s -- in dev.stargenesis.craftengine.CraftEngineBridgeTest
+2026-11-26T12:56:09.8877428Z [INFO] 
+2026-11-26T12:56:09.8877724Z [INFO] Results:
+2026-11-26T12:56:09.8877925Z [INFO] 
+2026-11-26T12:56:09.8878247Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:56:09.8878536Z [INFO] 
+2026-11-26T12:56:09.8888035Z [INFO] 
+2026-11-26T12:56:09.8888413Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.8919039Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/target/stargenesis-craftengine-4.0.0-SNAPSHOT.jar
+2026-11-26T12:56:09.8985021Z [INFO] 
+2026-11-26T12:56:09.8985629Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-craftengine ---
+2026-11-26T12:56:09.9005308Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:56:10.7935084Z [INFO] CycloneDX: Creating BOM version 1.6 with 63 component(s)
+2026-11-26T12:56:10.8034809Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-craftengine/target/sbom.json
+2026-11-26T12:56:10.8247321Z [INFO]            attaching as stargenesis-craftengine-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:56:10.8276834Z [INFO] 
+2026-11-26T12:56:10.8277372Z [INFO] ----------------< dev.stargenesis:stargenesis-cookery >-----------------
+2026-11-26T12:56:10.8277994Z [INFO] Building stargenesis-cookery 4.0.0-SNAPSHOT                        [9/9]
+2026-11-26T12:56:10.8278633Z [INFO]   from stargenesis-cookery/pom.xml
+2026-11-26T12:56:10.8279258Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-11-26T12:56:10.8317230Z [INFO] 
+2026-11-26T12:56:10.8318039Z [INFO] --- resources:3.3.1:resources (default-resources) @ stargenesis-cookery ---
+2026-11-26T12:56:10.8357090Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-11-26T12:56:10.8357480Z [INFO] 
+2026-11-26T12:56:10.8357879Z [INFO] --- compiler:3.14.0:compile (default-compile) @ stargenesis-cookery ---
+2026-11-26T12:56:10.8386899Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:10.8416990Z [INFO] Compiling 4 source files with javac [debug release 21] to target/classes
+2026-11-26T12:56:10.9649353Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:10.9650191Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:10.9651026Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:10.9651703Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:10.9652376Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:10.9652893Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:10.9653377Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:10.9653860Z [INFO] 
+2026-11-26T12:56:10.9654425Z [INFO] --- resources:3.3.1:testResources (default-testResources) @ stargenesis-cookery ---
+2026-11-26T12:56:10.9662446Z [INFO] skip non existing resourceDirectory /home/runner/work/StarGenesis/StarGenesis/stargenesis-cookery/src/test/resources
+2026-11-26T12:56:10.9664184Z [INFO] 
+2026-11-26T12:56:10.9664818Z [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ stargenesis-cookery ---
+2026-11-26T12:56:10.9686301Z [INFO] Recompiling the module because of changed dependency.
+2026-11-26T12:56:10.9687337Z [INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+2026-11-26T12:56:11.0857597Z [INFO] Annotation processing is enabled because one or more processors were found
+2026-11-26T12:56:11.0858820Z   on the class path. A future release of javac may disable annotation processing
+2026-11-26T12:56:11.0859607Z   unless at least one processor is specified by name (-processor), or a search
+2026-11-26T12:56:11.0860378Z   path is specified (--processor-path, --processor-module-path), or annotation
+2026-11-26T12:56:11.0861030Z   processing is enabled explicitly (-proc:only, -proc:full).
+2026-11-26T12:56:11.0861577Z   Use -Xlint:-options to suppress this message.
+2026-11-26T12:56:11.0862112Z   Use -proc:none to disable annotation processing.
+2026-11-26T12:56:11.0862638Z [INFO] 
+2026-11-26T12:56:11.0863172Z [INFO] --- surefire:3.5.3:test (default-test) @ stargenesis-cookery ---
+2026-11-26T12:56:11.0893098Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-11-26T12:56:11.0922946Z [INFO] 
+2026-11-26T12:56:11.0923985Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:11.0926918Z [INFO]  T E S T S
+2026-11-26T12:56:11.0927488Z [INFO] -------------------------------------------------------
+2026-11-26T12:56:11.5387269Z [INFO] Running dev.stargenesis.cookery.CookeryBridgeTest
+2026-11-26T12:56:11.7005961Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.160 s -- in dev.stargenesis.cookery.CookeryBridgeTest
+2026-11-26T12:56:11.7254738Z [INFO] 
+2026-11-26T12:56:11.7255027Z [INFO] Results:
+2026-11-26T12:56:11.7255312Z [INFO] 
+2026-11-26T12:56:11.7255678Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T12:56:11.7256114Z [INFO] 
+2026-11-26T12:56:11.7265176Z [INFO] 
+2026-11-26T12:56:11.7265512Z [INFO] --- jar:3.4.2:jar (default-jar) @ stargenesis-cookery ---
+2026-11-26T12:56:11.7302383Z [INFO] Building jar: /home/runner/work/StarGenesis/StarGenesis/stargenesis-cookery/target/stargenesis-cookery-4.0.0-SNAPSHOT.jar
+2026-11-26T12:56:11.7339919Z [INFO] 
+2026-11-26T12:56:11.7340700Z [INFO] --- cyclonedx:2.9.1:makeAggregateBom (default) @ stargenesis-cookery ---
+2026-11-26T12:56:11.7352020Z [INFO] CycloneDX: Resolving Dependencies
+2026-11-26T12:56:12.3535035Z [INFO] CycloneDX: Creating BOM version 1.6 with 57 component(s)
+2026-11-26T12:56:12.3660395Z [INFO] CycloneDX: Writing and validating BOM (JSON): /home/runner/work/StarGenesis/StarGenesis/stargenesis-cookery/target/sbom.json
+2026-11-26T12:56:12.3774403Z [INFO]            attaching as stargenesis-cookery-4.0.0-SNAPSHOT-cyclonedx.json
+2026-11-26T12:56:12.3776580Z [INFO] ------------------------------------------------------------------------
+2026-11-26T12:56:12.3777171Z [INFO] Reactor Summary for StarGenesis 4.0.0-SNAPSHOT:
+2026-11-26T12:56:12.3777556Z [INFO] 
+2026-11-26T12:56:12.3777978Z [INFO] StarGenesis ........................................ SUCCESS [  2.079 s]
+2026-11-26T12:56:12.3778533Z [INFO] stargenesis-api .................................... SUCCESS [  1.532 s]
+2026-11-26T12:56:12.3779093Z [INFO] stargenesis-design ................................. SUCCESS [  3.265 s]
+2026-11-26T12:56:12.3779660Z [INFO] stargenesis-sim .................................... SUCCESS [ 10.637 s]
+2026-11-26T12:56:12.3796991Z [INFO] StarGenesis Integration Contracts .................. SUCCESS [  1.172 s]
+2026-11-26T12:56:12.3826750Z [INFO] stargenesis-paper .................................. SUCCESS [ 22.023 s]
+2026-11-26T12:56:12.3856696Z [INFO] stargenesis-helstera ............................... SUCCESS [  1.594 s]
+2026-11-26T12:56:12.3866663Z [INFO] stargenesis-craftengine ............................ SUCCESS [  1.627 s]
+2026-11-26T12:56:12.3880862Z [INFO] stargenesis-cookery ................................ SUCCESS [  1.553 s]
+2026-11-26T12:56:12.3906876Z [INFO] ------------------------------------------------------------------------
+2026-11-26T12:56:12.3926502Z [INFO] BUILD SUCCESS
+2026-11-26T12:56:12.3936823Z [INFO] ------------------------------------------------------------------------
+2026-11-26T12:56:12.3945477Z [INFO] Total time:  45.598 s
+2026-11-26T12:56:12.3946157Z [INFO] Finished at: 2026-11-26T12:56:12Z
+2026-11-26T12:56:12.3947217Z [INFO] ------------------------------------------------------------------------
+2026-11-26T12:56:12.4578733Z ##[group]Run python scripts/test_settlement_process_lock.py --java-home "$JAVA_HOME" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json
+2026-11-26T12:56:12.4579550Z [36;1mpython scripts/test_settlement_process_lock.py --java-home "$JAVA_HOME" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/settlement-process-lock.json[0m
+2026-11-26T12:56:12.4607634Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:56:12.4607796Z env:
+2026-11-26T12:56:12.4607977Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:12.4608249Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:12.4608501Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:12.4608738Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:56:12.4609000Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:12.4609213Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:12.4609431Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:12.4609657Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:56:12.4609843Z ##[endgroup]
+2026-11-26T12:56:14.2529565Z {
+2026-11-26T12:56:14.2529903Z   "passed": true,
+2026-11-26T12:56:14.2530582Z   "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+2026-11-26T12:56:14.2531113Z   "pluginSha256": "0f8ae85025a3b38a9e0e69f8408da7ff19ce3917b49849a377b00b7d09ec62a7",
+2026-11-26T12:56:14.2531443Z   "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+2026-11-26T12:56:14.2531669Z   "cases": [
+2026-11-26T12:56:14.2531792Z     {
+2026-11-26T12:56:14.2531929Z       "holderTerminated": false,
+2026-11-26T12:56:14.2532106Z       "blockedWhileHeld": true,
+2026-11-26T12:56:14.2532272Z       "acquiredAfterRelease": true,
+2026-11-26T12:56:14.2532434Z       "holderExitCode": 0,
+2026-11-26T12:56:14.2532577Z       "contenderExitCode": 0
+2026-11-26T12:56:14.2532712Z     },
+2026-11-26T12:56:14.2532825Z     {
+2026-11-26T12:56:14.2532951Z       "holderTerminated": true,
+2026-11-26T12:56:14.2533105Z       "blockedWhileHeld": true,
+2026-11-26T12:56:14.2533267Z       "acquiredAfterRelease": true,
+2026-11-26T12:56:14.2533421Z       "holderExitCode": 143,
+2026-11-26T12:56:14.2533565Z       "contenderExitCode": 0
+2026-11-26T12:56:14.2533706Z     }
+2026-11-26T12:56:14.2533812Z   ],
+2026-11-26T12:56:14.2534227Z   "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+2026-11-26T12:56:14.2534620Z }
+2026-11-26T12:56:14.2614571Z ##[group]Run python scripts/test_worker_directory_lock.py --java-home "$JAVA_HOME" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json
+2026-11-26T12:56:14.2615344Z [36;1mpython scripts/test_worker_directory_lock.py --java-home "$JAVA_HOME" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --output target/worker-directory-lock.json[0m
+2026-11-26T12:56:14.2642842Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:56:14.2643128Z env:
+2026-11-26T12:56:14.2643303Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:14.2643565Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:14.2643807Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:14.2644038Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:56:14.2644286Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:14.2644495Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:14.2644704Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:14.2644915Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:56:14.2645101Z ##[endgroup]
+2026-11-26T12:56:15.3781472Z {
+2026-11-26T12:56:15.3781766Z   "passed": true,
+2026-11-26T12:56:15.3782399Z   "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+2026-11-26T12:56:15.3782980Z   "pluginSha256": "0f8ae85025a3b38a9e0e69f8408da7ff19ce3917b49849a377b00b7d09ec62a7",
+2026-11-26T12:56:15.3783330Z   "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+2026-11-26T12:56:15.3783566Z   "cases": [
+2026-11-26T12:56:15.3783691Z     {
+2026-11-26T12:56:15.3783835Z       "shutdownTimedOut": false,
+2026-11-26T12:56:15.3784014Z       "holderTerminated": false,
+2026-11-26T12:56:15.3784211Z       "sameJvmAndReloadClassloaderRejected": true,
+2026-11-26T12:56:15.3784421Z       "otherProcessRejectedWhileHeld": true,
+2026-11-26T12:56:15.3784610Z       "acquiredAfterRelease": true,
+2026-11-26T12:56:15.3784778Z       "holderExitCode": 0
+2026-11-26T12:56:15.3784914Z     },
+2026-11-26T12:56:15.3785027Z     {
+2026-11-26T12:56:15.3785157Z       "shutdownTimedOut": true,
+2026-11-26T12:56:15.3785328Z       "holderTerminated": false,
+2026-11-26T12:56:15.3785522Z       "sameJvmAndReloadClassloaderRejected": true,
+2026-11-26T12:56:15.3785727Z       "otherProcessRejectedWhileHeld": true,
+2026-11-26T12:56:15.3786133Z       "acquiredAfterRelease": true,
+2026-11-26T12:56:15.3786292Z       "holderExitCode": 0
+2026-11-26T12:56:15.3786426Z     },
+2026-11-26T12:56:15.3786542Z     {
+2026-11-26T12:56:15.3786679Z       "shutdownTimedOut": true,
+2026-11-26T12:56:15.3786843Z       "holderTerminated": true,
+2026-11-26T12:56:15.3787046Z       "sameJvmAndReloadClassloaderRejected": true,
+2026-11-26T12:56:15.3787253Z       "otherProcessRejectedWhileHeld": true,
+2026-11-26T12:56:15.3787442Z       "acquiredAfterRelease": true,
+2026-11-26T12:56:15.3787601Z       "holderExitCode": 143
+2026-11-26T12:56:15.3787731Z     }
+2026-11-26T12:56:15.3787837Z   ],
+2026-11-26T12:56:15.3788281Z   "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+2026-11-26T12:56:15.3788819Z }
+2026-11-26T12:56:15.3873248Z ##[group]Run python scripts/test_release_artifact_signer.py --java "$(command -v java)" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json
+2026-11-26T12:56:15.3874211Z [36;1mpython scripts/test_release_artifact_signer.py --java "$(command -v java)" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --sbom target/sbom.json --output target/release-signer-smoke.json[0m
+2026-11-26T12:56:15.3902389Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:56:15.3902541Z env:
+2026-11-26T12:56:15.3902720Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:15.3902997Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:15.3903251Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:15.3903489Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:56:15.3903904Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:15.3904117Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:15.3904328Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:15.3904552Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:56:15.3904738Z ##[endgroup]
+2026-11-26T12:56:17.9502882Z {
+2026-11-26T12:56:17.9503174Z   "passed": true,
+2026-11-26T12:56:17.9503373Z   "algorithm": "Ed25519",
+2026-11-26T12:56:17.9503581Z   "testVersion": "1.0.0-rc.1",
+2026-11-26T12:56:17.9503740Z   "testKeyEphemeral": true,
+2026-11-26T12:56:17.9503893Z   "signedArtifacts": [
+2026-11-26T12:56:17.9504056Z     "StarGenesis-1.0.0-rc.1.jar",
+2026-11-26T12:56:17.9504217Z     "sbom.json"
+2026-11-26T12:56:17.9504340Z   ],
+2026-11-26T12:56:17.9504491Z   "signatureVerified": true,
+2026-11-26T12:56:17.9504648Z   "tamperRejected": true,
+2026-11-26T12:56:17.9504851Z   "privateTestKeyRemoved": true,
+2026-11-26T12:56:17.9505147Z   "sourceJarSha256": "0f8ae85025a3b38a9e0e69f8408da7ff19ce3917b49849a377b00b7d09ec62a7",
+2026-11-26T12:56:17.9505540Z   "sourceSbomSha256": "2ffd684c8a4269c306accd1bf4e1deae6b753b9361aa768475e9f2d8c13c2580",
+2026-11-26T12:56:17.9506587Z   "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+2026-11-26T12:56:17.9506841Z }
+2026-11-26T12:56:17.9595246Z ##[group]Run python scripts/test_signed_design_package_signer.py --java-home "$JAVA_HOME" --java "$(command -v java)" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json
+2026-11-26T12:56:17.9596568Z [36;1mpython scripts/test_signed_design_package_signer.py --java-home "$JAVA_HOME" --java "$(command -v java)" --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar --design stargenesis-design/src/main/resources/examples/blueprint.json --output target/signed-design-signer-smoke.json[0m
+2026-11-26T12:56:17.9624934Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:56:17.9625093Z env:
+2026-11-26T12:56:17.9625273Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:17.9625547Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:17.9625992Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:17.9626234Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:56:17.9626469Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:17.9626692Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:17.9626910Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:17.9627131Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:56:17.9627317Z ##[endgroup]
+2026-11-26T12:56:19.8143894Z {
+2026-11-26T12:56:19.8144202Z   "passed": true,
+2026-11-26T12:56:19.8144384Z   "algorithm": "Ed25519",
+2026-11-26T12:56:19.8144598Z   "publisherKeyId": "publisher.smoke",
+2026-11-26T12:56:19.8144918Z   "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+2026-11-26T12:56:19.8145208Z   "validSignatureVerified": true,
+2026-11-26T12:56:19.8145385Z   "signatureTamperRejected": true,
+2026-11-26T12:56:19.8145570Z   "unknownKeyIdRejected": true,
+2026-11-26T12:56:19.8145742Z   "privateTestKeyRemoved": true,
+2026-11-26T12:56:19.8146082Z   "testKeyEphemeral": true,
+2026-11-26T12:56:19.8146417Z   "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+2026-11-26T12:56:19.8146723Z }
+2026-11-26T12:56:19.8240431Z ##[group]Run mkdir -p .work/rc-inputs/craftengine
+2026-11-26T12:56:19.8240679Z [36;1mmkdir -p .work/rc-inputs/craftengine[0m
+2026-11-26T12:56:19.8240908Z [36;1mcp .work/helstera-api/source.zip .work/rc-inputs/helstera.zip[0m
+2026-11-26T12:56:19.8241292Z [36;1mcp .work/cookery-api/source.zip .work/rc-inputs/cookery.zip[0m
+2026-11-26T12:56:19.8241559Z [36;1mcp .work/craftengine-api/craft-engine-* .work/rc-inputs/craftengine/[0m
+2026-11-26T12:56:19.8242268Z [36;1mpython scripts/build_release_candidate.py --version "4.0.0-ci.${GITHUB_RUN_NUMBER}" --java "$JAVA_HOME/bin/java" --profile helstera-bridge --profile craftengine-bridge --profile cookery-bridge --dependency-inputs .work/rc-inputs --output-directory .work/ci-release --evidence-file target/rc-evidence.json[0m
+2026-11-26T12:56:19.8270390Z shell: /usr/bin/bash -e {0}
+2026-11-26T12:56:19.8270542Z env:
+2026-11-26T12:56:19.8270729Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:19.8271033Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:56:19.8271291Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:19.8271532Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:56:19.8271788Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:19.8272008Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:19.8272221Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:56:19.8272437Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:56:19.8272627Z ##[endgroup]
+2026-11-26T12:56:19.9486939Z Preparing actual helstera API from locked inputs
+2026-11-26T12:56:45.0625380Z Preparing actual craftengine API from locked inputs
+2026-11-26T12:56:47.3776757Z Preparing actual cookery API from locked inputs
+2026-11-26T12:57:03.8930929Z $ sh /home/runner/work/StarGenesis/StarGenesis/.work/release-build-4.0.0-ci.36-20261126T125619Z/mvnw -B -ntp -DforkCount=1 -Phelstera-bridge,craftengine-bridge,cookery-bridge clean verify
+2026-11-26T12:57:53.1079098Z {
+2026-11-26T12:57:53.1079347Z   "version": "4.0.0-ci.36",
+2026-11-26T12:57:53.1079620Z   "builtAt": "2026-11-26T12:57:53.075829+00:00",
+2026-11-26T12:57:53.1080234Z   "buildCommand": "sh mvnw -B -ntp -DforkCount=1 -Phelstera-bridge,craftengine-bridge,cookery-bridge clean verify",
+2026-11-26T12:57:53.1080726Z   "buildArguments": [
+2026-11-26T12:57:53.1080933Z     "sh",
+2026-11-26T12:57:53.1081109Z     "mvnw",
+2026-11-26T12:57:53.1081298Z     "-B",
+2026-11-26T12:57:53.1081467Z     "-ntp",
+2026-11-26T12:57:53.1081651Z     "-DforkCount=1",
+2026-11-26T12:57:53.1081968Z     "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+2026-11-26T12:57:53.1082273Z     "clean",
+2026-11-26T12:57:53.1082450Z     "verify"
+2026-11-26T12:57:53.1082625Z   ],
+2026-11-26T12:57:53.1082809Z   "profiles": [
+2026-11-26T12:57:53.1083011Z     "helstera-bridge",
+2026-11-26T12:57:53.1083243Z     "craftengine-bridge",
+2026-11-26T12:57:53.1083467Z     "cookery-bridge"
+2026-11-26T12:57:53.1083658Z   ],
+2026-11-26T12:57:53.1083824Z   "modules": [
+2026-11-26T12:57:53.1084021Z     "stargenesis-api",
+2026-11-26T12:57:53.1084234Z     "stargenesis-design",
+2026-11-26T12:57:53.1084455Z     "stargenesis-sim",
+2026-11-26T12:57:53.1084652Z     "stargenesis-integrations",
+2026-11-26T12:57:53.1084812Z     "stargenesis-paper",
+2026-11-26T12:57:53.1085045Z     "stargenesis-helstera",
+2026-11-26T12:57:53.1085228Z     "stargenesis-craftengine",
+2026-11-26T12:57:53.1085477Z     "stargenesis-cookery"
+2026-11-26T12:57:53.1085674Z   ],
+2026-11-26T12:57:53.1085984Z   "dependencyPreparation": {
+2026-11-26T12:57:53.1086214Z     "helstera": {
+2026-11-26T12:57:53.1086348Z       "preparation": {
+2026-11-26T12:57:53.1086537Z         "revision": "9298292538dc9d7c5ee800ff7e03f4c10e34ba97",
+2026-11-26T12:57:53.1086857Z         "patchSha256": "a2319f4cb9cdfa79e72d42f9e97f58da6a54a94987f4ad60bdded16d25499ee3",
+2026-11-26T12:57:53.1087503Z         "artifactVersion": "1.0.0-9298292538dc9d7c5ee800ff7e03f4c10e34ba97-sga2319f4cb9cd",
+2026-11-26T12:57:53.1087746Z         "lockedFiles": 124,
+2026-11-26T12:57:53.1087882Z         "tests": {
+2026-11-26T12:57:53.1088012Z           "tests": 224,
+2026-11-26T12:57:53.1088287Z           "failures": 0,
+2026-11-26T12:57:53.1088425Z           "errors": 0,
+2026-11-26T12:57:53.1088554Z           "skipped": 0
+2026-11-26T12:57:53.1088683Z         },
+2026-11-26T12:57:53.1088922Z         "artifactSha256": "09f3d9352da0a649939f696b6ab1593457ab6181c8cb2f625f9dc3c0bccf90db",
+2026-11-26T12:57:53.1089286Z         "sourceLockSha256": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f",
+2026-11-26T12:57:53.1089538Z         "runtimeTests": {
+2026-11-26T12:57:53.1089686Z           "helstera-core": {
+2026-11-26T12:57:53.1089834Z             "tests": 47,
+2026-11-26T12:57:53.1089979Z             "failures": 0,
+2026-11-26T12:57:53.1090120Z             "errors": 0,
+2026-11-26T12:57:53.1090255Z             "skipped": 0
+2026-11-26T12:57:53.1090393Z           },
+2026-11-26T12:57:53.1090531Z           "helstera-runtime": {
+2026-11-26T12:57:53.1090679Z             "tests": 45,
+2026-11-26T12:57:53.1090817Z             "failures": 0,
+2026-11-26T12:57:53.1090955Z             "errors": 0,
+2026-11-26T12:57:53.1091092Z             "skipped": 0
+2026-11-26T12:57:53.1091227Z           },
+2026-11-26T12:57:53.1091377Z           "helstera-render-paper": {
+2026-11-26T12:57:53.1091539Z             "tests": 14,
+2026-11-26T12:57:53.1091675Z             "failures": 0,
+2026-11-26T12:57:53.1091817Z             "errors": 0,
+2026-11-26T12:57:53.1091954Z             "skipped": 0
+2026-11-26T12:57:53.1092088Z           }
+2026-11-26T12:57:53.1092210Z         }
+2026-11-26T12:57:53.1092322Z       },
+2026-11-26T12:57:53.1092531Z       "directory": ".work/ci-release/dependency-evidence/helstera",
+2026-11-26T12:57:53.1092736Z       "files": {
+2026-11-26T12:57:53.1093011Z         "helstera-core-build.log": "59aa60cd687d02f1e8c157c38ba42259d849978ea4f87370808116b603549472",
+2026-11-26T12:57:53.1093440Z         "helstera-render-paper-build.log": "9ef2099ace2f736574a73e63cfadc3973d1c285cce5aafc78a26fc090b4a2f91",
+2026-11-26T12:57:53.1093874Z         "helstera-runtime-build.log": "6e53a2153dacf0396fe81de1a35a54edefa6e1010c48a334cb88df8c49c8a7f6",
+2026-11-26T12:57:53.1094252Z         "install.log": "15e33774b3cba34cc54171bb8fa0e3c69c2cf73589f455e95da1eac329ddab2b",
+2026-11-26T12:57:53.1094622Z         "preparation-launch.log": "1e79528f4709e4400ffb3fcd3ec753fa5f56ab00d6980dc1dd16c20793d59c05",
+2026-11-26T12:57:53.1094999Z         "preparation.json": "79e44841535f72bbbe65a0a822d11a10bec661d847b4c80caafc852fb0d61b69",
+2026-11-26T12:57:53.1095386Z         "runtime-api-install.log": "64f7503a50ecae7f36da7beeb69bce211a9778014f60ba4d095979f722f47332",
+2026-11-26T12:57:53.1095956Z         "runtime-parent-install.log": "783625dce543350d28b2f5f70c27b555b79f82280132f1142b6cefb55b0e8a00",
+2026-11-26T12:57:53.1096448Z         "upstream-api-build.log": "ab8af67f27f73a7ce436de99617f5a87dd56954afbd628ad333eca95aba848a2",
+2026-11-26T12:57:53.1096830Z         "source-lock.json": "6700876d6eed0d9fad6b74598569da5169abff0a1ac4342c0780d4357889484f"
+2026-11-26T12:57:53.1097066Z       }
+2026-11-26T12:57:53.1097180Z     },
+2026-11-26T12:57:53.1097303Z     "craftengine": {
+2026-11-26T12:57:53.1097439Z       "preparation": {
+2026-11-26T12:57:53.1097581Z         "version": "26.9.1",
+2026-11-26T12:57:53.1097725Z         "artifactVersions": {
+2026-11-26T12:57:53.1097897Z           "core": "26.9.1-sg3db3473986ae",
+2026-11-26T12:57:53.1098073Z           "bukkit": "26.9.1-sg011afd3b1cfc"
+2026-11-26T12:57:53.1098225Z         },
+2026-11-26T12:57:53.1098466Z         "sourceLockSha256": "62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d",
+2026-11-26T12:57:53.1098710Z         "files": {
+2026-11-26T12:57:53.1098985Z           "craft-engine-core-26.9.1.pom": "b63b023aea34a5155469a26d140eed8d6f5038f209d3aed6d030ce45edd6a33e",
+2026-11-26T12:57:53.1099565Z           "craft-engine-core-26.9.1-sources.jar": "680db25e3c6bde661e02b353e50988afefdbbc6b750ccee534eb84831b712d80",
+2026-11-26T12:57:53.1099987Z           "craft-engine-core-26.9.1.jar": "3db3473986aefe52936aa807a0b5858355775fa16927eba96b701e84431a0d2b",
+2026-11-26T12:57:53.1100500Z           "craft-engine-bukkit-26.9.1.pom": "3ca095869bebb47a0f15701e9a00ecd51645cad9c5a63674a7bcbb7fbed4acbc",
+2026-11-26T12:57:53.1100938Z           "craft-engine-bukkit-26.9.1-sources.jar": "f53afe676bb5f14a8cd35380c1b741e69f67416bbb943cffd82d0a32a68076e6",
+2026-11-26T12:57:53.1101371Z           "craft-engine-bukkit-26.9.1.jar": "011afd3b1cfcaf5fc4b4af4757843e5479e1be4a9763c1a97bde04dcb1c0795d"
+2026-11-26T12:57:53.1101642Z         },
+2026-11-26T12:57:53.1101901Z         "scope": "Actual published API JARs, sources and POMs; no API stubs or runtime-plugin verification"
+2026-11-26T12:57:53.1102153Z       },
+2026-11-26T12:57:53.1102341Z       "directory": ".work/ci-release/dependency-evidence/craftengine",
+2026-11-26T12:57:53.1102540Z       "files": {
+2026-11-26T12:57:53.1102790Z         "bukkit-install.log": "b874cd6ee1d8d5fb73c98591972e272d1115cbc089bbbe6c0c47fd0b2736a3e7",
+2026-11-26T12:57:53.1103165Z         "core-install.log": "efab7e649b01c5f4974d7b734267c0112ec1aea887c20c76dbccce29df18aeb4",
+2026-11-26T12:57:53.1103553Z         "preparation-launch.log": "c78b20b23ab6378d65d00aad48fec0ed40ec93ff532eba392b7236cabb13e677",
+2026-11-26T12:57:53.1103933Z         "preparation.json": "0f8c8b5bb06b950e01c0de72de583c6999c57bfc9626bd251876abc7a8f0246b",
+2026-11-26T12:57:53.1104293Z         "source-lock.json": "62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d"
+2026-11-26T12:57:53.1104538Z       }
+2026-11-26T12:57:53.1104655Z     },
+2026-11-26T12:57:53.1104766Z     "cookery": {
+2026-11-26T12:57:53.1104895Z       "preparation": {
+2026-11-26T12:57:53.1105091Z         "revision": "7aca215fca067314d1593dd287621f96fb8913e4",
+2026-11-26T12:57:53.1105283Z         "lockedFiles": 558,
+2026-11-26T12:57:53.1105424Z         "tests": {
+2026-11-26T12:57:53.1105556Z           "tests": 28,
+2026-11-26T12:57:53.1105693Z           "failures": 0,
+2026-11-26T12:57:53.1105986Z           "errors": 0,
+2026-11-26T12:57:53.1106136Z           "skipped": 0
+2026-11-26T12:57:53.1106267Z         },
+2026-11-26T12:57:53.1106415Z         "artifactVersion": "1.3.0-sg7aca215fca06",
+2026-11-26T12:57:53.1106702Z         "artifactSha256": "67c354b090a65c2e1dfb64b4ee6e59ececf2e093d4f48a1b6309d2a508507e65",
+2026-11-26T12:57:53.1107069Z         "sourceLockSha256": "5f645bae99fd45eb6d2a38be87e4822d831a34a605a41eaedc2b3a260858737a",
+2026-11-26T12:57:53.1107474Z         "scope": "Unchanged upstream main/compat API classes and 28 upstream recipe tests; no runtime or NMS verification"
+2026-11-26T12:57:53.1107758Z       },
+2026-11-26T12:57:53.1107940Z       "directory": ".work/ci-release/dependency-evidence/cookery",
+2026-11-26T12:57:53.1108136Z       "files": {
+2026-11-26T12:57:53.1108499Z         "TEST-net.kaleidoscope.cookery.recipe.BambooTrayIndexTest.xml": "94fd76b39b01435492c31cb3f8c2715cbe1aca73e18c68b973bd719ee6d558f5",
+2026-11-26T12:57:53.1109070Z         "TEST-net.kaleidoscope.cookery.recipe.BambooTrayRecipeTest.xml": "d7c87854400b960a2d0d5f94f07513c70151cc14d9883c04e12a2ed45879ab11",
+2026-11-26T12:57:53.1109684Z         "TEST-net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest.xml": "7e4d14d1249556d8695875cd80f015fa1042ca39d1c89c6d96eb50845dc68bd6",
+2026-11-26T12:57:53.1110290Z         "TEST-net.kaleidoscope.cookery.recipe.PotRecipeTest.xml": "d894e33a5021c1d2a5131ef68bb3d68485e1434abfae1bedec80ac22917c935a",
+2026-11-26T12:57:53.1110861Z         "TEST-net.kaleidoscope.cookery.recipe.StockpotRecipeTest.xml": "fd1159a52d5aa1e79aae5f8fee80aa3ecf88356f433ae2feddbe926581294e5c",
+2026-11-26T12:57:53.1111355Z         "dependencies.json": "589f68d3b3b2c6e876b5f5ac16ba7a5e894f6d2defda39e6d1283eb62a8e9c7b",
+2026-11-26T12:57:53.1111769Z         "install.log": "91fc867e276ca7d86b33787209d384d76c10eef3164aea18162b56226ccdde5a",
+2026-11-26T12:57:53.1112346Z         "preparation-launch.log": "5ea7cc84033454f38b587edf2d00fcb50d3c3b41f180f0895f64d610ba214b35",
+2026-11-26T12:57:53.1112781Z         "preparation.json": "f32944fda51e48686636f75c88f28d0cf8ded78b5a5c0e371d8147ecfa580835",
+2026-11-26T12:57:53.1113204Z         "upstream-api-build.log": "03fa81338e4b5498a62fa9c05c8b580ee90f1ccb5a4bc40e713c19cb7b41c4fa",
+2026-11-26T12:57:53.1113703Z         "source-lock.json": "5f645bae99fd45eb6d2a38be87e4822d831a34a605a41eaedc2b3a260858737a"
+2026-11-26T12:57:53.1113953Z       }
+2026-11-26T12:57:53.1114066Z     }
+2026-11-26T12:57:53.1114178Z   },
+2026-11-26T12:57:53.1114292Z   "forkCount": 1,
+2026-11-26T12:57:53.1114760Z   "javaVersion": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+2026-11-26T12:57:53.1115185Z   "mavenOpts": "",
+2026-11-26T12:57:53.1115320Z   "isolatedSourceCopy": true,
+2026-11-26T12:57:53.1115492Z   "sourceVersion": "4.0.0-SNAPSHOT",
+2026-11-26T12:57:53.1115869Z   "sourceTreeSha256": "505816b2967a1f7af41ee9730563cde949ad4d08375327b0a4095edd22ed7eb0",
+2026-11-26T12:57:53.1116120Z   "tests": {
+2026-11-26T12:57:53.1116245Z     "reports": 87,
+2026-11-26T12:57:53.1116367Z     "tests": 652,
+2026-11-26T12:57:53.1116489Z     "failures": 0,
+2026-11-26T12:57:53.1116617Z     "errors": 0,
+2026-11-26T12:57:53.1116740Z     "skipped": 0
+2026-11-26T12:57:53.1116859Z   },
+2026-11-26T12:57:53.1116968Z   "artifact": {
+2026-11-26T12:57:53.1117153Z     "file": ".work/ci-release/StarGenesis-4.0.0-ci.36.jar",
+2026-11-26T12:57:53.1117350Z     "sizeBytes": 3108583,
+2026-11-26T12:57:53.1117585Z     "sha256": "1a5c35aa7aa9ffedc735cf4f9943f4bbe2e605b4dc2e6ce203ba76b8ce087ddb"
+2026-11-26T12:57:53.1117809Z   },
+2026-11-26T12:57:53.1117920Z   "artifacts": {
+2026-11-26T12:57:53.1118053Z     "stargenesis-paper": {
+2026-11-26T12:57:53.1118253Z       "file": ".work/ci-release/StarGenesis-4.0.0-ci.36.jar",
+2026-11-26T12:57:53.1118443Z       "sizeBytes": 3108583,
+2026-11-26T12:57:53.1118682Z       "sha256": "1a5c35aa7aa9ffedc735cf4f9943f4bbe2e605b4dc2e6ce203ba76b8ce087ddb"
+2026-11-26T12:57:53.1118907Z     },
+2026-11-26T12:57:53.1119034Z     "stargenesis-helstera": {
+2026-11-26T12:57:53.1119250Z       "file": ".work/ci-release/StarGenesisHelstera-4.0.0-ci.36.jar",
+2026-11-26T12:57:53.1119458Z       "sizeBytes": 24339,
+2026-11-26T12:57:53.1119687Z       "sha256": "6aa035c83fc162847303e5ca703c6592890a92ee28a0f134bf672b8b6f6e5c19"
+2026-11-26T12:57:53.1119900Z     },
+2026-11-26T12:57:53.1120041Z     "stargenesis-craftengine": {
+2026-11-26T12:57:53.1120265Z       "file": ".work/ci-release/StarGenesisCraftEngine-4.0.0-ci.36.jar",
+2026-11-26T12:57:53.1120473Z       "sizeBytes": 12800,
+2026-11-26T12:57:53.1120698Z       "sha256": "7f3955d5a2921df8b5786ff11374d33b96f1583ceda8ee930d95f21104169427"
+2026-11-26T12:57:53.1120908Z     },
+2026-11-26T12:57:53.1121029Z     "stargenesis-cookery": {
+2026-11-26T12:57:53.1121241Z       "file": ".work/ci-release/StarGenesisCookery-4.0.0-ci.36.jar",
+2026-11-26T12:57:53.1121442Z       "sizeBytes": 17583,
+2026-11-26T12:57:53.1121665Z       "sha256": "6704d2f42204a29793c20076cbd33dd99ee9a77ca045f3bd7eab1f111b3d9af6"
+2026-11-26T12:57:53.1121883Z     }
+2026-11-26T12:57:53.1121993Z   },
+2026-11-26T12:57:53.1122103Z   "sbom": {
+2026-11-26T12:57:53.1122226Z     "format": "CycloneDX",
+2026-11-26T12:57:53.1122370Z     "specVersion": "1.6",
+2026-11-26T12:57:53.1122511Z     "components": 68,
+2026-11-26T12:57:53.1122667Z     "file": ".work/ci-release/sbom.json",
+2026-11-26T12:57:53.1122921Z     "sha256": "06e7e98548683ae7ac8541978939be809b93b300252e05cda26ef9e59b54aaf4"
+2026-11-26T12:57:53.1123130Z   },
+2026-11-26T12:57:53.1123244Z   "signed": false,
+2026-11-26T12:57:53.1123568Z   "scope": "Unsigned release-candidate build from an isolated source copy. This is not a signed or production release.",
+2026-11-26T12:57:53.1123921Z   "buildLog": ".work/ci-release/release-verify.log",
+2026-11-26T12:57:53.1124317Z   "buildLogSha256": "722d1738c7899ec685623525cdd4ed756708c501fbcc21e143317f2b8abc9f0f"
+2026-11-26T12:57:53.1124558Z }
+2026-11-26T12:57:53.1233576Z ##[group]Run actions/upload-artifact@v4
+2026-11-26T12:57:53.1233752Z with:
+2026-11-26T12:57:53.1233879Z   name: stargenesis-java-21
+2026-11-26T12:57:53.1234030Z   include-hidden-files: true
+2026-11-26T12:57:53.1235578Z   path: stargenesis-paper/target/stargenesis-paper-*.jar
+stargenesis-helstera/target/stargenesis-helstera-*.jar
+stargenesis-craftengine/target/stargenesis-craftengine-*.jar
+stargenesis-cookery/target/stargenesis-cookery-*.jar
+.work/cookery-api/preparation.json
+.work/cookery-api/dependencies.json
+.work/cookery-api/*.log
+.work/cookery-api/TEST-*.xml
+.work/craftengine-api/preparation.json
+.work/craftengine-api/*-install.log
+.work/helstera-api/preparation.json
+.work/helstera-api/*-build.log
+target/release-signer-smoke.json
+target/signed-design-signer-smoke.json
+target/settlement-process-lock.json
+target/worker-directory-lock.json
+target/sbom.json
+target/rc-evidence.json
+.work/ci-release/**
+**/target/surefire-reports/*
+
+2026-11-26T12:57:53.1237261Z   if-no-files-found: warn
+2026-11-26T12:57:53.1237402Z   compression-level: 6
+2026-11-26T12:57:53.1237535Z   overwrite: false
+2026-11-26T12:57:53.1237660Z env:
+2026-11-26T12:57:53.1237841Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:57:53.1238123Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+2026-11-26T12:57:53.1238379Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:57:53.1238625Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-26T12:57:53.1238863Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:57:53.1239078Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:57:53.1239294Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-26T12:57:53.1239520Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-26T12:57:53.1239707Z ##[endgroup]
+2026-11-26T12:57:53.2442614Z (node:7970) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:57:53.2443109Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:57:53.6768336Z With the provided path, there will be 407 files uploaded
+2026-11-26T12:57:53.6771864Z Artifact name is valid!
+2026-11-26T12:57:53.6772232Z Root directory input is valid!
+2026-11-26T12:57:53.9423919Z Beginning upload of artifact content to blob storage
+2026-11-26T12:57:54.2388215Z (node:7970) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-26T12:57:54.7184446Z Uploaded bytes 6506217
+2026-11-26T12:57:54.7615981Z Finished uploading artifact content to blob storage!
+2026-11-26T12:57:54.7616801Z SHA256 digest of uploaded artifact zip is 5451a7e02fa83d3907acb43a40581c8815253d73bdc947c92e79453fc16d1377
+2026-11-26T12:57:54.7617377Z Finalizing artifact upload
+2026-11-26T12:57:55.1053001Z Artifact stargenesis-java-21.zip successfully finalized. Artifact ID 15118668779
+2026-11-26T12:57:55.1053848Z Artifact stargenesis-java-21 has been successfully uploaded! Final size is 6506217 bytes. Artifact ID is 15118668779
+2026-11-26T12:57:55.1060140Z Artifact download URL: https://github.com/addxiaoyi/StarGenesis/actions/runs/45823918736/artifacts/15118668779
+2026-11-26T12:57:55.1296652Z Post job cleanup.
+2026-11-26T12:57:55.2170843Z (node:7982) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:57:55.2171368Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:57:55.2284169Z Post job cleanup.
+2026-11-26T12:57:55.3170852Z (node:7990) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:57:55.3171346Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:57:55.3322015Z Post job cleanup.
+2026-11-26T12:57:55.4319584Z (node:7998) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-26T12:57:55.4320489Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-26T12:57:55.4327056Z Cache hit occurred on the primary key setup-java-Linux-x64-maven-929167f3d58d3c9848e0b3d27645a2cbd0306d62a0f5312075adb38bdf6d7044, not saving cache.
+2026-11-26T12:57:55.4555416Z Post job cleanup.
+2026-11-26T12:57:55.5183413Z [command]/usr/bin/git version
+2026-11-26T12:57:55.5221268Z git version 2.56.1
+2026-11-26T12:57:55.5249683Z Temporarily overriding HOME='/home/runner/work/_temp/07f52bb0-114d-4007-88d0-e70bce10d0a3' before making global git config changes
+2026-11-26T12:57:55.5250516Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-26T12:57:55.5253718Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/StarGenesis/StarGenesis
+2026-11-26T12:57:55.5297873Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-26T12:57:55.5334224Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-26T12:57:55.5612834Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-26T12:57:55.5639577Z http.https://github.com/.extraheader
+2026-11-26T12:57:55.5650122Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-26T12:57:55.5686430Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-26T12:57:55.5954891Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-26T12:57:55.5986887Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-26T12:57:55.6364631Z Cleaning up orphan processes
+2026-11-26T12:57:55.6624342Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

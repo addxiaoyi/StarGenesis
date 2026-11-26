@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "reports": {
+    "java21": {
+      "completionLogEntries": 608,
+      "expectedCases": 608,
+      "logMatchesEveryCaseProfileSeedFinalPopulationAndExtinction": true,
+      "resumedCheckpoints": [
+        6,
+        23,
+        96
+      ]
+    },
+    "java25": {
+      "completionLogEntries": 72,
+      "expectedCases": 72,
+      "logMatchesEveryCaseProfileSeedFinalPopulationAndExtinction": true,
+      "resumedCheckpoints": []
+    }
+  },
+  "limits": "Compares archived text logs to archived reports; does not authenticate either file or rerun all physics."
+}

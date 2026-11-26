@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "compile": {
+    "command": [
+      "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\javac.exe",
+      "-J-Xmx96m",
+      "-cp",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\artifacts\\StarGenesis-4.0.0-SNAPSHOT.jar",
+      "-d",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\counterexample\\classes",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\EcologyRobustnessStudy.java",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\counterexample\\ReplayCounterexample.java"
+    ],
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "exitCode": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "run": {
+    "command": [
+      "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+      "-Xms16m",
+      "-Xmx96m",
+      "-XX:+UseSerialGC",
+      "-cp",
+      "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\artifacts\\StarGenesis-4.0.0-SNAPSHOT.jar;C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\counterexample\\classes",
+      "ReplayCounterexample"
+    ],
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "exitCode": 0,
+    "logSha256": "c7b6980bdb04598583cb9429e9edddc12cd69a10becf830493ebfe899be32e30"
+  },
+  "workerSourceSha256": "c42bdc0945468132a8e116fb14c7971c1c633222873c877457516b647162e9a5",
+  "helperSha256": "31784ec35b35190dbfb3fd1b13f918c449a44ffa92ad33aca027150fd18373d7",
+  "jarSha256": "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+  "completeCaseEqualHistoricalPrimary": true,
+  "scope": "Post-study exact default counterexample replay; not an additional independent seed or a rerun of all historical cases."
+}

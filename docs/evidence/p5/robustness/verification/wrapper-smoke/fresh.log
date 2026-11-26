@@ -1,0 +1,19 @@
+completed=1/18 profile=default seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=2/18 profile=decomposer-intake-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=3/18 profile=decomposer-intake-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=4/18 profile=decomposer-reproductionMass-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=5/18 profile=decomposer-reproductionMass-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=6/18 profile=decomposer-lifespanSteps-minus seed=1648842534038410324 population={decomposer=2, grazer=6, producer=24} extinction={}
+completed=7/18 profile=decomposer-lifespanSteps-plus seed=1648842534038410324 population={decomposer=11, grazer=8, producer=13} extinction={}
+completed=8/18 profile=grazer-intake-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=9/18 profile=grazer-intake-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=10/18 profile=grazer-reproductionMass-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=11/18 profile=grazer-reproductionMass-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=12/18 profile=grazer-lifespanSteps-minus seed=1648842534038410324 population={decomposer=19, grazer=4, producer=9} extinction={}
+completed=13/18 profile=producer-intake-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=14/18 profile=producer-intake-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=15/18 profile=producer-reproductionMass-minus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=16/18 profile=producer-reproductionMass-plus seed=1648842534038410324 population={decomposer=13, grazer=13, producer=6} extinction={}
+completed=17/18 profile=producer-lifespanSteps-minus seed=1648842534038410324 population={decomposer=19, grazer=13} extinction={producer=1531}
+completed=18/18 profile=producer-lifespanSteps-plus seed=1648842534038410324 population={decomposer=10, grazer=9, producer=13} extinction={}
+{"passed": true, "pluginJarSha256": "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2", "workerSourceSha256": "c42bdc0945468132a8e116fb14c7971c1c633222873c877457516b647162e9a5", "resumed": false}

@@ -1,0 +1,490 @@
+{
+  "engineVersion" : "genesis-ecology/2",
+  "config" : {
+    "initialMatter" : 1000,
+    "initialDetritus" : 86,
+    "maxOrganisms" : 32,
+    "maxGenerations" : 8,
+    "maxTicks" : 1536,
+    "maxBirths" : 512,
+    "maxLedgerAttempts" : 98304
+  },
+  "sampleSeed" : 2026112602,
+  "sampling" : "Distinct java.util.Random(sampleSeed).nextLong(), excluding the 32 original v2 validation seeds and all prior generated values",
+  "seeds" : [ 1648842534038410324, -5068950895295806940, 1713069980100688413, 5354633896267523092, -7708135224747630074, 7578474564282655210, -1434243818018414438, -8421811906615505650, -1016100473964724112, 8108471355311695579, -1877026194415874623, 7377448878559225932, -3544427448764004551, -1961058197614391050, -4750559390618728431, -2356871301858250439, 3315713690743586653, 963440494598529970, -8406244020552316766, 9201752073279089139, -1414241492882785877, 5690084904285905014, -4976756297522415204, -2150749966994211378, -7417480921678170809, -3928038235497590498, 6425230205790684350, 1177911371938870223, 8225923944021038632, 1142029836154364541, -4755584465112321576, -7651630809996168911, -8699901037621302373, -4291170483896103211, 5656317029465560401, -8151097702585070620, 5011369842160731838, -7956680180966942624, 3077390578157489825, 3190185926626438409, -374112798123450106, -1642299703181634613, 5605673708807821016, 2007966609545413495, 3422814281092108985, 3733891125000471222, -2569492861028540650, 538279417176229433, 1282224921568909685, -7331735107840459211, 1955819976056160017, -2113255699554580722, -8208372971960570201, 7116987152124883282, -3532764825283136622, 1230981510649402600, 1988127033073298965, -1315672014018698360, -7775571095006532361, -8752066408756564371, -5340216194218423211, -4993129068677180599, 1332590642079231411, -2082042149064817543 ],
+  "baselineSeeds" : 64,
+  "pairedSeeds" : 32,
+  "profiles" : {
+    "default" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-intake-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 2,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-intake-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 4,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-reproductionMass-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 3,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-reproductionMass-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 5,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-lifespanSteps-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 240,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "decomposer-lifespanSteps-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 400,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "grazer-intake-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 3,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "grazer-intake-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 5,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "grazer-reproductionMass-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 23,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "grazer-reproductionMass-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 25,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "grazer-lifespanSteps-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 384,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-intake-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 5,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-intake-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 7,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-reproductionMass-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 3,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-reproductionMass-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 5,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-lifespanSteps-minus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 240,
+        "mutationPermille" : 150
+      }
+    },
+    "producer-lifespanSteps-plus" : {
+      "decomposer" : {
+        "species" : "decomposer",
+        "role" : "DECOMPOSER",
+        "intake" : 3,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 320,
+        "mutationPermille" : 80
+      },
+      "grazer" : {
+        "species" : "grazer",
+        "role" : "GRAZER",
+        "intake" : 4,
+        "reproductionMass" : 24,
+        "lifespanSteps" : 512,
+        "mutationPermille" : 100
+      },
+      "producer" : {
+        "species" : "producer",
+        "role" : "PRODUCER",
+        "intake" : 6,
+        "reproductionMass" : 4,
+        "lifespanSteps" : 400,
+        "mutationPermille" : 150
+      }
+    }
+  },
+  "excludedProfiles" : [ "grazer-lifespanSteps-plus: outside existing public parameter bounds; not clamped or substituted" ],
+  "expectedCases" : 608,
+  "scope" : "Baseline uses every held-out seed; every OAT profile uses the same first pairedSeeds. Results are paired, not independent extra seeds. No adaptive search, parameter selection or default changes. All cases including extinction are retained. Pure simulation, finite horizon; no server, human, performance or indefinite-balance acceptance."
+}

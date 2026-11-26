@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "b3ea8523a1366c5c600094b0f02091d932c921f7",
+  "passed": true,
+  "newJavaTests": 6,
+  "pythonTests": 18,
+  "evidenceHashes": {
+    "python-tests.log": "ea70ab35cdd26c5e099deeb82b4b04c2129cdd135eb9d95c49e1d54d5c1167ec",
+    "test_dynamic.py": "c763db00c6858f20c3167874752d9ac42f3e72451b7a915a81966636c0d53fd0",
+    "archive_dynamic.py": "f46aba7e4fed3a79bfda5d419dd3637c2ccf47714aa681da63d2caa73ee47ddb",
+    "dynamic-java21-first.json": "6bec5e690a7a5b53611b53bfae0d1f3019bd72d59171d1b8d5272f6673955675",
+    "dynamic-java21-first.log": "4a3245ff0eeed8405980d4492189ca514fca6b555278dd2cf95a8083d8b7ca3f",
+    "dynamic-java21-first.xml": "ed5a813e0b7fe3fba66f5efee40a80af237a78e8316f68c47b620cde5c9b617e",
+    "dynamic-java25-first.json": "f5804a033c42a96d9ac6b80b3c073f87cedd1cd759af3c859dab3fc838494a0c",
+    "dynamic-java25-first.log": "737323b24e58f087b99ae64a454c4cb3cc93f0c0870db53e8267dd9f5f7ec80d",
+    "dynamic-java25-first.xml": "2d9b2e239ec03c032c75fdaf9b00d6b5ce30ad36ec54bd3b72e0ca6f8e0ad050"
+  },
+  "sourceHashes": {
+    "stargenesis-sim/src/test/java/dev/stargenesis/sim/EcologyDynamicLifecycleV2Test.java": "dbee46c6969db34aff56d369a57e20b44c0dea34ecd925465887b04349d4e93b",
+    "stargenesis-sim/src/main/java/dev/stargenesis/sim/EcologyWorld.java": "73c6b06f059aeab885ab9615120630dd69e31db67ac08abd4370ea2c2062e1d7",
+    "stargenesis-sim/src/main/java/dev/stargenesis/sim/EcologyConfig.java": "892b1a7adea164274d4b27900d47bc3e8c0d4ff836cfd415f32670c2ecf51388",
+    "scripts/EcologyRobustnessStudy.java": "c42bdc0945468132a8e116fb14c7971c1c633222873c877457516b647162e9a5",
+    "scripts/verify_ecology_robustness_study.py": "b0fadbd96322f24c052ea8e858e09d2e71c0970c10a5ff6f0739a7788f8cabda",
+    "scripts/test_verify_ecology_robustness_study.py": "76c25feed4fd1f77d0238619bb7be6369e1a8f44187ff9d01c710a3dca8e4fad",
+    ".github/workflows/verify.yml": "e7758874af794a2c512f065244b092dec5ef109217bd6cedc7cc9aaca8c26097"
+  },
+  "scope": "Java21/25 focused tests for dynamic v2 edits, restore/replay, identity-independent physics and valid configuration boundary invariants; independent evidence parser unit tests.",
+  "limits": [
+    "No production engine/default changes; previous 646-test full builds are separate evidence.",
+    "608-case robustness study is separate and not declared complete by these tests.",
+    "No new live server, human, production capacity, provider or official signing acceptance."
+  ]
+}

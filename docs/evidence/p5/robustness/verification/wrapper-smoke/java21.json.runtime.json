@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "java": "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+  "javaSha256": "65d23a3b6e1dfbfe2ae268899278bc1bdb63917c5ccd7094337ba8b242e4d77f",
+  "pluginJar": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\docs\\evidence\\p5\\robustness\\artifacts\\StarGenesis-4.0.0-SNAPSHOT.jar",
+  "pluginJarSha256": "63de78696d735ba45fa88f05f6a72b4c57317950c07876098878731ec73528c2",
+  "workerSource": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\EcologyRobustnessStudy.java",
+  "workerSourceSha256": "c42bdc0945468132a8e116fb14c7971c1c633222873c877457516b647162e9a5",
+  "output": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\wrapper-smoke\\java21.json",
+  "plan": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\wrapper-smoke\\java21.json.plan.json",
+  "baselineSeeds": 1,
+  "pairedSeeds": 1,
+  "jvmOptions": [
+    "-Xms16m",
+    "-Xmx96m",
+    "-Xss512k",
+    "-XX:+UseSerialGC",
+    "-XX:CICompilerCount=2",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:MaxMetaspaceSize=96m",
+    "-XX:ActiveProcessorCount=2"
+  ]
+}

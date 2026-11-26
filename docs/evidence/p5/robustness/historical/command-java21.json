@@ -1,0 +1,18 @@
+[
+  "C:\\Users\\Administrator\\Documents\\luoseng\\.toolchains\\jdk-21.0.13.0.2+1\\bin\\java.exe",
+  "-Xms16m",
+  "-Xmx96m",
+  "-Xss512k",
+  "-XX:+UseSerialGC",
+  "-XX:CICompilerCount=2",
+  "-XX:ReservedCodeCacheSize=64m",
+  "-XX:MaxMetaspaceSize=96m",
+  "-XX:ActiveProcessorCount=2",
+  "-cp",
+  "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\settlement-capability\\java21\\StarGenesis-4.0.0-SNAPSHOT.jar",
+  "scripts/EcologyRobustnessStudy.java",
+  "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\ecology-robustness\\java21.json",
+  "64",
+  "32",
+  "--resume"
+]
