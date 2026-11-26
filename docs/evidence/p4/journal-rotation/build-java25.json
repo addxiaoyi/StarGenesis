@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "java": "java25",
+  "tests": {
+    "tests": 720,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reports": 92,
+  "artifacts": {
+    "StarGenesis-4.0.0-SNAPSHOT.jar": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+    "sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+    "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+    "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+    "stargenesis-cookery-4.0.0-SNAPSHOT.jar": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642"
+  },
+  "command": [
+    "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+    "-B",
+    "-ntp",
+    "-DforkCount=0",
+    "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+    "clean",
+    "verify"
+  ],
+  "mavenOpts": "-Xms16m -Xmx128m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2 -Djdk.nio.maxCachedBufferSize=262144",
+  "logSha256": "6049053b4a8d8fe35c8bff775797fed582235b5382a869e248c30a0c3b2587fd",
+  "sourceHashesSha256": "57733ba237522a3fa1b2718654114af02739d0b81caf68ea85215e16ce8d1372",
+  "scope": "Full three-profile clean verify; finite persistence regression, no new real-server or human load acceptance."
+}

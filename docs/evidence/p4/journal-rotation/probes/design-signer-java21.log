@@ -1,0 +1,13 @@
+Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2
+{
+  "passed": true,
+  "algorithm": "Ed25519",
+  "publisherKeyId": "publisher.smoke",
+  "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+  "validSignatureVerified": true,
+  "signatureTamperRejected": true,
+  "unknownKeyIdRejected": true,
+  "privateTestKeyRemoved": true,
+  "testKeyEphemeral": true,
+  "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+}

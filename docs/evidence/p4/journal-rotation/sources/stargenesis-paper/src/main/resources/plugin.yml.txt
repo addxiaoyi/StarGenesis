@@ -1,0 +1,70 @@
+name: StarGenesis
+version: '${project.version}'
+main: dev.stargenesis.paper.StarGenesisPlugin
+api-version: '1.21.11'
+description: Players invent rules; the world tests inventions. Deterministic resource laboratory.
+folia-supported: true
+softdepend: [StarCore, helsteraMobs, CraftEngine, KaleidoscopeCookeryPlugin, KaleidoscopeDollPlugin, KaleidoscopeTavernPlugin, KaleidoscopeDecoPlugin, KaleidoscopeMusicPlugin]
+commands:
+  genesis:
+    description: StarGenesis status, help and operator diagnostics
+    usage: /genesis help
+    aliases: [sg]
+permissions:
+  stargenesis.recipes:
+    description: Inspect optional Cookery recipe metadata
+    default: op
+  stargenesis.items:
+    description: Inspect loaded item definitions and the operator's own held item state
+    default: op
+  stargenesis.models:
+    description: Inspect metadata of already loaded models through an optional verified provider
+    default: op
+  stargenesis.help:
+    description: Read help
+    default: true
+  stargenesis.status:
+    description: View foundation status
+    default: true
+  stargenesis.debug:
+    description: Inspect integration capabilities and budgets
+    default: op
+  stargenesis.lab:
+    description: Start, inspect, stop and replay an isolated virtual resource experiment
+    default: true
+  stargenesis.blueprint:
+    description: Create, share and clone virtual blueprints with author-controlled permissions
+    default: true
+  stargenesis.program:
+    description: Create and debug private typed programs in an isolated virtual context
+    default: true
+  stargenesis.radio:
+    description: Join a virtual radio network and exchange pinned protocol messages
+    default: true
+  stargenesis.radio.manage:
+    description: Archive a fully resolved radio journal while retaining message and contract identities
+    default: op
+  stargenesis.ecology:
+    description: Run a private, bounded, matter-conserving ecology simulation
+    default: true
+  stargenesis.factory:
+    description: Run a four-player simulated organization factory
+    default: true
+  stargenesis.factory.manage:
+    description: List all factory matches and permanently prune completed history
+    default: op
+  stargenesis.arena:
+    description: Author, license and submit bounded arena rulesets for review
+    default: true
+  stargenesis.arena.review:
+    description: Review, approve or reject public ArenaRuleset submissions
+    default: op
+  stargenesis.arena.manage:
+    description: Permanently prune completed Arena match history to free its bounded catalog
+    default: op
+  stargenesis.import:
+    description: Import administrator-staged designs signed by a trusted Ed25519 publisher
+    default: true
+  stargenesis.publishers:
+    description: Add, list and revoke signed-design publisher trust roots
+    default: op

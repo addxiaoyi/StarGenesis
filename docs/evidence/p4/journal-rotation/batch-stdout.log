@@ -1,0 +1,15 @@
+java21 full verify started
+java21 {'tests': 720, 'failures': 0, 'errors': 0, 'skipped': 0}
+java21 radio-journal-lock passed
+java21 worker-lock passed
+java21 settlement-lock passed
+java21 release-signer passed
+java21 design-signer passed
+java25 full verify started
+java25 {'tests': 720, 'failures': 0, 'errors': 0, 'skipped': 0}
+java25 radio-journal-lock passed
+java25 worker-lock passed
+java25 settlement-lock passed
+java25 release-signer passed
+java25 design-signer passed
+COMPLETE

@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+  "pluginSha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+  "probeSha256": "a6a3a1575c7f61d9228fe4045f85cd9cf44b2960772a40a6d5877e01d8b6f4a1",
+  "cases": [
+    {
+      "holderTerminated": false,
+      "loadRejectedWhileHeld": true,
+      "saveRejectedWhileHeld": true,
+      "loadAndSaveAfterRelease": true,
+      "committedBytesPreserved": true,
+      "holderExitCode": 0
+    },
+    {
+      "holderTerminated": true,
+      "loadRejectedWhileHeld": true,
+      "saveRejectedWhileHeld": true,
+      "loadAndSaveAfterRelease": true,
+      "committedBytesPreserved": true,
+      "holderExitCode": 1
+    },
+    {
+      "staleLoadPrecededOtherJvmRotation": true,
+      "staleSaveRejected": true,
+      "manifestAndArchiveBytesPreserved": true,
+      "journalRecovered": true,
+      "archivedRetrySuppressed": true,
+      "archivedPayloadConflictRejected": true,
+      "archiveCount": 1,
+      "committedFiles": {
+        "radio-state.json": {
+          "bytes": 674,
+          "sha256": "f66809b42f5d37df20e3837434489c0a93d01b763d7adcf64de137b8aca8d6a8"
+        },
+        "radio-state.json.archives/segment-0001.json": {
+          "bytes": 1531,
+          "sha256": "875097b37767a8ec2d1b183ff236f5af3a966ad69a5350ff46bae007a3fe75fb"
+        }
+      }
+    }
+  ],
+  "scope": "Two local JVMs sharing temporary files. Checks radio file-lock rejection/release, stale-writer CAS and committed manifest/archive preservation with recovery and retry checks. No Paper/Folia lifecycle, network filesystem, production capacity or real asset acceptance."
+}

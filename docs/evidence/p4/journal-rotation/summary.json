@@ -1,0 +1,638 @@
+{
+  "date": "2026-11-26",
+  "passed": true,
+  "phaseGatePassed": false,
+  "repositoryHeadAtArchive": "c68de2e58ea11abec1620524c01c990e95208273",
+  "scope": "Finite explicit P4 radio journal rotation retaining message idempotency and contract identity, v1 compatibility, atomic publication, archive integrity, process locks and stale-writer rejection.",
+  "newJavaTests": 33,
+  "newSuites": {
+    "RadioJournalRotationTest": 17,
+    "RadioJournalPersistenceTest": 16
+  },
+  "focusedTests": 87,
+  "builds": {
+    "java21": {
+      "passed": true,
+      "java": "java21",
+      "tests": {
+        "tests": 720,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 92,
+      "artifacts": {
+        "StarGenesis-4.0.0-SNAPSHOT.jar": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+        "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": "52cbde8ce37218e58e375209cf44ef7c628368c809f1afdb83cd233782e9101a",
+        "stargenesis-cookery-4.0.0-SNAPSHOT.jar": "9b20d771da4d930031612e6e5d91e54dd54a83ddc5572bd9fea977db31c14a44"
+      },
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx128m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2 -Djdk.nio.maxCachedBufferSize=262144",
+      "logSha256": "21fd24d72af90309841e275f99af61cfe781a3a1fdd0f78afe1f772f3e1c5e4c",
+      "sourceHashesSha256": "57733ba237522a3fa1b2718654114af02739d0b81caf68ea85215e16ce8d1372",
+      "scope": "Full three-profile clean verify; finite persistence regression, no new real-server or human load acceptance."
+    },
+    "java25": {
+      "passed": true,
+      "java": "java25",
+      "tests": {
+        "tests": 720,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "reports": 92,
+      "artifacts": {
+        "StarGenesis-4.0.0-SNAPSHOT.jar": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "sbom.json": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "stargenesis-helstera-4.0.0-SNAPSHOT.jar": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+        "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+        "stargenesis-cookery-4.0.0-SNAPSHOT.jar": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642"
+      },
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd",
+        "-B",
+        "-ntp",
+        "-DforkCount=0",
+        "-Phelstera-bridge,craftengine-bridge,cookery-bridge",
+        "clean",
+        "verify"
+      ],
+      "mavenOpts": "-Xms16m -Xmx128m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=32m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2 -Djdk.nio.maxCachedBufferSize=262144",
+      "logSha256": "6049053b4a8d8fe35c8bff775797fed582235b5382a869e248c30a0c3b2587fd",
+      "sourceHashesSha256": "57733ba237522a3fa1b2718654114af02739d0b81caf68ea85215e16ce8d1372",
+      "scope": "Full three-profile clean verify; finite persistence regression, no new real-server or human load acceptance."
+    }
+  },
+  "validatedReports": {
+    "java21": {
+      "suites": 92,
+      "totals": {
+        "tests": 720,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "newSuites": {
+        "RadioJournalRotationTest": 17,
+        "RadioJournalPersistenceTest": 16
+      }
+    },
+    "java25": {
+      "suites": 92,
+      "totals": {
+        "tests": 720,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "newSuites": {
+        "RadioJournalRotationTest": 17,
+        "RadioJournalPersistenceTest": 16
+      }
+    }
+  },
+  "probes": {
+    "java21": {
+      "radio-journal-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "probeSha256": "a6a3a1575c7f61d9228fe4045f85cd9cf44b2960772a40a6d5877e01d8b6f4a1",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "loadRejectedWhileHeld": true,
+            "saveRejectedWhileHeld": true,
+            "loadAndSaveAfterRelease": true,
+            "committedBytesPreserved": true,
+            "holderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "loadRejectedWhileHeld": true,
+            "saveRejectedWhileHeld": true,
+            "loadAndSaveAfterRelease": true,
+            "committedBytesPreserved": true,
+            "holderExitCode": 1
+          },
+          {
+            "staleLoadPrecededOtherJvmRotation": true,
+            "staleSaveRejected": true,
+            "manifestAndArchiveBytesPreserved": true,
+            "journalRecovered": true,
+            "archivedRetrySuppressed": true,
+            "archivedPayloadConflictRejected": true,
+            "archiveCount": 1,
+            "committedFiles": {
+              "radio-state.json": {
+                "bytes": 674,
+                "sha256": "94941da255c95f0bfdd90c7284a1af11d4378dbc8503aaca9f5620e58cc8d33d"
+              },
+              "radio-state.json.archives/segment-0001.json": {
+                "bytes": 1531,
+                "sha256": "9c03338a82999e2b780ac59a2c2b8dac7f1e36b6ce33709c1fe1913db213916f"
+              }
+            }
+          }
+        ],
+        "scope": "Two local JVMs sharing temporary files. Checks radio file-lock rejection/release, stale-writer CAS and committed manifest/archive preservation with recovery and retry checks. No Paper/Folia lifecycle, network filesystem, production capacity or real asset acceptance."
+      },
+      "worker-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "sourceSbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "radio-journal-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "probeSha256": "a6a3a1575c7f61d9228fe4045f85cd9cf44b2960772a40a6d5877e01d8b6f4a1",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "loadRejectedWhileHeld": true,
+            "saveRejectedWhileHeld": true,
+            "loadAndSaveAfterRelease": true,
+            "committedBytesPreserved": true,
+            "holderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "loadRejectedWhileHeld": true,
+            "saveRejectedWhileHeld": true,
+            "loadAndSaveAfterRelease": true,
+            "committedBytesPreserved": true,
+            "holderExitCode": 1
+          },
+          {
+            "staleLoadPrecededOtherJvmRotation": true,
+            "staleSaveRejected": true,
+            "manifestAndArchiveBytesPreserved": true,
+            "journalRecovered": true,
+            "archivedRetrySuppressed": true,
+            "archivedPayloadConflictRejected": true,
+            "archiveCount": 1,
+            "committedFiles": {
+              "radio-state.json": {
+                "bytes": 674,
+                "sha256": "f66809b42f5d37df20e3837434489c0a93d01b763d7adcf64de137b8aca8d6a8"
+              },
+              "radio-state.json.archives/segment-0001.json": {
+                "bytes": 1531,
+                "sha256": "875097b37767a8ec2d1b183ff236f5af3a966ad69a5350ff46bae007a3fe75fb"
+              }
+            }
+          }
+        ],
+        "scope": "Two local JVMs sharing temporary files. Checks radio file-lock rejection/release, stale-writer CAS and committed manifest/archive preservation with recovery and retry checks. No Paper/Folia lifecycle, network filesystem, production capacity or real asset acceptance."
+      },
+      "worker-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "Picked up JAVA_TOOL_OPTIONS: -Xms8m -Xmx64m -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=80m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2\nopenjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, emulated-client, sharing)",
+        "pluginSha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "sourceSbomSha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "pythonRegressionTests": 64,
+  "nodeRegressionTests": 6,
+  "boundaryScanPassed": true,
+  "regressionCommands": {
+    "cwd": "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis",
+    "python": [
+      ".work/python-3.12.10/python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_*.py"
+    ],
+    "node": [
+      "node",
+      "--test",
+      "scripts/test_offline_client_lifecycle_smoke.cjs",
+      "scripts/test_offline_client_radio_lifecycle_smoke.cjs",
+      "scripts/test_offline_client_match_admin_smoke.cjs"
+    ],
+    "boundary": [
+      ".work/python-3.12.10/python.exe",
+      "scripts/check_boundaries.py"
+    ]
+  },
+  "sourceSnapshotScope": "Root/module POMs, verification workflow, every non-pycache scripts file and all module src files; exact bytes checked unchanged before/after builds and archive.",
+  "sourceHashesSha256": "57733ba237522a3fa1b2718654114af02739d0b81caf68ea85215e16ce8d1372",
+  "sourceSnapshots": {
+    ".github/workflows/verify.yml": {
+      "bytes": 5196,
+      "sha256": "965a9f3595d9671a5f03b9377d4ccf57c424e32519a5bdb01d57da91cece8066"
+    },
+    "docs/PRODUCT_CONTRACT.md": {
+      "bytes": 18670,
+      "sha256": "44f1812eeb459ee9ed61463310d377674b3638e388a63465a3b5181009501048"
+    },
+    "docs/RADIO_JOURNAL_ROTATION.md": {
+      "bytes": 4690,
+      "sha256": "230242ab168cc23974f113314be311d6f59fc78b5c61afefe460fb68f3d9d015"
+    },
+    "docs/RADIO_RETENTION.md": {
+      "bytes": 3549,
+      "sha256": "4d6d00828e2d1a85b66838551060997bcf9d6e58ec68a1ada0e5c2adc3b0add6"
+    },
+    "scripts/ReleaseArtifactSigner.java": {
+      "bytes": 15809,
+      "sha256": "ab853167f25fdb896da91e27b00fee8e767b3153684d8e1785182f6df2cdf3af"
+    },
+    "scripts/SettlementLockProbe.java": {
+      "bytes": 1773,
+      "sha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942"
+    },
+    "scripts/SignedDesignPackageSigner.java": {
+      "bytes": 8027,
+      "sha256": "48023050ed5d5f5c9eb9f39e9070bd38ed09fda39ef38e983637903a266f0f1e"
+    },
+    "scripts/test_radio_journal_process_lock.py": {
+      "bytes": 15608,
+      "sha256": "5f801c48065ea47fd764d01bc5d89f60cf175ded37b5a3f10bcc01e981b7bd2d"
+    },
+    "scripts/test_release_artifact_signer.py": {
+      "bytes": 4069,
+      "sha256": "72da18f9d5a82a35cebb27a04961b25ffc45889ba9c3c30c01f015954eac381d"
+    },
+    "scripts/test_settlement_process_lock.py": {
+      "bytes": 5112,
+      "sha256": "4085381cf5558ccb403560de11d4aa75db3bf07bdab452b58a3f6fb9e36515b8"
+    },
+    "scripts/test_signed_design_package_signer.py": {
+      "bytes": 4384,
+      "sha256": "3254998c8a63400d0e968c140030dc2251585402f0d915abb30a4238869a4b01"
+    },
+    "scripts/test_worker_directory_lock.py": {
+      "bytes": 5134,
+      "sha256": "1ba8b292cf9def1477311efa5acb0f2bd7d0f7d755885f8fb4f073d5d5acb379"
+    },
+    "scripts/WorkerDirectoryLockProbe.java": {
+      "bytes": 4592,
+      "sha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/ContractRuntime.java": {
+      "bytes": 23202,
+      "sha256": "c68b717129828b45418f9a242895468d0cad73f64a296c033df7a43dc842c001"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioAcknowledgement.java": {
+      "bytes": 2405,
+      "sha256": "9a788a10f66f1942ea0398c6fa9f6b0953bccfde42b8ceba0a98d6dd33845964"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioController.java": {
+      "bytes": 13895,
+      "sha256": "438199712e0ef1846be2d0a294f64b9374f0f5a40bc07789a1d5f7b828b2a287"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioPersistence.java": {
+      "bytes": 22766,
+      "sha256": "16759cc97cc43b031ef0a8545e17cdc7909c7f611edfc8f32effa61e4ecf6757"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioProtocol.java": {
+      "bytes": 1674,
+      "sha256": "d3e222bf0f2188c2febdd73a8bcda8316fedfd0eb96c1eb44ed64c3b3f2a8f76"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioSendCommand.java": {
+      "bytes": 2104,
+      "sha256": "22c11bad1419d1a857eebac779342a2b1ef4f74353d76da7cf839fbea6b30718"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioService.java": {
+      "bytes": 15685,
+      "sha256": "ae3596ee559dea73411ecb36fb6c6398010bdf791f482359da9d9d013c69f7b9"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/ServiceContractDefinition.java": {
+      "bytes": 2467,
+      "sha256": "757fc7872f45a17e8b43fc0a7c22d9bf1e857b015c4a946c9ee8ef2e79a7ee59"
+    },
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/VirtualMessageBus.java": {
+      "bytes": 22941,
+      "sha256": "71acd1748a6b300a82d8d72d7a3de6aa31ec1b9e7c964e3b9207a4545d50e493"
+    },
+    "stargenesis-paper/src/main/resources/plugin.yml": {
+      "bytes": 2796,
+      "sha256": "046c8e598c21b114f10f87ca2e05dfaa67f171e030fd0d02f70b328118037917"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRadioWorkflowTest.java": {
+      "bytes": 3483,
+      "sha256": "f3436ae543e04a1dc22abc96a9dd28f6c23ef74edd443aceb5b444c4d6c9f2d4"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRecoveryTest.java": {
+      "bytes": 5900,
+      "sha256": "6b8540e402ceccc21030039b8d8ba9da3ac6f7d638a6f601560b2e3a755ab313"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRuntimeTest.java": {
+      "bytes": 8455,
+      "sha256": "fa637f049c43b63cd51414e12656cee386a1a69c4d1379078f7be07f125debdf"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioAcknowledgementRegressionTest.java": {
+      "bytes": 2131,
+      "sha256": "10983bf85e01a63366fd5fe066ae6cc37c335b78d3568cc11acb70a17a925e6c"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioAcknowledgementTest.java": {
+      "bytes": 9110,
+      "sha256": "36388cd8ab9cd0849159ff10cb4311817ceae06a4990cd6479489db6a83676b2"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioCapacityTest.java": {
+      "bytes": 7789,
+      "sha256": "f010d331a5919a575a9213628afc7a3cc027087c48d390eb3702a40106586e81"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioJournalPersistenceTest.java": {
+      "bytes": 15370,
+      "sha256": "1f9476b175b887017e1023447d1b4402e4c3e3b63a0cc07ee6d65f120e1b8c2e"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioJournalRotationTest.java": {
+      "bytes": 24555,
+      "sha256": "823e081ff3c9b63b68a3a88a83d78cf3a8bf362485522e8b915f13c9835fa81f"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioPersistenceTest.java": {
+      "bytes": 5057,
+      "sha256": "bbf1f13484c4b479b4249e9b0e931498ed3985798e753da2b955453701df5d3a"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioSendCommandTest.java": {
+      "bytes": 5589,
+      "sha256": "d94f4ce984ab2833b03cb5f6ff552b80f9071ed2f78f8c4fbd01944d3295b459"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioServiceTest.java": {
+      "bytes": 16119,
+      "sha256": "c70ce8b4cd190826c4c5fe0a14388a56f0f4c3a9860c512769a92b56abec17b4"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/VirtualMessageBusRetentionTest.java": {
+      "bytes": 7867,
+      "sha256": "6b63e14913418f1c9ab21e3228b33b5027c4aec3bf2d672dca13177d532a5258"
+    },
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/VirtualMessageBusTest.java": {
+      "bytes": 8893,
+      "sha256": "8c8413bfebfc78c2acedc5444550f02587111504a118855a89f952c0dbda7701"
+    },
+    "stargenesis-paper/src/test/resources/radio-v1-pending-fulfillment.json": {
+      "bytes": 4750,
+      "sha256": "54a661712884314714804d7fba82661aa9256a10bc5d56c053a48fdc59b0a304"
+    }
+  },
+  "artifacts": {
+    "java21": {
+      "StarGenesis-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java21/StarGenesis-4.0.0-SNAPSHOT.jar",
+        "bytes": 3130252,
+        "sha256": "080981eee14bd39ee9a4a40801ac136b16b19908b594df87eeae850b4275d03e",
+        "copiedIntoArchive": false
+      },
+      "sbom.json": {
+        "localPath": ".work/radio-journal/java21/sbom.json",
+        "bytes": 173820,
+        "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "copiedIntoArchive": true
+      },
+      "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java21/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+        "bytes": 24354,
+        "sha256": "ee77fc65742e92b3b9dba72004af832c0c54676327548803ff423f8e812a6048",
+        "copiedIntoArchive": false
+      },
+      "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java21/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+        "bytes": 12815,
+        "sha256": "52cbde8ce37218e58e375209cf44ef7c628368c809f1afdb83cd233782e9101a",
+        "copiedIntoArchive": false
+      },
+      "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java21/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+        "bytes": 17599,
+        "sha256": "9b20d771da4d930031612e6e5d91e54dd54a83ddc5572bd9fea977db31c14a44",
+        "copiedIntoArchive": false
+      }
+    },
+    "java25": {
+      "StarGenesis-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java25/StarGenesis-4.0.0-SNAPSHOT.jar",
+        "bytes": 3130202,
+        "sha256": "29d053db848d7512284d7c3fa8063128fac5c4696098da0228036e577653d2c6",
+        "copiedIntoArchive": false
+      },
+      "sbom.json": {
+        "localPath": ".work/radio-journal/java25/sbom.json",
+        "bytes": 173820,
+        "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184",
+        "copiedIntoArchive": true
+      },
+      "stargenesis-helstera-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java25/stargenesis-helstera-4.0.0-SNAPSHOT.jar",
+        "bytes": 24344,
+        "sha256": "b7241b2ba2b234fbb2d89e5a5c933749deaac6ea04543c59ab2527fee4e02b65",
+        "copiedIntoArchive": false
+      },
+      "stargenesis-craftengine-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java25/stargenesis-craftengine-4.0.0-SNAPSHOT.jar",
+        "bytes": 12806,
+        "sha256": "6b23cfd31618e395050ba671687f2eb6ce94262675cd2c2d8b881afce7d4cf66",
+        "copiedIntoArchive": false
+      },
+      "stargenesis-cookery-4.0.0-SNAPSHOT.jar": {
+        "localPath": ".work/radio-journal/java25/stargenesis-cookery-4.0.0-SNAPSHOT.jar",
+        "bytes": 17630,
+        "sha256": "5500798e38bf243a49d8775416759690bd1ee8cb1e8fc225a84dd0b2357bc642",
+        "copiedIntoArchive": false
+      }
+    }
+  },
+  "artifactStorage": "Four exact JARs per JDK remain under .work/radio-journal/{java21,java25}; only their local paths, lengths and hashes are archived. SBOMs, all 184 XML reports, complete logs and relevant source copies are included.",
+  "failureNotes": {
+    "focused-java21.log": "Initial run reached 87 tests with one error: archiveFailureDoesNotFlushAnOtherwiseUnsavedDirtyTick reopened the service while the intentional archive-directory blocker still existed. The fixture was corrected to remove the blocker before reopening; this log does not establish a production defect.",
+    "focused-java21-native-memory-failure.log": "Focused attempt failed with native allocation OutOfMemoryError while reading a bounded radio file. The final implementation reads fixed chunks into a size-checked array to avoid the large temporary direct buffer.",
+    "focused-java21-interrupted.log": "Attempt ended during RadioCapacityTest without a build terminal; no pass is inferred.",
+    "20261126T225947-focused-java21-retry.log": "Another focused attempt failed with native allocation OutOfMemoryError, unable to allocate 7073800 bytes. Preserved with the corresponding batch stderr and source snapshot.",
+    "20261126T230829-verify-java21.log": "Earlier full Java21 verify failed; corresponding batch stderr is preserved. Superseded by both final complete clean verify runs, not counted as a pass.",
+    "focused-java21-retry.log": "Final focused run passed all 87 tests. Its source identity is established by the subsequent complete final source-bound builds, not by an independent focused-run snapshot."
+  },
+  "persistence": {
+    "snapshotSchema": 1,
+    "journalSchema": 2,
+    "maxArchives": 16,
+    "maxFileBytes": 16777216,
+    "maxTotalDataBytes": 134217728,
+    "retiredMessageIdentitiesPreserved": true,
+    "retiredContractIdsReusable": false
+  },
+  "limits": [
+    "Finite history capacity only: segment and byte limits can stop further rotation; no automatic evidence deletion or infinite lifetime.",
+    "Local JVM/file tests exercise atomic publication, byte preservation and locking; no new Paper/Folia lifecycle or human communication acceptance was run in this batch.",
+    "Every save synchronously verifies retained archive integrity; these tests do not establish long-term server throughput, latency, network-filesystem behavior or power-loss durability.",
+    "Archived retry comparisons use a canonical request SHA-256 digest and rely on collision resistance; archive hashes provide integrity, not authenticated publisher provenance.",
+    "Signing probes use ephemeral removed keys, not production trust roots or an official release signature; real settlement remains disabled.",
+    "P4 phase gate remains unpassed; new runtime lifecycle, human, production capacity and operational acceptance require separate evidence."
+  ]
+}

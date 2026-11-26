@@ -1,0 +1,284 @@
+package dev.stargenesis.paper.communication;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class RadioJournalPersistenceTest {
+    @TempDir Path directory;
+    private final ObjectMapper json = new ObjectMapper();
+
+    @Test void legacySnapshotRemainsByteCompatibleAndDoesNotCreateAnActiveFileOnConstruction() throws Exception {
+        var store = store();
+        assertFalse(Files.exists(file()));
+        assertTrue(store.loadJournal().active().isEmpty());
+        assertFalse(Files.exists(file()));
+        store.save(bus(3), contracts(3));
+        var root = json.readTree(Files.readAllBytes(file()));
+        assertEquals(1, root.path("schemaVersion").asInt());
+        assertFalse(root.has("active"));
+        assertEquals(3, store().load().orElseThrow().radio().tick());
+        assertTrue(store().loadJournal().references().isEmpty());
+    }
+
+    @Test void archiveThenManifestRoundTripPreservesAllReferencesInTheLegacySaveApi() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        var before = store.load().orElseThrow();
+        var reference = store.archive(before);
+        assertEquals(1, reference.generation());
+        assertEquals(before, store.load().orElseThrow());
+        assertEquals(1, json.readTree(Files.readAllBytes(file())).path("schemaVersion").asInt());
+        store.saveJournal(bus(0), contracts(0), List.of(reference));
+        var restarted = store();
+        assertEquals(List.of(reference), restarted.loadJournal().references());
+        assertEquals(before, restarted.loadArchive(reference));
+        restarted.save(bus(2), contracts(2));
+        assertEquals(2, json.readTree(Files.readAllBytes(file())).path("schemaVersion").asInt());
+        assertEquals(List.of(reference), store().loadJournal().references());
+        assertEquals(2, store().load().orElseThrow().radio().tick());
+    }
+
+    @Test void archiveFailurePreservesTheActiveFileAndDoesNotPublishAReference() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        byte[] previous = Files.readAllBytes(file());
+        Files.writeString(archiveDirectory(), "block directory creation");
+        assertThrows(IOException.class, () -> store.archive(store.load().orElseThrow()));
+        assertArrayEquals(previous, Files.readAllBytes(file()));
+        Files.delete(archiveDirectory());
+        var reference = store.archive(store.load().orElseThrow());
+        assertEquals(1, reference.generation());
+        assertTrue(store.loadJournal().references().isEmpty());
+    }
+
+    @Test void failedManifestPublicationLeavesOneReusableSlotAndTheOldAuthority() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        byte[] previous = Files.readAllBytes(file());
+        var reference = store.archive(store.load().orElseThrow());
+        Files.createDirectory(temporary());
+        assertThrows(IOException.class, () -> store.saveJournal(bus(0), contracts(0), List.of(reference)));
+        assertArrayEquals(previous, Files.readAllBytes(file()));
+        assertEquals(reference, store.archive(store.load().orElseThrow()));
+        assertTrue(store.loadJournal().references().isEmpty());
+        Files.delete(temporary());
+        store.saveJournal(bus(0), contracts(0), List.of(reference));
+        assertEquals(List.of(reference), store().loadJournal().references());
+        try (var entries = Files.list(archiveDirectory())) { assertEquals(1, entries.count()); }
+    }
+
+    @Test void laterPreparationReplacesOnlyTheSameUncommittedSlot() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        var first = store.archive(store.load().orElseThrow());
+        store.save(bus(1), contracts(1));
+        var next = store.archive(store.load().orElseThrow());
+        assertEquals(first.generation(), next.generation());
+        assertNotEquals(first.sha256(), next.sha256());
+        assertThrows(IOException.class, () -> store.loadArchive(first));
+        store.saveJournal(bus(1), contracts(1), List.of(next));
+        byte[] committed = Files.readAllBytes(segment(1));
+        var second = store.archive(store.load().orElseThrow());
+        assertEquals(2, second.generation());
+        assertArrayEquals(committed, Files.readAllBytes(segment(1)));
+        try (var entries = Files.list(archiveDirectory())) { assertEquals(2, entries.count()); }
+    }
+
+    @Test void aStaleInstanceCannotSaveOrPublishAManifestAfterAnotherInstanceRotates() throws Exception {
+        var writer = store();
+        writer.save(bus(0), contracts(0));
+        var stale = store();
+        stale.loadJournal();
+        var reference = writer.archive(writer.load().orElseThrow());
+        writer.saveJournal(bus(0), contracts(0), List.of(reference));
+        byte[] committed = Files.readAllBytes(file());
+        assertThrows(IOException.class, () -> stale.save(bus(2), contracts(2)));
+        assertThrows(IOException.class, () -> stale.saveJournal(bus(2), contracts(2), List.of()));
+        assertThrows(IOException.class, () -> stale.saveJournal(bus(2), contracts(2), List.of(reference)));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+        assertEquals(List.of(reference), store().loadJournal().references());
+    }
+
+    @Test void absentStateIsAlsoProtectedAgainstStaleCreation() throws Exception {
+        var stale = store();
+        assertTrue(stale.load().isEmpty());
+        store().save(bus(1), contracts(1));
+        byte[] committed = Files.readAllBytes(file());
+        assertThrows(IOException.class, () -> stale.save(bus(0), contracts(0)));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+    }
+
+    @Test void freshLegacySaveRetainsAnExistingV2ChainInsteadOfDowngradingIt() throws Exception {
+        var reference = prepareJournal();
+        store().save(bus(2), contracts(2));
+        assertEquals(2, json.readTree(Files.readAllBytes(file())).path("schemaVersion").asInt());
+        assertEquals(List.of(reference), store().loadJournal().references());
+    }
+
+    @Test void committedPrefixesCannotBeRemovedReplacedOrExtendedWithUnrelatedState() throws Exception {
+        var reference = prepareJournal();
+        var store = store();
+        store.loadJournal();
+        byte[] committed = Files.readAllBytes(file());
+        assertThrows(IOException.class, () -> store.saveJournal(bus(2), contracts(2), List.of()));
+        var changed = new RadioPersistence.ArchiveReference(1, "0".repeat(64), reference.bytes());
+        assertThrows(IOException.class, () -> store.saveJournal(bus(2), contracts(2), List.of(changed)));
+        assertThrows(IOException.class, () -> store.archive(store.loadArchive(reference)));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+    }
+
+    @Test void missingArchiveAndSameLengthTamperingFailClosed() throws Exception {
+        var reference = prepareJournal();
+        byte[] original = Files.readAllBytes(segment(1));
+        byte[] changed = original.clone();
+        changed[changed.length - 1] = ' ';
+        Files.write(segment(1), changed);
+        assertThrows(IOException.class, () -> store().loadJournal());
+        assertThrows(IOException.class, () -> store().loadArchive(reference));
+        Files.delete(segment(1));
+        assertThrows(IOException.class, () -> store().load());
+        Files.write(segment(1), original);
+        assertEquals(List.of(reference), store().loadJournal().references());
+    }
+
+    @Test void strictManifestTypingUnknownFieldsAndNonconsecutiveReferencesAreRejected() throws Exception {
+        prepareJournal();
+        byte[] original = Files.readAllBytes(file());
+        for (String mutation : List.of("schema-string", "schema-float", "unknown-root", "unknown-active",
+                "unknown-reference", "generation-string", "bytes-string", "hash-number", "missing-active",
+                "missing-reference-field", "duplicate-generation", "empty-archives")) {
+            ObjectNode root = (ObjectNode) json.readTree(original);
+            ObjectNode reference = (ObjectNode) root.withArray("archives").get(0);
+            switch (mutation) {
+                case "schema-string" -> root.put("schemaVersion", "2");
+                case "schema-float" -> root.put("schemaVersion", 2.0);
+                case "unknown-root" -> root.put("unknown", true);
+                case "unknown-active" -> ((ObjectNode) root.get("active")).put("unknown", true);
+                case "unknown-reference" -> reference.put("unknown", true);
+                case "generation-string" -> reference.put("generation", "1");
+                case "bytes-string" -> reference.put("bytes", Long.toString(reference.path("bytes").asLong()));
+                case "hash-number" -> reference.put("sha256", 42);
+                case "missing-active" -> root.remove("active");
+                case "missing-reference-field" -> reference.remove("bytes");
+                case "duplicate-generation" -> root.withArray("archives").add(reference.deepCopy());
+                case "empty-archives" -> root.putArray("archives");
+                default -> fail(mutation);
+            }
+            Files.write(file(), json.writeValueAsBytes(root));
+            assertThrows(IOException.class, () -> store().loadJournal(), mutation);
+        }
+        Files.write(file(), original);
+        assertEquals(1, store().loadJournal().references().size());
+    }
+
+    @Test void directoryAllowsOnlyTheSingleNextOrphanSlotAndRejectsUnexpectedEntries() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        Files.createDirectory(archiveDirectory());
+        Files.writeString(segment(2), "uncommitted future slot");
+        assertThrows(IOException.class, store::loadJournal);
+        Files.delete(segment(2));
+        Files.writeString(archiveDirectory().resolve("foreign.json"), "foreign");
+        assertThrows(IOException.class, store::loadJournal);
+        Files.delete(archiveDirectory().resolve("foreign.json"));
+        assertTrue(store.loadJournal().references().isEmpty());
+    }
+
+    @Test void fixedArchiveCountIsEnforcedWithoutErasingAnyHistory() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        var references = new ArrayList<RadioPersistence.ArchiveReference>();
+        for (int index = 0; index < RadioPersistence.MAX_ARCHIVES; index++) {
+            references.add(store.archive(store.load().orElseThrow()));
+            store.saveJournal(bus(index), contracts(index), references);
+            store.save(bus(index + 1), contracts(index + 1));
+        }
+        byte[] committed = Files.readAllBytes(file());
+        assertThrows(IOException.class, () -> store.archive(store.load().orElseThrow()));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+        assertEquals(16, store().loadJournal().references().size());
+        try (var entries = Files.list(archiveDirectory())) { assertEquals(16, entries.count()); }
+    }
+
+    @Test void overlappingOsLockRejectsBothReadersAndWritersWithoutChangingState() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        byte[] committed = Files.readAllBytes(file());
+        try (var channel = FileChannel.open(directory.resolve("radio-state.json.lock"), StandardOpenOption.WRITE);
+             var ignored = channel.lock()) {
+            assertThrows(IOException.class, store::loadJournal);
+            assertThrows(IOException.class, () -> store.save(bus(1), contracts(1)));
+        }
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+    }
+
+    @Test void dirtyClockPreparationDoesNotPublishUntilRotationAndRequiresTheSameNewTick() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        byte[] committed = Files.readAllBytes(file());
+        var original = store.load().orElseThrow();
+        var dirty = new RadioPersistence.Snapshot(original.schemaVersion(), original.radioProtocolId(),
+                original.radioProtocolHash(), original.serviceProtocolId(), original.serviceProtocolHash(),
+                original.contractId(), original.contractHash(), bus(7).snapshot(), contracts(7).snapshot());
+        var reference = store.archive(dirty);
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+        assertThrows(IOException.class, () -> store.saveJournal(bus(8), contracts(8), List.of(reference)));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+        Files.createDirectory(temporary());
+        assertThrows(IOException.class, () -> store.saveJournal(bus(7), contracts(7), List.of(reference)));
+        assertArrayEquals(committed, Files.readAllBytes(file()));
+        Files.delete(temporary());
+        store.saveJournal(bus(7), contracts(7), List.of(reference));
+        assertEquals(7, store().load().orElseThrow().radio().tick());
+        assertEquals(dirty, store().loadArchive(reference));
+    }
+
+    @Test void symlinkedArchiveIsRejectedWhenTheFilesystemSupportsSymbolicLinks() throws Exception {
+        prepareJournal();
+        Path target = directory.resolve("original-archive.json");
+        Files.move(segment(1), target);
+        boolean linked = false;
+        try {
+            Files.createSymbolicLink(segment(1), target);
+            linked = true;
+        } catch (IOException | UnsupportedOperationException | SecurityException unavailable) {
+            Files.move(target, segment(1));
+        }
+        if (linked) assertThrows(IOException.class, () -> store().loadJournal());
+        else assertEquals(1, store().loadJournal().references().size());
+    }
+
+    private RadioPersistence.ArchiveReference prepareJournal() throws Exception {
+        var store = store();
+        store.save(bus(0), contracts(0));
+        var reference = store.archive(store.load().orElseThrow());
+        store.saveJournal(bus(0), contracts(0), List.of(reference));
+        store.save(bus(1), contracts(1));
+        return reference;
+    }
+    private RadioPersistence store() throws IOException {
+        return new RadioPersistence(file(), RadioProtocol.protocol(), ServiceContractDefinition.protocol(),
+                ServiceContractDefinition.contract());
+    }
+    private VirtualMessageBus bus(long tick) { return new VirtualMessageBus(tick, 8); }
+    private ContractRuntime contracts(long tick) {
+        return new ContractRuntime(ServiceContractDefinition.contract(), ServiceContractDefinition.protocol(),
+                tick, ContractRuntime.MAX_RETAINED_CONTRACTS);
+    }
+    private Path file() { return directory.resolve("radio-state.json"); }
+    private Path temporary() { return directory.resolve("radio-state.json.tmp"); }
+    private Path archiveDirectory() { return directory.resolve("radio-state.json.archives"); }
+    private Path segment(int index) { return archiveDirectory().resolve(String.format(java.util.Locale.ROOT, "segment-%04d.json", index)); }
+}

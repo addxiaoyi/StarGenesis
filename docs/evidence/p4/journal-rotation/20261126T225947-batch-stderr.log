@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\radio-journal\verify_batch.py", line 45, in <module>
+    run(command, work / 'focused-java21-retry.log', env)
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\radio-journal\verify_batch.py", line 30, in run
+    subprocess.run([str(part) for part in command], cwd=root, env=env,
+  File "subprocess.py", line 571, in run
+subprocess.CalledProcessError: Command '['C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\mvnw.cmd', '-B', '-ntp', '-DforkCount=0', '-Dtest=Radio*Test,Contract*Test,VirtualMessageBus*Test', '-Dsurefire.failIfNoSpecifiedTests=false', '-pl', 'stargenesis-paper', '-am', 'test']' returned non-zero exit status 1.

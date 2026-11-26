@@ -1,0 +1,1139 @@
+{
+  "algorithm": "SHA-256",
+  "rawByteHashes": true,
+  "manifestSelfExcluded": true,
+  "files": {
+    "20261126T225947-batch-stderr.log": {
+      "bytes": 767,
+      "sha256": "8cbc7475fd4208ef57a04d170510e0fc611c24fea499afa531ce7d12e32b5c62"
+    },
+    "20261126T225947-batch-stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "20261126T225947-focused-java21-retry.log": {
+      "bytes": 24107,
+      "sha256": "240c99c4976664f371230df49aee54e215b1940d974c9ef7dd16a4f2574a133a"
+    },
+    "20261126T225947-source-hashes.json": {
+      "bytes": 54171,
+      "sha256": "a38a23695aaa6101d387169296bdf078cfb274206ba53b79554d466c2fd6ff18"
+    },
+    "20261126T230829-batch-stderr.log": {
+      "bytes": 692,
+      "sha256": "a206b1614c9fb8130e973d6e1054cee505de182bd655542079d91ab61fca4182"
+    },
+    "20261126T230829-batch-stdout.log": {
+      "bytes": 70,
+      "sha256": "b7be530eccec7162530ea69266adaca1f9e3637fda69fd71631b58aa54aaba0c"
+    },
+    "20261126T230829-verify-java21.log": {
+      "bytes": 28260,
+      "sha256": "2a376be55ac0492ada4734450fca13a0021cbe69ca8c6c6e062d7781dc1672c7"
+    },
+    "archive_batch.py": {
+      "bytes": 19836,
+      "sha256": "e78a5b2788f07579e7047d5686997b0b0b5fd0d4c50d1af25553167be8a353ff"
+    },
+    "artifacts.json": {
+      "bytes": 2735,
+      "sha256": "69b82db8e345d17d64487d52e7e9a1e69c0506cc17240b1f701b01bf6d4be57e"
+    },
+    "batch-stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "batch-stdout.log": {
+      "bytes": 498,
+      "sha256": "7d64285abf52e89e872b8965d4eadae4c54afd473a8f5b8e5848d833794ef16a"
+    },
+    "boundary.log": {
+      "bytes": 136,
+      "sha256": "cf57949711cb00e18b4a0d98661b044f7bee36988e6b8e951568ca47894bbced"
+    },
+    "build-java21.json": {
+      "bytes": 1495,
+      "sha256": "7e0dd02581c7c5481a33186d365f181f28d5d7d837e6654b0fd3eb0e1f470910"
+    },
+    "build-java25.json": {
+      "bytes": 1495,
+      "sha256": "997b5a2be305502c33426dc44b5e0b652f8876c8620f7f48d1d6a9dd26aca3e7"
+    },
+    "design-signer-java21.log": {
+      "bytes": 682,
+      "sha256": "7c12904e2ef8b706d36ccb79ab9837cbdad1ee3f72aa3a681b71e2803af8d512"
+    },
+    "design-signer-java25.log": {
+      "bytes": 682,
+      "sha256": "7c12904e2ef8b706d36ccb79ab9837cbdad1ee3f72aa3a681b71e2803af8d512"
+    },
+    "diagnose.py": {
+      "bytes": 1102,
+      "sha256": "e3edccae321767bee133e2785d90cadd7ac97312ad41452a0d7b8be92a5d2e0b"
+    },
+    "focused-java21-interrupted.log": {
+      "bytes": 10316,
+      "sha256": "c4566701a047510aea45ebf46d2aef564e8bc05b0317809c4ac6b8e69c13b392"
+    },
+    "focused-java21-native-memory-failure.log": {
+      "bytes": 24995,
+      "sha256": "a19fc8e508ec0b804ba458a307ce4303ecf961d84ac5069155a57227e1a63de7"
+    },
+    "focused-java21-retry.log": {
+      "bytes": 13303,
+      "sha256": "545ab71c9e6da3ef2eed54c25d54da34475871423ad07ed2d91a767772e8693b"
+    },
+    "focused-java21.log": {
+      "bytes": 16362,
+      "sha256": "d8a7f40ca8f047fc8ceebdd3454aed16d3046c65836ad0cafcbc676249b1b67c"
+    },
+    "java21/reports/TEST-dev.stargenesis.api.ContractTest.xml": {
+      "bytes": 8505,
+      "sha256": "14dce50921a6b766f049147da10147a2dc857f74f64d70baa618bb7c983a3247"
+    },
+    "java21/reports/TEST-dev.stargenesis.cookery.CookeryBridgeTest.xml": {
+      "bytes": 15978,
+      "sha256": "a92fc1657ec6c787e7aa6880dd91605b34b2636df3863e88504f1d931f6e6afe"
+    },
+    "java21/reports/TEST-dev.stargenesis.craftengine.CraftEngineBridgeTest.xml": {
+      "bytes": 16518,
+      "sha256": "362a71c09bb35536b35cb0d5f944ab65a73ffb69e372e51adeeb45e42cd4e193"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.ArenaRulesetWorkspaceTest.xml": {
+      "bytes": 9342,
+      "sha256": "ae0961ea63ec1f6609e968d60e18e1a65456750170e567653b4a0126031ce772"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.BlueprintEvaluatorTest.xml": {
+      "bytes": 9908,
+      "sha256": "629698457d678c5ca50726aeea9c74e98f3526708450c7892897fd37f6b45964"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.BlueprintWorkspaceTest.xml": {
+      "bytes": 9193,
+      "sha256": "98c6e0880969feb8423508a13d4dbecd592c651e742211a5e2642dfe179e3465"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.DesignCodecTest.xml": {
+      "bytes": 15356,
+      "sha256": "559088c4ed872a2033de6b331630bb91a92744ff14d43bb9ff08fab03c6424b9"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.ProgramInterpreterTest.xml": {
+      "bytes": 10644,
+      "sha256": "cab1cffc5762838048d1ca2e3fe34a0981dd322ac0af29c21320d478450c37a2"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.ProtocolMessageCodecTest.xml": {
+      "bytes": 9645,
+      "sha256": "3466a0f006fc38187971463ebd2ccb3e7896f4a25598422d83b7426c341b6198"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.SignedDesignCodecTest.xml": {
+      "bytes": 9610,
+      "sha256": "a3634c856b95b09cad1344d3c7952b164465b8f84bc9fb14224130b9ac66f443"
+    },
+    "java21/reports/TEST-dev.stargenesis.design.TypedProgramCodecTest.xml": {
+      "bytes": 9621,
+      "sha256": "e1e40b6705fafd994b72d35880b6fe35513590134084a4658a0d8745e7c7b97c"
+    },
+    "java21/reports/TEST-dev.stargenesis.helstera.HelsteraModelCatalogTest.xml": {
+      "bytes": 15807,
+      "sha256": "2ede240512924e8c0dce7a6ea321cd45dd8aba9bec855c57db02848182c35357"
+    },
+    "java21/reports/TEST-dev.stargenesis.helstera.HelsteraProjectionTest.xml": {
+      "bytes": 16422,
+      "sha256": "5a014f8867a2228879bd6043acf77dc1a59b8479b6f70886497eba75b8bc43c4"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.CapabilityRegistryTest.xml": {
+      "bytes": 10346,
+      "sha256": "686a8ad9b97307d03fd98ec09772d242bbdea52b9ae95922e85eb135af194592"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.ItemCatalogTest.xml": {
+      "bytes": 8493,
+      "sha256": "06c89c179f7b6246d72f0c3883812ac3c12f045977c63b912ddf2ad37ee66225"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.ItemPayloadTest.xml": {
+      "bytes": 10334,
+      "sha256": "02411390e3f5e4d1a44b9bf998f37a594f9ec286381ee3d16183878ab9d6e675"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.LabProjectionSourceTest.xml": {
+      "bytes": 8571,
+      "sha256": "3170c78556e462397f769eb1a202399b7dac1a4d21fec2cd2665724ecea3447a"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.ModelCatalogTest.xml": {
+      "bytes": 8232,
+      "sha256": "0e2f9b44b95830c8771da8eced203bcad65dddf8a1dc918d661fdb34ca12c746"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.RecipeCatalogTest.xml": {
+      "bytes": 8812,
+      "sha256": "947e27d976923b394827a4c783d778fd9ed04065bf26457f5056ecd5b5ecd8a9"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.SettlementAuthorityBindingTest.xml": {
+      "bytes": 9760,
+      "sha256": "de18a51b6209adf886820f72c7cfc1a2d99279f05f5744be338122a8dbb83dbf"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.SettlementAuthorityCoordinatorTest.xml": {
+      "bytes": 10580,
+      "sha256": "7c91f2e0bf1efff843ee4abb9fec953b2416106420475e7d95d14b40532ac18b"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.SettlementRecoveryLifecycleTest.xml": {
+      "bytes": 9864,
+      "sha256": "5b81e7c1c5ad0113d2c9ee5de7d6ad37e9879df275ad297bdfe664fec6c7ad9a"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.SettlementReviewContractTest.xml": {
+      "bytes": 8445,
+      "sha256": "cbb6c20d93af1398bee46380bf1c148bf2a8425cac1f893ca074b5a8a04c1aeb"
+    },
+    "java21/reports/TEST-dev.stargenesis.integrations.SettlementSagaCoordinatorTest.xml": {
+      "bytes": 9956,
+      "sha256": "7070e2860a7f913f2353cf11359d90a9159d9fb773cdc063e645ee85c6176f89"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.LabPersistenceTest.xml": {
+      "bytes": 15582,
+      "sha256": "ec371375a8970a6966fdc613d29d35ee2a6d56b72ebd1b9a584118ceaad8f990"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.PluginDescriptorTest.xml": {
+      "bytes": 14986,
+      "sha256": "30b44260ef19ada7995892d5394c87f0b6167db42e84283d2df67358ceab1e29"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaDependencyClosureTest.xml": {
+      "bytes": 15540,
+      "sha256": "4f299f03be7c415866b0dbf66d9eabdf6c0182ea857ed4448b7b41863d442fb6"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest.xml": {
+      "bytes": 15390,
+      "sha256": "8ae90a45fe3781c6f36f4f41124a7aae14a987dad69a11d565d4bba813e64e11"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaDraftSessionsTest.xml": {
+      "bytes": 16782,
+      "sha256": "5dc7cfee09e24c736eb2aced59d4fe161af188db8d4e5c8bf39bbee06f4430fc"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaInvitationsTest.xml": {
+      "bytes": 16631,
+      "sha256": "a776bae5e7e9838ff4cae23ef6f1348a2f212cb3cf4f300bdeffc83dd713af1c"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest.xml": {
+      "bytes": 15586,
+      "sha256": "fc07e3220c2dd7e7e80d4c682cc2875c2b1744890ffa50d56777577065f4d411"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchPersistenceTest.xml": {
+      "bytes": 15352,
+      "sha256": "5359e5dba1135494f87bea7b1315adc6c755bbf17ee6c064f993728589eb805f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchRoundTest.xml": {
+      "bytes": 16152,
+      "sha256": "6f967763bbdedf47b4d3cad99781f44ab0f1e2ad2a71bcdc59992ff7256a6c5c"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchServiceTest.xml": {
+      "bytes": 17053,
+      "sha256": "be714834afdf9dc27e5afbc9e1683477f9545541a11d8b06cf1416e389479cc4"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest.xml": {
+      "bytes": 16096,
+      "sha256": "5a959b3b57609956e6f9c664b3b7882e223a177602d32b7e60e88250a8c81fe9"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest.xml": {
+      "bytes": 16896,
+      "sha256": "556b42a8cac4dcef4a72fa97cfb53bba2fb075c05e07e32713ee76399b97ac14"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.arena.ArenaRulesetStoreTest.xml": {
+      "bytes": 16124,
+      "sha256": "e8032c4f981b7095fa2991a66418a9089ec5b520b944c9a774a31196946b3601"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintCollaborationTest.xml": {
+      "bytes": 16248,
+      "sha256": "4c138aa19970b61dbb7ef2ed5a441af8c9106aa8c1ec1b4289553a6983d0c193"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintSessionsTest.xml": {
+      "bytes": 16517,
+      "sha256": "3beb78835b48e7e497cfea6c623d55c124e8cc4222d56760326c03817e742b66"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintStoreTest.xml": {
+      "bytes": 15277,
+      "sha256": "437a14b53cafea6632d57c45d815e2ad06974d5bbbaf31bc021b95888536e94d"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.ContractRadioWorkflowTest.xml": {
+      "bytes": 15090,
+      "sha256": "7bff11dbaf912235bbc272768809f0789ec4aff2496c3a40c40528100bdec7d7"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.ContractRecoveryTest.xml": {
+      "bytes": 15400,
+      "sha256": "4b7c3b1201be9b0b7a6034d0179dc75fe8b564e12c848bfe38eeb0a7a225d9c7"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.ContractRuntimeTest.xml": {
+      "bytes": 15521,
+      "sha256": "149170b89271b3e9381af4f9826cf35a38ee3373608793d3aad2385cd13f9c45"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioAcknowledgementRegressionTest.xml": {
+      "bytes": 14958,
+      "sha256": "73ef3fd2c50307c81a46ddaafe8ac3eb3abd4fef05f2f9a383b4de4eb96e2fa9"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioAcknowledgementTest.xml": {
+      "bytes": 16150,
+      "sha256": "41422d63c2732a93a609f4c93030b59e716c541505242badf8f9b3f0a364ca06"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioCapacityTest.xml": {
+      "bytes": 15400,
+      "sha256": "981438fb245a5adaefc9f52d4c92222f2ff64191d54bce674f3e3cc20bf39de4"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioJournalPersistenceTest.xml": {
+      "bytes": 17523,
+      "sha256": "41c33edf0d7464728c7dd52a252a01834b106e11905a89ebc7883887670b777e"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioJournalRotationTest.xml": {
+      "bytes": 17699,
+      "sha256": "c02b43ad5ee35525aea3b7b70c04b02ee9cbe9f5fa498a027f84713f1a3c3838"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioPersistenceTest.xml": {
+      "bytes": 15068,
+      "sha256": "d3218b4ad2cb01888a957047623f3348a8524651a9d01c1c011cef503a82206a"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioSendCommandTest.xml": {
+      "bytes": 15579,
+      "sha256": "6e9d46d8950a8d5182d4e09fdb448866e16c6afd54c4d9fb00e1c96eed5956c3"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.RadioServiceTest.xml": {
+      "bytes": 16766,
+      "sha256": "95a86f2a4c545505e33a47a1217cea8b033c0897541cfd653a7879f46d8f7dfc"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.VirtualMessageBusRetentionTest.xml": {
+      "bytes": 15830,
+      "sha256": "cf6b79f46f980077c437e195e722bda7b6578e039b31915950b3447219ff514f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.communication.VirtualMessageBusTest.xml": {
+      "bytes": 15850,
+      "sha256": "b471abf678eb41cbd428d633e0f524686979a52df3d732ece2b4207462c9c71f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.design.PublisherKeyStoreTest.xml": {
+      "bytes": 15319,
+      "sha256": "05dd7a315fedd87afd0d465dc2154fb8af07a8a659f0c837d1ed240c96f54531"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.design.PublisherTrustConcurrencyTest.xml": {
+      "bytes": 15554,
+      "sha256": "56887e38c9ff934fa3af7072a7297b9fc99253c44b1d70720c885e662e815845"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.design.PublisherTrustLifecycleTest.xml": {
+      "bytes": 15384,
+      "sha256": "8001b8d67a2c939d35215caeb86bd2c5d8d3bbb67f14bdbd61e491dd8fdf7338"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.design.SignedDesignPackageStoreTest.xml": {
+      "bytes": 16026,
+      "sha256": "99de6d1dc3c3ec808b81a7e20636a99d0841db7e29ba49645ce5f9bda9dee294"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.ecology.EcologyPersistenceTest.xml": {
+      "bytes": 15174,
+      "sha256": "c12ce4f47bc7186a6af48efee1f716b13d84b8d566dfaeebc78fe5fd7eae02e7"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.ecology.EcologyServiceTest.xml": {
+      "bytes": 16207,
+      "sha256": "cf1a29320dba56fb3794093fda15ac75edb518e176c71218eb677d61452e794f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.ecology.EcologyWorkerLifecycleTest.xml": {
+      "bytes": 15105,
+      "sha256": "3bed0f58e4f67a13724cd2d7840d5cceeee94d9c3b17e913036409631ff80d38"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.factory.FactoryCompatibilityTest.xml": {
+      "bytes": 15602,
+      "sha256": "70d0af2dc380d358c2c6fd5e92681661772d2e14626a3f0b2d70f702568ea47c"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.factory.FactoryPersistenceTest.xml": {
+      "bytes": 15207,
+      "sha256": "4e4d1b5deff410fce19e72220bde0ce4cd0da4fa2de741fcd8f2a558629a3232"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.factory.FactoryServiceTest.xml": {
+      "bytes": 17469,
+      "sha256": "4f406bf6db467fcf042fb4e707f35b214a1c632cae3a53d3efc4a2c50bb221e8"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.integration.ItemCatalogControllerTest.xml": {
+      "bytes": 15344,
+      "sha256": "d25066fde7cb8765f169a658cea84909f597b328a55a9d98d36fefb71303b8ad"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.integration.ModelCatalogControllerTest.xml": {
+      "bytes": 15378,
+      "sha256": "2889b05d389443439ea72c738a73705b14c88b8f57ee5188249427af11ffcbf4"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.integration.RecipeCatalogControllerTest.xml": {
+      "bytes": 15244,
+      "sha256": "0b06d6a6b4b31af453893154bc0b84d400372b835292d95bdaee7b8d7da90165"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.lab.LabDisplayModeTest.xml": {
+      "bytes": 15151,
+      "sha256": "9b77e99448e759cabacc81615939509bab4d5c81e74b2b4acd50c73c0e60f855"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.lab.LabExperimentTest.xml": {
+      "bytes": 16733,
+      "sha256": "608b695b1194cb0faa3ca2b883a67d278b9bed501327c3f4a2bb938545e027b1"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.lab.LabWorkerLifecycleTest.xml": {
+      "bytes": 14896,
+      "sha256": "57c740d418e7f38c8c6a8f11f5318057fa0705687e11f6ad2ec94634dddfca52"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramSandboxRunnerTest.xml": {
+      "bytes": 16042,
+      "sha256": "c154162da360430d187a9a13800427d2cfe314d216aec2f2741402801e73f8fe"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramSessionTest.xml": {
+      "bytes": 16016,
+      "sha256": "e8db6a61ca4fa6df01a45981270bfb4a71cd05ea6a653f4afcea7fd5c0ccc0be"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramSessionsTest.xml": {
+      "bytes": 16295,
+      "sha256": "c6951fcd7c87f2b147c2e07aafb5d307c7d9535666edb8d9b7a72ed0426f6b81"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramSimulationTest.xml": {
+      "bytes": 15381,
+      "sha256": "1052e6be413b779d287dcb6c29e1315f56acf5a1a656853555116c97d3233217"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramStoreTest.xml": {
+      "bytes": 15583,
+      "sha256": "512bcc6ceac08d4428f2f0cd1bfddb04503ec5e3475cf11dd5b6d85e2ff11d0f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.program.ProgramWorkflowTest.xml": {
+      "bytes": 15039,
+      "sha256": "c978930e2d06dfc6dbbaa3e8a1e345f88351f7da769482d7d7fb0243a9c2c8d9"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.runtime.PersistentWorkerTest.xml": {
+      "bytes": 16226,
+      "sha256": "09eb51d257fefc715ad446941bf786f45538f12b4ea14657fc16b5b141283f5b"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.runtime.PlayerCommandQueueTest.xml": {
+      "bytes": 16327,
+      "sha256": "7cd476f2c1b9fc7d2ba983aafff54cc54a87b777db20ab5445a4cac07d848f6f"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest.xml": {
+      "bytes": 15444,
+      "sha256": "05c620dc0699ba5b068d77103c55c8c96cf8c4a793b9f42b5e2e6a96b96893bc"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest.xml": {
+      "bytes": 16723,
+      "sha256": "79f83bf5a5bf6147085424f63fa0c2f768aa17c9c71d6b33a33de8d47b82fa23"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.settlement.SettlementConcurrencyTest.xml": {
+      "bytes": 15897,
+      "sha256": "c9364187fbb4659d3f3d7c8fef67ab5b11b508e9883078f07db1e4693bc32769"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest.xml": {
+      "bytes": 15604,
+      "sha256": "531217d63be9625c4554d7b6279e659f01f3cada709c546ed66ac6932270211e"
+    },
+    "java21/reports/TEST-dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest.xml": {
+      "bytes": 18881,
+      "sha256": "0bbe3b70a113d7fcef90b4ad33512f7913553696744bbdf1eadc60d9c1c40854"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.ArenaMatchIdentityTest.xml": {
+      "bytes": 8752,
+      "sha256": "588eabbe8b325febec443dc356a5ef111fe651d411bf3e4251a5a33e29d836b8"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.ArenaMatchWorldTest.xml": {
+      "bytes": 9548,
+      "sha256": "a17e16ea4d6476fc864252606431f71911ece02bde389ee73202a2265046c44b"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.EcologyDynamicLifecycleV2Test.xml": {
+      "bytes": 9172,
+      "sha256": "af4a0a287d3ea954ffbf2720beb6b81667070d3e8531ce3085c456027c7e69df"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.EcologyLifecycleV2Test.xml": {
+      "bytes": 10203,
+      "sha256": "4742eeabadd08b80868ec8a6d20b9993cc6b01244fc173ebc352d47ea14f6902"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.EcologyLongRunTest.xml": {
+      "bytes": 9261,
+      "sha256": "7c6e8f46720e1767fc6445c34c06ecde8f9b79a7479268260e790f08d17ac122"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.EcologyWorldTest.xml": {
+      "bytes": 9150,
+      "sha256": "615b5c2622673cf2d4c04d40508a9ff9ea0732603ca46fd3e20bd79df969f2a8"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.FactoryMatchIdentityTest.xml": {
+      "bytes": 8635,
+      "sha256": "3abd243b1af11495c792c9cec2158b40ac41517bd358bfa6279eb40666f5fcb5"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.FactoryWorldTest.xml": {
+      "bytes": 9024,
+      "sha256": "f8217885a10d0e216fc1f165ec52e4c1b39218fb18a251c5b7bc82cce447fc3f"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.ResourceSandboxWorldTest.xml": {
+      "bytes": 10990,
+      "sha256": "17a003835453d790b1d90893a951f0b8054b64f6c49f53a04d5ced8938b0211f"
+    },
+    "java21/reports/TEST-dev.stargenesis.sim.SimulationContractsTest.xml": {
+      "bytes": 11493,
+      "sha256": "51f7a463e75470d49c57a8fd9ac0054d46acda3bf880aeb99b6b2ea8e7eb7de5"
+    },
+    "java21/sbom.json": {
+      "bytes": 173820,
+      "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184"
+    },
+    "java25/reports/TEST-dev.stargenesis.api.ContractTest.xml": {
+      "bytes": 8549,
+      "sha256": "116b6370dd389a92ad2a15f8528a6e472795a7794e7ace6bfae24ddd5297d38f"
+    },
+    "java25/reports/TEST-dev.stargenesis.cookery.CookeryBridgeTest.xml": {
+      "bytes": 16022,
+      "sha256": "a0230229dd1dd2ea9841d923d326cd39c4d7190c7415a4e96ca36081f7980079"
+    },
+    "java25/reports/TEST-dev.stargenesis.craftengine.CraftEngineBridgeTest.xml": {
+      "bytes": 16560,
+      "sha256": "fa5fc06d3f964468543524a58ef6cf0f6500a421d1cb03006ea3173c6657281f"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.ArenaRulesetWorkspaceTest.xml": {
+      "bytes": 9388,
+      "sha256": "8f5e9cdc7f234c34d11109817d05f65281f83e56d5f509936ba0f68e64f7f512"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.BlueprintEvaluatorTest.xml": {
+      "bytes": 9952,
+      "sha256": "81961d3e72efb972e246177718cf9b83d21dd5d92378742ed8fced1b0525d7a1"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.BlueprintWorkspaceTest.xml": {
+      "bytes": 9238,
+      "sha256": "dfbfb388e72f7a2f4cdbb0d828085488edea4462898223d3ec57394cf3ac6c19"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.DesignCodecTest.xml": {
+      "bytes": 15400,
+      "sha256": "35471afffbf719e5ef40475237f86d5db0484258485f408fed5d44d406362300"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.ProgramInterpreterTest.xml": {
+      "bytes": 10689,
+      "sha256": "10e30a9bdc3231a132e71ee2bfd37d59b11bb94e231136663c538c7751134914"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.ProtocolMessageCodecTest.xml": {
+      "bytes": 9690,
+      "sha256": "b42314436c2dd467b9cc4a1bab60d58b918748e564be8142788594f6ea4b2c6c"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.SignedDesignCodecTest.xml": {
+      "bytes": 9655,
+      "sha256": "ddff4e60dd58e05bc824892785e233ffd1b14144faeed0a78b236da716f91de6"
+    },
+    "java25/reports/TEST-dev.stargenesis.design.TypedProgramCodecTest.xml": {
+      "bytes": 9667,
+      "sha256": "0e4e91ed2e7fb5dc71ad898273b4c983192eed78d30ad39a88f4002ee4dad189"
+    },
+    "java25/reports/TEST-dev.stargenesis.helstera.HelsteraModelCatalogTest.xml": {
+      "bytes": 15844,
+      "sha256": "9bb167e4a6c23a515fc78082d856772cf4752bec59b53beb44b6571241c043c4"
+    },
+    "java25/reports/TEST-dev.stargenesis.helstera.HelsteraProjectionTest.xml": {
+      "bytes": 16466,
+      "sha256": "06811ffc0771ce4dbb0882cd1459ad23c93b82c8a76d28c1a1dca5a2e92b73d2"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.CapabilityRegistryTest.xml": {
+      "bytes": 10389,
+      "sha256": "ac5f61b527170062abd36de2805132f48a87841f1553638852fa2128ed9a3c09"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.ItemCatalogTest.xml": {
+      "bytes": 8536,
+      "sha256": "875948c5923ec3d202e7b94d13fedd6c44f6e23bbcd33d8fff68731ee03f575f"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.ItemPayloadTest.xml": {
+      "bytes": 10379,
+      "sha256": "7896d6203d6f84476141d8299f7d74c8241b6f948fba3a692340920f578a6575"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.LabProjectionSourceTest.xml": {
+      "bytes": 8616,
+      "sha256": "b3569bdaad842dff97bdd400665d976ac279a682cf2ffbd7431b55e1cb963c0d"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.ModelCatalogTest.xml": {
+      "bytes": 8277,
+      "sha256": "86a97bb0f8268b6f8d5b282a8c72e9c74960105bdb47fb9ef021f950d712e30f"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.RecipeCatalogTest.xml": {
+      "bytes": 8857,
+      "sha256": "cd458d7143c43b909f5cf21bbce1fec04215a25febdd4f56039b007b441c5b68"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.SettlementAuthorityBindingTest.xml": {
+      "bytes": 9807,
+      "sha256": "2461f233b52f5d73a2e2173caf69b3f9b82e580cefe1f6747075dc82732e9363"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.SettlementAuthorityCoordinatorTest.xml": {
+      "bytes": 10622,
+      "sha256": "be5e5af756daaf3610ee1800827da00d8399aa095a195f60650b0b4978d9ff3e"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.SettlementRecoveryLifecycleTest.xml": {
+      "bytes": 9911,
+      "sha256": "7be07f5f543f49ba9338004b643c4277ea0ce3954a12d217a81ebff196f047be"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.SettlementReviewContractTest.xml": {
+      "bytes": 8490,
+      "sha256": "cbdd323cb7098fbcad73670fa921155de1473787c122c88e55fce939b8c45abd"
+    },
+    "java25/reports/TEST-dev.stargenesis.integrations.SettlementSagaCoordinatorTest.xml": {
+      "bytes": 10000,
+      "sha256": "1845b80e1d55202e50fec5a42324808a3045900c7ac9e34cf6c0cdb65a3345c8"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.LabPersistenceTest.xml": {
+      "bytes": 15628,
+      "sha256": "fa712256019cc2574d525489d30cbfb5d365020b53994876784a918b454bfb44"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.PluginDescriptorTest.xml": {
+      "bytes": 15030,
+      "sha256": "a7996b5b774808154893bb4f665a215eec79acd9041af243f608fcfc3331c313"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaDependencyClosureTest.xml": {
+      "bytes": 15584,
+      "sha256": "d9ff1372a2851477c2b547dc09dced78f1575334974a9892e52a3645eda3e55c"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest.xml": {
+      "bytes": 15435,
+      "sha256": "8223e7621779c9a12aa968aad6ecb44e0d34f438624ce8dae34c9641e157c0fe"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaDraftSessionsTest.xml": {
+      "bytes": 16826,
+      "sha256": "5699965446ae5d98857103977de7683f67ed7d7b51db345e57577397ae6bed79"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaInvitationsTest.xml": {
+      "bytes": 16676,
+      "sha256": "5b0c433c409a54f1632616c93fb8947c8a51fab15af6b1a83da23b61925c4c74"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest.xml": {
+      "bytes": 15630,
+      "sha256": "62e0e07820629faf8f18e4ade848244a0a4455390b93358e74bdd1b62b945554"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchPersistenceTest.xml": {
+      "bytes": 15399,
+      "sha256": "89dd6f5ba4ea672eff9f667ef945969261bd570f4e5d883364ef380b9e36d52f"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchRoundTest.xml": {
+      "bytes": 16197,
+      "sha256": "17a1cc1309431a5d9d0aa53b32bdb19fb6401a5833718c7787825973dfd5eb4a"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchServiceTest.xml": {
+      "bytes": 17096,
+      "sha256": "c2105e0226990431f60433092e447b7cae9ab2ab4df41e4b1ad9a999e70cb13e"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest.xml": {
+      "bytes": 16141,
+      "sha256": "4b0d93a765ca381e9e457bb9cbd8a49b4e114d599cc108dca614cad3433b6eef"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest.xml": {
+      "bytes": 16942,
+      "sha256": "13c90382f38840cb677ba50b699e7a0f9ffae7c105050c769c6a0b3dd1a6d091"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.arena.ArenaRulesetStoreTest.xml": {
+      "bytes": 16169,
+      "sha256": "f83f52d60961aabe8bba61605b0152dd654fae499d26ab8df0a361763d6da8a4"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintCollaborationTest.xml": {
+      "bytes": 16294,
+      "sha256": "90f1e41aaaeed7e95c0fbe5a340d7d210397c7e329df64e8bd62d18b1b9c7055"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintSessionsTest.xml": {
+      "bytes": 16562,
+      "sha256": "9f0ea6ffed2e593ea210f10145ae703d12202a940fae4cb2647dbfebe38ba8ee"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.blueprint.BlueprintStoreTest.xml": {
+      "bytes": 15324,
+      "sha256": "d29d00eacee064dcfd1993b680e357a1dc3b8e5ed2c5608218a690a7d316bbd6"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.ContractRadioWorkflowTest.xml": {
+      "bytes": 15135,
+      "sha256": "ddbf50cc460162c0a7cc5248a67486e365cd407199be89c70dbb9141582289bd"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.ContractRecoveryTest.xml": {
+      "bytes": 15445,
+      "sha256": "61f90eb8f78e91a0123406a1ad37374f3a45fe658ef677d343d7ac394c1eee76"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.ContractRuntimeTest.xml": {
+      "bytes": 15566,
+      "sha256": "2d44b5b655238758f4c0d5e2ca3def005d557bc315ced39680115e176439a22b"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioAcknowledgementRegressionTest.xml": {
+      "bytes": 15002,
+      "sha256": "66cc73579a250a9fdb41102aaa94ff9c062d036af60f027230e66386fca1d105"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioAcknowledgementTest.xml": {
+      "bytes": 16196,
+      "sha256": "3d864150fc6c2935f749f963da295131e6684ffdea86c7fdf7d42ef37cb779fd"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioCapacityTest.xml": {
+      "bytes": 15444,
+      "sha256": "d8b89a9293e4fa4160d4fbb6f5286afc9dcab8aa814d16e0d202261fb567fc0d"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioJournalPersistenceTest.xml": {
+      "bytes": 17569,
+      "sha256": "94cef9c116250ed154899f7323f680cc644f7f19726739d55753284c678c472a"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioJournalRotationTest.xml": {
+      "bytes": 17742,
+      "sha256": "2890c64dab3e1e7e53e1d1d8bccaa7b3019c19b5c935a84cca853cb8a5ce002d"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioPersistenceTest.xml": {
+      "bytes": 15112,
+      "sha256": "8b3ca41b99b34a8edca51cfa82bb250b703e185e86c5bfa66cdccc54cb110e67"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioSendCommandTest.xml": {
+      "bytes": 15624,
+      "sha256": "587e08e91b4f2801e34795f1a0157e3a691a0a2d60e823088243088561b07948"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.RadioServiceTest.xml": {
+      "bytes": 16811,
+      "sha256": "fa4c29cf54c4757b196566a5e8d80687c1c9db2ac020a4d67921289c85b307fc"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.VirtualMessageBusRetentionTest.xml": {
+      "bytes": 15875,
+      "sha256": "b7519f7a1dfc655010fcb43e16727dbf8f0f639b4f091d45716c80ac1589c548"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.communication.VirtualMessageBusTest.xml": {
+      "bytes": 15897,
+      "sha256": "84f2c10ba3eebf40616a8f3b27ee1d0077ef113d95b611dff8ac8ec751fd6a89"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.design.PublisherKeyStoreTest.xml": {
+      "bytes": 15365,
+      "sha256": "a05a7b5b15e04a92def3c358e3575129d6d9a459d565b2603ee28c8e123a7ee2"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.design.PublisherTrustConcurrencyTest.xml": {
+      "bytes": 15599,
+      "sha256": "927aa1c387d6e9124db521dd23b1fab01a541e1e8612c8c7e7b58f0bcee97028"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.design.PublisherTrustLifecycleTest.xml": {
+      "bytes": 15428,
+      "sha256": "f31b44436a83b363dbb2cead5fd2ef24392db5ff462f5f761cf1b1f9127e0841"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.design.SignedDesignPackageStoreTest.xml": {
+      "bytes": 16072,
+      "sha256": "30eda95fba5a70aae9e0f6161569a5d601b32ae6265575cfe2a1ba34071f3dc5"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.ecology.EcologyPersistenceTest.xml": {
+      "bytes": 15219,
+      "sha256": "05cafbcfdeca8298b64e831bc8f323c0e76d64f6b3a3070d45f2e6ca8d6fb1f3"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.ecology.EcologyServiceTest.xml": {
+      "bytes": 16250,
+      "sha256": "b2b8d81efaac970fcda0896904a330db634d4cf9399e58b6b09f8a5390d52015"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.ecology.EcologyWorkerLifecycleTest.xml": {
+      "bytes": 15150,
+      "sha256": "89b7951b429f184beeadc768390869e2f9701164762742d25ee7a2da8c297447"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.factory.FactoryCompatibilityTest.xml": {
+      "bytes": 15648,
+      "sha256": "dee9af273537e91ee7792bbfa2e7e6657a816eb225e75fb94a7612d176f93888"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.factory.FactoryPersistenceTest.xml": {
+      "bytes": 15251,
+      "sha256": "c50ed042deabcb9ac3f37d6b5aab9765a1ee152d43543309ca55b83525ecaea9"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.factory.FactoryServiceTest.xml": {
+      "bytes": 17515,
+      "sha256": "8fafd025a3462a6a0a3bf0daffa591ad5c40e7c0d0d02bc2e66478febe532446"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.integration.ItemCatalogControllerTest.xml": {
+      "bytes": 15389,
+      "sha256": "eec88eeb0cee3937f94101fae0a139ee6d9e7a8ef279799f57b5b2314f170d46"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.integration.ModelCatalogControllerTest.xml": {
+      "bytes": 15421,
+      "sha256": "ea0601756e2162f3aa5ddf511a527b01ba81a510846195c38fbe4dff76be8211"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.integration.RecipeCatalogControllerTest.xml": {
+      "bytes": 15289,
+      "sha256": "a805225ed9f435827e87996eea7b384752eee9832e2f3ae7d6dc44d4f9ad1890"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.lab.LabDisplayModeTest.xml": {
+      "bytes": 15198,
+      "sha256": "ebbf7a708f91c9e97519287ac7d186b0e643b914757bfbae09dce0b3902f4410"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.lab.LabExperimentTest.xml": {
+      "bytes": 16779,
+      "sha256": "12c7b2d951126ba2623f593762d7754194c47de89ad0ae998ac448de11735d78"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.lab.LabWorkerLifecycleTest.xml": {
+      "bytes": 14941,
+      "sha256": "629b9a2971e6eb237a6fcbb16f5daa8e0c274e5479a571858b0a76fbd2170b66"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramSandboxRunnerTest.xml": {
+      "bytes": 16089,
+      "sha256": "d9c1a5b50e1ebd81637f2dccfe3947fb54589fcaa2a0311be9686ae3c0aa4b7a"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramSessionTest.xml": {
+      "bytes": 16059,
+      "sha256": "420a80dee73e51c34e7159267d1a9767d669e41ba9bc027d33f507e4956a4d7a"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramSessionsTest.xml": {
+      "bytes": 16337,
+      "sha256": "1e19da3fa7b3be0cfbe6412ced2795b0d03c4f74fe80b720af51f61674ec2751"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramSimulationTest.xml": {
+      "bytes": 15426,
+      "sha256": "0d5488477d3ac5b4d893e8d7a255520d88afae2fa6665bac22d75f5934d8bd21"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramStoreTest.xml": {
+      "bytes": 15629,
+      "sha256": "9b71d5bf7fdb70beaf59d33b6e0f86dac2b537d2f5d809895bee05814f0ad99b"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.program.ProgramWorkflowTest.xml": {
+      "bytes": 15083,
+      "sha256": "7346c3628aba164299c911a1614cf4490262a6ea3bb65fa07eb12edf39e1d780"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.runtime.PersistentWorkerTest.xml": {
+      "bytes": 16273,
+      "sha256": "b578f89fdd22df41943b952b6ea3d1ae91aeb550b8c1db59b3cf3f9a8f2638e5"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.runtime.PlayerCommandQueueTest.xml": {
+      "bytes": 16372,
+      "sha256": "81cec08bd801944f6836be5155c08c3c789fa04d3d7586ff9070c0794cb179a6"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest.xml": {
+      "bytes": 15488,
+      "sha256": "2aa3948900e51b0f8cb20cda19256f43db478d705109e63f796edd0f57428f68"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.settlement.SettlementAuthorityRepositoryTest.xml": {
+      "bytes": 16767,
+      "sha256": "98d3ad83910a6b2884d93cab022ea71edb9d400e92f8bbf9a2b05e0761e49eb7"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.settlement.SettlementConcurrencyTest.xml": {
+      "bytes": 15943,
+      "sha256": "3b87d042987fe9c98382f40645bc4658a39c4e6917026f0fec6baefa358cdaf3"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest.xml": {
+      "bytes": 15648,
+      "sha256": "7b9133e00fb3855f347ef016f6e58c80b9ab45cb72bb80c7a39203c650632578"
+    },
+    "java25/reports/TEST-dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest.xml": {
+      "bytes": 18931,
+      "sha256": "f24158508a22ced4a879b6a86b70064621e5c57c8c2acc0443c20bd39b9b74f0"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.ArenaMatchIdentityTest.xml": {
+      "bytes": 8798,
+      "sha256": "45c3c3d7e0b9b97d1f2c160bfecd3bb466d85efaf4ce6ac6b69eb83f14bc4b18"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.ArenaMatchWorldTest.xml": {
+      "bytes": 9593,
+      "sha256": "92d1490c96757da0ced0d19299260e540015fc37f9be88f76c142b80135bfd87"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.EcologyDynamicLifecycleV2Test.xml": {
+      "bytes": 9216,
+      "sha256": "7e548338ddb81d09b8db5bc9891461a19969a6d21c1905499493829d1cbff50b"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.EcologyLifecycleV2Test.xml": {
+      "bytes": 10249,
+      "sha256": "7e3ec0d131280cfb9203463035163d25cc6622421e3e22fb8720aacfaa0b69d6"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.EcologyLongRunTest.xml": {
+      "bytes": 9307,
+      "sha256": "989841dc42c2c3cf19fa6461ff3c7ea9ba0d43b985937bb1a51aecbdeaa2b4bf"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.EcologyWorldTest.xml": {
+      "bytes": 9195,
+      "sha256": "9c112c414284f038e95127693a633064c4c9fe430aef994520b5ed992d6e61b8"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.FactoryMatchIdentityTest.xml": {
+      "bytes": 8678,
+      "sha256": "20358bb60e3f1210a111438692d9146255f824507a7822a28c13c83bf27fe010"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.FactoryWorldTest.xml": {
+      "bytes": 9070,
+      "sha256": "a6049b033464505f32b6317b3673f777b25eba627e07bb5d6bcfedc305f1e5a8"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.ResourceSandboxWorldTest.xml": {
+      "bytes": 11034,
+      "sha256": "8f24ecd4a91c1c445d969db7f85d986006f9ed3cd09a5a24a3b07631fbb4ac1f"
+    },
+    "java25/reports/TEST-dev.stargenesis.sim.SimulationContractsTest.xml": {
+      "bytes": 11530,
+      "sha256": "832bb99140e2945569a8e6576be8b350a79f36b2a8672654faf662f36e41aa5b"
+    },
+    "java25/sbom.json": {
+      "bytes": 173820,
+      "sha256": "53b0b91bbc7e368f0f49cbe3fa97cee58f091097adbd9057e7ee54dcd193d184"
+    },
+    "launch_batch.py": {
+      "bytes": 937,
+      "sha256": "0efd11db3018036f88b5f86cc203bbc45418a9d4a5f60da8b581fa01f2816790"
+    },
+    "node-regression.log": {
+      "bytes": 1447,
+      "sha256": "fd1f252d2d142ced411e64489e9631578fa213538c9cdac0cef18cfe2898e905"
+    },
+    "probes/design-signer-java21.json": {
+      "bytes": 482,
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5"
+    },
+    "probes/design-signer-java21.log": {
+      "bytes": 682,
+      "sha256": "7c12904e2ef8b706d36ccb79ab9837cbdad1ee3f72aa3a681b71e2803af8d512"
+    },
+    "probes/design-signer-java25.json": {
+      "bytes": 482,
+      "sha256": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5"
+    },
+    "probes/design-signer-java25.log": {
+      "bytes": 682,
+      "sha256": "7c12904e2ef8b706d36ccb79ab9837cbdad1ee3f72aa3a681b71e2803af8d512"
+    },
+    "probes/radio-journal-lock-java21.json": {
+      "bytes": 2032,
+      "sha256": "736a890cef84c1ccbe6580696264c2cfe9b477c889bb2188f738ab6ef9604a6d"
+    },
+    "probes/radio-journal-lock-java21.log": {
+      "bytes": 2076,
+      "sha256": "47ad95ab0866c68b4033b5be0864e3471ea824dd56d0a1928aaeecb23b7a2a6b"
+    },
+    "probes/radio-journal-lock-java25.json": {
+      "bytes": 2029,
+      "sha256": "1bc0edcb7093f1f34bf4992479f659a3c3bdf1a1c3df906fce2a37c2961d6154"
+    },
+    "probes/radio-journal-lock-java25.log": {
+      "bytes": 2073,
+      "sha256": "5065fc4b1c62252f802f159169a59f751aa7b84bd5cf4a4073e153ecb6bbf22d"
+    },
+    "probes/release-signer-java21.json": {
+      "bytes": 569,
+      "sha256": "d0eae0d8e6194269910fdb2e363e61781c4ba5f90ddba076cdff6d6c6ac67714"
+    },
+    "probes/release-signer-java21.log": {
+      "bytes": 569,
+      "sha256": "d0eae0d8e6194269910fdb2e363e61781c4ba5f90ddba076cdff6d6c6ac67714"
+    },
+    "probes/release-signer-java25.json": {
+      "bytes": 569,
+      "sha256": "83d5deffdebd699bda1f767d1f266667a6fe63a6eb19ca41738f27f20dcfc9da"
+    },
+    "probes/release-signer-java25.log": {
+      "bytes": 569,
+      "sha256": "83d5deffdebd699bda1f767d1f266667a6fe63a6eb19ca41738f27f20dcfc9da"
+    },
+    "probes/settlement-lock-java21.json": {
+      "bytes": 1180,
+      "sha256": "0fbfd2db776e0909c9606d0298f13a4fcfa73967c38f3277b740b5f37aea51e0"
+    },
+    "probes/settlement-lock-java21.log": {
+      "bytes": 1203,
+      "sha256": "a16f24839bbbe735a3966ba0be1f5376b072ff7ebdf2bfb46de7e9a7fed85877"
+    },
+    "probes/settlement-lock-java25.json": {
+      "bytes": 1177,
+      "sha256": "53a3b175b7443afa8b0b024ff1aa1ffe20f23cfd9f14d9252c433f256406e6c9"
+    },
+    "probes/settlement-lock-java25.log": {
+      "bytes": 1200,
+      "sha256": "4ad03754ddc7381333880a018a1ccda8d7357713f1aee0171782d4ad503dea56"
+    },
+    "probes/worker-lock-java21.json": {
+      "bytes": 1549,
+      "sha256": "748d4bcd16b70369e2131f28ce9740cb70c4fc0749f47f10796f2fca5fc98a59"
+    },
+    "probes/worker-lock-java21.log": {
+      "bytes": 1582,
+      "sha256": "ec628efcceb7ed0603652fd95703a6a0c6c4eca7a1d03b3891609129ec52015f"
+    },
+    "probes/worker-lock-java25.json": {
+      "bytes": 1546,
+      "sha256": "ac8516707a9f9bf0fe816197fb9c98bf33115abaa859c4fc50488ebae6a9981b"
+    },
+    "probes/worker-lock-java25.log": {
+      "bytes": 1579,
+      "sha256": "2a87d22f4a7181824119a3d5a5097a6e24e15b13bd7d84661c7dcd557ae1cf88"
+    },
+    "python-regression.log": {
+      "bytes": 333,
+      "sha256": "2784b4b728ee136f9fb9ee5d8d0215c3f5ae0011fab69002c1af20dd4743ca4c"
+    },
+    "radio-journal-lock-java21.log": {
+      "bytes": 2076,
+      "sha256": "47ad95ab0866c68b4033b5be0864e3471ea824dd56d0a1928aaeecb23b7a2a6b"
+    },
+    "radio-journal-lock-java25.log": {
+      "bytes": 2073,
+      "sha256": "5065fc4b1c62252f802f159169a59f751aa7b84bd5cf4a4073e153ecb6bbf22d"
+    },
+    "release-signer-java21.log": {
+      "bytes": 569,
+      "sha256": "d0eae0d8e6194269910fdb2e363e61781c4ba5f90ddba076cdff6d6c6ac67714"
+    },
+    "release-signer-java25.log": {
+      "bytes": 569,
+      "sha256": "83d5deffdebd699bda1f767d1f266667a6fe63a6eb19ca41738f27f20dcfc9da"
+    },
+    "settlement-lock-java21.log": {
+      "bytes": 1203,
+      "sha256": "a16f24839bbbe735a3966ba0be1f5376b072ff7ebdf2bfb46de7e9a7fed85877"
+    },
+    "settlement-lock-java25.log": {
+      "bytes": 1200,
+      "sha256": "4ad03754ddc7381333880a018a1ccda8d7357713f1aee0171782d4ad503dea56"
+    },
+    "source-hashes-interrupted.json": {
+      "bytes": 54171,
+      "sha256": "a38a23695aaa6101d387169296bdf078cfb274206ba53b79554d466c2fd6ff18"
+    },
+    "source-hashes-native-memory-failure.json": {
+      "bytes": 54171,
+      "sha256": "ebb5cba930afb48cee6f600547e6310aa43a8c8dfb8c7af685bd5b172babcabd"
+    },
+    "source-hashes.json": {
+      "bytes": 54171,
+      "sha256": "57733ba237522a3fa1b2718654114af02739d0b81caf68ea85215e16ce8d1372"
+    },
+    "sources/.github/workflows/verify.yml.txt": {
+      "bytes": 5196,
+      "sha256": "965a9f3595d9671a5f03b9377d4ccf57c424e32519a5bdb01d57da91cece8066"
+    },
+    "sources/RadioJournalProcessProbe.java.txt": {
+      "bytes": 6644,
+      "sha256": "a6a3a1575c7f61d9228fe4045f85cd9cf44b2960772a40a6d5877e01d8b6f4a1"
+    },
+    "sources/docs/PRODUCT_CONTRACT.md.txt": {
+      "bytes": 18670,
+      "sha256": "44f1812eeb459ee9ed61463310d377674b3638e388a63465a3b5181009501048"
+    },
+    "sources/docs/RADIO_JOURNAL_ROTATION.md.txt": {
+      "bytes": 4690,
+      "sha256": "230242ab168cc23974f113314be311d6f59fc78b5c61afefe460fb68f3d9d015"
+    },
+    "sources/docs/RADIO_RETENTION.md.txt": {
+      "bytes": 3549,
+      "sha256": "4d6d00828e2d1a85b66838551060997bcf9d6e58ec68a1ada0e5c2adc3b0add6"
+    },
+    "sources/scripts/ReleaseArtifactSigner.java.txt": {
+      "bytes": 15809,
+      "sha256": "ab853167f25fdb896da91e27b00fee8e767b3153684d8e1785182f6df2cdf3af"
+    },
+    "sources/scripts/SettlementLockProbe.java.txt": {
+      "bytes": 1773,
+      "sha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942"
+    },
+    "sources/scripts/SignedDesignPackageSigner.java.txt": {
+      "bytes": 8027,
+      "sha256": "48023050ed5d5f5c9eb9f39e9070bd38ed09fda39ef38e983637903a266f0f1e"
+    },
+    "sources/scripts/WorkerDirectoryLockProbe.java.txt": {
+      "bytes": 4592,
+      "sha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47"
+    },
+    "sources/scripts/test_radio_journal_process_lock.py.txt": {
+      "bytes": 15608,
+      "sha256": "5f801c48065ea47fd764d01bc5d89f60cf175ded37b5a3f10bcc01e981b7bd2d"
+    },
+    "sources/scripts/test_release_artifact_signer.py.txt": {
+      "bytes": 4069,
+      "sha256": "72da18f9d5a82a35cebb27a04961b25ffc45889ba9c3c30c01f015954eac381d"
+    },
+    "sources/scripts/test_settlement_process_lock.py.txt": {
+      "bytes": 5112,
+      "sha256": "4085381cf5558ccb403560de11d4aa75db3bf07bdab452b58a3f6fb9e36515b8"
+    },
+    "sources/scripts/test_signed_design_package_signer.py.txt": {
+      "bytes": 4384,
+      "sha256": "3254998c8a63400d0e968c140030dc2251585402f0d915abb30a4238869a4b01"
+    },
+    "sources/scripts/test_worker_directory_lock.py.txt": {
+      "bytes": 5134,
+      "sha256": "1ba8b292cf9def1477311efa5acb0f2bd7d0f7d755885f8fb4f073d5d5acb379"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/ContractRuntime.java.txt": {
+      "bytes": 23202,
+      "sha256": "c68b717129828b45418f9a242895468d0cad73f64a296c033df7a43dc842c001"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioAcknowledgement.java.txt": {
+      "bytes": 2405,
+      "sha256": "9a788a10f66f1942ea0398c6fa9f6b0953bccfde42b8ceba0a98d6dd33845964"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioController.java.txt": {
+      "bytes": 13895,
+      "sha256": "438199712e0ef1846be2d0a294f64b9374f0f5a40bc07789a1d5f7b828b2a287"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioPersistence.java.txt": {
+      "bytes": 22766,
+      "sha256": "16759cc97cc43b031ef0a8545e17cdc7909c7f611edfc8f32effa61e4ecf6757"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioProtocol.java.txt": {
+      "bytes": 1674,
+      "sha256": "d3e222bf0f2188c2febdd73a8bcda8316fedfd0eb96c1eb44ed64c3b3f2a8f76"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioSendCommand.java.txt": {
+      "bytes": 2104,
+      "sha256": "22c11bad1419d1a857eebac779342a2b1ef4f74353d76da7cf839fbea6b30718"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioService.java.txt": {
+      "bytes": 15685,
+      "sha256": "ae3596ee559dea73411ecb36fb6c6398010bdf791f482359da9d9d013c69f7b9"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/ServiceContractDefinition.java.txt": {
+      "bytes": 2467,
+      "sha256": "757fc7872f45a17e8b43fc0a7c22d9bf1e857b015c4a946c9ee8ef2e79a7ee59"
+    },
+    "sources/stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/VirtualMessageBus.java.txt": {
+      "bytes": 22941,
+      "sha256": "71acd1748a6b300a82d8d72d7a3de6aa31ec1b9e7c964e3b9207a4545d50e493"
+    },
+    "sources/stargenesis-paper/src/main/resources/plugin.yml.txt": {
+      "bytes": 2796,
+      "sha256": "046c8e598c21b114f10f87ca2e05dfaa67f171e030fd0d02f70b328118037917"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRadioWorkflowTest.java.txt": {
+      "bytes": 3483,
+      "sha256": "f3436ae543e04a1dc22abc96a9dd28f6c23ef74edd443aceb5b444c4d6c9f2d4"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRecoveryTest.java.txt": {
+      "bytes": 5900,
+      "sha256": "6b8540e402ceccc21030039b8d8ba9da3ac6f7d638a6f601560b2e3a755ab313"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/ContractRuntimeTest.java.txt": {
+      "bytes": 8455,
+      "sha256": "fa637f049c43b63cd51414e12656cee386a1a69c4d1379078f7be07f125debdf"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioAcknowledgementRegressionTest.java.txt": {
+      "bytes": 2131,
+      "sha256": "10983bf85e01a63366fd5fe066ae6cc37c335b78d3568cc11acb70a17a925e6c"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioAcknowledgementTest.java.txt": {
+      "bytes": 9110,
+      "sha256": "36388cd8ab9cd0849159ff10cb4311817ceae06a4990cd6479489db6a83676b2"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioCapacityTest.java.txt": {
+      "bytes": 7789,
+      "sha256": "f010d331a5919a575a9213628afc7a3cc027087c48d390eb3702a40106586e81"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioJournalPersistenceTest.java.txt": {
+      "bytes": 15370,
+      "sha256": "1f9476b175b887017e1023447d1b4402e4c3e3b63a0cc07ee6d65f120e1b8c2e"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioJournalRotationTest.java.txt": {
+      "bytes": 24555,
+      "sha256": "823e081ff3c9b63b68a3a88a83d78cf3a8bf362485522e8b915f13c9835fa81f"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioPersistenceTest.java.txt": {
+      "bytes": 5057,
+      "sha256": "bbf1f13484c4b479b4249e9b0e931498ed3985798e753da2b955453701df5d3a"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioSendCommandTest.java.txt": {
+      "bytes": 5589,
+      "sha256": "d94f4ce984ab2833b03cb5f6ff552b80f9071ed2f78f8c4fbd01944d3295b459"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioServiceTest.java.txt": {
+      "bytes": 16119,
+      "sha256": "c70ce8b4cd190826c4c5fe0a14388a56f0f4c3a9860c512769a92b56abec17b4"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/VirtualMessageBusRetentionTest.java.txt": {
+      "bytes": 7867,
+      "sha256": "6b63e14913418f1c9ab21e3228b33b5027c4aec3bf2d672dca13177d532a5258"
+    },
+    "sources/stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/VirtualMessageBusTest.java.txt": {
+      "bytes": 8893,
+      "sha256": "8c8413bfebfc78c2acedc5444550f02587111504a118855a89f952c0dbda7701"
+    },
+    "sources/stargenesis-paper/src/test/resources/radio-v1-pending-fulfillment.json.txt": {
+      "bytes": 4750,
+      "sha256": "54a661712884314714804d7fba82661aa9256a10bc5d56c053a48fdc59b0a304"
+    },
+    "summary.json": {
+      "bytes": 31457,
+      "sha256": "ccbabd655214ef1fb512a7c5726177ee2bfb8085791599391e70aca8f8a7a4bb"
+    },
+    "verify-java21.log": {
+      "bytes": 49424,
+      "sha256": "21fd24d72af90309841e275f99af61cfe781a3a1fdd0f78afe1f772f3e1c5e4c"
+    },
+    "verify-java25.log": {
+      "bytes": 47177,
+      "sha256": "6049053b4a8d8fe35c8bff775797fed582235b5382a869e248c30a0c3b2587fd"
+    },
+    "verify_batch.py": {
+      "bytes": 5696,
+      "sha256": "9a0886225a3f331f93e54c33dc074087c9e650d9091279fc4b3985c9e19532be"
+    },
+    "worker-lock-java21.log": {
+      "bytes": 1582,
+      "sha256": "ec628efcceb7ed0603652fd95703a6a0c6c4eca7a1d03b3891609129ec52015f"
+    },
+    "worker-lock-java25.log": {
+      "bytes": 1579,
+      "sha256": "2a87d22f4a7181824119a3d5a5097a6e24e15b13bd7d84661c7dcd557ae1cf88"
+    }
+  }
+}

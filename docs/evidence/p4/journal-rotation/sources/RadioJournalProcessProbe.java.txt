@@ -1,0 +1,130 @@
+package dev.stargenesis.paper.communication;
+
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
+public final class RadioJournalProcessProbe {
+    private static final UUID ALICE = new UUID(0, 81), BOB = new UUID(0, 82);
+    private static final Set<VirtualMessageBus.ProtocolKey> INSTALLED = Set.of(
+            RadioProtocol.key(), ServiceContractDefinition.key());
+    private static final VirtualMessageBus.Endpoint ENDPOINT =
+            new VirtualMessageBus.Endpoint("process_probe", 0, 0, 0, 16);
+
+    public static void main(String[] args) throws Exception {
+        Path root = Path.of(args[1]);
+        Path file = root.resolve("radio-state.json");
+        switch (args[0]) {
+            case "seed" -> store(file).save(new VirtualMessageBus(0, 8), runtime(0));
+            case "hold" -> {
+                try (var channel = FileChannel.open(root.resolve("radio-state.json.lock"),
+                        StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+                     var ignored = channel.lock()) {
+                    Files.writeString(root.resolve("holding"), "holding");
+                    waitFor(root.resolve("release"));
+                }
+            }
+            case "reject" -> {
+                var persistence = store(file);
+                expectIo("lock", persistence::load);
+                expectIo("lock", () -> persistence.save(new VirtualMessageBus(0, 8), runtime(0)));
+                Files.writeString(root.resolve("rejected"), "load and save rejected while locked");
+            }
+            case "acquire" -> {
+                var persistence = store(file);
+                var saved = persistence.load().orElseThrow();
+                persistence.save(restoredBus(saved), restoredContracts(saved));
+                Files.writeString(root.resolve("acquired"), "load and save succeeded");
+            }
+            case "stale" -> {
+                var persistence = store(file);
+                var saved = persistence.load().orElseThrow();
+                var bus = restoredBus(saved);
+                var contracts = restoredContracts(saved);
+                Files.writeString(root.resolve("loaded"), "old snapshot loaded");
+                waitFor(root.resolve("attempt-stale-save"));
+                expectIo("stale", () -> persistence.save(bus, contracts));
+                Files.writeString(root.resolve("stale-rejected"), "stale save rejected");
+            }
+            case "rotate" -> {
+                try (var service = new RadioService(store(file), 8)) {
+                    service.join(ALICE, ENDPOINT, INSTALLED);
+                    service.join(BOB, ENDPOINT, INSTALLED);
+                    if (!service.send(ALICE, RadioProtocol.protocol(), BOB, 7, payload("original")).queued())
+                        throw new AssertionError("New radio message was not queued");
+                    service.advance();
+                    var message = service.poll(BOB, 1).getFirst();
+                    if (!service.acknowledge(BOB, message) || service.rotate() != 1)
+                        throw new AssertionError("Acknowledgement or rotation failed");
+                }
+                Files.writeString(root.resolve("rotated"), "one committed archive");
+            }
+            case "verify" -> {
+                try (var service = new RadioService(store(file), 8)) {
+                    if (service.archiveCount() != 1 || service.retainedEvidenceCount() != 0
+                            || service.participantCount() != 0 || service.tick() != 1)
+                        throw new AssertionError("Committed journal did not recover");
+                    if (service.send(ALICE, RadioProtocol.protocol(), BOB, 7, payload("original")).queued())
+                        throw new AssertionError("Archived request was delivered again");
+                    boolean conflict = false;
+                    try { service.send(ALICE, RadioProtocol.protocol(), BOB, 7, payload("changed")); }
+                    catch (IllegalArgumentException expected) { conflict = true; }
+                    if (!conflict) throw new AssertionError("Archived request conflict was accepted");
+                }
+            }
+            default -> throw new IllegalArgumentException("Unknown probe mode");
+        }
+        System.out.println("PASS " + args[0]);
+    }
+
+    private static RadioPersistence store(Path file) throws IOException {
+        return new RadioPersistence(file, RadioProtocol.protocol(), ServiceContractDefinition.protocol(),
+                ServiceContractDefinition.contract());
+    }
+
+    private static ContractRuntime runtime(long tick) {
+        return new ContractRuntime(ServiceContractDefinition.contract(), ServiceContractDefinition.protocol(),
+                tick, ContractRuntime.MAX_RETAINED_CONTRACTS);
+    }
+
+    private static VirtualMessageBus restoredBus(RadioPersistence.Snapshot saved) {
+        var bus = new VirtualMessageBus(saved.radio().tick(), 8);
+        bus.restore(saved.radio(), Map.of(RadioProtocol.key(), RadioProtocol.protocol(),
+                ServiceContractDefinition.key(), ServiceContractDefinition.protocol()));
+        return bus;
+    }
+
+    private static ContractRuntime restoredContracts(RadioPersistence.Snapshot saved) {
+        return ContractRuntime.restore(ServiceContractDefinition.contract(), ServiceContractDefinition.protocol(),
+                ContractRuntime.MAX_RETAINED_CONTRACTS, saved.contracts());
+    }
+
+    private static Map<String, String> payload(String value) {
+        return Map.of("sequence", "7", "channel", "probe", "value", value);
+    }
+
+    private static void waitFor(Path signal) throws Exception {
+        long deadline = System.nanoTime() + 30_000_000_000L;
+        while (!Files.exists(signal)) {
+            if (System.nanoTime() >= deadline) throw new IOException("Timed out waiting for " + signal.getFileName());
+            Thread.sleep(20);
+        }
+    }
+
+    private static void expectIo(String reason, IoAction action) throws Exception {
+        try { action.run(); }
+        catch (IOException expected) {
+            if (expected.getMessage() == null || !expected.getMessage().toLowerCase(java.util.Locale.ROOT).contains(reason))
+                throw new AssertionError("Unexpected rejection reason", expected);
+            return;
+        }
+        throw new AssertionError("Expected " + reason + " rejection");
+    }
+
+    @FunctionalInterface private interface IoAction { void run() throws Exception; }
+}

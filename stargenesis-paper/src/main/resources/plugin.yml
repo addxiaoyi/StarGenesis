@@ -41,6 +41,9 @@ permissions:
   stargenesis.radio:
     description: Join a virtual radio network and exchange pinned protocol messages
     default: true
+  stargenesis.radio.manage:
+    description: Archive a fully resolved radio journal while retaining message and contract identities
+    default: op
   stargenesis.ecology:
     description: Run a private, bounded, matter-conserving ecology simulation
     default: true

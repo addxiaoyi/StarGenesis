@@ -1,0 +1,102 @@
+name: verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  java:
+    strategy:
+      matrix:
+        java: ['21', '25']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '${{ matrix.java }}'
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python scripts/check_boundaries.py
+      - run: python -m unittest discover -s scripts -p "test_prepare_helstera_api.py"
+      - run: python -m unittest discover -s scripts -p "test_verify_helstera_provider.py"
+      - run: python -m unittest discover -s scripts -p "test_prepare_craftengine_api.py"
+      - run: python -m unittest discover -s scripts -p "test_prepare_cookery_api.py"
+      - run: python -m unittest discover -s scripts -p "test_server_craftengine_item_smoke.py"
+      - run: python -m unittest discover -s scripts -p "test_release_candidate_builder.py"
+      - run: python -m unittest discover -s scripts -p "test_verify_ecology_robustness_study.py"
+      - run: python -m unittest discover -s scripts -p "test_run_ecology_robustness_study.py"
+      - run: python -m unittest discover -s scripts -p "test_server_*lifecycle_smoke.py"
+      - run: python -m unittest discover -s scripts -p "test_server_match_admin_smoke.py"
+      - run: node --test scripts/test_offline_client_lifecycle_smoke.cjs scripts/test_offline_client_radio_lifecycle_smoke.cjs scripts/test_offline_client_match_admin_smoke.cjs
+      - run: python scripts/prepare_helstera_api.py --verify-runtime
+      - run: python scripts/prepare_craftengine_api.py
+      - run: python scripts/prepare_cookery_api.py
+      - run: sh mvnw -B -ntp -Phelstera-bridge,craftengine-bridge,cookery-bridge verify
+      - run: >-
+          python scripts/test_settlement_process_lock.py
+          --java-home "$JAVA_HOME"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --output target/settlement-process-lock.json
+      - run: >-
+          python scripts/test_worker_directory_lock.py
+          --java-home "$JAVA_HOME"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --output target/worker-directory-lock.json
+      - run: >-
+          python scripts/test_radio_journal_process_lock.py
+          --java-home "$JAVA_HOME"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --output target/radio-journal-process-lock.json
+      - run: >-
+          python scripts/test_release_artifact_signer.py
+          --java "$(command -v java)"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --sbom target/sbom.json
+          --output target/release-signer-smoke.json
+      - run: >-
+          python scripts/test_signed_design_package_signer.py
+          --java-home "$JAVA_HOME"
+          --java "$(command -v java)"
+          --plugin-jar stargenesis-paper/target/stargenesis-paper-4.0.0-SNAPSHOT.jar
+          --design stargenesis-design/src/main/resources/examples/blueprint.json
+          --output target/signed-design-signer-smoke.json
+      - name: Build isolated optional release candidate
+        if: matrix.java == '21'
+        run: |
+          mkdir -p .work/rc-inputs/craftengine
+          cp .work/helstera-api/source.zip .work/rc-inputs/helstera.zip
+          cp .work/cookery-api/source.zip .work/rc-inputs/cookery.zip
+          cp .work/craftengine-api/craft-engine-* .work/rc-inputs/craftengine/
+          python scripts/build_release_candidate.py --version "4.0.0-ci.${GITHUB_RUN_NUMBER}" --java "$JAVA_HOME/bin/java" --profile helstera-bridge --profile craftengine-bridge --profile cookery-bridge --dependency-inputs .work/rc-inputs --output-directory .work/ci-release --evidence-file target/rc-evidence.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stargenesis-java-${{ matrix.java }}
+          include-hidden-files: true
+          path: |
+            stargenesis-paper/target/stargenesis-paper-*.jar
+            stargenesis-helstera/target/stargenesis-helstera-*.jar
+            stargenesis-craftengine/target/stargenesis-craftengine-*.jar
+            stargenesis-cookery/target/stargenesis-cookery-*.jar
+            .work/cookery-api/preparation.json
+            .work/cookery-api/dependencies.json
+            .work/cookery-api/*.log
+            .work/cookery-api/TEST-*.xml
+            .work/craftengine-api/preparation.json
+            .work/craftengine-api/*-install.log
+            .work/helstera-api/preparation.json
+            .work/helstera-api/*-build.log
+            target/release-signer-smoke.json
+            target/signed-design-signer-smoke.json
+            target/settlement-process-lock.json
+            target/worker-directory-lock.json
+            target/radio-journal-process-lock.json
+            target/sbom.json
+            target/rc-evidence.json
+            .work/ci-release/**
+            **/target/surefire-reports/*

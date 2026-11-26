@@ -178,6 +178,15 @@ public final class VirtualMessageBus {
         return copy;
     }
 
+    /** Starts a new bounded journal without changing transient online registration or logical time. */
+    synchronized VirtualMessageBus rotated() {
+        if (!mailboxes.isEmpty() || messagesThisTick != 0)
+            throw new IllegalStateException("Radio journal still has pending deliveries or current-tick sends");
+        var next = new VirtualMessageBus(tick, maxMessagesPerTick);
+        next.endpoints.putAll(endpoints);
+        return next;
+    }
+
     public synchronized Snapshot snapshot() {
         List<ProtocolMessageCodec.Message> savedEvidence = evidence.values().stream()
                 .sorted(messageOrder()).toList();

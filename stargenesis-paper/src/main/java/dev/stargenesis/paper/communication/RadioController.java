@@ -81,6 +81,7 @@ public final class RadioController implements Listener, AutoCloseable {
                     case "ack" -> acknowledge(player, args);
                     case "status" -> status(player, args);
                     case "contract" -> contractStatus(player, args);
+                    case "rotate" -> rotate(player, args);
                     default -> help(player);
                 }
             } catch (java.io.IOException failure) {
@@ -187,6 +188,7 @@ public final class RadioController implements Listener, AutoCloseable {
         player.sendMessage("虚拟无线 tick=" + service.tick() + " · participants=" + service.participantCount()
                 + "/" + VirtualMessageBus.MAX_PARTICIPANTS + " · retained=" + service.retainedEvidenceCount()
                 + "/" + VirtualMessageBus.MAX_RETAINED_EVIDENCE
+                + " · archives=" + service.archiveCount() + "/" + RadioPersistence.MAX_ARCHIVES
                 + " · messageBudget=" + plugin.getConfig().getInt("simulation.messages-per-step"));
         player.sendMessage("协议 " + RadioProtocol.ID.value() + " · hash=" + RadioProtocol.protocol().metadata().hash().substring(0, 12));
         player.sendMessage("Service protocol " + ServiceContractDefinition.PROTOCOL_ID.value() + " · hash="
@@ -200,11 +202,21 @@ public final class RadioController implements Listener, AutoCloseable {
                 + "/" + state.requestedUnits() + " · opened=" + state.createdAt() + " · expires=" + state.expiresAt());
     }
 
+    private void rotate(Player player, String[] args) throws java.io.IOException {
+        requireLength(args, 1);
+        if (!player.hasPermission("stargenesis.radio.manage"))
+            throw new SecurityException("permission denied (stargenesis.radio.manage)");
+        int count = service.rotate();
+        player.sendMessage("无线日志已归档为第 " + count + " 段；旧消息和契约身份继续保留，新日志已开启。");
+    }
+
     private void help(Player player) {
         player.sendMessage("/genesis radio chip [genesis:radio|genesis:service] | join <network> <x> <y> <z> <range> | leave | status");
         player.sendMessage("/genesis radio send <recipient UUID> <sequence> <channel> <value>");
         player.sendMessage("/genesis radio send contract <recipient UUID> <sequence> <contract> <offer|accept|fulfill|reject|cancel> <units>");
         player.sendMessage("/genesis radio inbox [limit] | ack <sender UUID> <message tick> <sequence> [genesis:radio|genesis:service] | contract <contract ID>");
+        if (player.hasPermission("stargenesis.radio.manage"))
+            player.sendMessage("/genesis radio rotate · 仅在无待确认消息及活跃契约时归档，旧身份不可复用。");
         player.sendMessage("虚拟无线使用 schema 校验与 tick 投递，不调用 Minecraft 聊天、世界或玩家库存。");
     }
 
