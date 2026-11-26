@@ -1,6 +1,8 @@
 package dev.stargenesis.paper.arena;
 
 import dev.stargenesis.paper.runtime.WorkspaceRace;
+import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -148,6 +150,37 @@ class ArenaInvitationsTest {
         }));
         invitations.invite(CAROL, BOB, "ember");
         assertEquals(CAROL, invitations.accept(BOB, (a, b, c) -> {}).inviter());
+    }
+
+    @Test void commandCompletionCannotRetainALateInvitationAfterEitherConnectionRetires() throws Exception {
+        for (UUID leaving : java.util.List.of(ALICE, BOB)) {
+            var invitations = new ArenaInvitations();
+            var entered = new java.util.concurrent.CountDownLatch(1);
+            var release = new java.util.concurrent.CountDownLatch(1);
+            var added = new java.util.concurrent.CompletableFuture<Void>();
+            try (var worker = PersistentWorker.commands("arena-late-invitation", directory.resolve(leaving.toString()), 1)) {
+                var commands = new PlayerCommandQueue(worker, invitations::cancel, invitations::retainOnline);
+                var alice = commands.connected(ALICE);
+                var bob = commands.connected(BOB);
+                commands.execute(alice, bob, () -> {
+                    try {
+                        entered.countDown();
+                        assertTrue(release.await(5, java.util.concurrent.TimeUnit.SECONDS));
+                        invitations.invite(ALICE, BOB, "cedar");
+                        added.complete(null);
+                    } catch (Throwable failure) { added.completeExceptionally(failure); }
+                });
+                assertTrue(entered.await(5, java.util.concurrent.TimeUnit.SECONDS));
+                commands.disconnected(leaving);
+                commands.connected(leaving);
+                release.countDown();
+                added.get(5, java.util.concurrent.TimeUnit.SECONDS);
+                assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+            } finally { release.countDown(); }
+            assertThrows(IllegalStateException.class, () -> invitations.accept(BOB, (a, b, c) -> fail("Retired invitation")));
+            invitations.invite(ALICE, BOB, "cedar");
+            assertEquals(ALICE, invitations.accept(BOB, (a, b, c) -> {}).inviter());
+        }
     }
 
     private void cancelledFailedSave(boolean close) throws Exception {

@@ -8,6 +8,8 @@ import dev.stargenesis.sim.ArenaAction;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchView;
 import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue.Connection;
 import dev.stargenesis.paper.arena.ArenaDraftSessions.Session;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
@@ -36,6 +38,7 @@ public final class ArenaController implements Listener, AutoCloseable {
     private final ArenaInvitations invitations = new ArenaInvitations();
     private final ArenaMatchService matchService;
     private final PersistentWorker worker;
+    private final PlayerCommandQueue commands;
     private final AtomicBoolean closed = new AtomicBoolean();
 
     public ArenaController(JavaPlugin plugin, ArenaRulesetStore store, java.nio.file.Path dataDirectory) throws IOException {
@@ -46,6 +49,14 @@ public final class ArenaController implements Listener, AutoCloseable {
         try {
             matches = new ArenaMatchPersistence(dataDirectory);
             matchService = new ArenaMatchService(store, matches);
+            commands = new PlayerCommandQueue(worker, player -> {
+                matchService.disconnected(player);
+                invitations.cancel(player);
+            }, online -> {
+                matchService.retainOnline(online);
+                invitations.retainOnline(online);
+            });
+            plugin.getServer().getOnlinePlayers().forEach(player -> commands.connected(player.getUniqueId()));
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
         } catch (IOException | RuntimeException | Error failure) { worker.close(); throw failure; }
     }
@@ -84,82 +95,92 @@ public final class ArenaController implements Listener, AutoCloseable {
 
     public void close() {
         closed.set(true);
-        drafts.close();
+        commands.close();
         invitations.close();
+        drafts.close();
         worker.shutdown(plugin.getLogger(), "Arena");
     }
 
     public boolean isStopped() { return worker.isStopped(); }
 
     @EventHandler public void onJoin(PlayerJoinEvent event) {
+        if (closed.get()) return;
         Player player = event.getPlayer();
         UUID owner = player.getUniqueId();
-        enqueue(owner, player, new String[]{"restore"});
+        try { enqueue(commands.connected(owner), player, new String[]{"restore"}, Set.of()); }
+        catch (RejectedExecutionException stopped) { }
     }
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         UUID leaving = event.getPlayer().getUniqueId();
-        drafts.disconnected(leaving);
-        try { worker.execute(() -> matchService.disconnected(leaving)); }
-        catch (RejectedExecutionException ignored) { }
+        commands.disconnected(leaving);
         invitations.cancel(leaving);
+        drafts.disconnected(leaving);
     }
 
     private boolean match(Player player, String[] args) {
         if (closed.get()) { player.sendMessage("Arena 服务已停止。"); return true; }
         UUID owner = player.getUniqueId();
+        Connection connection = commands.connection(owner);
+        if (!commands.isCurrent(connection)) return true;
         String[] request = java.util.Arrays.copyOfRange(args, 1, args.length);
         if (request.length == 0) {
             send(owner, player, matchHelp());
             return true;
         }
         if (request[0].equalsIgnoreCase("invite")) {
-            scheduleGlobal(() -> invite(player, request));
+            scheduleGlobal(() -> { if (commands.isCurrent(connection)) invite(player, connection, request); });
             return true;
         }
         if (request[0].equalsIgnoreCase("accept")) {
             if (request.length != 1) { send(owner, player, List.of("用法：/genesis arena match accept")); return true; }
-            scheduleGlobal(() -> accept(player, request));
+            accept(player, connection);
             return true;
         }
         if (request[0].equalsIgnoreCase("start")) {
-            scheduleGlobal(() -> enqueue(owner, player, request, Bukkit.getOnlinePlayers().stream()
+            scheduleGlobal(() -> enqueue(connection, player, request, Bukkit.getOnlinePlayers().stream()
                     .map(Player::getUniqueId).collect(java.util.stream.Collectors.toUnmodifiableSet())));
             return true;
         }
-        enqueue(owner, player, request, Set.of());
+        enqueue(connection, player, request, Set.of());
         return true;
     }
 
-    private void invite(Player inviter, String[] args) {
+    private void invite(Player inviter, Connection connection, String[] args) {
         UUID owner = inviter.getUniqueId();
         if (args.length != 3) { send(owner, inviter, List.of("用法：/genesis arena match invite <online player> <team>")); return; }
         if (!args[2].matches("[a-z][a-z0-9_-]{0,31}")) {
             send(owner, inviter, List.of("team ID 须为 1-32 位小写字母、数字、下划线或连字符。")); return;
         }
-        String currentTeam = matchService.roster().get(owner);
-        if (currentTeam != null && !currentTeam.equals(args[2])) {
-            send(owner, inviter, List.of("你已加入另一个 Arena 队伍，不能跨队邀请。")); return;
-        }
         Player invited = Bukkit.getPlayerExact(args[1]);
-        if (invited == null || invited.equals(inviter) || matchService.roster().containsKey(invited.getUniqueId())) {
+        if (invited == null || invited.equals(inviter)) {
             send(owner, inviter, List.of("需要指定一位在线且尚未加入 roster 的其他玩家。")); return;
         }
-        try { invitations.invite(owner, invited.getUniqueId(), args[2]); }
-        catch (IllegalArgumentException | IllegalStateException denied) {
-            send(owner, inviter, List.of(denied.getMessage()));
-            return;
-        }
-        send(owner, inviter, List.of("已邀请 " + invited.getName() + " 加入队伍 " + args[2] + "。"));
-        send(invited.getUniqueId(), invited, List.of(inviter.getName() + " 邀请你加入 Arena 队伍 "
-                + args[2] + "。使用 /genesis arena match accept 接受。"));
+        UUID invitedId = invited.getUniqueId();
+        String inviterName = inviter.getName(), invitedName = invited.getName();
+        try { commands.execute(connection, commands.connection(invitedId), () -> {
+            String currentTeam = matchService.roster().get(owner);
+            if (currentTeam != null && !currentTeam.equals(args[2])) {
+                send(owner, inviter, List.of("你已加入另一个 Arena 队伍，不能跨队邀请。")); return;
+            }
+            if (matchService.roster().containsKey(invitedId)) {
+                send(owner, inviter, List.of("受邀玩家已经加入 Arena roster。")); return;
+            }
+            try { invitations.invite(owner, invitedId, args[2]); }
+            catch (IllegalArgumentException | IllegalStateException denied) {
+                send(owner, inviter, List.of(denied.getMessage())); return;
+            }
+            send(owner, inviter, List.of("已邀请 " + invitedName + " 加入队伍 " + args[2] + "。"));
+            send(invitedId, invited, List.of(inviterName + " 邀请你加入 Arena 队伍 "
+                    + args[2] + "。使用 /genesis arena match accept 接受。"));
+        }); } catch (RejectedExecutionException full) { send(owner, inviter, List.of("Arena 命令队列已满或玩家连接已失效。")); }
     }
 
-    private void accept(Player player, String[] args) {
+    private void accept(Player player, Connection connection) {
         UUID owner = player.getUniqueId();
         String name = player.getName();
-        try { worker.execute(() -> acceptInvitation(owner, name, player)); }
-        catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满。")); }
+        try { commands.execute(connection, () -> acceptInvitation(owner, name, player)); }
+        catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满或玩家连接已失效。")); }
     }
 
     private void acceptInvitation(UUID owner, String name, Player player) {
@@ -181,14 +202,11 @@ public final class ArenaController implements Listener, AutoCloseable {
         });
     }
 
-    private void enqueue(UUID owner, Player player, String[] args) {
-        enqueue(owner, player, args, Set.of());
-    }
-
-    private void enqueue(UUID owner, Player player, String[] args, Set<UUID> onlineAtStart) {
+    private void enqueue(Connection connection, Player player, String[] args, Set<UUID> onlineAtStart) {
+        UUID owner = connection.player();
         boolean manager = player.hasPermission("stargenesis.arena.manage");
-        try { worker.execute(() -> executeMatch(owner, player, args, onlineAtStart, manager)); }
-        catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满。")); }
+        try { commands.execute(connection, () -> executeMatch(owner, player, args, onlineAtStart, manager)); }
+        catch (RejectedExecutionException full) { send(owner, player, List.of("Arena 命令队列已满或玩家连接已失效。")); }
     }
 
     private void executeMatch(UUID owner, Player player, String[] args, Set<UUID> onlineAtStart, boolean manager) {

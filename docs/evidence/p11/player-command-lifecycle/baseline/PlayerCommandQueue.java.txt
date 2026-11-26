@@ -1,0 +1,40 @@
+package dev.stargenesis.paper.runtime;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.function.Consumer;
+
+/** Baseline adapter: original controller command/quit routing, before lifecycle protection. */
+public final class PlayerCommandQueue implements AutoCloseable {
+    private final PersistentWorker worker;
+    private final Consumer<UUID> retire;
+    private final Map<UUID, Connection> connections = new HashMap<>();
+    public PlayerCommandQueue(PersistentWorker worker, Consumer<UUID> retire, Consumer<Set<UUID>> retain) {
+        this.worker = worker; this.retire = retire;
+    }
+    public synchronized Connection connected(UUID player) {
+        Connection connection = new Connection(player);
+        connections.put(player, connection);
+        return connection;
+    }
+    public synchronized Connection connection(UUID player) { return connections.get(player); }
+    public synchronized boolean isCurrent(Connection connection) {
+        return connection != null && connections.get(connection.player()) == connection;
+    }
+    public synchronized void disconnected(UUID player) {
+        connections.remove(player);
+        try { worker.execute(() -> retire.accept(player)); }
+        catch (RejectedExecutionException ignored) { }
+    }
+    public void execute(Connection connection, Runnable command) { worker.execute(command); }
+    public void execute(Connection first, Connection second, Runnable command) { worker.execute(command); }
+    @Override public synchronized void close() { connections.clear(); }
+    public static final class Connection {
+        private final UUID player;
+        private Connection(UUID player) { this.player = player; }
+        public UUID player() { return player; }
+    }
+}

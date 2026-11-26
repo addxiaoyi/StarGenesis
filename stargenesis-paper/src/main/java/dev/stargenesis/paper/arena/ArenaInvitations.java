@@ -59,6 +59,11 @@ final class ArenaInvitations implements AutoCloseable {
         pending.entrySet().removeIf(entry -> entry.getValue().invitation.inviter().equals(player));
     }
 
+    synchronized void retainOnline(java.util.Set<UUID> online) {
+        pending.entrySet().removeIf(entry -> !online.contains(entry.getKey())
+                || !online.contains(entry.getValue().invitation.inviter()));
+    }
+
     @Override public synchronized void close() { closed = true; pending.clear(); }
 
     private void requireOpen() { if (closed) throw new IllegalStateException("Arena 邀请已停止。"); }

@@ -8,6 +8,8 @@ import dev.stargenesis.sim.FactoryInput;
 import dev.stargenesis.sim.FactoryReplay;
 import dev.stargenesis.sim.FactoryReplayVerifier;
 import dev.stargenesis.sim.FactoryWorld;
+import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -316,6 +318,94 @@ class FactoryServiceTest {
         service.run(ALICE, new String[]{"step", "10"}, Set.of(), false);
         assertEquals(6, service.current(ALICE).frames().size());
         assertTrue(service.run(ALICE, new String[]{"replay"}, Set.of(), false).getFirst().contains("回放通过"));
+    }
+
+    @Test void saturatedDisconnectAfterFailedOrganizationSaveCancelsTheInvitationEvenAfterReconnect() throws Exception {
+        service.invite(EVE, FRANK);
+        byte[] before = Files.readAllBytes(directory.resolve("organizations.json"));
+        Path blocker = Files.createDirectory(directory.resolve("organizations.json.tmp"));
+        var entered = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        var failedSave = new java.util.concurrent.CompletableFuture<Void>();
+        try (var worker = PersistentWorker.commands("factory-failed-accept-disconnect", directory, 1)) {
+            var commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            var eve = commands.connected(EVE);
+            var frank = commands.connected(FRANK);
+            commands.execute(frank, () -> {
+                try {
+                    entered.countDown(); await(release);
+                    assertThrows(IOException.class, () -> service.accept(FRANK));
+                    failedSave.complete(null);
+                } catch (Throwable failure) { failedSave.completeExceptionally(failure); }
+            });
+            await(entered);
+            commands.execute(eve, () -> fail("Retired queued command"));
+            commands.disconnected(EVE);
+            commands.connected(EVE);
+            release.countDown();
+            failedSave.get(5, java.util.concurrent.TimeUnit.SECONDS);
+            assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+        } finally { release.countDown(); }
+        assertArrayEquals(before, Files.readAllBytes(directory.resolve("organizations.json")));
+        assertEquals(PARTNERS, restart().organizations());
+        Files.delete(blocker);
+        assertThrows(IllegalStateException.class, () -> service.accept(FRANK));
+        service.invite(EVE, FRANK);
+        assertEquals(EVE, service.accept(FRANK));
+        assertEquals(EVE, restart().organizations().get(FRANK));
+    }
+
+    @Test void admittedOrganizationSaveCanFinishAfterCloseAndRecoverWithoutTransientInvitations() throws Exception {
+        service.invite(EVE, FRANK);
+        var entered = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        var saved = new java.util.concurrent.CompletableFuture<UUID>();
+        try (var worker = PersistentWorker.commands("factory-close-admitted-save", directory, 1)) {
+            var commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            commands.connected(EVE);
+            var frank = commands.connected(FRANK);
+            commands.execute(frank, () -> {
+                try { entered.countDown(); await(release); saved.complete(service.accept(FRANK)); }
+                catch (Throwable failure) { saved.completeExceptionally(failure); }
+            });
+            await(entered);
+            commands.close();
+            release.countDown();
+            assertEquals(EVE, saved.get(5, java.util.concurrent.TimeUnit.SECONDS));
+            assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+        } finally { release.countDown(); }
+        assertEquals(EVE, restart().organizations().get(FRANK));
+        assertEquals(FRANK, restart().organizations().get(EVE));
+    }
+
+    @Test void saturatedDisconnectClearsHistorySelectionAndFreshConnectionRestoresTheActiveMatch() throws Exception {
+        var first = start();
+        finish(first);
+        var active = start();
+        byte[] history = Files.readAllBytes(file(first)), running = Files.readAllBytes(file(active));
+        var entered = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        try (var worker = PersistentWorker.commands("factory-selection-disconnect", directory, 1)) {
+            var commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            var alice = commands.connected(ALICE);
+            commands.execute(alice, () -> {
+                try { service.select(ALICE, first.matchId()); entered.countDown(); await(release); }
+                catch (IOException failure) { throw new java.io.UncheckedIOException(failure); }
+            });
+            await(entered);
+            commands.execute(alice, () -> fail("Retired selection command"));
+            commands.disconnected(ALICE);
+            release.countDown();
+            assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+        } finally { release.countDown(); }
+        assertEquals(active.matchId(), service.current(ALICE).matchId());
+        assertArrayEquals(history, Files.readAllBytes(file(first)));
+        assertArrayEquals(running, Files.readAllBytes(file(active)));
+    }
+
+    private static void await(java.util.concurrent.CountDownLatch latch) {
+        try { assertTrue(latch.await(5, java.util.concurrent.TimeUnit.SECONDS)); }
+        catch (InterruptedException failure) { Thread.currentThread().interrupt(); throw new AssertionError(failure); }
     }
 
     private FactoryReplay start() throws IOException { return service.start(ALICE, 42, PARTNERS.keySet()); }

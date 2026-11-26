@@ -2,6 +2,8 @@ package dev.stargenesis.paper.factory;
 
 import dev.stargenesis.sim.FactoryReplay;
 import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue.Connection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +27,7 @@ public final class FactoryController implements Listener, AutoCloseable {
     private final JavaPlugin plugin;
     private final FactoryService service;
     private final PersistentWorker worker;
+    private final PlayerCommandQueue commands;
     private final AtomicBoolean closed = new AtomicBoolean();
 
     public FactoryController(JavaPlugin plugin, Path directory) throws IOException {
@@ -32,6 +35,8 @@ public final class FactoryController implements Listener, AutoCloseable {
         worker = PersistentWorker.commands("StarGenesis-Factory", directory, MAX_QUEUE);
         try {
             service = new FactoryService(new FactoryPersistence(directory));
+            commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            plugin.getServer().getOnlinePlayers().forEach(player -> commands.connected(player.getUniqueId()));
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
         } catch (IOException | RuntimeException | Error failure) { worker.close(); throw failure; }
     }
@@ -45,24 +50,27 @@ public final class FactoryController implements Listener, AutoCloseable {
             player.sendMessage("工厂模拟已停止。");
             return true;
         }
-        if (args.length > 0 && args[0].equalsIgnoreCase("invite")) return invite(player, args);
-        if (args.length > 0 && args[0].equalsIgnoreCase("accept")) return accept(player, args);
         UUID owner = player.getUniqueId();
+        Connection connection = commands.connection(owner);
+        if (!commands.isCurrent(connection)) return true;
+        if (args.length > 0 && args[0].equalsIgnoreCase("invite")) return invite(player, connection, args);
+        if (args.length > 0 && args[0].equalsIgnoreCase("accept")) return accept(player, connection, args);
         String[] request = args.clone();
         boolean manager = player.hasPermission("stargenesis.factory.manage");
         if (args.length > 0 && args[0].equalsIgnoreCase("start")) {
             plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
-                if (closed.get()) return;
+                if (closed.get() || !commands.isCurrent(connection)) return;
                 Set<UUID> online = plugin.getServer().getOnlinePlayers().stream()
                         .map(Player::getUniqueId).collect(Collectors.toUnmodifiableSet());
-                enqueue(owner, player, request, online, manager);
+                enqueue(connection, player, request, online, manager);
             });
-        } else enqueue(owner, player, request, Set.of(), manager);
+        } else enqueue(connection, player, request, Set.of(), manager);
         return true;
     }
 
-    private void enqueue(UUID owner, Player player, String[] request, Set<UUID> online, boolean manager) {
-        submit(owner, player, () -> {
+    private void enqueue(Connection connection, Player player, String[] request, Set<UUID> online, boolean manager) {
+        UUID owner = connection.player();
+        submit(connection, connection, player, () -> {
             List<String> lines = service.run(owner, request, online, manager);
             if (request.length > 0 && request[0].equalsIgnoreCase("start")) {
                 try { broadcastMatch(service.current(owner)); }
@@ -75,28 +83,31 @@ public final class FactoryController implements Listener, AutoCloseable {
     }
 
     @EventHandler public void onJoin(PlayerJoinEvent event) {
+        if (closed.get()) return;
         Player player = event.getPlayer();
+        Connection connection;
+        try { connection = commands.connected(player.getUniqueId()); }
+        catch (RejectedExecutionException stopped) { return; }
         if (player.hasPermission("stargenesis.factory"))
-            enqueue(player.getUniqueId(), player, new String[]{"restore"}, Set.of(), false);
+            enqueue(connection, player, new String[]{"restore"}, Set.of(), false);
     }
 
     @EventHandler public void onQuit(PlayerQuitEvent event) {
         UUID leaving = event.getPlayer().getUniqueId();
-        try { worker.execute(() -> service.disconnected(leaving)); }
-        catch (RejectedExecutionException ignored) { }
+        commands.disconnected(leaving);
     }
 
-    private boolean invite(Player inviter, String[] args) {
+    private boolean invite(Player inviter, Connection connection, String[] args) {
         if (args.length != 2) { inviter.sendMessage("用法：/genesis factory invite <online player>"); return true; }
         UUID owner = inviter.getUniqueId();
         String inviterName = inviter.getName();
         String invitedName = args[1];
         plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
-            if (closed.get()) return;
+            if (closed.get() || !commands.isCurrent(connection)) return;
             Player invited = plugin.getServer().getPlayerExact(invitedName);
             if (invited == null) { send(owner, inviter, List.of("受邀玩家须在线。")); return; }
             UUID invitedId = invited.getUniqueId();
-            submit(owner, inviter, () -> {
+            submit(connection, commands.connection(invitedId), inviter, () -> {
                 service.invite(owner, invitedId);
                 send(invitedId, invited, List.of(inviterName + " 邀请你组成模拟工厂组织。使用 /genesis factory accept。"));
                 return List.of("已邀请 " + invitedName + " 加入双人模拟组织。");
@@ -105,11 +116,11 @@ public final class FactoryController implements Listener, AutoCloseable {
         return true;
     }
 
-    private boolean accept(Player player, String[] args) {
+    private boolean accept(Player player, Connection connection, String[] args) {
         if (args.length != 1) { player.sendMessage("用法：/genesis factory accept"); return true; }
         UUID invited = player.getUniqueId();
         String invitedName = player.getName();
-        submit(invited, player, () -> {
+        submit(connection, connection, player, () -> {
             UUID inviter = service.accept(invited);
             notifyOnline(inviter, invitedName + " 已接受组织邀请。");
             return List.of("已组成双人模拟组织。集齐另一个双人组织后即可开始四人工厂。");
@@ -117,9 +128,10 @@ public final class FactoryController implements Listener, AutoCloseable {
         return true;
     }
 
-    private void submit(UUID owner, Player player, Operation operation) {
+    private void submit(Connection connection, Connection other, Player player, Operation operation) {
+        UUID owner = connection.player();
         try {
-            worker.execute(() -> {
+            commands.execute(connection, other, () -> {
                 List<String> lines;
                 try { lines = operation.run(); }
                 catch (IOException failure) {
@@ -131,7 +143,7 @@ public final class FactoryController implements Listener, AutoCloseable {
                 send(owner, player, lines);
             });
         } catch (RejectedExecutionException full) {
-            send(owner, player, List.of(closed.get() ? "工厂模拟已停止。" : "工厂命令队列已满，请稍后重试。"));
+            send(owner, player, List.of(closed.get() ? "工厂模拟已停止。" : "工厂命令队列已满或玩家连接已失效，请稍后重试。"));
         }
     }
 
@@ -172,6 +184,7 @@ public final class FactoryController implements Listener, AutoCloseable {
 
     @Override public void close() {
         closed.set(true);
+        commands.close();
         worker.shutdown(plugin.getLogger(), "Factory");
     }
 

@@ -85,6 +85,11 @@ final class FactoryService {
         cancelInvitations(player);
     }
 
+    void retainOnline(Set<UUID> online) {
+        selections.keySet().retainAll(online);
+        invitations.entrySet().removeIf(entry -> !online.contains(entry.getKey()) || !online.contains(entry.getValue()));
+    }
+
     private void cancelInvitations(UUID player) {
         invitations.remove(player);
         invitations.entrySet().removeIf(invitation -> invitation.getValue().equals(player));

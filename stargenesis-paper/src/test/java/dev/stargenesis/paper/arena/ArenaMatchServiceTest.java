@@ -8,6 +8,8 @@ import dev.stargenesis.sim.ArenaConfig;
 import dev.stargenesis.sim.ArenaInput;
 import dev.stargenesis.sim.ArenaMatchReplayVerifier;
 import dev.stargenesis.sim.ArenaMatchWorld;
+import dev.stargenesis.paper.runtime.PersistentWorker;
+import dev.stargenesis.paper.runtime.PlayerCommandQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -249,6 +251,71 @@ class ArenaMatchServiceTest {
         var started = start();
         assertEquals(started, service.current(ALICE));
         assertEquals(ArenaMatchPersistence.MAX_RETAINED_MATCHES, persistence.catalog().size());
+    }
+
+    @Test void saturatedObserverDisconnectClearsOnlySelectionAndPreservesPendingActionsAndWatchMembership() throws Exception {
+        var first = start();
+        service.watch(OBSERVER, first.replay().matchId());
+        finish();
+        var active = start();
+        service.watch(OBSERVER, active.replay().matchId());
+        service.submit(ALICE, ArenaAction.pass(ALICE));
+        byte[] history = Files.readAllBytes(file(first)), running = Files.readAllBytes(file(active));
+        var entered = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        try (var worker = PersistentWorker.commands("arena-observer-disconnect", directory.resolve("matches"), 1)) {
+            var commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            var observer = commands.connected(OBSERVER);
+            commands.execute(observer, () -> {
+                try { service.select(OBSERVER, first.replay().matchId()); entered.countDown(); await(release); }
+                catch (IOException failure) { throw new java.io.UncheckedIOException(failure); }
+            });
+            await(entered);
+            commands.execute(observer, () -> fail("Retired observer command"));
+            commands.disconnected(OBSERVER);
+            commands.connected(OBSERVER);
+            release.countDown();
+            assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+        } finally { release.countDown(); }
+        assertEquals(active.replay().matchId(), service.current(OBSERVER).replay().matchId());
+        var recovered = restart().current(OBSERVER);
+        assertEquals(Set.of(ALICE), recovered.pending().keySet());
+        assertTrue(recovered.spectators().contains(OBSERVER));
+        assertArrayEquals(history, Files.readAllBytes(file(first)));
+        assertArrayEquals(running, Files.readAllBytes(file(active)));
+    }
+
+    @Test void admittedWatchSaveCanFinishAfterDisconnectWithoutRestoringItsHistoricalSelection() throws Exception {
+        var first = start();
+        finish();
+        var active = start();
+        service.watch(OBSERVER, active.replay().matchId());
+        var entered = new java.util.concurrent.CountDownLatch(1);
+        var release = new java.util.concurrent.CountDownLatch(1);
+        var saved = new java.util.concurrent.CompletableFuture<Void>();
+        try (var worker = PersistentWorker.commands("arena-watch-late-save", directory.resolve("matches"), 1)) {
+            var commands = new PlayerCommandQueue(worker, service::disconnected, service::retainOnline);
+            var observer = commands.connected(OBSERVER);
+            commands.execute(observer, () -> {
+                try {
+                    entered.countDown(); await(release);
+                    service.watch(OBSERVER, first.replay().matchId()); saved.complete(null);
+                } catch (Throwable failure) { saved.completeExceptionally(failure); }
+            });
+            await(entered);
+            commands.disconnected(OBSERVER);
+            release.countDown();
+            saved.get(5, java.util.concurrent.TimeUnit.SECONDS);
+            assertTrue(worker.shutdown(java.time.Duration.ofSeconds(5), java.time.Duration.ofSeconds(5)).complete());
+        } finally { release.countDown(); }
+        assertTrue(persistence.load(first.replay().matchId()).orElseThrow().spectators().contains(OBSERVER));
+        assertEquals(active.replay().matchId(), service.current(OBSERVER).replay().matchId());
+        assertEquals(active.replay().matchId(), restart().current(OBSERVER).replay().matchId());
+    }
+
+    private static void await(java.util.concurrent.CountDownLatch latch) {
+        try { assertTrue(latch.await(5, java.util.concurrent.TimeUnit.SECONDS)); }
+        catch (InterruptedException failure) { Thread.currentThread().interrupt(); throw new AssertionError(failure); }
     }
 
     private ArenaMatchPersistence.MatchSession start() throws IOException {

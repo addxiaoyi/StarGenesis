@@ -19,3 +19,4 @@ docs/evidence/p11/editor-lifecycle/** -text -whitespace
 docs/evidence/p4/mailbox-retention/** -text -whitespace
 docs/evidence/p4/server-lifecycle/** -text -whitespace
 docs/evidence/p8/invitation-lifecycle/** -text -whitespace
+docs/evidence/p11/player-command-lifecycle/** -text -whitespace

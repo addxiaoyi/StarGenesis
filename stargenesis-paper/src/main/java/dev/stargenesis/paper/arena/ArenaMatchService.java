@@ -32,6 +32,7 @@ final class ArenaMatchService {
 
     Map<UUID, String> roster() { return roster; }
     void disconnected(UUID player) { selections.remove(player); }
+    void retainOnline(Set<UUID> online) { selections.keySet().retainAll(online); }
 
     void joinTeam(UUID inviter, UUID invited, String team) throws IOException {
         if (inviter.equals(invited) || roster.containsKey(invited))

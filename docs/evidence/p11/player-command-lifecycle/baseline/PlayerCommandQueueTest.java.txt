@@ -1,0 +1,95 @@
+package dev.stargenesis.paper.runtime;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Path;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PlayerCommandQueueTest {
+    private static final UUID ALICE = new UUID(0, 701), BOB = new UUID(0, 702);
+    private static final Duration WAIT = Duration.ofSeconds(5);
+    @TempDir Path root;
+
+    @Test void saturatedQueueCannotLoseDisconnectedStateCleanup() throws Exception {
+        Map<UUID, String> state = new HashMap<>();
+        var entered = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        try (var worker = PersistentWorker.commands("full-disconnect", root, 1)) {
+            var queue = queue(worker, state);
+            var alice = queue.connected(ALICE);
+            queue.execute(alice, () -> {
+                state.put(ALICE, "old selection");
+                entered.countDown();
+                await(release);
+            });
+            await(entered);
+            var bob = queue.connected(BOB);
+            queue.execute(bob, () -> {});
+            queue.disconnected(ALICE);
+            release.countDown();
+            assertTrue(worker.shutdown(WAIT, WAIT).complete());
+            assertFalse(state.containsKey(ALICE), "A full command queue must not discard disconnect cleanup");
+        } finally { release.countDown(); }
+    }
+
+    @Test void queuedCommandFromOldConnectionCannotRunAfterReconnect() throws Exception {
+        Map<UUID, String> state = new HashMap<>();
+        var writes = new java.util.concurrent.atomic.AtomicInteger();
+        var entered = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        try (var worker = PersistentWorker.commands("stale-player-command", root, 2)) {
+            var queue = queue(worker, state);
+            var alice = queue.connected(ALICE);
+            queue.execute(alice, () -> { entered.countDown(); await(release); });
+            await(entered);
+            queue.execute(alice, () -> { writes.incrementAndGet(); state.put(ALICE, "stale command"); });
+            queue.disconnected(ALICE);
+            queue.connected(ALICE);
+            release.countDown();
+            assertTrue(worker.shutdown(WAIT, WAIT).complete());
+            assertEquals(0, writes.get(), "An old connection must not commit queued commands after reconnect");
+            assertFalse(state.containsKey(ALICE), "An old queued command must not write into a reconnected session");
+        } finally { release.countDown(); }
+    }
+
+    @Test void closeRetiresQueuedCommandsButAllowsAnAlreadyRunningOperationToFinish() throws Exception {
+        Map<UUID, String> state = new HashMap<>();
+        var entered = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        var committed = new CompletableFuture<String>();
+        try (var worker = PersistentWorker.commands("close-player-commands", root, 1)) {
+            var queue = queue(worker, state);
+            var alice = queue.connected(ALICE);
+            queue.execute(alice, () -> {
+                entered.countDown(); await(release);
+                committed.complete("accepted operation committed");
+                state.put(ALICE, "late selection");
+            });
+            await(entered);
+            queue.execute(alice, () -> state.put(BOB, "queued mutation"));
+            queue.close();
+            release.countDown();
+            assertTrue(worker.shutdown(WAIT, WAIT).complete());
+            assertEquals("accepted operation committed", committed.get(5, TimeUnit.SECONDS));
+            assertTrue(state.isEmpty(), "Shutdown must retire transient state and queued player commands");
+        } finally { release.countDown(); }
+    }
+
+    private static PlayerCommandQueue queue(PersistentWorker worker, Map<UUID, String> state) {
+        return new PlayerCommandQueue(worker, state::remove, online -> state.keySet().retainAll(online));
+    }
+
+    private static void await(CountDownLatch latch) {
+        try { assertTrue(latch.await(5, TimeUnit.SECONDS), "Worker coordination timed out"); }
+        catch (InterruptedException failure) { Thread.currentThread().interrupt(); throw new AssertionError(failure); }
+    }
+}
