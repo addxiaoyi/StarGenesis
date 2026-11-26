@@ -1,0 +1,12 @@
+{
+  "identities": {
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+  },
+  "regularIdentity": {
+    "sender": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "tick": 140,
+    "sequence": 10
+  },
+  "regularLine": "from=8181cfad-2730-3c0f-833e-889dacdd2854 · protocol=genesis:radio · tick=140 · seq=10 · {sequence=10, value=retained_payload, channel=supply}"
+}

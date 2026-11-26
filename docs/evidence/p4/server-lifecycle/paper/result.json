@@ -1,0 +1,300 @@
+{
+  "passed": true,
+  "kind": "paper",
+  "runs": [
+    {
+      "phase": "prepare",
+      "exitCode": 0,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 55.27,
+        "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "log_sha256": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "jvm_args": [
+          "-XX:+UseSerialGC",
+          "-XX:TieredStopAtLevel=1",
+          "-XX:ReservedCodeCacheSize=64m",
+          "-XX:ActiveProcessorCount=2"
+        ],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "kind": "paper",
+          "phase": "prepare",
+          "players": 2,
+          "humanAcceptance": false,
+          "checks": [
+            "regular_poll_remains_unacknowledged_and_unclaimed_offer_is_durable_before_shutdown"
+          ],
+          "identities": {
+            "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+            "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+          },
+          "snapshotAtFinish": {
+            "tick": 235,
+            "messages": 2,
+            "pending": 2,
+            "acknowledged": 0,
+            "radioEvents": 2,
+            "received": 0,
+            "contractEvents": 0,
+            "contracts": []
+          },
+          "log": "player-workflow.log"
+        }
+      },
+      "snapshotSha256": "b8f62d0a35211a1ef8ab5f5762f64fb9d3e49c2519e8efb77279ffff948c0809",
+      "validatedShutdownSnapshot": true
+    },
+    {
+      "phase": "resume",
+      "exitCode": 0,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 43.45,
+        "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "log_sha256": "63474f81574de7d55cacb2ef4640762cf10e0fab29adb792809b058324ee5288",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "jvm_args": [
+          "-XX:+UseSerialGC",
+          "-XX:TieredStopAtLevel=1",
+          "-XX:ReservedCodeCacheSize=64m",
+          "-XX:ActiveProcessorCount=2"
+        ],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "kind": "paper",
+          "phase": "resume",
+          "players": 2,
+          "humanAcceptance": false,
+          "checks": [
+            "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+            "pending_offer_recovers_then_accept_and_fulfill_commit_once_with_radio_acknowledgements",
+            "original_envelope_ack_and_cross_tick_dedup_persist_through_hard_disconnect",
+            "invalid_contract_message_stays_pending_and_separate_active_offer_is_saved_for_timeout"
+          ],
+          "identities": {
+            "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+            "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+          },
+          "snapshotAtFinish": {
+            "tick": 612,
+            "messages": 6,
+            "pending": 1,
+            "acknowledged": 5,
+            "radioEvents": 11,
+            "received": 4,
+            "contractEvents": 4,
+            "contracts": [
+              {
+                "id": "expires_after_restart",
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                "requestedUnits": 1,
+                "fulfilledUnits": 0,
+                "createdAt": 612,
+                "expiresAt": 812,
+                "state": "OFFERED"
+              },
+              {
+                "id": "restart_order",
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                "requestedUnits": 3,
+                "fulfilledUnits": 3,
+                "createdAt": 380,
+                "expiresAt": 580,
+                "state": "COMPLETED"
+              }
+            ]
+          },
+          "log": "player-workflow.log"
+        }
+      },
+      "snapshotSha256": "edeee5426891b057f97f55800442bf8720c173f2d9d36d837ea01110b536d9e9",
+      "validatedShutdownSnapshot": true
+    },
+    {
+      "phase": "verify",
+      "exitCode": 0,
+      "server": {
+        "kind": "paper",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 37.98,
+        "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+        "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "log_sha256": "b60499de338ea5808105e035d71d244d572e5e340ce70c9777ab3dd9430e3b5e",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "jvm_args": [
+          "-XX:+UseSerialGC",
+          "-XX:TieredStopAtLevel=1",
+          "-XX:ReservedCodeCacheSize=64m",
+          "-XX:ActiveProcessorCount=2"
+        ],
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "kind": "paper",
+          "phase": "verify",
+          "players": 2,
+          "humanAcceptance": false,
+          "checks": [
+            "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+            "completed_contract_and_invalid_pending_envelope_restore_without_reapplication",
+            "active_contract_times_out_once_and_manual_ack_discards_only_the_invalid_envelope"
+          ],
+          "identities": {
+            "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+            "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+          },
+          "snapshotAtFinish": {
+            "tick": 893,
+            "messages": 6,
+            "pending": 0,
+            "acknowledged": 6,
+            "radioEvents": 12,
+            "received": 4,
+            "contractEvents": 5,
+            "contracts": [
+              {
+                "id": "expires_after_restart",
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                "requestedUnits": 1,
+                "fulfilledUnits": 0,
+                "createdAt": 612,
+                "expiresAt": 812,
+                "state": "EXPIRED"
+              },
+              {
+                "id": "restart_order",
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                "requestedUnits": 3,
+                "fulfilledUnits": 3,
+                "createdAt": 380,
+                "expiresAt": 580,
+                "state": "COMPLETED"
+              }
+            ]
+          },
+          "log": "player-workflow.log"
+        }
+      },
+      "snapshotSha256": "ba6c387edaedcb78ccaba52373de8f92861d6376ba4ac6d1312ed2254c33d0e1",
+      "validatedShutdownSnapshot": true
+    }
+  ],
+  "scope": "Three actual boots, two fixed offline clients; no forced crash, cross-region, human or performance acceptance.",
+  "seconds": 138.48,
+  "artifacts": {
+    "prepare/client-state.json": "cc3bfbfc76b9162d7a25dd97d30b89818e18a70685bd87230f87459bcbfc2bff",
+    "prepare/harness.log": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+    "prepare/player-workflow-result.json": "00dddf69f5540af56951d712fcb7eadf20a54e9af1dd6ef0ad70fb493af002d0",
+    "prepare/player-workflow.log": "78d8fdd855f5b3610f9c7227458cdfa97e63a6a4e4666f3a1f436997e870bdca",
+    "prepare/radio-state.json": "b8f62d0a35211a1ef8ab5f5762f64fb9d3e49c2519e8efb77279ffff948c0809",
+    "prepare/smoke-console.log": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+    "prepare/smoke-result.json": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+    "resume/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+    "resume/harness.log": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+    "resume/player-workflow-result.json": "fb91e4cf1db59d0003dc22eda336051549797bb65b1662f6518dc9801d4cda56",
+    "resume/player-workflow.log": "5d315348e5b2734c3e6fad4b52012b38b996213b3109759d975702f7e76ee5c6",
+    "resume/radio-state.json": "edeee5426891b057f97f55800442bf8720c173f2d9d36d837ea01110b536d9e9",
+    "resume/smoke-console.log": "63474f81574de7d55cacb2ef4640762cf10e0fab29adb792809b058324ee5288",
+    "resume/smoke-result.json": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+    "verify/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+    "verify/harness.log": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43",
+    "verify/player-workflow-result.json": "f1535d5c5935780a73a0ed113052155773d2517fa7a7274e51dc388b727022eb",
+    "verify/player-workflow.log": "9079c4fcb40d3ee6d6479076d2cabf46430c6841c7aacd417300780d98318721",
+    "verify/radio-state.json": "ba6c387edaedcb78ccaba52373de8f92861d6376ba4ac6d1312ed2254c33d0e1",
+    "verify/smoke-console.log": "b60499de338ea5808105e035d71d244d572e5e340ce70c9777ab3dd9430e3b5e",
+    "verify/smoke-result.json": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43"
+  }
+}

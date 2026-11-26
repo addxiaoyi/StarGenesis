@@ -1,0 +1,37 @@
+{
+  "identities": {
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+  },
+  "regularIdentity": {
+    "sender": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "tick": 211,
+    "sequence": 10
+  },
+  "regularLine": "from=8181cfad-2730-3c0f-833e-889dacdd2854 · protocol=genesis:radio · tick=211 · seq=10 · {sequence=10, channel=supply, value=retained_payload}",
+  "invalidMessage": {
+    "protocol": {
+      "value": "genesis:service"
+    },
+    "protocolHash": "cf9775573a27a12efa2f7a351c5916d07478ff5a6ed42dc55ce90f34132838eb",
+    "sender": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "recipient": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+    "tick": 566,
+    "sequence": 12,
+    "payload": {
+      "action": "fulfill",
+      "units": "1",
+      "contract": "missing_order"
+    }
+  },
+  "expiringContract": {
+    "id": "expires_after_restart",
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+    "requestedUnits": 1,
+    "fulfilledUnits": 0,
+    "createdAt": 612,
+    "expiresAt": 812,
+    "state": "OFFERED"
+  }
+}

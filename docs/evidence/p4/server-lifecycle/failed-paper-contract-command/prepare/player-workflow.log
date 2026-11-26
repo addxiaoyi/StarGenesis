@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "kind": "paper",
+  "phase": "prepare",
+  "players": 2,
+  "humanAcceptance": false,
+  "checks": [],
+  "identities": {
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+  },
+  "error": "Error: SGRadioRequest timed out waiting for \"消息已排入\". Connection error=none. Recent messages:\n无线操作未完成：未知或未安装 protocol contract\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_radio_lifecycle_smoke.cjs:86:7)"
+}

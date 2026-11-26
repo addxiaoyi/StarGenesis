@@ -167,22 +167,8 @@ public final class RadioController implements Listener, AutoCloseable {
     }
 
     private void send(Player player, String[] args) throws java.io.IOException {
-        boolean radioMessage = args.length == 5;
-        if (!radioMessage && args.length != 7)
-            throw new IllegalArgumentException("用法：/genesis radio send <recipient> <sequence> <channel> <value> | send contract <recipient> <sequence> <contract> <action> <units>");
-        int offset = radioMessage ? 0 : 1;
-        ProtocolSelection selection = protocol(radioMessage ? RadioProtocol.ID.value() : args[1]);
-        UUID recipient = uuid(args[1 + offset]);
-        int sequence = integer(args[2 + offset]);
-        Map<String, String> payload;
-        if (radioMessage) {
-            payload = Map.of("sequence", Integer.toString(sequence), "channel", args[3], "value", args[4]);
-        } else {
-            if (!selection.id().equals(ServiceContractDefinition.PROTOCOL_ID))
-                throw new IllegalArgumentException("该发送格式用于 genesis:service 协议");
-            payload = Map.of("contract", args[4], "action", args[5], "units", args[6]);
-        }
-        var submission = service.send(player.getUniqueId(), selection.protocol(), recipient, sequence, payload);
+        var command = RadioSendCommand.parse(args);
+        var submission = service.send(player.getUniqueId(), command.protocol(), command.recipient(), command.sequence(), command.payload());
         player.sendMessage(submission.queued() ? "消息已排入 tick=" + (service.tick() + 1) + " 可领取的虚拟信箱。"
                 : "重复消息已识别，未重复投递。");
     }

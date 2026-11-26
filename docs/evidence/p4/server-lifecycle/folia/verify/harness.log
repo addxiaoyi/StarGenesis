@@ -1,0 +1,91 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 37.22,
+  "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+  "log_sha256": "14a6abf2c45a3b8d44052efaa1eaa4dd1fc9603768c7e0fa5950628293eba7a5",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "kind": "folia",
+    "phase": "verify",
+    "players": 2,
+    "humanAcceptance": false,
+    "checks": [
+      "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+      "completed_contract_and_invalid_pending_envelope_restore_without_reapplication",
+      "active_contract_times_out_once_and_manual_ack_discards_only_the_invalid_envelope"
+    ],
+    "identities": {
+      "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+      "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+    },
+    "snapshotAtFinish": {
+      "tick": 840,
+      "messages": 6,
+      "pending": 0,
+      "acknowledged": 6,
+      "radioEvents": 12,
+      "received": 4,
+      "contractEvents": 5,
+      "contracts": [
+        {
+          "id": "expires_after_restart",
+          "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+          "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+          "requestedUnits": 1,
+          "fulfilledUnits": 0,
+          "createdAt": 555,
+          "expiresAt": 755,
+          "state": "EXPIRED"
+        },
+        {
+          "id": "restart_order",
+          "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+          "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+          "requestedUnits": 3,
+          "fulfilledUnits": 3,
+          "createdAt": 312,
+          "expiresAt": 512,
+          "state": "COMPLETED"
+        }
+      ]
+    },
+    "log": "player-workflow.log"
+  }
+}

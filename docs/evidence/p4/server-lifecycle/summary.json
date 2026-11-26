@@ -1,0 +1,1038 @@
+{
+  "date": "2026-11-26",
+  "baseCommit": "e052fc9b35bf3ff497ae7946366c5761fc5b7691",
+  "scope": "Fix the documented contract send command and validate P4 delivery/contract state over three actual boots per platform.",
+  "failure": {
+    "kind": "Actual Paper command rejection: documented contract token was looked up as a protocol ID.",
+    "serverResult": {
+      "passed": false,
+      "kind": "paper",
+      "runs": [
+        {
+          "phase": "prepare",
+          "exitCode": 1,
+          "server": {
+            "kind": "paper",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": false
+            },
+            "passed": false,
+            "seconds": 60.28,
+            "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+            "plugin_sha256": "22b5887b88132e3b78d59e587c99a19ab67de854adabe2e5541a9a7f981c2fe7",
+            "log_sha256": "c2670285414034a2e13572d9054f2367e6dc55a85f9c94b4a07f09a4fff0f16d",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": false,
+              "kind": "paper",
+              "phase": "prepare",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "error": "Error: SGRadioRequest timed out waiting for \"消息已排入\". Connection error=none. Recent messages:\n无线操作未完成：未知或未安装 protocol contract\n    at waitForMessage (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:42:9)\n    at async main (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_radio_lifecycle_smoke.cjs:86:7)",
+              "log": "player-workflow.log"
+            }
+          }
+        }
+      ],
+      "scope": "Three actual boots, two fixed offline clients; no forced crash, cross-region, human or performance acceptance.",
+      "error": "AssertionError: prepare server/client failed",
+      "seconds": 60.84,
+      "artifacts": {
+        "prepare/harness.log": "7f7cd305abb666b2932e9f112d9bc4f0706e9955b5f95d9639a135aad61e26f6",
+        "prepare/player-workflow-result.json": "0bd8965e326a7b87a79d67e3b130b5800bf041a499173ad1efd76520d8d4dfa0",
+        "prepare/player-workflow.log": "7d81af1b00f8830f74157af80683898cb8b295f4dce8d7e0be3fe56bf7b6f8af",
+        "prepare/radio-state.json": "7f7968e466af09b77bf410192192c4ebaf670a121d913337fbe5d3cdbea6f9d0",
+        "prepare/smoke-console.log": "c2670285414034a2e13572d9054f2367e6dc55a85f9c94b4a07f09a4fff0f16d",
+        "prepare/smoke-result.json": "b1e435cb9884964d5c214df4e975d27bb2dffb9e6293d8a779570b02b2dded3a"
+      }
+    },
+    "priorPluginSha256": "22b5887b88132e3b78d59e587c99a19ab67de854adabe2e5541a9a7f981c2fe7",
+    "extractedParserTests": 2,
+    "errors": 2,
+    "cases": [
+      {
+        "test": "documentedContractSyntaxCreatesAcceptsAndFulfillsADurableContract",
+        "error": "未知或未安装 protocol contract"
+      },
+      {
+        "test": "documentedAliasMatchesThePreviouslyAcceptedExplicitPinnedProtocol",
+        "error": "未知或未安装 protocol contract"
+      }
+    ]
+  },
+  "newJavaTests": 5,
+  "focusedJavaTests": 19,
+  "builds": [
+    {
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 68,
+      "tests": 512,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "radio-command-verify-java21.log",
+      "logSha256": "bfa6e9ebe9f901bb73a7fed9915498acee1e0d687077bd4fb8de89defa0916af",
+      "pluginSha256": "d46c54d2ae2fbce0952575d75935cae65fc032dbd6ef5a2c01e994e2583f71de",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    },
+    {
+      "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+      "command": "mvnw.cmd -B -ntp -DforkCount=0 clean verify",
+      "mavenOpts": "-Xms16m -Xmx80m -Xss256k -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -XX:ReservedCodeCacheSize=16m -XX:MaxMetaspaceSize=96m -XX:CompressedClassSpaceSize=16m -XX:ActiveProcessorCount=2",
+      "suites": 68,
+      "tests": 512,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "radio-command-verify-java25.log",
+      "logSha256": "57bda648a15777c05c4f82b15a968b58a5077399a1768c2f4f813cefd86bd87d",
+      "pluginSha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+      "sbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13"
+    }
+  ],
+  "toolChecks": {
+    "java21": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "d46c54d2ae2fbce0952575d75935cae65fc032dbd6ef5a2c01e994e2583f71de",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "d46c54d2ae2fbce0952575d75935cae65fc032dbd6ef5a2c01e994e2583f71de",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "d46c54d2ae2fbce0952575d75935cae65fc032dbd6ef5a2c01e994e2583f71de",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+        "sourceSbomSha256": "d24ec1ba23c3258e62399340664b323d3d93bcfe7b919568a293a0df9cac7c13",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "scriptTests": {
+    "python": 9,
+    "node": 3,
+    "newPython": 2,
+    "newNode": 2,
+    "failures": 0
+  },
+  "servers": {
+    "paper": {
+      "passed": true,
+      "kind": "paper",
+      "runs": [
+        {
+          "phase": "prepare",
+          "exitCode": 0,
+          "server": {
+            "kind": "paper",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 55.27,
+            "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "paper",
+              "phase": "prepare",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "regular_poll_remains_unacknowledged_and_unclaimed_offer_is_durable_before_shutdown"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 235,
+                "messages": 2,
+                "pending": 2,
+                "acknowledged": 0,
+                "radioEvents": 2,
+                "received": 0,
+                "contractEvents": 0,
+                "contracts": []
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "b8f62d0a35211a1ef8ab5f5762f64fb9d3e49c2519e8efb77279ffff948c0809",
+          "validatedShutdownSnapshot": true
+        },
+        {
+          "phase": "resume",
+          "exitCode": 0,
+          "server": {
+            "kind": "paper",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 43.45,
+            "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "63474f81574de7d55cacb2ef4640762cf10e0fab29adb792809b058324ee5288",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "paper",
+              "phase": "resume",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+                "pending_offer_recovers_then_accept_and_fulfill_commit_once_with_radio_acknowledgements",
+                "original_envelope_ack_and_cross_tick_dedup_persist_through_hard_disconnect",
+                "invalid_contract_message_stays_pending_and_separate_active_offer_is_saved_for_timeout"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 612,
+                "messages": 6,
+                "pending": 1,
+                "acknowledged": 5,
+                "radioEvents": 11,
+                "received": 4,
+                "contractEvents": 4,
+                "contracts": [
+                  {
+                    "id": "expires_after_restart",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 1,
+                    "fulfilledUnits": 0,
+                    "createdAt": 612,
+                    "expiresAt": 812,
+                    "state": "OFFERED"
+                  },
+                  {
+                    "id": "restart_order",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 3,
+                    "fulfilledUnits": 3,
+                    "createdAt": 380,
+                    "expiresAt": 580,
+                    "state": "COMPLETED"
+                  }
+                ]
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "edeee5426891b057f97f55800442bf8720c173f2d9d36d837ea01110b536d9e9",
+          "validatedShutdownSnapshot": true
+        },
+        {
+          "phase": "verify",
+          "exitCode": 0,
+          "server": {
+            "kind": "paper",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 37.98,
+            "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "b60499de338ea5808105e035d71d244d572e5e340ce70c9777ab3dd9430e3b5e",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "paper",
+              "phase": "verify",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+                "completed_contract_and_invalid_pending_envelope_restore_without_reapplication",
+                "active_contract_times_out_once_and_manual_ack_discards_only_the_invalid_envelope"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 893,
+                "messages": 6,
+                "pending": 0,
+                "acknowledged": 6,
+                "radioEvents": 12,
+                "received": 4,
+                "contractEvents": 5,
+                "contracts": [
+                  {
+                    "id": "expires_after_restart",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 1,
+                    "fulfilledUnits": 0,
+                    "createdAt": 612,
+                    "expiresAt": 812,
+                    "state": "EXPIRED"
+                  },
+                  {
+                    "id": "restart_order",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 3,
+                    "fulfilledUnits": 3,
+                    "createdAt": 380,
+                    "expiresAt": 580,
+                    "state": "COMPLETED"
+                  }
+                ]
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "ba6c387edaedcb78ccaba52373de8f92861d6376ba4ac6d1312ed2254c33d0e1",
+          "validatedShutdownSnapshot": true
+        }
+      ],
+      "scope": "Three actual boots, two fixed offline clients; no forced crash, cross-region, human or performance acceptance.",
+      "seconds": 138.48,
+      "artifacts": {
+        "prepare/client-state.json": "cc3bfbfc76b9162d7a25dd97d30b89818e18a70685bd87230f87459bcbfc2bff",
+        "prepare/harness.log": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+        "prepare/player-workflow-result.json": "00dddf69f5540af56951d712fcb7eadf20a54e9af1dd6ef0ad70fb493af002d0",
+        "prepare/player-workflow.log": "78d8fdd855f5b3610f9c7227458cdfa97e63a6a4e4666f3a1f436997e870bdca",
+        "prepare/radio-state.json": "b8f62d0a35211a1ef8ab5f5762f64fb9d3e49c2519e8efb77279ffff948c0809",
+        "prepare/smoke-console.log": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+        "prepare/smoke-result.json": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+        "resume/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+        "resume/harness.log": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+        "resume/player-workflow-result.json": "fb91e4cf1db59d0003dc22eda336051549797bb65b1662f6518dc9801d4cda56",
+        "resume/player-workflow.log": "5d315348e5b2734c3e6fad4b52012b38b996213b3109759d975702f7e76ee5c6",
+        "resume/radio-state.json": "edeee5426891b057f97f55800442bf8720c173f2d9d36d837ea01110b536d9e9",
+        "resume/smoke-console.log": "63474f81574de7d55cacb2ef4640762cf10e0fab29adb792809b058324ee5288",
+        "resume/smoke-result.json": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+        "verify/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+        "verify/harness.log": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43",
+        "verify/player-workflow-result.json": "f1535d5c5935780a73a0ed113052155773d2517fa7a7274e51dc388b727022eb",
+        "verify/player-workflow.log": "9079c4fcb40d3ee6d6479076d2cabf46430c6841c7aacd417300780d98318721",
+        "verify/radio-state.json": "ba6c387edaedcb78ccaba52373de8f92861d6376ba4ac6d1312ed2254c33d0e1",
+        "verify/smoke-console.log": "b60499de338ea5808105e035d71d244d572e5e340ce70c9777ab3dd9430e3b5e",
+        "verify/smoke-result.json": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43"
+      }
+    },
+    "folia": {
+      "passed": true,
+      "kind": "folia",
+      "runs": [
+        {
+          "phase": "prepare",
+          "exitCode": 0,
+          "server": {
+            "kind": "folia",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 52.55,
+            "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "1befee45f0aaa58376e1b59c421022cf6e6c1fb254caa80a5ce096b4df8e586b",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "folia",
+              "phase": "prepare",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "regular_poll_remains_unacknowledged_and_unclaimed_offer_is_durable_before_shutdown"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 164,
+                "messages": 2,
+                "pending": 2,
+                "acknowledged": 0,
+                "radioEvents": 2,
+                "received": 0,
+                "contractEvents": 0,
+                "contracts": []
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "8017984c1402fbeb736a48bb97ffc7f057a21692678a1108a939aad8242f3748",
+          "validatedShutdownSnapshot": true
+        },
+        {
+          "phase": "resume",
+          "exitCode": 0,
+          "server": {
+            "kind": "folia",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 41.39,
+            "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "a9f368cb95a44e2460ae2f1e9794b97758d6525f2c851219a922dba36dc49ca7",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "folia",
+              "phase": "resume",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+                "pending_offer_recovers_then_accept_and_fulfill_commit_once_with_radio_acknowledgements",
+                "original_envelope_ack_and_cross_tick_dedup_persist_through_hard_disconnect",
+                "invalid_contract_message_stays_pending_and_separate_active_offer_is_saved_for_timeout"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 555,
+                "messages": 6,
+                "pending": 1,
+                "acknowledged": 5,
+                "radioEvents": 11,
+                "received": 4,
+                "contractEvents": 4,
+                "contracts": [
+                  {
+                    "id": "expires_after_restart",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 1,
+                    "fulfilledUnits": 0,
+                    "createdAt": 555,
+                    "expiresAt": 755,
+                    "state": "OFFERED"
+                  },
+                  {
+                    "id": "restart_order",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 3,
+                    "fulfilledUnits": 3,
+                    "createdAt": 312,
+                    "expiresAt": 512,
+                    "state": "COMPLETED"
+                  }
+                ]
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "bdb68bbe00be997e0e6361bbbd1efbef8ab19cf033fec4669850f861f67d3b0c",
+          "validatedShutdownSnapshot": true
+        },
+        {
+          "phase": "verify",
+          "exitCode": 0,
+          "server": {
+            "kind": "folia",
+            "checks": {
+              "server_ready": true,
+              "plugin_enabled": true,
+              "design_examples_verified": true,
+              "status_command": true,
+              "p3_program_workspace": true,
+              "p3_replayable_simulation": true,
+              "p4_virtual_radio": true,
+              "p4_radio_protocol_pinned": true,
+              "p4_service_contract_pinned": true,
+              "p5_closed_ecology": true,
+              "p6_four_player_factory": true,
+              "p7_arena_catalog": true,
+              "p8_territory_match": true,
+              "p9_real_settlement_inactive": true,
+              "p10_signed_design_import": true,
+              "help_command": true,
+              "capabilities_command": true,
+              "missing_dependency_report": true,
+              "budget_command": true,
+              "plugin_disabled": true,
+              "clean_exit": true,
+              "no_plugin_startup_error": true,
+              "player_workflow": true
+            },
+            "passed": true,
+            "seconds": 37.22,
+            "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+            "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+            "log_sha256": "14a6abf2c45a3b8d44052efaa1eaa4dd1fc9603768c7e0fa5950628293eba7a5",
+            "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+            "launch_mode": "paperclip-bootstrap",
+            "heap_mb": 512,
+            "jvm_args": [
+              "-XX:+UseSerialGC",
+              "-XX:TieredStopAtLevel=1",
+              "-XX:ReservedCodeCacheSize=64m",
+              "-XX:ActiveProcessorCount=2"
+            ],
+            "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+            "player_workflow": {
+              "passed": true,
+              "kind": "folia",
+              "phase": "verify",
+              "players": 2,
+              "humanAcceptance": false,
+              "checks": [
+                "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+                "completed_contract_and_invalid_pending_envelope_restore_without_reapplication",
+                "active_contract_times_out_once_and_manual_ack_discards_only_the_invalid_envelope"
+              ],
+              "identities": {
+                "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+              },
+              "snapshotAtFinish": {
+                "tick": 840,
+                "messages": 6,
+                "pending": 0,
+                "acknowledged": 6,
+                "radioEvents": 12,
+                "received": 4,
+                "contractEvents": 5,
+                "contracts": [
+                  {
+                    "id": "expires_after_restart",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 1,
+                    "fulfilledUnits": 0,
+                    "createdAt": 555,
+                    "expiresAt": 755,
+                    "state": "EXPIRED"
+                  },
+                  {
+                    "id": "restart_order",
+                    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+                    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+                    "requestedUnits": 3,
+                    "fulfilledUnits": 3,
+                    "createdAt": 312,
+                    "expiresAt": 512,
+                    "state": "COMPLETED"
+                  }
+                ]
+              },
+              "log": "player-workflow.log"
+            }
+          },
+          "snapshotSha256": "6e95328e87ded114b4633650d3c72253a733958af8216df9eec0179a5abfe91d",
+          "validatedShutdownSnapshot": true
+        }
+      ],
+      "scope": "Three actual boots, two fixed offline clients; no forced crash, cross-region, human or performance acceptance.",
+      "seconds": 132.58,
+      "artifacts": {
+        "prepare/client-state.json": "c70dfb278dc714c45c47dd83cad1f29373aab2146ba27bf36e117051f5af8fb2",
+        "prepare/harness.log": "c48fb74fd94e8e7e47f19308843d65c9926ea1f8c13bf898b89edeee3d2566de",
+        "prepare/player-workflow-result.json": "42a26a5e6ca784c3ce246c29aee4f17ed2b8557f939db14e388c1bedcb81eacb",
+        "prepare/player-workflow.log": "b81c87265e637cf25cd38a75aa307f0603b364e9aca5382de64f33bd3a5edff6",
+        "prepare/radio-state.json": "8017984c1402fbeb736a48bb97ffc7f057a21692678a1108a939aad8242f3748",
+        "prepare/smoke-console.log": "1befee45f0aaa58376e1b59c421022cf6e6c1fb254caa80a5ce096b4df8e586b",
+        "prepare/smoke-result.json": "c48fb74fd94e8e7e47f19308843d65c9926ea1f8c13bf898b89edeee3d2566de",
+        "resume/client-state.json": "72f57ad575839e1c0845a154f2d1a7ebda67fe2f8cee81670f9ed8cc6cdd2776",
+        "resume/harness.log": "e8b978bd15c2c93079ff29cf4f4dbde0b40b9fe26eaa3168f06e8963ab061b99",
+        "resume/player-workflow-result.json": "5fe0f766f7339d1ab1305562914f64a4ca60bdf977ca8b3922d9359d1286814e",
+        "resume/player-workflow.log": "392134ad9150b83d6baa0870731bd362eb47ae2ccb5e83f95950ea565de5e745",
+        "resume/radio-state.json": "bdb68bbe00be997e0e6361bbbd1efbef8ab19cf033fec4669850f861f67d3b0c",
+        "resume/smoke-console.log": "a9f368cb95a44e2460ae2f1e9794b97758d6525f2c851219a922dba36dc49ca7",
+        "resume/smoke-result.json": "e8b978bd15c2c93079ff29cf4f4dbde0b40b9fe26eaa3168f06e8963ab061b99",
+        "verify/client-state.json": "72f57ad575839e1c0845a154f2d1a7ebda67fe2f8cee81670f9ed8cc6cdd2776",
+        "verify/harness.log": "e291f59bf84fc7e7a52fee0209ead4b7a30299d121d1a584c950798264ba6113",
+        "verify/player-workflow-result.json": "9ff9790ac74fb35c7b15087e5e29129274527411d3008eaef42848018dbc5e8b",
+        "verify/player-workflow.log": "bbb98ae6e85cb8748f872d848968f843bf4177a72b6f0b1f85ca2fe505f87e4b",
+        "verify/radio-state.json": "6e95328e87ded114b4633650d3c72253a733958af8216df9eec0179a5abfe91d",
+        "verify/smoke-console.log": "14a6abf2c45a3b8d44052efaa1eaa4dd1fc9603768c7e0fa5950628293eba7a5",
+        "verify/smoke-result.json": "e291f59bf84fc7e7a52fee0209ead4b7a30299d121d1a584c950798264ba6113"
+      }
+    }
+  },
+  "finalCountsPerPlatform": {
+    "messages": 6,
+    "pending": 0,
+    "acknowledged": 6,
+    "radioEvents": 12,
+    "contracts": 2,
+    "appliedContractMessages": 4,
+    "contractEvents": 5
+  },
+  "crossPlatform": {
+    "sameOfflineIdentities": true,
+    "equalFinalContentIgnoringLogicalTimes": true,
+    "omittedComparisonFields": [
+      "tick",
+      "createdAt",
+      "expiresAt"
+    ],
+    "byteIdenticalSnapshotsRequired": false
+  },
+  "limitations": [
+    "Two fixed automated offline clients; no human, distinct-Folia-region, load, or network capacity acceptance.",
+    "Clean shutdown and two restarts; no forced JVM crash, hot reload or write failure injection on live servers.",
+    "Invalid contract message remains pending until recipient explicitly acknowledges it; no automatic dead-letter policy.",
+    "Contract timeout remains 200 logical server ticks; clocks run while players are offline or not joined.",
+    "Uses Java21 with 512 MiB maximum heap and a Java25-built plugin; functional evidence, not production configuration guidance.",
+    "Real providers, operator trust roots and release signatures remain unpassed; real settlement remains disabled."
+  ],
+  "sourceSha256": {
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioController.java": "d3ca2ef6c59c7933eec1dec976e44b5ddab4613ec1518d849d4189720e79d405",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioSendCommand.java": "22c11bad1419d1a857eebac779342a2b1ef4f74353d76da7cf839fbea6b30718",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/RadioService.java": "009d25650d968c6124748d0e0150d054f46bcea56a5fa335f2d12b075cebb820",
+    "stargenesis-paper/src/main/java/dev/stargenesis/paper/communication/VirtualMessageBus.java": "752057f33beab59e7e1ab494950286b764178321a4d9a10ccf0fb789a3b7cdbd",
+    "stargenesis-paper/src/test/java/dev/stargenesis/paper/communication/RadioSendCommandTest.java": "d94f4ce984ab2833b03cb5f6ff552b80f9071ed2f78f8c4fbd01944d3295b459",
+    "scripts/server_radio_lifecycle_smoke.py": "e48826c2721a207ef586dc48c3826e59e1e46db3a9531b0306ba09fe49191415",
+    "scripts/offline_client_radio_lifecycle_smoke.cjs": "7f4f6ebe3688df0e9285e1b01bd2e4083903e555cefbff3266910d25de52327c",
+    "scripts/test_server_radio_lifecycle_smoke.py": "44121c493389c3cadf7e95366b70494dc6921622abac34c33f34cf7f1fbd7971",
+    "scripts/test_offline_client_radio_lifecycle_smoke.cjs": "64aa3897fd34de7db2324623ec8030d79d72016b3c4a1fbde17013e31c015c9c",
+    "scripts/server_smoke.py": "c8f86355525a42344482125704cf228685fe40fd92b456d406cb9efd46f4943d",
+    "scripts/offline_client_workflow_smoke.cjs": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d",
+    ".github/workflows/verify.yml": "3b6ae487e10e64b5557279c1997075e3298727a2a4f61b0f396fee348dfb92b0"
+  },
+  "artifactSha256": {
+    "baseline/RadioController.java.txt": "5e36e886fafc91549e65d1b23fb7c97305ba6193d6dee4427ea0cef4dd017a1d",
+    "baseline/RadioSendCommand.java.txt": "6f7c3e21e1e79c8259ca67265a39104657801a7ec0d3a3fee8f01b9e048c6a6a",
+    "baseline/RadioSendCommandTest.java.txt": "2cbf11ab24b8025eda4b1053e8c7559d3687bb996f2260a8b4964d076ac28550",
+    "baseline/TEST-dev.stargenesis.paper.communication.RadioSendCommandTest.xml": "d8b6ffe987411ad7c59be7296c161ac3bca4de9025884e25347fa633baa71212",
+    "baseline/tests.log": "459b4be3d325ebd1ae29bd1a658f15bb8007b1c13c41ac93addcc55d896cd17e",
+    "failed-paper-contract-command/failed-client.cjs.txt": "7f4f6ebe3688df0e9285e1b01bd2e4083903e555cefbff3266910d25de52327c",
+    "failed-paper-contract-command/prepare/harness.log": "7f7cd305abb666b2932e9f112d9bc4f0706e9955b5f95d9639a135aad61e26f6",
+    "failed-paper-contract-command/prepare/player-workflow-result.json": "0bd8965e326a7b87a79d67e3b130b5800bf041a499173ad1efd76520d8d4dfa0",
+    "failed-paper-contract-command/prepare/player-workflow.log": "7d81af1b00f8830f74157af80683898cb8b295f4dce8d7e0be3fe56bf7b6f8af",
+    "failed-paper-contract-command/prepare/radio-state.json": "7f7968e466af09b77bf410192192c4ebaf670a121d913337fbe5d3cdbea6f9d0",
+    "failed-paper-contract-command/prepare/smoke-console.log": "c2670285414034a2e13572d9054f2367e6dc55a85f9c94b4a07f09a4fff0f16d",
+    "failed-paper-contract-command/prepare/smoke-result.json": "b1e435cb9884964d5c214df4e975d27bb2dffb9e6293d8a779570b02b2dded3a",
+    "failed-paper-contract-command/result.json": "4e87f434873d00a9f010705dc63bca096f715cc0081cbf290536314bd08aa3dc",
+    "folia/prepare/client-state.json": "c70dfb278dc714c45c47dd83cad1f29373aab2146ba27bf36e117051f5af8fb2",
+    "folia/prepare/harness.log": "c48fb74fd94e8e7e47f19308843d65c9926ea1f8c13bf898b89edeee3d2566de",
+    "folia/prepare/player-workflow-result.json": "42a26a5e6ca784c3ce246c29aee4f17ed2b8557f939db14e388c1bedcb81eacb",
+    "folia/prepare/player-workflow.log": "b81c87265e637cf25cd38a75aa307f0603b364e9aca5382de64f33bd3a5edff6",
+    "folia/prepare/radio-state.json": "8017984c1402fbeb736a48bb97ffc7f057a21692678a1108a939aad8242f3748",
+    "folia/prepare/smoke-console.log": "1befee45f0aaa58376e1b59c421022cf6e6c1fb254caa80a5ce096b4df8e586b",
+    "folia/prepare/smoke-result.json": "c48fb74fd94e8e7e47f19308843d65c9926ea1f8c13bf898b89edeee3d2566de",
+    "folia/result.json": "f16ad45efa1953f4b4962aa871a6a31df94c30d68ead4c09dfc210946025bf59",
+    "folia/resume/client-state.json": "72f57ad575839e1c0845a154f2d1a7ebda67fe2f8cee81670f9ed8cc6cdd2776",
+    "folia/resume/harness.log": "e8b978bd15c2c93079ff29cf4f4dbde0b40b9fe26eaa3168f06e8963ab061b99",
+    "folia/resume/player-workflow-result.json": "5fe0f766f7339d1ab1305562914f64a4ca60bdf977ca8b3922d9359d1286814e",
+    "folia/resume/player-workflow.log": "392134ad9150b83d6baa0870731bd362eb47ae2ccb5e83f95950ea565de5e745",
+    "folia/resume/radio-state.json": "bdb68bbe00be997e0e6361bbbd1efbef8ab19cf033fec4669850f861f67d3b0c",
+    "folia/resume/smoke-console.log": "a9f368cb95a44e2460ae2f1e9794b97758d6525f2c851219a922dba36dc49ca7",
+    "folia/resume/smoke-result.json": "e8b978bd15c2c93079ff29cf4f4dbde0b40b9fe26eaa3168f06e8963ab061b99",
+    "folia/verify/client-state.json": "72f57ad575839e1c0845a154f2d1a7ebda67fe2f8cee81670f9ed8cc6cdd2776",
+    "folia/verify/harness.log": "e291f59bf84fc7e7a52fee0209ead4b7a30299d121d1a584c950798264ba6113",
+    "folia/verify/player-workflow-result.json": "9ff9790ac74fb35c7b15087e5e29129274527411d3008eaef42848018dbc5e8b",
+    "folia/verify/player-workflow.log": "bbb98ae6e85cb8748f872d848968f843bf4177a72b6f0b1f85ca2fe505f87e4b",
+    "folia/verify/radio-state.json": "6e95328e87ded114b4633650d3c72253a733958af8216df9eec0179a5abfe91d",
+    "folia/verify/smoke-console.log": "14a6abf2c45a3b8d44052efaa1eaa4dd1fc9603768c7e0fa5950628293eba7a5",
+    "folia/verify/smoke-result.json": "e291f59bf84fc7e7a52fee0209ead4b7a30299d121d1a584c950798264ba6113",
+    "paper/prepare/client-state.json": "cc3bfbfc76b9162d7a25dd97d30b89818e18a70685bd87230f87459bcbfc2bff",
+    "paper/prepare/harness.log": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+    "paper/prepare/player-workflow-result.json": "00dddf69f5540af56951d712fcb7eadf20a54e9af1dd6ef0ad70fb493af002d0",
+    "paper/prepare/player-workflow.log": "78d8fdd855f5b3610f9c7227458cdfa97e63a6a4e4666f3a1f436997e870bdca",
+    "paper/prepare/radio-state.json": "b8f62d0a35211a1ef8ab5f5762f64fb9d3e49c2519e8efb77279ffff948c0809",
+    "paper/prepare/smoke-console.log": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+    "paper/prepare/smoke-result.json": "d643bbf1ace6d8e87bbc29023e1fbd3f3ec91133472d4abcee6c47929118ef40",
+    "paper/result.json": "e38fb6c78fc210dde24305ad9ce94445aca32c8b6bcb71863168d5bda63ba46c",
+    "paper/resume/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+    "paper/resume/harness.log": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+    "paper/resume/player-workflow-result.json": "fb91e4cf1db59d0003dc22eda336051549797bb65b1662f6518dc9801d4cda56",
+    "paper/resume/player-workflow.log": "5d315348e5b2734c3e6fad4b52012b38b996213b3109759d975702f7e76ee5c6",
+    "paper/resume/radio-state.json": "edeee5426891b057f97f55800442bf8720c173f2d9d36d837ea01110b536d9e9",
+    "paper/resume/smoke-console.log": "63474f81574de7d55cacb2ef4640762cf10e0fab29adb792809b058324ee5288",
+    "paper/resume/smoke-result.json": "37a898120cd2f558087c1739b67d66bbae9888f549bd965fd267b45150207f6b",
+    "paper/verify/client-state.json": "3c2439caecbe2b38dec473eab7cd68e6ba3d531ee5cd5e882145b4fed15c07c5",
+    "paper/verify/harness.log": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43",
+    "paper/verify/player-workflow-result.json": "f1535d5c5935780a73a0ed113052155773d2517fa7a7274e51dc388b727022eb",
+    "paper/verify/player-workflow.log": "9079c4fcb40d3ee6d6479076d2cabf46430c6841c7aacd417300780d98318721",
+    "paper/verify/radio-state.json": "ba6c387edaedcb78ccaba52373de8f92861d6376ba4ac6d1312ed2254c33d0e1",
+    "paper/verify/smoke-console.log": "b60499de338ea5808105e035d71d244d572e5e340ce70c9777ab3dd9430e3b5e",
+    "paper/verify/smoke-result.json": "a8e7365e0289e398952337b03a762d1bfc13c311c398df2c027eabf9f3753f43",
+    "radio-command-build-java21.json": "531d1bf403a7155d0740aa0ba28e15d408fd06c15d2a97ca44735122e6ef6fbc",
+    "radio-command-build-java25.json": "f4dbcaa4b87746ff5ca4592179bf663ed08cbb6b4a33881a3836a082886e71e8",
+    "radio-command-builder-tests.log": "d1f202efca61db834b9cc8303c60411055e6c611acdba398925cb1e8ea695bb3",
+    "radio-command-client-tests.log": "da3c31f37ae134068d40e278b29af20a430c095f12eec836e43acecfa1fcd7f8",
+    "radio-command-design-signer-java21.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "radio-command-design-signer-java21.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "radio-command-design-signer-java25.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "radio-command-design-signer-java25.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "radio-command-focused-tests.log": "88651c6a1c4a4144cf44882d7f2c75376249f2f8e44522aca51cd2b9efe546f9",
+    "radio-command-lifecycle-tests.log": "a3d9100da4abf5b354d3ad1aac835e6e524578fffa31391e6546e6d35e443be9",
+    "radio-command-release-signer-java21.json": "56fa519f4d1718fc023ea08bb8b5085dbc01ceecae8c3f750b5b652dd10fc51b",
+    "radio-command-release-signer-java21.log": "56fa519f4d1718fc023ea08bb8b5085dbc01ceecae8c3f750b5b652dd10fc51b",
+    "radio-command-release-signer-java25.json": "cd7238fecc9694de48ac3da4c26cb3c47c50d58ccc71872e4488508b813e1488",
+    "radio-command-release-signer-java25.log": "cd7238fecc9694de48ac3da4c26cb3c47c50d58ccc71872e4488508b813e1488",
+    "radio-command-settlement-lock-java21.json": "698719e587a82a0fed89e96ee8fcd9d72776d8ef5778db5e51accb7a293c9ccc",
+    "radio-command-settlement-lock-java21.log": "d5327b98508e3947d7ea38681f36d8621b8c6a7de5f67908d9ba56eba188147c",
+    "radio-command-settlement-lock-java25.json": "bd0b52468baf2664b9de673315c356040ee70ae6d045d2689837b1a87286a973",
+    "radio-command-settlement-lock-java25.log": "b8b9b8c664c7968a80eb29948e643de26a4b9e7a59ea2246dfbd4a1ae74674d8",
+    "radio-command-verify-java21.log": "bfa6e9ebe9f901bb73a7fed9915498acee1e0d687077bd4fb8de89defa0916af",
+    "radio-command-verify-java25.log": "57bda648a15777c05c4f82b15a968b58a5077399a1768c2f4f813cefd86bd87d",
+    "radio-command-worker-lock-java21.json": "c2be90517d96860f49bd509d132167c2dd8ffab0bb31de60ad009f664d1592e1",
+    "radio-command-worker-lock-java21.log": "8f9ed4b19e16d8a9fcab1edc2b57817fde68f108fe672ad4bcf8ad4ac6d975d2",
+    "radio-command-worker-lock-java25.json": "c58ffe51cf11a26db3ec37e3bd8d98a0d4a378955200139d45893651e70e9b6f",
+    "radio-command-worker-lock-java25.log": "ee866dad358125456cafeffd48b5897c686309eb45cc035d94ae691011e3a835"
+  }
+}

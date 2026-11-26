@@ -1,0 +1,68 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true,
+    "player_workflow": true
+  },
+  "passed": true,
+  "seconds": 55.27,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "c0fbfcfab3c1d8c08959247d6903688803b78fce59df0b006394a6cb11b9d951",
+  "log_sha256": "60e60e56629b2d9e0982ee66daae13a920cedd237977889d25e4b4ecdba1a847",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": true,
+    "kind": "paper",
+    "phase": "prepare",
+    "players": 2,
+    "humanAcceptance": false,
+    "checks": [
+      "regular_poll_remains_unacknowledged_and_unclaimed_offer_is_durable_before_shutdown"
+    ],
+    "identities": {
+      "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+      "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+    },
+    "snapshotAtFinish": {
+      "tick": 235,
+      "messages": 2,
+      "pending": 2,
+      "acknowledged": 0,
+      "radioEvents": 2,
+      "received": 0,
+      "contractEvents": 0,
+      "contracts": []
+    },
+    "log": "player-workflow.log"
+  }
+}

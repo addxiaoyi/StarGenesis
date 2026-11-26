@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "kind": "folia",
+  "phase": "resume",
+  "players": 2,
+  "humanAcceptance": false,
+  "checks": [
+    "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+    "pending_offer_recovers_then_accept_and_fulfill_commit_once_with_radio_acknowledgements",
+    "original_envelope_ack_and_cross_tick_dedup_persist_through_hard_disconnect",
+    "invalid_contract_message_stays_pending_and_separate_active_offer_is_saved_for_timeout"
+  ],
+  "identities": {
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+  },
+  "snapshotAtFinish": {
+    "tick": 555,
+    "messages": 6,
+    "pending": 1,
+    "acknowledged": 5,
+    "radioEvents": 11,
+    "received": 4,
+    "contractEvents": 4,
+    "contracts": [
+      {
+        "id": "expires_after_restart",
+        "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+        "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+        "requestedUnits": 1,
+        "fulfilledUnits": 0,
+        "createdAt": 555,
+        "expiresAt": 755,
+        "state": "OFFERED"
+      },
+      {
+        "id": "restart_order",
+        "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+        "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+        "requestedUnits": 3,
+        "fulfilledUnits": 3,
+        "createdAt": 312,
+        "expiresAt": 512,
+        "state": "COMPLETED"
+      }
+    ]
+  }
+}

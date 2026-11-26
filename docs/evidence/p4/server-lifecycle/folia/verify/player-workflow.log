@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "kind": "folia",
+  "phase": "verify",
+  "players": 2,
+  "humanAcceptance": false,
+  "checks": [
+    "fixed_identities_and_unclaimed_radio_history_survive_restart_without_online_endpoints",
+    "completed_contract_and_invalid_pending_envelope_restore_without_reapplication",
+    "active_contract_times_out_once_and_manual_ack_discards_only_the_invalid_envelope"
+  ],
+  "identities": {
+    "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+    "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f"
+  },
+  "snapshotAtFinish": {
+    "tick": 840,
+    "messages": 6,
+    "pending": 0,
+    "acknowledged": 6,
+    "radioEvents": 12,
+    "received": 4,
+    "contractEvents": 5,
+    "contracts": [
+      {
+        "id": "expires_after_restart",
+        "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+        "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+        "requestedUnits": 1,
+        "fulfilledUnits": 0,
+        "createdAt": 555,
+        "expiresAt": 755,
+        "state": "EXPIRED"
+      },
+      {
+        "id": "restart_order",
+        "requester": "8181cfad-2730-3c0f-833e-889dacdd2854",
+        "provider": "84b6eb41-8ab7-3286-b7cc-f53b36a8d97f",
+        "requestedUnits": 3,
+        "fulfilledUnits": 3,
+        "createdAt": 312,
+        "expiresAt": 512,
+        "state": "COMPLETED"
+      }
+    ]
+  }
+}
