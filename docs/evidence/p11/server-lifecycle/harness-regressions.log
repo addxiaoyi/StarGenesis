@@ -1,0 +1,48 @@
+["C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe", "-m", "unittest", "discover", "-s", "scripts", "-p", "test_release_candidate_builder.py", "-v"]
+test_existing_evidence_is_preserved_before_any_build (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_existing_evidence_is_preserved_before_any_build) ... ok
+test_failed_empty_or_skipped_reports_cannot_be_packaged (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_failed_empty_or_skipped_reports_cannot_be_packaged) ... ok
+test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched (test_release_candidate_builder.ReleaseCandidateBuilderTest.test_isolated_inputs_exclude_prior_artifacts_and_version_edits_leave_source_untouched) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.273s
+
+OK
+
+["C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe", "-m", "unittest", "discover", "-s", "scripts", "-p", "test_server_lifecycle_smoke.py", "-v"]
+test_final_checkpoint_must_cover_observed_progress_with_complete_matching_history (test_server_lifecycle_smoke.LifecycleEvidenceTest.test_final_checkpoint_must_cover_observed_progress_with_complete_matching_history) ... ok
+test_lease_check_never_creates_missing_lock_files (test_server_lifecycle_smoke.LifecycleEvidenceTest.test_lease_check_never_creates_missing_lock_files) ... ok
+test_manifest_detects_changed_added_and_deleted_evidence (test_server_lifecycle_smoke.LifecycleEvidenceTest.test_manifest_detects_changed_added_and_deleted_evidence) ... ok
+test_resume_must_extend_same_world_without_rewriting_prior_history (test_server_lifecycle_smoke.LifecycleEvidenceTest.test_resume_must_extend_same_world_without_rewriting_prior_history) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.086s
+
+OK
+
+["C:\\Program Files\\nodejs\\node.exe", "--test", "scripts/test_offline_client_lifecycle_smoke.cjs"]
+TAP version 13
+# Subtest: a startup cannot silently change, drop, or add saved evidence
+ok 1 - a startup cannot silently change, drop, or add saved evidence
+  ---
+  duration_ms: 57.116
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 207.4741
+
+["C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe", "scripts/check_boundaries.py"]
+PASS: public API, simulation, design and discovery are free of server/reflective imports
+
+["C:\\Program Files\\nodejs\\node.exe", "--check", "scripts/offline_client_workflow_smoke.cjs"]
+
+["C:\\Program Files\\nodejs\\node.exe", "--check", "scripts/offline_client_lifecycle_smoke.cjs"]
+
+["git", "diff", "--check"]
+

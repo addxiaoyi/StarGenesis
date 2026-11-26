@@ -34,7 +34,8 @@ def run_player_workflow(args: argparse.Namespace, target: Path, stop_server) -> 
     result_path = target / "player-workflow-result.json"
     log_path = target / "player-workflow.log"
     result_path.write_text('{"passed":false,"error":"workflow did not complete"}\n', encoding="utf-8")
-    command = [node, str(Path(__file__).resolve().with_name("offline_client_workflow_smoke.cjs")),
+    script = "offline_client_lifecycle_smoke.cjs" if args.lifecycle_phase else "offline_client_workflow_smoke.cjs"
+    command = [node, str(Path(__file__).resolve().with_name(script)),
                "--host", "127.0.0.1", "--port", str(args.port),
                "--kind", args.kind,
                "--module-root", str(args.node_modules.resolve()),
@@ -42,6 +43,10 @@ def run_player_workflow(args: argparse.Namespace, target: Path, stop_server) -> 
                "--blueprint-source", str(Path(__file__).resolve().parents[1]
                                           / "stargenesis-design" / "src" / "main" / "resources" / "examples" / "blueprint.json"),
                "--output", str(result_path)]
+    if args.lifecycle_phase:
+        command.extend(["--phase", args.lifecycle_phase])
+        if args.lifecycle_manifest:
+            command.extend(["--manifest", str(args.lifecycle_manifest.resolve())])
     if args.region_travel:
         command.append("--region-travel")
     if args.test_shutdown_menu:
@@ -75,7 +80,8 @@ def run_player_workflow(args: argparse.Namespace, target: Path, stop_server) -> 
                 break
             if line:
                 output_lines.append(line)
-                if line.strip() in {"READY_TO_STOP_WITH_MENU_OPEN", "READY_TO_DISABLE_PLUGIN_DURING_LAB"} and not shutdown_requested:
+                if line.strip() in {"READY_TO_STOP_WITH_MENU_OPEN", "READY_TO_DISABLE_PLUGIN_DURING_LAB",
+                                    "READY_TO_STOP_WITH_LAB_ACTIVE"} and not shutdown_requested:
                     shutdown_requested = stop_server()
             if completed.poll() is not None and workflow_output.empty():
                 break
@@ -112,6 +118,9 @@ def run_player_workflow(args: argparse.Namespace, target: Path, stop_server) -> 
     if args.disable_plugin_during_lab:
         workflow["pluginDisableRequestedByHarness"] = shutdown_requested
         workflow["passed"] = workflow["passed"] and shutdown_requested
+    if args.lifecycle_phase in {"prepare", "resume"}:
+        workflow["activeLabShutdownRequestedByHarness"] = shutdown_requested
+        workflow["passed"] = workflow["passed"] and shutdown_requested
     workflow["log"] = log_path.name
     return workflow
 
@@ -127,6 +136,8 @@ def main() -> None:
     parser.add_argument("--timeout", type=int, default=240)
     parser.add_argument("--port", type=int, default=0, help="Fixed server port required for offline-client testing")
     parser.add_argument("--max-players", type=int, default=4)
+    parser.add_argument("--heap-mb", type=int, default=1024, help="Maximum Java heap for this isolated server")
+    parser.add_argument("--jvm-arg", action="append", default=[], help="Additional Java option; repeat as --jvm-arg=-XX:...")
     parser.add_argument("--player-workflow", action="store_true", help="Run automated offline-client P1-P10 workflows")
     parser.add_argument("--node", default="node", help="Node.js executable for --player-workflow")
     parser.add_argument("--node-modules", type=Path, help="Directory containing the installed mineflayer package")
@@ -139,11 +150,23 @@ def main() -> None:
     parser.add_argument("--sustained-lab-minutes", type=int, default=0,
                         help="Run four concurrent P1 simulations for this many minutes in the Folia player workflow")
     parser.add_argument("--extra-plugin-jar", type=Path, action="append", default=[], help="Additional isolated test plugin JAR")
+    parser.add_argument("--lifecycle-phase", choices=["prepare", "resume", "verify"],
+                        help="Focused persistent-identity restart workflow; used by server_lifecycle_smoke.py")
+    parser.add_argument("--lifecycle-manifest", type=Path, help="Expected storage hashes from the preceding clean shutdown")
     args = parser.parse_args()
     if not 0 <= args.port <= 65535:
         parser.error("--port must be between 0 and 65535")
     if not 1 <= args.max_players <= 100:
         parser.error("--max-players must be between 1 and 100")
+    if not 512 <= args.heap_mb <= 8192:
+        parser.error("--heap-mb must be between 512 and 8192")
+    if args.lifecycle_phase and not args.player_workflow:
+        parser.error("--lifecycle-phase requires --player-workflow")
+    if args.lifecycle_phase in {"resume", "verify"} and args.lifecycle_manifest is None:
+        parser.error("Restart phases require --lifecycle-manifest")
+    if args.lifecycle_phase and (args.region_travel or args.test_shutdown_menu
+                                 or args.disable_plugin_during_lab or args.sustained_lab_minutes):
+        parser.error("Lifecycle phases cannot be combined with the general client workflow options")
     if args.player_workflow and (args.port == 0 or args.node_modules is None):
         parser.error("--player-workflow requires a fixed --port and --node-modules")
     if (args.region_travel or args.test_shutdown_menu) and not args.player_workflow:
@@ -198,16 +221,20 @@ def main() -> None:
     if args.kind == "folia":
         config = target / "config"
         config.mkdir(exist_ok=True)
-        (config / "folia-global.yml").write_text("_version: 1\nthreaded-regions:\n  threads: 2\n", encoding="utf-8")
+        # Folia reads its threaded-regions settings from paper-global.yml.
+        folia_config = config / "paper-global.yml"
+        if not folia_config.exists():
+            folia_config.write_text("threaded-regions:\n  threads: 2\n", encoding="utf-8")
     if extracted_server:
         libraries = sorted(libraries_directory.rglob("*.jar"))
         if not libraries:
             parser.error("An extracted server requires its library JARs or --libraries-from")
         classpath = os.pathsep.join([str(server_jar), *(str(path.resolve()) for path in libraries)])
-        command = [args.java, "-Xms256M", "-Xmx1G", "-XX:ActiveProcessorCount=4",
+        command = [args.java, "-Xms128M", f"-Xmx{args.heap_mb}M", "-XX:ActiveProcessorCount=4", *args.jvm_arg,
                    "-cp", classpath, "org.bukkit.craftbukkit.Main", "--nogui"]
     else:
-        command = [args.java, "-Xms256M", "-Xmx1G", "-XX:ActiveProcessorCount=4", "-jar", str(server_jar), "--nogui"]
+        command = [args.java, "-Xms128M", f"-Xmx{args.heap_mb}M", "-XX:ActiveProcessorCount=4", *args.jvm_arg,
+                   "-jar", str(server_jar), "--nogui"]
     started = time.monotonic()
     proc = subprocess.Popen(command, cwd=target, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace", bufsize=1)
@@ -314,6 +341,8 @@ def main() -> None:
               "plugin_sha256": sha256(jar), "log_sha256": sha256(log),
               "java": subprocess.run([args.java, "-version"], capture_output=True, text=True).stderr.strip(),
               "launch_mode": "extracted-server-classpath" if extracted_server else "paperclip-bootstrap",
+              "heap_mb": args.heap_mb,
+              "jvm_args": args.jvm_arg,
               "scope": "actual-server console lifecycle and automated offline clients; no human acceptance"
               if args.player_workflow else "actual-server console lifecycle only; no human clients or integration plugins"}
     if args.player_workflow:

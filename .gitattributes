@@ -5,6 +5,7 @@
 *.xml text eol=lf
 *.yml text eol=lf
 *.py text eol=lf
+*.cjs text eol=lf
 *.pub text eol=lf
 mvnw text eol=lf
 *.cmd text eol=crlf
@@ -12,3 +13,4 @@ mvnw text eol=lf
 docs/evidence/**/*.log -text -diff
 docs/evidence/**/sbom.json -text -diff
 docs/evidence/**/*.java.txt text eol=lf
+docs/evidence/p11/server-lifecycle/** -text -whitespace

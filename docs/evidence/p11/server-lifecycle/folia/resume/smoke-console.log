@@ -1,0 +1,654 @@
+Starting org.bukkit.craftbukkit.Main
+[03:30:08 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[03:30:08 INFO]: [bootstrap] Loading Folia 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) for Minecraft 1.21.11
+[03:30:09 INFO]: [PluginInitializerManager] Initializing plugins...
+[03:30:10 INFO]: [PluginInitializerManager] Initialized 1 plugin
+[03:30:10 INFO]: [PluginInitializerManager] Bukkit plugins (1):
+ - StarGenesis (4.0.0-SNAPSHOT)
+[03:30:18 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[03:30:21 INFO]: Loaded 1470 recipes
+[03:30:21 INFO]: Loaded 1584 advancements
+[03:30:22 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[03:30:22 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 922.9ms
+[03:30:23 INFO]: Starting minecraft server version 1.21.11
+[33;1m[03:30:23 WARN]: ****************************
+[m[33;1m[03:30:23 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[03:30:23 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[03:30:23 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[03:30:23 WARN]: ****************************
+[m[03:30:23 INFO]: Loading properties
+[03:30:23 INFO]: This server is running Folia version 1.21.11-14-ver/1.21.11@529aabc (2026-02-22T20:22:23Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[03:30:23 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[03:30:23 INFO]: Server Ping Player Sample Count: 12
+[03:30:23 INFO]: Using 4 threads for Netty based IO
+[03:30:24 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[03:30:24 INFO]: [io.papermc.paper.threadedregions.TickRegions] Initialised EDF Folia scheduler with initial 2 target thread(s)
+> 
+  
+[03:30:24 INFO]: Default game type: SURVIVAL
+> 
+  
+[03:30:24 INFO]: Generating keypair
+> 
+  
+[03:30:24 INFO]: Starting Minecraft server on 127.0.0.1:25672
+> 
+  
+[03:30:24 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[03:30:24 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[03:30:25 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[03:30:25 INFO]: Server permissions file permissions.yml is empty, ignoring it
+> 
+  
+[33;1m[03:30:25 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[03:30:25 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[03:30:25 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[03:30:25 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[03:30:25 INFO]: Preparing level "world"
+> 
+  
+[03:30:25 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[03:30:25 INFO]: Preparing spawn area: 100%
+> 
+  
+[03:30:25 INFO]: Prepared spawn area in 1 ms
+> 
+  
+[03:30:25 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[03:30:25 INFO]: Prepared spawn area in 0 ms
+> 
+  
+[03:30:25 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[03:30:25 INFO]: Prepared spawn area in 0 ms
+> 
+  
+[03:30:25 INFO]: Done preparing level "world" (0.546s)
+> 
+  
+[03:30:25 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[03:30:26 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[03:30:27 INFO]: [StarGenesis] P4 radio state ready | tick=1462 | retained=0 | active contracts=0
+> 
+  
+[03:30:27 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[03:30:27 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[03:30:27 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=FOLIA_COMMAND_LAB
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[03:30:27 INFO]: [spark] The spark plugin has been preferred but was not loaded. The bundled spark profiler will enabled instead.
+> 
+  
+[03:30:27 INFO]: [spark] The spark profiler will not be enabled because it is currently disabled in the configuration.
+> 
+  
+[03:30:27 INFO]: Done (20.003s)! For help, type "help"
+> > > > > > 
+  
+[03:30:27 INFO]: StarGenesis 4.0.0-SNAPSHOT | foundation accepted; automated workflows available, human acceptance pending | engine=genesis-sim/1
+> 
+  
+[03:30:27 INFO]: Design schema=1 | simulation-worker=scheduled | real-settlement=disabled | integrations=8
+> 
+  
+[03:30:27 INFO]: P1 resource lab=FOLIA_COMMAND_LAB | P2 blueprint editor=available | P3 typed program editor=available
+> 
+  
+[03:30:27 INFO]: P3 programs run in a replayable resource sandbox; Minecraft world mutations remain disabled.
+> 
+  
+[03:30:27 INFO]: P4 virtual radio=available | /genesis radio
+> 
+  
+[03:30:27 INFO]: P5 closed ecology=available | /genesis ecology dashboard
+> 
+  
+[03:30:27 INFO]: P6 four-seat simulated factory=available | /genesis factory dashboard
+> 
+  
+[03:30:27 INFO]: P7 licensed arena catalog=available | /genesis arena catalog
+> 
+  
+[03:30:27 INFO]: P8 simultaneous territory match=available | /genesis arena match matches
+> 
+  
+[03:30:27 INFO]: P9 durable saga contract=available, real gateway=inactive
+> 
+  
+[03:30:27 INFO]: P10 signed Ed25519 design import=available | /genesis design list
+> 
+  
+[03:30:27 INFO]: StarGenesis - 玩家发明规则，世界检验发明。
+> 
+  
+[03:30:27 INFO]: /genesis status - current foundation and capability state
+> 
+  
+[03:30:27 INFO]: /genesis lab start [seed] [agents] | stop | replay | resume | status - virtual resource experiment
+> 
+  
+[03:30:27 INFO]: /genesis blueprint - create, edit, preview, undo, and save private virtual structures
+> 
+  
+[03:30:27 INFO]: /genesis program - edit and debug a private typed program in a virtual context
+> 
+  
+[03:30:27 INFO]: /genesis radio - install the virtual radio endpoint, send and receive protocol messages
+> 
+  
+[03:30:27 INFO]: /genesis ecology - program matter, advance a private closed ecosystem, inspect and replay it
+> 
+  
+[03:30:27 INFO]: /genesis factory - form a two-player organization, bid, place simulated orders, recover and replay
+> 
+  
+[03:30:27 INFO]: /genesis arena - create, license, submit for review, and play approved ArenaRulesets
+> 
+  
+[03:30:27 INFO]: /genesis design - install and inspect administrator-staged signed design packages
+> 
+  
+[03:30:27 INFO]: /genesis design publishers - operator-managed publisher trust roots and key rotation
+> 
+  
+[03:30:27 INFO]: /genesis debug capabilities | /genesis debug budgets - operator diagnostics
+> 
+  
+[03:30:27 INFO]: /genesis help - this help. Laboratory score cannot create real inventory or money.
+> 
+  
+[03:30:27 INFO]: StarGenesis capabilities (startup snapshot; installed != active):
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false}, reason=NOT_INSTALLED, sourceRevision=bb6d662c17c713691e40278f5fd7d7db0155512c, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[03:30:27 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[03:30:27 INFO]: StarGenesis budgets: stepMillis=100 SimulationBudget[nodesPerAgentStep=128, maxAgents=16, pathRequestsPerStep=8, maxSteps=3000, sensorRadius=16, messagesPerStep=64]
+> 
+  
+[03:30:27 INFO]: [91mNothing changed. The player already is an operator[0m
+> 
+  
+[03:30:29 INFO]: UUID of player SGLifeAlice is 65aeea2f-d115-34dc-8dd4-b35186b0df5c
+> 
+  
+[03:30:31 INFO]: [93mSGLifeAlice joined the game[0m
+> 
+  
+[03:30:31 INFO]: SGLifeAlice[/127.0.0.1:55653] logged in with entity id 1 at ([world]1.5, -63.0, -8.5)
+> 
+  
+[03:30:31 INFO]: UUID of player SGLifeBob is 224d5061-1781-315f-b610-4081379822cb
+> 
+  
+[03:30:31 INFO]: [93mSGLifeBob joined the game[0m
+> 
+  
+[03:30:31 INFO]: SGLifeBob[/127.0.0.1:55654] logged in with entity id 2 at ([world]1.5, -63.0, 3.5)
+> 
+  
+[03:30:32 INFO]: UUID of player SGLifeCarol is 110d2ed6-9c65-309e-8b21-901740016fe6
+> 
+  
+[03:30:32 INFO]: [93mSGLifeCarol joined the game[0m
+> 
+  
+[03:30:32 INFO]: SGLifeCarol[/127.0.0.1:55655] logged in with entity id 3 at ([world]-11.5, -63.0, -10.5)
+> 
+  
+[03:30:32 INFO]: UUID of player SGLifeDave is 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841
+> 
+  
+[03:30:32 INFO]: [93mSGLifeDave joined the game[0m
+> 
+  
+[03:30:32 INFO]: SGLifeDave[/127.0.0.1:55656] logged in with entity id 4 at ([world]-10.5, -63.0, -7.5)
+> 
+  
+[03:30:32 INFO]: SGLifeAlice issued server command: /genesis ecology dashboard
+> 
+  
+[03:30:34 INFO]: SGLifeAlice issued server command: /genesis ecology replay
+> 
+  
+[03:30:35 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:36 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:37 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:38 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:40 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:41 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:42 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:43 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:44 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:46 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:47 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:48 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:49 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:50 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:52 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:53 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:54 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:55 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:56 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:58 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:30:59 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:00 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:01 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:02 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:04 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:05 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:06 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:07 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:08 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:10 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:11 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:12 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:13 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:15 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:16 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:17 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:18 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:19 INFO]: SGLifeAlice issued server command: /genesis ecology step 20
+> 
+  
+[03:31:21 INFO]: SGLifeAlice issued server command: /genesis ecology step 8
+> 
+  
+[03:31:22 INFO]: SGLifeAlice issued server command: /genesis factory matches
+> 
+  
+[03:31:23 INFO]: SGLifeAlice issued server command: /genesis factory select factory-06757dc03665418760c41f87cc19d7a2
+> 
+  
+[03:31:24 INFO]: SGLifeAlice issued server command: /genesis factory leave
+> 
+  
+[03:31:25 INFO]: SGLifeAlice issued server command: /genesis factory prune factory-06757dc03665418760c41f87cc19d7a2
+> 
+  
+[03:31:27 INFO]: SGLifeAlice issued server command: /genesis factory step 2
+> 
+  
+[03:31:28 INFO]: SGLifeAlice issued server command: /genesis arena match select arena-36b29db8c46b3c88a5d3b2c048a9123c
+> 
+  
+[03:31:29 INFO]: SGLifeAlice issued server command: /genesis arena match leave
+> 
+  
+[33;1m[03:31:29 WARN]: [StarGenesis] Arena match operation failed for 65aeea2f-d115-34dc-8dd4-b35186b0df5c while running leave
+java.lang.IllegalStateException: 比赛结束后才能退出队伍。
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaMatchService.leaveTeam(ArenaMatchService.java:51) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.executeMatch(ArenaController.java:254) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.executeMatch(ArenaController.java:210) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.lambda$enqueue$0(ArenaController.java:203) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m> 
+  
+[03:31:30 INFO]: SGLifeAlice issued server command: /genesis arena match prune arena-36b29db8c46b3c88a5d3b2c048a9123c
+> 
+  
+[33;1m[03:31:30 WARN]: [StarGenesis] Arena match operation failed for 65aeea2f-d115-34dc-8dd4-b35186b0df5c while running prune arena-36b29db8c46b3c88a5d3b2c048a9123c
+java.lang.SecurityException: permission denied (stargenesis.arena.manage)
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaMatchService.pruneCompleted(ArenaMatchService.java:174) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.executeMatch(ArenaController.java:263) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.executeMatch(ArenaController.java:210) ~[?:?]
+	at StarGenesis.jar//dev.stargenesis.paper.arena.ArenaController.lambda$enqueue$0(ArenaController.java:203) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m> 
+  
+[03:31:31 INFO]: SGLifeAlice issued server command: /genesis arena match withdraw
+> 
+  
+[03:31:33 INFO]: SGLifeAlice issued server command: /genesis arena match matches
+> 
+  
+[03:31:34 INFO]: SGLifeAlice issued server command: /genesis arena match pass
+> 
+  
+[03:31:34 INFO]: SGLifeBob issued server command: /genesis arena match pass
+> 
+  
+[03:31:34 INFO]: SGLifeCarol issued server command: /genesis arena match pass
+> 
+  
+[03:31:34 INFO]: SGLifeDave issued server command: /genesis arena match pass
+> 
+  
+[03:31:35 INFO]: SGLifeAlice issued server command: /genesis ecology dashboard
+> 
+  
+[03:31:36 INFO]: SGLifeAlice issued server command: /genesis ecology replay
+> 
+  
+[03:31:37 INFO]: SGLifeAlice issued server command: /genesis factory replay
+> 
+  
+[03:31:39 INFO]: SGLifeAlice issued server command: /genesis arena match replay
+> 
+  
+[03:31:40 INFO]: SGLifeAlice issued server command: /genesis factory dashboard
+> 
+  
+[03:31:41 INFO]: SGLifeAlice issued server command: /genesis arena match dashboard
+> 
+  
+[03:31:42 INFO]: SGLifeAlice issued server command: /genesis lab replay
+> 
+  
+[03:31:43 INFO]: SGLifeAlice issued server command: /genesis lab status
+> 
+  
+[03:31:45 INFO]: SGLifeAlice issued server command: /genesis lab status
+> 
+  
+[03:31:46 INFO]: SGLifeAlice issued server command: /genesis lab resume
+> 
+  
+[03:31:47 INFO]: SGLifeAlice issued server command: /genesis lab status
+> > 
+  
+[03:31:48 INFO]: Stopping the server
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Awaiting scheduler termination for 60s...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Scheduler halted
+> 
+  
+[03:31:48 INFO]: Stopping server
+> 
+  
+[03:31:48 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[03:31:48 INFO]: [StarGenesis] StarGenesis stopped cleanly; no workers, entity projections or settlement jobs remain.
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Halting chunk systems...
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Halted chunk systems
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Finishing pending teleports...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Finished pending teleports
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving all worlds
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving world data for world 'world'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving chunks around region around chunk [16, -1] in world 'world'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Saved 143 block chunks, 143 entity chunks, 0 poi chunks in world 'world' in 0.40s
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[03:31:48 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved world data for world 'world'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving world data for world 'world_nether'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved world data for world 'world_nether'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving world data for world 'world_the_end'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closing player inventories...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Closed player inventories
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving chunks...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved chunks
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving level data...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved level data
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved world data for world 'world_the_end'
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved all worlds
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saving all player data...
+> 
+  
+[03:31:48 INFO]: [RegionShutdownThread] Saved all player data
+> 
+  
+[03:31:48 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[03:31:48 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[03:31:48 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[03:31:48 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

@@ -821,7 +821,10 @@ async function main() {
   process.exit(exitCode);
 }
 
-main().catch((error) => {
+module.exports = { pause, waitForMessage, connect, command, commandUntil, disconnect,
+  organizationForPair, faultSeedForFactoryOrder };
+
+if (require.main === module) main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

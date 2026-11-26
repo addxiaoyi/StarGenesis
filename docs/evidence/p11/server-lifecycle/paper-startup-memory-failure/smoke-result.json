@@ -1,0 +1,41 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": false,
+    "plugin_enabled": false,
+    "design_examples_verified": false,
+    "status_command": false,
+    "p3_program_workspace": false,
+    "p3_replayable_simulation": false,
+    "p4_virtual_radio": false,
+    "p4_radio_protocol_pinned": false,
+    "p4_service_contract_pinned": false,
+    "p5_closed_ecology": false,
+    "p6_four_player_factory": false,
+    "p7_arena_catalog": false,
+    "p8_territory_match": false,
+    "p9_real_settlement_inactive": false,
+    "p10_signed_design_import": false,
+    "help_command": false,
+    "capabilities_command": false,
+    "missing_dependency_report": false,
+    "budget_command": false,
+    "plugin_disabled": false,
+    "clean_exit": false,
+    "no_plugin_startup_error": true,
+    "player_workflow": false
+  },
+  "passed": false,
+  "seconds": 22.0,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+  "log_sha256": "2b52f3fab1a51f007fc9cb199bdff98a2a4faedb953ab30ff0df5e33769fbdf4",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": false,
+    "error": "workflow did not run"
+  }
+}

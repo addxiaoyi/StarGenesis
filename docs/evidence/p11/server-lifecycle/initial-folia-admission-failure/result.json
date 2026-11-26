@@ -1,0 +1,73 @@
+{
+  "kind": "folia",
+  "passed": false,
+  "runs": [
+    {
+      "phase": "prepare",
+      "server": {
+        "kind": "folia",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": false
+        },
+        "passed": false,
+        "seconds": 52.47,
+        "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+        "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "log_sha256": "f21c15795990a224bec3cfdcd429ce33cf794fb3293f47d78ec74ebb40037a68",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": false,
+          "phase": "prepare",
+          "kind": "folia",
+          "names": {
+            "alice": "SGLifeAlice",
+            "bob": "SGLifeBob",
+            "carol": "SGLifeCarol",
+            "dave": "SGLifeDave"
+          },
+          "checks": [],
+          "error": "Error: SGLifeDave disconnected before spawn: socketClosed\n    at EventEmitter.<anonymous> (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:67:16)\n    at Object.onceWrapper (node:events:634:26)\n    at EventEmitter.emit (node:events:531:35)\n    at Client.<anonymous> (C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules\\mineflayer\\lib\\loader.js:113:9)\n    at Client.emit (node:events:531:35)\n    at Socket.endSocket (C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules\\minecraft-protocol\\src\\client.js:168:12)\n    at Socket.emit (node:events:531:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)",
+          "activeLabShutdownRequestedByHarness": false,
+          "log": "player-workflow.log"
+        }
+      },
+      "exitCode": 1
+    }
+  ],
+  "scope": "Three actual server boots, four fixed offline clients, clean shutdown/recovery and replays; no forced JVM crash, reload, distinct-region, human, provider or capacity acceptance",
+  "error": "RuntimeError: prepare failed; see archived console and client evidence",
+  "seconds": 52.92,
+  "artifacts": {
+    "prepare/harness-output.log": "7af4d69bbe88697646fba4400f6642dd5350c08d5143cb79850544731672a9c0",
+    "prepare/player-workflow-result.json": "0de8401c45cf6072739297e354ad84afc9e42944d6217137f46c936597d87c6b",
+    "prepare/player-workflow.log": "ba952265e1571b48886eca09be21b21fadb0696a79695ee9bff8ee58cc0b912e",
+    "prepare/smoke-console.log": "f21c15795990a224bec3cfdcd429ce33cf794fb3293f47d78ec74ebb40037a68",
+    "prepare/smoke-result.json": "9bce052c1317a8b732622101f06c12045c51ffafd0cecf90c4e214a67cd5b9cd",
+    "prepare/storage-manifest.json": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+  }
+}

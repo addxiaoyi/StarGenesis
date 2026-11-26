@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "pythonBuilderTests": 3,
+  "pythonLifecycleTests": 4,
+  "nodeLifecycleTests": 1,
+  "results": [
+    {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_release_candidate_builder.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_server_lifecycle_smoke.py",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "scripts/test_offline_client_lifecycle_smoke.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\python-3.12.10\\python.exe",
+        "scripts/check_boundaries.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--check",
+        "scripts/offline_client_workflow_smoke.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--check",
+        "scripts/offline_client_lifecycle_smoke.cjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ]
+}

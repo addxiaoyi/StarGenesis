@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "phase": "prepare",
+  "kind": "paper",
+  "names": {
+    "alice": "SGLifeAlice",
+    "bob": "SGLifeBob",
+    "carol": "SGLifeCarol",
+    "dave": "SGLifeDave"
+  },
+  "checks": [
+    "ecology_v2_three_species_matter_and_replay",
+    "factory_and_arena_replay"
+  ],
+  "identities": {
+    "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+    "bob": "224d5061-1781-315f-b610-4081379822cb",
+    "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+    "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+  },
+  "ecology": {
+    "tick": 768,
+    "stateHash": "9805ff8284ca21234c67d7fe5b25c564ba95188d2702be3733d279703b01724b",
+    "population": {
+      "producer": 15,
+      "grazer": 8,
+      "decomposer": 9
+    },
+    "matter": 1000,
+    "engineVersion": "genesis-ecology/2",
+    "replayVerified": true
+  },
+  "factory": [
+    "工厂 6/100 · match=factory-2f782255a81d34d65d4f384a9d7c1caa · auction=SETTLED · winner=org_ember",
+    "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+    "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=79 · ore=12 · parts=0",
+    "orders=1 · completed=0 · recovered=0 · producedParts=0",
+    "org_ember:restart_fault RUNNING · due=7",
+    "state=175085cf2c95 · RUNNING"
+  ],
+  "arena": [
+    "Arena arena-92e6e5782c6948074cbdf413f9f3408a · genesis:arena_ruleset v1.0.0 · round=0/1200",
+    "Territory={cedar=1, moss=1} · units={cedar=8, moss=8}",
+    "Leaderboard={cedar=1, moss=1}",
+    "state=ccd6848e4f25 · RUNNING"
+  ],
+  "labAtStop": {
+    "tick": 15,
+    "status": "试验箱 RUNNING | RUNNING | step=15 score=0 hash=5e541f2841a2ce4b4d1b4d3694a036a1fcc737a261b990d6c9a911e41225f91c",
+    "menuOpen": true,
+    "priorTick": 0,
+    "priorWorldId": null,
+    "priorReplayVerified": false
+  },
+  "serverDisconnectedAllClients": true
+}

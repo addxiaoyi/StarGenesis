@@ -1,0 +1,61 @@
+ecology reached 200/1536
+ecology reached 400/1536
+ecology reached 600/1536
+ecology reached 768/1536
+READY_TO_STOP_WITH_LAB_ACTIVE
+{
+  "passed": true,
+  "phase": "prepare",
+  "kind": "paper",
+  "names": {
+    "alice": "SGLifeAlice",
+    "bob": "SGLifeBob",
+    "carol": "SGLifeCarol",
+    "dave": "SGLifeDave"
+  },
+  "checks": [
+    "ecology_v2_three_species_matter_and_replay",
+    "factory_and_arena_replay"
+  ],
+  "identities": {
+    "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+    "bob": "224d5061-1781-315f-b610-4081379822cb",
+    "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+    "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+  },
+  "ecology": {
+    "tick": 768,
+    "stateHash": "9805ff8284ca21234c67d7fe5b25c564ba95188d2702be3733d279703b01724b",
+    "population": {
+      "producer": 15,
+      "grazer": 8,
+      "decomposer": 9
+    },
+    "matter": 1000,
+    "engineVersion": "genesis-ecology/2",
+    "replayVerified": true
+  },
+  "factory": [
+    "工厂 6/100 · match=factory-35343e5aa58becc781a60ec7dd81b91b · auction=SETTLED · winner=org_ember",
+    "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+    "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=79 · ore=12 · parts=0",
+    "orders=1 · completed=0 · recovered=0 · producedParts=0",
+    "org_ember:restart_fault RUNNING · due=7",
+    "state=a8b1d58009da · RUNNING"
+  ],
+  "arena": [
+    "Arena arena-235422900fa22623b62c7fb302762021 · genesis:arena_ruleset v1.0.0 · round=0/1200",
+    "Territory={cedar=1, moss=1} · units={cedar=8, moss=8}",
+    "Leaderboard={cedar=1, moss=1}",
+    "state=0e1878c713be · RUNNING"
+  ],
+  "labAtStop": {
+    "tick": 15,
+    "status": "试验箱 RUNNING | RUNNING | step=15 score=0 hash=46a5fe1fca6e0ed970ee22b6525f07e9e4ae41522d54755c309d6715919058f1",
+    "menuOpen": true,
+    "priorTick": 0,
+    "priorWorldId": null,
+    "priorReplayVerified": false
+  },
+  "serverDisconnectedAllClients": true
+}

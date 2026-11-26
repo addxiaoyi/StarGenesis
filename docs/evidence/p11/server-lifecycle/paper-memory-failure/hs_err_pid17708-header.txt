@@ -1,0 +1,45 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 937696 bytes. Error detail: Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (arena.cpp:168), pid=17708, tid=26852
+#
+# JRE version: OpenJDK Runtime Environment Microsoft-15780113 (21.0.13+1) (build 21.0.13.0.2+1-LTS)
+# Java VM: OpenJDK 64-Bit Server VM Microsoft-15780113 (21.0.13.0.2+1-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Core dump will be written. Default location: C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\live-lifecycle\paper-final\hs_err_pid17708.mdmp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xms128M -Xmx512M -XX:ActiveProcessorCount=4 C:\Users\Administrator\Documents\luoseng\SenLuo_Plugin-continue\build\acceptance\runtime\paper-1.21.11-132.jar --nogui
+
+Host: Intel(R) Xeon(R) Gold 6278C CPU @ 2.60GHz, 4 cores, 7G,  Windows Server 2022 , 64 bit Build 20348 (10.0.20348.2652)
+Time: Thu Nov 26 07:55:05 2026 elapsed time: 96.623872 seconds (0d 0h 1m 36s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001c399a395b0):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=26852, stack(0x0000008cc1800000,0x0000008cc1900000) (1024K)]
+
+
+Current CompileTask:
+C2:96623 21135       4       org.objectweb.asm.SymbolTable::<init> (554 bytes)
+
+Stack: [0x0000008cc1800000,0x0000008cc1900000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6e5109]  (no source info available)

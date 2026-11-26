@@ -1,0 +1,76 @@
+ecology reached 1536/1536
+READY_TO_STOP_WITH_LAB_ACTIVE
+{
+  "passed": true,
+  "phase": "resume",
+  "kind": "paper",
+  "names": {
+    "alice": "SGLifeAlice",
+    "bob": "SGLifeBob",
+    "carol": "SGLifeCarol",
+    "dave": "SGLifeDave"
+  },
+  "checks": [
+    "all_saved_bytes_unchanged_after_startup_and_four_player_join",
+    "four_player_identity_and_match_restore",
+    "factory_pending_order_compensated_after_restart",
+    "factory_select_leave_and_prune_guards",
+    "arena_pending_action_withdrawn_and_round_completed",
+    "arena_select_leave_and_prune_guards",
+    "ecology_v2_three_species_matter_and_replay",
+    "factory_and_arena_replay"
+  ],
+  "identities": {
+    "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+    "bob": "224d5061-1781-315f-b610-4081379822cb",
+    "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+    "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+  },
+  "ecologyBefore": {
+    "tick": 768,
+    "stateHash": "9805ff8284ca21234c67d7fe5b25c564ba95188d2702be3733d279703b01724b",
+    "population": {
+      "producer": 15,
+      "grazer": 8,
+      "decomposer": 9
+    },
+    "matter": 1000,
+    "engineVersion": "genesis-ecology/2",
+    "replayVerified": true
+  },
+  "ecology": {
+    "tick": 1536,
+    "stateHash": "39a5025d009215be2b3484db02e4a8ba373297d78b5b49027c91e94867e6dc23",
+    "population": {
+      "producer": 10,
+      "grazer": 16,
+      "decomposer": 6
+    },
+    "matter": 1000,
+    "engineVersion": "genesis-ecology/2",
+    "replayVerified": true
+  },
+  "factory": [
+    "工厂 8/100 · match=factory-35343e5aa58becc781a60ec7dd81b91b · auction=SETTLED · winner=org_ember",
+    "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+    "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=85 · ore=16 · parts=0",
+    "orders=1 · completed=0 · recovered=1 · producedParts=0",
+    "org_ember:restart_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+    "state=d6eac526cb1b · RUNNING"
+  ],
+  "arena": [
+    "Arena arena-235422900fa22623b62c7fb302762021 · genesis:arena_ruleset v1.0.0 · round=1/1200",
+    "Territory={cedar=1, moss=1} · units={cedar=9, moss=9}",
+    "Leaderboard={cedar=1, moss=1}",
+    "state=810ba7624eed · RUNNING"
+  ],
+  "labAtStop": {
+    "tick": 32,
+    "status": "试验箱 RUNNING | RUNNING | step=32 score=0 hash=f52cdcd8d86ba671b25bd53e497f55b0f47a17e7675c02fb2b4f483d66769e37",
+    "menuOpen": true,
+    "priorTick": 17,
+    "priorWorldId": "lab-5afe999c-3133-4a66-a817-3ad237bac457",
+    "priorReplayVerified": true
+  },
+  "serverDisconnectedAllClients": true
+}

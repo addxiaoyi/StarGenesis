@@ -1,0 +1,397 @@
+{
+  "kind": "folia",
+  "passed": true,
+  "runs": [
+    {
+      "phase": "prepare",
+      "server": {
+        "kind": "folia",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 120.81,
+        "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+        "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "log_sha256": "01122dd48a7ed9d674662b1a109cab2c08cfd06a8811a16f4edc3a1068c5b41b",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "phase": "prepare",
+          "kind": "folia",
+          "names": {
+            "alice": "SGLifeAlice",
+            "bob": "SGLifeBob",
+            "carol": "SGLifeCarol",
+            "dave": "SGLifeDave"
+          },
+          "checks": [
+            "ecology_v2_three_species_matter_and_replay",
+            "factory_and_arena_replay"
+          ],
+          "identities": {
+            "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+            "bob": "224d5061-1781-315f-b610-4081379822cb",
+            "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+            "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+          },
+          "ecology": {
+            "tick": 768,
+            "stateHash": "9805ff8284ca21234c67d7fe5b25c564ba95188d2702be3733d279703b01724b",
+            "population": {
+              "producer": 15,
+              "grazer": 8,
+              "decomposer": 9
+            },
+            "matter": 1000,
+            "engineVersion": "genesis-ecology/2",
+            "replayVerified": true
+          },
+          "factory": [
+            "工厂 6/100 · match=factory-06757dc03665418760c41f87cc19d7a2 · auction=SETTLED · winner=org_ember",
+            "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+            "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=79 · ore=12 · parts=0",
+            "orders=1 · completed=0 · recovered=0 · producedParts=0",
+            "org_ember:restart_fault RUNNING · due=7",
+            "state=15a807d8cf36 · RUNNING"
+          ],
+          "arena": [
+            "Arena arena-36b29db8c46b3c88a5d3b2c048a9123c · genesis:arena_ruleset v1.0.0 · round=0/1200",
+            "Territory={cedar=1, moss=1} · units={cedar=8, moss=8}",
+            "Leaderboard={cedar=1, moss=1}",
+            "state=8b9053f838a3 · RUNNING"
+          ],
+          "labAtStop": {
+            "tick": 16,
+            "status": "试验箱 RUNNING | RUNNING | step=16 score=0 hash=9e9f4410304c7957d8fefa63b5d00de1065639646ef67a093093e91754c4c0df",
+            "menuOpen": false,
+            "priorTick": 0,
+            "priorWorldId": null,
+            "priorReplayVerified": false
+          },
+          "serverDisconnectedAllClients": true,
+          "activeLabShutdownRequestedByHarness": true,
+          "log": "player-workflow.log"
+        }
+      },
+      "exitCode": 0,
+      "releasedWorkerLocks": [
+        "ecology/.worker.lock",
+        "factory/.worker.lock",
+        "arena-matches/.worker.lock",
+        "labs/lab/.worker.lock"
+      ],
+      "labCheckpoint": {
+        "tick": 17,
+        "worldId": "lab-4dfcbccb-eebf-4ab0-9aa2-c5fa40a04341",
+        "stateHash": "a4b70bd944677f0807cefbd1d8746bd60fe12083a059834e8a8001fbbeb53d82",
+        "completeHistoryPreserved": true
+      }
+    },
+    {
+      "phase": "resume",
+      "server": {
+        "kind": "folia",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 105.0,
+        "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+        "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "log_sha256": "1a83d6c1676acf0b307cb0f9392e044a007bc7a72e77f104a7d99de536941b83",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "phase": "resume",
+          "kind": "folia",
+          "names": {
+            "alice": "SGLifeAlice",
+            "bob": "SGLifeBob",
+            "carol": "SGLifeCarol",
+            "dave": "SGLifeDave"
+          },
+          "checks": [
+            "all_saved_bytes_unchanged_after_startup_and_four_player_join",
+            "four_player_identity_and_match_restore",
+            "factory_pending_order_compensated_after_restart",
+            "factory_select_leave_and_prune_guards",
+            "arena_pending_action_withdrawn_and_round_completed",
+            "arena_select_leave_and_prune_guards",
+            "ecology_v2_three_species_matter_and_replay",
+            "factory_and_arena_replay"
+          ],
+          "identities": {
+            "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+            "bob": "224d5061-1781-315f-b610-4081379822cb",
+            "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+            "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+          },
+          "ecologyBefore": {
+            "tick": 768,
+            "stateHash": "9805ff8284ca21234c67d7fe5b25c564ba95188d2702be3733d279703b01724b",
+            "population": {
+              "producer": 15,
+              "grazer": 8,
+              "decomposer": 9
+            },
+            "matter": 1000,
+            "engineVersion": "genesis-ecology/2",
+            "replayVerified": true
+          },
+          "ecology": {
+            "tick": 1536,
+            "stateHash": "39a5025d009215be2b3484db02e4a8ba373297d78b5b49027c91e94867e6dc23",
+            "population": {
+              "producer": 10,
+              "grazer": 16,
+              "decomposer": 6
+            },
+            "matter": 1000,
+            "engineVersion": "genesis-ecology/2",
+            "replayVerified": true
+          },
+          "factory": [
+            "工厂 8/100 · match=factory-06757dc03665418760c41f87cc19d7a2 · auction=SETTLED · winner=org_ember",
+            "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+            "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=85 · ore=16 · parts=0",
+            "orders=1 · completed=0 · recovered=1 · producedParts=0",
+            "org_ember:restart_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+            "state=98beed5bfd51 · RUNNING"
+          ],
+          "arena": [
+            "Arena arena-36b29db8c46b3c88a5d3b2c048a9123c · genesis:arena_ruleset v1.0.0 · round=1/1200",
+            "Territory={cedar=1, moss=1} · units={cedar=9, moss=9}",
+            "Leaderboard={cedar=1, moss=1}",
+            "state=9de0ba710ee8 · RUNNING"
+          ],
+          "labAtStop": {
+            "tick": 33,
+            "status": "试验箱 RUNNING | RUNNING | step=33 score=0 hash=f44834b1adce418eb781ed4365d412330b5e45bd769d63c6705fb680c447c207",
+            "menuOpen": false,
+            "priorTick": 17,
+            "priorWorldId": "lab-4dfcbccb-eebf-4ab0-9aa2-c5fa40a04341",
+            "priorReplayVerified": true
+          },
+          "serverDisconnectedAllClients": true,
+          "activeLabShutdownRequestedByHarness": true,
+          "log": "player-workflow.log"
+        }
+      },
+      "exitCode": 0,
+      "releasedWorkerLocks": [
+        "ecology/.worker.lock",
+        "factory/.worker.lock",
+        "arena-matches/.worker.lock",
+        "labs/lab/.worker.lock"
+      ],
+      "labCheckpoint": {
+        "tick": 34,
+        "worldId": "lab-4dfcbccb-eebf-4ab0-9aa2-c5fa40a04341",
+        "stateHash": "2d03111721fdc3e194b8de523ffe0f2766ad57385b6fec9a714dbebba4c9d9d3",
+        "completeHistoryPreserved": true
+      }
+    },
+    {
+      "phase": "verify",
+      "server": {
+        "kind": "folia",
+        "checks": {
+          "server_ready": true,
+          "plugin_enabled": true,
+          "design_examples_verified": true,
+          "status_command": true,
+          "p3_program_workspace": true,
+          "p3_replayable_simulation": true,
+          "p4_virtual_radio": true,
+          "p4_radio_protocol_pinned": true,
+          "p4_service_contract_pinned": true,
+          "p5_closed_ecology": true,
+          "p6_four_player_factory": true,
+          "p7_arena_catalog": true,
+          "p8_territory_match": true,
+          "p9_real_settlement_inactive": true,
+          "p10_signed_design_import": true,
+          "help_command": true,
+          "capabilities_command": true,
+          "missing_dependency_report": true,
+          "budget_command": true,
+          "plugin_disabled": true,
+          "clean_exit": true,
+          "no_plugin_startup_error": true,
+          "player_workflow": true
+        },
+        "passed": true,
+        "seconds": 45.92,
+        "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+        "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+        "log_sha256": "c8cce170a61e4ff3237a26ad6ecfd5f16a179f95859a8e958a46e43d7aecb887",
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "launch_mode": "paperclip-bootstrap",
+        "heap_mb": 512,
+        "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+        "player_workflow": {
+          "passed": true,
+          "phase": "verify",
+          "kind": "folia",
+          "names": {
+            "alice": "SGLifeAlice",
+            "bob": "SGLifeBob",
+            "carol": "SGLifeCarol",
+            "dave": "SGLifeDave"
+          },
+          "checks": [
+            "all_saved_bytes_unchanged_after_startup_and_four_player_join",
+            "four_player_identity_and_match_restore",
+            "read_only_replays_preserve_all_saved_bytes",
+            "ecology_v2_three_species_matter_and_replay",
+            "factory_and_arena_replay"
+          ],
+          "identities": {
+            "alice": "65aeea2f-d115-34dc-8dd4-b35186b0df5c",
+            "bob": "224d5061-1781-315f-b610-4081379822cb",
+            "carol": "110d2ed6-9c65-309e-8b21-901740016fe6",
+            "dave": "6f8b6e6d-864d-3e95-a09c-22cb4a6c6841"
+          },
+          "ecologyBefore": {
+            "tick": 1536,
+            "stateHash": "39a5025d009215be2b3484db02e4a8ba373297d78b5b49027c91e94867e6dc23",
+            "population": {
+              "producer": 10,
+              "grazer": 16,
+              "decomposer": 6
+            },
+            "matter": 1000,
+            "engineVersion": "genesis-ecology/2",
+            "replayVerified": true
+          },
+          "ecology": {
+            "tick": 1536,
+            "stateHash": "39a5025d009215be2b3484db02e4a8ba373297d78b5b49027c91e94867e6dc23",
+            "population": {
+              "producer": 10,
+              "grazer": 16,
+              "decomposer": 6
+            },
+            "matter": 1000,
+            "engineVersion": "genesis-ecology/2",
+            "replayVerified": true
+          },
+          "factory": [
+            "工厂 8/100 · match=factory-06757dc03665418760c41f87cc19d7a2 · auction=SETTLED · winner=org_ember",
+            "org_cedar members=[110d2ed6-9c65-309e-8b21-901740016fe6, 6f8b6e6d-864d-3e95-a09c-22cb4a6c6841] · credits=100 · ore=0 · parts=0",
+            "org_ember members=[224d5061-1781-315f-b610-4081379822cb, 65aeea2f-d115-34dc-8dd4-b35186b0df5c] · credits=85 · ore=16 · parts=0",
+            "orders=1 · completed=0 · recovered=1 · producedParts=0",
+            "org_ember:restart_fault FAILED_RECOVERED · due=7 · DETERMINISTIC_FACTORY_FAULT",
+            "state=98beed5bfd51 · RUNNING"
+          ],
+          "arena": [
+            "Arena arena-36b29db8c46b3c88a5d3b2c048a9123c · genesis:arena_ruleset v1.0.0 · round=1/1200",
+            "Territory={cedar=1, moss=1} · units={cedar=9, moss=9}",
+            "Leaderboard={cedar=1, moss=1}",
+            "state=9de0ba710ee8 · RUNNING"
+          ],
+          "log": "player-workflow.log"
+        }
+      },
+      "exitCode": 0,
+      "releasedWorkerLocks": [
+        "ecology/.worker.lock",
+        "factory/.worker.lock",
+        "arena-matches/.worker.lock",
+        "labs/lab/.worker.lock"
+      ],
+      "allStorageUnchangedAfterReadOnlyShutdown": true
+    }
+  ],
+  "scope": "Three actual server boots, four fixed offline clients, clean shutdown/recovery and replays; no forced JVM crash, reload, distinct-region, human, provider or capacity acceptance",
+  "seconds": 273.19,
+  "artifacts": {
+    "prepare/harness-output.log": "c1e9dd1ba8c78344fd96766615381bf5c52f71a1dc272a1a90de54461197be6e",
+    "prepare/player-workflow-result.json": "38daf55d6fd109584031058d21e3691879ad8c22bdd4603f4e0606f6346a3cb0",
+    "prepare/player-workflow.log": "6b8dcf93ef45078143a08304d69e028f9dba000073d62b968719f2e7e085939a",
+    "prepare/smoke-console.log": "01122dd48a7ed9d674662b1a109cab2c08cfd06a8811a16f4edc3a1068c5b41b",
+    "prepare/smoke-result.json": "3fd601439c82f24866fd47b04c7f4e46b8f6f89b6afc355f7af4b0b7ce80fed5",
+    "prepare/storage/arena-matches/arena-36b29db8c46b3c88a5d3b2c048a9123c.match.json": "5e3189873c945dc650ac06d55f9807ad2476bf8f6a1f76c4b29e58cf14847f9f",
+    "prepare/storage/arena-matches/teams.json": "dbda2d9f7c87c5ac7bae2df100dbe44e05ee2b35522a25902b46b36d30449f26",
+    "prepare/storage/ecology/65aeea2f-d115-34dc-8dd4-b35186b0df5c.ecology.json": "fcd7209d8b2a6250aa0cbe945bcbf662ca34b9803689f01d151b8a4eb1d05882",
+    "prepare/storage/factory/factory-06757dc03665418760c41f87cc19d7a2.factory.json": "71bd0af05d0bfd664921161713d945d3e8f3c526b506cd0e43198bfac6e1e480",
+    "prepare/storage/factory/organizations.json": "2e542a228a1cb2913efd104fd8e6bc14dd256b7626ef8e71492129ab2093812f",
+    "prepare/storage/labs/lab/65aeea2f-d115-34dc-8dd4-b35186b0df5c.lab.json": "bf2a8a58f55a9ed1465272fc1430da2506a1473ae67e910508499e1d465dab0c",
+    "prepare/storage-manifest.json": "6a0ce55ce2ad0b9480d7c7be6d09bbd540c281e879dea770209f932dcf113099",
+    "resume/harness-output.log": "9c80d9617b8e887507af6fd4a63e26e26b6ca2481a7cd365b89149b72a9e96ba",
+    "resume/player-workflow-result.json": "75505c661264da7aa94eab34b92d146b15515bda8344b1a88b6a8f9099d4dd29",
+    "resume/player-workflow.log": "7adb634d8f9e83c359a20af86e8fed697ce1d3d062fb64717b02e2eddb80148d",
+    "resume/smoke-console.log": "1a83d6c1676acf0b307cb0f9392e044a007bc7a72e77f104a7d99de536941b83",
+    "resume/smoke-result.json": "7aa7ca86ee7f6de96175cd21f0dd6ba2fb498687b3cee94589eb08aca28780af",
+    "resume/storage/arena-matches/arena-36b29db8c46b3c88a5d3b2c048a9123c.match.json": "83a44ed170ae477f6f088cd7418a26a68b12faceecc39554622003111b1527eb",
+    "resume/storage/arena-matches/teams.json": "dbda2d9f7c87c5ac7bae2df100dbe44e05ee2b35522a25902b46b36d30449f26",
+    "resume/storage/ecology/65aeea2f-d115-34dc-8dd4-b35186b0df5c.ecology.json": "c55ebe55e7eda3317c3c157e48041acfe1b9bc9e69fc71bcc57f67ce6f0e7d2d",
+    "resume/storage/factory/factory-06757dc03665418760c41f87cc19d7a2.factory.json": "b617dd341581a668fa8b9771f373e18bc6a9d31b9c70d846779d68545eb3f84a",
+    "resume/storage/factory/organizations.json": "2e542a228a1cb2913efd104fd8e6bc14dd256b7626ef8e71492129ab2093812f",
+    "resume/storage/labs/lab/65aeea2f-d115-34dc-8dd4-b35186b0df5c.lab.json": "60c2698126483d18a3f5c24d27fe3154514232167366c0802bdd7b2b193e14a0",
+    "resume/storage-manifest.json": "2cdabf85eef52e244e986da7a757682db26d187cd290cdcc2c9701b7f4ee536e",
+    "verify/harness-output.log": "5996a96bab4507b315b52b07d71a58431d8e4e6f140b8aab1e528e754055f1e9",
+    "verify/player-workflow-result.json": "2eae2d8f0ffa5472d878587ee6bc33a043d7c91cf2956f4673669fa99870445f",
+    "verify/player-workflow.log": "94c144dd70719ce7cccfddfe5a915ddcafcd592b6b7ef9fdde91aebeef3b3b51",
+    "verify/smoke-console.log": "c8cce170a61e4ff3237a26ad6ecfd5f16a179f95859a8e958a46e43d7aecb887",
+    "verify/smoke-result.json": "e22fae19ef0edade48a544befeec300e66a5f30be17fb325f47f3cce8c1addaa",
+    "verify/storage/arena-matches/arena-36b29db8c46b3c88a5d3b2c048a9123c.match.json": "83a44ed170ae477f6f088cd7418a26a68b12faceecc39554622003111b1527eb",
+    "verify/storage/arena-matches/teams.json": "dbda2d9f7c87c5ac7bae2df100dbe44e05ee2b35522a25902b46b36d30449f26",
+    "verify/storage/ecology/65aeea2f-d115-34dc-8dd4-b35186b0df5c.ecology.json": "c55ebe55e7eda3317c3c157e48041acfe1b9bc9e69fc71bcc57f67ce6f0e7d2d",
+    "verify/storage/factory/factory-06757dc03665418760c41f87cc19d7a2.factory.json": "b617dd341581a668fa8b9771f373e18bc6a9d31b9c70d846779d68545eb3f84a",
+    "verify/storage/factory/organizations.json": "2e542a228a1cb2913efd104fd8e6bc14dd256b7626ef8e71492129ab2093812f",
+    "verify/storage/labs/lab/65aeea2f-d115-34dc-8dd4-b35186b0df5c.lab.json": "60c2698126483d18a3f5c24d27fe3154514232167366c0802bdd7b2b193e14a0",
+    "verify/storage-manifest.json": "2cdabf85eef52e244e986da7a757682db26d187cd290cdcc2c9701b7f4ee536e"
+  }
+}

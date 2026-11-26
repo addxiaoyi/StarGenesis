@@ -1,0 +1,158 @@
+"""Run three isolated Paper/Folia boots with the same four offline player identities.
+
+Requires an already accepted eula.txt in --directory. Keeps every boot's logs and
+saved bytes, verifies all worker leases are released, and never resets existing data.
+This is functional recovery evidence, not a performance or human acceptance test.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from server_smoke import sha256
+
+STORAGE = ("ecology", "factory", "arena-matches", "labs/lab")
+
+
+def storage_manifest(data: Path) -> dict[str, str]:
+    return {file.relative_to(data).as_posix(): sha256(file)
+            for directory in STORAGE for file in sorted((data / directory).glob("*.json"))}
+
+
+def assert_worker_locks_released(data: Path) -> list[str]:
+    checked = []
+    for directory in STORAGE:
+        file = data / directory / ".worker.lock"
+        # Lock the existing inode; creating/replacing the lock file would invalidate this check.
+        with file.open("r+b") as stream:
+            if os.name == "nt":
+                import msvcrt
+                msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                stream.seek(0)
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                import fcntl
+                fcntl.lockf(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB, 1)
+                fcntl.lockf(stream.fileno(), fcntl.LOCK_UN, 1)
+        checked.append(file.relative_to(data).as_posix())
+    return checked
+
+
+def verify_lab_shutdown(data: Path, workflow: dict, previous: dict | None) -> dict:
+    owner = workflow["identities"]["alice"]
+    saved = json.loads((data / "labs/lab" / f"{owner}.lab.json").read_text(encoding="utf-8"))
+    snapshot = saved["snapshot"]
+    assert saved["owner"] == owner
+    assert snapshot["tick"] == len(snapshot["history"])
+    assert snapshot["tick"] >= workflow["labAtStop"]["tick"] > 0
+    assert snapshot["history"][-1]["stateHash"] == snapshot["stateHash"]
+    if previous is not None:
+        assert snapshot["worldId"] == previous["worldId"], "Resume changed the lab identity"
+        assert snapshot["tick"] > previous["tick"], "Resume did not preserve and extend the checkpoint"
+        assert snapshot["history"][:previous["tick"]] == previous["history"], "Resume changed earlier lab history"
+    return snapshot
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--java", default="java")
+    parser.add_argument("--node", default="node")
+    parser.add_argument("--server-jar", type=Path, required=True)
+    parser.add_argument("--plugin-jar", type=Path, required=True)
+    parser.add_argument("--libraries-from", type=Path)
+    parser.add_argument("--node-modules", type=Path, required=True)
+    parser.add_argument("--directory", type=Path, required=True)
+    parser.add_argument("--kind", choices=["paper", "folia"], required=True)
+    parser.add_argument("--port", type=int, required=True)
+    parser.add_argument("--heap-mb", type=int, default=1024)
+    parser.add_argument("--jvm-arg", action="append", default=[], help="Additional Java option; repeat as --jvm-arg=-XX:...")
+    parser.add_argument("--timeout", type=int, default=300)
+    parser.add_argument("--client-timeout", type=int, default=600)
+    args = parser.parse_args()
+    target = args.directory.resolve()
+    data = target / "plugins/StarGenesis"
+    evidence = target / "lifecycle-evidence"
+    eula = target / "eula.txt"
+    if not eula.is_file() or "eula=true" not in {line.strip().lower() for line in eula.read_text().splitlines()}:
+        parser.error("An already accepted eula.txt is required in --directory")
+    if evidence.exists() or storage_manifest(data) or (target / "plugins/lifecycle-client-state.json").exists():
+        parser.error("Use a fresh isolated directory; existing lifecycle evidence/state will not be overwritten")
+    evidence.mkdir()
+    started = time.monotonic()
+    result = {"kind": args.kind, "passed": False, "runs": [],
+              "scope": "Three actual server boots, four fixed offline clients, clean shutdown/recovery and replays; "
+                       "no forced JVM crash, reload, distinct-region, human, provider or capacity acceptance"}
+    previous_lab = None
+    previous_manifest = None
+    try:
+        for phase in ("prepare", "resume", "verify"):
+            destination = evidence / phase
+            destination.mkdir()
+            command = [sys.executable, str(Path(__file__).with_name("server_smoke.py")),
+                       "--java", args.java, "--node", args.node,
+                       "--server-jar", str(args.server_jar.resolve()), "--plugin-jar", str(args.plugin_jar.resolve()),
+                       "--directory", str(target), "--kind", args.kind, "--port", str(args.port),
+                       # Keep admission headroom: Folia 1.21.11-14 rejected the fourth login with a limit of four.
+                       "--heap-mb", str(args.heap_mb), "--max-players", "8", "--timeout", str(args.timeout),
+                       "--player-workflow", "--node-modules", str(args.node_modules.resolve()),
+                       "--player-client-timeout", str(args.client_timeout), "--lifecycle-phase", phase]
+            command.extend(f"--jvm-arg={value}" for value in args.jvm_arg)
+            if args.libraries_from:
+                command.extend(["--libraries-from", str(args.libraries_from.resolve())])
+            if previous_manifest:
+                command.extend(["--lifecycle-manifest", str(previous_manifest)])
+            print(f"Starting {args.kind} lifecycle phase {phase}", flush=True)
+            with (destination / "harness-output.log").open("w", encoding="utf-8") as log:
+                completed = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
+            for name in ("smoke-console.log", "smoke-result.json", "player-workflow.log", "player-workflow-result.json"):
+                if (target / name).is_file():
+                    shutil.copy2(target / name, destination / name)
+            if not (destination / "smoke-result.json").is_file():
+                raise RuntimeError(f"{phase} server produced no result; see {destination}")
+            smoke = json.loads((destination / "smoke-result.json").read_text(encoding="utf-8"))
+            run = {"phase": phase, "server": smoke, "exitCode": completed.returncode}
+            result["runs"].append(run)
+            manifest = storage_manifest(data)
+            for relative in manifest:
+                saved = destination / "storage" / relative
+                saved.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(data / relative, saved)
+            manifest_path = destination / "storage-manifest.json"
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            if completed.returncode or not smoke["passed"]:
+                raise RuntimeError(f"{phase} failed; see archived console and client evidence")
+            run["releasedWorkerLocks"] = assert_worker_locks_released(data)
+            workflow = smoke["player_workflow"]
+            if phase == "verify":
+                expected = json.loads(previous_manifest.read_text(encoding="utf-8"))
+                assert manifest == expected, "Read-only final boot changed persisted state at shutdown"
+                run["allStorageUnchangedAfterReadOnlyShutdown"] = True
+            else:
+                previous_lab = verify_lab_shutdown(data, workflow, previous_lab)
+                run["labCheckpoint"] = {key: previous_lab[key] for key in ("tick", "worldId", "stateHash")}
+                run["labCheckpoint"]["completeHistoryPreserved"] = True
+            previous_manifest = manifest_path
+            print(f"Passed {args.kind} lifecycle phase {phase}", flush=True)
+        result["passed"] = True
+    except (OSError, AssertionError, RuntimeError, KeyError, ValueError) as failure:
+        result["error"] = f"{type(failure).__name__}: {failure}"
+    finally:
+        result["seconds"] = round(time.monotonic() - started, 2)
+        result["artifacts"] = {file.relative_to(evidence).as_posix(): sha256(file)
+                               for file in sorted(evidence.rglob("*")) if file.is_file()}
+        (evidence / "result.json").write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(json.dumps({key: result[key] for key in ("kind", "passed", "seconds")}, ensure_ascii=False), flush=True)
+    if not result["passed"]:
+        print(result.get("error", "Lifecycle verification failed"), flush=True)
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

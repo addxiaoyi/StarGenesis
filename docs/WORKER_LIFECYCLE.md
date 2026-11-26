@@ -35,3 +35,5 @@ python scripts/test_worker_directory_lock.py --java-home /path/to/jdk --plugin-j
 ```
 
 这些测试不等于Paper/Folia实服插件重载、玩家断线或关服验收。后续仍须在目标服务器验证关闭日志、实体调度回调和存档续跑；未响应中断的任务不能被Java安全强制终止，当前行为是隔离目录并明确报告未完成。
+
+2026-11-26新增Paper/Folia各三次启动的正常关服/重启实服证据：四个worker锁每次退出后均由宿主独立获取，实验室运行中关闭保存并恢复同一场次，生态/工厂/Arena保留已提交状态。最后只读启动和关闭不改写六份存档。见`SERVER_LIFECYCLE_TEST.md`和`docs/evidence/p11/server-lifecycle/summary.json`；这不扩展为插件热重载、强制崩溃或不同region验收。

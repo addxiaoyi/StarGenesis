@@ -1,0 +1,102 @@
+{
+  "kind": "paper",
+  "checks": {
+    "server_ready": false,
+    "plugin_enabled": false,
+    "design_examples_verified": false,
+    "status_command": false,
+    "p3_program_workspace": false,
+    "p3_replayable_simulation": false,
+    "p4_virtual_radio": false,
+    "p4_radio_protocol_pinned": false,
+    "p4_service_contract_pinned": false,
+    "p5_closed_ecology": false,
+    "p6_four_player_factory": false,
+    "p7_arena_catalog": false,
+    "p8_territory_match": false,
+    "p9_real_settlement_inactive": false,
+    "p10_signed_design_import": false,
+    "help_command": false,
+    "capabilities_command": false,
+    "missing_dependency_report": false,
+    "budget_command": false,
+    "plugin_disabled": false,
+    "clean_exit": false,
+    "no_plugin_startup_error": true,
+    "player_workflow": false
+  },
+  "passed": false,
+  "seconds": 22.0,
+  "server_sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+  "plugin_sha256": "23a3506284f2dc9086eb6449ec5c4c74e6c383e2f03d557137654a22eda4eb33",
+  "log_sha256": "2b52f3fab1a51f007fc9cb199bdff98a2a4faedb953ab30ff0df5e33769fbdf4",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "scope": "actual-server console lifecycle and automated offline clients; no human acceptance",
+  "player_workflow": {
+    "passed": false,
+    "error": "workflow did not run"
+  }
+}
+> 
+  
+[07:56:56 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[07:56:56 INFO]: Server permissions file permissions.yml is empty, ignoring it
+> 
+  
+[33;1m[07:56:56 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[07:56:56 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[07:56:56 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[07:56:56 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[07:56:56 INFO]: Preparing level "world"
+> #
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1416112 bytes. Error detail: Chunk::new
+# An error report file with more information is saved as:
+# C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\live-lifecycle\paper-final\hs_err_pid13104.log
+[thread 8632 also had an error]
+
+  
+[07:56:57 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[07:56:57 INFO]: Preparing spawn area: 100%
+> 
+  
+[07:56:57 INFO]: Prepared spawn area in 3 ms
+> 
+  
+[07:56:57 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[07:56:57 INFO]: Preparing spawn area: 100%
+> 
+  
+[07:56:57 INFO]: Prepared spawn area in 1 ms
+> 
+  
+[07:56:57 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[07:56:57 INFO]: Prepared spawn area in 2 ms
+> 
+  
+[07:56:57 INFO]: Done preparing level "world" (1.149s)
+> 
+  
+[07:56:57 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> #
+# Compiler replay data is saved as:
+# C:\Users\Administrator\Documents\luoseng\StarGenesis\.work\live-lifecycle\paper-final\replay_pid13104.log
+

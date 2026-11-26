@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "phase": "prepare",
+  "kind": "folia",
+  "names": {
+    "alice": "SGLifeAlice",
+    "bob": "SGLifeBob",
+    "carol": "SGLifeCarol",
+    "dave": "SGLifeDave"
+  },
+  "checks": [],
+  "error": "Error: SGLifeDave disconnected before spawn: socketClosed\n    at EventEmitter.<anonymous> (C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\scripts\\offline_client_workflow_smoke.cjs:67:16)\n    at Object.onceWrapper (node:events:634:26)\n    at EventEmitter.emit (node:events:531:35)\n    at Client.<anonymous> (C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules\\mineflayer\\lib\\loader.js:113:9)\n    at Client.emit (node:events:531:35)\n    at Socket.endSocket (C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\network-client\\node_modules\\minecraft-protocol\\src\\client.js:168:12)\n    at Socket.emit (node:events:531:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)"
+}
