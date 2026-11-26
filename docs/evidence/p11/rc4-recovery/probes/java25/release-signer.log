@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "algorithm": "Ed25519",
+  "testVersion": "1.0.0-rc.1",
+  "testKeyEphemeral": true,
+  "signedArtifacts": [
+    "StarGenesis-1.0.0-rc.1.jar",
+    "sbom.json"
+  ],
+  "signatureVerified": true,
+  "tamperRejected": true,
+  "privateTestKeyRemoved": true,
+  "sourceJarSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+  "sourceSbomSha256": "0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382",
+  "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+}

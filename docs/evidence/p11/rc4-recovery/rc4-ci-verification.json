@@ -1,0 +1,54 @@
+{
+  "commit": "3328c03c63440b287e0da1fd29480e4e258b6064",
+  "sourceTree": "2e63ada4548cf5a4fc6e066a3048e6f905ed617c",
+  "url": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45748819405",
+  "runId": 45748819405,
+  "jobs": [
+    {
+      "label": "java25",
+      "jobId": 139671356287,
+      "name": "java (25)",
+      "conclusion": "success",
+      "tests": 539,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "scriptChecks": {
+        "pythonCounts": [
+          3,
+          6,
+          2
+        ],
+        "node": [
+          "2026-11-26T03:25:37.1601161Z # tests 6",
+          "2026-11-26T03:25:37.1601504Z # pass 6",
+          "2026-11-26T03:25:37.1601669Z # fail 0"
+        ],
+        "probePasses": 4
+      }
+    },
+    {
+      "label": "java21",
+      "jobId": 139671356517,
+      "name": "java (21)",
+      "conclusion": "success",
+      "tests": 539,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "scriptChecks": {
+        "pythonCounts": [
+          3,
+          6,
+          2
+        ],
+        "node": [
+          "2026-11-26T03:25:34.5168817Z # tests 6",
+          "2026-11-26T03:25:34.5169289Z # pass 6",
+          "2026-11-26T03:25:34.5169518Z # fail 0"
+        ],
+        "probePasses": 4
+      }
+    }
+  ]
+}

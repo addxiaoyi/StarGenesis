@@ -1,0 +1,6 @@
+[
+  "ecology/.worker.lock",
+  "factory/.worker.lock",
+  "arena-matches/.worker.lock",
+  "labs/lab/.worker.lock"
+]

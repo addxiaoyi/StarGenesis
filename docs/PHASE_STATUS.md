@@ -179,6 +179,12 @@ RC3使用两个独立源码副本和Microsoft JDK21分别clean verify，各415�
 
 测试脚本新增固定身份三次启动、存档清单、独立锁获取、检查点历史核验及失败证据保留。首次Folia运行在第四名客户端登录时返回server full，尚未执行插件玩法；将测试登录容量从4调为8，仍只连接4人，并保留失败日志。另修正Folia配置写入实际读取的`paper-global.yml`，最终日志确认两个调度线程。Paper统一脚本复测另有两次JVM原生内存分配失败，分别发生于实验室只读回放和随后的启动，均保留为失败。降低测试JVM的编译器/GC开销后，原目录恢复检查通过，六份已提交存档原字节和四项回放均保持；该观察不证明写入中途崩溃恢复。新增4项Python与1项Node证据拒绝回归均通过，原3项构建器回归及边界检查通过，CI加入这些检查；Java生产源码与已通过465项测试的worker批次相同。完整运行时、原始日志/存档、脚本和工件hash见`docs/evidence/p11/server-lifecycle/summary.json`，重现方法见`SERVER_LIFECYCLE_TEST.md`。使用Microsoft Java21、512MiB最大堆的隔离功能测试，不作为性能/生产配置建议。P1–P11阶段门仍未通过。
 
+## RC4候选
+
+2026-11-26 未签署候选更新为 `4.0.0-rc.4`，包含目前539项测试对应的稳定性实现。Windows Microsoft JDK21的两份隔离源码副本分别clean verify，各539项测试、70个测试类全部通过，源码/JAR/SBOM哈希完全一致。候选JAR SHA256为`a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20`，SBOM为`0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382`，含61组件。同一候选在Windows Java21/25下各通过目录锁、结算锁与两个临时密钥签名自检。来源提交`3328c03`的Linux CI `45748819405`在Java21/25各通过539项Java、11项Python、6项Node回归及四项探针。构建范围见`RELEASE_CANDIDATE_RC4.md`；此前RC3和SNAPSHOT的各批次记录保留为历史证据。
+
+同一RC4在Paper1.21.11-132与Folia1.21.11-14各完成一次五客户端流程，用时544.48秒/562.77秒，23项控制台检查与12项客户端流程均通过。覆盖基础工作流、工厂补偿、Arena硬断线pending恢复、P9关闭状态及P10临时key生命周期。每端八seed生态样本均至500步保留三物种、Matter=1000并通过回放；正常退出后四个worker锁均释放。证据见`docs/evidence/p11/rc4-recovery/summary.json`，包含40份工件和12份源码hash；完整实服存档仍在本地，仅归档其hash清单。本轮每端一次启动，不把此前SNAPSHOT的多重启观察改称RC4证据，无真人/生产容量/正式签名结论。
+
 ## 未闭合阶段门
 
 P1–P8 仍需真人玩家验收、留存和公平性研究。P5 candidate 已有双平台八 seed 实服覆盖，更广 seed/参数空间、长期研究与参数稳健性验收仍未完成。P9 需要指定真实 provider 的持久外部幂等副作用、授权和补偿故障审计。P10 需要运营方 trust-root 生命周期、真实第三方 bridge 及第三方验收。P11 需要生产规模/跨硬件容量研究和正式发行方签名。2026-11-25 已清理包管理器缓存并使用本机已安装的 JDK 21/25 恢复整仓构建，Paper/Folia 八 seed 客户端扫描已完成。

@@ -1,0 +1,88 @@
+2026-11-26T03:25:33.8967890Z ##[group]Run python scripts/check_boundaries.py
+2026-11-26T03:25:33.8968254Z [36;1mpython scripts/check_boundaries.py[0m
+2026-11-26T03:25:34.2437876Z Ran 3 tests in 0.055s
+2026-11-26T03:25:34.3308370Z Ran 6 tests in 0.006s
+2026-11-26T03:25:34.4000551Z Ran 2 tests in 0.001s
+2026-11-26T03:25:34.5168817Z # tests 6
+2026-11-26T03:25:34.5169289Z # pass 6
+2026-11-26T03:25:34.5169518Z # fail 0
+2026-11-26T03:25:42.9325757Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.080 s -- in dev.stargenesis.api.ContractTest
+2026-11-26T03:25:42.9418011Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T03:25:44.9305485Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.313 s -- in dev.stargenesis.design.ProtocolMessageCodecTest
+2026-11-26T03:25:45.3744315Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.447 s -- in dev.stargenesis.design.SignedDesignCodecTest
+2026-11-26T03:25:45.4155207Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in dev.stargenesis.design.BlueprintEvaluatorTest
+2026-11-26T03:25:45.4617611Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in dev.stargenesis.design.ArenaRulesetWorkspaceTest
+2026-11-26T03:25:45.7975368Z [INFO] Tests run: 44, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.328 s -- in dev.stargenesis.design.DesignCodecTest
+2026-11-26T03:25:45.8695682Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in dev.stargenesis.design.ProgramInterpreterTest
+2026-11-26T03:25:45.8961292Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in dev.stargenesis.design.TypedProgramCodecTest
+2026-11-26T03:25:45.8981319Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in dev.stargenesis.design.BlueprintWorkspaceTest
+2026-11-26T03:25:45.9231189Z [INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T03:25:53.3226457Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.933 s -- in dev.stargenesis.sim.EcologyLongRunTest
+2026-11-26T03:25:56.0700568Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.746 s -- in dev.stargenesis.sim.EcologyLifecycleV2Test
+2026-11-26T03:25:56.1074888Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in dev.stargenesis.sim.FactoryMatchIdentityTest
+2026-11-26T03:25:56.1444941Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in dev.stargenesis.sim.FactoryWorldTest
+2026-11-26T03:25:56.5476937Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.399 s -- in dev.stargenesis.sim.ArenaMatchWorldTest
+2026-11-26T03:25:57.2980126Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.749 s -- in dev.stargenesis.sim.ResourceSandboxWorldTest
+2026-11-26T03:25:57.3023572Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in dev.stargenesis.sim.ArenaMatchIdentityTest
+2026-11-26T03:25:57.3715898Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 s -- in dev.stargenesis.sim.EcologyWorldTest
+2026-11-26T03:25:57.5602557Z [INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.189 s -- in dev.stargenesis.sim.SimulationContractsTest
+2026-11-26T03:25:57.6330560Z [INFO] Tests run: 92, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T03:25:58.4688019Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.097 s -- in dev.stargenesis.integrations.SettlementSagaCoordinatorTest
+2026-11-26T03:25:58.5236565Z [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in dev.stargenesis.integrations.CapabilityRegistryTest
+2026-11-26T03:25:58.5324974Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in dev.stargenesis.integrations.SettlementReviewContractTest
+2026-11-26T03:25:58.5597964Z [INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T03:26:01.5545740Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in dev.stargenesis.paper.PluginDescriptorTest
+2026-11-26T03:26:02.1526805Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.597 s -- in dev.stargenesis.paper.blueprint.BlueprintSessionsTest
+2026-11-26T03:26:02.3287611Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.176 s -- in dev.stargenesis.paper.blueprint.BlueprintStoreTest
+2026-11-26T03:26:02.4726898Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.136 s -- in dev.stargenesis.paper.blueprint.BlueprintCollaborationTest
+2026-11-26T03:26:02.6165473Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.139 s -- in dev.stargenesis.paper.communication.ContractRuntimeTest
+2026-11-26T03:26:02.8989193Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.285 s -- in dev.stargenesis.paper.communication.ContractRecoveryTest
+2026-11-26T03:26:04.0356689Z [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.131 s -- in dev.stargenesis.paper.communication.RadioServiceTest
+2026-11-26T03:26:04.1033048Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in dev.stargenesis.paper.communication.VirtualMessageBusRetentionTest
+2026-11-26T03:26:04.1551652Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in dev.stargenesis.paper.communication.RadioPersistenceTest
+2026-11-26T03:26:04.2304610Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in dev.stargenesis.paper.communication.RadioSendCommandTest
+2026-11-26T03:26:08.9995041Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.770 s -- in dev.stargenesis.paper.communication.RadioCapacityTest
+2026-11-26T03:26:09.0130559Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in dev.stargenesis.paper.communication.ContractRadioWorkflowTest
+2026-11-26T03:26:09.0355246Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in dev.stargenesis.paper.communication.VirtualMessageBusTest
+2026-11-26T03:26:09.1445635Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.108 s -- in dev.stargenesis.paper.design.PublisherKeyStoreTest
+2026-11-26T03:26:09.3066160Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.162 s -- in dev.stargenesis.paper.design.SignedDesignPackageStoreTest
+2026-11-26T03:26:09.9139356Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.607 s -- in dev.stargenesis.paper.design.PublisherTrustConcurrencyTest
+2026-11-26T03:26:11.4512067Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.538 s -- in dev.stargenesis.paper.design.PublisherTrustLifecycleTest
+2026-11-26T03:26:11.5496021Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in dev.stargenesis.paper.runtime.PersistentWorkerTest
+2026-11-26T03:26:11.7004716Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.148 s -- in dev.stargenesis.paper.runtime.PlayerCommandQueueTest
+2026-11-26T03:26:11.7536385Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in dev.stargenesis.paper.factory.FactoryPersistenceTest
+2026-11-26T03:26:12.4487237Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.697 s -- in dev.stargenesis.paper.factory.FactoryCompatibilityTest
+2026-11-26T03:26:14.0222396Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.574 s -- in dev.stargenesis.paper.factory.FactoryServiceTest
+2026-11-26T03:26:14.0905298Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in dev.stargenesis.paper.lab.LabWorkerLifecycleTest
+2026-11-26T03:26:14.4930875Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.400 s -- in dev.stargenesis.paper.lab.LabExperimentTest
+2026-11-26T03:26:14.8627270Z [INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.370 s -- in dev.stargenesis.paper.settlement.SettlementReviewRecoveryTest
+2026-11-26T03:26:14.8926352Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in dev.stargenesis.paper.settlement.FileSettlementSagaRepositoryTest
+2026-11-26T03:26:15.6961780Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.805 s -- in dev.stargenesis.paper.settlement.SettlementConcurrencyTest
+2026-11-26T03:26:15.7137343Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in dev.stargenesis.paper.settlement.SettlementRepositoryIntegrityTest
+2026-11-26T03:26:16.3323428Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.618 s -- in dev.stargenesis.paper.ecology.EcologyServiceTest
+2026-11-26T03:26:16.3901358Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in dev.stargenesis.paper.ecology.EcologyWorkerLifecycleTest
+2026-11-26T03:26:16.4109880Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in dev.stargenesis.paper.ecology.EcologyPersistenceTest
+2026-11-26T03:26:17.2396069Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.831 s -- in dev.stargenesis.paper.LabPersistenceTest
+2026-11-26T03:26:17.2615289Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in dev.stargenesis.paper.arena.ArenaDependencyClosureTest
+2026-11-26T03:26:17.5216413Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.262 s -- in dev.stargenesis.paper.arena.ArenaPublicationIntegrityTest
+2026-11-26T03:26:18.6240814Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.102 s -- in dev.stargenesis.paper.arena.ArenaMatchServiceTest
+2026-11-26T03:26:18.6652681Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in dev.stargenesis.paper.arena.ArenaDraftAuthorizationTest
+2026-11-26T03:26:19.2572128Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.590 s -- in dev.stargenesis.paper.arena.ArenaMatchStorageBudgetTest
+2026-11-26T03:26:19.4777032Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.222 s -- in dev.stargenesis.paper.arena.ArenaMatchCompatibilityTest
+2026-11-26T03:26:19.4895554Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in dev.stargenesis.paper.arena.ArenaMatchPersistenceTest
+2026-11-26T03:26:19.5625586Z [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in dev.stargenesis.paper.arena.ArenaInvitationsTest
+2026-11-26T03:26:19.6415663Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in dev.stargenesis.paper.arena.ArenaRulesetStoreTest
+2026-11-26T03:26:19.8441182Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.191 s -- in dev.stargenesis.paper.arena.ArenaDraftSessionsTest
+2026-11-26T03:26:19.9380934Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in dev.stargenesis.paper.arena.ArenaMatchRoundTest
+2026-11-26T03:26:20.0639168Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 s -- in dev.stargenesis.paper.program.ProgramSessionsTest
+2026-11-26T03:26:20.1046932Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in dev.stargenesis.paper.program.ProgramSessionTest
+2026-11-26T03:26:20.2024635Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.097 s -- in dev.stargenesis.paper.program.ProgramStoreTest
+2026-11-26T03:26:20.2138943Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in dev.stargenesis.paper.program.ProgramSimulationTest
+2026-11-26T03:26:20.2357209Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in dev.stargenesis.paper.program.ProgramSandboxRunnerTest
+2026-11-26T03:26:20.2394974Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.stargenesis.paper.program.ProgramWorkflowTest
+2026-11-26T03:26:20.3162279Z [INFO] Tests run: 339, Failures: 0, Errors: 0, Skipped: 0
+2026-11-26T03:26:22.2363171Z [INFO] BUILD SUCCESS
+2026-11-26T03:26:24.1887549Z   "passed": true,
+2026-11-26T03:26:25.4171081Z   "passed": true,
+2026-11-26T03:26:28.1363106Z   "passed": true,
+2026-11-26T03:26:30.1363372Z   "passed": true,

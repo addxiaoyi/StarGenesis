@@ -1,0 +1,994 @@
+{
+  "date": "2026-11-26",
+  "version": "4.0.0-rc.4",
+  "sourceCommit": "3328c03c63440b287e0da1fd29480e4e258b6064",
+  "sourceGitTree": "2e63ada4548cf5a4fc6e066a3048e6f905ed617c",
+  "originalLocalCommit": "deedcc93e5af2fbc4dbcf2e73b20d311991b8417",
+  "sync": "Git HTTPS was unavailable. GitHub API uploaded the exact same tree with the same parent; the original local commit is retained at refs/backup/match-admin-local-deedcc9.",
+  "scope": "Unsigned RC4 after RC2 stability work: two isolated Windows JDK21 clean builds, same-candidate Windows JDK21/25 probes, Linux CI, and actual Paper/Folia automated client workflows.",
+  "reproducibleBuild": {
+    "testsPerBuild": {
+      "reports": 70,
+      "tests": 539,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sameSourceJarAndSbom": true,
+    "sourceTreeSha256": "f85b7d3ba1fda1d940c28da0fa642483028dff2555df29b4ad4434e4ce755edd",
+    "artifact": {
+      "file": ".work\\releases\\4.0.0-rc.4\\StarGenesis-4.0.0-rc.4.jar",
+      "sizeBytes": 3062279,
+      "sha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20"
+    },
+    "sbom": {
+      "format": "CycloneDX",
+      "specVersion": "1.6",
+      "components": 61,
+      "file": ".work\\releases\\4.0.0-rc.4\\sbom.json",
+      "sha256": "0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382"
+    },
+    "scope": "Two source copies on one Windows host with the same Microsoft JDK21. This does not assert identical hashes across JDKs or hosts."
+  },
+  "ci": {
+    "commit": "3328c03c63440b287e0da1fd29480e4e258b6064",
+    "sourceTree": "2e63ada4548cf5a4fc6e066a3048e6f905ed617c",
+    "url": "https://github.com/addxiaoyi/StarGenesis/actions/runs/45748819405",
+    "runId": 45748819405,
+    "jobs": [
+      {
+        "label": "java25",
+        "jobId": 139671356287,
+        "name": "java (25)",
+        "conclusion": "success",
+        "tests": 539,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scriptChecks": {
+          "pythonCounts": [
+            3,
+            6,
+            2
+          ],
+          "node": [
+            "2026-11-26T03:25:37.1601161Z # tests 6",
+            "2026-11-26T03:25:37.1601504Z # pass 6",
+            "2026-11-26T03:25:37.1601669Z # fail 0"
+          ],
+          "probePasses": 4
+        }
+      },
+      {
+        "label": "java21",
+        "jobId": 139671356517,
+        "name": "java (21)",
+        "conclusion": "success",
+        "tests": 539,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "scriptChecks": {
+          "pythonCounts": [
+            3,
+            6,
+            2
+          ],
+          "node": [
+            "2026-11-26T03:25:34.5168817Z # tests 6",
+            "2026-11-26T03:25:34.5169289Z # pass 6",
+            "2026-11-26T03:25:34.5169518Z # fail 0"
+          ],
+          "probePasses": 4
+        }
+      }
+    ]
+  },
+  "candidateChecks": {
+    "java21": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "sourceSbomSha256": "0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    },
+    "java25": {
+      "worker-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "probeSha256": "daefd4cf7adb98b9a69861dd88eb23d4249edb680c5f0909a61447a74bdaed47",
+        "cases": [
+          {
+            "shutdownTimedOut": false,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": false,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0
+          },
+          {
+            "shutdownTimedOut": true,
+            "holderTerminated": true,
+            "sameJvmAndReloadClassloaderRejected": true,
+            "otherProcessRejectedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1
+          }
+        ],
+        "scope": "Temporary local filesystem, independent JVMs and plugin-style classloaders. No Paper/Folia lifecycle, network filesystem, malicious plugin or production capacity acceptance."
+      },
+      "settlement-lock": {
+        "passed": true,
+        "java": "openjdk version \"25.0.5.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780179 (build 25.0.5.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780179 (build 25.0.5.0.2+1-LTS, mixed mode, sharing)",
+        "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "probeSha256": "e6e8f28550a86053e32f4e2943242e8ab7992a6490e15020bac90b5e3c2cf942",
+        "cases": [
+          {
+            "holderTerminated": false,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 0,
+            "contenderExitCode": 0
+          },
+          {
+            "holderTerminated": true,
+            "blockedWhileHeld": true,
+            "acquiredAfterRelease": true,
+            "holderExitCode": 1,
+            "contenderExitCode": 0
+          }
+        ],
+        "scope": "Two local JVMs sharing a temporary filesystem. Tests lock exclusion and release only; no real provider, network filesystem, production capacity or asset-transfer acceptance."
+      },
+      "release-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "testVersion": "1.0.0-rc.1",
+        "testKeyEphemeral": true,
+        "signedArtifacts": [
+          "StarGenesis-1.0.0-rc.1.jar",
+          "sbom.json"
+        ],
+        "signatureVerified": true,
+        "tamperRejected": true,
+        "privateTestKeyRemoved": true,
+        "sourceJarSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+        "sourceSbomSha256": "0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382",
+        "scope": "Ephemeral-key signer self-test. No official release key or release artifact was signed."
+      },
+      "design-signer": {
+        "passed": true,
+        "algorithm": "Ed25519",
+        "publisherKeyId": "publisher.smoke",
+        "designSourceSha256": "9d9e7ae6ae0226a8fbaba0a9b21addb24cc2c7d734711ff40d777725cee46b96",
+        "validSignatureVerified": true,
+        "signatureTamperRejected": true,
+        "unknownKeyIdRejected": true,
+        "privateTestKeyRemoved": true,
+        "testKeyEphemeral": true,
+        "scope": "Ephemeral-key design package signing self-test. The key was removed and is not an operational publisher trust root."
+      }
+    }
+  },
+  "platforms": {
+    "paper": {
+      "passed": true,
+      "seconds": 544.48,
+      "serverSha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+      "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "heapMb": 512,
+      "jvmArgs": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "consoleChecks": 23,
+      "clientStages": [
+        "P1",
+        "P10",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P5-ecology-study",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "client-login"
+      ],
+      "releasedWorkerLocks": [
+        "ecology/.worker.lock",
+        "factory/.worker.lock",
+        "arena-matches/.worker.lock",
+        "labs/lab/.worker.lock"
+      ],
+      "ecologyStudy": {
+        "stage": "P5-ecology-study",
+        "passed": true,
+        "requestedTicksPerTank": 500,
+        "maximumWorlds": 4,
+        "profiles": {
+          "alice": [
+            [
+              "producer",
+              3,
+              5,
+              40,
+              150
+            ],
+            [
+              "grazer",
+              2,
+              6,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              2,
+              5,
+              32,
+              80
+            ]
+          ],
+          "bob": [
+            [
+              "producer",
+              2,
+              6,
+              64,
+              100
+            ],
+            [
+              "grazer",
+              1,
+              8,
+              48,
+              60
+            ],
+            [
+              "decomposer",
+              1,
+              7,
+              64,
+              80
+            ]
+          ],
+          "carol": [
+            [
+              "producer",
+              5,
+              5,
+              40,
+              500
+            ],
+            [
+              "grazer",
+              3,
+              8,
+              28,
+              400
+            ],
+            [
+              "decomposer",
+              3,
+              5,
+              36,
+              350
+            ]
+          ],
+          "dave": [
+            [
+              "producer",
+              4,
+              2,
+              40,
+              100
+            ],
+            [
+              "grazer",
+              3,
+              2,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              3,
+              2,
+              32,
+              100
+            ]
+          ]
+        },
+        "results": [
+          {
+            "role": "alice",
+            "seed": 52001,
+            "ticks": 287,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "bob",
+            "seed": 52002,
+            "ticks": 463,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "carol",
+            "seed": 52003,
+            "ticks": 288,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "dave",
+            "seed": 52004,
+            "ticks": 301,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          }
+        ],
+        "threeSpeciesCandidate": {
+          "seedRange": [
+            52008,
+            52015
+          ],
+          "worldOwnerRole": "alice",
+          "programs": [
+            [
+              "producer",
+              6,
+              2,
+              512,
+              0
+            ],
+            [
+              "grazer",
+              1,
+              12,
+              512,
+              0
+            ],
+            [
+              "decomposer",
+              1,
+              12,
+              512,
+              0
+            ]
+          ],
+          "runs": [
+            {
+              "seed": 52008,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52009,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52010,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52011,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52012,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52013,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52014,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52015,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            }
+          ],
+          "fullSpeciesSurvivalRuns": 8,
+          "survivalFraction": 1
+        },
+        "scope": "Four isolated parameter profiles were stepped to extinction or the 500-tick budget. An additional eight-seed candidate sweep used Alice's same private world owner and repeated deterministic parameters. Matter conservation and replay were checked. This remains a bounded automated study, not human ecological research or ecological balance acceptance."
+      },
+      "storageManifestOnly": true
+    },
+    "folia": {
+      "passed": true,
+      "seconds": 562.77,
+      "serverSha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+      "pluginSha256": "a1a6c3eceaf7a34da9bbbe846d1c95f0dbac185c370491d876072873638d5b20",
+      "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+      "heapMb": 512,
+      "jvmArgs": [
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-XX:ReservedCodeCacheSize=64m",
+        "-XX:ActiveProcessorCount=2"
+      ],
+      "consoleChecks": 23,
+      "clientStages": [
+        "P1",
+        "P10",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P5-ecology-study",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "client-login"
+      ],
+      "releasedWorkerLocks": [
+        "ecology/.worker.lock",
+        "factory/.worker.lock",
+        "arena-matches/.worker.lock",
+        "labs/lab/.worker.lock"
+      ],
+      "ecologyStudy": {
+        "stage": "P5-ecology-study",
+        "passed": true,
+        "requestedTicksPerTank": 500,
+        "maximumWorlds": 4,
+        "profiles": {
+          "alice": [
+            [
+              "producer",
+              3,
+              5,
+              40,
+              150
+            ],
+            [
+              "grazer",
+              2,
+              6,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              2,
+              5,
+              32,
+              80
+            ]
+          ],
+          "bob": [
+            [
+              "producer",
+              2,
+              6,
+              64,
+              100
+            ],
+            [
+              "grazer",
+              1,
+              8,
+              48,
+              60
+            ],
+            [
+              "decomposer",
+              1,
+              7,
+              64,
+              80
+            ]
+          ],
+          "carol": [
+            [
+              "producer",
+              5,
+              5,
+              40,
+              500
+            ],
+            [
+              "grazer",
+              3,
+              8,
+              28,
+              400
+            ],
+            [
+              "decomposer",
+              3,
+              5,
+              36,
+              350
+            ]
+          ],
+          "dave": [
+            [
+              "producer",
+              4,
+              2,
+              40,
+              100
+            ],
+            [
+              "grazer",
+              3,
+              2,
+              24,
+              100
+            ],
+            [
+              "decomposer",
+              3,
+              2,
+              32,
+              100
+            ]
+          ]
+        },
+        "results": [
+          {
+            "role": "alice",
+            "seed": 52001,
+            "ticks": 287,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "bob",
+            "seed": 52002,
+            "ticks": 463,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "carol",
+            "seed": 52003,
+            "ticks": 288,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          },
+          {
+            "role": "dave",
+            "seed": 52004,
+            "ticks": 301,
+            "totalMatter": 1000,
+            "terminalReason": "EXTINCTION",
+            "replayVerified": true
+          }
+        ],
+        "threeSpeciesCandidate": {
+          "seedRange": [
+            52008,
+            52015
+          ],
+          "worldOwnerRole": "alice",
+          "programs": [
+            [
+              "producer",
+              6,
+              2,
+              512,
+              0
+            ],
+            [
+              "grazer",
+              1,
+              12,
+              512,
+              0
+            ],
+            [
+              "decomposer",
+              1,
+              12,
+              512,
+              0
+            ]
+          ],
+          "runs": [
+            {
+              "seed": 52008,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52009,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52010,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52011,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52012,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52013,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52014,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            },
+            {
+              "seed": 52015,
+              "ticks": 500,
+              "population": 21,
+              "totalMatter": 1000,
+              "populationBySpecies": {
+                "producer": 9,
+                "grazer": 6,
+                "decomposer": 6
+              },
+              "extinctSpecies": [],
+              "births": 14,
+              "deaths": 0,
+              "terminalReason": "DURATION_BUDGET",
+              "replayVerified": true
+            }
+          ],
+          "fullSpeciesSurvivalRuns": 8,
+          "survivalFraction": 1
+        },
+        "scope": "Four isolated parameter profiles were stepped to extinction or the 500-tick budget. An additional eight-seed candidate sweep used Alice's same private world owner and repeated deterministic parameters. Matter conservation and replay were checked. This remains a bounded automated study, not human ecological research or ecological balance acceptance."
+      },
+      "storageManifestOnly": true
+    }
+  },
+  "limitations": [
+    "Live client runs are functional validation with five automated local clients per platform, not human play, fairness, retention, stress, production latency, or capacity acceptance.",
+    "This RC4 live batch has one boot per platform. Earlier multiple-boot editor/radio/service/match-admin evidence used SNAPSHOT artifacts and is not relabeled as exact RC4 evidence.",
+    "Raw server/client logs and outcome JSON are archived. Full live plugin storage remains in .work/rc4-live; the repository includes its hash manifests, not all saved data bytes.",
+    "Ecology profiles and eight-seed scans remain bounded samples; surviving species counts do not establish balance or robustness across all parameters.",
+    "P9 real settlement remains disabled; no production provider or review-authorization adapter was introduced.",
+    "Signing checks and live publisher imports use ephemeral test keys; no operator trust root or official release private key was used.",
+    "No GitHub release/tag, production deployment or full P0-P11 completion is claimed."
+  ],
+  "sourceSha256": {
+    "scripts/build_release_candidate.py": "346aabdeec3b50d7e666a892b5c9de943a8c375b39b8740b1c677813c5f87008",
+    "scripts/test_release_candidate_builder.py": "4aea1c9bae37563b24b3131931e087a7c51e3eddcc20676b238e5953c57783cb",
+    "scripts/server_smoke.py": "c8f86355525a42344482125704cf228685fe40fd92b456d406cb9efd46f4943d",
+    "scripts/offline_client_workflow_smoke.cjs": "73cc8abe16e89c96f8988fef6950334b2d4499d949207b7ed4aa82df82ed209d",
+    "scripts/server_lifecycle_smoke.py": "4965bb9bacf2eb88308054aca4dcfbec039a760a4a52d3e67ebab0688cfa47d6",
+    "scripts/test_worker_directory_lock.py": "1ba8b292cf9def1477311efa5acb0f2bd7d0f7d755885f8fb4f073d5d5acb379",
+    "scripts/test_settlement_process_lock.py": "4085381cf5558ccb403560de11d4aa75db3bf07bdab452b58a3f6fb9e36515b8",
+    "scripts/test_release_artifact_signer.py": "72da18f9d5a82a35cebb27a04961b25ffc45889ba9c3c30c01f015954eac381d",
+    "scripts/test_signed_design_package_signer.py": "3254998c8a63400d0e968c140030dc2251585402f0d915abb30a4238869a4b01",
+    "scripts/ReleaseArtifactSigner.java": "ab853167f25fdb896da91e27b00fee8e767b3153684d8e1785182f6df2cdf3af",
+    "scripts/SignedDesignPackageSigner.java": "48023050ed5d5f5c9eb9f39e9070bd38ed09fda39ef38e983637903a266f0f1e",
+    ".github/workflows/verify.yml": "8b5407ef651db010fa41581a8bcfd194e9f48438bca05e936ef776ba18e3c7b8"
+  },
+  "artifactSha256": {
+    "first/release-verify.log": "f01d5396f9e537b806090fd4432037378b7b900012307e4836870b456ffb6291",
+    "folia/harness.log": "de74e88f75d2493c5dc69b0e6fed15698d25568503c3c91875f7838692fbf015",
+    "folia/player-workflow-result.json": "a411118d97983933ee87b49688240bdd6ad7faafec90ec06155a150f99425a63",
+    "folia/player-workflow.log": "ce106c7afe6e674d990cd74cc6949ed91af295aeba194039c3d5086606709839",
+    "folia/released-worker-locks.json": "ec543ae3994b31948fdc89f2e7f115015324b382e6f02e0272ce703270455475",
+    "folia/server.properties": "540c616ace9c7542db467241c272adc067e71af5d5084c4a72562a8c5690e643",
+    "folia/smoke-console.log": "24f5fd1288138753746c111a35598de9cc54f24839c25d45ed5106746ea73c7d",
+    "folia/smoke-result.json": "de74e88f75d2493c5dc69b0e6fed15698d25568503c3c91875f7838692fbf015",
+    "folia/storage-manifest.json": "fbbedf54ad39348c5538268dbd8147dec766100f69d9581dccc3ca9b928b7e07",
+    "paper/harness.log": "7aabe658b5109e2e8410350a79131c95d2b91662c6660a878f11eaf389e14ae2",
+    "paper/player-workflow-result.json": "7cd540355023dcfb3529d3528259943cc9c7108c33f4417546da3566d12468ea",
+    "paper/player-workflow.log": "55640455de5807a808fdf71113553a7ae3bb5f29050b1f64e63e53cf95b3fe4a",
+    "paper/released-worker-locks.json": "ec543ae3994b31948fdc89f2e7f115015324b382e6f02e0272ce703270455475",
+    "paper/server.properties": "d7477009b0c896e14870b9718b2f732120fcf297d8f3b5ec7f113fe664799419",
+    "paper/smoke-console.log": "1fe2e90df077786590f0594df3001caf573e13491cfb97f504e98bb8c7062ca1",
+    "paper/smoke-result.json": "7aabe658b5109e2e8410350a79131c95d2b91662c6660a878f11eaf389e14ae2",
+    "paper/storage-manifest.json": "fff19f2e8be54a145076ed5027abf2ea05ed29df28614156cd5a6e4531fd4831",
+    "probes/java21/design-signer.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/java21/design-signer.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/java21/release-signer.json": "051c62a5d937ec5e34a2d426a7325abe3ef8c24de1d41a7b2f4971b94b52730b",
+    "probes/java21/release-signer.log": "051c62a5d937ec5e34a2d426a7325abe3ef8c24de1d41a7b2f4971b94b52730b",
+    "probes/java21/settlement-lock.json": "4b193f8c50b78c9a81700b2fe943ec56a268e05ec30a7a012ea838c56e0ddebd",
+    "probes/java21/settlement-lock.log": "e60a811a6a4a29e92e556fc67a764b5d4964ffc77d004441e77ae9a3762d10c0",
+    "probes/java21/worker-lock.json": "6433f729a29e12379dfdae381425514053390457d31652bb91889766ef836b2c",
+    "probes/java21/worker-lock.log": "0b4b383a2e65ff10881c6603856b0c3502def181674b1e93273e9184aa3a2ee6",
+    "probes/java25/design-signer.json": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/java25/design-signer.log": "706446c078cef9ff211e276c0c2bc3d7e650dae42eecc4204b1a750d761200a5",
+    "probes/java25/release-signer.json": "051c62a5d937ec5e34a2d426a7325abe3ef8c24de1d41a7b2f4971b94b52730b",
+    "probes/java25/release-signer.log": "051c62a5d937ec5e34a2d426a7325abe3ef8c24de1d41a7b2f4971b94b52730b",
+    "probes/java25/settlement-lock.json": "e105e416e6b4b60f610d5e23108d39f7f8758039b91edab8ae3883d93b6e51e3",
+    "probes/java25/settlement-lock.log": "58e4b7ca2d74d493ed0181fe67e89743d9c022663ae7e393b8937017b9b03806",
+    "probes/java25/worker-lock.json": "402cbb40e312e68a0c0cc6ba5df1c9f7af3e20d0c0cac981254230783d46260f",
+    "probes/java25/worker-lock.log": "f83bb14db8063b117aefb45fbde006ebc672324a924dd1886f18a56009e09d9a",
+    "rc4-ci-java21-excerpt.log": "426bf37f5670bdcfb7c5d8dced99607b0402e7b158162fb1862dd24b190c7d54",
+    "rc4-ci-java25-excerpt.log": "20b8af84f8af2e5ec6f6eba502c316c1f8e3b618d02b3a63217be61567652beb",
+    "rc4-ci-verification.json": "0323a4d70cbe86a4e65e9126943630f381c176b831e014e207149f4379f69a0d",
+    "release-candidate-rc4-first.json": "97f2c9dfea0e9d120af29985a00bd87dfe1169cfe685bbc972a08c950f55dc95",
+    "release-candidate-rc4-repeat.json": "7ae09e4ad4cebe779ebf3aa3c6045ca02eaafb491dcd6de1c5acbea9d7a6d13d",
+    "repeat/release-verify.log": "600e9af97ca9ec6c6171a039438aab650b2e07b15d4b22bc484a79086f5d8004",
+    "sbom.json": "0859ff83bb6a2d2766f63e05162bd1bd0552a56cee8a3d878e56791b5bf95382"
+  }
+}
