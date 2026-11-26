@@ -1,0 +1,52 @@
+// Builds unchanged, locked upstream sources without resolving native server artifacts.
+allprojects {
+    afterEvaluate {
+        def currentJava = JavaVersion.current().majorVersion.toInteger()
+        ['compileJava', 'compileModernCompatJava', 'compileTestJava'].each { name ->
+            tasks.named(name, JavaCompile) {
+                javaCompiler.set(javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(currentJava) })
+                options.release.set(21)
+            }
+        }
+        def recipeRuntime = configurations.testRuntimeClasspath.copyRecursive { dependency ->
+            dependency.group != 'org.spigotmc'
+        }
+        recipeRuntime.exclude(group: 'org.spigotmc')
+        tasks.register('sgApiJar', Jar) {
+            dependsOn(tasks.named('classes'))
+            from(sourceSets.main.output)
+            archiveFileName.set('cookery-actual-api.jar')
+            destinationDirectory.set(layout.buildDirectory.dir('stargenesis'))
+            preserveFileTimestamps = false
+            reproducibleFileOrder = true
+        }
+        tasks.register('sgRecipeTests', Test) {
+            dependsOn(tasks.named('testClasses'))
+            useJUnitPlatform()
+            javaLauncher.set(javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(currentJava) })
+            testClassesDirs = sourceSets.test.output.classesDirs
+            classpath = sourceSets.test.output + sourceSets.main.output + sourceSets.modernCompat.output + recipeRuntime
+            filter {
+                ['BambooTrayRecipeTest', 'BambooTrayIndexTest', 'FoodRecipeRegistryBambooTrayTest',
+                 'PotRecipeTest', 'StockpotRecipeTest'].each { includeTestsMatching('net.kaleidoscope.cookery.recipe.' + it) }
+            }
+            maxHeapSize = '160m'
+            jvmArgs '-XX:+UseSerialGC', '-XX:TieredStopAtLevel=1', '-XX:ReservedCodeCacheSize=48m', '-XX:ActiveProcessorCount=2'
+            jvmArgumentProviders.add({ -> ["-javaagent:${configurations.mockitoAgent.singleFile.absolutePath}"] } as org.gradle.process.CommandLineArgumentProvider)
+            systemProperty 'file.encoding', 'UTF-8'
+        }
+        tasks.register('sgDependencyManifest') {
+            doLast {
+                def records = []
+                [configurations.compileClasspath, configurations.testCompileClasspath, recipeRuntime].each { conf ->
+                    conf.resolvedConfiguration.resolvedArtifacts.each { a ->
+                        records.add([configuration: conf.name, group: a.moduleVersion.id.group, name: a.name,
+                                     version: a.moduleVersion.id.version, classifier: a.classifier,
+                                     sha256: java.security.MessageDigest.getInstance('SHA-256').digest(a.file.bytes).encodeHex().toString()])
+                    }
+                }
+                file('build/stargenesis/dependencies.json').text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(records))
+            }
+        }
+    }
+}

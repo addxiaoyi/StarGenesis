@@ -6,7 +6,7 @@
 |---|---|---|
 | addxiaoyi/starcore | f769e62799e769a18fe51305b545869a17f80cd1 | [audits/STARCORE.md](audits/STARCORE.md) |
 | addxiaoyi/helsteraMobs | 9298292538dc9d7c5ee800ff7e03f4c10e34ba97 + 锁定清理补丁（2026-11-26） | [audits/HELSTERA.md](audits/HELSTERA.md)、[只读桥接](HELSTERA_MODEL_CATALOG.md) |
-| addxiaoyi/SenLuo_Plugin | 6a432fe54097a3ebf22ba5757e016b602c711f28 | [audits/SENLUO.md](audits/SENLUO.md) |
+| addxiaoyi/SenLuo_Plugin | 系列初审 6a432fe54097a3ebf22ba5757e016b602c711f28；料理桥接 7aca215fca067314d1593dd287621f96fb8913e4（2026-11-26） | [audits/SENLUO.md](audits/SENLUO.md)、[配方合同](COOKERY_RECIPE_CATALOG.md) |
 
 StarCore 经机器现有 Git 认证只读取得；匿名 HTTP 404 不代表不存在。SenLuo 使用独立 main 克隆，没有改动旁边用户已有其他分支和未提交修改。
 
@@ -40,6 +40,10 @@ Cookery 导出 ID 使用 `kaleidoscopecookery:*`，不能与源模型 `kaleidosc
 
 ## P0 能力策略和下一步
 
-CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展验证`model.inspect`与`entity.project`；投影只对支持固定清理契约的提供方激活，清理未完成时降级为查询。可选CraftEngine扩展检查实际资源锁与加载状态后验证`items.resolve`与脱离背包的`items.create`。其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
+CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展验证`model.inspect`与`entity.project`；投影只对支持固定清理契约的提供方激活，清理未完成时降级为查询。可选CraftEngine扩展检查实际资源锁与加载状态后验证`items.resolve`与脱离背包的`items.create`。料理扩展按当前提供方状态验证 `cookery.read`。其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
 
 2026-11-26首次执行真实Helstera只读目录桥接：固定源码、实际API编译、Paper1.21.11-132模型解析/注册/卸载/重载、提供方停用与旧引用拒绝通过。该历史批次不包含显示实体、资源包、动画或Folia；上游实例创建失败未回滚已用实际运行时复现。后续投影批次以固定依赖补丁修复创建与清理契约，证据见`docs/evidence/p10/lab-projection/summary.json`。StarCore真实结算和SenLuo物品桥接仍未验收。
+
+2026-11-26料理续审固定 main 提交 `7aca215fca067314d1593dd287621f96fb8913e4`，从邻近只读 checkout 的 Git 对象提取原始 blob，并用 GitHub exact-commit ZIP 独立核对 558 个文件。邻近 checkout 的 HEAD 为 `35f5fbe99e5d846a50e63063562d2875d79273eb`，不是本次 main，未修改该工作树。桥接使用 `KaleidoscopeCookeryAPI.foodRecipes()` 和公开元数据列表/record accessor，覆盖七类配方及八种器具；未使用会随机抽样或创建物品的 `planAccurate`、`planChopping`、`cookFlex` 或 `buildOutputs`。
+
+`readSnapshot` 继承已有 reader/writer，`generation()` 独立读取全局计数，因此接口不把 generation 作为版本或新鲜度证明。实际资源 lease 排斥配置重载，读前后 generation 检查捕获独立 atomicUpdate 发布；插件停用、API替换、回调关闭、重入与超限拒绝结果。上游 registry.close 仍允许读取，桥接另外校验插件生命周期。注册表中的标签/等效食物引用、器具默认值与产物权重只作为元数据保留，不授权制作。详细字段、预算和验证边界见 `COOKERY_RECIPE_CATALOG.md`。

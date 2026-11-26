@@ -1,0 +1,335 @@
+{
+  "sourceRevision": "7aca215fca067314d1593dd287621f96fb8913e4",
+  "apiSha256": "67c354b090a65c2e1dfb64b4ee6e59ececf2e093d4f48a1b6309d2a508507e65",
+  "runtimeSha256": "c8a968839e373f58a25cee23a0ad0ca85cb3ed88db3a8ebf192e3e99cfada57c",
+  "apiClasses": 625,
+  "missing": [],
+  "changedByShading": [
+    "net/kaleidoscope/cookery/plugin/KaleidoscopeCookeryPlugin.class",
+    "net/kaleidoscope/cookery/util/InteractGuard.class"
+  ],
+  "checkedRecipeAndEntryClasses": {
+    "net/kaleidoscope/cookery/api/KaleidoscopeCookeryAPI.class": {
+      "apiSha256": "9cf928ba2ec509f556be68f5a2263efc0d5dd0b5d9e502dbd6be19bc838e8bcd",
+      "runtimeSha256": "9cf928ba2ec509f556be68f5a2263efc0d5dd0b5d9e502dbd6be19bc838e8bcd"
+    },
+    "net/kaleidoscope/cookery/recipe/AccurateFoodRecipe.class": {
+      "apiSha256": "5c5d3b401fa168ad85c64bfb25ab52787bbdbb351f812ea71c21fe1d89d23667",
+      "runtimeSha256": "5c5d3b401fa168ad85c64bfb25ab52787bbdbb351f812ea71c21fe1d89d23667"
+    },
+    "net/kaleidoscope/cookery/recipe/ApplianceFoodRegistry.class": {
+      "apiSha256": "5d60e5e3a8380074fbe8444ccd25dcfbadf92d735fcb020af750e70e6f2dd161",
+      "runtimeSha256": "5d60e5e3a8380074fbe8444ccd25dcfbadf92d735fcb020af750e70e6f2dd161"
+    },
+    "net/kaleidoscope/cookery/recipe/ApplianceType.class": {
+      "apiSha256": "d4a511b8139ab7de5b9a88a0cfc1a7267ae39ca79f87410fa43f8c47756c3d97",
+      "runtimeSha256": "d4a511b8139ab7de5b9a88a0cfc1a7267ae39ca79f87410fa43f8c47756c3d97"
+    },
+    "net/kaleidoscope/cookery/recipe/BambooTrayIndex$Input.class": {
+      "apiSha256": "d693d69c5447141a0d76383a60d5726c84e42503543fc99f83e3f8562130bda3",
+      "runtimeSha256": "d693d69c5447141a0d76383a60d5726c84e42503543fc99f83e3f8562130bda3"
+    },
+    "net/kaleidoscope/cookery/recipe/BambooTrayIndex.class": {
+      "apiSha256": "ac7e8935582e5f1294b06641187dcfcc3695974ff05690103c5ede540b988922",
+      "runtimeSha256": "ac7e8935582e5f1294b06641187dcfcc3695974ff05690103c5ede540b988922"
+    },
+    "net/kaleidoscope/cookery/recipe/BambooTrayMode.class": {
+      "apiSha256": "c4ee3835658592067d947a159e7418e7226dcff8977787ff545a03b5878cf811",
+      "runtimeSha256": "c4ee3835658592067d947a159e7418e7226dcff8977787ff545a03b5878cf811"
+    },
+    "net/kaleidoscope/cookery/recipe/BambooTrayRecipe.class": {
+      "apiSha256": "6a5051a60aaa13438bdfcdc58a7984d4f99ffbe592092e63aa1fb5b3ec29e0e3",
+      "runtimeSha256": "6a5051a60aaa13438bdfcdc58a7984d4f99ffbe592092e63aa1fb5b3ec29e0e3"
+    },
+    "net/kaleidoscope/cookery/recipe/ChoppingBoardRecipe.class": {
+      "apiSha256": "041ef14e18ecfd7942e6374090e5269716813ea1f0e8be6f7234eca15609bfd7",
+      "runtimeSha256": "041ef14e18ecfd7942e6374090e5269716813ea1f0e8be6f7234eca15609bfd7"
+    },
+    "net/kaleidoscope/cookery/recipe/ChoppingMode.class": {
+      "apiSha256": "99f41fe510326eddbb77f98cceb67a62b52b0c2f37f810c7489ea7ba72e69315",
+      "runtimeSha256": "99f41fe510326eddbb77f98cceb67a62b52b0c2f37f810c7489ea7ba72e69315"
+    },
+    "net/kaleidoscope/cookery/recipe/ChoppingResult.class": {
+      "apiSha256": "a808232cf944be62a793916b46f8721323edd5368fc2d2855096f287a4c675c1",
+      "runtimeSha256": "a808232cf944be62a793916b46f8721323edd5368fc2d2855096f287a4c675c1"
+    },
+    "net/kaleidoscope/cookery/recipe/CookingPlan$Output.class": {
+      "apiSha256": "abde0affa65d147e034221740a025fa021c09214a125fb26eac09ed3869fecd9",
+      "runtimeSha256": "abde0affa65d147e034221740a025fa021c09214a125fb26eac09ed3869fecd9"
+    },
+    "net/kaleidoscope/cookery/recipe/CookingPlan.class": {
+      "apiSha256": "a13d0ea85f099ecb8184a87faa4b1f8972a450c525ad43026adb3254c3461379",
+      "runtimeSha256": "a13d0ea85f099ecb8184a87faa4b1f8972a450c525ad43026adb3254c3461379"
+    },
+    "net/kaleidoscope/cookery/recipe/DishCarriers$DishCarrierParser.class": {
+      "apiSha256": "c1402dca3b16362d05a47bf7ab4a672f94e088b0d9379225549f27305322a564",
+      "runtimeSha256": "c1402dca3b16362d05a47bf7ab4a672f94e088b0d9379225549f27305322a564"
+    },
+    "net/kaleidoscope/cookery/recipe/DishCarriers.class": {
+      "apiSha256": "81b007cde23dd8c04a8624934558ffb8cadb173367fa29005902d75582fafaa5",
+      "runtimeSha256": "81b007cde23dd8c04a8624934558ffb8cadb173367fa29005902d75582fafaa5"
+    },
+    "net/kaleidoscope/cookery/recipe/DishFoodScaler.class": {
+      "apiSha256": "657a8d5c1fb8508eabca809c553e649cce019b92aeb174d6983bb1f59a73b456",
+      "runtimeSha256": "657a8d5c1fb8508eabca809c553e649cce019b92aeb174d6983bb1f59a73b456"
+    },
+    "net/kaleidoscope/cookery/recipe/DishQuality.class": {
+      "apiSha256": "cbfdae78dc5480404a1b7aa44fbbbddeb2aa186a8903f76fb1aa4dcc4b1f63bc",
+      "runtimeSha256": "cbfdae78dc5480404a1b7aa44fbbbddeb2aa186a8903f76fb1aa4dcc4b1f63bc"
+    },
+    "net/kaleidoscope/cookery/recipe/FilledSteamerResult.class": {
+      "apiSha256": "e03895ab15734cf7062802dcf18991d4e079d8dd0e69140819c9b20993de4b79",
+      "runtimeSha256": "e03895ab15734cf7062802dcf18991d4e079d8dd0e69140819c9b20993de4b79"
+    },
+    "net/kaleidoscope/cookery/recipe/FlexFoodRecipe.class": {
+      "apiSha256": "1f6101428cfa318c140a8ec64941553bc81988499426cb26b8996d977539294d",
+      "runtimeSha256": "1f6101428cfa318c140a8ec64941553bc81988499426cb26b8996d977539294d"
+    },
+    "net/kaleidoscope/cookery/recipe/FlexMatcher$Ideal.class": {
+      "apiSha256": "6016e88edaa1dc0b0a530c0f9df978503563d3b841ecab0b4599a0396c0fc10d",
+      "runtimeSha256": "6016e88edaa1dc0b0a530c0f9df978503563d3b841ecab0b4599a0396c0fc10d"
+    },
+    "net/kaleidoscope/cookery/recipe/FlexMatcher$Match.class": {
+      "apiSha256": "036122a526b3a23f2d3aad268092d1eda5b51d93e3487df89e3a4e122ee5ed2b",
+      "runtimeSha256": "036122a526b3a23f2d3aad268092d1eda5b51d93e3487df89e3a4e122ee5ed2b"
+    },
+    "net/kaleidoscope/cookery/recipe/FlexMatcher$View.class": {
+      "apiSha256": "c422fd6551b10eb8a37e2c9828bccb01daca5a3ce2d7661a1b3d06f9a03b2658",
+      "runtimeSha256": "c422fd6551b10eb8a37e2c9828bccb01daca5a3ce2d7661a1b3d06f9a03b2658"
+    },
+    "net/kaleidoscope/cookery/recipe/FlexMatcher.class": {
+      "apiSha256": "0642fdb9ed1d3c9feb409d80acc422c117216298b7f429ece9f0faca2bc17775",
+      "runtimeSha256": "0642fdb9ed1d3c9feb409d80acc422c117216298b7f429ece9f0faca2bc17775"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroupView.class": {
+      "apiSha256": "c07890eb22d0b54ec7a50dfde37408541bb88fa79b74c23efb01abbc299da029",
+      "runtimeSha256": "c07890eb22d0b54ec7a50dfde37408541bb88fa79b74c23efb01abbc299da029"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroups$EquivalentFoodsParser.class": {
+      "apiSha256": "c034409a7fc6fdd11c712550c3f4c07df6d11a51a3cd3432a4070bfd6f35a99e",
+      "runtimeSha256": "c034409a7fc6fdd11c712550c3f4c07df6d11a51a3cd3432a4070bfd6f35a99e"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroups$Kind.class": {
+      "apiSha256": "83072027380adce26d1ee968d266aca232702896a86fb603090b31b75f30cbb0",
+      "runtimeSha256": "83072027380adce26d1ee968d266aca232702896a86fb603090b31b75f30cbb0"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroups$SeasoningsParser.class": {
+      "apiSha256": "395d653df9438ce1964cbb137588d174fe00a1d9ef3e6d5232faef6ab166d3a2",
+      "runtimeSha256": "395d653df9438ce1964cbb137588d174fe00a1d9ef3e6d5232faef6ab166d3a2"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroups$TagListParser.class": {
+      "apiSha256": "4407837c942ee3783fc42db6afc012e979812bed0a0426d9f161dfcc8a7f3c69",
+      "runtimeSha256": "4407837c942ee3783fc42db6afc012e979812bed0a0426d9f161dfcc8a7f3c69"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodGroups.class": {
+      "apiSha256": "3da44fd42ffdacef229a90411586b63f00fb0ab71466945001bdc2cd132ae6fc",
+      "runtimeSha256": "3da44fd42ffdacef229a90411586b63f00fb0ab71466945001bdc2cd132ae6fc"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$AccurateFoodsParser.class": {
+      "apiSha256": "534b61d410c5ed3ba25b319ce945dcae2098f0677c1ff94ab662ade6490743e6",
+      "runtimeSha256": "534b61d410c5ed3ba25b319ce945dcae2098f0677c1ff94ab662ade6490743e6"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$BambooTrayRecipesParser.class": {
+      "apiSha256": "6f2df46c993240a2af4472c72c95e16e24720bbe6056b0d1cd67d9cdf2458cdb",
+      "runtimeSha256": "6f2df46c993240a2af4472c72c95e16e24720bbe6056b0d1cd67d9cdf2458cdb"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$ChoppingBoardRawsParser.class": {
+      "apiSha256": "62cd948264c02dbe716fcdf8709d8d145fbfcc0a472c6f76564863671f60a887",
+      "runtimeSha256": "62cd948264c02dbe716fcdf8709d8d145fbfcc0a472c6f76564863671f60a887"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$CookeryIdParser$ClaimedTarget.class": {
+      "apiSha256": "4d1bed878d406bcc37cb2896d702965392a4811e3fde9cb32a5c272d8520ccb8",
+      "runtimeSha256": "4d1bed878d406bcc37cb2896d702965392a4811e3fde9cb32a5c272d8520ccb8"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$CookeryIdParser.class": {
+      "apiSha256": "afb0d8c45efeb8ae4b59e295eab1ca06aa3b16e64a41f6046f7d5843712f11ac",
+      "runtimeSha256": "afb0d8c45efeb8ae4b59e295eab1ca06aa3b16e64a41f6046f7d5843712f11ac"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$CookerySectionParser.class": {
+      "apiSha256": "736a64ce35cc14639b589fc1106fe425983e50477cbcf2bd2b4e43d0c0f28b48",
+      "runtimeSha256": "736a64ce35cc14639b589fc1106fe425983e50477cbcf2bd2b4e43d0c0f28b48"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$PotFlexFoodsParser.class": {
+      "apiSha256": "5e1d045e9a38bf65750b4c0d8a7e2c2fedf56e516aebd8675ca2933f071eb353",
+      "runtimeSha256": "5e1d045e9a38bf65750b4c0d8a7e2c2fedf56e516aebd8675ca2933f071eb353"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$PotFoodRawParser.class": {
+      "apiSha256": "4b3dc0d010407737303e1eb7ca8fd3d33ccbe44e93a61aa5e2db54ab9767bf9e",
+      "runtimeSha256": "4b3dc0d010407737303e1eb7ca8fd3d33ccbe44e93a61aa5e2db54ab9767bf9e"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$SnapshotBeginParser.class": {
+      "apiSha256": "05128e2f56fa9de268f718dd247d1e1732b3ca551174764fa31db74565a1e649",
+      "runtimeSha256": "05128e2f56fa9de268f718dd247d1e1732b3ca551174764fa31db74565a1e649"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$SnapshotEndParser.class": {
+      "apiSha256": "efd8bdf7725d3d06c5508bf849c0e7d94bb6c64a46e42dab3810004f1b0bbd59",
+      "runtimeSha256": "efd8bdf7725d3d06c5508bf849c0e7d94bb6c64a46e42dab3810004f1b0bbd59"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$SnapshotParser.class": {
+      "apiSha256": "7c349049db01adf8c68a363a95f7f356dd529777cc1d22c2ebfa3ddc56ab3968",
+      "runtimeSha256": "7c349049db01adf8c68a363a95f7f356dd529777cc1d22c2ebfa3ddc56ab3968"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$StockFlexFoodsParser.class": {
+      "apiSha256": "5802caae8da7ae8ca8443c4e2d6b8bba0a262bee07ca6f558d74db7dab60d7df",
+      "runtimeSha256": "5802caae8da7ae8ca8443c4e2d6b8bba0a262bee07ca6f558d74db7dab60d7df"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$StockFoodRawParser.class": {
+      "apiSha256": "f02c549b017f8d784a2de72ded024a5e331d6a31663805ac164b65614b16823f",
+      "runtimeSha256": "f02c549b017f8d784a2de72ded024a5e331d6a31663805ac164b65614b16823f"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$TeaCupParser.class": {
+      "apiSha256": "058650f1f44b57c49c6a4d80484a59de83002dca181b616b1af7700ffc9622dc",
+      "runtimeSha256": "058650f1f44b57c49c6a4d80484a59de83002dca181b616b1af7700ffc9622dc"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$TeapotLiquidParser.class": {
+      "apiSha256": "56cbdd407d45c0ed28fc52cd638dc9101094507008ac69b00b87034d1e68b38b",
+      "runtimeSha256": "56cbdd407d45c0ed28fc52cd638dc9101094507008ac69b00b87034d1e68b38b"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager$TeapotResultParser.class": {
+      "apiSha256": "f0d95e3df123e25aaa5f50fb74d0df954e131970b3e8c6add9faf47412542939",
+      "runtimeSha256": "f0d95e3df123e25aaa5f50fb74d0df954e131970b3e8c6add9faf47412542939"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeManager.class": {
+      "apiSha256": "d1edc008f414e8dd6274dc23cc0cb764001af5dbf8dab9a34309a80c195d2d5f",
+      "runtimeSha256": "d1edc008f414e8dd6274dc23cc0cb764001af5dbf8dab9a34309a80c195d2d5f"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$1.class": {
+      "apiSha256": "633b8395002e7a7f26a02a8065d2d53a59d613aa25dbdc688eec9bcc49f893bf",
+      "runtimeSha256": "633b8395002e7a7f26a02a8065d2d53a59d613aa25dbdc688eec9bcc49f893bf"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$AccurateKey.class": {
+      "apiSha256": "fd34e2fbaf0c44545063667897ed3e2c6e5a1f28042e2830600d49bf548f8832",
+      "runtimeSha256": "fd34e2fbaf0c44545063667897ed3e2c6e5a1f28042e2830600d49bf548f8832"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$FlexAnchor.class": {
+      "apiSha256": "2d20df3f8d6e6475797080b2b3bd7861e852b8951a9ca211e3e22b4e201344fa",
+      "runtimeSha256": "2d20df3f8d6e6475797080b2b3bd7861e852b8951a9ca211e3e22b4e201344fa"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$RawGroupSource.class": {
+      "apiSha256": "294aeff57bfe3d72b360e56e191ec3bd315975d589041033a924d8af7f514c9d",
+      "runtimeSha256": "294aeff57bfe3d72b360e56e191ec3bd315975d589041033a924d8af7f514c9d"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$SourcePosition.class": {
+      "apiSha256": "3ad1cb3692dadc204daa4ba7d04c09bcbacf7fe5778a108cd45e3f7de3fee596",
+      "runtimeSha256": "3ad1cb3692dadc204daa4ba7d04c09bcbacf7fe5778a108cd45e3f7de3fee596"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$State.class": {
+      "apiSha256": "d277bcc536d13866bc9c2e48769f601813c374bb481855d20d5ac134bc57deee",
+      "runtimeSha256": "d277bcc536d13866bc9c2e48769f601813c374bb481855d20d5ac134bc57deee"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry$TeapotKey.class": {
+      "apiSha256": "90e23556e4b643b87cbed79ea315db1e124a85947cd17a35ba7c455e8f79914d",
+      "runtimeSha256": "90e23556e4b643b87cbed79ea315db1e124a85947cd17a35ba7c455e8f79914d"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeRegistry.class": {
+      "apiSha256": "583d9f2bbc72b7a34fd87261b3c5df43d720a935c2e42db4172c495adb816c13",
+      "runtimeSha256": "583d9f2bbc72b7a34fd87261b3c5df43d720a935c2e42db4172c495adb816c13"
+    },
+    "net/kaleidoscope/cookery/recipe/FoodRecipeResult.class": {
+      "apiSha256": "f320b453ff59a1d98bd921e2762e157d8a037e18fb503feabfc3add9bc81f0aa",
+      "runtimeSha256": "f320b453ff59a1d98bd921e2762e157d8a037e18fb503feabfc3add9bc81f0aa"
+    },
+    "net/kaleidoscope/cookery/recipe/ItemRequirement.class": {
+      "apiSha256": "19b68b11ff2d61b7488b4a7ec89fc123f04e378de079d946bae2353b40b4d63e",
+      "runtimeSha256": "19b68b11ff2d61b7488b4a7ec89fc123f04e378de079d946bae2353b40b4d63e"
+    },
+    "net/kaleidoscope/cookery/recipe/KitchenKnifeSmithing.class": {
+      "apiSha256": "f3f441880a9c73d18fae0c6b8c31299816b4f46b035dc25fb475bce3986042cf",
+      "runtimeSha256": "f3f441880a9c73d18fae0c6b8c31299816b4f46b035dc25fb475bce3986042cf"
+    },
+    "net/kaleidoscope/cookery/recipe/PotIndex$Slot.class": {
+      "apiSha256": "6a6131e5a45410d74cc7652aecb27fd437d8e67ad2c58400ef58f22fcd418eaa",
+      "runtimeSha256": "6a6131e5a45410d74cc7652aecb27fd437d8e67ad2c58400ef58f22fcd418eaa"
+    },
+    "net/kaleidoscope/cookery/recipe/PotIndex.class": {
+      "apiSha256": "31ea0f8e8e47f9415b4902d23a1cf0732c9e487f75c9df86dcadc6717a1b21b4",
+      "runtimeSha256": "31ea0f8e8e47f9415b4902d23a1cf0732c9e487f75c9df86dcadc6717a1b21b4"
+    },
+    "net/kaleidoscope/cookery/recipe/PotRecipe$Mode.class": {
+      "apiSha256": "3fc19d5c1e3cc9b445489cb20451f4ee70d1bf11eb96036df9114b0e0400cd26",
+      "runtimeSha256": "3fc19d5c1e3cc9b445489cb20451f4ee70d1bf11eb96036df9114b0e0400cd26"
+    },
+    "net/kaleidoscope/cookery/recipe/PotRecipe.class": {
+      "apiSha256": "ce069976925715e8b4b16720915993ef470c2242d79f509487e3581702d5ae83",
+      "runtimeSha256": "ce069976925715e8b4b16720915993ef470c2242d79f509487e3581702d5ae83"
+    },
+    "net/kaleidoscope/cookery/recipe/PotRecipeParser.class": {
+      "apiSha256": "56300157bf8352c3267f5d794268dd5705237786b975476811e7470f8f693378",
+      "runtimeSha256": "56300157bf8352c3267f5d794268dd5705237786b975476811e7470f8f693378"
+    },
+    "net/kaleidoscope/cookery/recipe/RecipeInputs.class": {
+      "apiSha256": "3524ead35c117d29187d0c26e72c2455965fac09ddb7157b3f5fde607b127f9d",
+      "runtimeSha256": "3524ead35c117d29187d0c26e72c2455965fac09ddb7157b3f5fde607b127f9d"
+    },
+    "net/kaleidoscope/cookery/recipe/RecipeLoadRecovery.class": {
+      "apiSha256": "3db600ca3959fcecad0c02b1545d62af7c883247b756a27a287cd6dddeda7ab4",
+      "runtimeSha256": "3db600ca3959fcecad0c02b1545d62af7c883247b756a27a287cd6dddeda7ab4"
+    },
+    "net/kaleidoscope/cookery/recipe/RecipeProcessingFields.class": {
+      "apiSha256": "2ffceb952516a6130a6dc7d0fd43c933a7e313bfc657fb745343e5bd6fee6b23",
+      "runtimeSha256": "2ffceb952516a6130a6dc7d0fd43c933a7e313bfc657fb745343e5bd6fee6b23"
+    },
+    "net/kaleidoscope/cookery/recipe/RiceBowlRecipe$Serializer.class": {
+      "apiSha256": "584ac7660fcb56f55bebaa2385b5f8e0e915e6613a2f2a301334cc39335a966c",
+      "runtimeSha256": "584ac7660fcb56f55bebaa2385b5f8e0e915e6613a2f2a301334cc39335a966c"
+    },
+    "net/kaleidoscope/cookery/recipe/RiceBowlRecipe.class": {
+      "apiSha256": "a09a26fd8f31d7c9ff7575cf14df6f5859a9a9d8b1897bc333e4b2a54be2bfa4",
+      "runtimeSha256": "a09a26fd8f31d7c9ff7575cf14df6f5859a9a9d8b1897bc333e4b2a54be2bfa4"
+    },
+    "net/kaleidoscope/cookery/recipe/RiceBowlRules.class": {
+      "apiSha256": "634a43053f4159fc8261462bad18aa93e462f244ed91305dbad11ca3c751ae29",
+      "runtimeSha256": "634a43053f4159fc8261462bad18aa93e462f244ed91305dbad11ca3c751ae29"
+    },
+    "net/kaleidoscope/cookery/recipe/SoupBaseRegistry.class": {
+      "apiSha256": "ce472d890de771939d328bb00b2fb8a3866ea8fc8bb381701fec4943b74d1f61",
+      "runtimeSha256": "ce472d890de771939d328bb00b2fb8a3866ea8fc8bb381701fec4943b74d1f61"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotIndex$Slot.class": {
+      "apiSha256": "6f647ca095cf6d35d17ccc7033727676df1e7b8df2ab6b07d5b1e537344e9cb0",
+      "runtimeSha256": "6f647ca095cf6d35d17ccc7033727676df1e7b8df2ab6b07d5b1e537344e9cb0"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotIndex.class": {
+      "apiSha256": "23694b500e32eab347aaeffac703b8733b77ba3270c2f9ac88256d1a3882aee8",
+      "runtimeSha256": "23694b500e32eab347aaeffac703b8733b77ba3270c2f9ac88256d1a3882aee8"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotRecipe$Mode.class": {
+      "apiSha256": "1ed5649202bfae708f3fe07be6fe6bf7b9fad1fde1d9913f4086e45aa784893c",
+      "runtimeSha256": "1ed5649202bfae708f3fe07be6fe6bf7b9fad1fde1d9913f4086e45aa784893c"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotRecipe.class": {
+      "apiSha256": "f590a0a579497fd43b8ddde6cc00f6573f2677fcdca542b1a700a2ae30a13da0",
+      "runtimeSha256": "f590a0a579497fd43b8ddde6cc00f6573f2677fcdca542b1a700a2ae30a13da0"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotRecipeParser.class": {
+      "apiSha256": "858a1d1f3e3ca17ea155d4d7aa8445a7af824d7c0e61315d4e488b1897a8e803",
+      "runtimeSha256": "858a1d1f3e3ca17ea155d4d7aa8445a7af824d7c0e61315d4e488b1897a8e803"
+    },
+    "net/kaleidoscope/cookery/recipe/StockpotVisuals.class": {
+      "apiSha256": "963df5896c8cdf653057a3bce44eb139cdde3571d5d5f80318879525ac78e203",
+      "runtimeSha256": "963df5896c8cdf653057a3bce44eb139cdde3571d5d5f80318879525ac78e203"
+    },
+    "net/kaleidoscope/cookery/recipe/TeaCup.class": {
+      "apiSha256": "fb105c88855eb3b0ebb08da391729541acf04315161a05cb92e05ee465e250de",
+      "runtimeSha256": "fb105c88855eb3b0ebb08da391729541acf04315161a05cb92e05ee465e250de"
+    },
+    "net/kaleidoscope/cookery/recipe/TeapotLiquid.class": {
+      "apiSha256": "f578c57311f4908b93651f43743f889ee9dfa34bbfa532760a0e0c88606334a7",
+      "runtimeSha256": "f578c57311f4908b93651f43743f889ee9dfa34bbfa532760a0e0c88606334a7"
+    },
+    "net/kaleidoscope/cookery/recipe/TeapotRecipe.class": {
+      "apiSha256": "f5171cef36d7f597d1ab3af6fe95432e523f4eac0f0635389c9da57cc7ce47fb",
+      "runtimeSha256": "f5171cef36d7f597d1ab3af6fe95432e523f4eac0f0635389c9da57cc7ce47fb"
+    },
+    "net/kaleidoscope/cookery/recipe/WeightedPicker.class": {
+      "apiSha256": "3836ec7a1c06e0327651a26490801a1f4dc4cc79a8bf9ae212139a4e9d7d7adc",
+      "runtimeSha256": "3836ec7a1c06e0327651a26490801a1f4dc4cc79a8bf9ae212139a4e9d7d7adc"
+    },
+    "net/kaleidoscope/cookery/recipe/WeightedResult.class": {
+      "apiSha256": "2ba0bd985e2f7c1ece0965dc1cc1bdfc61ccfd6840f575b1014fc698b65bfbad",
+      "runtimeSha256": "2ba0bd985e2f7c1ece0965dc1cc1bdfc61ccfd6840f575b1014fc698b65bfbad"
+    }
+  },
+  "recipeAndEntryClassesMatch": true,
+  "scope": "Locally built, unmodified upstream 1.21.11 runtime; not an official release artifact or universal version compatibility claim"
+}

@@ -1,0 +1,26 @@
+{
+  "accurate_foods": {
+    "stargenesis:flour": {
+      "require": "minecraft:wheat",
+      "result": [
+        "minecraft:bread 13",
+        "minecraft:cookie 7"
+      ],
+      "cook": "millstone",
+      "rotations": 3,
+      "result_count": 2,
+      "lore": [
+        "Recipe metadata fixture"
+      ]
+    }
+  },
+  "bamboo_tray_recipes": {
+    "stargenesis:dry": {
+      "require": "minecraft:kelp",
+      "result": "minecraft:dried_kelp",
+      "mode": "drying",
+      "result_count": 1,
+      "time": 240
+    }
+  }
+}

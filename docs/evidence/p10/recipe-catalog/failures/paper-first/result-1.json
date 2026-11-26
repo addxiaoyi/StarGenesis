@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "run": 1,
+  "checks": [
+    "recipe service registered",
+    "only recipe metadata capability activated",
+    "two configured recipes loaded",
+    "configured weight preserved across process start",
+    "configured duration preserved across process start",
+    "all seven executable families counted; menu-only recipe excluded",
+    "actual family metadata FLEX",
+    "actual family metadata POT",
+    "actual family metadata STOCKPOT",
+    "actual family metadata CHOPPING",
+    "actual family metadata TEAPOT",
+    "display recipe cannot masquerade as executable registry entry"
+  ],
+  "error": "java.lang.IllegalArgumentException: Cannot make com.destroystokyo.paper.console.TerminalConsoleCommandSender@21d59871 a vanilla command listener"
+}

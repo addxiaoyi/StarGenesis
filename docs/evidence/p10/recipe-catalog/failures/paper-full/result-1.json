@@ -1,0 +1,24 @@
+{
+  "passed": false,
+  "run": 1,
+  "configuredRecipes": 481,
+  "checks": [
+    "recipe service registered",
+    "only recipe metadata capability activated",
+    "configured recipe pack loaded",
+    "all 481 configured recipe definitions copied within budgets",
+    "configured weight preserved across process start",
+    "configured duration preserved across process start",
+    "all seven fixture families counted; menu-only recipe excluded",
+    "actual family metadata FLEX",
+    "actual family metadata POT",
+    "actual family metadata STOCKPOT",
+    "actual family metadata CHOPPING",
+    "actual family metadata TEAPOT",
+    "display recipe cannot masquerade as executable registry entry",
+    "command genesis recipe status allowed\u003dfalse expected\u003dpermission denied",
+    "command genesis recipe status allowed\u003dtrue expected\u003dloaded\u003d486",
+    "native console command dispatch accepted"
+  ],
+  "error": "java.lang.AssertionError: command genesis recipe list MILLSTONE ACCURATE allowed\u003dtrue expected\u003dstargenesis:flour"
+}

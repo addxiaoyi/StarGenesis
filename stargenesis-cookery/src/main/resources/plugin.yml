@@ -1,0 +1,6 @@
+name: StarGenesisCookery
+version: '${project.version}'
+main: dev.stargenesis.cookery.CookeryBridgePlugin
+api-version: '1.21.11'
+depend: [StarGenesis, CraftEngine, KaleidoscopeCookeryPlugin]
+description: Bounded read-only recipe metadata for all seven Cookery recipe families

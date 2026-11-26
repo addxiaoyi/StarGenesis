@@ -21,6 +21,8 @@ Windows 使用 `mvnw.cmd -B verify`。产物：`stargenesis-paper/target/stargen
 
 可选 `StarGenesisCraftEngine` 扩展提供 Paper 1.21.11 / CraftEngine 26.9.1 物品查询与完整状态快照。运行 `python scripts/prepare_craftengine_api.py` 后，以 `-Pcraftengine-bridge` 构建；两个扩展可用 `-Phelstera-bridge,craftengine-bridge` 一起构建。OP命令为 `/genesis item status`、`/genesis item inspect <namespace:item>` 和 `/genesis item held`。API创建脱离背包的物品栈，恢复时保留完整组件/PDC并拒绝隐式迁移或数据丢失。预算、提供方锁、构建来源及实际测试范围见 [物品桥接](docs/CRAFTENGINE_ITEM_BRIDGE.md)。
 
+可选 `StarGenesisCookery` 扩展提供森罗料理 1.3.0 的七类配方元数据。先准备 CraftEngine API，再运行 `python scripts/prepare_cookery_api.py`，以 `-Pcookery-bridge` 构建；三种扩展可合并为 `-Phelstera-bridge,craftengine-bridge,cookery-bridge`。OP可用 `/genesis recipe status`、`list <appliance> <family> [page]` 和 `inspect <appliance> <family> <namespace:id>` 查询。完整权重、处理参数与有界深拷贝接口见 [料理配方目录](docs/COOKERY_RECIPE_CATALOG.md)。该接口提供元数据，不执行制作或交付。
+
 ## Release Signing
 
 发行者可使用 JDK 21 对最终版本插件 JAR 与 SBOM 生成 Ed25519 签名清单。签名私钥保存在仓库之外，发行产物与 manifest 放在同一目录：

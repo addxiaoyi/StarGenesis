@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-26T08:18:14.481Z" hostname="HCSS-ECS-06FD" time="0.024">
+  <properties/>
+  <testcase name="duplicateApiRegistrationCannotReplaceThePublishedSnapshot()" classname="net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest" time="0.004"/>
+  <testcase name="failedReloadKeepsThePreviousRecipesAndTags()" classname="net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest" time="0.006"/>
+  <testcase name="pinnedReadDoesNotMixBeforeAndAfterAnEdit()" classname="net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest" time="0.002"/>
+  <testcase name="publishesRecipesAndTagMembershipTogether()" classname="net.kaleidoscope.cookery.recipe.FoodRecipeRegistryBambooTrayTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -28,6 +28,8 @@ import dev.stargenesis.paper.integration.ModelCatalogController;
 import dev.stargenesis.paper.integration.ItemCatalogController;
 import dev.stargenesis.paper.integration.ItemStackBridge;
 import dev.stargenesis.integrations.ItemCatalog;
+import dev.stargenesis.integrations.RecipeCatalog;
+import dev.stargenesis.paper.integration.RecipeCatalogController;
 import dev.stargenesis.integrations.InstalledPlugin;
 import dev.stargenesis.integrations.IntegrationStatus;
 import org.bukkit.command.Command;
@@ -63,6 +65,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
     private PublisherTrustController publisherTrust;
     private ModelCatalogController modelCatalog;
     private ItemCatalogController itemCatalog;
+    private RecipeCatalogController recipeCatalog;
 
     @Override public void onEnable() {
         try {
@@ -78,6 +81,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
             verifyBundledDesigns();
             statuses = inspectCapabilities();
             modelCatalog = new ModelCatalogController(this::currentModelCatalog);
+            recipeCatalog = new RecipeCatalogController(this::currentRecipeCatalog);
             itemCatalog = new ItemCatalogController(this::currentItemCatalog, player -> {
                 var registration = getServer().getServicesManager().getRegistration(ItemStackBridge.class);
                 if (registration == null || !registration.getPlugin().isEnabled())
@@ -210,6 +214,11 @@ public final class StarGenesisPlugin extends JavaPlugin {
         return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
     }
 
+    private RecipeCatalog currentRecipeCatalog() {
+        var registration = getServer().getServicesManager().getRegistration(RecipeCatalog.class);
+        return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
+    }
+
     private List<IntegrationStatus> inspectCapabilities() {
         Map<String, InstalledPlugin> inventory = Arrays.stream(getServer().getPluginManager().getPlugins())
                 .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
@@ -229,6 +238,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
                 });
             var items = currentItemCatalog();
             if (items != null && items.integrationId().equals("craftengine")) registry.registerAdapter("craftengine", items::verify);
+            var recipes = currentRecipeCatalog();
+            if (recipes != null && recipes.integrationId().equals("senluo.cookery")) registry.registerAdapter("senluo.cookery", recipes::verify);
             return registry.inspect(name -> Optional.ofNullable(inventory.get(name)));
         }
     }
@@ -251,6 +262,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
         String sub = args.length == 0 ? "help" : args[0].toLowerCase(Locale.ROOT);
         if (sub.equals("model")) return modelCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
         if (sub.equals("item")) return itemCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
+        if (sub.equals("recipe")) return recipeCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
         if (sub.equals("lab")) {
             if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis lab requires a player; use /genesis status for server diagnostics."); return true; }
             return labs.handle(player, Arrays.copyOfRange(args, 1, args.length));
@@ -320,6 +332,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
             sender.sendMessage("/genesis design publishers - operator-managed publisher trust roots and key rotation");
             sender.sendMessage("/genesis model status | inspect <id> - optional read-only model catalog");
             sender.sendMessage("/genesis item status | inspect <namespace:item> | held - optional item metadata and own held-state inspection");
+            sender.sendMessage("/genesis recipe status | list <appliance> <family> [page] | inspect <appliance> <family> <namespace:id> - recipe metadata");
             sender.sendMessage("/genesis debug capabilities | /genesis debug budgets - operator diagnostics");
             sender.sendMessage("/genesis help - this help. Laboratory score cannot create real inventory or money.");
         }
@@ -328,6 +341,9 @@ public final class StarGenesisPlugin extends JavaPlugin {
 
     @Override public void onDisable() {
         boolean clean = true;
+        RecipeCatalog recipes = currentRecipeCatalog();
+        if (recipes != null) clean &= stop("Recipe bridge", recipes::close, () -> true);
+        recipeCatalog = null;
         ItemCatalog items = currentItemCatalog();
         if (items != null) clean &= stop("Item bridge", items::close, () -> true);
         itemCatalog = null;

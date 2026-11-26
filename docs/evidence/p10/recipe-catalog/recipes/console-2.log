@@ -1,0 +1,637 @@
+[16:33:24 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[16:33:24 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[16:33:25 INFO]: [PluginInitializerManager] Initializing plugins...
+[16:33:26 INFO]: [PluginInitializerManager] Initialized 5 plugins
+[16:33:26 INFO]: [PluginInitializerManager] Paper plugins (1):
+ - CraftEngine (26.9.1)
+[16:33:26 INFO]: [PluginInitializerManager] Bukkit plugins (4):
+ - CookeryRecipeServerProbe (1), KaleidoscopeCookeryPlugin (1.3.0), StarGenesis (4.0.0-SNAPSHOT), StarGenesisCookery (4.0.0-SNAPSHOT)
+[16:33:30 INFO]: [CraftEngine] Patching the server...
+[16:33:38 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[16:33:38 INFO]: [CraftEngine] Initializing registries...
+[16:33:42 INFO]: Loaded 1470 recipes
+[16:33:42 INFO]: Loaded 1584 advancements
+[16:33:42 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[16:33:43 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 557.1ms
+[16:33:43 INFO]: Starting minecraft server version 1.21.11
+[33;1m[16:33:43 WARN]: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+[m[33;1m[16:33:43 WARN]: ****************************
+[m[33;1m[16:33:43 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[16:33:43 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[16:33:43 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[16:33:43 WARN]: ****************************
+[m[16:33:43 INFO]: Loading properties
+[16:33:43 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[16:33:43 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[16:33:43 INFO]: Server Ping Player Sample Count: 12
+[16:33:43 INFO]: Using 4 threads for Netty based IO
+[16:33:43 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[16:33:44 INFO]: Default game type: SURVIVAL
+[16:33:44 INFO]: Generating keypair
+> 
+  
+[16:33:44 INFO]: Starting Minecraft server on 127.0.0.1:25687
+> 
+  
+[16:33:44 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[16:33:44 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[16:33:44 INFO]: [CraftEngine] Loading server plugin CraftEngine v26.9.1
+> 
+  
+[16:33:45 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Starting...
+> 
+  
+[16:33:45 INFO]: [net.momirealms.craftengine.libraries.hikari.pool.HikariPool] craftengine-storage - Added connection org.sqlite.jdbc4.JDBC4Connection@1e30d141
+> 
+  
+[16:33:45 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Start completed.
+> 
+  
+[16:33:46 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.FlywayExecutor] Database: ******** (SQLite 3.49)
+> 
+  
+[16:33:46 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbValidate] Successfully validated 1 migration (execution time 00:00.041s)
+> 
+  
+[16:33:46 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Current version of schema "main": 1
+> 
+  
+[16:33:46 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Schema "main" is up to date. No migration necessary.
+> 
+  
+[16:33:48 INFO]: [KaleidoscopeCookeryPlugin] Loading server plugin KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:33:48 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:33:48 INFO]: [StarGenesisCookery] Loading server plugin StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:33:48 INFO]: [CookeryRecipeServerProbe] Loading server plugin CookeryRecipeServerProbe v1
+> 
+  
+[16:33:48 INFO]: Server permissions file permissions.yml is empty, ignoring it
+> 
+  
+[16:33:48 INFO]: [CraftEngine] Enabling CraftEngine v26.9.1
+> 
+  
+[16:33:50 INFO]: [KaleidoscopeCookeryPlugin] [icon] 已在资源包 kitchen 生成 268 条物品图标字体
+> 
+  
+[16:33:50 INFO]: [CraftEngine] 已加载的包：internal。默认命名空间：internal
+> 
+  
+[16:33:50 INFO]: [CraftEngine] 已加载的包：kitchen。默认命名空间：kaleidoscopecookery
+> 
+  
+[16:33:50 INFO]: [CraftEngine] 已加载的包：sg_recipe_probe。默认命名空间：stargenesis
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载templates，耗时5.01毫秒（3）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载config factories，耗时63.17毫秒（1）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载translations，耗时2.12毫秒（91）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载images，耗时48.92毫秒（328）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载block state mappings，耗时88.44毫秒（4002）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载items，耗时317.97毫秒（1457）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载teapot liquid，耗时7.19毫秒（3）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载tea cup，耗时12.46毫秒（8）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载categories，耗时18.33毫秒（1）
+> 
+  
+[16:33:51 INFO]: [CraftEngine] 已加载stock food raw，耗时3.72毫秒（9）
+> 
+  
+[16:33:52 INFO]: [CraftEngine] 已加载pot imported recipes，耗时927.49毫秒（225）
+> 
+  
+[16:33:52 INFO]: [CraftEngine] 已加载furniture，耗时1039.62毫秒（25）
+> 
+  
+[16:33:56 INFO]: [CraftEngine] 已加载blocks，耗时5085.96毫秒（81）
+> 
+  
+[16:33:58 INFO]: [CraftEngine] 已加载chopping board raws，耗时6276.78毫秒（16）
+> 
+  
+[16:33:58 INFO]: [CraftEngine] 已加载teapot result，耗时6265.65毫秒（11）
+> 
+  
+[16:33:58 INFO]: [CraftEngine] 已加载bamboo tray recipes，耗时6285.24毫秒（29）
+> 
+  
+[16:33:58 INFO]: [CraftEngine] 已加载stockpot imported recipes，耗时6282.39毫秒（105）
+> 
+  
+[16:33:58 INFO]: [CraftEngine] 已加载accurate foods，耗时6297.93毫秒（95）
+> 
+  
+[33;1m[16:33:58 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[16:33:58 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[16:33:58 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[16:33:58 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[16:33:58 INFO]: Preparing level "world"
+> 
+  
+[16:33:59 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[16:33:59 INFO]: Preparing spawn area: 100%
+> 
+  
+[16:33:59 INFO]: Prepared spawn area in 2 ms
+> 
+  
+[16:33:59 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[16:33:59 INFO]: Prepared spawn area in 1 ms
+> 
+  
+[16:33:59 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[16:33:59 INFO]: Prepared spawn area in 1 ms
+> 
+  
+[16:33:59 INFO]: Done preparing level "world" (1.415s)
+> 
+  
+[16:33:59 INFO]: [KaleidoscopeCookeryPlugin] Enabling KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:33:59 INFO]: [KaleidoscopeCookeryPlugin] KaleidoscopeCookery 已启动！
+> 
+  
+[16:33:59 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:34:03 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[16:34:03 INFO]: [StarGenesis] P4 radio state ready | tick=128 | retained=0 | active contracts=0
+> 
+  
+[16:34:03 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[16:34:03 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[16:34:03 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=PAPER_VIRTUAL_INVENTORY_LAB
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=true, enabled=true, installedVersion=1.3.0, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=7aca215fca067314d1593dd287621f96fb8913e4, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[16:34:03 INFO]: [StarGenesisCookery] Enabling StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:34:03 INFO]: [StarGenesisCookery] Recipe metadata bridge registered; requests wait for fully loaded resources.
+> 
+  
+[16:34:03 INFO]: [CookeryRecipeServerProbe] Enabling CookeryRecipeServerProbe v1
+> 
+  
+[16:34:03 INFO]: [spark] Starting background profiler...
+> 
+  
+[16:34:03 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+> 
+  
+[16:34:03 INFO]: Running delayed init tasks
+> 
+  
+[16:34:04 INFO]: [CraftEngine] 已加载recipes，耗时992.94毫秒（142）
+> 
+  
+[16:34:05 INFO]: Done (41.600s)! For help, type "help"
+> 
+  
+[16:34:05 INFO]: [KaleidoscopeCookeryPlugin] CraftEngine 首次加载后方块注册自检通过：11/11 个方块已加载。
+> 
+  
+[16:34:07 INFO]: 配方桥接可用 · provider=senluo.cookery · loaded=486
+> 
+  
+[16:34:07 INFO]: {POT=227, STEAMER=4, STOCKPOT=106, SHAWARMA=0, MILLSTONE=91, CHOPPING_BOARD=17, TEAPOT=12, BAMBOO_TRAY=29}
+> 
+  
+[16:34:07 INFO]: 配方类别：ACCURATE, FLEX, POT, STOCKPOT, CHOPPING, TEAPOT, BAMBOO_TRAY
+> 
+  
+[16:34:07 INFO]: StarGenesis capabilities (current providers; installed != active):
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=true, enabled=true, installedVersion=1.3.0, versionCompatible=true, apiVerified=true, paperVerified=true, capabilities={cookery.read=true, items.resolve=false}, reason=ACTIVE, sourceRevision=7aca215fca067314d1593dd287621f96fb8913e4, evidenceId=7aca215fca067314d1593dd287621f96fb8913e4]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:34:07 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载的包：internal。默认命名空间：internal
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载的包：kitchen。默认命名空间：kaleidoscopecookery
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载的包：sg_recipe_probe。默认命名空间：stargenesis
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载templates，耗时0.31毫秒（3）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载config factories，耗时0.07毫秒（1）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载translations，耗时0.31毫秒（91）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载block state mappings，耗时13.77毫秒（4002）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载images，耗时16.60毫秒（328）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载items，耗时58.05毫秒（1457）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载teapot liquid，耗时0.48毫秒（3）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载categories，耗时4.65毫秒（1）
+> 
+  
+[33;1m[16:34:07 WARN]: *************************************************************************************
+[m> 
+  
+[33;1m[16:34:07 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m> 
+  
+[33;1m[16:34:07 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m> 
+  
+[33;1m[16:34:07 WARN]: It is recommended that you update as soon as possible
+[m> 
+  
+[33;1m[16:34:07 WARN]: https://papermc.io/downloads/paper
+[m> 
+  
+[33;1m[16:34:07 WARN]: *************************************************************************************
+[m> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载furniture，耗时8.08毫秒（25）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载tea cup，耗时17.23毫秒（8）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载stock food raw，耗时14.75毫秒（9）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载pot imported recipes，耗时23.52毫秒（225）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载teapot result，耗时11.58毫秒（11）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载chopping board raws，耗时28.34毫秒（16）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载bamboo tray recipes，耗时37.46毫秒（29）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载accurate foods，耗时52.18毫秒（95）
+> 
+  
+[16:34:07 INFO]: [CraftEngine] 已加载stockpot imported recipes，耗时37.02毫秒（105）
+> 
+  
+[16:34:08 INFO]: [CraftEngine] 已加载blocks，耗时624.95毫秒（81）
+> 
+  
+[16:34:08 INFO]: [KaleidoscopeCookeryPlugin] CraftEngine 重载后方块注册自检通过：11/11 个方块已加载。
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载的包：internal。默认命名空间：internal
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载的包：kitchen。默认命名空间：kaleidoscopecookery
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载的包：sg_recipe_probe。默认命名空间：stargenesis
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载templates，耗时0.18毫秒（3）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载config factories，耗时0.07毫秒（1）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载translations，耗时0.24毫秒（91）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载images，耗时7.60毫秒（328）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载block state mappings，耗时8.88毫秒（4002）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载items，耗时33.58毫秒（1457）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载categories，耗时0.61毫秒（1）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载teapot liquid，耗时0.05毫秒（3）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载tea cup，耗时0.24毫秒（8）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载stock food raw，耗时0.06毫秒（9）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载furniture，耗时5.36毫秒（25）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载teapot result，耗时6.87毫秒（11）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载pot imported recipes，耗时21.65毫秒（225）
+> 
+  
+[16:34:09 INFO]: [CraftEngine] 已加载chopping board raws，耗时22.63毫秒（16）
+> 
+  
+[16:34:10 INFO]: [CraftEngine] 已加载bamboo tray recipes，耗时770.98毫秒（29）
+> 
+  
+[16:34:10 INFO]: [CraftEngine] 已加载accurate foods，耗时784.64毫秒（94）
+> 
+  
+[16:34:10 INFO]: [CraftEngine] 已加载stockpot imported recipes，耗时791.58毫秒（105）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载blocks，耗时2091.76毫秒（81）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载的包：internal。默认命名空间：internal
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载的包：kitchen。默认命名空间：kaleidoscopecookery
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载的包：sg_recipe_probe。默认命名空间：stargenesis
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载templates，耗时0.24毫秒（3）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载config factories，耗时0.06毫秒（1）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载translations，耗时0.26毫秒（91）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载block state mappings，耗时6.99毫秒（4002）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载images，耗时8.37毫秒（328）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载items，耗时31.89毫秒（1457）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载categories，耗时3.35毫秒（1）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载tea cup，耗时3.40毫秒（8）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载stock food raw，耗时0.07毫秒（9）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载teapot liquid，耗时9.09毫秒（3）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载teapot result，耗时25.10毫秒（11）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载bamboo tray recipes，耗时40.05毫秒（29）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载chopping board raws，耗时43.87毫秒（16）
+> 
+  
+[16:34:11 INFO]: [CraftEngine] 已加载furniture，耗时54.37毫秒（25）
+> 
+  
+[16:34:12 INFO]: [CraftEngine] 已加载pot imported recipes，耗时999.13毫秒（225）
+> 
+  
+[16:34:12 INFO]: [CraftEngine] 已加载accurate foods，耗时1006.41毫秒（95）
+> 
+  
+[16:34:12 INFO]: [CraftEngine] 已加载stockpot imported recipes，耗时1008.36毫秒（105）
+> 
+  
+[16:34:13 INFO]: [CraftEngine] 已加载blocks，耗时1535.27毫秒（81）
+> 
+  
+[16:34:13 INFO]: [KaleidoscopeCookeryPlugin] Disabling KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:34:13 INFO]: [StarGenesisCookery] Disabling StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:34:13 INFO]: [CookeryRecipeServerProbe] COOKERY_RECIPE_PROBE_PASSED
+> > 
+  
+[16:34:13 INFO]: Stopping the server
+> 
+  
+[16:34:13 INFO]: Stopping server
+> 
+  
+[16:34:13 INFO]: [CookeryRecipeServerProbe] Disabling CookeryRecipeServerProbe v1
+> 
+  
+[16:34:13 INFO]: [CraftEngine] Disabling CraftEngine before other plugins are unloaded.
+> 
+  
+[16:34:13 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown initiated...
+> 
+  
+[16:34:13 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown completed.
+> 
+  
+[16:34:13 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:34:13 INFO]: [StarGenesis] StarGenesis stopped cleanly; owned workers and registered services stopped; real settlement remains disabled.
+> 
+  
+[16:34:13 INFO]: [CraftEngine] Disabling CraftEngine v26.9.1
+> 
+  
+[16:34:13 INFO]: Saving players
+> 
+  
+[16:34:13 INFO]: Saving worlds
+> 
+  
+[16:34:13 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.00s
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[16:34:13 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[16:34:13 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[16:34:13 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[16:34:13 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[16:34:13 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[16:34:13 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[16:34:13 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[16:34:13 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[16:34:13 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[16:34:13 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[16:34:13 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

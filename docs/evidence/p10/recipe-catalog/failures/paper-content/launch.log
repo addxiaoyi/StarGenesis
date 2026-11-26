@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\scripts\server_cookery_recipe_smoke.py", line 113, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "C:\Users\Administrator\Documents\luoseng\StarGenesis\scripts\server_cookery_recipe_smoke.py", line 51, in main
+    shutil.copytree(pack_source,provider/'resources/cookery_kitchen')
+  File "shutil.py", line 600, in copytree
+  File "shutil.py", line 554, in _copytree
+shutil.Error: [('C:\\Users\\Administrator\\Documents\\luoseng\\SenLuo_Plugin-continue\\build\\acceptance\\v612\\paper\\plugins\\CraftEngine\\resources\\cookery_kitchen\\resourcepack\\assets\\kaleidoscopecookery\\models\\block\\imported\\stockpot\\kaleidoscope_cookery\\stockpot\\default_finished.json', 'C:\\Users\\Administrator\\Documents\\luoseng\\StarGenesis\\.work\\senluo-bridge\\paper-content\\plugins\\CraftEngine\\resources\\cookery_kitchen\\resourcepack\\assets\\kaleidoscopecookery\\models\\block\\imported\\stockpot\\kaleidoscope_cookery\\stockpot\\default_finished.json', '[WinError 3] 系统找不到指定的路径。')]

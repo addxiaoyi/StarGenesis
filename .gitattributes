@@ -27,6 +27,7 @@ docs/evidence/p4/acknowledgement-identity/** -text -whitespace
 docs/evidence/p10/model-catalog/** -text -whitespace
 docs/evidence/p10/lab-projection/** -text -whitespace
 docs/evidence/p10/item-bridge/** -text -whitespace
+docs/evidence/p10/recipe-catalog/** -text -whitespace
 stargenesis-integrations/src/test/resources/craftengine/*.bin -text -diff
 # This lock's complete byte hash is embedded in the published integration descriptor.
 scripts/craftengine-api-lock.json -text -eol whitespace=cr-at-eol

@@ -11,6 +11,9 @@ commands:
     usage: /genesis help
     aliases: [sg]
 permissions:
+  stargenesis.recipes:
+    description: Inspect optional Cookery recipe metadata
+    default: op
   stargenesis.items:
     description: Inspect loaded item definitions and the operator's own held item state
     default: op

@@ -1,0 +1,772 @@
+[16:29:47 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[16:29:47 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[16:29:48 INFO]: [PluginInitializerManager] Initializing plugins...
+[16:29:49 INFO]: [ReobfServer] Remapping server...
+[16:29:58 INFO]: [ReobfServer] Done remapping server in 9196ms.
+[16:29:58 INFO]: [PluginRemapper] Remapping plugin 'plugins\probe.jar'...
+[16:29:58 INFO]: [PluginRemapper] Remapping plugin 'plugins\plugin.jar'...
+[16:29:58 INFO]: [PluginRemapper] Remapping plugin 'plugins\bridge.jar'...
+[16:29:58 INFO]: [PluginRemapper] Done remapping plugin 'plugins\probe.jar' in 175ms.
+[16:29:58 INFO]: [PluginRemapper] Done remapping plugin 'plugins\bridge.jar' in 182ms.
+[16:29:59 INFO]: [PluginRemapper] Done remapping plugin 'plugins\plugin.jar' in 1391ms.
+[16:30:00 INFO]: [PluginInitializerManager] Initialized 5 plugins
+[16:30:00 INFO]: [PluginInitializerManager] Paper plugins (1):
+ - CraftEngine (26.9.1)
+[16:30:00 INFO]: [PluginInitializerManager] Bukkit plugins (4):
+ - CookeryRecipeServerProbe (1), KaleidoscopeCookeryPlugin (1.3.0), StarGenesis (4.0.0-SNAPSHOT), StarGenesisCookery (4.0.0-SNAPSHOT)
+[16:30:06 INFO]: [CraftEngine] Patching the server...
+[16:30:16 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[16:30:16 INFO]: [CraftEngine] Initializing registries...
+[16:30:17 INFO]: Found new data pack file/bukkit, loading it automatically
+[16:30:17 INFO]: Found new data pack paper, loading it automatically
+[16:30:18 INFO]: No existing world data, creating new world
+[16:30:19 INFO]: Loaded 1470 recipes
+[16:30:19 INFO]: Loaded 1584 advancements
+[16:30:19 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[16:30:20 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 598.3ms
+[16:30:20 INFO]: Starting minecraft server version 1.21.11
+[33;1m[16:30:20 WARN]: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+[m[33;1m[16:30:20 WARN]: ****************************
+[m[33;1m[16:30:20 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[16:30:20 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[16:30:20 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[16:30:20 WARN]: ****************************
+[m[16:30:20 INFO]: Loading properties
+[16:30:20 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[16:30:20 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[16:30:21 INFO]: Using 4 threads for Netty based IO
+[16:30:21 INFO]: Server Ping Player Sample Count: 12
+[16:30:21 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[16:30:21 INFO]: Default game type: SURVIVAL
+[16:30:21 INFO]: Generating keypair
+> 
+  
+[16:30:21 INFO]: Starting Minecraft server on 127.0.0.1:25687
+> 
+  
+[16:30:21 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[16:30:21 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[16:30:21 INFO]: [CraftEngine] Loading server plugin CraftEngine v26.9.1
+> 
+  
+[16:30:22 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Starting...
+> 
+  
+[16:30:22 INFO]: [net.momirealms.craftengine.libraries.hikari.pool.HikariPool] craftengine-storage - Added connection org.sqlite.jdbc4.JDBC4Connection@746aef17
+> 
+  
+[16:30:22 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Start completed.
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.FlywayExecutor] Database: ******** (SQLite 3.49)
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] Schema history table "main"."ce_schema_history" does not exist yet
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbValidate] Successfully validated 1 migration (execution time 00:00.034s)
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.Flyway] All configured schemas are empty; a baseline marker will not be added to Flyway's schema history table. A baseline or migration script with a lower version than the baseline version may execute if available. Check the Schemas parameter if this is not intended. See https://help.red-gate.com/help/flyway-cli13/help_5.aspx?topic=baseline-on-migrate for more info
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] Creating Schema History table "main"."ce_schema_history" ...
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Current version of schema "main": << Empty Schema >>
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Migrating schema "main" to version "1 - pack preferences"
+> 
+  
+[16:30:24 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Successfully applied 1 migration to schema "main", now at version v1 (execution time 00:00.005s)
+> 
+  
+[16:30:26 INFO]: [KaleidoscopeCookeryPlugin] Loading server plugin KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:30:26 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:30:26 INFO]: [StarGenesisCookery] Loading server plugin StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:30:26 INFO]: [CookeryRecipeServerProbe] Loading server plugin CookeryRecipeServerProbe v1
+> 
+  
+[16:30:26 INFO]: [CraftEngine] Enabling CraftEngine v26.9.1
+> 
+  
+[16:30:28 INFO]: [KaleidoscopeCookeryPlugin] [icon] 已在资源包 kitchen 生成 268 条物品图标字体
+> 
+  
+[16:30:28 INFO]: [CraftEngine] 已加载的包：kitchen。默认命名空间：kaleidoscopecookery
+> 
+  
+[16:30:28 INFO]: [CraftEngine] 已加载的包：sg_recipe_probe。默认命名空间：stargenesis
+> 
+  
+[16:30:30 INFO]: [CraftEngine] 已加载images，耗时73.34毫秒（274）
+> 
+  
+[16:30:30 INFO]: [CraftEngine] 已加载items，耗时242.64毫秒（1432）
+> 
+  
+[16:30:31 INFO]: [CraftEngine] 已加载pot imported recipes，耗时914.26毫秒（225）
+> 
+  
+[16:30:31 INFO]: [CraftEngine] 已加载stock food raw，耗时5.91毫秒（9）
+> 
+  
+[16:30:31 INFO]: [CraftEngine] 已加载teapot liquid，耗时1.35毫秒（3）
+> 
+  
+[16:30:31 INFO]: [CraftEngine] 已加载furniture，耗时983.39毫秒（25）
+> 
+  
+[16:30:31 INFO]: [CraftEngine] 已加载tea cup，耗时6.30毫秒（8）
+> 
+  
+[16:30:36 INFO]: [CraftEngine] 已加载teapot result，耗时4568.97毫秒（11）
+> 
+  
+[16:30:36 INFO]: [CraftEngine] 已加载chopping board raws，耗时4579.49毫秒（16）
+> 
+  
+[16:30:36 INFO]: [CraftEngine] 已加载bamboo tray recipes，耗时5568.17毫秒（29）
+> 
+  
+[16:30:36 INFO]: [CraftEngine] 已加载stockpot imported recipes，耗时4652.14毫秒（105）
+> 
+  
+[16:30:36 INFO]: [CraftEngine] 已加载accurate foods，耗时4616.67毫秒（95）
+> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] 在文件“plugins\CraftEngine\resources\kitchen\configuration\kitchen.yml”中发现81个问题：
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [1] blocks.kaleidoscopecookery:tea_banner.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [2] blocks.kaleidoscopecookery:chopping_board.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [3] blocks.kaleidoscopecookery:kitchenware_racks.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [4] blocks.kaleidoscopecookery:enamel_basin.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [5] blocks.kaleidoscopecookery:zongzi_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [6] blocks.kaleidoscopecookery:watermelon_platter.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [7] blocks.kaleidoscopecookery:tomato_platter.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [8] blocks.kaleidoscopecookery:sticky_rice_cake_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [9] blocks.kaleidoscopecookery:sticky_candy_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [10] blocks.kaleidoscopecookery:shengjian_mantou_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [11] blocks.kaleidoscopecookery:qingtuan_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [12] blocks.kaleidoscopecookery:chorus_fruit_platter.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [13] blocks.kaleidoscopecookery:berry_platter.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [14] blocks.kaleidoscopecookery:baozi_plate.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [15] blocks.kaleidoscopecookery:apple_platter.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_plate]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [16] blocks.kaleidoscopecookery:teacup_coaster.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [17] blocks.kaleidoscopecookery:cold_cut_ham_slices.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [18] blocks.kaleidoscopecookery:warped_fungus_pot_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [19] blocks.kaleidoscopecookery:tundra_style_sashimi.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [20] blocks.kaleidoscopecookery:sweet_and_sour_ender_pearls.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [21] blocks.kaleidoscopecookery:suspicious_stir_fry.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [22] blocks.kaleidoscopecookery:stuffed_tiger_skin_pepper.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [23] blocks.kaleidoscopecookery:stargazy_pie.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [24] blocks.kaleidoscopecookery:spicy_rabbit_head.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [25] blocks.kaleidoscopecookery:spicy_chicken.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [26] blocks.kaleidoscopecookery:spicy_blood_stew.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [27] blocks.kaleidoscopecookery:slime_ball_meal.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [28] blocks.kaleidoscopecookery:red_mushroom_pot_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [29] blocks.kaleidoscopecookery:pan_seared_knight_steak.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [30] blocks.kaleidoscopecookery:oil_splashed_fish.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [31] blocks.kaleidoscopecookery:numbing_spicy_chicken.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [32] blocks.kaleidoscopecookery:nether_style_sashimi.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [33] blocks.kaleidoscopecookery:golden_salad.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [34] blocks.kaleidoscopecookery:frost_lamb_chop.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [35] blocks.kaleidoscopecookery:fried_spring_roll.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [36] blocks.kaleidoscopecookery:fried_caterpillar.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [37] blocks.kaleidoscopecookery:four_joy_meatball_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [38] blocks.kaleidoscopecookery:fondant_spider_eye.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [39] blocks.kaleidoscopecookery:fondant_pie.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [40] blocks.kaleidoscopecookery:end_style_sashimi.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [41] blocks.kaleidoscopecookery:dough_drop_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [42] blocks.kaleidoscopecookery:dongpo_pork.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [43] blocks.kaleidoscopecookery:desert_style_sashimi.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [44] blocks.kaleidoscopecookery:dark_cuisine.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [45] blocks.kaleidoscopecookery:crystal_lamb_chop.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [46] blocks.kaleidoscopecookery:crimson_fungus_pot_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [47] blocks.kaleidoscopecookery:cold_style_sashimi.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [48] blocks.kaleidoscopecookery:cold_roasted_meat.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [49] blocks.kaleidoscopecookery:chorus_fried_egg.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [50] blocks.kaleidoscopecookery:candied_potato.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [51] blocks.kaleidoscopecookery:buddha_jumps_over_the_wall.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [52] blocks.kaleidoscopecookery:brown_mushroom_pot_soup.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [53] blocks.kaleidoscopecookery:braised_pork_ribs.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [54] blocks.kaleidoscopecookery:blaze_lamb_chop.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_meal]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [55] blocks.kaleidoscopecookery:bamboo_tray.states - 视觉状态组“lower_tripwire”已达到“0”个槽位的最大容量，无法为“lower_tripwire[id=cookery_kitchen_bamboo_tray_stand]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [56] blocks.kaleidoscopecookery:chili_ristra.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [57] blocks.kaleidoscopecookery:red_lantern.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [58] blocks.kaleidoscopecookery:eight_immortals_table.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [59] blocks.kaleidoscopecookery:long_bench.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [60] blocks.kaleidoscopecookery:strung_mushrooms.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [61] blocks.kaleidoscopecookery:table_warped.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [62] blocks.kaleidoscopecookery:table_crimson.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [63] blocks.kaleidoscopecookery:table_bamboo.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [64] blocks.kaleidoscopecookery:table_cherry.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [65] blocks.kaleidoscopecookery:table_dark_oak.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [66] blocks.kaleidoscopecookery:table_mangrove.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [67] blocks.kaleidoscopecookery:table_acacia.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [68] blocks.kaleidoscopecookery:table_birch.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [69] blocks.kaleidoscopecookery:table_jungle.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [70] blocks.kaleidoscopecookery:table_spruce.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [71] blocks.kaleidoscopecookery:table_oak.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [72] blocks.kaleidoscopecookery:stockpot.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [73] blocks.kaleidoscopecookery:oil_pot.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [74] blocks.kaleidoscopecookery:teapot.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [75] blocks.kaleidoscopecookery:fruit_basket.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [76] blocks.kaleidoscopecookery:shawarma_spit.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [77] blocks.kaleidoscopecookery:steamer.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [78] blocks.kaleidoscopecookery:pot.states - 视觉状态组“higher_tripwire”已达到“0”个槽位的最大容量，无法为“higher_tripwire[id=cookery_kitchen_clear]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [79] blocks.kaleidoscopecookery:stove.states - 视觉状态组“note_block”已达到“0”个槽位的最大容量，无法为“kaleidoscopecookery:stove[appearance=s3]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [80] blocks.kaleidoscopecookery:oil_block.states - 视觉状态组“note_block”已达到“0”个槽位的最大容量，无法为“kaleidoscopecookery:oil_block”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: [CraftEngine] [81] blocks.kaleidoscopecookery:straw_block.states - 视觉状态组“note_block”已达到“0”个槽位的最大容量，无法为“kaleidoscopecookery:straw_block[appearance=s0]”分配状态
+[m> 
+  
+[33;1m[16:30:36 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[16:30:36 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[16:30:36 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[16:30:36 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[16:30:36 INFO]: Preparing level "world"
+> 
+  
+[16:30:37 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[16:30:38 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[16:30:40 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[16:30:41 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[16:30:41 INFO]: Preparing spawn area: 100%
+> 
+  
+[16:30:41 INFO]: Prepared spawn area in 4142 ms
+> 
+  
+[16:30:41 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[16:30:41 INFO]: Preparing spawn area: 100%
+> 
+  
+[16:30:41 INFO]: Prepared spawn area in 3612 ms
+> 
+  
+[16:30:41 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[16:30:41 INFO]: Preparing spawn area: 100%
+> 
+  
+[16:30:41 INFO]: Prepared spawn area in 1317 ms
+> 
+  
+[16:30:41 INFO]: Done preparing level "world" (5.530s)
+> 
+  
+[16:30:41 INFO]: [KaleidoscopeCookeryPlugin] Enabling KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:30:42 INFO]: [KaleidoscopeCookeryPlugin] KaleidoscopeCookery 已启动！
+> 
+  
+[16:30:42 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:30:45 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[16:30:46 INFO]: [StarGenesis] P4 radio state ready | tick=0 | retained=0 | active contracts=0
+> 
+  
+[16:30:46 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[16:30:46 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[16:30:46 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=PAPER_VIRTUAL_INVENTORY_LAB
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=true, enabled=true, installedVersion=1.3.0, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=7aca215fca067314d1593dd287621f96fb8913e4, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[16:30:46 INFO]: [StarGenesisCookery] Enabling StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:30:46 INFO]: [StarGenesisCookery] Recipe metadata bridge registered; requests wait for fully loaded resources.
+> 
+  
+[16:30:46 INFO]: [CookeryRecipeServerProbe] Enabling CookeryRecipeServerProbe v1
+> 
+  
+[16:30:46 INFO]: [spark] Starting background profiler...
+> 
+  
+[16:30:46 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+> 
+  
+[16:30:46 INFO]: Running delayed init tasks
+> 
+  
+[16:30:47 INFO]: [CraftEngine] 已加载recipes，耗时985.32毫秒（142）
+> 
+  
+[16:30:48 INFO]: Done (62.562s)! For help, type "help"
+> 
+  
+[16:30:48 INFO]: *************************************************************************************
+> 
+  
+[16:30:48 INFO]: This is the first time you're starting this server.
+> 
+  
+[16:30:48 INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
+> 
+  
+[16:30:48 INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
+> 
+  
+[16:30:48 INFO]: *************************************************************************************
+> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] craftengine.registry.blocks.missing
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:chopping_board    配置：custom/configuration/appliance/chopping_board.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:enamel_basin    配置：custom/configuration/appliance/enamel_basin.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:kitchenware_racks    配置：custom/configuration/appliance/kitchenware_racks.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:pot    配置：custom/configuration/appliance/pot.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:shawarma_spit    配置：custom/configuration/appliance/shawarma_spit.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:steamer    配置：custom/configuration/appliance/steamer.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:stockpot    配置：custom/configuration/appliance/stockpot.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:stove    配置：custom/configuration/appliance/stove.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:fruit_basket    配置：custom/configuration/furniture/fruit_basket.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:teapot    配置：custom/configuration/furniture/teapot.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] - kaleidoscopecookery:teacup_coaster    配置：custom/configuration/furniture/teapot.yml
+[m> 
+  
+[31;1m[16:30:48 ERROR]: [KaleidoscopeCookeryPlugin] 请检查上述 CraftEngine custom 配置是否存在、YAML 缩进是否正确，并查看本次 /ce reload all 的前置报错。
+[m> 
+  
+[16:30:52 INFO]: 配方桥接可用 · provider=senluo.cookery · loaded=486
+> 
+  
+[16:30:52 INFO]: {POT=227, STEAMER=4, STOCKPOT=106, SHAWARMA=0, MILLSTONE=91, CHOPPING_BOARD=17, TEAPOT=12, BAMBOO_TRAY=29}
+> 
+  
+[16:30:52 INFO]: 配方类别：ACCURATE, FLEX, POT, STOCKPOT, CHOPPING, TEAPOT, BAMBOO_TRAY
+> 
+  
+[16:30:52 INFO]: StarGenesis capabilities (current providers; installed != active):
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=true, enabled=true, installedVersion=1.3.0, versionCompatible=true, apiVerified=true, paperVerified=true, capabilities={cookery.read=true, items.resolve=false}, reason=ACTIVE, sourceRevision=7aca215fca067314d1593dd287621f96fb8913e4, evidenceId=7aca215fca067314d1593dd287621f96fb8913e4]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[16:30:52 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[31;1m[16:30:52 ERROR]: [CookeryRecipeServerProbe] COOKERY_RECIPE_PROBE_FAILED
+java.lang.AssertionError: command genesis recipe list MILLSTONE ACCURATE allowed=true expected=stargenesis:flour
+	at probe.jar//CookeryRecipeServerProbe.require(CookeryRecipeServerProbe.java:40) ~[?:?]
+	at probe.jar//CookeryRecipeServerProbe.command(CookeryRecipeServerProbe.java:60) ~[?:?]
+	at probe.jar//CookeryRecipeServerProbe.advance(CookeryRecipeServerProbe.java:119) ~[?:?]
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1756) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1611) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:427) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1667) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1335) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m> > 
+  
+[16:30:53 INFO]: Stopping the server
+> 
+  
+[16:30:53 INFO]: Stopping server
+> 
+  
+[16:30:53 INFO]: [CookeryRecipeServerProbe] Disabling CookeryRecipeServerProbe v1
+> 
+  
+[16:30:53 INFO]: [CraftEngine] Disabling CraftEngine before other plugins are unloaded.
+> 
+  
+[33;1m[16:30:54 WARN]: *************************************************************************************
+[m> 
+  
+[33;1m[16:30:54 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m> 
+  
+[33;1m[16:30:54 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m> 
+  
+[33;1m[16:30:54 WARN]: It is recommended that you update as soon as possible
+[m> 
+  
+[33;1m[16:30:54 WARN]: https://papermc.io/downloads/paper
+[m> 
+  
+[33;1m[16:30:54 WARN]: *************************************************************************************
+[m> 
+  
+[33;1m[16:30:58 WARN]: [spark] Timed out waiting for world statistics
+[m> 
+  
+[16:31:03 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown initiated...
+> 
+  
+[16:31:03 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown completed.
+> 
+  
+[16:31:03 INFO]: [StarGenesisCookery] Disabling StarGenesisCookery v4.0.0-SNAPSHOT
+> 
+  
+[16:31:03 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[16:31:03 INFO]: [StarGenesis] StarGenesis stopped cleanly; owned workers and registered services stopped; real settlement remains disabled.
+> 
+  
+[16:31:03 INFO]: [KaleidoscopeCookeryPlugin] Disabling KaleidoscopeCookeryPlugin v1.3.0
+> 
+  
+[16:31:03 INFO]: [CraftEngine] Disabling CraftEngine v26.9.1
+> 
+  
+[16:31:03 INFO]: Saving players
+> 
+  
+[16:31:03 INFO]: Saving worlds
+> 
+  
+[16:31:03 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.00s
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[16:31:03 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.00s
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[16:31:03 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.00s
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[16:31:03 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[16:31:03 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[16:31:03 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[16:31:03 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[16:31:03 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[16:31:03 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[16:31:03 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[16:31:03 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[16:31:03 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

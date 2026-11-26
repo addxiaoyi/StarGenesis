@@ -43,7 +43,7 @@ public final class CapabilityRegistry implements AutoCloseable {
         descriptors.add(new IntegrationDescriptor("craftengine", "CraftEngine", Set.of("26.9.1"),
                 "sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d", Set.of("items.resolve", "items.create")));
         descriptors.add(new IntegrationDescriptor("senluo.cookery", "KaleidoscopeCookeryPlugin",
-                Set.of("1.3.0"), senluo, Set.of("items.resolve", "cookery.read")));
+                Set.of("1.3.0"), "7aca215fca067314d1593dd287621f96fb8913e4", Set.of("items.resolve", "cookery.read")));
         descriptors.add(new IntegrationDescriptor("senluo.doll", "KaleidoscopeDollPlugin",
                 Set.of("0.1.0-dev"), senluo, Set.of("items.resolve")));
         descriptors.add(new IntegrationDescriptor("senluo.tavern", "KaleidoscopeTavernPlugin",
