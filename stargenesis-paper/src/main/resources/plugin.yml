@@ -11,6 +11,9 @@ commands:
     usage: /genesis help
     aliases: [sg]
 permissions:
+  stargenesis.items:
+    description: Inspect loaded item definitions and the operator's own held item state
+    default: op
   stargenesis.models:
     description: Inspect metadata of already loaded models through an optional verified provider
     default: op

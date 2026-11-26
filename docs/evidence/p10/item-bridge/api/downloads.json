@@ -1,0 +1,32 @@
+{
+  "craft-engine-core-26.9.1.pom": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-core/26.9.1/craft-engine-core-26.9.1.pom",
+    "bytes": 1082,
+    "sha256": "b63b023aea34a5155469a26d140eed8d6f5038f209d3aed6d030ce45edd6a33e"
+  },
+  "craft-engine-core-26.9.1-sources.jar": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-core/26.9.1/craft-engine-core-26.9.1-sources.jar",
+    "bytes": 1484006,
+    "sha256": "680db25e3c6bde661e02b353e50988afefdbbc6b750ccee534eb84831b712d80"
+  },
+  "craft-engine-core-26.9.1.jar": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-core/26.9.1/craft-engine-core-26.9.1.jar",
+    "bytes": 5947954,
+    "sha256": "3db3473986aefe52936aa807a0b5858355775fa16927eba96b701e84431a0d2b"
+  },
+  "craft-engine-bukkit-26.9.1.pom": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-bukkit/26.9.1/craft-engine-bukkit-26.9.1.pom",
+    "bytes": 1086,
+    "sha256": "3ca095869bebb47a0f15701e9a00ecd51645cad9c5a63674a7bcbb7fbed4acbc"
+  },
+  "craft-engine-bukkit-26.9.1-sources.jar": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-bukkit/26.9.1/craft-engine-bukkit-26.9.1-sources.jar",
+    "bytes": 878941,
+    "sha256": "f53afe676bb5f14a8cd35380c1b741e69f67416bbb943cffd82d0a32a68076e6"
+  },
+  "craft-engine-bukkit-26.9.1.jar": {
+    "url": "https://repo.momirealms.net/releases/net/momirealms/craft-engine-bukkit/26.9.1/craft-engine-bukkit-26.9.1.jar",
+    "bytes": 2224587,
+    "sha256": "011afd3b1cfcaf5fc4b4af4757843e5479e1be4a9763c1a97bde04dcb1c0795d"
+  }
+}

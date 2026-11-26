@@ -19,6 +19,8 @@ Windows 使用 `mvnw.cmd -B verify`。产物：`stargenesis-paper/target/stargen
 
 可选 `StarGenesisHelstera` 扩展提供 Paper 1.21.11 模型查询与有界实验室投影：先运行 `python scripts/prepare_helstera_api.py --verify-runtime`，再以 `-Phelstera-bridge` 构建。投影要求固定提交加清理补丁的实际提供方，普通旧版仍仅查询。使用 `/genesis lab start 42 2 commands` 后，OP可执行 `/genesisprojection start <已加载模型ID>`。构建、预算和验收范围见 [模型投影](docs/HELSTERA_LAB_PROJECTION.md)，目录接口见 [模型查询](docs/HELSTERA_MODEL_CATALOG.md)。
 
+可选 `StarGenesisCraftEngine` 扩展提供 Paper 1.21.11 / CraftEngine 26.9.1 物品查询与完整状态快照。运行 `python scripts/prepare_craftengine_api.py` 后，以 `-Pcraftengine-bridge` 构建；两个扩展可用 `-Phelstera-bridge,craftengine-bridge` 一起构建。OP命令为 `/genesis item status`、`/genesis item inspect <namespace:item>` 和 `/genesis item held`。API创建脱离背包的物品栈，恢复时保留完整组件/PDC并拒绝隐式迁移或数据丢失。预算、提供方锁、构建来源及实际测试范围见 [物品桥接](docs/CRAFTENGINE_ITEM_BRIDGE.md)。
+
 ## Release Signing
 
 发行者可使用 JDK 21 对最终版本插件 JAR 与 SBOM 生成 Ed25519 签名清单。签名私钥保存在仓库之外，发行产物与 manifest 放在同一目录：

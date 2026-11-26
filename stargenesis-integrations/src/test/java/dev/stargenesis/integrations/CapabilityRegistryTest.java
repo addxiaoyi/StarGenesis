@@ -183,7 +183,8 @@ class CapabilityRegistryTest {
             List<IntegrationStatus> statuses = registry.inspect(name -> Optional.empty());
             assertEquals(8, statuses.size());
             assertTrue(statuses.stream().noneMatch(IntegrationStatus::active));
-            assertTrue(statuses.stream().allMatch(status -> status.sourceRevision().matches("[0-9a-f]{40}")));
+            assertTrue(statuses.stream().allMatch(status -> status.sourceRevision().matches(
+                    status.id().equals("craftengine") ? "sha256:[0-9a-f]{64}" : "[0-9a-f]{40}")));
             assertTrue(statuses.stream().anyMatch(status -> status.pluginName().equals("helsteraMobs")));
         }
     }

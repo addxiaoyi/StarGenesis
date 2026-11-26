@@ -39,9 +39,9 @@ public final class CapabilityRegistry implements AutoCloseable {
                 starcore, Set.of("nation.read", "territory.authorize", "technology.read", "economy.settle")));
         descriptors.add(new IntegrationDescriptor("helstera", "helsteraMobs", Set.of("1.0.0"),
                 "9298292538dc9d7c5ee800ff7e03f4c10e34ba97", Set.of("model.inspect", "entity.project", "behavior.register", "event.subscribe")));
-        // Declared dependency version in audited SenLuo source, not a CraftEngine runtime test.
+        // Published API bytes are fixed independently of SenLuo plugin versions.
         descriptors.add(new IntegrationDescriptor("craftengine", "CraftEngine", Set.of("26.9.1"),
-                senluo, Set.of("items.resolve", "items.create")));
+                "sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d", Set.of("items.resolve", "items.create")));
         descriptors.add(new IntegrationDescriptor("senluo.cookery", "KaleidoscopeCookeryPlugin",
                 Set.of("1.3.0"), senluo, Set.of("items.resolve", "cookery.read")));
         descriptors.add(new IntegrationDescriptor("senluo.doll", "KaleidoscopeDollPlugin",

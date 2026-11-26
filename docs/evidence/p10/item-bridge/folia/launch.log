@@ -1,0 +1,42 @@
+{
+  "kind": "folia",
+  "checks": {
+    "server_ready": true,
+    "plugin_enabled": true,
+    "design_examples_verified": true,
+    "status_command": true,
+    "p3_program_workspace": true,
+    "p3_replayable_simulation": true,
+    "p4_virtual_radio": true,
+    "p4_radio_protocol_pinned": true,
+    "p4_service_contract_pinned": true,
+    "p5_closed_ecology": true,
+    "p6_four_player_factory": true,
+    "p7_arena_catalog": true,
+    "p8_territory_match": true,
+    "p9_real_settlement_inactive": true,
+    "p10_signed_design_import": true,
+    "help_command": true,
+    "capabilities_command": true,
+    "missing_dependency_report": true,
+    "budget_command": true,
+    "plugin_disabled": true,
+    "clean_exit": true,
+    "no_plugin_startup_error": true
+  },
+  "passed": true,
+  "seconds": 83.81,
+  "server_sha256": "f52c408490a0225611e67907a3ca19f7e6da2c6bc899e715d5f46844e7103c39",
+  "plugin_sha256": "6a81d51b220d4872f538c46a2a2a6a190131c326b0edd06f44efb8ed98097688",
+  "log_sha256": "413a80dc122ce661a0a5d090e566f6d2360bed9c832ed326b1261920a7b30b7c",
+  "java": "openjdk version \"21.0.13.0.2\" 2026-10-22 LTS\nOpenJDK Runtime Environment Microsoft-15780113 (build 21.0.13.0.2+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-15780113 (build 21.0.13.0.2+1-LTS, mixed mode, sharing)",
+  "launch_mode": "paperclip-bootstrap",
+  "heap_mb": 512,
+  "jvm_args": [
+    "-XX:+UseSerialGC",
+    "-XX:TieredStopAtLevel=1",
+    "-XX:ReservedCodeCacheSize=64m",
+    "-XX:ActiveProcessorCount=2"
+  ],
+  "scope": "actual-server console lifecycle only; no human clients or integration plugins"
+}

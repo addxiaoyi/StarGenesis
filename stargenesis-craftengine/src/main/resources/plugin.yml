@@ -1,0 +1,6 @@
+name: StarGenesisCraftEngine
+version: '${project.version}'
+main: dev.stargenesis.craftengine.CraftEngineBridgePlugin
+api-version: '1.21.11'
+depend: [StarGenesis, CraftEngine]
+description: Bounded item definitions, detached creation and complete Paper item snapshots

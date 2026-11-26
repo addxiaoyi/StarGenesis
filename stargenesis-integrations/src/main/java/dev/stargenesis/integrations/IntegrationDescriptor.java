@@ -2,7 +2,9 @@ package dev.stargenesis.integrations;
 
 import java.util.Set;
 
-/** Exact audited versions are candidates for a probe, not a claim of runtime compatibility. */
+/** Exact audited versions are candidates for a probe, not a claim of runtime compatibility.
+ * Source revision identifies a Git commit or a SHA-256 lock of published source/API artifacts.
+ */
 public record IntegrationDescriptor(String id, String pluginName, Set<String> auditedVersions,
                                     String sourceRevision, Set<String> capabilities) {
     public IntegrationDescriptor {

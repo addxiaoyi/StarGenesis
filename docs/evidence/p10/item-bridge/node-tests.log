@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: a startup cannot silently change, drop, or add saved evidence
+ok 1 - a startup cannot silently change, drop, or add saved evidence
+  ---
+  duration_ms: 57.6502
+  type: 'test'
+  ...
+# Subtest: compensation reads the organization balance row even when the auction also names its winner
+ok 2 - compensation reads the organization balance row even when the auction also names its winner
+  ---
+  duration_ms: 4.7638
+  type: 'test'
+  ...
+# Subtest: match restart evidence rejects resurrection, lost files and modified published rules
+ok 3 - match restart evidence rejects resurrection, lost files and modified published rules
+  ---
+  duration_ms: 28.9537
+  type: 'test'
+  ...
+# Subtest: reorganized rosters must contain exactly the new pairs and teams
+ok 4 - reorganized rosters must contain exactly the new pairs and teams
+  ---
+  duration_ms: 7.4772
+  type: 'test'
+  ...
+# Subtest: restart evidence allows clock progress and only the exact due expiration
+ok 5 - restart evidence allows clock progress and only the exact due expiration
+  ---
+  duration_ms: 8.1282
+  type: 'test'
+  ...
+# Subtest: restart evidence rejects pending loss, altered acknowledgements and rewritten history
+ok 6 - restart evidence rejects pending loss, altered acknowledgements and rewritten history
+  ---
+  duration_ms: 2.5737
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 212.0637

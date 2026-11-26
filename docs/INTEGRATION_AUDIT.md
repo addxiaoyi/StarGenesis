@@ -34,10 +34,12 @@ EventBus 同步在派发线程调用监听器并吞 listener Throwable；不得�
 
 Cookery 导出 ID 使用 `kaleidoscopecookery:*`，不能与源模型 `kaleidoscope_cookery` 混淆；Doll/Tavern/Deco/Music 有各自命名空间。目录中的 ID 仍需目标服 CraftEngine 实际注册后逐项验证。物品识别依赖 CE API，库存转移必须保留 PDC/组件/完整栈，重载后失效缓存。
 
+2026-11-26增加独立CraftEngine物品桥接，官方Maven API/source/POM以完整SHA-256锁定，来源字段改为该锁文件哈希。Paper实服验证当前目录、原生脱离背包创建、完整有界NBT快照、两次进程恢复、删除/替换定义和资源操作互斥；两名客户端验证权限和查询不改变任何库存槽位。`items.resolve`与`items.create`只在当前提供方就绪时激活，后者表示脱离背包创建。实际提供方工件与官方API有已披露类差异，结论限于证据中的哈希；见 `CRAFTENGINE_ITEM_BRIDGE.md`。SenLuo系列的完整物品/配方、视觉和生产交付仍须分别验收。
+
 未发现 StarCore/Vault 经济结算接口。创造模式不扣物品的 consumeItem、可能掉落满包余量的 give 以及内部 InventoryTrade 都不能当作幂等跨插件交付接口。
 
 ## P0 能力策略和下一步
 
-CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展验证`model.inspect`与`entity.project`；投影只对支持固定清理契约的提供方激活，清理未完成时降级为查询。其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
+CapabilityRegistry 独立呈现 installed/enabled、versionCompatible、apiVerified、paperVerified 和逐项能力。启动保留诊断，debug命令重新检查当前提供方。可选Helstera扩展验证`model.inspect`与`entity.project`；投影只对支持固定清理契约的提供方激活，清理未完成时降级为查询。可选CraftEngine扩展检查实际资源锁与加载状态后验证`items.resolve`与脱离背包的`items.create`。其他真实能力保持inactive；缺失依赖返回NOT_INSTALLED，已安装但未配置验证扩展为ADAPTER_NOT_VERIFIED，不反射猜方法。
 
 2026-11-26首次执行真实Helstera只读目录桥接：固定源码、实际API编译、Paper1.21.11-132模型解析/注册/卸载/重载、提供方停用与旧引用拒绝通过。该历史批次不包含显示实体、资源包、动画或Folia；上游实例创建失败未回滚已用实际运行时复现。后续投影批次以固定依赖补丁修复创建与清理契约，证据见`docs/evidence/p10/lab-projection/summary.json`。StarCore真实结算和SenLuo物品桥接仍未验收。

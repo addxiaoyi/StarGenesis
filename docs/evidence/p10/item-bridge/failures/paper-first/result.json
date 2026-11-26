@@ -1,0 +1,27 @@
+{
+  "passed": false,
+  "runs": [
+    {
+      "passed": false,
+      "run": 1,
+      "seconds": 53.3,
+      "exitCode": 0,
+      "fixture": {
+        "passed": false
+      },
+      "errors": [
+        "\u001b[31;1m[15:06:18 ERROR]: [CraftEngineItemServerProbe] CRAFTENGINE_ITEM_PROBE_FAILED"
+      ],
+      "logSha256": "8a014d561a5abf763859a07a159b6eccc3fa6fa04b42803e227f98ff2e5349e7"
+    }
+  ],
+  "sha256": {
+    "server": "3a73f0cc4020a5eb45629a67629b14263331c68de45552f8505df8060fa8ed43",
+    "provider": "021260c87e3546730d321f4360b1744e6e33caa1d68e98ae30dcdbbdc347ae0f",
+    "plugin": "c99f99cd15751dc7531f55f3ac141072dcd7984343f2a317a01dd880a227c623",
+    "bridge": "8d4ecff90827b5130ed6b874f46eab35846d4db0b6d7f9a65a277696330184c4"
+  },
+  "fixtureSourceSha256": "756c4eba283c896d7d15797ffa327a79fc5da51cc6a05af91f8c91ac434b20c2",
+  "providerConfigSha256": "3683333953c102c938f26cc18a0e47635b68b9c0688b68aaac064241246ec73b",
+  "scope": "Actual Paper/CraftEngine detached item state, registry reload and sequential process restart; no inventory delivery or visual acceptance"
+}

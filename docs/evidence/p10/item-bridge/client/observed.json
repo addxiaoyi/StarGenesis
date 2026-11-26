@@ -1,0 +1,10 @@
+{
+  "scope": "Fixture supplies detached custom items; actual commands and complete inventories observed, no production delivery or rendered visuals",
+  "verifiedTicks": 86,
+  "stopped": true,
+  "players": {
+    "SGItemAdmin": "72300d9a0f0828d9989127549ef6be0be1add838316e1f2f68a04ab3897561ee",
+    "SGItemMember": "72300d9a0f0828d9989127549ef6be0be1add838316e1f2f68a04ab3897561ee"
+  },
+  "passed": true
+}

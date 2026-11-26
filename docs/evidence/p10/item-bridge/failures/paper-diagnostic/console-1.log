@@ -1,0 +1,429 @@
+[15:09:14 INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.13.0.2+1-LTS; Microsoft Microsoft-15780113) on Windows Server 2022 10.0 (amd64)
+[15:09:14 INFO]: [bootstrap] Loading Paper 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) for Minecraft 1.21.11
+[15:09:15 INFO]: [PluginInitializerManager] Initializing plugins...
+[15:09:17 INFO]: [ReobfServer] Remapping server...
+[15:09:28 INFO]: [ReobfServer] Done remapping server in 11293ms.
+[15:09:28 INFO]: [PluginRemapper] Remapping plugin 'plugins\probe.jar'...
+[15:09:28 INFO]: [PluginRemapper] Remapping plugin 'plugins\plugin.jar'...
+[15:09:28 INFO]: [PluginRemapper] Remapping plugin 'plugins\bridge.jar'...
+[15:09:28 INFO]: [PluginRemapper] Done remapping plugin 'plugins\bridge.jar' in 180ms.
+[15:09:28 INFO]: [PluginRemapper] Done remapping plugin 'plugins\probe.jar' in 182ms.
+[15:09:29 INFO]: [PluginRemapper] Done remapping plugin 'plugins\plugin.jar' in 1423ms.
+[15:09:30 INFO]: [PluginInitializerManager] Initialized 4 plugins
+[15:09:30 INFO]: [PluginInitializerManager] Paper plugins (1):
+ - CraftEngine (26.9.1)
+[15:09:30 INFO]: [PluginInitializerManager] Bukkit plugins (3):
+ - CraftEngineItemServerProbe (1), StarGenesis (4.0.0-SNAPSHOT), StarGenesisCraftEngine (4.0.0-SNAPSHOT)
+[15:09:36 INFO]: [CraftEngine] Patching the server...
+[15:09:44 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[15:09:44 INFO]: [CraftEngine] Initializing registries...
+[15:09:45 INFO]: Found new data pack file/bukkit, loading it automatically
+[15:09:45 INFO]: Found new data pack paper, loading it automatically
+[15:09:46 INFO]: No existing world data, creating new world
+[15:09:48 INFO]: Loaded 1470 recipes
+[15:09:48 INFO]: Loaded 1584 advancements
+[15:09:48 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[15:09:49 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 635.9ms
+[15:09:49 INFO]: Starting minecraft server version 1.21.11
+[33;1m[15:09:49 WARN]: To start the server with more ram, launch it as "java -Xmx1024M -Xms1024M -jar minecraft_server.jar"
+[m[33;1m[15:09:49 WARN]: ****************************
+[m[33;1m[15:09:49 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[m[33;1m[15:09:49 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[m[33;1m[15:09:49 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[m[33;1m[15:09:49 WARN]: ****************************
+[m[15:09:49 INFO]: Loading properties
+[15:09:49 INFO]: This server is running Paper version 1.21.11-132-ver/1.21.11@c5eb079 (2026-05-11T11:43:09Z) (Implementing API version 1.21.11-R0.1-SNAPSHOT)
+[15:09:49 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[15:09:49 INFO]: Server Ping Player Sample Count: 12
+[15:09:49 INFO]: Using 4 threads for Netty based IO
+[15:09:50 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[15:09:50 INFO]: Default game type: SURVIVAL
+[15:09:50 INFO]: Generating keypair
+[15:09:50 INFO]: Starting Minecraft server on 127.0.0.1:25685
+> 
+  
+[15:09:50 INFO]: Paper: Using Java compression from Velocity.
+> 
+  
+[15:09:50 INFO]: Paper: Using Java cipher from Velocity.
+> 
+  
+[15:09:51 INFO]: [CraftEngine] Loading server plugin CraftEngine v26.9.1
+> 
+  
+[15:09:51 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Starting...
+> 
+  
+[15:09:51 INFO]: [net.momirealms.craftengine.libraries.hikari.pool.HikariPool] craftengine-storage - Added connection org.sqlite.jdbc4.JDBC4Connection@190a3e67
+> 
+  
+[15:09:51 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Start completed.
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.FlywayExecutor] Database: ******** (SQLite 3.49)
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] Schema history table "main"."ce_schema_history" does not exist yet
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbValidate] Successfully validated 1 migration (execution time 00:00.038s)
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.Flyway] All configured schemas are empty; a baseline marker will not be added to Flyway's schema history table. A baseline or migration script with a lower version than the baseline version may execute if available. Check the Schemas parameter if this is not intended. See https://help.red-gate.com/help/flyway-cli13/help_5.aspx?topic=baseline-on-migrate for more info
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory] Creating Schema History table "main"."ce_schema_history" ...
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Current version of schema "main": << Empty Schema >>
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Migrating schema "main" to version "1 - pack preferences"
+> 
+  
+[15:09:53 INFO]: [net.momirealms.craftengine.libraries.flywaydb.core.internal.command.DbMigrate] Successfully applied 1 migration to schema "main", now at version v1 (execution time 00:00.004s)
+> 
+  
+[15:09:55 INFO]: [StarGenesis] Loading server plugin StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[15:09:55 INFO]: [StarGenesisCraftEngine] Loading server plugin StarGenesisCraftEngine v4.0.0-SNAPSHOT
+> 
+  
+[15:09:55 INFO]: [CraftEngineItemServerProbe] Loading server plugin CraftEngineItemServerProbe v1
+> 
+  
+[15:09:56 INFO]: [CraftEngine] Enabling CraftEngine v26.9.1
+> 
+  
+[15:09:57 INFO]: [CraftEngine] 已加载的包：sg_item_probe。默认命名空间：stargenesis
+> 
+  
+[15:09:57 INFO]: [CraftEngine] 已加载items，耗时163.23毫秒（1）
+> 
+  
+[33;1m[15:09:58 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[m> 
+  
+[33;1m[15:09:58 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[m> 
+  
+[33;1m[15:09:58 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[m> 
+  
+[33;1m[15:09:58 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[m> 
+  
+[15:09:58 INFO]: Preparing level "world"
+> 
+  
+[15:09:59 INFO]: Selecting spawn point for world 'minecraft:overworld'...
+> 
+  
+[15:09:59 INFO]: Selecting spawn point for world 'minecraft:the_nether'...
+> 
+  
+[15:10:01 INFO]: Selecting spawn point for world 'minecraft:the_end'...
+> 
+  
+[15:10:02 INFO]: Loading 0 persistent chunks for world 'minecraft:overworld'...
+> 
+  
+[15:10:02 INFO]: Preparing spawn area: 100%
+> 
+  
+[15:10:02 INFO]: Prepared spawn area in 2769 ms
+> 
+  
+[15:10:02 INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+> 
+  
+[15:10:02 INFO]: Preparing spawn area: 100%
+> 
+  
+[15:10:02 INFO]: Prepared spawn area in 2167 ms
+> 
+  
+[15:10:02 INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+> 
+  
+[15:10:02 INFO]: Preparing spawn area: 100%
+> 
+  
+[15:10:02 INFO]: Prepared spawn area in 568 ms
+> 
+  
+[15:10:02 INFO]: Done preparing level "world" (4.013s)
+> 
+  
+[15:10:02 INFO]: [StarGenesis] Enabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[15:10:05 INFO]: [StarGenesis] StarGenesis design self-check passed: 5 hashed schema-v1 examples
+> 
+  
+[15:10:05 INFO]: [StarGenesis] P4 radio state ready | tick=0 | retained=0 | active contracts=0
+> 
+  
+[15:10:05 INFO]: [StarGenesis] Virtual radio protocol pinned | genesis:radio | hash=2c159d66d28c7a2d2a00b0ee99dbe858327df4a282bb15a6d03c650f05d32442
+> 
+  
+[15:10:05 INFO]: [StarGenesis] Virtual service contract pinned | genesis:service_contract | hash=36d945eff150f21b6971841545593d03710332d6dbecb4005299fa05aadb336e
+> 
+  
+[15:10:05 INFO]: [StarGenesis] StarGenesis ready | P0 accepted | P1/P3 simulations available, player acceptance pending | api=1 | engine=genesis-sim/1 | P3 typed program workspace=available | P4 virtual radio=available | P5 ecology=available | P6 factory=available | P7 arena UGC=available | P8 territory match=available | P9 durable saga contract=available, real gateway=inactive | P10 signed design import=available | real-settlement=disabled | lab=PAPER_VIRTUAL_INVENTORY_LAB
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=false, paperVerified=false, capabilities={items.create=false, items.resolve=false}, reason=ADAPTER_NOT_VERIFIED, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesis] IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[15:10:05 INFO]: [StarGenesisCraftEngine] Enabling StarGenesisCraftEngine v4.0.0-SNAPSHOT
+> 
+  
+[15:10:05 INFO]: [StarGenesisCraftEngine] Item bridge registered; requests wait for fully loaded resources and use detached stacks.
+> 
+  
+[15:10:05 INFO]: [CraftEngineItemServerProbe] Enabling CraftEngineItemServerProbe v1
+> 
+  
+[15:10:05 INFO]: [spark] Starting background profiler...
+> 
+  
+[15:10:05 INFO]: [spark] The async-profiler engine is not supported for your os/arch (windowsserver2022/amd64), so the built-in Java engine will be used instead.
+> 
+  
+[15:10:06 INFO]: Running delayed init tasks
+> 
+  
+[15:10:07 INFO]: Done (53.822s)! For help, type "help"
+> 
+  
+[15:10:07 INFO]: *************************************************************************************
+> 
+  
+[15:10:07 INFO]: This is the first time you're starting this server.
+> 
+  
+[15:10:07 INFO]: It's recommended you read our 'Getting Started' documentation for guidance.
+> 
+  
+[15:10:07 INFO]: View this and more helpful information here: https://docs.papermc.io/paper/next-steps
+> 
+  
+[15:10:07 INFO]: *************************************************************************************
+> 
+  
+[15:10:08 INFO]: 物品桥接可用 · provider=craftengine · loaded=1
+> 
+  
+[15:10:08 INFO]: 物品 stargenesis:item_probe · material=minecraft:paper · vanillaOverride=false
+> 
+  
+[15:10:08 INFO]: 标签数量=1 · stargenesis:probe
+> 
+  
+[15:10:08 INFO]: StarGenesis capabilities (current providers; installed != active):
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=craftengine, pluginName=CraftEngine, installed=true, enabled=true, installedVersion=26.9.1, versionCompatible=true, apiVerified=true, paperVerified=true, capabilities={items.create=true, items.resolve=true}, reason=ACTIVE, sourceRevision=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d, evidenceId=sha256:62fbfe822ced5c588a21cf81336b21ff77a8a71f5d0916ac61bca8ccd2c1708d]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=helstera, pluginName=helsteraMobs, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={behavior.register=false, entity.project=false, event.subscribe=false, model.inspect=false}, reason=NOT_INSTALLED, sourceRevision=9298292538dc9d7c5ee800ff7e03f4c10e34ba97, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=senluo.cookery, pluginName=KaleidoscopeCookeryPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={cookery.read=false, items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=senluo.deco, pluginName=KaleidoscopeDecoPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=senluo.doll, pluginName=KaleidoscopeDollPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=senluo.music, pluginName=KaleidoscopeMusicPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=senluo.tavern, pluginName=KaleidoscopeTavernPlugin, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={items.resolve=false}, reason=NOT_INSTALLED, sourceRevision=6a432fe54097a3ebf22ba5757e016b602c711f28, evidenceId=]
+> 
+  
+[15:10:08 INFO]: IntegrationStatus[id=starcore, pluginName=StarCore, installed=false, enabled=false, installedVersion=, versionCompatible=false, apiVerified=false, paperVerified=false, capabilities={economy.settle=false, nation.read=false, technology.read=false, territory.authorize=false}, reason=NOT_INSTALLED, sourceRevision=f769e62799e769a18fe51305b545869a17f80cd1, evidenceId=]
+> 
+  
+[31;1m[15:10:09 ERROR]: [CraftEngineItemServerProbe] CRAFTENGINE_ITEM_PROBE_FAILED
+java.lang.IllegalArgumentException: Item state changed during decoding; exact restoration refused
+	at bridge.jar//dev.stargenesis.craftengine.CraftEngineBridge.lambda$restore$8(CraftEngineBridge.java:132) ~[?:?]
+	at bridge.jar//dev.stargenesis.craftengine.CraftEngineBridge.read(CraftEngineBridge.java:62) ~[?:?]
+	at bridge.jar//dev.stargenesis.craftengine.CraftEngineBridge.restore(CraftEngineBridge.java:123) ~[?:?]
+	at probe.jar//CraftEngineItemServerProbe.advance(CraftEngineItemServerProbe.java:121) ~[?:?]
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at org.bukkit.craftbukkit.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:474) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1756) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1611) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.dedicated.DedicatedServer.tickServer(DedicatedServer.java:427) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1667) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1335) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:388) ~[paper-1.21.11.jar:1.21.11-132-c5eb079]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[m> > 
+  
+[15:10:09 INFO]: Stopping the server
+> 
+  
+[15:10:09 INFO]: Stopping server
+> 
+  
+[15:10:09 INFO]: [CraftEngineItemServerProbe] Disabling CraftEngineItemServerProbe v1
+> 
+  
+[15:10:09 INFO]: [CraftEngine] Disabling CraftEngine before other plugins are unloaded.
+> 
+  
+[15:10:09 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown initiated...
+> 
+  
+[15:10:09 INFO]: [net.momirealms.craftengine.libraries.hikari.HikariDataSource] craftengine-storage - Shutdown completed.
+> 
+  
+[15:10:09 INFO]: [StarGenesisCraftEngine] Disabling StarGenesisCraftEngine v4.0.0-SNAPSHOT
+> 
+  
+[15:10:09 INFO]: [StarGenesis] Disabling StarGenesis v4.0.0-SNAPSHOT
+> 
+  
+[15:10:09 INFO]: [StarGenesis] StarGenesis stopped cleanly; owned workers and registered services stopped; real settlement remains disabled.
+> 
+  
+[15:10:09 INFO]: [CraftEngine] Disabling CraftEngine v26.9.1
+> 
+  
+[15:10:09 INFO]: Saving players
+> 
+  
+[15:10:09 INFO]: Saving worlds
+> 
+  
+[15:10:09 INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+> 
+  
+[33;1m[15:10:09 WARN]: *************************************************************************************
+[m> 
+  
+[33;1m[15:10:09 WARN]: You are running the latest build for your Minecraft version (1.21.11)
+[m> 
+  
+[33;1m[15:10:09 WARN]: However, you are 6 release(s) behind the latest stable release (26.3)!
+[m> 
+  
+[33;1m[15:10:09 WARN]: It is recommended that you update as soon as possible
+[m> 
+  
+[33;1m[15:10:09 WARN]: https://papermc.io/downloads/paper
+[m> 
+  
+[33;1m[15:10:09 WARN]: *************************************************************************************
+[m> 
+  
+[15:10:09 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world'
+> 
+  
+[15:10:09 INFO]: [ChunkHolderManager] Halted chunk system for world 'world'
+> 
+  
+[15:10:09 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world' in 0.22s
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world'
+> 
+  
+[15:10:10 INFO]: Saving chunks for level 'ServerLevel[world_nether]'/minecraft:the_nether
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_nether'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_nether'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_nether'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_nether' in 0.01s
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_nether'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_nether'
+> 
+  
+[15:10:10 INFO]: Saving chunks for level 'ServerLevel[world_the_end]'/minecraft:the_end
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'world_the_end'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Halted chunk system for world 'world_the_end'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Saving all chunkholders for world 'world_the_end'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'world_the_end' in 0.01s
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Waiting 60s for chunk I/O to halt for world 'world_the_end'
+> 
+  
+[15:10:10 INFO]: [ChunkHolderManager] Halted I/O scheduler for world 'world_the_end'
+> 
+  
+[15:10:10 INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+> 
+  
+[15:10:10 INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+> 
+  
+[15:10:10 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+> 
+  
+[15:10:10 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+> 
+  
+[15:10:10 INFO]: Waiting for all RegionFile I/O tasks to complete...
+> 
+  
+[15:10:10 INFO]: All RegionFile I/O tasks to complete
+> 
+  
+[15:10:10 INFO]: [MoonriseCommon] Awaiting termination of worker pool for up to 60s...
+> 
+  
+[15:10:10 INFO]: [MoonriseCommon] Awaiting termination of I/O pool for up to 60s...
+> 

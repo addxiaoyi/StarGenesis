@@ -6,7 +6,7 @@
 
 以结构、有限行为图、协议、契约、组织和实验规则的组合产生玩法。5 分钟修改公共设计并观察反馈，15–20 分钟完成竞技，长期复用发明与跨玩家协作。不得用宠物升级、抽卡、固定任务或数值膨胀替代开放组合。
 
-P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口、守恒账本和能力发现基线。P1–P8 已有确定性沙盒、创作器、radio/contract、生态、组织工厂、审核后发布的 ArenaRuleset UGC 与多玩家回合竞技代码；Paper/Folia 自动客户端覆盖已实现的玩家命令，真人验收仍逐阶段待完成。P5 自动 parameter profile 扫描验证了 matter 守恒与 replay，四组对照规则在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500 tick预算前灭绝；一组固定 seed 52008 candidate 在四次 Paper/Folia SNAPSHOT/RC 运行中都到达500 tick并保留三物种。纯 Java 模拟还对两个归档的 Alice worldId 分别扫描100个 seeds，200/200 到500 ticks时保留三物种，但这不是服务器负载证据。2026-11-25 完成 Paper/Folia 各八 seed 自动客户端实服扩展，16/16 均到500 tick保留三物种，matter 守恒与 replay 校验全部通过。P5 的广泛 seed 稳健性、长期生态平衡与真人验证仍未完成。P9 已有 saga 协调协议和持久文件 repository，但真实结算 adapter 未通过幂等/权限/故障验收，交易保持关闭。P10 有 Ed25519 signed design import、publisher 包签署 CLI 和 OP 管理的 trust-root 添加/轮换/撤销流程，新增Paper限定的Helstera只读模型查询与真实服务生命周期证据，并增加固定依赖清理补丁支持的有界被动实验室模型投影；尚无运营方真实key、客户端模型外观/资源包或物品桥接完整验收。P11 有 CycloneDX aggregate SBOM、15分钟 Folia 受控沙盒负载和 `4.0.0-rc.1` 隔离候选构建；生产规模性能、玩家留存和发行方正式签名验收仍未完成。
+P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口、守恒账本和能力发现基线。P1–P8 已有确定性沙盒、创作器、radio/contract、生态、组织工厂、审核后发布的 ArenaRuleset UGC 与多玩家回合竞技代码；Paper/Folia 自动客户端覆盖已实现的玩家命令，真人验收仍逐阶段待完成。P5 自动 parameter profile 扫描验证了 matter 守恒与 replay，四组对照规则在 SNAPSHOT/RC 的 Paper/Folia 实服运行中均在500 tick预算前灭绝；一组固定 seed 52008 candidate 在四次 Paper/Folia SNAPSHOT/RC 运行中都到达500 tick并保留三物种。纯 Java 模拟还对两个归档的 Alice worldId 分别扫描100个 seeds，200/200 到500 ticks时保留三物种，但这不是服务器负载证据。2026-11-25 完成 Paper/Folia 各八 seed 自动客户端实服扩展，16/16 均到500 tick保留三物种，matter 守恒与 replay 校验全部通过。P5 的广泛 seed 稳健性、长期生态平衡与真人验证仍未完成。P9 已有 saga 协调协议和持久文件 repository，但真实结算 adapter 未通过幂等/权限/故障验收，交易保持关闭。P10 有 Ed25519 signed design import、publisher 包签署 CLI 和 OP 管理的 trust-root 添加/轮换/撤销流程，新增Paper限定的Helstera只读模型查询与真实服务生命周期证据，并增加固定依赖清理补丁支持的有界被动实验室模型投影；另有CraftEngine原生脱离背包创建、完整有界NBT恢复、实际重载/跨进程恢复和只读物品命令；尚无运营方真实key、客户端模型/物品资源包外观、生产授权交付或完整系列插件验收。P11 有 CycloneDX aggregate SBOM、15分钟 Folia 受控沙盒负载和 `4.0.0-rc.1` 隔离候选构建；生产规模性能、玩家留存和发行方正式签名验收仍未完成。
 
 ## 模块与冻结接口
 
@@ -17,6 +17,7 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 | stargenesis-sim | 单线程时钟、守恒账本、内存 outbox、checkpoint/replay 与封闭 matter 生态 | P1/P5 |
 | stargenesis-integrations | 只读插件清单、版本审计描述符、能力逐项验证、失效隔离和持久 settlement saga contract | P9/P10 |
 | stargenesis-helstera（可选profile） | Paper限定的真实API模型目录查询与有界被动实验室投影；当前服务校验、失败清理重试与停用注销 | P10 |
+| stargenesis-craftengine（可选profile） | Paper限定的实际物品目录、脱离背包的创建与完整NBT快照恢复；资源操作互斥与停用注销 | P10 |
 | stargenesis-paper | 生命周期、命令、权限、配置硬限制、设计加载自检、作者私有工作区/replay 持久化、程序/生态/竞技适配、签名设计导入 | 玩家入口/区域调度 |
 
 仅创建有代码和测试的模块。Program 文档通过格式验证不代表其算法已经编译/执行；当前显式编译只接受已实现的旧格式子集。typed IR 使用独立 schema v1 并可由 Paper 玩家工作区保存，解释器不直接修改世界；Paper 模拟适配器将受限动作映射到资源沙盒的有界输入。Protocol/Contract/ArenaRuleset 文档存在不代表网络、交易、竞技可运行。
@@ -31,6 +32,7 @@ P0 实现可启动诊断插件、可校验的五种设计格式、模拟接口�
 - SHA-256 用于内容完整性与依赖固定，不是作者数字签名或授权证明。P10 signed envelope 可证明受信 Ed25519 publisher key 签过内容，但不替代 publisher trust-root 生命周期、设计作者许可或游戏操作授权。
 - P10 新公钥准入为每个活跃身份预留撤销空间，active+revoked至多4096且active至多32。信任库完整操作在目录锁内完成；撤销先落盘再清理公钥，已撤销keyId不能复用，已导入内容在每次读取时按当前信任再验证。
 - 可选Helstera桥接只在Paper1.21.11主线程访问当前模型注册表和实体。模型结果与实验室帧为有界不可变值，提供方停用后服务注销；不从模型/动画反写模拟。投影要求固定依赖补丁支持创建回滚和拥有实体的清理重试，旧版提供方仅查询；行为注册保持关闭。
+- 可选CraftEngine桥接在Paper1.21.11主线程持有实际资源操作lease，重新检查加载/重载/退出与提供方身份。创建返回脱离背包的副本，捕获与恢复保留全部NBT字段、类型、数组/列表顺序及PDC；仅忽略compound字段排列与GZIP表示差异。快照限256 KiB压缩/1 MiB展开/4096节点/32层，数量1–64且遵守实际栈上限；未知或删除的自定义ID、数据版本迁移、解码字段丢失均拒绝。原始快照字节保持，SHA-256仅用于完整性。该接口不授予库存交付、来源或经济权限，见 `CRAFTENGINE_ITEM_BRIDGE.md`。
 - 玩家只能组合服务端审核的有限原语；不接收 Java、命令、反射、文件/网络 IO、任意脚本或无界递归。P0 不执行玩家程序。
 
 ## 确定性与线程模型

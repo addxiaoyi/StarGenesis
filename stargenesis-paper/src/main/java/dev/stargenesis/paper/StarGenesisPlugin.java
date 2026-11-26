@@ -25,6 +25,9 @@ import dev.stargenesis.integrations.ModelCatalog;
 import dev.stargenesis.integrations.EntityProjection;
 import dev.stargenesis.integrations.LabProjectionSource;
 import dev.stargenesis.paper.integration.ModelCatalogController;
+import dev.stargenesis.paper.integration.ItemCatalogController;
+import dev.stargenesis.paper.integration.ItemStackBridge;
+import dev.stargenesis.integrations.ItemCatalog;
 import dev.stargenesis.integrations.InstalledPlugin;
 import dev.stargenesis.integrations.IntegrationStatus;
 import org.bukkit.command.Command;
@@ -59,6 +62,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
     private DesignImportController designImports;
     private PublisherTrustController publisherTrust;
     private ModelCatalogController modelCatalog;
+    private ItemCatalogController itemCatalog;
 
     @Override public void onEnable() {
         try {
@@ -74,6 +78,12 @@ public final class StarGenesisPlugin extends JavaPlugin {
             verifyBundledDesigns();
             statuses = inspectCapabilities();
             modelCatalog = new ModelCatalogController(this::currentModelCatalog);
+            itemCatalog = new ItemCatalogController(this::currentItemCatalog, player -> {
+                var registration = getServer().getServicesManager().getRegistration(ItemStackBridge.class);
+                if (registration == null || !registration.getPlugin().isEnabled())
+                    throw new IllegalStateException("Item bridge is unavailable");
+                return registration.getProvider().capture(player.getInventory().getItemInMainHand());
+            });
             labs = new LabController(this, budget, stepDuration, getDataFolder().toPath().resolve("labs"));
             getServer().getServicesManager().register(LabProjectionSource.class, labs::projectionSnapshot,
                     this, org.bukkit.plugin.ServicePriority.Normal);
@@ -95,7 +105,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
             PluginCommand command = Objects.requireNonNull(getCommand("genesis"), "Missing genesis command");
             command.setExecutor(this::execute);
             command.setTabCompleter((sender, cmd, alias, args) -> {
-                List<String> options = args.length == 1 ? List.of("help", "status", "debug", "lab", "blueprint", "program", "radio", "ecology", "factory", "arena", "design", "model")
+                List<String> options = args.length == 1 ? List.of("help", "status", "debug", "lab", "blueprint", "program", "radio", "ecology", "factory", "arena", "design", "model", "item")
+                        : args.length == 2 && args[0].equalsIgnoreCase("item") && sender.hasPermission("stargenesis.items") ? List.of("status", "inspect", "held")
                         : args.length == 2 && args[0].equalsIgnoreCase("model") ? List.of("status", "inspect")
                         : args.length == 2 && args[0].equalsIgnoreCase("design") ? List.of("list", "install", "inspect", "publishers")
                         : args.length == 3 && args[0].equalsIgnoreCase("design") && args[1].equalsIgnoreCase("publishers")
@@ -194,6 +205,11 @@ public final class StarGenesisPlugin extends JavaPlugin {
         return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
     }
 
+    private ItemCatalog currentItemCatalog() {
+        var registration = getServer().getServicesManager().getRegistration(ItemCatalog.class);
+        return registration == null || !registration.getPlugin().isEnabled() ? null : registration.getProvider();
+    }
+
     private List<IntegrationStatus> inspectCapabilities() {
         Map<String, InstalledPlugin> inventory = Arrays.stream(getServer().getPluginManager().getPlugins())
                 .map(p -> new InstalledPlugin(p.getName(), p.getPluginMeta().getVersion(), p.isEnabled()))
@@ -211,6 +227,8 @@ public final class StarGenesisPlugin extends JavaPlugin {
                     }
                     return inspection;
                 });
+            var items = currentItemCatalog();
+            if (items != null && items.integrationId().equals("craftengine")) registry.registerAdapter("craftengine", items::verify);
             return registry.inspect(name -> Optional.ofNullable(inventory.get(name)));
         }
     }
@@ -232,6 +250,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
     private boolean execute(CommandSender sender, Command command, String label, String[] args) {
         String sub = args.length == 0 ? "help" : args[0].toLowerCase(Locale.ROOT);
         if (sub.equals("model")) return modelCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
+        if (sub.equals("item")) return itemCatalog.handle(sender, Arrays.copyOfRange(args, 1, args.length));
         if (sub.equals("lab")) {
             if (!(sender instanceof Player player)) { sender.sendMessage("StarGenesis lab requires a player; use /genesis status for server diagnostics."); return true; }
             return labs.handle(player, Arrays.copyOfRange(args, 1, args.length));
@@ -300,6 +319,7 @@ public final class StarGenesisPlugin extends JavaPlugin {
             sender.sendMessage("/genesis design - install and inspect administrator-staged signed design packages");
             sender.sendMessage("/genesis design publishers - operator-managed publisher trust roots and key rotation");
             sender.sendMessage("/genesis model status | inspect <id> - optional read-only model catalog");
+            sender.sendMessage("/genesis item status | inspect <namespace:item> | held - optional item metadata and own held-state inspection");
             sender.sendMessage("/genesis debug capabilities | /genesis debug budgets - operator diagnostics");
             sender.sendMessage("/genesis help - this help. Laboratory score cannot create real inventory or money.");
         }
@@ -308,6 +328,9 @@ public final class StarGenesisPlugin extends JavaPlugin {
 
     @Override public void onDisable() {
         boolean clean = true;
+        ItemCatalog items = currentItemCatalog();
+        if (items != null) clean &= stop("Item bridge", items::close, () -> true);
+        itemCatalog = null;
         EntityProjection projection = currentProjection();
         if (projection != null) clean &= stop("Model projection", projection::close, () -> projection.reservedEntities() == 0);
         getServer().getServicesManager().unregisterAll(this);
